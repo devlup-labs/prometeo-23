@@ -1,0 +1,6 @@
+#homepage {
+    background-color: red;
+    width: 100vw;
+    opacity: 0;
+    transition: opacity 0.75s ease;
+}
