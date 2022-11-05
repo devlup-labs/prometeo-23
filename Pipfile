@@ -4,20 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==3.2.14"
-djangorestframework = "*"
-django-filter = "*"
-django-ckeditor = "*"
-django-decouple = "*"
-django-allauth = "*"
-django-crispy-forms = "*"
-django-widget-tweaks = "*"
-django-inlinecss = "*"
-django-captcha = "*"
-boto3 = "*"
-django-recaptcha = "*"
-xlsxwriter = "*"
-pillow = "*"
 
 [dev-packages]
 
