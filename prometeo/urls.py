@@ -5,6 +5,7 @@ from django.conf.urls import url
 from django.views.static import serve
 from django.conf import settings
 
+
 urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
@@ -13,6 +14,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('users/', include('users.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('api/',include('apis.urls')),
+    # path(r'api/',include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

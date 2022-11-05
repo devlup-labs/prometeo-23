@@ -10,8 +10,7 @@ EVENT_CHOICES = (
     ('panel_discussion', 'Panel Discussion'),
     ('initiative', 'Initiative'),
     ('entrepreneurial', 'Entrepreneurial'),
-    ('poster_presentation', 'Poster Presentation'),
-    ('national_science_day', 'National Science Day')
+    ('poster_presentation', 'Poster Presentation')
 )
 
 EVENT_PARTICIPATION = (
