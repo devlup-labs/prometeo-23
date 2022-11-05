@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Carousel, Themeimgs, Sponsors, SponsorDesignation
+from .models import Carousel, Theme, Sponsors, SponsorDesignation
 from events.models import Event, StreamLinks, Brochure
 from django.contrib import messages
 
@@ -16,7 +16,7 @@ def home(request):
     if registrationNotCompleted(request):
         return redirect("/users/profile")
     carousel = Carousel.objects.filter(active=True)
-    themes = Themeimgs.objects.all()
+    themes = Theme.objects.all()
     featured_events = Event.objects.filter(featured=True)
     return render(request, 'home.html', {'carousel': carousel,
                                          'theme2030': themes.filter(year='2030'),

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Carousel, Themeimgs, Sponsors, SponsorDesignation
+from .models import Carousel, Theme, Sponsors, SponsorDesignation
 
 
 @admin.register(Carousel)
@@ -12,12 +12,12 @@ class CarouselAdmin(admin.ModelAdmin):
         fields = '__all__'
 
 
-@admin.register(Themeimgs)
-class ThemeimgsAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'year', ]
+@admin.register(Theme)
+class ThemeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name' ]
 
     class Meta:
-        model = Themeimgs
+        model = Theme
         fields = '__all__'
 
 

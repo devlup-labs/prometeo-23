@@ -53,7 +53,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_inlinecss',
     'ckeditor',
-    'captcha'
+    'captcha',
+    'rest_framework',
+    'apis',
+    'django_filters'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -244,3 +247,5 @@ CKEDITOR_CONFIGS = {
         ],
     },
 }
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
