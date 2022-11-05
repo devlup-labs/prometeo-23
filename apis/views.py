@@ -23,9 +23,9 @@ class BrochureViewSet(viewsets.ModelViewSet):
     queryset = Brochure.objects.all()
     serializer_class = BrochureSerializers
 
-class ExhibitionGalleryViewSet(viewsets.ModelViewSet):
-    queryset = ExhibitionGallery.objects.all()
-    serializer_class = ExhibitionGallerySerializers
+class GalleryViewSet(viewsets.ModelViewSet):
+    queryset = Gallery.objects.all()
+    serializer_class = GallerySerializers
 
 class ContactsViewSet(viewsets.ModelViewSet):
     queryset = Contacts.objects.all()

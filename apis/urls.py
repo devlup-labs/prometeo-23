@@ -9,7 +9,7 @@ router.register("events",EventViewSet)
 
 router.register("brochure",BrochureViewSet)
 
-router.register("gallery",ExhibitionGalleryViewSet)
+router.register("gallery",GalleryViewSet)
 
 router.register("theme",ThemeViewSet)
 

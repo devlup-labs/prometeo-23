@@ -19,9 +19,9 @@ class BrochureSerializers(serializers.ModelSerializer):
         model = Brochure
         fields = '__all__'
 
-class ExhibitionGallerySerializers(serializers.ModelSerializer):
+class GallerySerializers(serializers.ModelSerializer):
     class Meta:
-        model = ExhibitionGallery
+        model = Gallery
         fields = '__all__'
 
 class ContactsSerializers(serializers.ModelSerializer):
