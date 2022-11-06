@@ -1,8 +1,9 @@
 .App {
   display: flex;
+  flex-direction: column;
 }
 
-.LoadingAnimation {
+#LoadingAnimation {
   height: 100vh;
   width: 100vw;
   /* background-color: #040508; */

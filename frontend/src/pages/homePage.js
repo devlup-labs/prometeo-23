@@ -1,9 +1,12 @@
 import './homePage.css'
 
+import PrometeoLogo from '../assets/homePage/logo.png'
+
+console.log("afasdfas")
+
 export default function HomePage() {
     return (
         <div id="homepage">
-            <h1>Home Page</h1>
         </div>
     )
 }

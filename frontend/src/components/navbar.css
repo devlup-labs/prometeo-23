@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Teko:wght@300&display=swap');
+
+#navbar {
+    /* background-color: #000000; */
+    position: absolute;
+    top: 0;
+    color: #63ccf5;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2.75vh;
+    padding: 1vh 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    width: 100vw;
+    opacity: 0;
+    transition: opacity 1.3s ease-out;
+    z-index: 1;
+    background: rgb(16,28,39);
+}
+
+.navbar-left-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 35vw;
+    /* border: 1px solid red; */
+}
+
+.navbar-right-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 35vw;
+    /* border: 1px solid red; */
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    /* border: 1px solid red; */
+}
+
+#navbar-logo-img {
+    max-height: 7.5vh;
+}
