@@ -9,8 +9,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-.env
-build/
 develop-eggs/
 dist/
 downloads/
@@ -26,18 +24,11 @@ wheels/
 .installed.cfg
 *.egg
 *.sqlite3
-staticfiles/
-ads/
-media/
-!media/workbooks
-datadump.json
-
-
-.idea/
-
-#migrations
 **/migrations/*
 !**/migrations/__init__.py
+staticfiles/
+media/
+.idea/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -100,7 +91,6 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
-env/
 
 # Spyder project settings
 .spyderproject
@@ -115,3 +105,45 @@ env/
 # mypy
 .mypy_cache/
 .DS_Store
+
+
+# Database
+tadb
+db.sqlite3
+
+# VueJS files
+node_modules/
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/test/unit/coverage
+/test/e2e/reports
+selenium-debug.log
+ui/src/config/index.js
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+npm-debug.log
+yarn-error.log
+
+# Editor directories and files
+*.sln.DS_Store
+node_modules
+/dist
+
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+
+# local env files
+.env.local
+.env.*.local
+
+# Editor directories and files
+.vscode
+*.sw?

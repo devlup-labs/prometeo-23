@@ -2,7 +2,7 @@ version: '3'
 services:
   django:
     build:
-      context: .
+      context: backend
       dockerfile: Dockerfile
     image: prometeo-server
     container_name: django
@@ -14,7 +14,7 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - .:/app
+      - ./backend:/app
     depends_on:
       - postgresqldb
     networks:
