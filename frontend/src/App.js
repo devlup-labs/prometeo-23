@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import loading1 from './assets/loading/big_bang.mp4';
 import spinner from './assets/loading/loading3.gif';
 import './App.css';
@@ -47,24 +49,35 @@ function App() {
     },[]
   )
 
+  // solarSystem();
+
   return (
-    <div className="App">
-      <div id="LoadingAnimation">
-        <video id="my_video" autoPlay={true} muted>
-          <source src={loading1} type="video/mp4" />
-        </video>
+    <Router>
+      <div className="App">
+        <div id="LoadingAnimation">
+          <video id="my_video" autoPlay={true} muted>
+            <source src={loading1} type="video/mp4" />
+          </video>
+        </div>
+        {
+          isLoading && 
+          (
+            <div className="spinner">
+              <img src={spinner} alt="Loading..." />
+            </div>
+          )
+        }
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/*" element={
+            <>
+              <h1>404</h1>
+            </>
+          } />
+        </Routes>
       </div>
-      {
-        isLoading && 
-        (
-          <div className="spinner">
-            <img src={spinner} alt="Loading..." />
-          </div>
-        )
-      }
-      <Navbar />
-      <HomePage />
-    </div>
+    </Router>
   );
 }
 
