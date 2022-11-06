@@ -71,6 +71,9 @@ class ExtendedUserViewSet(viewsets.ModelViewSet):
     queryset = ExtendedUser.objects.all()
     serializer_class = ExtendedUserSerializers
     
+class NewsViewSet(viewsets.ModelViewSet):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializers
 
 
 # Create your views here.

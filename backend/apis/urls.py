@@ -13,6 +13,8 @@ router.register("gallery",GalleryViewSet)
 
 router.register("theme",ThemeViewSet)
 
+router.register("news",NewsViewSet)
+
 urlpatterns=[
     path(r'',include(router.urls)),
  
