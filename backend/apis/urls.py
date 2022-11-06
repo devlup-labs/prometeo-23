@@ -15,6 +15,8 @@ router.register("theme",ThemeViewSet)
 
 router.register("news",NewsViewSet)
 
+router.register("EventSponsors",EventSponsorsViewSet)
+
 urlpatterns=[
     path(r'',include(router.urls)),
  
