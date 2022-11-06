@@ -39,7 +39,7 @@ class EventSponsorsViewSet(viewsets.ModelViewSet):
     queryset = EventSponsors.objects.all()
     serializer_class = EventSponsorsSerializers
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id']
+    filterset_fields = ['event']
 
 class StreamLinksViewSet(viewsets.ModelViewSet):
     queryset = StreamLinks.objects.all()
