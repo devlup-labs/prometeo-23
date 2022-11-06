@@ -6,7 +6,7 @@ from django.contrib import messages
 
 def registrationNotCompleted(request):
     user = request.user
-    if user.is_authenticated and user.extendeduser.isProfileCompleted is False:
+    if user.is_authenticated and user.isProfileCompleted is False:
         messages.info(request, 'Complete your registration first.')
         return True
     return False

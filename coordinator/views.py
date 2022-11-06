@@ -5,7 +5,7 @@ from .models import Coordinator, Designation
 
 def coordinator(request):
     user = request.user
-    if user.is_authenticated and user.extendeduser.isProfileCompleted is False:
+    if user.is_authenticated and user.isProfileCompleted is False:
         messages.success(request, 'Complete your profile first.')
         return redirect("/users/profile")
 

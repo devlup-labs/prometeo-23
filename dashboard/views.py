@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import user_passes_test
-from users.models import CustomUser, ExtendedUser, Team, Submissions
+from users.models import  ExtendedUser, Team, Submissions
 from events.models import Event
 import xlsxwriter
 import os
@@ -291,7 +291,7 @@ def users_info(request):
 
 @user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/users/')
 def user_info(request, userid):
-    user = get_object_or_404(CustomUser, pk=userid)
+    user = get_object_or_404(ExtendedUser, pk=userid)
     teams = {}
     for team in user.teams.all():
         teams[team.event.pk] = team.name
