@@ -35,7 +35,6 @@ export default function solarSystem() {
     scene.add(ambientLight);
 
     const pointLight = new THREE.PointLight(0xffffff);
-    // pointLight.position.set(800, 0, 0);
     scene.add(pointLight);
 
     // const sphereSize = 5;
@@ -50,7 +49,8 @@ export default function solarSystem() {
 
     const bgGeometry = new THREE.SphereGeometry(2000, 100, 100);
     const bgMaterial = new THREE.MeshStandardMaterial({
-        map: textureLoader.load(bg8k),
+        map: textureLoader.load(bg),
+        // map: textureLoader.load(bg8k),
         side: THREE.DoubleSide,
     });
     const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
