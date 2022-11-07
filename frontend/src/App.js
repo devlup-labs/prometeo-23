@@ -67,9 +67,9 @@ function App() {
           </div>
         )
       }
-      <Navbar />
+      {/* <Navbar />
       <HomePage />
-      <Speaker/>
+      <Speaker/> */}
       <Gallery/>
     </div>
   );

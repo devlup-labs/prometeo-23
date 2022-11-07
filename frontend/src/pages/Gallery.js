@@ -649,15 +649,15 @@ window.addEventListener("load", () => {
 });
 function Gallery() {
   return (
-    <div>
-      <div class="loading">
-        <div class="loading-container">
-          <p class="counter"></p>
-          <div class="line"></div>
+    <div className="galleryPage">
+      <div className="loading">
+        <div className="loading-container">
+          <p className="counter"></p>
+          <div className="line"></div>
         </div>
       </div>
-      <div class="body-container">
-        <div class="box">
+      <div className="body-container">
+        <div className="box">
           <h1>Gallery</h1>
         </div>
       </div>

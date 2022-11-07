@@ -16,6 +16,15 @@ body {
   font-family: Montserrat, sans-serif;
   overflow: hidden; 
 } */
+#galleryPage{
+  height: 100vh;
+    width: 100vw;
+    padding-top: 10vh;
+    /* opacity: 0; */
+    background: rgb(16,28,39);
+    background: radial-gradient(circle, rgba(16,28,39,1) 10%, rgba(0,0,0,1) 90%);
+    /* transition: opacity 1.3s ease-out; */
+}
 .box {
   padding: 32px;
 }
