@@ -54,24 +54,16 @@ function Speaker() {
 		// speakerPageEle.addEventListener("load", handleLoading);
         const navBarEle = document.getElementById("navbar")
         navBarEle.style.opacity = 1;
+		document.body.style.overflow = "auto";
+		document.body.style.overflowX = "hidden";
       },[]
     )
 
 	return (
-		<>       
-			{
-				isLoading && 
-				(
-					<div className="spinner">
-						<img src={spinner} alt="Loading..." />
-					</div>
-				)
-			}
 			<div id="speakerPage">
 				<h2 className="section-header">SPEAKERS</h2>
 				<dl className="dictionary">{speakerDetails.map(createEntry)}</dl>
 			</div>
-		</>
 	);
 }
 export default Speaker;
