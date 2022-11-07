@@ -35,6 +35,7 @@ export default function HomePage() {
       () => {
         // const navBarEle = document.getElementById("navbar")
         // navBarEle.style.opacity = 0;
+        document.body.style.overflow = "hidden";
 
         const vid = document.getElementById("my_video");
         vid.addEventListener("canplay", handleLoading);
