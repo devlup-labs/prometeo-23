@@ -8,6 +8,9 @@ import './App.css';
 
 import Navbar from './components/navbar'
 import HomePage from "./pages/homePage";
+import Speaker from "./pages/Speaker";
+import Gallery from "./pages/Gallery";
+
 
 import solarSystem from "./pages/solarsystem";
 
@@ -36,6 +39,8 @@ function App() {
     homePageEle.style.opacity = 1;
     const navBarEle = document.getElementById("navbar")
     navBarEle.style.opacity = 1;
+    // const speakerPageEle = document.getElementById("speakerPage")
+    // speakerPageEle.style.opacity = 1;
 
     solarSystem();
 
