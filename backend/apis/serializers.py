@@ -78,3 +78,8 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = '__all__'
+
+class NewsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = News
+        fields = '__all__'

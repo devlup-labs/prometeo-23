@@ -41,3 +41,13 @@ class Sponsors(models.Model):
 
     class Meta:
         verbose_name_plural = 'sponsors'
+
+
+class News(models.Model):
+    title = models.CharField(max_length=100, verbose_name='News Title')
+    description = RichTextField(max_length=5000000, null=True, blank=True, verbose_name="Description")
+    image = models.ImageField(upload_to='news/', verbose_name='News Image')
+    # link = models.URLField(max_length=1000, verbose_name='Link to News', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
