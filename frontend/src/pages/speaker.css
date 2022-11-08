@@ -105,7 +105,7 @@
   height: 310px;
 }
 
-.container {
+.blog-container {
   max-width: 600px;
   max-height: 350px;
   display: flex;
@@ -113,10 +113,10 @@
   align-items: center;
   gap: 20px;
 }
-.blog-slider:hover .container img {
+.blog-slider:hover .blog-container img {
   opacity: 0.3;
 }
-.blog-slider:hover .container img {
+.blog-slider:hover .blog-container img {
   transform: perspective(800px) rotateY(0deg);
   opacity: 1;
   border: #171040 solid;
@@ -157,6 +157,9 @@
   color: #4e4a67;
   margin-bottom: 30px;
   line-height: 1.5em;
+  display: flex;
+align-items: center;
+justify-content: center;
 }
 
 @media screen and (max-width: 992px) {

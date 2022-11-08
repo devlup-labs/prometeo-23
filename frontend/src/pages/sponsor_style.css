@@ -31,7 +31,7 @@ body {
 }
 
 
-h1 {
+#sponsors_body h1 {
   /* font-weight: 500;
   font-size: 500%; */
   text-align: center;
@@ -48,7 +48,7 @@ h1 {
   -webkit-background-clip: text;
 }
 
-h1 span {
+#sponsors_body h1 span {
   padding: 10px 25px;
   margin-bottom: 10px;
   /* background: #2ec2b0; */

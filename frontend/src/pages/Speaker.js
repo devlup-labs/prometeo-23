@@ -11,7 +11,7 @@ function About(props) {
 		<div className="blog-slider">
 			<div className="blog-slider__wrp">
 				<div className="blog-slider__item swiper-slide">
-					<div className="blog-slider__img container">
+					<div className="blog-slider__img blog-container">
 						<img src={props.img} alt="" />
 					</div>
 					<div className="blog-slider__content">

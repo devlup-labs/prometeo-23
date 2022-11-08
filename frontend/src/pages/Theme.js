@@ -1,5 +1,5 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 // 1) first install npm install bootstrap
 // 2) Put any other imports below so that CSS from your components takes precedence over default styles.
 import "./theme.css";
