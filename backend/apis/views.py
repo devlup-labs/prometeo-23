@@ -38,6 +38,8 @@ class PanelViewSet(viewsets.ModelViewSet):
 class EventSponsorsViewSet(viewsets.ModelViewSet):
     queryset = EventSponsors.objects.all()
     serializer_class = EventSponsorsSerializers
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['event']
 
 class StreamLinksViewSet(viewsets.ModelViewSet):
     queryset = StreamLinks.objects.all()
@@ -71,6 +73,9 @@ class ExtendedUserViewSet(viewsets.ModelViewSet):
     queryset = ExtendedUser.objects.all()
     serializer_class = ExtendedUserSerializers
     
+class NewsViewSet(viewsets.ModelViewSet):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializers
 
 
 # Create your views here.
