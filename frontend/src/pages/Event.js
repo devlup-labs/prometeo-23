@@ -27,7 +27,7 @@ function Entry(props) {
   <div className="event_cards">
     <li className="card" aria-labelledby="event card">
       <div className="card__filter">
-        <img className="card__photo" src={props.image} alt="The Image will be displayed here shortly " />
+        <img className="card__photo" src={props.image} alt="The Image_ will be displayed here shortly " />
       </div>
       <div className="card__container">
         <h2>{props.name}</h2>
