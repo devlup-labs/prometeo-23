@@ -19,6 +19,11 @@
     background: rgb(16,28,39);
 }
 
+#navbar a {
+    color: #63ccf5;
+    text-decoration: none;
+}
+
 .navbar-left-section {
     display: flex;
     align-items: center;
