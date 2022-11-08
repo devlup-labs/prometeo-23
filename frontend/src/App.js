@@ -8,6 +8,7 @@ import Navbar from './components/navbar'
 import HomePage from "./pages/homePage";
 import Speaker from "./pages/Speaker";
 import Gallery from "./pages/Gallery";
+import Theme from "./pages/Theme";
 
 
 import solarSystem from "./pages/solarsystem";
@@ -67,10 +68,11 @@ function App() {
           </div>
         )
       }
-      {/* <Navbar />
+      <Navbar />
       <HomePage />
-      <Speaker/> */}
+      <Speaker/>
       <Gallery/>
+      <Theme/>
     </div>
   );
 }
