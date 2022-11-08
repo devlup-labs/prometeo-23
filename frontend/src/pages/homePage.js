@@ -46,7 +46,7 @@ export default function HomePage() {
       },[]
     )
     return (
-        <>            
+        <div>            
             {
                 isLoading && 
                 (
@@ -62,6 +62,6 @@ export default function HomePage() {
             </div>
             <div id="homepage">
             </div>
-        </>
+        </div>
     )
 }

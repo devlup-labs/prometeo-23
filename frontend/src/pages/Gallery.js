@@ -258,11 +258,11 @@ class Sketch {
 		this.canvas.ariaLabel = "This is images gallery.";
 		this.canvas.role = "img";
 		this.canvas.style.position = "fixed";
-		this.canvas.style.top = "0";
+		this.canvas.style.bottom = "0";
 		this.canvas.style.left = "0";
 		this.canvas.style.width = "100%";
-		this.canvas.style.minHeight = "100vh";
-		this.canvas.style.minHeight = "calc(var(--vh, 1vh) * 100)";
+		this.canvas.style.minHeight = "90vh";
+		this.canvas.style.minHeight = "calc(var(--vh, 1vh) * 90)";
 		this.canvas.style.display = "block";
 		this.canvas.style.background = "#01012A";
 		this.canvas.style.zIndex = "0";
@@ -316,7 +316,7 @@ class Sketch {
 	}
 	onResize() {
 		if (this.preWidth === window.innerWidth) {
-			this.height = this.canvas.height = window.innerHeight;
+			this.height = this.canvas.height = 0.9 * window.innerHeight;
 			return;
 		}
 		this.initialize();
@@ -393,7 +393,7 @@ class Sketch {
 	}
 	setupSizes() {
 		this.width = this.preWidth = this.canvas.width = window.innerWidth;
-		this.height = this.canvas.height = window.innerHeight;
+		this.height = this.canvas.height = 0.9 * window.innerHeight;
 	}
 	setupShapes() {
 		const edge = Math.max(this.width, this.height);
