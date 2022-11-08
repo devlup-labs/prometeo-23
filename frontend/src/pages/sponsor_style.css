@@ -1,0 +1,129 @@
+/* * {
+  margin: auto;
+  padding: 0 2rem;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  line-height: 1.666;
+  background: #1a0f35;
+  color: #555;
+} */
+
+#sponsors_body{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  line-height: 1.666;
+  background: #1a0f35;
+  color: #555;
+  margin:auto;
+  /* padding: 0 2rem; */
+
+  /* From homePage css */
+   height: 100vh;
+    width: 100vw;
+    padding-top: 10vh;
+    /* opacity: 0; */
+    background: rgb(16,28,39);
+    background: radial-gradient(circle, rgba(16,28,39,1) 10%, rgba(0,0,0,1) 90%);
+    /* transition: opacity 1.3s ease-out; */
+}
+
+
+.sponsor_h1 {
+  /* font-weight: 500;
+  font-size: 500%; */
+  text-align: center;
+  /* margin-top: 4rem; */
+  /* color: #FCE2DB; */
+  line-height: 1.2;
+  margin: auto;
+
+  font-size: 80px;
+  font-weight: 800;
+  background-image:repeating-linear-gradient(to right, #ffff, #ee4b2b 10%, #ffff 20%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.sponsor_h1 span {
+  padding: 10px 25px;
+  margin-bottom: 10px;
+  /* background: #2ec2b0; */
+}
+
+/*.dictionary {
+
+  text-align: center;
+  /* margin-top: 4rem; */
+  /* color: rgb(22, 10, 10); */
+/*  line-height: 1.2;
+  margin: auto;
+}
+*/
+
+.team-card img{
+  width: 250px;
+  height: 200px;
+  margin:auto;
+  /* padding: 0 2rem; */
+}
+
+.card-grid {
+  display: flex;
+  flex-flow: wrap;
+  width: 100%;
+}
+
+.section-header {
+  position: relative;
+  /* padding-bottom: 10px; */
+  text-align: center;
+  margin: 25px 0px;
+  font-family: 'Montserrat', sans-serif;
+
+  font-size: 50px;
+  font-weight: 600;
+  background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+
+.team-card {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  /* box-shadow: 0px 7px 7px 2px rgba(0, 0, 0, 0.1); */
+  /* background-color: 020624; */
+  margin: 50px auto;
+  
+  /* width: 100px; */
+  /* border-radius: 5px; */
+  /* padding: 10px 0px; */
+  /* height: 150px; */
+}
+
+
+/* .img-area {
+  overflow: hidden;
+  position: relative;
+  padding-left: -100px ;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+
+  width: 80%;
+  max-width: 150px;
+  height: auto;
+  max-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 10%;
+  max-height: 100px;
+  transition: all 0.4s ease 0s;
+} */
