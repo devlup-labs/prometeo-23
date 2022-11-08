@@ -1,15 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:800');
 
-
-
-.speakerPage{
+.eventsPage{
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     justify-content: center; 
-    padding: 2rem;
+    /* padding: 2rem; */
 	margin: auto;
-	margin-left: 1rem;
+	/* margin-left: 1rem; */
     /* display: block; */
 
 
@@ -26,8 +24,10 @@
 .event_cards{  /* FIXED FOR NOW */
     display: flex;
 	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-evenly;
     margin-top: 1rem;
-    margin-right: 0.5rem;
+    /* margin-right: 0.5rem; */
 }
 
  .card {
