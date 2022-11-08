@@ -21,6 +21,9 @@ export default function HomePage() {
         const vid = document.getElementById("my_video");
         vid.remove();
         document.getElementById("LoadingAnimation").remove();
+        
+        document.body.style.background = "rgb(16,28,39)"
+        document.body.style.background = "radial-gradient(circle, rgba(16,28,39,1) 10%, rgba(0,0,0,1) 90%)"
     
         const homePageEle = document.getElementById("homepage");
         homePageEle.style.opacity = 1;

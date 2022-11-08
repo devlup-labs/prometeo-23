@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import event_data from "./event_info";
 import './event_page.css';
 
@@ -51,11 +51,17 @@ function Entry(props) {
 }
 
 function Events() {
+  useEffect(() => {
+    const navBarEle = document.getElementById("navbar")
+    navBarEle.style.opacity = 1;
+    document.body.style.overflow = "auto";
+  });
+
   return (
 
     <div>
 
-      <div className="speakerPage">
+      <div className="eventsPage">
 				<h2 className="section-header">Events</h2>
 				<div className="event_cards">{event_data.map(createEntry)}</div>
 			</div>
