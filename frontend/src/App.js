@@ -8,6 +8,7 @@ import Page_404 from "./pages/404";
 import Speaker from "./pages/Speaker";
 import Gallery from "./pages/Gallery";
 import Sponsors from "./pages/Sponsors";
+import Events from "./pages/Event.js";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/speaker" element={<Speaker />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/sponsors" element={<Sponsors />} />
+          <Route path="/events" element={<Events />} />
 
           <Route path="/*" element={<Page_404 />} />
         </Routes>
