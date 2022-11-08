@@ -9,6 +9,7 @@ import Speaker from "./pages/Speaker";
 import Gallery from "./pages/Gallery";
 import Theme from "./pages/Theme";
 import Sponsors from "./pages/Sponsors";
+import Events from "./pages/Event.js";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/speakers" element={<Speaker />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/sponsors" element={<Sponsors />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/theme" element={<Theme />} />
 
           <Route path="/*" element={<Page_404 />} />
