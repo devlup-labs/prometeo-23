@@ -21,7 +21,7 @@
 	display:grid;
 }
 .speakerCard{
-	margin: auto;
+	margin-top: -50px;
 	padding: auto;
 	display: flex;
 	flex-direction: column	;
@@ -46,7 +46,7 @@
   margin: 50px 0;
   background: #fff;
   box-shadow: 0px 0px 20px #2a3cad;
-  padding: 25px;
+  padding: 20px;
   border-radius: 25px;
   min-height: 350px;
   transition: all 0.3s;

@@ -642,7 +642,7 @@ class Stopwatch {
 		return this.elapsedTime;
 	}
 }
-window.addEventListener("load", () => {
+window.addEventListener("click", () => {
 	const F = new FullScreen();
 	const L = new Loading();
 	L.initialize().then(() => {
