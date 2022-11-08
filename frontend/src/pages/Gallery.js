@@ -642,13 +642,21 @@ class Stopwatch {
 		return this.elapsedTime;
 	}
 }
-window.addEventListener("click", () => {
-	const F = new FullScreen();
-	const L = new Loading();
-	L.initialize().then(() => {
-		const S = new Sketch();
-	});
-});
+window.addEventListener(
+  "click",
+  (namedListener) => {
+    window.removeEventListener("click", namedListener);
+    const F = new FullScreen();
+    const L = new Loading();
+    L.initialize().then(
+      () => {
+        const S = new Sketch();
+      },
+      { once: true }
+    );
+  },
+  { once: true }
+);
 function Gallery() {
 	useEffect(  // when the component has rendered then add the event listener to it
 		() => {
