@@ -40,9 +40,9 @@ function Sponsors() {
   return (
     <div id="sponsors_body">
       <h1 className="sponsor_h1">
-        <span className="sponsor_h1_span">Sponsors</span>
+        <span className="sponsor_h1_span">SPONSORS</span>
       </h1>
-      <dl>{sponsor_data.map(createEntry)}</dl>
+      <div>{sponsor_data.map(createEntry)}</div>
     </div>
   );
 }

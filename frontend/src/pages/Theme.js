@@ -13,9 +13,10 @@ function Theme(){
   });
     return (
       <div id="themePage" class="contentDiv">
-        <div class="content">
-          <div class="row mt-2">
-            <div class="col-xl-6 mb-3">
+      <h2>THEME</h2>
+        <div class="themeContent">
+          <div class="themeRow">
+            <div class="themeColumn">
               <div class="video-box d-flex justify-content-center">
                 <div class="theme-video-container">
                   <iframe
@@ -25,7 +26,7 @@ function Theme(){
                 </div>
               </div>
             </div>
-            <div class="col-xl-6 mb-3">
+            <div class="themeColumn">
               <p>
                 Each of us has a vision of what the future of technology holds.
                 Each of us envisions a smart India which holds great potential
@@ -40,7 +41,7 @@ function Theme(){
                 Could India lead the world? Could India become a technological
                 giant? Could India be the force behind the biggest global
                 projects? All these questions have answers lying behind our
-                participation, our ideas and our dedication. 
+                participation, our ideas and our dedication.
                 <br />
                 We invite you to put your best foot forward to present and
                 experience the India of our vision with Prometeo'22!
