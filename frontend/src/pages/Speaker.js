@@ -11,7 +11,7 @@ function About(props) {
 		<div className="blog-slider">
 			<div className="blog-slider__wrp">
 				<div className="blog-slider__item swiper-slide">
-					<div className="blog-slider__img container">
+					<div className="blog-slider__img blog-container">
 						<img src={props.img} alt="" />
 					</div>
 					<div className="blog-slider__content">
@@ -54,15 +54,15 @@ function Speaker() {
 		// speakerPageEle.addEventListener("load", handleLoading);
         const navBarEle = document.getElementById("navbar")
         navBarEle.style.opacity = 1;
-		document.body.style.overflow = "auto";
-		document.body.style.overflowX = "hidden";
+		// document.body.style.overflow = "auto";
+		// document.body.style.overflowX = "hidden";
       },[]
     )
 
 	return (
 			<div id="speakerPage">
-				<h2 className="section-header">SPEAKERS</h2>
-				<dl className="dictionary">{speakerDetails.map(createEntry)}</dl>
+				<h2 className="speakerHeading">SPEAKERS</h2>
+				<div className="speakerCard">{speakerDetails.map(createEntry)}</div>	
 			</div>
 	);
 }

@@ -1,26 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:800');
 
-.eventsPage{
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    justify-content: center; 
-    /* padding: 2rem; */
-	margin: auto;
-	/* margin-left: 1rem; */
-    /* display: block; */
-
-
-
-    /* height: 100vh; */
-    width: 100vw;
-    padding-top: 10vh;
-    /* opacity: 0; */
+#eventsPage{   
+	overflow-y: auto;
+  box-sizing: border-box;
+	padding: 0 1vw;
+	width: 100vw;
+	height: 90vh;
     background: rgb(16,28,39);
     background: radial-gradient(circle, rgba(16,28,39,1) 10%, rgba(0,0,0,1) 90%);
-    /* transition: opacity 1.3s ease-out; */
+	min-height: 90vh;
+	display:grid;
 }
-
+#eventsPage .section-header{
+	  color: #84f4eb;
+  font-family: 'Share Tech', sans-serif;
+  /* margin-left: auto; */
+  margin-right: auto;
+  font-size: 40px;
+  font-weight: 800;
+  /* margin-bottom: 0; */
+  padding-left: 4vw;
+}
 .event_cards{  /* FIXED FOR NOW */
     display: flex;
 	flex-wrap: wrap;
@@ -43,7 +43,7 @@
      margin: 1em;
 }
  .card__filter {
-	 height: 212px;
+	 height: 170px;
 	 overflow: hidden;
 	 position: relative;
 	 object-fit: cover;
@@ -80,7 +80,7 @@
 	 font-size: 37px;
 	 color: #405cd2;
 	 letter-spacing: -1.06px;
-	 margin: 0 0.4em 0.4em 0;
+	 margin: 0;
 }
  .card time, .card p, .card .card__location {
 	 font-family: 'IBM Plex Mono', sans-serif;
@@ -103,7 +103,7 @@
 	 display: flex;
 	 align-items: center;
 	 width: 100%;
-	 margin: 1.5em 0 0.5em 0;
+	 margin: 0.5em 0;
 	 flex-direction: row;
 }
  .card__buttons .btn {

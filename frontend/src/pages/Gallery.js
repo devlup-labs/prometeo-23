@@ -671,7 +671,7 @@ function Gallery() {
 			</div>
 			<div id="body-container">
 				<div className="box">
-					<h1>Gallery</h1>
+					<h2>Gallery</h2>
 				</div>
 			</div>
 		</div>

@@ -13,9 +13,7 @@ function createEntry(eventTerm) {
   return (
     <Entry
       key={eventTerm.id}
-      // emoji={sponsorTerm.emoji}
       name={eventTerm.name}
-      // description={sponsorTerm.meaning}
       img={eventTerm.image}
       desc={eventTerm.description}
     />
@@ -58,19 +56,11 @@ function Events() {
   });
 
   return (
-
     <div>
-
-      <div className="eventsPage">
-				<h2 className="section-header">Events</h2>
+      <div id="eventsPage">
+				<h2 className="section-header">EVENTS</h2>
 				<div className="event_cards">{event_data.map(createEntry)}</div>
 			</div>
-
-
-
-
-
-
     </div>
   );
 }
