@@ -18,11 +18,17 @@
     transition: opacity 1.3s ease-out;
     z-index: 1;
     background: rgb(16,28,39);
+    user-select: none;
 }
 
 #navbar a {
     color: #63ccf5;
     text-decoration: none;
+    transition: color 0.1s ease-out;
+}
+
+#navbar a:hover {
+    color: #e2f7f5;
 }
 
 .navbar-left-section {

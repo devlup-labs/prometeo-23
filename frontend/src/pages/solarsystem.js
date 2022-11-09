@@ -6,13 +6,20 @@ import bg8k from '../assets/space/bg8k.jpg';
 import sun from '../assets/space/sun.jpg';
 import sun_blue from '../assets/space/sun(5).png';
 
+import mercury from '../assets/planets/mercury.jpg';
+import venus from '../assets/planets/venus.jpg';
+import mars from '../assets/planets/mars.jpg'
+import jupiter from '../assets/planets/jupiter.jpg';
+import saturn from '../assets/planets/saturn.jpg';
+
 import first from '../assets/space/first.jpg'; 
 import second from '../assets/space/2.jpg'; 
 import ice from '../assets/space/ice.jpg'; 
 import weird from '../assets/space/weird.jpg'; 
+import today from '../assets/space/today.jpg'; 
 import future from '../assets/space/future.jpg'; 
 
-import moon from '../assets/space/ice.jpg';
+import moon from '../assets/space/moon.jpg';
 
 export default function solarSystem() {
     const scene = new THREE.Scene();
@@ -86,23 +93,91 @@ export default function solarSystem() {
     );
     // axis.rotation.z = tilt
     
+    // mercury
+
+    const mercurySystem = new THREE.Object3D();
+
+    const mercuryGeometry = new THREE.SphereGeometry(0.3829*r, 100, 100);
+    const mercuryMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(mercury),
+        emissiveIntensity: 0.3,
+    });
+
+    const mercuryMesh = new THREE.Mesh(mercuryGeometry, mercuryMaterial);
+    mercurySystem.add(mercuryMesh);
+    mercurySystem.add(axis.clone());
+
+    mercurySystem.rotation.z = tilt;
+    scene.add(mercurySystem);
+
+    const mercury_curve = new THREE.EllipseCurve(
+        0, 0,
+        250, 300,
+        0 + Math.PI/6, 2 * Math.PI + Math.PI/6,
+    );
+
+    const mercury_orbit = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(
+            mercury_curve.getSpacedPoints(200)
+        ), 
+        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
+    );
+    mercury_orbit.rotateX(-Math.PI/2);
+    scene.add(mercury_orbit);
+
+    // venus
+
+    const venusSystem = new THREE.Object3D();
+
+    const venusGeometry = new THREE.SphereGeometry(0.949*r, 100, 100);
+    const venusMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(venus),
+        emissiveIntensity: 0.3,
+    });
+
+    const venusMesh = new THREE.Mesh(venusGeometry, venusMaterial);
+    venusSystem.add(venusMesh);
+    venusSystem.add(axis.clone());
+
+    venusSystem.rotation.z = tilt;
+    scene.add(venusSystem);
+
+    const venus_curve = new THREE.EllipseCurve(
+        0, 0,
+        350, 400,
+        0 + 4*Math.PI/6, 2 * Math.PI + 4*Math.PI/6,
+    );
+
+    const venus_orbit = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(
+            venus_curve.getSpacedPoints(200)
+        ), 
+        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
+    );
+    venus_orbit.rotateX(-Math.PI/2);
+    scene.add(venus_orbit);
+
     // moon
     const moonGeometry = new THREE.SphereGeometry(5, 40, 20);
     const moonMaterial = new THREE.MeshStandardMaterial({
         map: textureLoader.load(moon),
     })
 
+    // first earth system
+    
     const firstEarthMoonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
-
     firstEarthMoonMesh.position.set(40, 0, 0);
 
-    // first earth system
     const firstEarthSystem = new THREE.Object3D();
 
     // firstEarth
     const firstEarthGeometry = new THREE.SphereGeometry(r, s, s);
     const firstEarthMaterial = new THREE.MeshStandardMaterial({
-        map: textureLoader.load(first),
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(first),
+        emissiveIntensity: 0.3,
     });
     const firstEarthMesh = new THREE.Mesh(firstEarthGeometry, firstEarthMaterial);
     firstEarthSystem.add(firstEarthMesh);
@@ -116,13 +191,9 @@ export default function solarSystem() {
 
     const firstEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        250, 300,
+        450, 500,
         0, 2 * Math.PI,
     );
-
-    // const points = futureEarth_curve.getSpacedPoints(200);
-    // const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    // const material = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 });
 
     const firstEarth_orbit = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints(
@@ -134,23 +205,23 @@ export default function solarSystem() {
     scene.add(firstEarth_orbit);
 
     // second earth system
-
+    
     const secondEarthMoonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
-
     secondEarthMoonMesh.position.set(40, 0, 0);
 
-    // second earth system
     const secondEarthSystem = new THREE.Object3D();
 
     // secondEarth
     const secondEarthGeometry = new THREE.SphereGeometry(r, s, s);
     const secondEarthMaterial = new THREE.MeshStandardMaterial({
-        map: textureLoader.load(second),
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(second),
+        emissiveIntensity: 0.3,
     });
     const secondEarthMesh = new THREE.Mesh(secondEarthGeometry, secondEarthMaterial);
     secondEarthSystem.add(secondEarthMesh);
 
-    // firstEarth axis
+    // secondEarth axis
     secondEarthSystem.add(axis.clone());
 
     secondEarthSystem.add(secondEarthMoonMesh);
@@ -159,145 +230,166 @@ export default function solarSystem() {
 
     const secondEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        350, 400,
-        0 + Math.PI/2, 2 * Math.PI + Math.PI/2,
+        450, 500,
+        0 + (2*Math.PI/5), 2 * Math.PI + (2*Math.PI/5),
     );
-
-    // const points = futureEarth_curve.getSpacedPoints(200);
-    // const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    // const material = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 });
-
-    const secondEarth_orbit = new THREE.Line(
-        new THREE.BufferGeometry().setFromPoints(
-            secondEarth_curve.getSpacedPoints(200)
-        ), 
-        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
-    );
-    secondEarth_orbit.rotateX(-Math.PI/2);
-    scene.add(secondEarth_orbit);
 
     // third earth system
     
-    const thirdEarth_system = new THREE.Object3D();
-
-    const thirdEarthGeometry = new THREE.SphereGeometry(r, s, s);
-    const thirdEarthMaterial = new THREE.MeshStandardMaterial({
-        map: textureLoader.load(ice),
-    });
-
-    const thirdEarthMesh = new THREE.Mesh(thirdEarthGeometry, thirdEarthMaterial);
-    thirdEarth_system.add(thirdEarthMesh);
-
-    // thirdEarth axis
-    thirdEarth_system.add(axis.clone());
-
     const thirdEarthMoonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
     thirdEarthMoonMesh.position.set(40, 0, 0);
-    thirdEarth_system.add(thirdEarthMoonMesh);
 
-    thirdEarth_system.rotation.z = tilt;
-    scene.add(thirdEarth_system);
+    const thirdEarthSystem = new THREE.Object3D();
+
+    // thirdEarth
+    const thirdEarthGeometry = new THREE.SphereGeometry(r, s, s);
+    const thirdEarthMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(ice),
+        emissiveIntensity: 0.3,
+    });
+    const thirdEarthMesh = new THREE.Mesh(thirdEarthGeometry, thirdEarthMaterial);
+    thirdEarthSystem.add(thirdEarthMesh);
+
+    // thirdEarth axis
+    thirdEarthSystem.add(axis.clone());
+
+    thirdEarthSystem.add(thirdEarthMoonMesh);
+    thirdEarthSystem.rotation.z = tilt;
+    scene.add(thirdEarthSystem);
 
     const thirdEarth_curve = new THREE.EllipseCurve(
         0, 0,
         450, 500,
-        0 + Math.PI, 2 * Math.PI + Math.PI,
+        0 + (4*Math.PI/5), 2 * Math.PI + (4*Math.PI/5),
     );
-
-    // const points = futureEarth_curve.getSpacedPoints(200);
-    // const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    // const material = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 });
-
-    const thirdEarth_orbit = new THREE.Line(
-        new THREE.BufferGeometry().setFromPoints(
-            thirdEarth_curve.getSpacedPoints(200)
-        ),
-        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
-    );
-    thirdEarth_orbit.rotateX(-Math.PI/2);
-    scene.add(thirdEarth_orbit);
 
     // fourth earth system
-
-    const fourthEarth_system = new THREE.Object3D();
-
-    const fourthEarthGeometry = new THREE.SphereGeometry(r, s, s);
-    const fourthEarthMaterial = new THREE.MeshStandardMaterial({
-        map: textureLoader.load(weird),
-    });
-
-    const fourthEarthMesh = new THREE.Mesh(fourthEarthGeometry, fourthEarthMaterial);
-    fourthEarth_system.add(fourthEarthMesh);
-
-    // fourthEarth axis
-    fourthEarth_system.add(axis.clone());
-
+    
     const fourthEarthMoonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
     fourthEarthMoonMesh.position.set(40, 0, 0);
-    fourthEarth_system.add(fourthEarthMoonMesh);
 
-    fourthEarth_system.rotation.z = tilt;
-    scene.add(fourthEarth_system);
+    const fourthEarthSystem = new THREE.Object3D();
+
+    // fourthEarth
+    const fourthEarthGeometry = new THREE.SphereGeometry(r, s, s);
+    const fourthEarthMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(today),
+        emissiveIntensity: 0.3,
+    });
+    const fourthEarthMesh = new THREE.Mesh(fourthEarthGeometry, fourthEarthMaterial);
+    fourthEarthSystem.add(fourthEarthMesh);
+
+    // fourthEarth axis
+    fourthEarthSystem.add(axis.clone());
+
+    fourthEarthSystem.add(fourthEarthMoonMesh);
+    fourthEarthSystem.rotation.z = tilt;
+    scene.add(fourthEarthSystem);
 
     const fourthEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        550, 600,
-        0 + 3*Math.PI/2, 2 * Math.PI + 3*Math.PI/2,
+        450, 500,
+        0 + (6*Math.PI/5), 2 * Math.PI + (6*Math.PI/5),
     );
 
-    // const points = futureEarth_curve.getSpacedPoints(200);
-    // const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    // const material = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 });
+    // fifth earth system
+    
+    const fifthEarthMoonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
+    fifthEarthMoonMesh.position.set(20, 0, 0);
 
-    const fourthEarth_orbit = new THREE.Line(
-        new THREE.BufferGeometry().setFromPoints(
-            fourthEarth_curve.getSpacedPoints(200)
-        ),
-        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
-    );
-    fourthEarth_orbit.rotateX(-Math.PI/2);
-    scene.add(fourthEarth_orbit);
+    const fifthEarthSystem = new THREE.Object3D();
 
-    // future earth system
-    const futureEarthSystem = new THREE.Group();
-
-    // futureEarth
-    const futureEarthGeometry = new THREE.SphereGeometry(r, s, s);
-    const futureEarthMaterial = new THREE.MeshPhongMaterial({
-        map: textureLoader.load(future),
+    // fifthEarth
+    const fifthEarthGeometry = new THREE.SphereGeometry(r, s, s);
+    const fifthEarthMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(future),
+        emissiveIntensity: 0.3,
     });
-    const futureEarthMesh = new THREE.Mesh(futureEarthGeometry, futureEarthMaterial);
-    // futureEarthMesh.rotation.z = tilt;
-    futureEarthSystem.add(futureEarthMesh);
+    const fifthEarthMesh = new THREE.Mesh(fifthEarthGeometry, fifthEarthMaterial);
+    fifthEarthSystem.add(fifthEarthMesh);
 
-    // futureEarth axis
-    futureEarthSystem.add(axis);
+    // fifthEarth axis
+    fifthEarthSystem.add(axis.clone());
 
-    const futureEarthMoonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
-    futureEarthMoonMesh.position.set(40, 0, 0);
-    futureEarthSystem.add(futureEarthMoonMesh);
+    fifthEarthSystem.add(fifthEarthMoonMesh);
+    fifthEarthSystem.rotation.z = tilt;
+    scene.add(fifthEarthSystem);
 
-    futureEarthSystem.rotation.z = tilt
-    scene.add(futureEarthSystem);
-
-    const futureEarth_curve = new THREE.EllipseCurve(
+    const fifthEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        650, 700,
-        0 + 2*Math.PI, 2 * Math.PI + 2*Math.PI,
+        450, 500,
+        0 + (8*Math.PI/5), 2 * Math.PI + (8*Math.PI/5),
     );
 
-    // const points = futureEarth_curve.getSpacedPoints(200);
-    // const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    // const material = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 });
+    // mars
 
-    const futureEarth_orbit = new THREE.Line(
+    const marsSystem = new THREE.Object3D();
+
+    const marsGeometry = new THREE.SphereGeometry(0.532*r, 100, 100);
+    const marsMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(mars),
+        emissiveIntensity: 0.3,
+    });
+
+    const marsMesh = new THREE.Mesh(marsGeometry, marsMaterial);
+    marsSystem.add(marsMesh);
+    marsSystem.add(axis.clone());
+
+    marsSystem.rotation.z = tilt;
+    scene.add(marsSystem);
+
+    const mars_curve = new THREE.EllipseCurve(
+        0, 0,
+        550, 600,
+        0 - 2*Math.PI/6, 2 * Math.PI - 2*Math.PI/6,
+    );
+
+    const mars_orbit = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints(
-            futureEarth_curve.getSpacedPoints(200)
+            mars_curve.getSpacedPoints(200)
         ), 
         new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
     );
-    futureEarth_orbit.rotateX(-Math.PI/2);
-    scene.add(futureEarth_orbit);
+    mars_orbit.rotateX(-Math.PI/2);
+    scene.add(mars_orbit);
+
+    // jupiter
+
+    const jupiterSystem = new THREE.Object3D();
+
+    const jupiterGeometry = new THREE.SphereGeometry(2*r, 100, 100);
+    const jupiterMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(jupiter),
+        emissiveIntensity: 0.3,
+    });
+
+    const jupiterMesh = new THREE.Mesh(jupiterGeometry, jupiterMaterial);
+    jupiterSystem.add(jupiterMesh);
+    jupiterSystem.add(axis.clone());
+
+    jupiterSystem.rotation.z = tilt;
+    scene.add(jupiterSystem);
+
+    const jupiter_curve = new THREE.EllipseCurve(
+        0, 0,
+        650, 700,
+        0 + 6*Math.PI/6, 2 * Math.PI + 6*Math.PI/6,
+    );
+
+    const jupiter_orbit = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(
+            jupiter_curve.getSpacedPoints(200)
+        ), 
+        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
+    );
+    jupiter_orbit.rotateX(-Math.PI/2);
+    scene.add(jupiter_orbit);
+    
 
     const loopTime = 1;
     const firstEarthOrbitSpeed = 0.00001;
@@ -310,6 +402,26 @@ export default function solarSystem() {
         const t = (time % loopTime) / loopTime;
 
         sunMesh.rotation.y += 0.0008
+
+        // mercury
+
+        let mercury_p = mercury_curve.getPoint(t);
+        // console.log(mercury_p, t);
+
+        mercurySystem.position.x = mercury_p.x;
+        mercurySystem.position.z = mercury_p.y;
+
+        mercuryMesh.rotation.y += 0.0008
+
+        // venus
+
+        let venus_p = venus_curve.getPoint(t);
+        // console.log(venus_p, t);
+
+        venusSystem.position.x = venus_p.x;
+        venusSystem.position.z = venus_p.y;
+
+        venusMesh.rotation.y += 0.0008
 
         // first earth
 
@@ -329,10 +441,10 @@ export default function solarSystem() {
 
         let secondEarth_p = secondEarth_curve.getPoint(t);
         // console.log(secondEarth_p, t);
-
+        
         secondEarthSystem.position.x = secondEarth_p.x;
         secondEarthSystem.position.z = secondEarth_p.y;
-        
+
         secondEarthMoonMesh.position.x = -Math.cos(time*moonOrbitSpeed) * moonOrbitRadius;
         secondEarthMoonMesh.position.z = -Math.sin(time*moonOrbitSpeed) * moonOrbitRadius;
 
@@ -343,9 +455,9 @@ export default function solarSystem() {
 
         let thirdEarth_p = thirdEarth_curve.getPoint(t);
         // console.log(thirdEarth_p, t);
-
-        thirdEarth_system.position.x = thirdEarth_p.x;
-        thirdEarth_system.position.z = thirdEarth_p.y;
+        
+        thirdEarthSystem.position.x = thirdEarth_p.x;
+        thirdEarthSystem.position.z = thirdEarth_p.y;
 
         thirdEarthMoonMesh.position.x = -Math.cos(time*moonOrbitSpeed) * moonOrbitRadius;
         thirdEarthMoonMesh.position.z = -Math.sin(time*moonOrbitSpeed) * moonOrbitRadius;
@@ -357,9 +469,9 @@ export default function solarSystem() {
 
         let fourthEarth_p = fourthEarth_curve.getPoint(t);
         // console.log(fourthEarth_p, t);
-
-        fourthEarth_system.position.x = fourthEarth_p.x;
-        fourthEarth_system.position.z = fourthEarth_p.y;
+        
+        fourthEarthSystem.position.x = fourthEarth_p.x;
+        fourthEarthSystem.position.z = fourthEarth_p.y;
 
         fourthEarthMoonMesh.position.x = -Math.cos(time*moonOrbitSpeed) * moonOrbitRadius;
         fourthEarthMoonMesh.position.z = -Math.sin(time*moonOrbitSpeed) * moonOrbitRadius;
@@ -367,20 +479,41 @@ export default function solarSystem() {
         fourthEarthMesh.rotation.y += 0.0008
         fourthEarthMoonMesh.rotation.y += 0.0001
 
-        // future earth
+        // fifth earth
 
-        let futureEarth_p = futureEarth_curve.getPoint(t);
-        // console.log(futureEarth_p, t)
+        let fifthEarth_p = fifthEarth_curve.getPoint(t);
+        // console.log(fifthEarth_p, t);
         
-        futureEarthSystem.position.x = futureEarth_p.x;
-        futureEarthSystem.position.z = futureEarth_p.y;
+        fifthEarthSystem.position.x = fifthEarth_p.x;
+        fifthEarthSystem.position.z = fifthEarth_p.y;
 
-        futureEarthMoonMesh.position.z = -Math.sin(time*moonOrbitSpeed*4) * moonOrbitRadius/1.5;
-        futureEarthMoonMesh.position.x = -Math.cos(time*moonOrbitSpeed*4) * moonOrbitRadius/1.5;
+        fifthEarthMoonMesh.position.x = -Math.cos(time*moonOrbitSpeed*2) * moonOrbitRadius * 0.7;
+        fifthEarthMoonMesh.position.z = -Math.sin(time*moonOrbitSpeed*2) * moonOrbitRadius * 0.7;
 
-        
-        futureEarthMesh.rotation.y += 0.0008
-        futureEarthMoonMesh.rotation.y += 0.0005
+        fifthEarthMesh.rotation.y += 0.0008
+        fifthEarthMoonMesh.rotation.y += 0.0001
+
+        // mars
+
+        let mars_p = mars_curve.getPoint(t);
+        // console.log(mars_p, t);
+
+        marsSystem.position.x = mars_p.x;
+        marsSystem.position.z = mars_p.y;
+
+        marsMesh.rotation.y += 0.0008
+
+        // jupiter
+
+        let jupiter_p = jupiter_curve.getPoint(t);
+        // console.log(jupiter_p, t);
+
+        jupiterSystem.position.x = jupiter_p.x;
+        jupiterSystem.position.z = jupiter_p.y;
+
+        jupiterMesh.rotation.y += 0.0008
+
+
 
         requestAnimationFrame(animate);
         camera.lookAt(300, 100, 0);

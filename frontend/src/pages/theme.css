@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Teko:wght@300&display=swap');
+
 #themePage {
   /* padding-top: 10vh; */
   width: 100vw;
@@ -7,15 +9,15 @@
   /* background: radial-gradient(circle, rgba(16,28,39,1) 10%, rgba(0,0,0,1) 90%); */
   /* transition: opacity 1.3s ease-out; */
   /* min-height: 120vh; */
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Exo 2", sans-serif;
   display: grid;
   background: black;
   overflow-y: auto;
 }
 #themePage h2{
-    margin-left: 1%;
-    color: #84f4eb;
-    font-family: 'Share Tech', sans-serif;
+  margin-left: 1%;
+  color: #84f4eb;
+  font-family: 'Share Tech', sans-serif;
   /* margin-left: auto; */
   margin-right: auto;
   font-size: 40px;
@@ -94,7 +96,7 @@
   }
   
   .themeContent p {
-    font-size: 1.2rem;
+    font-size: 2.5vmin;
     line-height: 1.7rem;
     font-weight: 500;
     padding: 0px 25px;
