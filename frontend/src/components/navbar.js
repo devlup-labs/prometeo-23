@@ -9,14 +9,14 @@ export default function Navbar() {
         <div id="navbar">
             <div className="navbar-left-section">
                 {/* speakers, sponsors, events */}
+                <Link to="/theme">
+                    <div className="navbar-left-section-theme navbar-link">Theme</div>
+                </Link>
                 <Link to="/speakers">
                     <div className="navbar-left-section-speakers navbar-link">Speakers</div>
                 </Link>
                 <Link to="/sponsors">
                     <div className="navbar-left-section-sponsors navbar-link">Sponsors</div>
-                </Link>
-                <Link to="/events">
-                    <div className="navbar-left-section-events navbar-link">Events</div>
                 </Link>
             </div>
             <div className="navbar-logo">
@@ -26,11 +26,11 @@ export default function Navbar() {
             </div>
             <div className='navbar-right-section'>
                 {/* gallery, theme, register, login */}
+                <Link to="/events">
+                    <div className="navbar-right-section-events navbar-link">Events</div>
+                </Link>
                 <Link to="/gallery">
                     <div className="navbar-right-section-gallery navbar-link">Gallery</div>
-                </Link>
-                <Link to="/theme">
-                    <div className="navbar-right-section-theme navbar-link">Theme</div>
                 </Link>
                 <Link to="/register">
                     <div className="navbar-right-section-register navbar-link">Register</div>

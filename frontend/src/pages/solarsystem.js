@@ -116,7 +116,7 @@ export default function solarSystem() {
 
     const mercury_curve = new THREE.EllipseCurve(
         0, 0,
-        300, 250,
+        200, 150,
         0 + Math.PI/6, 2 * Math.PI + Math.PI/6,
     );
 
@@ -149,7 +149,7 @@ export default function solarSystem() {
 
     const venus_curve = new THREE.EllipseCurve(
         0, 0,
-        400, 350,
+        300, 250,
         0 + 4*Math.PI/6, 2 * Math.PI + 4*Math.PI/6,
     );
 
@@ -194,7 +194,7 @@ export default function solarSystem() {
 
     const firstEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        500, 450,
+        400, 350,
         0, 2 * Math.PI,
     );
 
@@ -233,7 +233,7 @@ export default function solarSystem() {
 
     const secondEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        500, 450,
+        400, 350,
         0 + (2*Math.PI/5), 2 * Math.PI + (2*Math.PI/5),
     );
 
@@ -263,7 +263,7 @@ export default function solarSystem() {
 
     const thirdEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        500, 450,
+        400, 350,
         0 + (4*Math.PI/5), 2 * Math.PI + (4*Math.PI/5),
     );
 
@@ -293,7 +293,7 @@ export default function solarSystem() {
 
     const fourthEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        500, 450,
+        400, 350,
         0 + (6*Math.PI/5), 2 * Math.PI + (6*Math.PI/5),
     );
 
@@ -323,7 +323,7 @@ export default function solarSystem() {
 
     const fifthEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        500, 450,
+        400, 350,
         0 + (8*Math.PI/5), 2 * Math.PI + (8*Math.PI/5),
     );
 
@@ -347,7 +347,7 @@ export default function solarSystem() {
 
     const mars_curve = new THREE.EllipseCurve(
         0, 0,
-        650, 600,
+        500, 450,
         0 - 2*Math.PI/6, 2 * Math.PI - 2*Math.PI/6,
     );
 
@@ -433,7 +433,7 @@ export default function solarSystem() {
 
     const saturn_curve = new THREE.EllipseCurve(
         0, 0,
-        1000, 1000,
+        1000, 950,
         0 - Math.PI/6, 2 * Math.PI - Math.PI/6,
     );
 
@@ -466,7 +466,7 @@ export default function solarSystem() {
 
     const uranus_curve = new THREE.EllipseCurve(
         0, 0,
-        1200, 1200,
+        1200, 1100,
         0 + 4*Math.PI/6, 2 * Math.PI + 4*Math.PI/6,
     );
         
@@ -499,7 +499,7 @@ export default function solarSystem() {
 
     const neptune_curve = new THREE.EllipseCurve(
         0, 0,
-        1400, 1400,
+        1400, 1300,
         0 + 2*Math.PI/6, 2 * Math.PI + 2*Math.PI/6,
     );
 
