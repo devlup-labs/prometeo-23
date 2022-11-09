@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:800');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:600');
 
 #eventsPage{   
 	overflow-y: auto;
@@ -58,29 +58,32 @@
 	 left: 0;
 	 right: 0;
 	 mix-blend-mode: multiply;
-	 background: linear-gradient(-150deg, #69c0b9 0%, #63ccf5 100%);
+	 /* background: linear-gradient(-150deg, #69c0b9 0%, #63ccf5 100%); */
 	 /* background: linear-gradient(-150deg, #eb0ec7 0%, #1897e1 100%); */
 	 z-index: 1;
 }
  .card__photo {
 	 width: 100%;
-	 -webkit-filter: grayscale(100%);
-	 filter: grayscale(100%);
+	 /* -webkit-filter: grayscale(100%); */
+	 /* filter: grayscale(100%); */
 }
  .card__container {
-	 background: rgb(151, 213, 223);
+	 background: rgb(60, 127, 137);
 	 width: 100%;
 	 display: flex;
 	 flex-direction: column;
 	 justify-content: center;
 	 padding: 1em;
 	 box-sizing: border-box;
+	 /* height: max-content; */
 }
  .card h2 {
 	 font-family: 'Poppins', sans-serif;
 	 /* font-weight: regular; */
 	 font-size: 4vmin;
-	 color: #0b6386;
+	 color: #f2fbff;
+	 /* font-stretch: semi-expanded; */
+	 /* color: #0b6386; */
 	 letter-spacing: -1.06px;
 	 margin: 0;
 }
@@ -89,6 +92,7 @@
 	 /* font-weight: regular; */
 	 font-size: 14px;
 	 color: #535353;
+	 color: #badcec;
 	 margin: 0.18em;
 }
  .card__location {
