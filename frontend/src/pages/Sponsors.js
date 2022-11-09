@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import sponsor_data from "./sponsor_info";
 import './sponsor_style.css';
-
+import FadeIn from "../components/fadein";
 
 function logo(url) {
 	return (
@@ -48,12 +48,14 @@ function Sponsors() {
 	)
 
 	return (
-		<div id="sponsors_body">
-			<h1 className="sponsor_h1">
-				<span className="sponsor_h1_span">SPONSORS</span>
-			</h1>
-			<div>{sponsor_data.map(createEntry)}</div>
-		</div>
+		<FadeIn duration={500}>
+			<div id="sponsors_body">
+				<h1 className="sponsor_h1">
+					<span className="sponsor_h1_span">SPONSORS</span>
+				</h1>
+				<div>{sponsor_data.map(createEntry)}</div>
+			</div>
+		</FadeIn>
 	);
 }
 

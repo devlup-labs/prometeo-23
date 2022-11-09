@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import "./gallery.css";
+import FadeIn from "../components/fadein";
 
 const imagePaths = [
 	"https://images.unsplash.com/photo-1608687087357-845abfade367?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
@@ -680,20 +681,22 @@ function Gallery() {
 	)
 
 	return (
-		<div id="galleryPage">
-			{/* {console.log("Inside html: ", loadedOnce)} */}
-			<div className="loading">
-				<div className="loading-container">
-					<p className="counter"></p>
-					<div className="line"></div>
+		<FadeIn duration={500}>
+			<div id="galleryPage">
+				{/* {console.log("Inside html: ", loadedOnce)} */}
+				<div className="loading">
+					<div className="loading-container">
+						<p className="counter"></p>
+						<div className="line"></div>
+					</div>
+				</div>
+				<div id="body-container">
+					<div className="box">
+						<h2>Gallery</h2>
+					</div>
 				</div>
 			</div>
-			<div id="body-container">
-				<div className="box">
-					<h2>Gallery</h2>
-				</div>
-			</div>
-		</div>
+		</FadeIn>
 	);
 }
 export default Gallery;
