@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:600');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Teko:wght@300&display=swap');
 
 #eventsPage{   
 	overflow-y: auto;
@@ -14,6 +15,7 @@
 #eventsPage .section-header{
 	  color: #84f4eb;
   font-family: 'Share Tech', sans-serif;
+  /* font-family: "Exo 2", sans-serif; */
   /* margin-left: auto; */
   margin-right: auto;
   font-size: 40px;
@@ -22,6 +24,7 @@
   padding-left: 4vw;
 }
 .event_cards{  /* FIXED FOR NOW */
+	font-family: "Exo 2", sans-serif;
     display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -69,6 +72,7 @@
 }
  .card__container {
 	 background: rgb(60, 127, 137);
+	 height: max-content;
 	 width: 100%;
 	 display: flex;
 	 flex-direction: column;
@@ -88,9 +92,10 @@
 	 margin: 0;
 }
  .card time, .card p, .card .card__location {
-	 font-family: 'IBM Plex Mono', sans-serif;
+	font-family: "Exo 2", sans-serif;
+	 /* font-family: 'IBM Plex Mono', sans-serif; */
 	 /* font-weight: regular; */
-	 font-size: 14px;
+	 font-size: 2.5vmin;
 	 color: #535353;
 	 color: #badcec;
 	 margin: 0.18em;
