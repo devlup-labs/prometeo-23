@@ -7,6 +7,7 @@ import loading1 from '../assets/loading/big_bang.mp4';
 import spinner from '../assets/loading/loading_new.gif';
 
 import solarSystem from "./solarsystem";
+import FadeIn from '../components/fadein';
 
 export default function HomePage(props) {
     const [isLoading, setIsLoading] = useState(true);
@@ -59,35 +60,37 @@ export default function HomePage(props) {
       },[]
     )
     return (
-        <div>            
-            {
-                props.bb && isLoading && 
-                (
-                    <div className="spinner">
-                        <img src={spinner} alt="Loading..." />
+		<FadeIn duration={500}>
+            <div>            
+                {
+                    props.bb && isLoading && 
+                    (
+                        <div className="spinner">
+                            <img src={spinner} alt="Loading..." />
+                        </div>
+                    )
+                }
+                {
+                    props.bb &&
+                    (
+                    <div id="LoadingAnimation">
+                        <video id="my_video" autoPlay={true} muted>
+                            <source src={loading1} type="video/mp4" />
+                        </video>
                     </div>
-                )
-            }
-            {
-                props.bb &&
-                (
-                <div id="LoadingAnimation">
-                    <video id="my_video" autoPlay={true} muted>
-                        <source src={loading1} type="video/mp4" />
-                    </video>
-                </div>
-                )
-            }
-            <div id="homepage">
-                <div id="about-prometeo">
-                    <div id="about-prometeo-logo">
-                        <img id="about-prometeo-logo-img" src={PrometeoLogo} alt="Prometeo Logo" />
-                    </div>
-                    <div id="about-prometeo-text">
-                    Prometeo 2023 is the third edition of IIT Jodhpur's National Technical + Entrepreneurial Festival. Prometeo derives its name from the Greek word for forethinker, and celebrates disruptive technologies through talks, workshops, and competitions.
+                    )
+                }
+                <div id="homepage">
+                    <div id="about-prometeo">
+                        <div id="about-prometeo-logo">
+                            <img id="about-prometeo-logo-img" src={PrometeoLogo} alt="Prometeo Logo" />
+                        </div>
+                        <div id="about-prometeo-text">
+                        Prometeo 2023 is the third edition of IIT Jodhpur's National Technical + Entrepreneurial Festival. Prometeo derives its name from the Greek word for forethinker, and celebrates disruptive technologies through talks, workshops, and competitions.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </FadeIn>
     )
 }

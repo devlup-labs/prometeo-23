@@ -11,6 +11,8 @@ import Gallery from "./pages/Gallery";
 import Theme from "./pages/Theme";
 import Sponsors from "./pages/Sponsors";
 import Events from "./pages/Event.js";
+import Register from "./pages/Register.js";
+import Login from "./pages/Login.js";
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/events" element={<Events />} />
           <Route path="/theme" element={<Theme />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
           <Route path="/*" element={<Page_404 />} />
         </Routes>
