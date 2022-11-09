@@ -11,6 +11,9 @@ import venus from '../assets/planets/venus.jpg';
 import mars from '../assets/planets/mars.jpg'
 import jupiter from '../assets/planets/jupiter.jpg';
 import saturn from '../assets/planets/saturn.jpg';
+import saturnRings from '../assets/planets/saturn_rings.png';
+import uranus from '../assets/planets/uranus.jpg';
+import neptune from '../assets/planets/neptune.jpg';
 
 import first from '../assets/space/first.jpg'; 
 import second from '../assets/space/2.jpg'; 
@@ -344,7 +347,7 @@ export default function solarSystem() {
 
     const mars_curve = new THREE.EllipseCurve(
         0, 0,
-        600, 550,
+        650, 600,
         0 - 2*Math.PI/6, 2 * Math.PI - 2*Math.PI/6,
     );
 
@@ -377,7 +380,7 @@ export default function solarSystem() {
 
     const jupiter_curve = new THREE.EllipseCurve(
         0, 0,
-        700, 650,
+        850, 800,
         0 + 6*Math.PI/6, 2 * Math.PI + 6*Math.PI/6,
     );
 
@@ -389,7 +392,125 @@ export default function solarSystem() {
     );
     jupiter_orbit.rotateX(-Math.PI/2);
     scene.add(jupiter_orbit);
+
+    // saturn
+
+    const saturnSystem = new THREE.Object3D();
+
+    const saturnGeometry = new THREE.SphereGeometry(1.5*r, 100, 100);
+    const saturnMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0x7f838a,
+        map: textureLoader.load(saturn),
+        emissiveIntensity: 0.3,
+    });
+
+    const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
+    saturnSystem.add(saturnMesh);
+    saturnSystem.add(axis.clone());
+
+    // // add saturn rings
+    // const geometry = new THREE.RingGeometry(2*r, 3*r, 64);
+    // var pos = geometry.attributes.position;
+    // var v3 = new THREE.Vector3();
+    // for (let i = 0; i < pos.count; i++){
+    //     v3.fromBufferAttribute(pos, i);
+    //     geometry.attributes.uv.setXY(i, v3.length() < 4 ? 0 : 1, 1);
+    // }
+
+    // const saturnRingsMaterial = new THREE.MeshStandardMaterial({
+    //     // emissive: 0xffffff,
+    //     map: textureLoader.load(saturnRings),
+    //     side: THREE.DoubleSide,
+        
+    //     // emissiveIntensity: 0.2,
+    // });
+    // const saturnRingsMesh = new THREE.Mesh(geometry, saturnRingsMaterial);
+    // saturnRingsMesh.rotation.x = Math.PI/2;
+    // saturnSystem.add(saturnRingsMesh);
+
+    saturnSystem.rotation.z = tilt;
+    scene.add(saturnSystem);
+
+    const saturn_curve = new THREE.EllipseCurve(
+        0, 0,
+        1000, 1000,
+        0 - Math.PI/6, 2 * Math.PI - Math.PI/6,
+    );
+
+    const saturn_orbit = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(
+            saturn_curve.getSpacedPoints(200)
+        ),
+        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
+    );
+    saturn_orbit.rotateX(-Math.PI/2);
+    scene.add(saturn_orbit);
     
+    // uranus
+
+    const uranusSystem = new THREE.Object3D();
+
+    const uranusGeometry = new THREE.SphereGeometry(1.2*r, 100, 100);
+    const uranusMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0x7f838a,
+        map: textureLoader.load(uranus),
+        emissiveIntensity: 0.3,
+    });
+
+    const uranusMesh = new THREE.Mesh(uranusGeometry, uranusMaterial);
+    uranusSystem.add(uranusMesh);
+    uranusSystem.add(axis.clone());
+
+    uranusSystem.rotation.z = tilt;
+    scene.add(uranusSystem);
+
+    const uranus_curve = new THREE.EllipseCurve(
+        0, 0,
+        1200, 1200,
+        0 + 4*Math.PI/6, 2 * Math.PI + 4*Math.PI/6,
+    );
+        
+    const uranus_orbit = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(
+            uranus_curve.getSpacedPoints(200)
+        ),
+        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
+    );
+    uranus_orbit.rotateX(-Math.PI/2);
+    scene.add(uranus_orbit);
+
+    // neptune
+    
+    const neptuneSystem = new THREE.Object3D();
+
+    const neptuneGeometry = new THREE.SphereGeometry(1.2*r, 100, 100);
+    const neptuneMaterial = new THREE.MeshStandardMaterial({
+        emissive: 0x7f838a,
+        map: textureLoader.load(neptune),
+        emissiveIntensity: 0.3,
+    });
+
+    const neptuneMesh = new THREE.Mesh(neptuneGeometry, neptuneMaterial);
+    neptuneSystem.add(neptuneMesh);
+    neptuneSystem.add(axis.clone());
+
+    neptuneSystem.rotation.z = tilt;
+    scene.add(neptuneSystem);
+
+    const neptune_curve = new THREE.EllipseCurve(
+        0, 0,
+        1400, 1400,
+        0 + 2*Math.PI/6, 2 * Math.PI + 2*Math.PI/6,
+    );
+
+    const neptune_orbit = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(
+            neptune_curve.getSpacedPoints(200)
+        ),
+        new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.5 })
+    );
+    neptune_orbit.rotateX(-Math.PI/2);
+    scene.add(neptune_orbit);
 
     const loopTime = 1;
     const firstEarthOrbitSpeed = 0.00001;
@@ -513,7 +634,32 @@ export default function solarSystem() {
 
         jupiterMesh.rotation.y += 0.0008
 
+        // saturn
 
+        let saturn_p = saturn_curve.getPoint(t);
+
+        saturnSystem.position.x = saturn_p.x;
+        saturnSystem.position.z = saturn_p.y;
+
+        saturnMesh.rotation.y += 0.0008
+
+        // uranus
+
+        let uranus_p = uranus_curve.getPoint(t);
+
+        uranusSystem.position.x = uranus_p.x;
+        uranusSystem.position.z = uranus_p.y;
+
+        uranusMesh.rotation.y += 0.0008
+
+        // neptune
+
+        let neptune_p = neptune_curve.getPoint(t);
+
+        neptuneSystem.position.x = neptune_p.x;
+        neptuneSystem.position.z = neptune_p.y;
+
+        neptuneMesh.rotation.y += 0.0008
 
         requestAnimationFrame(animate);
         camera.lookAt(200, 0, -100);
