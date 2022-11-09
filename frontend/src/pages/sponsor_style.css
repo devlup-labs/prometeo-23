@@ -12,47 +12,30 @@ body {
 } */
 
 #sponsors_body{
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
-  line-height: 1.666;
-  background: #1a0f35;
-  color: #555;
-  margin:auto;
-  /* padding: 0 2rem; */
-
-  /* From homePage css */
-   height: 100vh;
-    width: 100vw;
-    padding-top: 10vh;
-    /* opacity: 0; */
+  overflow-y: auto;
+  box-sizing: border-box;
+	padding: 0 1vw;
+	width: 100vw;
+	height: 90vh;
     background: rgb(16,28,39);
     background: radial-gradient(circle, rgba(16,28,39,1) 10%, rgba(0,0,0,1) 90%);
-    /* transition: opacity 1.3s ease-out; */
+	min-height: 90vh;
+	display:grid;
+
 }
 
 
 .sponsor_h1 {
-  /* font-weight: 500;
-  font-size: 500%; */
-  text-align: center;
-  /* margin-top: 4rem; */
-  /* color: #FCE2DB; */
-  line-height: 1.2;
-  margin: auto;
-
-  font-size: 80px;
+   color: #84f4eb;
+  font-family: 'Share Tech', sans-serif;
+  /* margin-left: auto; */
+  margin-right: auto;
+  font-size: 40px;
   font-weight: 800;
-  background-image:repeating-linear-gradient(to right, #ffff, #ee4b2b 10%, #ffff 20%);
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  /* margin-bottom: 0; */
+  padding-left: 4vw;
 }
 
-.sponsor_h1 span {
-  padding: 10px 25px;
-  margin-bottom: 10px;
-  /* background: #2ec2b0; */
-}
 
 /*.dictionary {
 
@@ -82,12 +65,12 @@ body {
   /* padding-bottom: 10px; */
   text-align: center;
   margin: 25px 0px;
-  font-family: 'Montserrat', sans-serif;
 
   font-size: 50px;
   font-weight: 600;
-  background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb);
-  color: transparent;
+    color: #84f4eb;
+  font-family: 'Share Tech', sans-serif;
+
   background-clip: text;
   -webkit-background-clip: text;
 }
