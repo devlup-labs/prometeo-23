@@ -55,7 +55,7 @@ export default function solarSystem() {
 
     const textureLoader = new THREE.TextureLoader();
 
-    const bgGeometry = new THREE.SphereGeometry(2000, 100, 100);
+    const bgGeometry = new THREE.SphereGeometry(4000, 100, 100);
     const bgMaterial = new THREE.MeshStandardMaterial({
         // map: textureLoader.load(bg),
         map: textureLoader.load(bg8k),
@@ -99,8 +99,8 @@ export default function solarSystem() {
 
     const mercuryGeometry = new THREE.SphereGeometry(0.3829*r, 100, 100);
     const mercuryMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(mercury),
+        emissive: 0x7f838a,
+        map: textureLoader.load(mercury),
         emissiveIntensity: 0.3,
     });
 
@@ -132,8 +132,8 @@ export default function solarSystem() {
 
     const venusGeometry = new THREE.SphereGeometry(0.949*r, 100, 100);
     const venusMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(venus),
+        emissive: 0x7f838a,
+        map: textureLoader.load(venus),
         emissiveIntensity: 0.3,
     });
 
@@ -175,8 +175,8 @@ export default function solarSystem() {
     // firstEarth
     const firstEarthGeometry = new THREE.SphereGeometry(r, s, s);
     const firstEarthMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(first),
+        emissive: 0x7f838a,
+        map: textureLoader.load(first),
         emissiveIntensity: 0.3,
     });
     const firstEarthMesh = new THREE.Mesh(firstEarthGeometry, firstEarthMaterial);
@@ -214,8 +214,8 @@ export default function solarSystem() {
     // secondEarth
     const secondEarthGeometry = new THREE.SphereGeometry(r, s, s);
     const secondEarthMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(second),
+        emissive: 0x7f838a,
+        map: textureLoader.load(second),
         emissiveIntensity: 0.3,
     });
     const secondEarthMesh = new THREE.Mesh(secondEarthGeometry, secondEarthMaterial);
@@ -244,8 +244,8 @@ export default function solarSystem() {
     // thirdEarth
     const thirdEarthGeometry = new THREE.SphereGeometry(r, s, s);
     const thirdEarthMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(ice),
+        emissive: 0x7f838a,
+        map: textureLoader.load(ice),
         emissiveIntensity: 0.3,
     });
     const thirdEarthMesh = new THREE.Mesh(thirdEarthGeometry, thirdEarthMaterial);
@@ -274,8 +274,8 @@ export default function solarSystem() {
     // fourthEarth
     const fourthEarthGeometry = new THREE.SphereGeometry(r, s, s);
     const fourthEarthMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(today),
+        emissive: 0x7f838a,
+        map: textureLoader.load(today),
         emissiveIntensity: 0.3,
     });
     const fourthEarthMesh = new THREE.Mesh(fourthEarthGeometry, fourthEarthMaterial);
@@ -304,8 +304,8 @@ export default function solarSystem() {
     // fifthEarth
     const fifthEarthGeometry = new THREE.SphereGeometry(r, s, s);
     const fifthEarthMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(future),
+        emissive: 0x7f838a,
+        map: textureLoader.load(future),
         emissiveIntensity: 0.3,
     });
     const fifthEarthMesh = new THREE.Mesh(fifthEarthGeometry, fifthEarthMaterial);
@@ -330,8 +330,8 @@ export default function solarSystem() {
 
     const marsGeometry = new THREE.SphereGeometry(0.532*r, 100, 100);
     const marsMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(mars),
+        emissive: 0x7f838a,
+        map: textureLoader.load(mars),
         emissiveIntensity: 0.3,
     });
 
@@ -363,8 +363,8 @@ export default function solarSystem() {
 
     const jupiterGeometry = new THREE.SphereGeometry(2*r, 100, 100);
     const jupiterMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffffff,
-        emissiveMap: textureLoader.load(jupiter),
+        emissive: 0x7f838a,
+        map: textureLoader.load(jupiter),
         emissiveIntensity: 0.3,
     });
 

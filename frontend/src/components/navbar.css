@@ -27,6 +27,23 @@
     transition: color 0.1s ease-out;
 }
 
+/* create an underline that grows in length when we hover */
+
+.navbar-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    /* left: 50%; */
+    margin-top: 0.5vmin;
+    height: 0.5vmin;
+    background: #63ccf5;
+    transition: width 0.3s ease-out;
+}
+
+.navbar-link:hover::after {
+    width: 100%;
+}
+
 #navbar a:hover {
     color: #e2f7f5;
 }
@@ -55,5 +72,6 @@
 }
 
 #navbar-logo-img {
+    margin-top: 0.5vmin;
     max-height: 7.5vh;
 }
