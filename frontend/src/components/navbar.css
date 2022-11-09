@@ -75,3 +75,36 @@
     margin-top: 0.5vmin;
     max-height: 7.5vh;
 }
+
+.navbar-right-section-login {
+    box-sizing: border-box;
+    padding: 3px 8px;
+    border: 2px solid #63ccf5;
+    border-radius: 4px;
+    /* transition: color 0.3s ease-in; */
+    transition: all 0.2s linear;
+    /* transition: border 0.2s linear; */
+}
+
+.navbar-right-section-login:hover {
+    color: #84f4eb;
+    background: #010001;
+    padding: 2px 7px;
+    border: 3px solid #84f4eb;
+}
+
+.navbar-right-section-login::after {
+    content: "";
+    display: block;
+    margin-top: 0.5vmin;
+    height: 0.5vmin;
+}
+
+@media (max-width: 600px) {
+    #navbar {
+        justify-content: space-evenly;
+    }
+    .navbar-left-section, .navbar-right-section {
+        display: none;
+    }
+}
