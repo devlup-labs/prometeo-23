@@ -9,7 +9,7 @@ function Theme(){
   useEffect(() => {
     const navBarEle = document.getElementById("navbar")
     navBarEle.style.opacity = 1;
-    document.body.style.overflow = "auto";
+    // document.body.style.overflow = "auto";
   });
     return (
       <div id="themePage" class="contentDiv">
