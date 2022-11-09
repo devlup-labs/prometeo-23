@@ -27,7 +27,7 @@ import moon from '../assets/space/moon.jpg';
 export default function solarSystem() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 20, 8000);
-    camera.position.set(200, 1000, 500);
+    camera.position.set(200, 500, 700);
     // camera.position.set(0, 0, 800);
 
     const homePageEle = document.getElementById("homepage");
@@ -662,7 +662,7 @@ export default function solarSystem() {
         neptuneMesh.rotation.y += 0.0008
 
         requestAnimationFrame(animate);
-        camera.lookAt(200, 0, -100);
+        camera.lookAt(200, -200, -100);
         // camera.lookAt(0, 0, 0);
         renderer.render(scene, camera);
     }

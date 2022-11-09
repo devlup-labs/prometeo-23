@@ -78,7 +78,7 @@
 
 .navbar-right-section-login {
     box-sizing: border-box;
-    padding: 3px 8px;
+    padding: 3px 8px 1px;
     border: 2px solid #63ccf5;
     border-radius: 4px;
     /* transition: color 0.3s ease-in; */
@@ -89,7 +89,7 @@
 .navbar-right-section-login:hover {
     color: #84f4eb;
     background: #010001;
-    padding: 2px 7px;
+    padding: 2px 7px 0px;
     border: 3px solid #84f4eb;
 }
 
