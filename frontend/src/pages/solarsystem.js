@@ -24,7 +24,7 @@ import moon from '../assets/space/moon.jpg';
 export default function solarSystem() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 20, 8000);
-    camera.position.set(300, 100, 800);
+    camera.position.set(200, 1000, 500);
     // camera.position.set(0, 0, 800);
 
     const homePageEle = document.getElementById("homepage");
@@ -49,9 +49,9 @@ export default function solarSystem() {
     // const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
     // scene.add( pointLightHelper );
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
+    // const controls = new OrbitControls(camera, renderer.domElement);
+    // controls.enableDamping = true;
+    // controls.dampingFactor = 0.05;
 
     const textureLoader = new THREE.TextureLoader();
 
@@ -113,7 +113,7 @@ export default function solarSystem() {
 
     const mercury_curve = new THREE.EllipseCurve(
         0, 0,
-        250, 300,
+        300, 250,
         0 + Math.PI/6, 2 * Math.PI + Math.PI/6,
     );
 
@@ -146,7 +146,7 @@ export default function solarSystem() {
 
     const venus_curve = new THREE.EllipseCurve(
         0, 0,
-        350, 400,
+        400, 350,
         0 + 4*Math.PI/6, 2 * Math.PI + 4*Math.PI/6,
     );
 
@@ -191,7 +191,7 @@ export default function solarSystem() {
 
     const firstEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        450, 500,
+        500, 450,
         0, 2 * Math.PI,
     );
 
@@ -230,7 +230,7 @@ export default function solarSystem() {
 
     const secondEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        450, 500,
+        500, 450,
         0 + (2*Math.PI/5), 2 * Math.PI + (2*Math.PI/5),
     );
 
@@ -260,7 +260,7 @@ export default function solarSystem() {
 
     const thirdEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        450, 500,
+        500, 450,
         0 + (4*Math.PI/5), 2 * Math.PI + (4*Math.PI/5),
     );
 
@@ -290,7 +290,7 @@ export default function solarSystem() {
 
     const fourthEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        450, 500,
+        500, 450,
         0 + (6*Math.PI/5), 2 * Math.PI + (6*Math.PI/5),
     );
 
@@ -320,7 +320,7 @@ export default function solarSystem() {
 
     const fifthEarth_curve = new THREE.EllipseCurve(
         0, 0,
-        450, 500,
+        500, 450,
         0 + (8*Math.PI/5), 2 * Math.PI + (8*Math.PI/5),
     );
 
@@ -344,7 +344,7 @@ export default function solarSystem() {
 
     const mars_curve = new THREE.EllipseCurve(
         0, 0,
-        550, 600,
+        600, 550,
         0 - 2*Math.PI/6, 2 * Math.PI - 2*Math.PI/6,
     );
 
@@ -377,7 +377,7 @@ export default function solarSystem() {
 
     const jupiter_curve = new THREE.EllipseCurve(
         0, 0,
-        650, 700,
+        700, 650,
         0 + 6*Math.PI/6, 2 * Math.PI + 6*Math.PI/6,
     );
 
@@ -516,7 +516,7 @@ export default function solarSystem() {
 
 
         requestAnimationFrame(animate);
-        camera.lookAt(300, 100, 0);
+        camera.lookAt(200, 0, -100);
         // camera.lookAt(0, 0, 0);
         renderer.render(scene, camera);
     }

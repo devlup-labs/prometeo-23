@@ -75,3 +75,12 @@
     margin-top: 0.5vmin;
     max-height: 7.5vh;
 }
+
+@media (max-width: 600px) {
+    #navbar {
+        justify-content: space-evenly;
+    }
+    .navbar-left-section, .navbar-right-section {
+        display: none;
+    }
+}
