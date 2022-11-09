@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import event_data from "./event_info";
 import './event_page.css';
 
+import logo from '../assets/navbar/prometeo_logo_23.png';
+
 
 // function logo(url){
 //    return(
@@ -21,11 +23,12 @@ function createEntry(eventTerm) {
 }
 
 function Entry(props) {
+  console.log(props)
   return (
   <div className="event_cards">
     <li className="card" aria-labelledby="event card">
       <div className="card__filter">
-        <img className="card__photo" src={props.image} alt="The Image_ will be displayed here shortly " />
+        <img className="card__photo" src={props.img} alt=" The image will be displayed here shortly " />
       </div>
       <div className="card__container">
         <h2>{props.name}</h2>

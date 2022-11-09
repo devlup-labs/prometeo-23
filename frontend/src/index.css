@@ -13,3 +13,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(16,28,39);
+  background: linear-gradient(0deg, rgb(16, 28, 39) 0%, rgba(105,192,185,1) 40%, rgba(105,192,185,1) 60%, rgba(16,28,39,1) 100%);
+  border: 1px solid #84f4eb;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(10,17,24);
+  background: linear-gradient(0deg, rgba(10,17,24,1) 0%, rgba(84,159,153,1) 40%, rgba(84,159,153,1) 60%, rgba(10,17,24,1) 100%);
+  outline: 1px solid #84f4eb;
+}
