@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 import './App.css';
 
@@ -13,12 +14,15 @@ import Events from "./pages/Event.js";
 
 
 function App() {
+
+  const [bigBang, setBigBang] = useState(true);
+
   return (
     <Router>
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage bb={bigBang} bbFunc={setBigBang}/>} />
           
           <Route path="/speakers" element={<Speaker />} />
           <Route path="/gallery" element={<Gallery />} />
