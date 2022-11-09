@@ -34,7 +34,7 @@
 	color: #84f4eb;
 	font-family: 'Share Tech', sans-serif;
 	/* margin-left: auto; */
-	margin-right: auto;
+	margin: 4vh auto 2vh 0;
 	font-size: 40px;
 	font-weight: 800;
 	/* margin-bottom: 0; */
@@ -46,8 +46,8 @@
 	width: 95%;
 	/* position: relative; */
 	max-width: 1000px;
-	margin: 50px 0;
-	background: #fff;
+	margin: 3vh 0;
+	background: rgb(16, 28, 39);
 	box-shadow: 0px 0px 20px #2a3cad;
 	padding: 25px;
 	border-radius: 25px;
@@ -160,7 +160,7 @@
 	border-width: 5px;
 	border-top-color: white;
 	border-left-color: white;
-	border-right-color: #171040;
+	border-right-color: white;
 	border-bottom-color: white;
 	box-shadow: none;
 }
@@ -187,18 +187,34 @@
   font-weight: 700; */
 	font-size: 40px;
 	font-weight: 1000;
-	color: #0d0925;
+	color: #84f4eb	;
 	margin-bottom: 20px;
 }
 
 .blog-slider__text {
-	color: #4e4a67;
+	color: #63ccf5;
 	margin-bottom: 30px;
 	line-height: 1.5em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
+
+.blog-slider__title::selection {
+	color: rgb(32, 32, 32);
+	background: #69c0b9;
+}
+
+.blog-slider__code::selection {
+	color: rgb(75, 75, 75);
+	background: #69c0b9;
+}
+
+.blog-slider__text::selection {
+	color: rgb(59, 59, 59);
+	background: #69c0b9;
+}
+
 
 @media screen and (max-width: 992px) {
 	.blog-slider {
