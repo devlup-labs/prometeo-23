@@ -690,10 +690,10 @@ function Gallery() {
 						<div className="line"></div>
 					</div>
 				</div>
-				<div id="body-container">
-					<div className="box">
-						<h2>Gallery</h2>
-					</div>
+			</div>
+			<div id="body-container">
+				<div className="box">
+					<h2>GALLERY</h2>
 				</div>
 			</div>
 		</FadeIn>
