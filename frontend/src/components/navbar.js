@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import './navbar.css'
 
-import PrometeoLogo from '../assets/navbar/prometeo_logo_23_new.png'
+import PrometeoLogo from '../assets/navbar/prometeo_logo_23.png'
 
 export default function Navbar() {
     return (
