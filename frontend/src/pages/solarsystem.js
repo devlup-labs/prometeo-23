@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import bg from '../assets/space/bg.jpg';
 import bg8k from '../assets/space/bg8k.jpg';
 import sun from '../assets/space/sun.jpg';
+import sun_blue from '../assets/space/sun(5).png';
 
 import first from '../assets/space/first.jpg'; 
 import second from '../assets/space/2.jpg'; 
@@ -31,7 +32,7 @@ export default function solarSystem() {
 
     // renderer.render(scene, camera);
 
-    const ambientLight = new THREE.AmbientLight(0x222222);
+    const ambientLight = new THREE.AmbientLight(0x111111);
     scene.add(ambientLight);
 
     const pointLight = new THREE.PointLight(0xffffff);
@@ -61,8 +62,9 @@ export default function solarSystem() {
     // sun
     const sunGeometry = new THREE.SphereGeometry(109,200,200);
     const sunMaterial = new THREE.MeshStandardMaterial({
-        emissive: 0xffd700,
-        emissiveMap: textureLoader.load(sun),
+        // emissive: 0x63ccf5,
+        emissive: 0xffffff,
+        emissiveMap: textureLoader.load(sun_blue),
         emissiveIntensity: 1,
     });
     const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
