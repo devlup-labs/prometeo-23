@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:500');
+
 /* * {
   margin: auto;
   padding: 0 2rem;
@@ -64,12 +67,12 @@ body {
   position: relative;
   /* padding-bottom: 10px; */
   text-align: center;
-  margin: 25px 0px;
+  margin: 2vmin 0;
 
-  font-size: 50px;
-  font-weight: 600;
+  font-size: 6vmin;
+  font-weight: 500;
     color: #84f4eb;
-  font-family: 'Share Tech', sans-serif;
+  font-family: 'Poppins', sans-serif;
 
   background-clip: text;
   -webkit-background-clip: text;

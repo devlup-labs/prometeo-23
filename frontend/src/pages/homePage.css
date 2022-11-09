@@ -1,12 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Josefin+Sans&family=Teko:wght@300&display=swap');
+
 #homepage {
     /* box-sizing: border-box; */
     height: 90vh;
     width: 100vw;
-    margin-top: 10vh;
+    /* margin-top: 10vh; */
     opacity: 0;
     background: rgb(16,28,39);
     background: radial-gradient(circle, rgba(16,28,39,1) 10%, rgba(0,0,0,1) 90%);
-    transition: opacity 1.3s ease-out;
+    transition: opacity 2s ease-out;
+}
+
+#about-prometeo {
+  z-index: 99;
+  /* border: 2px white solid; */
+  position: absolute;
+  width: 36%;
+  height: fit-content;
+  right: 5%;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-evenly;
+  color: rgb(255, 255, 255);
+  user-select: none;
+}
+
+#about-prometeo::before {
+  z-index: 98;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  /* -webkit-box-shadow: inset 10px 10px 135px 25px rgba(31,172,207,0);
+  -moz-box-shadow: inset 10px 10px 135px 25px rgba(31,172,207,0);
+  box-shadow: inset 10px 10px 135px 25px rgba(31,172,207,0); */
+  background: rgb(82,225,255);
+  background: -moz-linear-gradient(0deg, rgba(82,225,255,0.2) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(82,225,255,0.2) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
+  background: linear-gradient(0deg, rgba(82,225,255,0.2) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#52e1ff",endColorstr="#0899a7",GradientType=1);
+  filter: blur(10px);
+  border-radius: 10vmin;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#about-prometeo-logo {
+  z-index: 99;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  /* border: 2px solid red; */
+}
+
+#about-prometeo-logo-img {
+  top: -10vmin;
+  max-height: 45vmin;
+}
+
+#about-prometeo-text {
+  /* border: 2px solid red; */
+  padding: 3vmin 3vmin 7vmin 5vmin;
+  font-size: 3vmin;
+  font-family: 'Josefin Sans', sans-serif;
+  line-height: 3.5vmin;
 }
 
 #LoadingAnimation {

@@ -5,6 +5,7 @@ import "./speaker.css";
 import speakerDetails from "./speakerDetails";
 
 import spinner from '../assets/loading/loading3.gif';
+import FadeIn from "../components/fadein";
 
 function About(props) {
 	return (
@@ -60,10 +61,12 @@ function Speaker() {
     )
 
 	return (
+		<FadeIn duration={500}>
 			<div id="speakerPage">
 				<h2 className="speakerHeading">SPEAKERS</h2>
 				<div className="speakerCard">{speakerDetails.map(createEntry)}</div>	
 			</div>
+		</FadeIn>
 	);
 }
 export default Speaker;

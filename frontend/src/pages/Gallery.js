@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import "./gallery.css";
+import FadeIn from "../components/fadein";
 
 const imagePaths = [
 	"https://images.unsplash.com/photo-1608687087357-845abfade367?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
@@ -151,7 +152,7 @@ class DrawMainImage {
 	}
 	initialize() {
 		this.canvas = document.createElement("canvas");
-		this.ctx2 = this.canvas.getContext("2d");
+		this.ctx2 = this.canvas.getContext("2d", { willReadFrequently: true });
 		this.image = null;
 		this.stopWatch = new Stopwatch();
 		this.dataArr = [];
@@ -254,7 +255,7 @@ class Sketch {
 	}
 	setupCanvas() {
 		this.canvas = document.createElement("canvas");
-		this.ctx = this.canvas.getContext("2d");
+		this.ctx = this.canvas.getContext("2d", { willReadFrequently: true });
 		this.canvas.ariaLabel = "This is images gallery.";
 		this.canvas.role = "img";
 		this.canvas.style.position = "fixed";
@@ -466,7 +467,8 @@ class Sketch {
 	}
 	resetParams() {
 		this.hover = false;
-		document.body.style.cursor = "initial";
+		// document.body.style.cursor = "initial";
+		this.canvas.style.cursor = "initial";
 	}
 	render(t) {
 		this.resetParams();
@@ -478,7 +480,8 @@ class Sketch {
 			const s = this.shapes[i];
 			this.shapes[i].draw(this.touchInfos);
 			if (this.isHovered(s, this.touchInfos.mouse.x, this.touchInfos.mouse.y)) {
-				document.body.style.cursor = "zoom-in";
+				// document.body.style.cursor = "zoom-in";
+				this.canvas.style.cursor = "zoom-in";
 				this.hover = true;
 				hoveredIndex = i;
 			}
@@ -642,47 +645,58 @@ class Stopwatch {
 		return this.elapsedTime;
 	}
 }
-window.addEventListener(
-  "click",
-  (namedListener) => {
-    window.removeEventListener("click", namedListener);
-    const F = new FullScreen();
-    const L = new Loading();
-    L.initialize().then(
-      () => {
-        const S = new Sketch();
-      },
-      { once: true }
-    );
-  },
-  { once: true }
-);
+// window.addEventListener("load", () => {
+// 	const F = new FullScreen();
+// 	const L = new Loading();
+// 	L.initialize().then(() => {
+// 		const S = new Sketch();
+// 	});
+// });
 function Gallery() {
+	// const [loadedOnce, setLoadedOnce] = useState(false);
+
+	// const handleLoadedOnce = () => {
+	// 	setLoadedOnce(true);
+	// 	console.log("Hmm: ", loadedOnce);
+	// }
+
 	useEffect(  // when the component has rendered then add the event listener to it
 		() => {
-			// const speakerPageEle = document.getElementById("speakerPage");
-			// speakerPageEle.addEventListener("load", handleLoading);
-			const navBarEle = document.getElementById("navbar")
+			// if (!loadedOnce) {
+			// 	console.log(loadedOnce)
+				const F = new FullScreen();
+				const L = new Loading();
+				L.initialize().then(() => {
+					const S = new Sketch();
+				})
+				// handleLoadedOnce();
+			// }
+			
+			const navBarEle = document.getElementById("navbar");
 			navBarEle.style.opacity = 1;
-			document.body.style.overflow = "auto";
-			document.body.style.overflowX = "hidden";
+			document.body.style.overflow = "hidden";
+			// document.body.style.overflow = "auto";
+			// document.body.style.overflowX = "hidden";
 		}, []
 	)
 
 	return (
-		<div id="galleryPage">
-			<div className="loading">
-				<div className="loading-container">
-					<p className="counter"></p>
-					<div className="line"></div>
+		<FadeIn duration={500}>
+			<div id="galleryPage">
+				{/* {console.log("Inside html: ", loadedOnce)} */}
+				<div className="loading">
+					<div className="loading-container">
+						<p className="counter"></p>
+						<div className="line"></div>
+					</div>
 				</div>
 			</div>
 			<div id="body-container">
 				<div className="box">
-					<h2>Gallery</h2>
+					<h2>GALLERY</h2>
 				</div>
 			</div>
-		</div>
+		</FadeIn>
 	);
 }
 export default Gallery;
