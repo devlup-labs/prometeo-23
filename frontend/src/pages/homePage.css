@@ -38,10 +38,10 @@
   -moz-box-shadow: inset 10px 10px 135px 25px rgba(31,172,207,0);
   box-shadow: inset 10px 10px 135px 25px rgba(31,172,207,0); */
   background: rgb(82,225,255);
-background: -moz-linear-gradient(0deg, rgba(82,225,255,0.3) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
-background: -webkit-linear-gradient(0deg, rgba(82,225,255,0.3) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
-background: linear-gradient(0deg, rgba(82,225,255,0.3) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#52e1ff",endColorstr="#0899a7",GradientType=1);
+  background: -moz-linear-gradient(0deg, rgba(82,225,255,0.2) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(82,225,255,0.2) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
+  background: linear-gradient(0deg, rgba(82,225,255,0.2) 0%, rgba(90,177,187,0) 71%, rgba(8,153,167,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#52e1ff",endColorstr="#0899a7",GradientType=1);
   filter: blur(10px);
   border-radius: 10vmin;
   border-top-left-radius: 0;
