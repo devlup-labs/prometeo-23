@@ -4,22 +4,31 @@ import './navbar.css'
 
 import PrometeoLogo from '../assets/navbar/prometeo_logo_23.png'
 
-
-
 function Navbar() {
   useEffect(() => {
-
+    
     const toggleButton = document.getElementsByClassName(
       "navbar-toggle-button"
     )[0];
-    const navbarLinks = document.getElementsByClassName(
+    const navbarLeftLinks = document.getElementsByClassName(
       "navbar-left-section"
     )[0];
+    const navbarRightLinks = document.getElementsByClassName(
+      "navbar-right-section"
+    )[0];
 
-    toggleButton.addEventListener("click", () => { console.log("abc");
-      navbarLinks.classList.toggle("active");
+    toggleButton.addEventListener("click", () => {
+      navbarLeftLinks.classList.toggle("active");
+      navbarRightLinks.classList.toggle("active");
     });
-
+    navbarLeftLinks.addEventListener("click", () => {
+      navbarLeftLinks.classList.toggle("active");
+      navbarRightLinks.classList.toggle("active");
+    });
+    navbarRightLinks.addEventListener("click", () => {
+      navbarLeftLinks.classList.toggle("active");
+      navbarRightLinks.classList.toggle("active");
+    });
   }
   )
     return (
@@ -40,7 +49,7 @@ function Navbar() {
             <Link to="/sponsors">
                 <div className="navbar-left-section-sponsors navbar-link">Sponsors</div>
             </Link>
-        </div>
+        </div>  
         <div className="navbar-logo">
             <Link to="/">
                 <img id="navbar-logo-img" src={PrometeoLogo} alt="Prometeo Logo" />
