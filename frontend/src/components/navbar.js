@@ -32,7 +32,7 @@ function Navbar() {
   }
   )
     return (
-      <div id="navbar">
+        <div id="navbar">
         <div className="navbar-toggle-button">
           <span className="bar"></span>
           <span className="bar"></span>
