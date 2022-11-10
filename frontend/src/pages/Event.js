@@ -38,12 +38,8 @@ function Entry(props) {
 					<p>{props.desc}</p>
 					{/* <a className="card__location" href="https://goo.gl/maps/dsPC54CdmnE2">Coral Sky Amphitheatre</a> */}
 					<div className="card__buttons">
-						<a href="#" className="card__buttons btn primary" role="button" aria-haspopup="false">
-							Details
-							<div className="card__fill"></div>
-						</a>
 						<a href="#" className="card__buttons btn secondary" role="button" aria-haspopup="false">
-							Register
+							View More
 							<i className="fas fa-arrow-right"></i>
 						</a>
 					</div>
@@ -63,7 +59,7 @@ function Events() {
 	return (
 		<div>
 			<div id="eventsPage">
-				<h2 className="section-header">EVENTS</h2>
+				<h2 className="section-header">PAST EVENTS</h2>
 				<div className="event_cards">{event_data.map(createEntry)}</div>
 			</div>
 		</div>

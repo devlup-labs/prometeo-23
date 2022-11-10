@@ -25,7 +25,7 @@ function createEntry(sponsorTerm) {
 
 function Entry(props) {
 	return (
-		<div className="teamContainer" >
+		<div className="teamContainer" key={props.name}>
 			<div className="section-header">
 				<span>{props.name}</span>
 			</div>
@@ -51,7 +51,7 @@ function Sponsors() {
 		<FadeIn duration={500}>
 			<div id="sponsors_body">
 				<h1 className="sponsor_h1">
-					<span className="sponsor_h1_span">SPONSORS</span>
+					<span className="sponsor_h1_span">PAST SPONSORS</span>
 				</h1>
 				<div>{sponsor_data.map(createEntry)}</div>
 			</div>
