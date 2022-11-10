@@ -609,7 +609,7 @@ class Glitch {
 			if (Math.random() > 0.01) {
 				this.ctx.putImageData(
 					this.dataArr[i].image,
-					Math.tan(this.dataArr[i].height * 0.1 + t) * 10 * Math.random(),
+					Math.tan(this.dataArr[i].height * 0.1 + t) * 0.5 * Math.random(),
 					this.dataArr[i].height
 				);
 			} else {
