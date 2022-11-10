@@ -59,7 +59,7 @@ function Events() {
 	return (
 		<div>
 			<div id="eventsPage">
-				<h2 className="section-header">EVENTS</h2>
+				<h2 className="section-header">PAST EVENTS</h2>
 				<div className="event_cards">{event_data.map(createEntry)}</div>
 			</div>
 		</div>

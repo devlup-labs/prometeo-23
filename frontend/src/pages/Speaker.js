@@ -63,7 +63,7 @@ function Speaker() {
 	return (
 		<FadeIn duration={500}>
 			<div id="speakerPage">
-				<h2 className="speakerHeading">SPEAKERS</h2>
+				<h2 className="speakerHeading">PAST SPEAKERS</h2>
 				<div className="speakerCard">{speakerDetails.map(createEntry)}</div>	
 			</div>
 		</FadeIn>
