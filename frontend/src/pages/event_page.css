@@ -8,14 +8,13 @@
   width: 100vw;
   height: 90vh;
   background: rgb(16, 28, 39);
-  background: radial-gradient(
-    circle,
-    rgba(16, 28, 39, 1) 10%,
-    rgba(0, 0, 0, 1) 90%
-  );
+  background: radial-gradient(circle,
+      rgba(16, 28, 39, 1) 10%,
+      rgba(0, 0, 0, 1) 90%);
   min-height: 90vh;
   display: grid;
 }
+
 #eventsPage .section-header {
   /* "EVENTS" */
   color: #84f4eb;
@@ -29,6 +28,7 @@
   /* margin-bottom: 0; */
   padding-left: 4vw;
 }
+
 .event_cards {
   font-family: "Exo 2", sans-serif;
   display: flex;
@@ -52,6 +52,7 @@
   flex-direction: column;
   margin: 1em;
 }
+
 .card__filter {
   /* image inside card */
   height: 170px;
@@ -59,6 +60,7 @@
   position: relative;
   object-fit: cover;
 }
+
 .card__filter::before {
   content: "";
   display: block;
@@ -72,6 +74,7 @@
   /* background: linear-gradient(-150deg, #eb0ec7 0%, #1897e1 100%); */
   z-index: 1;
 }
+
 .card__photo {
   width: 100%;
   /* -webkit-filter: grayscale(100%); */
@@ -91,25 +94,19 @@
   /* border-top-left-radius: 0; */
   /* border-top-right-radius: 0; */
   background: rgb(60, 127, 137);
-  background: -moz-linear-gradient(
-    0deg,
-    rgba(60, 127, 137, 0.8) 0%,
-    rgba(90, 177, 187, 0) 71%,
-    rgba(8, 153, 167, 0) 100%
-  );
-  background: -webkit-linear-gradient(
-    0deg,
-    rgba(60, 127, 137, 0.8) 0%,
-    rgba(90, 177, 187, 0) 71%,
-    rgba(8, 153, 167, 0) 100%
-  );
-  background: linear-gradient(
-    0deg,
-    rgba(60, 127, 137, 0.8) 0%,
-    rgba(90, 177, 187, 0) 71%,
-    rgba(8, 153, 167, 0) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3c7f89",endColorstr="#0899a7",GradientType=1);
+  background: -moz-linear-gradient(0deg,
+      rgba(60, 127, 137, 0.8) 0%,
+      rgba(90, 177, 187, 0) 71%,
+      rgba(8, 153, 167, 0) 100%);
+  background: -webkit-linear-gradient(0deg,
+      rgba(60, 127, 137, 0.8) 0%,
+      rgba(90, 177, 187, 0) 71%,
+      rgba(8, 153, 167, 0) 100%);
+  background: linear-gradient(0deg,
+      rgba(60, 127, 137, 0.8) 0%,
+      rgba(90, 177, 187, 0) 71%,
+      rgba(8, 153, 167, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3c7f89", endColorstr="#0899a7", GradientType=1);
   height: max-content;
   width: 100%;
   display: flex;
@@ -120,6 +117,14 @@
   /* height: max-content; */
   /* transition: all 0.5s ease 0.1s; */
 }
+
+.card__container p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 /* 
 .card:hover .card__container {
 	background: linear-gradient(
@@ -140,6 +145,7 @@
   /* letter-spacing: -1.06px; */
   margin: 0;
 }
+
 .card time,
 .card p,
 .card .card__location {
@@ -151,16 +157,19 @@
   color: #badcec;
   margin: 0.18em;
 }
+
 .card__location {
   text-decoration-color: #eb0ec7;
   -webkit-text-decoration-color: #eb0ec7;
   transition: all 250ms ease;
   max-width: 13.3em;
 }
+
 .card__location:hover {
   background-color: rgba(235, 14, 199, 0.2);
   text-decoration-color: rgba(235, 14, 199, 0.2);
 }
+
 .card__buttons {
   display: flex;
   align-items: center;
@@ -168,6 +177,7 @@
   margin: 0.5em 0;
   flex-direction: row;
 }
+
 .card__buttons .btn {
   font-family: "Teko", sans-serif;
   /* font-weight: regular; */
@@ -181,16 +191,19 @@
   color: #fff;
   padding: 2vmin 0;
 }
+
 .card__buttons .btn:hover {
   -webkit-animation: gradient 1.3s ease infinite;
   -moz-animation: gradient 1.3s ease infinite;
   animation: gradient 1.3s ease infinite;
 }
+
 .card__buttons .btn:hover i {
   -webkit-animation: levitate 1.3s ease infinite;
   -moz-animation: levitate 1.3s ease infinite;
   animation: levitate 1.3s ease infinite;
 }
+
 .card__buttons .primary {
   position: relative;
   background-image: linear-gradient(to right, #69c0b9, #101c27);
@@ -198,6 +211,7 @@
   transition: all 0.4s ease;
   z-index: 1;
 }
+
 .card__buttons .secondary {
   position: relative;
   background-image: linear-gradient(to right, #fe296d, #4b091e);
@@ -205,36 +219,45 @@
   transition: all 0.4s ease;
   z-index: 1;
 }
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
 }
+
 @keyframes levitate {
   0% {
     padding-left: 0px;
   }
+
   50% {
     padding-left: 5px;
   }
+
   100% {
     padding-left: 0px;
   }
 }
+
 @media (max-width: 600px) {
   .fas {
     display: none;
     margin: auto;
   }
+
   .speakerPage {
     margin: auto;
   }
+
   .card__buttons {
     display: inline;
     /* margin: auto; */
