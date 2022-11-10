@@ -1,36 +1,43 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
 
 import PrometeoLogo from '../assets/navbar/prometeo_logo_23.png'
 
-function Navbar() {
-  useEffect(() => {
-    
-    const toggleButton = document.getElementsByClassName(
-      "navbar-toggle-button"
-    )[0];
-    const navbarLeftLinks = document.getElementsByClassName(
-      "navbar-left-section"
-    )[0];
-    const navbarRightLinks = document.getElementsByClassName(
-      "navbar-right-section"
-    )[0];
 
-    toggleButton.addEventListener("click", () => {
-      navbarLeftLinks.classList.toggle("active");
-      navbarRightLinks.classList.toggle("active");
-    });
-    navbarLeftLinks.addEventListener("click", () => {
-      navbarLeftLinks.classList.toggle("active");
-      navbarRightLinks.classList.toggle("active");
-    });
-    navbarRightLinks.addEventListener("click", () => {
-      navbarLeftLinks.classList.toggle("active");
-      navbarRightLinks.classList.toggle("active");
-    });
-  }
-  )
+function Navbar() {
+  const [NavbarOpen, setNavbarOpen] = useState(false);
+  
+// opening and closing the navbar
+  useEffect(() => {
+    document.getElementsByClassName('navbar-toggle-button')[0].addEventListener('click', () => {
+      setNavbarOpen(!NavbarOpen);
+      console.log("clicked");
+    })
+    document.getElementsByClassName('navbar-left-section')[0].addEventListener('click', () => {
+      setNavbarOpen(false);
+    })
+    document.getElementsByClassName('navbar-right-section')[0].addEventListener('click', () => {
+      setNavbarOpen(false);
+    })
+    document.getElementsByClassName('navbar-logo')[0].addEventListener('click', () => {
+      setNavbarOpen(false);
+    })
+  }, [NavbarOpen]);
+
+  useEffect(() => {
+    console.log(document.getElementsByClassName('navbar-left-section')[0].classList);
+    if (NavbarOpen) {
+      document.getElementsByClassName('navbar-left-section')[0].classList.add('active');
+      document.getElementsByClassName('navbar-right-section')[0].classList.add('active');
+    }
+    else {
+      document.getElementsByClassName('navbar-left-section')[0].classList.remove('active');
+      document.getElementsByClassName('navbar-right-section')[0].classList.remove('active');
+    }
+  }, [NavbarOpen]);
+      
+
     return (
       <div id="navbar">
         <div className="navbar-toggle-button">
