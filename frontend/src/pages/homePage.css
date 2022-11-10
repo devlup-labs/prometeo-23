@@ -28,9 +28,17 @@
   user-select: none;
 }
 
+@media screen and (max-width: 1000px) {
+  #about-prometeo {
+    width: 40%;
+    top: 18%;
+  }
+}
+
 @media screen and (max-width: 768px) {
   #about-prometeo {
-    top: 30%;
+    top: 15%;
+    width: 50%;
   }
 }
 
@@ -77,9 +85,16 @@
   line-height: 3.5vmin;
 }
 
+@media screen and (max-width: 1080px) {
+  #about-prometeo-text {
+    font-size: max(2.5vh, 16px);
+    line-height: max(4vh, 20px);
+  }
+}
+
 @media screen and (max-width: 768px) {
   #about-prometeo-text {
-    font-size: max(3.5vh, 13px);
+    font-size: max(2.5vh, 13px);
     line-height: max(4vh, 16px);
   }
 } 
