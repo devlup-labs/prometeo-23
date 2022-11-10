@@ -13,7 +13,7 @@ function About(props) {
 			<div className="blog-slider__wrp">
 				<div className="blog-slider__item swiper-slide">
 					<div className="blog-slider__img blog-container">
-						<img src={props.img} alt="" />
+						<img src={props.image} alt="" />
 					</div>
 					<div className="blog-slider__content">
 						<div className="blog-slider__title">{props.name}</div>
@@ -31,7 +31,7 @@ function createEntry(term) {
 	return (
 		<About
 			key={term.id}
-			img={term.imgURL}
+			image={term.image}
 			name={term.name}
 			designation={term.designation}
 			description={term.description}

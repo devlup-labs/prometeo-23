@@ -25,7 +25,7 @@ function createEntry(eventTerm) {
 }
 
 function Entry(props) {
-	console.log(props)
+	// console.log(props)
 	return (
 		<div className="event_cards">
 			<li className="card" aria-labelledby="event card">
