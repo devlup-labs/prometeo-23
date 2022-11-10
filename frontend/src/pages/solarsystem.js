@@ -27,7 +27,7 @@ import moon from '../assets/space/moon.jpg';
 export default function solarSystem() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 20, 8000);
-    camera.position.set(200, 500, 700);
+    camera.position.set(200, 500 * (1536 / window.innerWidth), 700);
     // camera.position.set(0, 0, 800);
 
     const homePageEle = document.getElementById("homepage");
