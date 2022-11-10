@@ -25,7 +25,7 @@ function createEntry(sponsorTerm) {
 
 function Entry(props) {
 	return (
-		<div className="teamContainer" >
+		<div className="teamContainer" key={props.name}>
 			<div className="section-header">
 				<span>{props.name}</span>
 			</div>
