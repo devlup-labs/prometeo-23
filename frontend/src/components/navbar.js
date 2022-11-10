@@ -12,7 +12,7 @@ function Navbar() {
   useEffect(() => {
     document.getElementsByClassName('navbar-toggle-button')[0].addEventListener('click', () => {
       setNavbarOpen(!NavbarOpen);
-      console.log("clicked");
+      // console.log("clicked");
     })
     document.getElementsByClassName('navbar-left-section')[0].addEventListener('click', () => {
       setNavbarOpen(false);
@@ -26,7 +26,7 @@ function Navbar() {
   }, [NavbarOpen]);
 
   useEffect(() => {
-    console.log(document.getElementsByClassName('navbar-left-section')[0].classList);
+    // console.log(document.getElementsByClassName('navbar-left-section')[0].classList);
     if (NavbarOpen) {
       document.getElementsByClassName('navbar-left-section')[0].classList.add('active');
       document.getElementsByClassName('navbar-right-section')[0].classList.add('active');
@@ -50,11 +50,11 @@ function Navbar() {
             <Link to="/theme">
                 <div className="navbar-left-section-theme navbar-link">Theme</div>
             </Link>
-            <Link to="/speakers">
-                <div className="navbar-left-section-speakers navbar-link">Speakers</div>
+            <Link to="/past-speakers">
+                <div className="navbar-left-section-speakers navbar-link">Past Speakers</div>
             </Link>
-            <Link to="/sponsors">
-                <div className="navbar-left-section-sponsors navbar-link">Sponsors</div>
+            <Link to="/past-sponsors">
+                <div className="navbar-left-section-sponsors navbar-link">Past Sponsors</div>
             </Link>
         </div>  
         <div className="navbar-logo">
@@ -64,8 +64,8 @@ function Navbar() {
         </div>
         <div className='navbar-right-section'>
             {/* gallery, theme, register, login */}
-            <Link to="/events">
-                <div className="navbar-right-section-events navbar-link">Events</div>
+            <Link to="/past-events">
+                <div className="navbar-right-section-events navbar-link">Past Events</div>
             </Link>
             <Link to="/gallery">
                 <div className="navbar-right-section-gallery navbar-link">Gallery</div>
