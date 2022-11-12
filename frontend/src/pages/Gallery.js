@@ -1,22 +1,30 @@
 import { useState, useEffect } from "react";
 
 import "./gallery.css";
+import FadeIn from "../components/fadein";
+import galleryData from "./galleryData.js";
+
+// var imagePaths = [];
+
+// for (var i = 0; i < galleryData.length; i++) {
+// 	  imagePaths.push(galleryData[i].image);
+// }
 
 const imagePaths = [
-	"https://images.unsplash.com/photo-1608687087357-845abfade367?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1604818640599-71bda0165d53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1574357278720-2809ce8065db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1602136773736-34d445b989cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1501769752-a59efa2298ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1558961166-9c584702dcb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1571182160015-2169f6e1aa5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1555852224-2a3e675fc47e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk3NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1620215175664-cb9a6f5b6103?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk4NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1539606328118-80c679838702?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk4NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1574357278720-2809ce8065db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk4NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1574357265250-10c88f63ebfd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk4NzE&ixlib=rb-4.0.3&q=80&w=400",
-	"https://images.unsplash.com/photo-1536901766856-5d45744cd180?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2Njc1NTk5MjA&ixlib=rb-4.0.3&q=80&w=400",
-];
+	"https://i.imgur.com/4w6Cdfy.jpg",
+	"https://i.imgur.com/E7ffaYE.jpg",
+	"https://i.imgur.com/j0YvuP5.jpg",
+	"https://i.imgur.com/0g04dq9.jpg",
+	"https://i.imgur.com/Oxq9uuV.jpg",
+	"https://i.imgur.com/xyfD8sl.png",
+	"https://i.imgur.com/xzlD6Pp.jpg",
+	"https://i.imgur.com/dJa57oO.jpg",
+	"https://i.imgur.com/YA47ng7.png",
+	"https://i.imgur.com/xqXXBx2.png",
+	"https://i.imgur.com/SyjLsvQ.png",
+	"https://i.imgur.com/G5QVZNp.png",
+]
+
 class Utilities {
 	static norm(value, min, max) {
 		return (value - min) / (max - min);
@@ -82,7 +90,7 @@ class Loading {
 			const path = this.imagePaths[i];
 			const image = new Image();
 			image.src = path;
-			image.crossOrigin = "anonymous";
+			// image.crossOrigin = "anonymous";
 			image.addEventListener("load", () => {
 				this.percentage = this.getPercentage(this.loadedNumber++);
 			});
@@ -160,7 +168,7 @@ class DrawMainImage {
 		this.isLoaded = false;
 		this.image = new Image();
 		this.image.src = src;
-		this.image.crossOrigin = "anonymous";
+		// this.image.crossOrigin = "anonymous";
 		this.image.addEventListener("load", () => {
 			this.stopWatch.initialize();
 			let imageWidth, ratio, imageHeight;
@@ -608,7 +616,7 @@ class Glitch {
 			if (Math.random() > 0.01) {
 				this.ctx.putImageData(
 					this.dataArr[i].image,
-					Math.tan(this.dataArr[i].height * 0.1 + t) * 10 * Math.random(),
+					Math.tan(this.dataArr[i].height * 0.1 + t) * 0.5 * Math.random(),
 					this.dataArr[i].height
 				);
 			} else {
@@ -680,20 +688,22 @@ function Gallery() {
 	)
 
 	return (
-		<div id="galleryPage">
-			{/* {console.log("Inside html: ", loadedOnce)} */}
-			<div className="loading">
-				<div className="loading-container">
-					<p className="counter"></p>
-					<div className="line"></div>
+		<FadeIn duration={500}>
+			<div id="galleryPage">
+				{/* {console.log("Inside html: ", loadedOnce)} */}
+				<div className="loading">
+					<div className="loading-container">
+						<p className="counter"></p>
+						<div className="line"></div>
+					</div>
 				</div>
 			</div>
 			<div id="body-container">
 				<div className="box">
-					<h2>Gallery</h2>
+					<h2>GALLERY</h2>
 				</div>
 			</div>
-		</div>
+		</FadeIn>
 	);
 }
 export default Gallery;
