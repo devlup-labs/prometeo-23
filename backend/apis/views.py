@@ -65,9 +65,9 @@ class SubmissionsViewSet(viewsets.ModelViewSet):
     queryset = Submissions.objects.all()
     serializer_class = SubmissionsSerializers
 
-class CustomUserViewSet(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializers
+# class CustomUserViewSet(viewsets.ModelViewSet):
+#     queryset = ExtendedUser.objects.all()
+#     serializer_class = CustomUserSerializers
 
 class ExtendedUserViewSet(viewsets.ModelViewSet):
     queryset = ExtendedUser.objects.all()

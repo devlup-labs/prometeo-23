@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'captcha',
     'rest_framework',
     'apis',
-    'django_filters'
+    'django_filters',
+    'corsheaders'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -65,6 +66,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -94,6 +96,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'prometeo.wsgi.application'
 
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]    
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
