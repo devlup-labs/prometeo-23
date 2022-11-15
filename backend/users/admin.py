@@ -1,21 +1,21 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import ugettext_lazy as _
-from .models import ExtendedUser, CustomUser, Team, Submissions
+from .models import ExtendedUser, Team, Submissions
+
+
+# @admin.register(ExtendedUser)
+# class ExtendedUserAdmin(admin.ModelAdmin):
+#     list_display = ('user', 'first_name', 'last_name', 'college', 'ambassador')
+#     list_filter = ('ambassador', 'college')
+#     search_fields = ['user__email', 'user__first_name', 'user__last_name', 'college', 'contact', 'city']
+
+#     class Meta:
+#         model = ExtendedUser
+#         fields = '__all__'
 
 
 @admin.register(ExtendedUser)
-class ExtendedUserAdmin(admin.ModelAdmin):
-    list_display = ('user', 'first_name', 'last_name', 'college', 'ambassador')
-    list_filter = ('ambassador', 'college')
-    search_fields = ['user__email', 'user__first_name', 'user__last_name', 'college', 'contact', 'city']
-
-    class Meta:
-        model = ExtendedUser
-        fields = '__all__'
-
-
-@admin.register(CustomUser)
 class UserAdmin(DjangoUserAdmin):
     """Define admin model for custom User model with no email field."""
 
@@ -32,9 +32,17 @@ class UserAdmin(DjangoUserAdmin):
             'fields': ('email', 'password1', 'password2'),
         }),
     )
-    list_display = ('email', 'first_name', 'last_name', 'is_staff')
-    search_fields = ('email', 'first_name', 'last_name')
+    # list_display = ('email', 'first_name', 'last_name', 'is_staff')
+    # search_fields = ('email', 'first_name', 'last_name')
+    # ordering = ('email',)
+    list_display = ('email','first_name', 'last_name', 'college', 'ambassador')
+    list_filter = ('ambassador', 'college')
+    search_fields = ['email', 'first_name', 'last_name', 'college', 'contact', 'city']
     ordering = ('email',)
+
+    class Meta:
+        model = ExtendedUser
+        fields = '__all__'
 
 
 class TeamAdmin(admin.ModelAdmin):

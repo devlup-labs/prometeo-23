@@ -20,7 +20,7 @@ sendMailID = settings.FROM_EMAIL_USER
 
 def registrationNotCompleted(request):
     user = request.user
-    if user.is_authenticated and user.extendeduser.isProfileCompleted is False:
+    if user.is_authenticated and user.isProfileCompleted is False:
         messages.info(request, 'Complete your registration first.')
         return True
     return False
@@ -43,7 +43,7 @@ def user_profile(request):
             user.first_name = data['first_name']
             user.last_name = data['last_name']
 
-            extendeduser = ExtendedUser.objects.filter(user=request.user).first()
+            extendeduser = ExtendedUser.objects.filter(email=request.user.email).first()
             extendeduser.gender = data['gender']
 
             extendeduser.contact = data['phone_no']
@@ -61,6 +61,7 @@ def user_profile(request):
                 referralCode = data['referral_code']
                 if ExtendedUser.objects.filter(invite_referral=referralCode).exists():
                     referredBy = ExtendedUser.objects.filter(invite_referral=referralCode).first()
+                    #here
                     extendeduser.referred_by = referredBy.user
                 else:
                     messages.info(request, 'Invalid Referral Code.')
