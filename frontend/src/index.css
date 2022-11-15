@@ -9,6 +9,11 @@ body {
   background-color: #010001;
 }
 
+* {
+  scrollbar-color: rgba(105,192,185,1) rgba(0, 0, 0, 0);
+  scrollbar-width: thin;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

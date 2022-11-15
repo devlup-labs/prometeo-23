@@ -5,6 +5,7 @@ import "./speaker.css";
 import speakerDetails from "./speakerDetails";
 
 import spinner from '../assets/loading/loading3.gif';
+import FadeIn from "../components/fadein";
 
 function About(props) {
 	return (
@@ -12,7 +13,7 @@ function About(props) {
 			<div className="blog-slider__wrp">
 				<div className="blog-slider__item swiper-slide">
 					<div className="blog-slider__img blog-container">
-						<img src={props.img} alt="" />
+						<img src={props.image} alt="" />
 					</div>
 					<div className="blog-slider__content">
 						<div className="blog-slider__title">{props.name}</div>
@@ -30,7 +31,7 @@ function createEntry(term) {
 	return (
 		<About
 			key={term.id}
-			img={term.imgURL}
+			image={term.image}
 			name={term.name}
 			designation={term.designation}
 			description={term.description}
@@ -60,10 +61,12 @@ function Speaker() {
     )
 
 	return (
+		<FadeIn duration={500}>
 			<div id="speakerPage">
-				<h2 className="speakerHeading">SPEAKERS</h2>
+				<h2 className="speakerHeading">PAST SPEAKERS</h2>
 				<div className="speakerCard">{speakerDetails.map(createEntry)}</div>	
 			</div>
+		</FadeIn>
 	);
 }
 export default Speaker;

@@ -3,7 +3,7 @@ import event_data from "./event_info";
 import './event_page.css';
 
 import logo from '../assets/navbar/prometeo_logo_23.png';
-
+import FadeIn from '../components/fadein';
 
 // function logo(url){
 //    return(
@@ -13,17 +13,19 @@ import logo from '../assets/navbar/prometeo_logo_23.png';
 
 function createEntry(eventTerm) {
 	return (
-		<Entry
-			key={eventTerm.id}
-			name={eventTerm.name}
-			img={eventTerm.image}
-			desc={eventTerm.description}
-		/>
+		<FadeIn duration={500}>
+			<Entry
+				key={eventTerm.id}
+				name={eventTerm.name}
+				img={eventTerm.image}
+				desc={eventTerm.description}
+			/>
+		</FadeIn>
 	);
 }
 
 function Entry(props) {
-	console.log(props)
+	// console.log(props)
 	return (
 		<div className="event_cards">
 			<li className="card" aria-labelledby="event card">
@@ -36,12 +38,8 @@ function Entry(props) {
 					<p>{props.desc}</p>
 					{/* <a className="card__location" href="https://goo.gl/maps/dsPC54CdmnE2">Coral Sky Amphitheatre</a> */}
 					<div className="card__buttons">
-						<a href="#" className="card__buttons btn primary" role="button" aria-haspopup="false">
-							Details
-							<div className="card__fill"></div>
-						</a>
 						<a href="#" className="card__buttons btn secondary" role="button" aria-haspopup="false">
-							Register
+							View More
 							<i className="fas fa-arrow-right"></i>
 						</a>
 					</div>
@@ -61,7 +59,7 @@ function Events() {
 	return (
 		<div>
 			<div id="eventsPage">
-				<h2 className="section-header">EVENTS</h2>
+				<h2 className="section-header">PAST EVENTS</h2>
 				<div className="event_cards">{event_data.map(createEntry)}</div>
 			</div>
 		</div>
