@@ -69,10 +69,10 @@ class SubmissionsSerializers(serializers.ModelSerializer):
         model = Submissions
         fields = '__all__'
 
-class CustomUserSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = '__all__'
+# class CustomUserSerializers(serializers.ModelSerializer):
+#     class Meta:
+#         model = ExtendedUser
+#         fields = '__all__'
 
 class ExtendedUserSerializers(serializers.ModelSerializer):
     class Meta:

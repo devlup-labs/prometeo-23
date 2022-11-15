@@ -4,14 +4,14 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from datetime import date, datetime
 from .models import EVENT_CHOICES, Panel
-from users.models import CustomUser, Submissions
+from users.models import Submissions , ExtendedUser
 from django.conf import settings
 import boto3
 
 
 def registrationNotCompleted(request):
     user = request.user
-    if user.is_authenticated and user.extendeduser.isProfileCompleted is False:
+    if user.is_authenticated and user.isProfileCompleted is False:
         messages.info(request, 'Complete your registration first.')
         return True
     return False
@@ -105,7 +105,7 @@ def uploadSubmission(request):
         s3.Bucket(settings.AWS_BUCKET).put_object(Key=cloudFilename, Body=fileUploaded)
 
         # saving in db
-        submitted_user = CustomUser.objects.get(email__exact=user_email)
+        submitted_user = ExtendedUser.objects.get(email__exact=user_email)
         submitted_to_event = Event.objects.get(name=event_name)
 
         file_url = "https://prometeo-bucket.s3.ap-south-1.amazonaws.com/" + cloudFilename

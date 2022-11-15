@@ -19,6 +19,7 @@ class Carousel(models.Model):
 
 class Theme(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Display name")
+    year = models.CharField(max_length=4,choices=THEME_CHOICES, verbose_name='Theme Year')
     description = RichTextField(max_length=5000000, null=True, blank=True, verbose_name="Description")
     
     def __int__(self):

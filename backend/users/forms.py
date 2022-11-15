@@ -9,12 +9,12 @@ CustomUser = get_user_model()
 
 
 class SignUpForm(UserCreationForm):
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(
-                attrs={
-                        'data-theme': 'light',  # default=light
-                        'data-size': 'normal',  # default=normal
-                },
-            ), )
+    # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(
+    #             attrs={
+    #                     'data-theme': 'light',  # default=light
+    #                     'data-size': 'normal',  # default=normal
+    #             },
+    #         ), )
     first_name = forms.CharField(help_text="", required=True)
     last_name = forms.CharField(help_text="", required=True)
     email = forms.EmailField(help_text="", required=True)
