@@ -168,7 +168,7 @@ class DrawMainImage {
 		this.isLoaded = false;
 		this.image = new Image();
 		this.image.src = src;
-		// this.image.crossOrigin = "anonymous";
+		this.image.crossOrigin = "anonymous"; // This line was commented out , was causing error 
 		this.image.addEventListener("load", () => {
 			this.stopWatch.initialize();
 			let imageWidth, ratio, imageHeight;
