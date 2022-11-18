@@ -1,99 +1,99 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2&family=Teko:wght@300&display=swap");
 
 #navbar {
-  box-sizing: border-box;
-  /* background-color: #000000; */
-  position: absolute;
-  top: 0;
-  color: #63ccf5;
-  font-family: "Exo 2", sans-serif;
-  font-size: 2.75vh;
-  padding: 1vh 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 10vh;
-  width: 100vw;
-  opacity: 0;
-  transition: opacity 1.3s ease-out;
-  z-index: 1;
-  background: rgb(16, 28, 39);
-  user-select: none;
+	box-sizing: border-box;
+	/* background-color: #000000; */
+	position: absolute;
+	top: 0;
+	color: #63ccf5;
+	font-family: "Exo 2", sans-serif;
+	font-size: 2.75vh;
+	padding: 1vh 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 10vh;
+	width: 100vw;
+	opacity: 0;
+	transition: opacity 1.3s ease-out;
+	z-index: 1;
+	background: rgb(16, 28, 39);
+	user-select: none;
 }
 
 #navbar a {
-  color: #63ccf5;
-  text-decoration: none;
-  transition: color 0.1s ease-out;
+	color: #63ccf5;
+	text-decoration: none;
+	transition: color 0.1s ease-out;
 }
 
 /* create an underline that grows in length when we hover */
 
 .navbar-link::after {
-  content: "";
-  display: block;
-  width: 0;
-  /* left: 50%; */
-  margin-top: 0.5vmin;
-  height: 0.5vmin;
-  background: #63ccf5;
-  transition: width 0.3s ease-out;
+	content: "";
+	display: block;
+	width: 0;
+	/* left: 50%; */
+	margin-top: 0.5vmin;
+	height: 0.5vmin;
+	background: #63ccf5;
+	transition: width 0.3s ease-out;
 }
 
 #navbar a:hover {
-  color: #e2f7f5;
+	color: #e2f7f5;
 }
 
 .navbar-left-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 35vw;
-  /* border: 1px solid red; */
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 35vw;
+	/* border: 1px solid red; */
 }
 
 .navbar-right-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 35vw;
-  /* border: 1px solid red; */
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 35vw;
+	/* border: 1px solid red; */
 }
 
 .navbar-logo {
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  /* border: 1px solid red; */
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	/* border: 1px solid red; */
 }
 
 #navbar-logo-img {
-  margin-top: 0.5vmin;
-  max-height: 7.5vh;
+	margin-top: 0.5vmin;
+	max-height: 7.5vh;
 }
 
 .navbar-right-section-login {
-  box-sizing: border-box;
-  padding: 3px 8px 1px;
-  border: 2px solid #63ccf5;
-  border-radius: 4px;
-  /* transition: color 0.3s ease-in; */
-  transition: all 0.2s linear;
-  /* transition: border 0.2s linear; */
+	box-sizing: border-box;
+	padding: 3px 8px 1px;
+	border: 2px solid #63ccf5;
+	border-radius: 4px;
+	/* transition: color 0.3s ease-in; */
+	transition: all 0.2s linear;
+	/* transition: border 0.2s linear; */
 }
 
 .navbar-right-section-login:hover {
-  color: #84f4eb;
-  background: #010001;
-  padding: 2px 7px 0px;
-  border: 3px solid #84f4eb;
+	color: #84f4eb;
+	background: #010001;
+	padding: 2px 7px 0px;
+	border: 3px solid #84f4eb;
 }
 
 .navbar-right-section-login::after {
-  content: "";
-  display: block;
-  margin-top: 0.5vmin;
-  height: 0.5vmin;
+	content: "";
+	display: block;
+	margin-top: 0.5vmin;
+	height: 0.5vmin;
 }
 
 /* @media (max-width: 600px) {
@@ -106,76 +106,109 @@
 } */
 
 .nav-btn {
-  position: absolute;
-  width: 10vw;
-  max-width: 30px;
-  height: 40%;
-  max-height: 3vh;
-  right: 2vw;
-  top: 35%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* new css */
-  padding: 5px;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--textColor);
-  visibility: hidden;
-  opacity: 0;
+	position: absolute;
+	width: 10vw;
+	max-width: 30px;
+	height: 40%;
+	max-height: 3vh;
+	right: 2vw;
+	top: 35%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	/* new css */
+	padding: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: var(--textColor);
+	visibility: hidden;
+	opacity: 0;
 }
+
 #navbar nav {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
+
 .hamburger-menu {
-  display: none;
+	display: none;
 }
+
+.navbar-mobile {
+	display: none;
+}
+
 @media only screen and (max-width: 950px) {
-  #navbar {
-    z-index: 999;
-  }
-  #navbar .navbar-right-section {
-    display: none;
-  }
-  #navbar .navbar-left-section {
-    display: none;
-  }
-  .hamburger-menu {
-    display: block;
-    margin: 10px;
-  }
-  .mobile-left-menu-link {
-    position: fixed;
-    top: 10vh;
-    left: 25;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(16, 28, 39, 0.9);
-    background-blend-mode: screen;
-    transition: 1s;
-  }
-  .mobile-right-menu-link {
-    position: fixed;
-    top: 22.436vh;
-    left: 25;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(16, 28, 39, 0.9);
-    background-blend-mode: screen;
-    transition: 1s;
-  }
-  .navbar-right-section-login {
-    margin-bottom: 10px;
-  }
+	.navbar-mobile {
+		position: fixed;
+		top: 10vh;
+		width: 100vw;
+		background-color: rgb(16, 28, 39, 0.9);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-evenly;
+	}
+
+	.navbar-mobile-link {
+		text-align: center;
+		width: 100vw;
+	}
+
+	#navbar {
+		z-index: 999;
+	}
+
+	#navbar .navbar-right-section {
+		display: none;
+	}
+
+	#navbar .navbar-left-section {
+		display: none;
+	}
+
+	.hamburger-menu {
+		display: block;
+		margin: 10px;
+	}
+
+	.hamburger-menu:hover {
+		cursor: pointer;
+	}
+
+	.mobile-left-menu-link {
+		position: fixed;
+		top: 10vh;
+		left: 25;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: rgb(16, 28, 39, 0.9);
+		background-blend-mode: screen;
+		transition: 1s;
+	}
+
+	.mobile-right-menu-link {
+		position: fixed;
+		top: 22.436vh;
+		left: 25;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: rgb(16, 28, 39, 0.9);
+		background-blend-mode: screen;
+		transition: 1s;
+	}
+
+	.navbar-right-section-login {
+		margin-bottom: 10px;
+	}
 }
-@media only screen and (max-width: 700px) {
-}
+
+@media only screen and (max-width: 700px) {}
