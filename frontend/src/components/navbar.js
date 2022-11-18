@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
+import { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from 'react-router-dom'
 import './navbar.css'
 
@@ -6,76 +8,70 @@ import PrometeoLogo from '../assets/navbar/prometeo_logo_23.png'
 
 
 function Navbar() {
-  const [NavbarOpen, setNavbarOpen] = useState(false);
-  
-// opening and closing the navbar
-  useEffect(() => {
-    document.getElementsByClassName('navbar-toggle-button')[0].addEventListener('click', () => {
-      setNavbarOpen(!NavbarOpen);
-      // console.log("clicked");
-    })
-    document.getElementsByClassName('navbar-left-section')[0].addEventListener('click', () => {
-      setNavbarOpen(false);
-    })
-    document.getElementsByClassName('navbar-right-section')[0].addEventListener('click', () => {
-      setNavbarOpen(false);
-    })
-    document.getElementsByClassName('navbar-logo')[0].addEventListener('click', () => {
-      setNavbarOpen(false);
-    })
-  }, [NavbarOpen]);
-
-  useEffect(() => {
-    // console.log(document.getElementsByClassName('navbar-left-section')[0].classList);
-    if (NavbarOpen) {
-      document.getElementsByClassName('navbar-left-section')[0].classList.add('active');
-      document.getElementsByClassName('navbar-right-section')[0].classList.add('active');
-    }
-    else {
-      document.getElementsByClassName('navbar-left-section')[0].classList.remove('active');
-      document.getElementsByClassName('navbar-right-section')[0].classList.remove('active');
-    }
-  }, [NavbarOpen]);
-      
-
+  const [showIcons, setShowIcons] = useState(false);
     return (
       <div id="navbar">
-        <div className="navbar-toggle-button">
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </div>
-        <div className="navbar-left-section">
-            {/* speakers, sponsors, events */}
-            <Link to="/theme">
-                <div className="navbar-left-section-theme navbar-link">Theme</div>
-            </Link>
-            <Link to="/past-speakers">
-                <div className="navbar-left-section-speakers navbar-link">Past Speakers</div>
-            </Link>
-            <Link to="/past-sponsors">
-                <div className="navbar-left-section-sponsors navbar-link">Past Sponsors</div>
-            </Link>
-        </div>  
+        <nav
+          className={
+            showIcons
+              ? "mobile-left-menu-link"
+              : "navbar-left-section"
+          }
+        >
+          {/* speakers, sponsors, events */}
+          <Link to="/theme">
+            <div className="navbar-left-section-theme navbar-link">Theme</div>
+          </Link>
+          <Link to="/past-speakers">
+            <div className="navbar-left-section-speakers navbar-link">
+              Past Speakers
+            </div>
+          </Link>
+          <Link to="/past-sponsors">
+            <div className="navbar-left-section-sponsors navbar-link">
+              Past Sponsors
+            </div>
+          </Link>
+        </nav>
+
         <div className="navbar-logo">
-            <Link to="/">
-                <img id="navbar-logo-img" src={PrometeoLogo} alt="Prometeo Logo" />
-            </Link>
+          <Link to="/">
+            <img id="navbar-logo-img" src={PrometeoLogo} alt="Prometeo Logo" />
+          </Link>
         </div>
-        <div className='navbar-right-section'>
-            {/* gallery, theme, register, login */}
-            <Link to="/past-events">
-                <div className="navbar-right-section-events navbar-link">Past Events</div>
-            </Link>
-            <Link to="/gallery">
-                <div className="navbar-right-section-gallery navbar-link">Gallery</div>
-            </Link>
-            <Link to="/register">
-                <div className="navbar-right-section-register navbar-link">Register</div>
-            </Link>
-            <Link to="/login">
-                <div className="navbar-right-section-login">Login</div>
-            </Link>
+
+        <nav
+          className={
+            showIcons
+              ? "mobile-right-menu-link"
+              : "navbar-right-section"
+          }
+        >
+          {/* gallery, theme, register, login */}
+          <Link to="/past-events">
+            <div className="navbar-right-section-events navbar-link">
+              Past Events
+            </div>
+          </Link>
+          <Link to="/gallery">
+            <div className="navbar-right-section-gallery navbar-link">
+              Gallery
+            </div>
+          </Link>
+          <Link to="/register">
+            <div className="navbar-right-section-register navbar-link">
+              Register
+            </div>
+          </Link>
+          <Link to="/login">
+            <div className="navbar-right-section-login">Login</div>
+          </Link>
+        </nav>
+
+        <div className="hamburger-menu">
+          <a href="#" onClick={() => setShowIcons(!showIcons)}>
+            <GiHamburgerMenu />
+          </a>
         </div>
       </div>
     );
