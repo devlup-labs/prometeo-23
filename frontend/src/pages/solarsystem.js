@@ -513,13 +513,14 @@ export default function solarSystem() {
     scene.add(neptune_orbit);
 
     const loopTime = 1;
-    const firstEarthOrbitSpeed = 0.00001;
+    var EarthOrbitSpeed = 0.00001;
+    const planetOrbitSpeed = 0.00001;
     const moonOrbitRadius = 55;
     const moonOrbitSpeed = 80;
 
 
     function animate() {
-        const time = firstEarthOrbitSpeed * performance.now();
+        const time = planetOrbitSpeed * performance.now();
         const t = (time % loopTime) / loopTime;
 
         sunMesh.rotation.y += 0.0008
@@ -544,9 +545,13 @@ export default function solarSystem() {
 
         venusMesh.rotation.y += 0.0008
 
+        const time2 = EarthOrbitSpeed * performance.now();
+        const t2 = (time2 % loopTime) / loopTime;
+
+
         // first earth
 
-        let firstEarth_p = firstEarth_curve.getPoint(t);
+        let firstEarth_p = firstEarth_curve.getPoint(t2);
         // console.log(firstEarth_p, t);
 
         firstEarthSystem.position.x = firstEarth_p.x;
@@ -560,7 +565,7 @@ export default function solarSystem() {
 
         // second earth
 
-        let secondEarth_p = secondEarth_curve.getPoint(t);
+        let secondEarth_p = secondEarth_curve.getPoint(t2);
         // console.log(secondEarth_p, t);
         
         secondEarthSystem.position.x = secondEarth_p.x;
@@ -574,7 +579,7 @@ export default function solarSystem() {
 
         // third earth
 
-        let thirdEarth_p = thirdEarth_curve.getPoint(t);
+        let thirdEarth_p = thirdEarth_curve.getPoint(t2);
         // console.log(thirdEarth_p, t);
         
         thirdEarthSystem.position.x = thirdEarth_p.x;
@@ -588,7 +593,7 @@ export default function solarSystem() {
 
         // fourth earth
 
-        let fourthEarth_p = fourthEarth_curve.getPoint(t);
+        let fourthEarth_p = fourthEarth_curve.getPoint(t2);
         // console.log(fourthEarth_p, t);
         
         fourthEarthSystem.position.x = fourthEarth_p.x;
@@ -602,7 +607,7 @@ export default function solarSystem() {
 
         // fifth earth
 
-        let fifthEarth_p = fifthEarth_curve.getPoint(t);
+        let fifthEarth_p = fifthEarth_curve.getPoint(t2);
         // console.log(fifthEarth_p, t);
         
         fifthEarthSystem.position.x = fifthEarth_p.x;
@@ -662,12 +667,76 @@ export default function solarSystem() {
         neptuneMesh.rotation.y += 0.0008
 
         requestAnimationFrame(animate);
-        camera.lookAt(200, -200, -100);
+        camera.lookAt(150,0,0);
         // camera.lookAt(0, 0, 0);
         renderer.render(scene, camera);
     }
 
     animate();
+
+    const camY = camera.position.y;
+    const camLookAty = -200
+    let camLookAt = [200, -200, -100];
+
+    const cameraInitial = [200, camY, 700];
+    const cameraFinal = [450, 0, 400];
+
+    const earthDesiredPosition = [150, 0, 300];
+
+    const updateCameraPosition = (deltaY) => {
+
+        const slopeX = (cameraFinal[0] - cameraInitial[0]) / (cameraFinal[1] - cameraInitial[1]);
+        const slopeZ = (cameraFinal[2] - cameraInitial[2]) / (cameraFinal[1] - cameraInitial[1]);
+
+        camera.position.x = Math.max(cameraInitial[0], Math.min(cameraFinal[0], camera.position.x + slopeX * (deltaY / 10)));
+        camera.position.y = Math.min(cameraInitial[1], Math.max(cameraFinal[1], camera.position.y - (deltaY / 10)));
+        camera.position.z = Math.min(cameraInitial[2], Math.max(cameraFinal[2], camera.position.z - slopeZ * (deltaY / 10)));
+    }
+
+    const handleScroll = (e) => {
+        // console.log(e.deltaX, e.deltaY, e.deltaZ);
+
+        // if <0.9camY toh phir -> smooth scroll down and disable manual scrolling
+        // when at camY or 0 -> enable scrolling
+        // if >0.1camY toh phir -> smooth scroll up and disable manual scrolling
+
+        if (e.deltaY>0 && camera.position.y-(e.deltaY/10) < 0.9*camY) {
+            homePageEle.removeEventListener('wheel', handleScroll);
+            while (camera.position.y>0) {
+                setTimeout(() => {
+                    console.log("we going downnnnn")
+                    updateCameraPosition(50);
+                }, 10);
+            }
+            homePageEle.addEventListener('wheel', handleScroll);
+        }
+
+        else if (e.deltaY<0 && camera.position.y-(e.deltaY/10) > 0.1*camY) {
+            homePageEle.removeEventListener('wheel', handleScroll);
+            while (camera.position.y<camY) {
+                setTimeout(() => {
+                    updateCameraPosition(-50);
+                }, 10);
+            }
+            homePageEle.addEventListener('wheel', handleScroll);
+        }
+
+        else {
+            updateCameraPosition(e.deltaY);
+        }
+
+
+        // setTimeout(() => {
+        //     var evt = document.createEvent('MouseEvents');
+        //     evt.initEvent('wheel', true, true);
+        //     evt.deltaY = 50;
+        //     homePageEle.dispatchEvent(evt);
+        // }, 10);
+    }
+
+    homePageEle.addEventListener('wheel', handleScroll);
+
+    
 
     //responsive
     window.onresize = () => {
