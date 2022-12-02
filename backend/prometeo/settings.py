@@ -16,7 +16,7 @@ from django.core.management import utils
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-
+from datetime import timedelta
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -27,7 +27,7 @@ SECRET_KEY="q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9"
 # DEBUG = config('DEBUG', default=False, cast=bool)
 DEBUG = True
 
-ALLOWED_HOSTS = ['prometeo.iitj.ac.in', '192.168.43.110', '127.0.0.1', '142.93.216.166', 'dev.prometeo.in', 'prometeo.in', 'www.prometeo.in', 'localhost']
+ALLOWED_HOSTS = ['prometeo.iitj.ac.in', '192.168.43.110', '127.0.0.1', '142.93.216.166', 'dev.prometeo.in', 'prometeo.in', 'www.prometeo.in', 'localhost','192.168.2.1','172.31.51.79','172.31.12.81']
 
 
 # Application definition
@@ -58,7 +58,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'apis',
     'django_filters',
-    'corsheaders'
+    'corsheaders',
+    'dj_rest_auth',
+    'rest_framework.authtoken',
+    'dj_rest_auth.registration',
+    'sslserver',
+    'django_extensions',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -74,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'users.middleware.MoveJWTRefreshCookieIntoTheBody',
 ]
 
 ROOT_URLCONF = 'prometeo.urls'
@@ -98,7 +104,8 @@ WSGI_APPLICATION = 'prometeo.wsgi.application'
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'http://prometeo.in',
+    'https://prometeo.in',
+    'http://172.31.12.81:3000',
 ]    
 
 # Database
@@ -259,7 +266,57 @@ CKEDITOR_CONFIGS = {
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+        'rest_framework.authentication.TokenAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    ),
+    'DEFAULT_SCHEMA_CLASS':
+        'rest_framework.schemas.coreapi.AutoSchema',
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated'
+#     ]
 }
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=50),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': False,
+
+    'ALGORITHM': 'HS256',
+
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+    'JWK_URL': None,
+    'LEEWAY': 0,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+
+    'JTI_CLAIM': 'jti',
+
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+
+REST_SESSION_LOGIN = False
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'jwt-access-token'          
+JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token' 
+JWT_AUTH_SECURE = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ['https://prometeo.in']
+
+
+
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
