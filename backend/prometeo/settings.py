@@ -60,10 +60,10 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'dj_rest_auth',
-    # 'rest_framework.authtoken',
-    # 'dj_rest_auth.registration',
-    # 'sslserver',
-    # 'django_extensions',
+    'rest_framework.authtoken',
+    'dj_rest_auth.registration',
+    'sslserver',
+    'django_extensions',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -79,7 +79,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'users.middleware.MoveJWTRefreshCookieIntoTheBody',
+    # 'users.middleware.MoveJWTRefreshCookieIntoTheBody',
 ]
 
 ROOT_URLCONF = 'prometeo.urls'
@@ -105,6 +105,7 @@ WSGI_APPLICATION = 'prometeo.wsgi.application'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'https://prometeo.in',
+    'http://172.31.12.81:3000',
 ]    
 
 # Database
@@ -270,9 +271,9 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_SCHEMA_CLASS':
         'rest_framework.schemas.coreapi.AutoSchema',
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
-    ]
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated'
+#     ]
 }
 
 SIMPLE_JWT = {
