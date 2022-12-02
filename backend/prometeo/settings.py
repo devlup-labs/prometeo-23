@@ -98,6 +98,7 @@ WSGI_APPLICATION = 'prometeo.wsgi.application'
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    'http://prometeo.in',
 ]    
 
 # Database
@@ -256,6 +257,7 @@ CKEDITOR_CONFIGS = {
 
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
