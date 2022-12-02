@@ -1,0 +1,60 @@
+
+
+#clock {
+	/* border: 3px solid white; */
+	font-size: 0.7vw;
+	margin: 2% auto;
+	text-align: center;
+
+	text-shadow: 0 0 16px rgb(100, 255, 100);
+}
+
+@media screen and (max-width: 600px) {
+    #clock {
+        font-size: 1.2vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #clock {
+        font-size: 1.8vw;
+    }
+}
+
+.glyph {
+	position: relative;
+	width: 3em;
+	height: 5em;
+	margin: .2em;
+	display: inline-block;
+}
+
+.glyph.blinker {
+	width: 1em;
+}
+
+.glyph.blinker .cell {
+	left: 0;
+}
+
+.glyph .cell {
+	position: absolute;
+	display: inline-block;
+
+	width: .4em;
+	height: .4em;
+	margin: .3em;
+
+	background: rgba(150, 255, 150, .3);
+
+	border-radius: .3em;
+
+	transition: all 0.5s;
+}
+
+.glyph .cell.on {
+	width: .9em;
+	height: .9em;
+	margin: .05em;
+	background: #0fd0d0;
+}
