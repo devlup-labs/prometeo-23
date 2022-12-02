@@ -102,10 +102,10 @@ export default function HomePage(props) {
               />
             </div>
             <div id="about-prometeo-text">
-                        {/* Prometeo 2023 is the third edition of IIT Jodhpur's National Technical + Entrepreneurial Festival. Prometeo derives its name from the Greek word for forethinker, and celebrates disruptive technologies through talks, workshops, and competitions. */}
-                        THE JOURNEY TO INFINITY BEGINS IN
-                        
-            <div id="clock" className="layer"></div></div>
+              {/* Prometeo 2023 is the third edition of IIT Jodhpur's National Technical + Entrepreneurial Festival. Prometeo derives its name from the Greek word for forethinker, and celebrates disruptive technologies through talks, workshops, and competitions. */}
+              THE JOURNEY TO INFINITY BEGINS IN
+              <div id="clock" className="layer"></div>
+            </div>
           </div>
         </div>
       </div>
