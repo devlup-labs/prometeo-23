@@ -553,7 +553,7 @@ export default function solarSystem() {
             t2 = (time2 % loopTime) / loopTime;
         }
 
-        console.log(time2);
+        // console.log(time2);
 
         let firstEarth_p;
         firstEarth_p = firstEarth_curve.getPoint(t2);
@@ -704,7 +704,7 @@ export default function solarSystem() {
     const handleScroll = (e) => {
         // console.log(autoScroll);
 
-            if (e.deltaY>0 && camera.position.y-(e.deltaY/10) < 0.9*camY) {
+            if (e.deltaY>0 && camera.position.y-(e.deltaY/10) < 0.95*camY) {
                 // auto down scroll
                 if (!autoScroll) {
                     autoScroll = true;
@@ -730,7 +730,7 @@ export default function solarSystem() {
                 }, zoomTime);
             }
 
-            else if (e.deltaY<0 && camera.position.y-(e.deltaY/10) > 0.1*camY) {
+            else if (e.deltaY<0 && camera.position.y-(e.deltaY/10) > 0.05*camY) {
                 // auto up scroll
                 autoScroll = true;
                 setTimeout(() => {
@@ -746,7 +746,7 @@ export default function solarSystem() {
                 }, zoomTime);
             }
 
-            else if (camera.position.y>0.9*camY || camera.position.y<0.1*camY) {
+            else if (camera.position.y>0.95*camY || camera.position.y<0.05*camY) {
                 updateCameraPosition(e.deltaY);
             }
     }
@@ -754,8 +754,6 @@ export default function solarSystem() {
     homePageEle.addEventListener('wheel', (e) => {
         if (!autoScroll) handleScroll(e);
     });
-
-    
 
     //responsive
     window.onresize = () => {
