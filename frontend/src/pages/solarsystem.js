@@ -518,6 +518,9 @@ export default function solarSystem() {
     const moonOrbitRadius = 55;
     const moonOrbitSpeed = 80;
 
+    let time2;
+    let t2;
+    let autoScroll = false;
 
     function animate() {
         const time = planetOrbitSpeed * performance.now();
@@ -545,13 +548,15 @@ export default function solarSystem() {
 
         venusMesh.rotation.y += 0.0008
 
-        const time2 = EarthOrbitSpeed * performance.now();
-        const t2 = (time2 % loopTime) / loopTime;
+        if (EarthOrbitSpeed!=0) {
+            time2 = EarthOrbitSpeed * performance.now();
+            t2 = (time2 % loopTime) / loopTime;
+        }
 
+        console.log(time2);
 
-        // first earth
-
-        let firstEarth_p = firstEarth_curve.getPoint(t2);
+        let firstEarth_p;
+        firstEarth_p = firstEarth_curve.getPoint(t2);
         // console.log(firstEarth_p, t);
 
         firstEarthSystem.position.x = firstEarth_p.x;
@@ -693,48 +698,62 @@ export default function solarSystem() {
         camera.position.z = Math.min(cameraInitial[2], Math.max(cameraFinal[2], camera.position.z - slopeZ * (deltaY / 10)));
     }
 
+    let stepSize = 75;
+    let zoomTime = 10;
+
     const handleScroll = (e) => {
-        // console.log(e.deltaX, e.deltaY, e.deltaZ);
+        // console.log(autoScroll);
 
-        // if <0.9camY toh phir -> smooth scroll down and disable manual scrolling
-        // when at camY or 0 -> enable scrolling
-        // if >0.1camY toh phir -> smooth scroll up and disable manual scrolling
+            if (e.deltaY>0 && camera.position.y-(e.deltaY/10) < 0.9*camY) {
+                // auto down scroll
+                if (!autoScroll) {
+                    autoScroll = true;
+                    EarthOrbitSpeed = 0;
+                }
 
-        if (e.deltaY>0 && camera.position.y-(e.deltaY/10) < 0.9*camY) {
-            homePageEle.removeEventListener('wheel', handleScroll);
-            while (camera.position.y>0) {
                 setTimeout(() => {
-                    console.log("we going downnnnn")
-                    updateCameraPosition(50);
-                }, 10);
-            }
-            homePageEle.addEventListener('wheel', handleScroll);
-        }
+                    if (camera.position.y - 5 <= 0) {
+                        // the last update before scrolling is enabled again
+                        autoScroll = false;
+                        updateCameraPosition(stepSize);
+                        EarthOrbitSpeed = planetOrbitSpeed;
+                    }
+                    else {
+                        // a normal update
+                        updateCameraPosition(stepSize);
+                        handleScroll(e);
+                    }
 
-        else if (e.deltaY<0 && camera.position.y-(e.deltaY/10) > 0.1*camY) {
-            homePageEle.removeEventListener('wheel', handleScroll);
-            while (camera.position.y<camY) {
+                    time2 += 1;
+
+
+                }, zoomTime);
+            }
+
+            else if (e.deltaY<0 && camera.position.y-(e.deltaY/10) > 0.1*camY) {
+                // auto up scroll
+                autoScroll = true;
                 setTimeout(() => {
-                    updateCameraPosition(-50);
-                }, 10);
+                    if (camera.position.y + 5 >= camY) {
+                        // the last update before scrolling is enabled again
+                        autoScroll = false;
+                        updateCameraPosition(-1*stepSize);
+                    }
+                    else {
+                        updateCameraPosition(-1*stepSize);
+                        handleScroll(e);
+                    }
+                }, zoomTime);
             }
-            homePageEle.addEventListener('wheel', handleScroll);
-        }
 
-        else {
-            updateCameraPosition(e.deltaY);
-        }
-
-
-        // setTimeout(() => {
-        //     var evt = document.createEvent('MouseEvents');
-        //     evt.initEvent('wheel', true, true);
-        //     evt.deltaY = 50;
-        //     homePageEle.dispatchEvent(evt);
-        // }, 10);
+            else if (camera.position.y>0.9*camY || camera.position.y<0.1*camY) {
+                updateCameraPosition(e.deltaY);
+            }
     }
 
-    homePageEle.addEventListener('wheel', handleScroll);
+    homePageEle.addEventListener('wheel', (e) => {
+        if (!autoScroll) handleScroll(e);
+    });
 
     
 
