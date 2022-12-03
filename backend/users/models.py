@@ -142,11 +142,11 @@ class Submissions(models.Model):
 
 
 class PreRegistration(models.Model):
-    email = models.EmailField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100, unique=True,primary_key=True)
     name = models.CharField(max_length=100)
     college = models.CharField(max_length=100)
     contact = models.CharField(max_length=10)
     year = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    por = models.CharField(max_length=100)
-    poc_por = models.CharField(max_length=100)
+    por = models.CharField(max_length=100,null=True,blank=True)
+    poc_por = models.CharField(max_length=100,null=True,blank=True)
