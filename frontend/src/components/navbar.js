@@ -12,7 +12,8 @@ const navBarLinks = [
 	{ name: 'sponsors', text: 'Past Sponsors', path: '/past-sponsors', section: 'left', tabIndex: 4 },
 	{ name: 'events', text: 'Past Events', path: '/past-events', section: 'right', tabIndex: 5 },
 	{ name: 'gallery', text: 'Gallery', path: '/gallery', section: 'right', tabIndex: 6 },
-	{ name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
+	// { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
+	{ name: 'preregister', text: 'Pre-Register', path: '/pre-register', section: 'right', tabIndex: 7 },
 	{ name: 'login', text: 'Login', path: '/login', section: 'right', tabIndex: 8 },
 ]
 
