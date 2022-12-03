@@ -689,7 +689,6 @@ export default function solarSystem() {
     const earthDesiredPosition = [150, 0, 300];
 
     const updateCameraPosition = (deltaY) => {
-
         const slopeX = (cameraFinal[0] - cameraInitial[0]) / (cameraFinal[1] - cameraInitial[1]);
         const slopeZ = (cameraFinal[2] - cameraInitial[2]) / (cameraFinal[1] - cameraInitial[1]);
 
@@ -716,7 +715,7 @@ export default function solarSystem() {
                         // the last update before scrolling is enabled again
                         autoScroll = false;
                         updateCameraPosition(stepSize);
-                        EarthOrbitSpeed = planetOrbitSpeed;
+                        // EarthOrbitSpeed = planetOrbitSpeed;
                     }
                     else {
                         // a normal update
@@ -725,14 +724,16 @@ export default function solarSystem() {
                     }
 
                     time2 += 1;
-
-
                 }, zoomTime);
             }
 
             else if (e.deltaY<0 && camera.position.y-(e.deltaY/10) > 0.05*camY) {
                 // auto up scroll
-                autoScroll = true;
+                if (!autoScroll) {
+                    autoScroll = true;
+                    EarthOrbitSpeed = planetOrbitSpeed;
+                }
+                    
                 setTimeout(() => {
                     if (camera.position.y + 5 >= camY) {
                         // the last update before scrolling is enabled again
@@ -751,9 +752,9 @@ export default function solarSystem() {
             }
     }
 
-    // homePageEle.addEventListener('wheel', (e) => {
-    //     if (!autoScroll) handleScroll(e);
-    // });
+    homePageEle.addEventListener('wheel', (e) => {
+        if (!autoScroll) handleScroll(e);
+    });
 
     //responsive
     window.onresize = () => {
