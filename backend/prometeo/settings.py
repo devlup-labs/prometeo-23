@@ -27,7 +27,19 @@ SECRET_KEY="q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9"
 # DEBUG = config('DEBUG', default=False, cast=bool)
 DEBUG = True
 
-ALLOWED_HOSTS = ['prometeo.iitj.ac.in', '192.168.43.110', '127.0.0.1', '142.93.216.166', 'dev.prometeo.in', 'prometeo.in', 'www.prometeo.in', 'localhost','192.168.2.1','172.31.51.79','172.31.12.81']
+ALLOWED_HOSTS = ['prometeo.iitj.ac.in', '192.168.43.110', '127.0.0.1', '142.93.216.166', 'dev.prometeo.in', 'prometeo.in', 'www.prometeo.in', 'localhost','192.168.2.1','172.31.51.79']
+# ALLOWED_HOSTS=['*']
+# CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'https://prometeo.in',
+    # 'http://172.31.12.81:3000',
+    'http://172.31.51.79:3000',
+    'https://prometeo-23-4jejhinhh-sawmill811.vercel.app'
+]    
+
 
 
 # Application definition
@@ -102,11 +114,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'prometeo.wsgi.application'
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'https://prometeo.in',
-    'http://172.31.12.81:3000',
-]    
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -315,7 +322,6 @@ JWT_AUTH_COOKIE = 'jwt-access-token'
 JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token' 
 JWT_AUTH_SECURE = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = ['https://prometeo.in']
 
 
 
