@@ -753,9 +753,9 @@ export default function solarSystem() {
             }
     }
 
-    homePageEle.addEventListener('wheel', (e) => {
-        if (!autoScroll) handleScroll(e);
-    });
+    // homePageEle.addEventListener('wheel', (e) => {
+    //     if (!autoScroll) handleScroll(e);
+    // });
 
     //responsive
     window.onresize = () => {

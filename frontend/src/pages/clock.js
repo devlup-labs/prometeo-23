@@ -1,6 +1,6 @@
 
 export default function clock() {
-  // console.log("sus");
+  console.log("sus");
   (function () {
     var WIDTH;
     var HEIGHT;
@@ -15,7 +15,8 @@ export default function clock() {
       mouse.y = HEIGHT / 2;
     }
 
-    window.addEventListener("load", init, false);
+    // window.addEventListener("load", init, false);
+    init();
   })();
 
   (function () {
@@ -53,6 +54,15 @@ export default function clock() {
       [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
       [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
     ];
+
+    Array.prototype.shuffle = function () {
+      for (var i = this.length - 1; i > 0; i--) {
+        var rnd = Math.floor(Math.random() * (i + 1));
+        var tmp = this[i];
+        this[i] = this[rnd];
+        this[rnd] = tmp;
+      }
+    };
 
 
     DigitCell.prototype.update = function (number) {
@@ -96,7 +106,7 @@ export default function clock() {
     };
 
     BlinkCell.prototype.update = function (enable) {
-      //this.cells.shuffle();
+      // this.cells.shuffle();
       for (var i = 0; i < this.cells.length; i++) {
         var cell = this.cells[i];
 
@@ -144,6 +154,8 @@ export default function clock() {
 
     function init() {
       frame = document.querySelector("#clock");
+      // empty the frame
+      frame.innerHTML = "";
       glyphs = [];
 
       // creating the cells
@@ -162,20 +174,13 @@ export default function clock() {
       setInterval(updateClock, 1000);
     }
 
-    function resizeHandler(event) {
-      // resize handler for clock
-    }
-
-    window.addEventListener("load", init, false);
-    window.addEventListener("resize", resizeHandler, false);
+    // function resizeHandler(event) {
+    //   // resize handler for clock
+    // }
+    init();
+    // window.addEventListener("load", init, false);
+    // window.addEventListener("resize", resizeHandler, false);
   })();
 
-  Array.prototype.shuffle = function () {
-    for (var i = this.length - 1; i > 0; i--) {
-      var rnd = Math.floor(Math.random() * (i + 1));
-      var tmp = this[i];
-      this[i] = this[rnd];
-      this[rnd] = tmp;
-    }
-  };
+  
 }
