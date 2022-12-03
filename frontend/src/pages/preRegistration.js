@@ -156,7 +156,7 @@ function PreRegistration() {
                         </form>
                         <div className="preRegistration-form-success">
                             <img className="preRegistration-form-success-gif"></img>
-                            <div className="preRegistration-form-success-text">You have been successfully registered!</div>
+                            <div className="preRegistration-form-success-text">We're thrilled to have you onboard!</div>
                         </div>
                     </div>
                 </div>

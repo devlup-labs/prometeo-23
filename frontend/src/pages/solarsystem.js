@@ -689,7 +689,6 @@ export default function solarSystem() {
     const earthDesiredPosition = [150, 0, 300];
 
     const updateCameraPosition = (deltaY) => {
-
         const slopeX = (cameraFinal[0] - cameraInitial[0]) / (cameraFinal[1] - cameraInitial[1]);
         const slopeZ = (cameraFinal[2] - cameraInitial[2]) / (cameraFinal[1] - cameraInitial[1]);
 
@@ -753,9 +752,9 @@ export default function solarSystem() {
             }
     }
 
-    // homePageEle.addEventListener('wheel', (e) => {
-    //     if (!autoScroll) handleScroll(e);
-    // });
+    homePageEle.addEventListener('wheel', (e) => {
+        if (!autoScroll) handleScroll(e);
+    });
 
     //responsive
     window.onresize = () => {
