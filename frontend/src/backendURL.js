@@ -1,1 +1,1 @@
-export const backendURL = "http://172.31.51.79:8000";
+export const backendURL = "https://apiv.prometeo.in";
