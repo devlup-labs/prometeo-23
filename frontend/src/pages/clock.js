@@ -1,6 +1,6 @@
 
 export default function clock() {
-  console.log("sus");
+  // console.log("sus");
   (function () {
     var WIDTH;
     var HEIGHT;
