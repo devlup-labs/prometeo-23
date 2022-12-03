@@ -716,7 +716,7 @@ export default function solarSystem() {
                         // the last update before scrolling is enabled again
                         autoScroll = false;
                         updateCameraPosition(stepSize);
-                        EarthOrbitSpeed = planetOrbitSpeed;
+                        // EarthOrbitSpeed = planetOrbitSpeed;
                     }
                     else {
                         // a normal update
@@ -725,14 +725,16 @@ export default function solarSystem() {
                     }
 
                     time2 += 1;
-
-
                 }, zoomTime);
             }
 
             else if (e.deltaY<0 && camera.position.y-(e.deltaY/10) > 0.05*camY) {
                 // auto up scroll
-                autoScroll = true;
+                if (!autoScroll) {
+                    autoScroll = true;
+                    EarthOrbitSpeed = planetOrbitSpeed;
+                }
+                    
                 setTimeout(() => {
                     if (camera.position.y + 5 >= camY) {
                         // the last update before scrolling is enabled again
