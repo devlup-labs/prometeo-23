@@ -12,6 +12,7 @@ import Theme from "./pages/Theme";
 import Sponsors from "./pages/Sponsors";
 import Events from "./pages/Event.js";
 import Register from "./pages/Register.js";
+import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
 
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/past-events" element={<Events />} />
           <Route path="/theme" element={<Theme />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/pre-register" element={<PreRegistration />} />
           <Route path="/login" element={<Login />} />
 
           <Route path="/*" element={<Page_404 />} />
