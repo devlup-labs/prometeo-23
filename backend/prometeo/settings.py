@@ -21,11 +21,11 @@ from datetime import timedelta
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = config('SECRET_KEY', cast=str)
-SECRET_KEY="q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9"
+SECRET_KEY = config('SECRET_KEY', cast=str)
+# SECRET_KEY="q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9"
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config('DEBUG', default=False, cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
+# DEBUG = True
 
 
 # ALLOWED_HOSTS = ['prometeo.iitj.ac.in', '192.168.43.110', '127.0.0.1', '142.93.216.166', 'dev.prometeo.in', 'prometeo.in', 'www.prometeo.in', 'localhost','192.168.2.1','172.31.51.79']
@@ -189,13 +189,15 @@ MEDIA_URL = '/media/'
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SERVER_EMAIL = "prometeoiitj23@gmail.com"
+
 # email config
 DEFAULT_FROM_EMAIL = config('SERVER_EMAIL', cast=str)
 
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = config('SERVER_EMAIL_PORT', cast=int, default=587)
-EMAIL_HOST = config('SERVER_EMAIL_HOST', cast=str, default="smtp.sendgrid.net")
+EMAIL_HOST = config('SERVER_EMAIL_HOST', cast=str, default="smtp.gmail.com")
 EMAIL_HOST_USER = config('SERVER_EMAIL_USER', cast=str)
 FROM_EMAIL_USER = config('SERVER_EMAIL', cast=str)
 EMAIL_HOST_PASSWORD = config('SERVER_EMAIL_PASSWORD', cast=str)
@@ -237,7 +239,7 @@ RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY', cast=str)
 RECAPTCHA_USE_SSL = config('RECAPTCHA_USE_SSL', cast=str, default=True)
 
 
-ADMINS = [('Aryan', 'garg.10@iitj.ac.in'), ('Sahil', 'santosh.2@iitj.ac.in'), ('Rahul', 'gopathi.1@iitj.ac.in'), ('Sainath', 'reddy.17@iitj.ac.in'), ('Shrutayu', 'aggarwal.4@iitj.ac.in'), ('Joel', 'thomas.2@iitj.ac.in'), ]
+ADMINS = [('Yash', 'bhargava.3@iitj.ac.in'), ('Soumil', 'sinha.5@iitj.ac.in'), ('Rahul', 'gopathi.1@iitj.ac.in'), ('Samkit', 'shah.11@iitj.ac.in'), ('Rohit', 'kori.1@iitj.ac.in'), ('Yuvraj', 'rathva.1@iitj.ac.in'), ('Pranav', 'pant.4@iitj.ac.in'), ('Saisanthosh', 'sai.9@iitj.ac.in') ]
 MANAGERS = ADMINS
 
 # AWS Conigs
