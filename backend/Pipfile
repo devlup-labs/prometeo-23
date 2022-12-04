@@ -18,6 +18,11 @@ boto3 = "*"
 django-recaptcha = "*"
 xlsxwriter = "*"
 pillow = "*"
+django-cors-headers = "*"
+dj-rest-auth = "*"
+django-sslserver = "*"
+django-extensions = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
