@@ -1,7 +1,5 @@
 # import jwt
-
 from datetime import datetime, timedelta
-
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -9,7 +7,6 @@ from events.models import Event
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .manager import UserManager
-
 
 GENDER_CHOICES = (
     ('Male', 'Male'),
@@ -104,10 +101,11 @@ class ExtendedUser(AbstractUser):
 
     #     token = jwt.encode({
     #         'id': self.pk,
-    #         'exp': dt.utcfromtimestamp(dt.timestamp())
-    #     }, "q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9", algorithm='HS256')
+    #         'exp': int(dt.strftime('%s'))
+    #     }, settings.SECRET_KEY, algorithm='HS256')
 
     #     return token.decode('utf-8')
+
 
 
 # @receiver(post_save, sender=ExtendedUser)
@@ -140,3 +138,15 @@ class Submissions(models.Model):
 
     class Meta:
         verbose_name_plural = 'Submissions'
+
+
+
+class PreRegistration(models.Model):
+    email = models.EmailField(max_length=100, unique=True,primary_key=True)
+    name = models.CharField(max_length=100)
+    college = models.CharField(max_length=100)
+    contact = models.CharField(max_length=10)
+    year = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    por = models.CharField(max_length=100,null=True,blank=True)
+    poc_por = models.CharField(max_length=100,null=True,blank=True)

@@ -83,3 +83,9 @@ class NewsSerializers(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
+
+
+class PreRegistrationSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = PreRegistration
+        fields = '__all__'

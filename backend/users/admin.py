@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import ugettext_lazy as _
-from .models import ExtendedUser, Team, Submissions
+from .models import *
 
 
 # @admin.register(ExtendedUser)
@@ -56,5 +56,10 @@ class SubmissionsAdmin(admin.ModelAdmin):
     list_filter = ('event',)
 
 
+class preregisterAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'contact', 'college')
+    list_filter = ('college',)
+
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Submissions, SubmissionsAdmin)
+admin.site.register(PreRegistration,preregisterAdmin)
