@@ -7,10 +7,13 @@
   padding: 0 1vw;
   width: 100vw;
   height: 90vh;
-  background: rgb(16, 28, 39);
+  /* background: rgb(16, 28, 39);
   background: radial-gradient(circle,
       rgba(16, 28, 39, 1) 10%,
-      rgba(0, 0, 0, 1) 90%);
+      rgba(0, 0, 0, 1) 90%); */
+  background-image: url('../assets/homePage/background_pattern_t3.png');
+	background-repeat: repeat;
+	background-size: 20%;
   min-height: 90vh;
   display: grid;
 }
@@ -95,16 +98,16 @@
   /* border-top-right-radius: 0; */
   background: rgb(60, 127, 137);
   background: -moz-linear-gradient(0deg,
-      rgba(60, 127, 137, 0.8) 0%,
-      rgba(90, 177, 187, 0) 71%,
+      rgba(60, 127, 137, 1) 0%,
+      rgba(90, 177, 187, 0.5) 71%,
       rgba(8, 153, 167, 0) 100%);
   background: -webkit-linear-gradient(0deg,
-      rgba(60, 127, 137, 0.8) 0%,
-      rgba(90, 177, 187, 0) 71%,
+      rgba(60, 127, 137, 1) 0%,
+      rgba(90, 177, 187, 0.5) 71%,
       rgba(8, 153, 167, 0) 100%);
   background: linear-gradient(0deg,
-      rgba(60, 127, 137, 0.8) 0%,
-      rgba(90, 177, 187, 0) 71%,
+      rgba(60, 127, 137, 1) 0%,
+      rgba(90, 177, 187, 0.5) 71%,
       rgba(8, 153, 167, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3c7f89", endColorstr="#0899a7", GradientType=1);
   height: max-content;
