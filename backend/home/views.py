@@ -19,9 +19,9 @@ def home(request):
     themes = Theme.objects.all()
     featured_events = Event.objects.filter(featured=True)
     return render(request, 'home.html', {'carousel': carousel,
-                                         'theme2030': themes.filter(year='2030'),
-                                         'theme2040': themes.filter(year='2040'),
-                                         'theme2050': themes.filter(year='2050'),
+                                        #  'theme2030': themes.filter(year='2030'),    IN VM
+                                        #  'theme2040': themes.filter(year='2040'),
+                                        #  'theme2050': themes.filter(year='2050'),
                                          'featured_events': featured_events,
                                          }
                   )
