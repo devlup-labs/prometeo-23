@@ -789,8 +789,13 @@ export default function solarSystem() {
                     }
                     // (current - initial) / (final - initial) = (current - 0) / (1 - 0)
                     
-                    // change directionalLight intensity from 1 to 0
-                    // directionalLight.intensity = 1 - (camera.position.y / camY);
+                    // change directionalLight intensity from 0 to 1
+                    // sunMaterial.emissiveIntensity = camera.position.y / camY;
+                    pointLight.intensity = camera.position.y / camY;
+                    directionalLight.intensity = 1 - (camera.position.y / camY);
+
+                    // change sun emissive intensity from 1 to 0.3
+                    sunMaterial.emissiveIntensity = 1;
                     
                 }, zoomTime);
             }
