@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
-
+from apis.models import *
 from rest_framework import viewsets
 from rest_framework import generics
 from .serializers import *
@@ -77,5 +77,8 @@ class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializers
 
+class PreRegistrationViewSet(viewsets.ModelViewSet):
+    queryset = PreRegistration.objects.all()
+    serializer_class = PreRegistrationSerializers
 
-# Create your views here.
+
