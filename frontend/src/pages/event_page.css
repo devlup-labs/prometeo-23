@@ -78,7 +78,7 @@ body {
   /* max-width: var(--width-container); */
   max-width: 90%;
   width: 100%;
-  text-shadow: 2px 2px 4px #000000;
+  text-shadow: 4px 4px 4px #000000;
 }
 
 .event_Card {
@@ -101,7 +101,7 @@ body {
   background-position: center;
   border-radius: var(--spacing-l);
   bottom: 0;
-  filter: brightness(0.75) saturate(1.2) contrast(0.85);
+  filter: brightness(0.75) saturate(1.2) contrast(0.85) blur(1px);
   left: 0;
   position: absolute;
   right: 0;
@@ -115,7 +115,9 @@ body {
   transition: filter 200ms linear, transform 200ms linear,
     background 0.8s linear;
 }
-.green_circle {
+
+/* blue layer on hover (but it not work if u hover on .event_Card-content) */
+.blue_layer {
   position: relative;
   width: 100%;
   height: 250px;
@@ -123,7 +125,7 @@ body {
   overflow: hidden;
 }
 
-.green_circle:before {
+.blue_layer:before {
   content: '';
   position: absolute;
   top: 0;
@@ -135,11 +137,11 @@ body {
   transition: 0.5s ease-in-out;
 }
 
-.green_circle:hover:before {
+.blue_layer:hover:before {
   clip-path: circle(300px at 80% -20%);
 }
 
-.green_circle:after {
+.blue_layer:after {
   content: '';
   position: absolute;
   top: 30%;
@@ -152,6 +154,8 @@ body {
   box-shadow: 0 19px 38px #84f4eb, 0 15px 12px rgba(0, 0, 0, 0.22);
   background-position: left;
   /* filter: unset; */
+  filter:brightness(0.75) saturate(1.2) contrast(0.85) blur(0);
+  /* opacity: 90%; */
 }
 
 .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
@@ -178,7 +182,7 @@ body {
 .event_Card-heading {
   color: var(--text-lighter);
   font-size: 1.9rem;
-  text-shadow: 2px 2px 4px #000000;
+  text-shadow: 4px 4px 4px #000000;
   line-height: 1.4;
   word-spacing: 100vw;
 }
@@ -186,19 +190,6 @@ body {
   color: white;
   font-size: 1rem;
 }
-/* .event_Card:hover .event_Card-date {
-  color: #000000;
-  text-shadow: 2px 2px 4px black;
-}
-.event_Card:hover .event_Card-heading {
-  color: #000000;
-  text-shadow: 2px 2px 4px black;
-  text-rendering: var(--background-dark);
-}
-.event_Card:hover .event_Card-prize {
-  color: #000000;
-  text-shadow: 2px 2px 4px black;
-} */
 
 /* Button */
 .button1 {
@@ -434,22 +425,7 @@ body {
     height: 50%;
   } */
 }
-/* @media (720px < width < 950px) {
-  .event_Card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    width: 70%;
-    height: 70%;
-  }
-  .event_Card:hover .event_Card-background {
-    transform: none;
-    transition: none;
-    background-position: center;
-    filter: none;
-  }
-  .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
-    filter: none;
-  }
-} */
+
 @media (950px < width <=1205px) {
   .event_Card-grid {
     grid-template-columns: repeat(3, 1fr);
