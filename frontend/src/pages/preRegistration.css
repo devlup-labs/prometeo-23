@@ -19,7 +19,7 @@
 
 .preRegistration-container {
     height: max-content;
-    width: 75%;
+    width: 78%;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -31,9 +31,10 @@
 .preRegistration-container-left {
     width: 50%;
     height: 100%;
-    background-size: cover;
+    background-size: contain;
     border-radius: 20px 0 0 20px;
-    /* border: 2px solid red; */
+    border: 1px solid whitesmoke;
+    border-right: none;
     overflow: hidden;
 }
 
