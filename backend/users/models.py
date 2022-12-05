@@ -150,3 +150,5 @@ class PreRegistration(models.Model):
     state = models.CharField(max_length=100)
     por = models.CharField(max_length=100,null=True,blank=True)
     poc_por = models.CharField(max_length=100,null=True,blank=True)
+    def __str__(self):
+        return self.email

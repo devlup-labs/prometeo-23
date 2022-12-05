@@ -26,8 +26,8 @@ function PreRegistration() {
             college: e.target.college_name.value,
             state: e.target.state.value,
             year: e.target.collegeYear.value,
-            por: e.target.position_of_responsibility.value,
-            poc_por: e.target.contact_of_any_por_holder.value,
+            // por: e.target.position_of_responsibility.value,
+            // poc_por: e.target.contact_of_any_por_holder.value,
         }
 
         let headers = new Headers();
@@ -149,8 +149,8 @@ function PreRegistration() {
                                     <option className='preRegistration-collegeYear-option' value="not-applicable">Not Applicable</option>
                                 </select>
                             </div>
-                            <input type="text" placeholder='Position of Responsibility (POR)' name="position_of_responsibility" />
-                            <input type="text" placeholder='Contact of any POR Holder' name="contact_of_any_por_holder" />
+                            {/* <input type="text" placeholder='Position of Responsibility (POR)' name="position_of_responsibility" />
+                            <input type="text" placeholder='Contact of any POR Holder' name="contact_of_any_por_holder" /> */}
 
                             <input type="submit" value="Submit" id="preRegistration-form-submit" />
                         </form>

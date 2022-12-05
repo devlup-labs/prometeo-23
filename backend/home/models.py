@@ -23,7 +23,7 @@ class Theme(models.Model):
     description = RichTextField(max_length=5000000, null=True, blank=True, verbose_name="Description")
     
     def __int__(self):
-        return self.pk
+        return self.name
 
 
 class SponsorDesignation(models.Model):
