@@ -118,24 +118,24 @@ WSGI_APPLICATION = 'prometeo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# if config('SQLITE_DB', cast=bool):
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if config('SQLITE_DB', cast=bool):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': config('prometeodb'),
-#             'USER': config('prometeouser'),
-#             'PASSWORD': config(''),
-#             'HOST': config('DB_HOST', default='localhost'),
-#             'PORT': config('DB_PORT', cast=int, default=5432),
-#         }
-#     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('prometeodb'),
+            'USER': config('prometeouser'),
+            'PASSWORD': config(''),
+            'HOST': config('DB_HOST', default='localhost'),
+            'PORT': config('DB_PORT', cast=int, default=5432),
+        }
+    }
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",

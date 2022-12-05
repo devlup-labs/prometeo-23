@@ -43,7 +43,7 @@ function PreRegistration() {
 
         console.log("Submitted")
 
-        fetch(`${backendURL}/api/prereg/`, requestOptions)
+        fetch(`${backendURL}/api/preregistration/`, requestOptions)
             .then(response => {
                 console.log(response.status)
                 if (response.status === 201) {
