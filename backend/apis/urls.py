@@ -17,7 +17,7 @@ router.register("news",NewsViewSet)
 
 router.register("eventsponsors",EventSponsorsViewSet)
 
-router.register("prereg",PreRegistrationViewSet)
+router.register("preregistration",PreRegistrationViewSet)
 
 urlpatterns=[
     path(r'',include(router.urls)), 

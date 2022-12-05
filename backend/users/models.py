@@ -8,6 +8,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .manager import UserManager
 
+
 GENDER_CHOICES = (
     ('Male', 'Male'),
     ('Female', 'Female'),
@@ -57,7 +58,7 @@ class ExtendedUser(AbstractUser):
     city = models.CharField(max_length=40, verbose_name='City')
     ambassador = models.BooleanField(verbose_name='Campus Ambassador', default=False, blank=True)
     isProfileCompleted = models.BooleanField(verbose_name='Is Profile Completed', default=False, blank=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True,blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
     REQUIRED_FIELDS = []

@@ -1,11 +1,11 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 
-THEME_CHOICES = (
-    ('2030', '2030'),
-    ('2040', '2040'),
-    ('2050', '2050'),
-)
+# THEME_CHOICES = (
+#     ('2030', '2030'),
+#     ('2040', '2040'),
+#     ('2050', '2050'),
+# )
 
 
 class Carousel(models.Model):
@@ -19,11 +19,11 @@ class Carousel(models.Model):
 
 class Theme(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Display name")
-    year = models.CharField(max_length=4,choices=THEME_CHOICES, verbose_name='Theme Year')
-    description = RichTextField(max_length=5000000, null=True, blank=True, verbose_name="Description")
+    # year = models.CharField(max_length=4,choices=THEME_CHOICES, verbose_name='Theme Year')
+    # description = RichTextField(max_length=5000000, null=True, blank=True, verbose_name="Description")
     
     def __int__(self):
-        return self.name
+        return self.pk
 
 
 class SponsorDesignation(models.Model):
