@@ -47,7 +47,7 @@ function PreRegistration() {
             .then(response => {
                 console.log(response.status)
                 if (response.status === 201) {
-                    alert("Registration Successful!");
+                    // alert("Registration Successful!");
                     const formTitleEle = document.getElementsByClassName("preRegistration-container-right-title")[0];
                     const formEle = document.getElementsByClassName("preRegistration-form")[0];
                     const successEle = document.getElementsByClassName("preRegistration-form-success")[0];
