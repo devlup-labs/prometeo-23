@@ -153,13 +153,17 @@ body {
   top: -10px;
   bottom: 10px;
   box-shadow: 0 19px 38px #84f4eb, 0 15px 12px rgba(0, 0, 0, 0.22);
-  background-position: left;
+  /* background-position: left; */
   /* filter: unset; */
   filter:brightness(0.75) saturate(1.2) contrast(0.85) blur(0);
   /* opacity: 90%; */
 }
 
-.event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
+/* 
+  All the non-hovered divs before the hovered one are selected using the first selector
+  and all the non-hovered divs after the hovered one are selected using the second selector
+*/
+.event_Card:not(:hover):has( ~ .event_Card:hover) .event_Card-background, .event_Card:hover ~ .event_Card:not(:hover) .event_Card-background {
   /* filter: brightness(1.2) saturate(0) contrast(1.2) blur(15px); */
   filter: brightness(0.5) saturate(1.2) contrast(1.2) blur(15px);
 }
@@ -171,6 +175,9 @@ body {
   top: 0;
   right: 0;
   height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .event_Card-prize {
@@ -365,7 +372,7 @@ body {
 @media (max-width: 600px) {
   .event_Card {
     height: 250px;
-    width: 50%;
+    width: 90%;
     margin: auto;
     /* overflow: hidden; */
   }
@@ -435,6 +442,6 @@ body {
   }
   .event_Card {
     margin: auto;
-    width: 80%;
+    width: 90%;
   }
 }

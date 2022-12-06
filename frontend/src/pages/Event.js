@@ -13,15 +13,13 @@ import FadeIn from "../components/fadein";
 
 function createEntry(eventTerm) {
   return (
-    // <FadeIn duration={500}>
       <Entry
         key={eventTerm.id}
         name={eventTerm.name}
         img={eventTerm.image}
         prize={eventTerm.prize}
-		date={eventTerm.date}
+		    date={eventTerm.date}
       />
-    // </FadeIn>
   );
 }
 
@@ -40,8 +38,11 @@ function Entry(props) {
       <div className="event_Card-content">
         {/* <div className="card"></div> */}
         <h3 className="event_Card-heading">{props.name}</h3>
-        <h1 className="event_Card-date">{props.date}</h1>
-        <h3 className="event_Card-prize">Prize {props.prize}</h3>
+
+        <div className="event_Card-info">
+          <h1 className="event_Card-date">{props.date}</h1>
+          <h3 className="event_Card-prize">Prize {props.prize}</h3>
+        </div>
       </div>
       <button className="button1">Register</button>
       <button className="button2">View More</button>
@@ -57,7 +58,7 @@ function Events() {
   });
 
   return (
-    <div>
+    <FadeIn duration={500}>
       <div id="eventsPage">
         <h2 className="section-header">PAST EVENTS</h2>
         <section className="event_Hero-section">
@@ -65,7 +66,7 @@ function Events() {
         </section>
         {/* <div className="event_cards">{event_data.map(createEntry)}</div> */}
       </div>
-    </div>
+    </FadeIn>
   );
 }
 
