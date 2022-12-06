@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 
+import { backendURL } from "../backendURL";
 import "./speaker.css";
 import speakerDetails from "./speakerDetails";
 
@@ -28,43 +29,64 @@ function About(props) {
 }
 
 function createEntry(term) {
-	return (
-		<About
-			key={term.id}
-			image={term.image}
-			name={term.name}
-			designation={term.designation}
-			description={term.description}
-		/>
-	);
+	// if (term.type === "talk") {
+		return (
+			<About
+				key={term.id}
+				image={term.image.replace("0.0.0.0:8888", "apiv.prometeo.in")}
+				name={term.name}
+				designation={term.designation}
+				description={term.description}
+			/>
+		);
+	// }
+	// else return null;
 }
 
 function Speaker() {
     const [isLoading, setIsLoading] = useState(true);
-    
-    const handleLoading = () => {
-        setIsLoading(false);
-        const navBarEle = document.getElementById("navbar")
-        navBarEle.style.opacity = 1;
-		console.log("Speaker page loaded")
-    }
+	const [speakerData, setSpeakerData] = useState([]);
 
 	useEffect(  // when the component has rendered then add the event listener to it
       () => {
-		// const speakerPageEle = document.getElementById("speakerPage");
-		// speakerPageEle.addEventListener("load", handleLoading);
         const navBarEle = document.getElementById("navbar")
         navBarEle.style.opacity = 1;
-		// document.body.style.overflow = "auto";
-		// document.body.style.overflowX = "hidden";
       },[]
     )
+	
+	useEffect(() => {
+		async function fetchData() {
+			let headers = new Headers();
+			headers.append('Content-Type', 'application/json');
+			headers.append('Accept', 'application/json');
+			headers.append('Origin', 'http://localhost:3000');
+
+			const requestOptions = {
+				method: 'GET',
+				headers: headers,
+			}
+
+			await fetch(`${backendURL}/api/events/?type=talk`, requestOptions)
+				.then((response) => response.json())
+				.then((data) => {
+					setSpeakerData([
+						...speakerData,
+						...data
+					]);
+					// console.log(data);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		}
+		fetchData();
+	}, [])
 
 	return (
 		<FadeIn duration={500}>
 			<div id="speakerPage">
 				<h2 className="speakerHeading">PAST SPEAKERS</h2>
-				<div className="speakerCard">{speakerDetails.map(createEntry)}</div>	
+				<div className="speakerCard">{speakerData.map(createEntry)}</div>	
 			</div>
 		</FadeIn>
 	);
