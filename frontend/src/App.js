@@ -1,6 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import "./components/toast.css"
+
 import './App.css';
 
 import Navbar from './components/navbar'
@@ -38,6 +42,9 @@ function App() {
 
           <Route path="/*" element={<Page_404 />} />
         </Routes>
+        <ToastContainer 
+          theme="dark"
+        />
       </div>
     </Router>
   );

@@ -1,0 +1,16 @@
+:root {
+    --toastify-color-dark: #2c2c2c;
+    --toastify-color-progress-dark: #84f4eb;
+
+    --toastify-icon-color-success: #2df362;
+    --toastify-color-progress-success: var(--toastify-icon-color-success);
+
+    --toastify-icon-color-info: #63ccf5;
+    --toastify-color-progress-info: var(--toastify-icon-color-info);
+    
+    --toastify-icon-color-warning: #FEB869;
+    --toastify-color-progress-warning: var(--toastify-icon-color-warning);
+
+    --toastify-icon-color-error: #f63c3c;
+    --toastify-color-progress-error: var(--toastify-icon-color-error);  
+}
