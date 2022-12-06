@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 
 import "./homePage.css";
 import "./clock.css";
@@ -106,6 +107,9 @@ export default function HomePage(props) {
               THE JOURNEY TO INFINITY BEGINS IN
               <div id="clock" className="layer"></div>
             </div>
+            <Link to="/pre-register">
+              <button id="preregister-button" className="button-29">Pre-register now!</button>
+            </Link>
           </div>
         </div>
       </div>
