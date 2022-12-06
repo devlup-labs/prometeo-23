@@ -117,7 +117,7 @@ body {
 }
 
 /* blue layer on hover (but it not work if u hover on .event_Card-content) */
-.blue_layer {
+/* .blue_layer {
   position: relative;
   width: 100%;
   height: 250px;
@@ -146,7 +146,7 @@ body {
   position: absolute;
   top: 30%;
   left: -20%;
-}
+} */
 .event_Card:hover .event_Card-background {
   transform: scale(1.05) translateZ(0);
   top: -10px;

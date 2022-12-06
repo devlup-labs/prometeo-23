@@ -35,7 +35,7 @@ function Entry(props) {
           backgroundImage: `url(${props.img})`,
         }}
       >
-        <div class="blue_layer"></div>    {/* blue layer on hover*/}
+        {/*  <div class="blue_layer"></div>     blue layer on hover*/}
       </div>
       <div className="event_Card-content">
         {/* <div className="card"></div> */}
