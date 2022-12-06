@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 import './preRegistration.css';
 import FadeIn from "../components/fadein";
@@ -47,7 +48,7 @@ function PreRegistration() {
             .then(response => {
                 console.log(response.status)
                 if (response.status === 201) {
-                    // alert("Registration Successful!");
+                    toast.success("Registered Successfully!");
                     const formTitleEle = document.getElementsByClassName("preRegistration-container-right-title")[0];
                     const formEle = document.getElementsByClassName("preRegistration-form")[0];
                     const successEle = document.getElementsByClassName("preRegistration-form-success")[0];
@@ -64,10 +65,10 @@ function PreRegistration() {
                     }, 500);
                 }
                 else if (response.status === 400) {
-                    alert("Already registered.");
+                    toast.info("You have already registered!");
                 }
                 else {
-                    alert("Something went wrong!");
+                    toast.error("Something went wrong!");
                 }
 
                 return response.json();
@@ -96,7 +97,15 @@ function PreRegistration() {
                         <form className="preRegistration-form" onSubmit={handleSubmit}>
                             <input type="text" placeholder="Full Name" name="full_name" required />
                             <input type="email" placeholder="Email" name="email" required />
-                            <input type="tel" pattern="[6-9]{1}[0-9]{9}" placeholder="Phone Number" name="phone_number" required />
+                            <input type="tel" placeholder="Phone Number" name="phone_number" required
+                                pattern="[6-9]{1}[0-9]{9}"
+                                onInput={(e) => {
+                                    e.target.setCustomValidity('');
+                                }}
+                                onInvalid={(e) => {
+                                    e.target.setCustomValidity('Please enter a valid phone number e.g. 9876543210');
+                                }}
+                            />
                             <input type="text" placeholder="College Name" name="college_name" required />
                             <div className="preRegistration-state-dropdown">
                                 <label htmlFor="state" className="preRegistration-state-dropdown-label">State</label>
