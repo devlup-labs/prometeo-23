@@ -5,32 +5,39 @@
 	padding: 0 1vw;
 	width: 100vw;
 	height: 90vh;
-	background: rgb(16, 28, 39);
-	background: radial-gradient(circle, rgba(16, 28, 39, 1) 10%, rgba(0, 0, 0, 1) 90%);
+	/* background: rgb(16, 28, 39);
+	background: radial-gradient(circle, rgba(16, 28, 39, 1) 10%, rgba(0, 0, 0, 1) 90%); */
+    background-image: url('../assets/homePage/background_pattern_t4.png');
+	background-repeat: repeat;
+	background-size: 20%;
 	min-height: 90vh;
 	display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
 }
 
 .preRegistration-container {
     height: max-content;
-    width: 75%;
+    width: 70%;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 5vh 3vw;
+    /* padding: 5vh 3vw; */
+    box-shadow: 0 0 10px 0 rgba(35, 82, 126, 0.5);
+    border-radius: 20px;
+    /* border: 1px solid #84f4eb; */
 }
 
 .preRegistration-container-left {
-    width: 50%;
+    width: 47%;
     height: 100%;
-    background-size: cover;
+    background-size: contain;
     border-radius: 20px 0 0 20px;
-    /* border: 2px solid red; */
+    /* border: 1px solid whitesmoke; */
+    /* border-right: none; */
     overflow: hidden;
 }
 
@@ -43,7 +50,7 @@
 .preRegistration-container-right {
     position: relative;
     height: 100%;
-    width: 50%;
+    width: 53%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

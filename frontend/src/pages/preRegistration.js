@@ -26,8 +26,8 @@ function PreRegistration() {
             college: e.target.college_name.value,
             state: e.target.state.value,
             year: e.target.collegeYear.value,
-            por: e.target.position_of_responsibility.value,
-            poc_por: e.target.contact_of_any_por_holder.value,
+            // por: e.target.position_of_responsibility.value,
+            // poc_por: e.target.contact_of_any_por_holder.value,
         }
 
         let headers = new Headers();
@@ -43,11 +43,11 @@ function PreRegistration() {
 
         console.log("Submitted")
 
-        fetch(`${backendURL}/api/prereg/`, requestOptions)
+        fetch(`${backendURL}/api/preregistration/`, requestOptions)
             .then(response => {
                 console.log(response.status)
                 if (response.status === 201) {
-                    alert("Registration Successful!");
+                    // alert("Registration Successful!");
                     const formTitleEle = document.getElementsByClassName("preRegistration-container-right-title")[0];
                     const formEle = document.getElementsByClassName("preRegistration-form")[0];
                     const successEle = document.getElementsByClassName("preRegistration-form-success")[0];
@@ -149,8 +149,8 @@ function PreRegistration() {
                                     <option className='preRegistration-collegeYear-option' value="not-applicable">Not Applicable</option>
                                 </select>
                             </div>
-                            <input type="text" placeholder='Position of Responsibility (POR)' name="position_of_responsibility" />
-                            <input type="text" placeholder='Contact of any POR Holder' name="contact_of_any_por_holder" />
+                            {/* <input type="text" placeholder='Position of Responsibility (POR)' name="position_of_responsibility" />
+                            <input type="text" placeholder='Contact of any POR Holder' name="contact_of_any_por_holder" /> */}
 
                             <input type="submit" value="Submit" id="preRegistration-form-submit" />
                         </form>
