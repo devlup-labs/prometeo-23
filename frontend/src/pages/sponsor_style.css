@@ -32,7 +32,8 @@ body {
   color: #84f4eb;
   font-family: "Share Tech", sans-serif;
   /* margin-left: auto; */
-  margin-right: auto;
+	margin: 4vh auto 2vh 0;
+  /* margin-right: auto; */
   font-size: 40px;
   font-weight: 800;
   /* margin-bottom: 0; */
