@@ -13,7 +13,10 @@ import { backendURL } from "../backendURL";
 // }
 
 function createEntry(eventTerm) {
-	if (eventTerm.type !== "talk") {
+	if (
+		eventTerm.type !== "talk" 
+		&& eventTerm.name !== "Tedx"
+	) {
 		return (
 			<Entry
 				key={eventTerm.id}
@@ -51,8 +54,8 @@ function Entry(props) {
 					}
 				</div>
 			</div>
-			<button className="button1">Register</button>
-			<button className="button2">View More</button>
+			{/* <button className="button1">Register</button>
+			<button className="button2">View More</button> */}
 		</a>
 	);
 }
