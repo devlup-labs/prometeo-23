@@ -81,7 +81,7 @@ body {
   width: 100%;
   font-weight: 800;
   opacity: 100%;
-  text-shadow: 1px 1px 2px rgb(16, 28, 39);
+  /* text-shadow: 1px 1px 2px rgb(16, 28, 39); */
 }
 
 .event_Card {
@@ -155,7 +155,7 @@ body {
   box-shadow: 0 19px 38px #84f4eb, 0 15px 12px rgba(0, 0, 0, 0.22);
   /* background-position: left; */
   /* filter: unset; */
-  filter:brightness(0.75) saturate(1.2) contrast(0.85) blur(0);
+  /* filter:brightness(0.75) saturate(1.2) contrast(0.85) blur(0); */
   /* opacity: 90%; */
 }
 
@@ -192,7 +192,7 @@ body {
   font-size: 1.9rem;
   font-weight: 800;
   opacity: 100%;
-  text-shadow: 1px 1px 2px rgb(16, 28, 39);
+  /* text-shadow: 1px 1px 2px rgb(16, 28, 39); */
   line-height: 1.4;
   word-spacing: 100vw;
 }
@@ -380,16 +380,16 @@ body {
   grid-template-columns: repeat(1, 1fr);
   grid-row-gap: var(--spacing-xxl);
   }
-  .event_Card:hover .event_Card-background {
+  /* .event_Card:hover .event_Card-background {
     transform: none;
     top: 0;
     bottom: 0;
-  }
+  } */
   .event_Card:hover .event_Card-background {
     transform: none;
     transition: none;
     background-position: center;
-    filter: none;
+    /* filter: none; */
   }
   .event_Card-content {
     text-align: left;
@@ -404,7 +404,7 @@ body {
     font-size: 1.0rem;
   }
   .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
-    filter: none;
+    filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(1px);
   }
   .button1{
     top: 100%;
@@ -421,10 +421,11 @@ body {
     transform: none;
     transition: none;
     background-position: center;
-    filter: none;
+    /* filter: none; */
   }
   .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
-    filter: none;
+    /* filter: none; */
+      filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(1px);
   }
   .event_Card {
     height: 320px;
