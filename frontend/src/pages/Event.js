@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import event_data from "./event_info";
 import "./event_page.css";
 
@@ -12,10 +13,21 @@ import { backendURL } from "../backendURL";
 //    );
 // }
 
+const eventTypeToName = {
+	"live": "Live Events",
+	"technical": "Technical Events",
+	"informal": "Informal Events",
+	"entrepreneurial": "Entrepreneurial Events",
+	"workshop": "Workshops",
+	"poster_presentation": "Poster Presentation",
+	"panel_discussion": "Panel Discussion",
+	"exhibition": "Exhibition",
+}
+
 function createEntry(eventTerm) {
 	if (
-		eventTerm.type !== "talk" 
-		&& eventTerm.name !== "Tedx"
+		eventTerm.name !== "Tedx"
+		&& eventTerm.type !== "talk" 
 	) {
 		return (
 			<Entry
@@ -61,6 +73,9 @@ function Entry(props) {
 }
 
 function Events() {
+	const [urlParams] = useSearchParams();
+	console.log("Type: ", urlParams.get("type"));
+
 	const [eventData, setEventData] = useState([])
 
 	useEffect(() => {
@@ -80,27 +95,36 @@ function Events() {
 				method: 'GET',
 				headers: headers,
 			}
-
-			await fetch(`${backendURL}/api/events/`, requestOptions)
+			
+			const fetchURL = (urlParams.get("type")) 
+				? `${backendURL}/api/events/?type=${urlParams.get("type")}` 
+				: `${backendURL}/api/events/`;
+			
+			await fetch(fetchURL, requestOptions)
 				.then((response) => response.json())
 				.then((data) => {
 					setEventData([
-						...eventData,
 						...data
 					]);
-					// console.log(data);
+					console.log(data);
 				})
 				.catch((error) => {
 					console.error("Error:", error);
 				});
 		}
 		fetchData();
-	}, [])
+	}, [urlParams])
 
 	return (
 		<FadeIn duration={500}>
-			<div id="eventsPage">
-				<h2 className="section-header">PAST EVENTS</h2>
+			<div id="eventsPage" key={urlParams.get("type")}>
+				<h2 className="section-header">
+					{
+						urlParams.get("type") 
+						? eventTypeToName[urlParams.get("type")]
+						: "Past Events"
+					}
+				</h2>
 				<section className="event_Hero-section">
 					<div className="event_Card-grid">{eventData.map(createEntry)}</div>
 				</section>
