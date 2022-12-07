@@ -235,10 +235,13 @@
 }
 
 @media screen and (max-width: 768px) {
+	#speakerPage h2 {
+	margin: 4vh auto 8vh 0;
+	}
 	.blog-slider {
 		min-height: 500px;
 		height: auto;
-		margin: 180px auto;
+		margin: 100px auto;
 		padding: auto;
 	}
 
@@ -247,7 +250,7 @@
 	}
 
 	.projcard-bar {
-		margin: auto;
+		margin: auto auto 10px auto;
 	}
 
 	.blog-container {
