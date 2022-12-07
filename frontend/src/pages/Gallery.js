@@ -320,7 +320,7 @@ class Sketch {
 		this.touchInfos.fing.end.y =
 			this.touchInfos.fing.start.y - this.touchInfos.fing.move.y;
 		this.touchInfos.delta.x += this.touchInfos.fing.end.x * 0.0003;
-		this.touchInfos.delta.y += this.touchInfos.fing.end.y * 0.0003;
+		this.touchInfos.delta.y -= this.touchInfos.fing.end.y * 0.0003;
 	}
 	onResize() {
 		if (this.preWidth === window.innerWidth) {
@@ -331,7 +331,7 @@ class Sketch {
 	}
 	onWheel(e) {
 		this.touchInfos.delta.x += e.deltaX * 0.0005;
-		this.touchInfos.delta.y += e.deltaY * 0.0005;
+		this.touchInfos.delta.y -= e.deltaY * 0.0005;
 	}
 	onClick(e) {
 		if (this.isDisplayed) {
