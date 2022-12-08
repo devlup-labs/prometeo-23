@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import ugettext_lazy as _
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 from .models import *
 
 
@@ -13,6 +15,13 @@ from .models import *
 #     class Meta:
 #         model = ExtendedUser
 #         fields = '__all__'
+
+
+class PreRegistrationAdminResource(resources.ModelResource):
+
+    class Meta:
+        model   =   PreRegistration
+        import_id_fields = ('email',)
 
 
 @admin.register(ExtendedUser)
@@ -56,7 +65,8 @@ class SubmissionsAdmin(admin.ModelAdmin):
     list_filter = ('event',)
 
 
-class preregisterAdmin(admin.ModelAdmin):
+class preregisterAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class  =   PreRegistrationAdminResource
     list_display = ('name', 'email', 'contact', 'college')
     list_filter = ('college',)
 

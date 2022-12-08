@@ -23,7 +23,7 @@ dj-rest-auth = "*"
 django-sslserver = "*"
 django-extensions = "*"
 djangorestframework-simplejwt = "*"
-
+django-import-export = "*"
 
 [dev-packages]
 
