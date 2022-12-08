@@ -25,8 +25,9 @@ import future from '../assets/space/future.jpg';
 import moon from '../assets/space/moon.jpg';
 
 export default function solarSystem() {
+    const farPoint = 3000;
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 20, 8000);
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 20, farPoint);
     camera.position.set(200, 500 * (1536 / window.innerWidth), 700);
     // camera.position.set(0, 0, 800);
 
@@ -71,6 +72,7 @@ export default function solarSystem() {
     // renderer.render(scene, camera);
 
     // sun
+    const sunSystem = new THREE.Object3D();
     const sunGeometry = new THREE.SphereGeometry(109,200,200);
     const sunMaterial = new THREE.MeshStandardMaterial({
         // emissive: 0x63ccf5,
@@ -79,7 +81,8 @@ export default function solarSystem() {
         emissiveIntensity: 1,
     });
     const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
-    scene.add(sunMesh);
+    sunSystem.add(sunMesh);
+    scene.add(sunSystem);
     
     const r = 25;
     const s = 50;
@@ -523,6 +526,7 @@ export default function solarSystem() {
     let t2;
     let delta_t2 = 0;
     let autoScroll = false;
+    let autoScrollEarth = false;
 
     function animate() {
         const time = planetOrbitSpeed * performance.now();
@@ -555,7 +559,7 @@ export default function solarSystem() {
             t2 = ((time2 % loopTime) / loopTime + delta_t2) % loopTime;
         }
 
-        // console.log(time2);
+        // console.log(t2);
 
         let firstEarth_p;
         firstEarth_p = firstEarth_curve.getPoint(t2);
@@ -698,10 +702,14 @@ export default function solarSystem() {
     
     const directionalLight = new THREE.DirectionalLight( 0xffffff, 0 );
     directionalLight.position.set(cameraFinal[0], cameraFinal[1], cameraFinal[2]);
-    directionalLight.target = firstEarthSystem;
+    directionalLight.target = sunSystem;
     scene.add( directionalLight );
 
-    const earthDesiredT = 0.173;
+    const firstEarthDesiredT = 0.173;
+    const secondEarthDesiredT = 0.373;
+    const thirdEarthDesiredT = 0.573;
+    const fourthEarthDesiredT = 0.773;
+    const fifthEarthDesiredT = 0.973;
 
     const updateCameraPosition = (deltaY) => {
         const slopeX = (cameraFinal[0] - cameraInitial[0]) / (cameraFinal[1] - cameraInitial[1]);
@@ -714,13 +722,23 @@ export default function solarSystem() {
 
     let stepSize = 75;
     let zoomTime = 10;
+    let scrollLimit = 0;
 
     let old_t2;
+    let tx1, tx2;
+    let reachedLastEarth = false;
+
+    const scrollEle = document.getElementById("scroll-down");
 
     const handleScroll = (e) => {
         // console.log(autoScroll);
-
-            if (e.deltaY>0 && camera.position.y-(e.deltaY/10) < 0.95*camY && (autoScroll || camera.position.y > 0.05*camY)) {
+            // console.log("scrolling");
+            if (
+                e.deltaY>0 
+                && camera.position.y-(e.deltaY/10) < 0.95*camY 
+                && (autoScroll || camera.position.y > 0.05*camY) 
+                && !reachedLastEarth
+            ) {
                 // down scroll kiya and ek limit ke neeche
                 // console.log(1);
                 // auto down scroll
@@ -743,34 +761,47 @@ export default function solarSystem() {
                         handleScroll(e);
                     }
                     // move t2 from old_t2 to desired t2
-                    // in case old_t2 is ahead of earthDesiredT
-                    if (old_t2 > earthDesiredT) {
-                        t2 = old_t2 + (1 - (old_t2 - earthDesiredT)) * (1 - (camera.position.y / camY));
+                    // in case old_t2 is ahead of firstEarthDesiredT
+                    if (old_t2 > firstEarthDesiredT) {
+                        let prev_t2 = t2;
+                        t2 = (old_t2 + (1 - (old_t2 - firstEarthDesiredT)) * (1 - (camera.position.y / camY)))%loopTime;
+                        if (prev_t2 <= firstEarthDesiredT && t2 > firstEarthDesiredT) {
+                            t2 = firstEarthDesiredT;
+                        }
+                        // console.log(t2);
                     }
                     else {
-                        t2 = old_t2 + (earthDesiredT - old_t2) * (1 - (camera.position.y / camY));
+                        t2 = (old_t2 + (firstEarthDesiredT - old_t2) * (1 - (camera.position.y / camY)))%loopTime;
+                        t2 = Math.min(t2, firstEarthDesiredT);
+                        // console.log(t2);
                     }
 
                     // change directionalLight intensity from 0 to 1
                     // sunMaterial.emissiveIntensity = camera.position.y / camY;
                     pointLight.intensity = camera.position.y / camY;
-                    directionalLight.intensity = 1 - (camera.position.y / camY);
+                    directionalLight.intensity = 0.5*(1 - (camera.position.y / camY));
 
-                    // change sun emissive intensity from 1 to 0.3
-                    sunMaterial.emissiveIntensity = 0.3;
+                    // change sun emissive intensity from 1 to 0.5
+                    sunMaterial.emissiveIntensity = 0.75 + 0.25*((camera.position.y / camY));
+                    // sunMaterial.emissiveIntensity = 0.3;
                     
                     
                 }, zoomTime);
             }
 
-            else if (e.deltaY<0 && camera.position.y-(e.deltaY/10) > 0.05*camY && (autoScroll || camera.position.y < 0.95*camY)) {
+            else if (
+                e.deltaY<0 
+                && camera.position.y-(e.deltaY/10) > 0.05*camY 
+                && (autoScroll || camera.position.y < 0.95*camY)
+                && !reachedLastEarth
+            ) {
                 // console.log(2);
                 // auto up scroll
                 if (!autoScroll) {
                     // executed the first time we come into auto scrolling
                     autoScroll = true;
                     EarthOrbitSpeed = planetOrbitSpeed;
-                    delta_t2 = (loopTime + earthDesiredT - ((planetOrbitSpeed * performance.now()) % loopTime) / loopTime) % loopTime;
+                    delta_t2 = (loopTime + firstEarthDesiredT - ((planetOrbitSpeed * performance.now()) % loopTime) / loopTime) % loopTime;
                     // console.log(delta_t2);
                     
                 }
@@ -792,21 +823,236 @@ export default function solarSystem() {
                     // change directionalLight intensity from 0 to 1
                     // sunMaterial.emissiveIntensity = camera.position.y / camY;
                     pointLight.intensity = camera.position.y / camY;
-                    directionalLight.intensity = 1 - (camera.position.y / camY);
+                    directionalLight.intensity = 0.5*(1 - (camera.position.y / camY));
 
-                    // change sun emissive intensity from 1 to 0.3
-                    sunMaterial.emissiveIntensity = 1;
+                    // change sun emissive intensity from 0.5 to 1
+                    sunMaterial.emissiveIntensity = 0.75 + 0.25*((camera.position.y / camY));
                     
                 }, zoomTime);
             }
 
-            else if (camera.position.y>0.95*camY || camera.position.y<0.05*camY) {
+            else if (
+                camera.position.y === 0 
+                && !reachedLastEarth
+            ) {
+                // console.log(3);
+                if (t2 == firstEarthDesiredT && e.deltaY < 0 && !autoScrollEarth) {
+                    updateCameraPosition(e.deltaY);
+                }
+                
+                else if ((scrollLimit >= 200 && e.deltaY > 0) || (scrollLimit <= -200 && e.deltaY < 0)) {
+                    // console.log(3.1);
+
+                    if (!autoScrollEarth) {
+                        // console.log(1.3);
+
+                        if (e.deltaY > 0) {
+                            if (t2 == firstEarthDesiredT) {
+                                tx1 = firstEarthDesiredT;
+                                tx2 = secondEarthDesiredT;
+                            }
+                            else if (t2 == secondEarthDesiredT) {
+                                tx1 = secondEarthDesiredT;
+                                tx2 = thirdEarthDesiredT;
+                            }
+                            else if (t2 == thirdEarthDesiredT) {
+                                tx1 = thirdEarthDesiredT;
+                                tx2 = fourthEarthDesiredT;
+                            }
+                            else if (t2 == fourthEarthDesiredT) {
+                                tx1 = fourthEarthDesiredT;
+                                tx2 = fifthEarthDesiredT;
+                            }
+
+                        }
+                        else {
+                            if (t2 == fifthEarthDesiredT) {
+                                tx1 = fifthEarthDesiredT;
+                                tx2 = fourthEarthDesiredT;
+                            }
+                            else if (t2 == fourthEarthDesiredT) {
+                                tx1 = fourthEarthDesiredT;
+                                tx2 = thirdEarthDesiredT;
+                            }
+                            else if (t2 == thirdEarthDesiredT) {
+                                tx1 = thirdEarthDesiredT;
+                                tx2 = secondEarthDesiredT;
+                            }
+                            else if (t2 == secondEarthDesiredT) {
+                                tx1 = secondEarthDesiredT;
+                                tx2 = firstEarthDesiredT;
+                            }
+
+                        }
+
+                        autoScrollEarth = true;
+                        old_t2 = tx1;
+                        // console.log("Old_t2: " + old_t2);
+                    }
+                    
+                    setTimeout(() => {
+                        if (t2 == tx2 && autoScrollEarth) {
+                            // the last update before scrolling is enabled again
+                            // console.log("boowomp");
+                            autoScrollEarth = false;
+                            scrollLimit = 0;
+                            if (t2 == fifthEarthDesiredT) reachedLastEarth = true;
+                        }
+                        else {
+                            // if (t2 <= 0.25*(tx2-tx1) + tx1) {
+                            //     // starting off
+                            //     t2 += (tx2 - tx1) / 100;
+                            // }
+                            // else if (t2 >= 0.75*(tx2-tx1) + tx1) {
+                            //     // ending
+                            //     t2 += (tx2 - tx1) / 100;
+                            // }
+                            // else {
+                            //     t2 += (tx2 - tx1) / 50;
+                            // }
+
+                            t2 += (tx2 - tx1) / 100;  
+
+                            if (e.deltaY > 0) {                              
+                                t2 = Math.min(t2, tx2);
+                            }
+                            else {
+                                t2 = Math.max(t2, tx2);
+                            }
+
+                            // console.log(old_t2, t2);
+                            handleScroll(e);
+                        }
+                        
+                    }, zoomTime);
+                }
+                else {
+                    // console.log(1.1)
+                    scrollLimit += e.deltaY;
+                    // console.log(scrollLimit);
+                }
+            }
+
+            else if (reachedLastEarth && e.deltaY>0) {
+                // console.log(4)
+                // // zooming out to show footer
+                // camera.position.y += 30;
+                // // change camera x and z to 0 smoothly
+                // camera.position.x = Math.max(0, camera.position.x - cameraFinal[0] / 100);
+                // camera.position.z = Math.max(0, camera.position.z - cameraFinal[2] / 100);
+
+                // zooming out to show footer
+                if (scrollLimit >= 200) {
+                    autoScroll = true;
+                    // handleScroll(e);
+                }
+                else {
+                    scrollLimit += e.deltaY;
+                }
+                if (autoScroll) {
+                    // console.log("boowomp");
+                    setTimeout(() => {
+                        if (camera.position.y > 3100) {
+                            autoScroll = false;
+                            scrollLimit = 0;
+                        }
+                        else {
+                            handleScroll(e);
+
+                            let step_y = 20;
+
+                            camera.position.y += step_y;
+                            // change camera x and z to 0 smoothly
+                            camera.position.x = Math.max(0, camera.position.x - cameraFinal[0] / (farPoint/step_y));
+                            camera.position.z = Math.max(0, camera.position.z - cameraFinal[2] / (farPoint/step_y));
+
+                            // change opacity of ele to 0 smoothly
+                            let step_opacity = 0.01;
+                            let currentOpacity = window.getComputedStyle(scrollEle).opacity;
+                            currentOpacity = parseFloat(currentOpacity);
+                            let newOpacity = Math.max(0, currentOpacity - step_opacity);
+                            scrollEle.style.opacity = newOpacity;
+                            if (newOpacity == 0) {
+                                console.log("boowomp");
+                                document.getElementById("scroll-down").style.display = "none";
+                            }
+                        }
+                    }, zoomTime*1.5);
+                }
+            }
+
+            else if (reachedLastEarth && e.deltaY<0 && camera.position.y>0) {
+                // console.log(5)
+                // zooming back after zooming out from last earth
+                // camera.position.y = Math.max(cameraFinal[1], camera.position.y - 30);
+
+                // // change camera x and z to 0 smoothly
+                // camera.position.x = Math.min(cameraFinal[0], camera.position.x + cameraFinal[0]/100);
+                // camera.position.z = Math.min(cameraFinal[2], camera.position.z + cameraFinal[2]/100);
+                if (scrollLimit <= -200) {
+                    autoScroll = true;
+                    // handleScroll(e);
+                }
+                else {
+                    scrollLimit += e.deltaY;
+                }
+                if (autoScroll) {
+                    // console.log("boowomp");
+                    setTimeout(() => {
+                        if (camera.position.y == 0) {
+                            autoScroll = false;
+                            scrollLimit = 0;
+                        }
+                        else {
+                            handleScroll(e);
+                            
+                            let step_y = 20;
+                            
+                            camera.position.y = Math.max(cameraFinal[1], camera.position.y - step_y);
+
+                            // change camera x and z to 0 smoothly
+                            camera.position.x = Math.min(cameraFinal[0], camera.position.x + cameraFinal[0]/(farPoint/step_y));
+                            camera.position.z = Math.min(cameraFinal[2], camera.position.z + cameraFinal[2]/(farPoint/step_y));
+
+                            // change opacity of ele to 1 smoothly
+                            document.getElementById("scroll-down").style.display = "block";
+
+                            let step_opacity = 0.01;
+                            let newOpacity;
+                            let currentOpacity = window.getComputedStyle(scrollEle).opacity;
+                            currentOpacity = parseFloat(currentOpacity);
+                            if (currentOpacity+step_opacity<=1) newOpacity = currentOpacity + step_opacity;
+                            else newOpacity = 1;
+                            scrollEle.style.opacity = newOpacity;
+                            console.log(newOpacity);
+                        }
+                    }, zoomTime*1.5);
+                }
+            }
+
+            else if (reachedLastEarth && e.deltaY < 0 && camera.position.y == 0) {
+                // console.log(6)
+                // going back to 4th earth
+                reachedLastEarth = false;
+                scrollLimit += e.deltaY;
+            }
+
+            else if (
+                (camera.position.y>0.95*camY || camera.position.y<0.05*camY) 
+                && !reachedLastEarth
+            ) {
+                // console.log(7)
                 // console.log(3, camera.position);
                 updateCameraPosition(e.deltaY);
             }
     }
 
     // homePageEle.addEventListener('wheel', (e) => {
+    //     if (!autoScroll && !autoScrollEarth) handleScroll(e);
+    // });
+
+    // // for mobile devices
+    // homePageEle.addEventListener('touchmove', (e) => {
     //     if (!autoScroll) handleScroll(e);
     // });
 
