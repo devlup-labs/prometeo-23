@@ -170,6 +170,8 @@ function Navbar() {
         />
       </div>
 
+		{/* helooooo */}
+
       <div className="navbar-mobile">
         {showIcons &&
           navBarLinks.map((link) => {
