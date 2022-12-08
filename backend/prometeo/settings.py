@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'sslserver',
     'django_extensions',
+    'import_export',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
