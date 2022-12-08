@@ -415,7 +415,7 @@ body {
     top: 100%;
   }
 }
-@media (600px < width < 950px) {
+@media (600px < width <= 950px) {
   .event_Card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -438,8 +438,21 @@ body {
     height: 50%;
   } */
 }
-
-@media (950px < width <=1205px) {
+@media (950px < width <= 1150px){
+  .event_Card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+    .event_Card-prize {
+    font-size: 1.7rem;
+  }
+  .event_Card-heading {
+    font-size: 1.7rem;
+  }
+  .event_Card-date {
+    font-size: 1.2rem;
+  }
+}
+@media (1150px < width <=1205px) {
   .event_Card-grid {
     grid-template-columns: repeat(3, 1fr);
   }
