@@ -8,6 +8,7 @@ import clock from "./clock.js";
 import PrometeoLogo from "../assets/homePage/logo.png";
 import loading1 from "../assets/loading/big_bang.mp4";
 import spinner from "../assets/loading/loading_new.gif";
+import scrollGif from "../assets/homePage/scrolldown.gif";
 
 import solarSystem from "./solarsystem";
 import FadeIn from "../components/fadein";
@@ -94,6 +95,9 @@ export default function HomePage(props) {
           </div>
         )}
         <div id="homepage">
+          {/* <div id="scroll-down">
+            <img src={scrollGif} alt="Scroll Down" id="scroll-down-gif"/>
+          </div> */}
           <div id="about-prometeo">
             <div id="about-prometeo-logo">
               <img
