@@ -18,6 +18,7 @@ import Events from "./pages/Event.js";
 import Register from "./pages/Register.js";
 import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
+import EventDetails from "./pages/Event_details";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/pre-register" element={<PreRegistration />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/Event_details" element={<EventDetails />} />
 
           <Route path="/*" element={<Page_404 />} />
         </Routes>
