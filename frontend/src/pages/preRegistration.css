@@ -222,4 +222,16 @@
         height: fit-content;
         border-radius: 0 0 20px 20px;
     }
+
+    .preRegistration-container-right-title {
+        font-size: max(26px, 4vmin);
+    }
+
+    .preRegistration-form input, .preRegistration-state-dropdown-select, .preRegistration-collegeYear-dropdown-select {
+        font-size: max(12px, 1.8vmin);
+    }
+
+    #preRegistration-form-submit {
+        font-size: max(13px, 2vmin);
+    }
 }

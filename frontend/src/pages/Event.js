@@ -74,7 +74,7 @@ function Entry(props) {
 
 function Events() {
 	const [urlParams] = useSearchParams();
-	console.log("Type: ", urlParams.get("type"));
+	// console.log("Type: ", urlParams.get("type"));
 
 	const [eventData, setEventData] = useState([])
 
@@ -106,7 +106,7 @@ function Events() {
 					setEventData([
 						...data
 					]);
-					console.log(data);
+					// console.log(data);
 				})
 				.catch((error) => {
 					console.error("Error:", error);
