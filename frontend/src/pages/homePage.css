@@ -20,6 +20,17 @@ a {
   transition: opacity 2s ease-out;
 }
 
+#scroll-down {
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+}
+
+#scroll-down-gif {
+  opacity: 1;
+  width: 30px;
+}
+
 #about-prometeo {
   z-index: 0;
   /* border: 2px white solid; */
