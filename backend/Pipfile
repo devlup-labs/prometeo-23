@@ -24,6 +24,7 @@ django-sslserver = "*"
 django-extensions = "*"
 djangorestframework-simplejwt = "*"
 django-import-export = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
