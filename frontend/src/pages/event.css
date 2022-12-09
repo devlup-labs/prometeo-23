@@ -85,11 +85,13 @@ body {
 }
 
 .event_Card {
-  display: flex; 
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   list-style: none;
   position: relative;
-  height: 300px;
+  height: 45vmin;
+  /* border: 2px solid white; */
 }
 
 .event_Card:before {
@@ -110,14 +112,14 @@ body {
   position: absolute;
   right: 0;
   top: 0;
-  height: 250px;
+  height: 80%;
   max-width: 100%;
   /* height: auto; */
   width: 100%;
   transform-origin: center;
   transform: scale(1) translateZ(0);
-  transition: filter 200ms linear, transform 200ms linear,
-    background 0.8s linear;
+  transition: filter 200ms linear, transform 200ms linear;
+  /* border: 2px solid pink; */
 }
 
 .card:hover .card__photo {
@@ -152,7 +154,7 @@ body {
   transform: scale(1.05) translateZ(0);
   top: -10px;
   bottom: 10px;
-  box-shadow: 0 19px 38px #84f4eb, 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0px 20px #84f4eb, 0 15px 12px rgba(0, 0, 0, 0.22);
   /* background-position: left; */
   /* filter: unset; */
   /* filter:brightness(0.75) saturate(1.2) contrast(0.85) blur(0); */
@@ -203,178 +205,46 @@ body {
   font-size: 1rem;
 }
 
-/* Button */
-.button1 {
+#buttons {
+  height: 15%;
+  /* border: 2px solid red; */
   display: flex;
-  position: absolute;
-  margin: 1em 0;
-  left: 0px;
-  bottom: 0px;
-  /* padding: 0.5em 1.5em; */
-  /* padding-right: 1.5em; */
-  height: 10%;
-  width: 49%;
-  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+  color: rgb(2, 48, 48);
+  font-family: "Exo 2", sans-serif;
+  margin-bottom: 4%;
+}
+
+#button1, #button2 {
+  display: inline-block;
+  height: 70%;
+  width: 45%;
+  /* padding: 1vmin; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 2em;
+  box-sizing: border-box;
   text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  background: #84f4eb;
-  border-radius: 0.5em;
-  text-transform: uppercase;
-  font-family: "Work Sans", sans-serif;
-  /* perspective: 500px; */
-  font-size: 100%;
-  transform-style: preserve-3d;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 300;
+  background: #13bed4;
+  transition: all 0.2s;
 }
-.button2 {
-  display: flex;
-  position: absolute;
-  margin: 1em 0;
-  right: 0px;
-  bottom: 0px;
-  /* padding: 0.5em 1.5em; */
-  height: 10%;
-  width: 49%;
-  text-align: center;
-  display: inline-block;
-  cursor: pointer;
-  background: #84f4eb;
-  border-radius: 0.5em;
-  text-transform: uppercase;
-  font-family: "Work Sans", sans-serif;
-  /* perspective: 500px; */
-  transform-style: preserve-3d;
-}
-.button2:before,
-.button2:after {
-  --z: 0px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  content: "";
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  /* mix-blend-mode: inherit; */
-  mix-blend-mode: color-dodge;
-  border-radius: inherit;
-  transform-style: preserve-3d;
-  transform: translate3d(
-    calc(var(--z) * 0px),
-    calc(var(--z) * 0px),
-    calc(var(--z) * 0px)
-  );
-}
-.button1:before,
-.button1:after {
-  --z: 0px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  content: "";
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  /* mix-blend-mode: inherit; */
-  mix-blend-mode: color-dodge;
-  border-radius: inherit;
-  transform-style: preserve-3d;
-  transform: translate3d(
-    calc(var(--z) * 0px),
-    calc(var(--z) * 0px),
-    calc(var(--z) * 0px)
-  );
-}
-.button2:after,
-.button1:after {
-  background-color: rgb(16, 28, 39);
-}
-/* .button2:before {
-	 background-color: #84f4eb;
-} */
-.button2:hover,
-.button1:hover {
-  background-color: white;
-  transition: background 0.3s 0.1s;
-}
-.button2:hover:before {
-  --z: 0.04;
-  animation: translateWobble 2.2s ease forwards;
-}
-.button2:hover:after,
-.button1:hover:after {
-  --z: -0.04;
-  animation: translateWobble 2.2s ease forwards;
-}
-@keyframes translateWobble {
-  0% {
-    opacity: 0;
-    transform: translate3d(
-      calc(var(--z) * 0px),
-      calc(var(--z) * 0px),
-      calc(var(--z) * 0px)
-    );
-  }
-  16% {
-    transform: translate3d(
-      calc(var(--z) * 160px),
-      calc(var(--z) * 160px),
-      calc(var(--z) * 160px)
-    );
-  }
-  28% {
-    opacity: 1;
-    transform: translate3d(
-      calc(var(--z) * 70px),
-      calc(var(--z) * 70px),
-      calc(var(--z) * 70px)
-    );
-  }
-  44% {
-    transform: translate3d(
-      calc(var(--z) * 130px),
-      calc(var(--z) * 130px),
-      calc(var(--z) * 130px)
-    );
-  }
-  59% {
-    transform: translate3d(
-      calc(var(--z) * 85px),
-      calc(var(--z) * 85px),
-      calc(var(--z) * 85px)
-    );
-  }
-  73% {
-    transform: translate3d(
-      calc(var(--z) * 110px),
-      calc(var(--z) * 110px),
-      calc(var(--z) * 110px)
-    );
-  }
-  88% {
-    opacity: 1;
-    transform: translate3d(
-      calc(var(--z) * 90px),
-      calc(var(--z) * 90px),
-      calc(var(--z) * 90px)
-    );
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(
-      calc(var(--z) * 100px),
-      calc(var(--z) * 100px),
-      calc(var(--z) * 100px)
-    );
-  }
+
+#button1:hover, #button2:hover {
+  color: #ffffff;
+  background-color: #62d9cf;
+  box-shadow: inset 0 0 0 2px #ffffff;
 }
 
 @media (max-width: 600px) {
   .event_Card {
-    height: 250px;
-    width: 90%;
+    height: 45vmin;
+    min-height: 240px;
+    width: 65vmin;
     margin: auto;
     /* overflow: hidden; */
   }
@@ -408,11 +278,9 @@ body {
   .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
     filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(1px);
   }
-  .button1{
-    top: 100%;
-  }
-  .button2{
-    top: 100%;
+  #buttons {
+    font-size: max(12px, 3vmin);
+    margin-bottom: 0;
   }
 }
 @media (600px < width <= 950px) {
@@ -429,10 +297,10 @@ body {
     /* filter: none; */
       filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(1px);
   }
-  .event_Card {
+  /* .event_Card {
     height: 320px;
     /* overflow: hidden; */
-  }
+  /* }  */
   /* .button2 {
     width: 50%;
     height: 50%;
