@@ -17,7 +17,7 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializers
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['type']
+    filterset_fields = ['type','id']
 
 class BrochureViewSet(viewsets.ModelViewSet):
     queryset = Brochure.objects.all()
@@ -64,11 +64,7 @@ class TeamViewSet(viewsets.ModelViewSet):
 class SubmissionsViewSet(viewsets.ModelViewSet):
     queryset = Submissions.objects.all()
     serializer_class = SubmissionsSerializers
-
-# class CustomUserViewSet(viewsets.ModelViewSet):
-#     queryset = ExtendedUser.objects.all()
-#     serializer_class = CustomUserSerializers
-
+    
 class ExtendedUserViewSet(viewsets.ModelViewSet):
     queryset = ExtendedUser.objects.all()
     serializer_class = ExtendedUserSerializers
@@ -80,5 +76,4 @@ class NewsViewSet(viewsets.ModelViewSet):
 class PreRegistrationViewSet(viewsets.ModelViewSet):
     queryset = PreRegistration.objects.all()
     serializer_class = PreRegistrationSerializers
-
 
