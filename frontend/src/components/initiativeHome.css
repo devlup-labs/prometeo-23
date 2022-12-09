@@ -1,4 +1,4 @@
-#landing-container {
+#initiativeHome-container {
     box-sizing: border-box;
     height: 100%;
     min-height: 90vh;
@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-#landing {
+#initiativeHome {
     box-sizing: border-box;
     color: white;
     width: 100%;
@@ -28,7 +28,7 @@
     line-height: 1.3;
 }
 
-#landing::before {
+#initiativeHome::before {
     position: absolute;
     width: 96%;
     height: 90%;
@@ -57,7 +57,7 @@
     border-radius: 10vmin;
 }
 
-#landing-left-section {
+#initiativeHome-left-section {
     width: 65%;
     height: 100%;
     display: flex;
@@ -65,15 +65,15 @@
     justify-content: space-between;
 }
 
-#landing-left-section-top {
+#initiativeHome-left-section-top {
     width: 100%;
-    height: 40%;
+    height: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-#landing-countdown-title {
+#initiativeHome-countdown-title {
     /* border: 2px solid red; */
     padding: 5vmin;
     padding-bottom: 2vmin;
@@ -83,7 +83,7 @@
     text-align: center;
 }
 
-#landing-left-section-links {
+#initiativeHome-left-section-links {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -91,7 +91,7 @@
     height: 20%;
 }
 
-#landing-right-section {
+#initiativeHome-right-section {
     width: 25%;
     height: 100%;
     display: flex;
@@ -99,12 +99,12 @@
     justify-content: center;
 }
 
-#landing-image {
+#initiativeHome-image {
     width: 100%;
     /* height: 100%; */
 }
 
-#landing-image-img {
+#initiativeHome-image-img {
     width: 100%;
     /* max-height: 300px; */
 }

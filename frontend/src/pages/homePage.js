@@ -13,6 +13,10 @@ import FadeIn from "../components/fadein";
 
 import LandingSection from "../components/landingSection";
 import Introduction from "../components/intro";
+import Theme from "../pages/Theme";
+import InitiativeHome from "../components/initiativeHome";
+import EventHome from "../components/eventHome";
+import GalleryHome from "../components/galleryHome";
 
 export default function HomePage(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -85,8 +89,12 @@ export default function HomePage(props) {
             </Link>
           </div> */}
           <div id="homepage-content">
-            {/* <LandingSection /> */}
+            <LandingSection />
             <Introduction />
+            <Theme />
+            <InitiativeHome />
+            <EventHome />
+            <GalleryHome />
           </div>
         </div>
       </div>
