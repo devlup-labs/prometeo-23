@@ -19,6 +19,8 @@ router.register("eventsponsors",EventSponsorsViewSet)
 
 router.register("preregistration",PreRegistrationViewSet)
 
+router.register("signup",ExtendedUserViewSet)
+
 urlpatterns=[
     path(r'',include(router.urls)), 
 ]
