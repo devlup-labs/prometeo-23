@@ -1,5 +1,8 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from prometeo.settings import AUTH_USER_MODEL
+
+
 
 EVENT_CHOICES = (
     ('technical', 'Technical'),
@@ -70,6 +73,8 @@ class Event(models.Model):
     submission_link = models.URLField(max_length=500, null=True, blank=True, verbose_name="Event submission link")
     material_name = models.CharField(max_length=100, null=True, blank=True, verbose_name="Material Name")
     material = models.FileField(upload_to="supplementaryMaterials/", null=True, blank=True, verbose_name="Supplementary Material")
+
+    poc = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Point of Contact")
 
     def __str__(self):
         return self.name

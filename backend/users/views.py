@@ -18,6 +18,9 @@ User = get_user_model()
 sendMailID = settings.FROM_EMAIL_USER
 
 
+# class SignUpViewSet:
+#     pass
+
 def registrationNotCompleted(request):
     user = request.user
     if user.is_authenticated and user.isProfileCompleted is False:
