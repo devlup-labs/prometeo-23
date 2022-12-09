@@ -2,7 +2,6 @@
 
 #EventDetailsPage {
 	/* padding-top: 10vh; */
-	border: 2px solid red;
 	width: 100vw;
 	height: 90vh;
 	/* opacity: 0; */
@@ -11,21 +10,12 @@
 	/* transition: opacity 1.3s ease-out; */
 	/* min-height: 120vh; */
 	font-family: "Exo 2", sans-serif;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
+	display: grid;
 	background: black;
 	overflow-y: auto;
 }
 
-#event-header {
-	width: 100%;
-	height: fit-content;
-	border: 2px solid green;
-}
-
-#event-header h2 {
+#EventDetailsPage h2 {
 	margin-left: 1%;
 	color: blanchedalmond;
 	font-family: 'Share Tech', sans-serif;
@@ -39,27 +29,13 @@
 
 .DetailsRow {
 	display: flex;
-	flex-direction: column;
-	/* align-items: center;
-	justify-self: center; */
-	border: 2px solid white;
-	margin: auto;
-}
-
-.TopRow {
-	height: 10%;
-	border: 2px solid black;
-}
-
-.BottomRow {
-	height: 80%;
-	display: flex;
+	align-items: center;
+	justify-self: center;
 }
 
 .DetailsColumn {
-	/* flex: 50%; */
+	flex: 50%;
     color: aqua;
-	border: 2px solid pink;
 }
 
 .contentDiv {
@@ -71,7 +47,10 @@
 
 .EventContent {
 	width: 90%;
+	margin: 3.5vh auto;
+	padding: 20px;
 	box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+	border-radius: 5px;
 	position: relative;
 	z-index: 1;
 	background: inherit;
@@ -94,18 +73,28 @@
 	}
 
 	.DetailsColumn {
+		margin-top: 2%;
 	}
 	 .LeftColumn{
+		transform: translateY(60%);
 		 display: block; 
 		/* position: fixed; */
+		 min-width:300px;
 	} 
 	 .RightColumn{
+		transform: translateY(-130%);
+		min-width:300px;
 		display: block ;
 		
 	} 
 	.EventContent h1{
+		margin: auto;
+	}
+	.responsive-image {
+		/* margin-top: -2% !important; */
 	}
 	.desc-links{
+		margin-top: -2% !important;
 	}
 	
 	
@@ -113,8 +102,10 @@
 @media (max-width: 400px)
 {
 	.RightColumn{
+		transform: translateY(-100%);
 	}
 	.LeftColumn{
+		transform: translateY(100%);
 	} 
 }
 

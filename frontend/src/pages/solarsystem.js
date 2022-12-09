@@ -2,21 +2,23 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 import bg from '../assets/space/bg.jpg';
-// import bg8k from '../assets/space/bg8k.jpg';
-// import sun from '../assets/space/sun.jpg';
-import sun from '../assets/space/sun.png';
+import bg8k from '../assets/space/bg8k.jpg';
+import sun from '../assets/space/sun.jpg';
+import sun_blue from '../assets/space/sun(5).png';
 
 import mercury from '../assets/planets/mercury.jpg';
 import venus from '../assets/planets/venus.jpg';
 import mars from '../assets/planets/mars.jpg'
 import jupiter from '../assets/planets/jupiter.jpg';
 import saturn from '../assets/planets/saturn.jpg';
+import saturnRings from '../assets/planets/saturn_rings.png';
 import uranus from '../assets/planets/uranus.jpg';
 import neptune from '../assets/planets/neptune.jpg';
 
 import first from '../assets/space/first.jpg'; 
 import second from '../assets/space/2.jpg'; 
 import ice from '../assets/space/ice.jpg'; 
+import weird from '../assets/space/weird.jpg'; 
 import today from '../assets/space/today.jpg'; 
 import future from '../assets/space/future.jpg'; 
 
@@ -58,10 +60,10 @@ export default function solarSystem() {
 
     const textureLoader = new THREE.TextureLoader();
 
-    const bgGeometry = new THREE.SphereGeometry(2000, 100, 100);
+    const bgGeometry = new THREE.SphereGeometry(4000, 100, 100);
     const bgMaterial = new THREE.MeshStandardMaterial({
         // map: textureLoader.load(bg),
-        map: textureLoader.load(bg),
+        map: textureLoader.load(bg8k),
         side: THREE.DoubleSide,
     });
     const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
@@ -75,7 +77,7 @@ export default function solarSystem() {
     const sunMaterial = new THREE.MeshStandardMaterial({
         // emissive: 0x63ccf5,
         emissive: 0xffffff,
-        emissiveMap: textureLoader.load(sun),
+        emissiveMap: textureLoader.load(sun_blue),
         emissiveIntensity: 1,
     });
     const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
@@ -236,7 +238,7 @@ export default function solarSystem() {
     const secondEarth_curve = new THREE.EllipseCurve(
         0, 0,
         400, 350,
-        0 - (2*Math.PI/5), 2 * Math.PI - (2*Math.PI/5),
+        0 + (2*Math.PI/5), 2 * Math.PI + (2*Math.PI/5),
     );
 
     // third earth system
@@ -266,7 +268,7 @@ export default function solarSystem() {
     const thirdEarth_curve = new THREE.EllipseCurve(
         0, 0,
         400, 350,
-        0 - (4*Math.PI/5), 2 * Math.PI - (4*Math.PI/5),
+        0 + (4*Math.PI/5), 2 * Math.PI + (4*Math.PI/5),
     );
 
     // fourth earth system
@@ -296,7 +298,7 @@ export default function solarSystem() {
     const fourthEarth_curve = new THREE.EllipseCurve(
         0, 0,
         400, 350,
-        0 - (6*Math.PI/5), 2 * Math.PI - (6*Math.PI/5),
+        0 + (6*Math.PI/5), 2 * Math.PI + (6*Math.PI/5),
     );
 
     // fifth earth system
@@ -326,7 +328,7 @@ export default function solarSystem() {
     const fifthEarth_curve = new THREE.EllipseCurve(
         0, 0,
         400, 350,
-        0 - (8*Math.PI/5), 2 * Math.PI - (8*Math.PI/5),
+        0 + (8*Math.PI/5), 2 * Math.PI + (8*Math.PI/5),
     );
 
     // mars
