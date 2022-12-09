@@ -1,15 +1,18 @@
-#landing-container {
-    box-sizing: border-box;
-    height: 100%;
-    min-height: 90vh;
-    width: 100%;
+#galleryHome-container {
+    width: 100vw;
+    height: 90vh;
     padding: 5vh 2vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
 }
 
-#landing {
+#galleryHome {
+    /* position: absolute; */
     box-sizing: border-box;
     color: white;
     width: 100%;
@@ -28,36 +31,7 @@
     line-height: 1.3;
 }
 
-#landing::before {
-    position: absolute;
-    width: 96%;
-    height: 90%;
-    content: "";
-    background: rgb(82, 225, 255);
-    background: -moz-linear-gradient(
-        90deg,
-        rgba(82, 225, 255, 0.2) 0%,
-        rgba(16, 160, 191, 0.1) 35%,
-        rgba(8, 153, 167, 0) 100%
-    );
-    background: -webkit-linear-gradient(
-        90deg,
-        rgba(82, 225, 255, 0.2) 0%,
-        rgba(16, 160, 191, 0.1) 35%,
-        rgba(8, 153, 167, 0) 100%
-    );
-    background: linear-gradient(
-        90deg,
-        rgba(82, 225, 255, 0.2) 0%,
-        rgba(16, 160, 191, 0.1) 35%,
-        rgba(8, 153, 167, 0) 100%
-    );
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#52e1ff",endColorstr="#0899a7",GradientType=1);
-    filter: blur(10px);
-    border-radius: 10vmin;
-}
-
-#landing-left-section {
+#galleryHome-left-section {
     width: 65%;
     height: 100%;
     display: flex;
@@ -65,15 +39,15 @@
     justify-content: space-between;
 }
 
-#landing-left-section-top {
+#galleryHome-left-section-top {
     width: 100%;
-    height: 40%;
+    height: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-#landing-countdown-title {
+#galleryHome-countdown-title {
     /* border: 2px solid red; */
     padding: 5vmin;
     padding-bottom: 2vmin;
@@ -83,7 +57,7 @@
     text-align: center;
 }
 
-#landing-left-section-links {
+#galleryHome-left-section-links {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -91,7 +65,7 @@
     height: 20%;
 }
 
-#landing-right-section {
+#galleryHome-right-section {
     width: 25%;
     height: 100%;
     display: flex;
@@ -99,12 +73,12 @@
     justify-content: center;
 }
 
-#landing-image {
+#galleryHome-image {
     width: 100%;
     /* height: 100%; */
 }
 
-#landing-image-img {
+#galleryHome-image-img {
     width: 100%;
     /* max-height: 300px; */
 }

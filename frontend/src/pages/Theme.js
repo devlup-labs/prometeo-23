@@ -33,7 +33,7 @@ function Theme() {
             </div>
             <div class="themeColumn">
               <p align="justify">
-                <b> Origin to Infinity </b>:
+                {/* <b> Origin to Infinity </b>: */}
                 <br /> Technology has been the heart of the development of the
                 human race from the very beginning and is speculated to be its
                 heart till infinity. The theme of Prometeo 2023,

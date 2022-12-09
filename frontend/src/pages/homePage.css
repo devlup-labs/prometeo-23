@@ -5,6 +5,7 @@ a {
     color: inherit;
 }
 
+
 #homepage {
     /* box-sizing: border-box; */
     height: 90vh;
@@ -27,6 +28,13 @@ a {
     width: 100vw;
     overflow-y: auto;
     overflow-x: hidden;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#homepage-content::-webkit-scrollbar {
+    display: none;
 }
 
 #scroll-down {
