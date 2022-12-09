@@ -40,7 +40,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/pre-register" element={<PreRegistration />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/Event_details" element={<EventDetails />} />
+          <Route path="/event-details" element={<EventDetails />} />
 
           <Route path="/*" element={<Page_404 />} />
         </Routes>
