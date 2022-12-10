@@ -15,9 +15,21 @@ from events.models import *
 from coordinator.models import *
 from users.models import *
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.permissions import AllowAny
+from .serializers import MyTokenObtainPairSerializer
+
+
+class MyObtainTokenPairView(TokenObtainPairView):
+    permission_classes = (AllowAny,)
+    serializer_class = MyTokenObtainPairSerializer
+
+
 class SponsorsViewSet(viewsets.ModelViewSet):
     queryset = Sponsors.objects.all()
     serializer_class = SponsorsSerializers
+    # permission_classes = (IsAuthenticated,)
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
@@ -76,6 +88,10 @@ class ExtendedUserViewSet(viewsets.ModelViewSet):
     serializer_class = ExtendedUserSerializers
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.UpdateOwnProfile,)
+    # permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
