@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Event, Contacts, Brochure, Panel, EventSponsors, Gallery, StreamLinks
+from import_export.admin import ImportExportModelAdmin
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -15,7 +16,7 @@ class EventSponsorsAdmin(admin.StackedInline):
     model = EventSponsors
 
 
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('name', 'date', 'time', 'venue', 'registration_open', 'type')
     list_filter = ('type', 'registration_open')
     search_fields = ['name']
@@ -30,7 +31,7 @@ class EventAdmin(admin.ModelAdmin):
     )
 
 
-class StreamLinksAdmin(admin.ModelAdmin):
+class StreamLinksAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('name', 'url')
     list_filter = ('name', )
 
@@ -40,7 +41,7 @@ admin.site.register(StreamLinks, StreamLinksAdmin)
 
 
 @admin.register(Brochure)
-class BrochureAdmin(admin.ModelAdmin):
+class BrochureAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['name', 'type', ]
     search_fields = ['name', ]
 
@@ -50,7 +51,7 @@ class BrochureAdmin(admin.ModelAdmin):
 
 
 @admin.register(Gallery)
-class GalleryAdmin(admin.ModelAdmin):
+class GalleryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['name', 'hidden', ]
     list_filter = ('type', )
     search_fields = ['name', ]
