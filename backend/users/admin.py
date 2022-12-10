@@ -25,7 +25,7 @@ class PreRegistrationAdminResource(resources.ModelResource):
 
 
 @admin.register(ExtendedUser)
-class UserAdmin(DjangoUserAdmin):
+class UserAdmin(ImportExportModelAdmin, DjangoUserAdmin):
     """Define admin model for custom User model with no email field."""
 
     fieldsets = (
@@ -56,13 +56,13 @@ class UserAdmin(DjangoUserAdmin):
         fields = '__all__'
 
 
-class TeamAdmin(admin.ModelAdmin):
+class TeamAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('name', 'leader', 'event')
     list_filter = ('event',)
     search_fields = ['name', 'leader__email', ]
 
 
-class SubmissionsAdmin(admin.ModelAdmin):
+class SubmissionsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('user', 'event', 'file_url')
     list_filter = ('event',)
 

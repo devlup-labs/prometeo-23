@@ -18,7 +18,7 @@ import Register from "./pages/Register.js";
 import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
 import EventDetails from "./pages/Event_details";
-
+import Team from "./pages/team";
 import EventHome from "./components/eventHome";
 import GalleryHome from "./components/galleryHome";
 
@@ -49,6 +49,7 @@ function App() {
 
           <Route path="/test-events" element={<EventHome />} />
           <Route path="/test-gallery" element={<GalleryHome />} />
+          <Route path="/Team" element={<Team />} />
 
           <Route path="/*" element={<Page_404 />} />
         </Routes>
