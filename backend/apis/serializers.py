@@ -78,6 +78,14 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = '__all__'
+        extra_kwargs = {'password' : {'write_only' : True}}
+
+    def create(self, validated_data):
+        user = ExtendedUser
+        user.set_password(validated_data['password'])
+        user.save()
+
+        return user
 
 class NewsSerializers(serializers.ModelSerializer):
     class Meta:

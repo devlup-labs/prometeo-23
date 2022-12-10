@@ -3,6 +3,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from apis.models import *
 from rest_framework import viewsets
 from rest_framework import generics
+from rest_framework.authentication import TokenAuthentication 
+from . import permissions
 from .serializers import *
 from home.models import *
 from events.models import *
@@ -68,7 +70,9 @@ class SubmissionsViewSet(viewsets.ModelViewSet):
 class ExtendedUserViewSet(viewsets.ModelViewSet):
     queryset = ExtendedUser.objects.all()
     serializer_class = ExtendedUserSerializers
-    
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
+
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializers
