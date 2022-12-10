@@ -1,9 +1,10 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 from .models import Designation, Coordinator
 
 
 @admin.register(Coordinator)
-class CoordinatorAdmin(admin.ModelAdmin):
+class CoordinatorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['name', 'team', 'email', 'phoneNo']
 
     class Meta:
@@ -12,7 +13,7 @@ class CoordinatorAdmin(admin.ModelAdmin):
 
 
 @admin.register(Designation)
-class DesignationAdmin(admin.ModelAdmin):
+class DesignationAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['designationName', ]
 
     class Meta:
