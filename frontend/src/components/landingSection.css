@@ -1,0 +1,127 @@
+#landing-container {
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 90vh;
+    width: 100%;
+    padding: 5vh 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#landing {
+    position: relative;
+    box-sizing: border-box;
+    color: white;
+    width: 36%;
+    right: 5%;
+    height: fit-content;
+    font-family: "Josefin Sans", sans-serif;
+    text-shadow: 0 2px 5px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid white; */
+}
+
+#landing::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: rgb(82, 225, 255);
+    background: -moz-linear-gradient(
+        0deg,
+        rgba(82, 225, 255, 0.2) 0%,
+        rgba(90, 177, 187, 0) 71%,
+        rgba(8, 153, 167, 0) 100%
+    );
+    background: -webkit-linear-gradient(
+        0deg,
+        rgba(82, 225, 255, 0.2) 0%,
+        rgba(90, 177, 187, 0) 71%,
+        rgba(8, 153, 167, 0) 100%
+    );
+    background: linear-gradient(
+        0deg,
+        rgba(82, 225, 255, 0.2) 0%,
+        rgba(90, 177, 187, 0) 71%,
+        rgba(8, 153, 167, 0) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#52e1ff",endColorstr="#0899a7",GradientType=1);
+    filter: blur(10px);
+    border-radius: 10vmin;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#landing-image {
+    z-index: 1;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid red; */
+}
+
+#landing-image-img {
+    /* top: -10vmin; */
+    height: 40vmin;
+    max-height: 300px;
+}
+
+#landing-text {
+    /* border: 2px solid red; */
+    z-index: 1;
+    padding: 5vmin;
+    padding-bottom: 2vmin;
+    font-size: 3vmin;
+    font-family: "Josefin Sans", sans-serif;
+    /* line-height: 3.5vmin; */
+    text-align: center;
+}
+
+@media screen and (max-width: 1080px) {
+    #landing-text {
+        font-size: max(2.5vh, 16px);
+        line-height: max(4vh, 20px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #landing-text {
+        font-size: max(2.5vh, 13px);
+        line-height: max(4vh, 16px);
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #landing {
+        width: 40%;
+        /* top: 15%; */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #landing {
+        /* top: 15%; */
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #landing {
+        /* top: 15%; */
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #landing {
+        /* top: 15%; */
+        width: 70%;
+    }
+}
+
+
+

@@ -1,0 +1,129 @@
+#eventHome-container {
+    position: relative;
+    width: 100vw;
+    height: 80vh;
+    padding: 5vh 2vw 0 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #140327;
+    /* border: 2px solid white; */
+}
+
+#eventHome {
+    /* position: absolute; */
+    box-sizing: border-box;
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 4vmin;
+    /* margin: 10vmin 10vmin; */
+    /* add text shadow */
+    text-shadow: 0 2px 5px black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 3vmin;
+    padding-bottom: 0;
+    /* line height */
+    line-height: 1.3;
+    z-index: 1;
+}
+
+#eventHome-left-section {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#eventHome-left-section-top {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#eventHome-left-section-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+}
+
+#eventHome-right-section {
+    box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#eventHome-title {
+    /* box-sizing: border-box; */
+    width: 100%;
+    height: fit-content;
+    /* padding-left: 5vmin; */
+    /* margin-bottom: 5vmin; */
+    font-family: Gentona;
+    font-size: 10vmin;
+    text-align: right;
+}
+
+#eventHome-image {
+    width: 100%;
+    /* height: 100%; */
+}
+
+#eventHome-image-img {
+    position: absolute;
+    left: 0;
+    /* height: 100%; */
+    width: 40%;
+    object-fit: cover;
+    /* max-height: 300px; */
+}
+
+#eventHome-eventCircles {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#eventHome-eventCircles > div {
+    position: relative;
+    width: 25vmin;
+    height: 25vmin;
+    margin: 1vmin max(0.5vmin, calc(calc(100% - 2*25vmin) / 4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    /* border: 2px solid red; */
+}
+
+.eventHome-eventCircle-gradient {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-image: linear-gradient(to right, #3437a270, #8223e170);
+}
+
+#eventHome-eventCircles > div > img {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -153,7 +153,7 @@ export default function clock() {
     }
 
     function init() {
-      frame = document.querySelector("#clock");
+      frame = document.querySelector("#landing-countdown");
       // empty the frame
       frame.innerHTML = "";
       glyphs = [];
