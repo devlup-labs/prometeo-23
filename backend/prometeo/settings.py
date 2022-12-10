@@ -39,6 +39,7 @@ CORS_ALLOWED_ORIGINS = [
     # 'http://172.31.12.81:3000',
     'http://172.31.51.79:3000',
     'https://prometeo-23-4jejhinhh-sawmill811.vercel.app'
+    # '127.0.0.1:8000'
 ]    
 
 
@@ -71,12 +72,9 @@ INSTALLED_APPS = [
     'apis',
     'django_filters',
     'corsheaders',
-    'dj_rest_auth',
-    'rest_framework.authtoken',
-    'dj_rest_auth.registration',
-    'sslserver',
     'django_extensions',
     'import_export',
+    'rest_framework_simplejwt',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -276,14 +274,10 @@ CKEDITOR_CONFIGS = {
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_SCHEMA_CLASS':
         'rest_framework.schemas.coreapi.AutoSchema',
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.IsAuthenticated'
-#     ]
 }
 
 SIMPLE_JWT = {
@@ -295,6 +289,7 @@ SIMPLE_JWT = {
 
     'ALGORITHM': 'HS256',
 
+    'SIGNING_KEY': SECRET_KEY,
     'VERIFYING_KEY': None,
     'AUDIENCE': None,
     'ISSUER': None,
@@ -319,13 +314,14 @@ SIMPLE_JWT = {
 }
 
 
-REST_SESSION_LOGIN = False
-REST_USE_JWT = True
-JWT_AUTH_COOKIE = 'jwt-access-token'          
-JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token' 
-JWT_AUTH_SECURE = True
-CORS_ALLOW_CREDENTIALS = True
+# REST_SESSION_LOGIN = False
+# REST_USE_JWT = True
+# JWT_AUTH_COOKIE = 'jwt-access-token'          
+# JWT_AUTH_REFRESH_COOKIE = 'jwt-refresh-token' 
+# JWT_AUTH_SECURE = True
+# CORS_ALLOW_CREDENTIALS = True
 
+# SECURE_SSL_REDIRECT = False
 
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
