@@ -1,6 +1,6 @@
 
 
-#clock {
+#landing-countdown {
 	/* border: 3px solid white; */
 	font-size: 0.7vw;
 	margin: 2% auto;
@@ -10,13 +10,13 @@
 }
 
 @media screen and (max-width: 600px) {
-    #clock {
+    #landing-countdown {
         font-size: 1.2vw;
     }
 }
 
 @media screen and (max-width: 400px) {
-    #clock {
+    #landing-countdown {
         font-size: 1.8vw;
     }
 }
