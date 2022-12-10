@@ -60,6 +60,7 @@ class ExtendedUser(AbstractUser):
     isProfileCompleted = models.BooleanField(verbose_name='Is Profile Completed', default=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True,blank=True)
     updated_at = models.DateTimeField(auto_now=True)
+    pass_type = models.IntegerField(default=0)
     objects = UserManager()
     REQUIRED_FIELDS = []
 
@@ -100,12 +101,14 @@ class ExtendedUser(AbstractUser):
     #     """
     #     dt = datetime.now() + timedelta(days=60)
 
-    #     token = jwt.encode({
-    #         'id': self.pk,
-    #         'exp': int(dt.strftime('%s'))
-    #     }, settings.SECRET_KEY, algorithm='HS256')
+    #     # token = jwt.encode({
+    #     #     'id': self.pk,
+    #     #     'exp': int(dt.strftime('%s'))
+    #     # }, settings.SECRET_KEY, algorithm='HS256')
+    #     encoded_jwt = jwt.encode({"some": "payload"}, "q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9", algorithm="HS256")
 
-    #     return token.decode('utf-8')
+    #     # return token.decode('utf-8')
+    #     return jwt.decode(encoded_jwt, "q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9", algorithms=["HS256"])
 
 
 
