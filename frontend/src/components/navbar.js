@@ -10,7 +10,7 @@ const navBarLinks = [
   {
     name: "theme",
     text: "Theme",
-    path: "/theme",
+    path: "#themePage",
     section: "left",
     tabIndex: 2,
   },
@@ -30,8 +30,8 @@ const navBarLinks = [
   },
   {
     name: "events",
-    text: "Past Events",
-    path: "/past-events",
+    text: "Events",
+    path: "/events",
     section: "right",
     tabIndex: 5,
   },
@@ -68,7 +68,7 @@ const eventTypes = [
   { name: "Workshops", type: "workshop" },
   { name: "Poster Presentation", type: "poster_presentation" },
   { name: "Panel Discussion", type: "panel_discussion" },
-  { name: "Exhibition", type: "exhibition" },
+  { name: "Tech Carnival", type: "exhibition" },
 ];
 
 function Navbar() {
@@ -94,16 +94,29 @@ function Navbar() {
         {/* theme, speakers, sponsors */}
         {navBarLinks
           .filter((link) => link.section === "left")
-          .map((link) => (
-            <Link to={link.path} key={link.name}>
-              <div
-                className={`navbar-left-section-${link.name} navbar-link`}
-                tabIndex={link.tabIndex}
-              >
-                {link.text}
-              </div>
-            </Link>
-          ))}
+          .map((link) => {
+            if (link.name === "theme") {
+              return (
+                <a href={link.path} key={link.name}>
+                  <div
+                    className={`navbar-left-section-${link.name} navbar-link`}
+                    tabIndex={link.tabIndex}
+                  >
+                    {link.text}
+                  </div>
+                </a>
+              )
+            } else return (
+              <Link to={link.path} key={link.name}>
+                <div
+                  className={`navbar-left-section-${link.name} navbar-link`}
+                  tabIndex={link.tabIndex}
+                >
+                  {link.text}
+                </div>
+              </Link>
+            );
+          })}
       </nav>
 
       <div className="navbar-logo">
@@ -127,7 +140,7 @@ function Navbar() {
         {navBarLinks
           .filter((link) => link.section === "right")
           .map((link) => {
-            // if (link.name !== "events")
+            if (link.name !== "events")
               return (
                 <Link to={link.path} key={link.name}>
                   <div
@@ -138,28 +151,28 @@ function Navbar() {
                   </div>
                 </Link>
               );
-            // else
-            //   return (
-            //     <div className="dropdown dropdown-5" key={link.name}>
-            //       <div className="navbar-link">{link.text}</div>
-            //       {/* {link.text} */}
-            //       <ul className="dropdown_menu dropdown_menu-5">
-            //         {eventTypes.map((item, index) => (
-            //           <Link
-            //             to={{
-            //               pathname: link.path,
-            //               search: `?type=${item.type}`,
-            //             }}
-            //             key={index}
-            //           >
-            //             <li className={`dropdown_item-${index + 1}`}>
-            //               {item.name}
-            //             </li>
-            //           </Link>
-            //         ))}
-            //       </ul>
-            //     </div>
-            //   );
+            else
+              return (
+                <div className="dropdown dropdown-5" key={link.name}>
+                  <div className="navbar-link">{link.text}</div>
+                  {/* {link.text} */}
+                  <ul className="dropdown_menu dropdown_menu-5">
+                    {eventTypes.map((item, index) => (
+                      <Link
+                        to={{
+                          pathname: link.path,
+                          search: `?type=${item.type}`,
+                        }}
+                        key={index}
+                      >
+                        <li className={`dropdown_item-${index + 1}`}>
+                          {item.name}
+                        </li>
+                      </Link>
+                    ))}
+                  </ul>
+                </div>
+              );
           })}
       </nav>
 
@@ -175,7 +188,7 @@ function Navbar() {
       <div className="navbar-mobile">
         {showIcons &&
           navBarLinks.map((link) => {
-            // if (link.name !== "events")
+            if (link.name !== "events")
               return (
                 <Link
                   to={link.path}
@@ -187,34 +200,34 @@ function Navbar() {
                   </div>
                 </Link>
               );
-            // else
-            //   return (
-            //     <div key={link.name}>
-            //       <div className="dropdown dropdown-5" key={link.name}>
-            //       <div className="navbar-mobile-link navbar-link">{link.text}</div>
-            //       {/* {link.text} */}
-            //       <ul className="dropdown_menu dropdown_menu-5">
-            //         {eventTypes.map((item, index) => (
-            //           <Link
-            //             to={{
-            //               pathname: link.path,
-            //               search: `?type=${item.type}`,
-            //             }}
-            //             key={index}
-			// 			onClick={() => setShowIcons(false)}
-            //           >
-            //             <li className={`dropdown_item-${index + 1}`} onClick={() => {
-            //               const el = document.getElementsByClassName(`dropdown_item-${index + 1}`)[0];
-            //               el.classList.toggle('navbar-link-active');
-            //             }}>
-            //               {item.name}
-            //             </li>
-            //           </Link>
-            //         ))}
-            //       </ul>
-            //     </div>
-            //     </div>
-            //   );
+            else
+              return (
+                <div key={link.name}>
+                  <div className="dropdown dropdown-5" key={link.name}>
+                  <div className="navbar-mobile-link navbar-link">{link.text}</div>
+                  {/* {link.text} */}
+                  <ul className="dropdown_menu dropdown_menu-5">
+                    {eventTypes.map((item, index) => (
+                      <Link
+                        to={{
+                          pathname: link.path,
+                          search: `?type=${item.type}`,
+                        }}
+                        key={index}
+						onClick={() => setShowIcons(false)}
+                      >
+                        <li className={`dropdown_item-${index + 1}`} onClick={() => {
+                          const el = document.getElementsByClassName(`dropdown_item-${index + 1}`)[0];
+                          el.classList.toggle('navbar-link-active');
+                        }}>
+                          {item.name}
+                        </li>
+                      </Link>
+                    ))}
+                  </ul>
+                </div>
+                </div>
+              );
           })}
       </div>
     </div>
