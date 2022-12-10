@@ -10,7 +10,7 @@ const navBarLinks = [
   {
     name: "theme",
     text: "Theme",
-    path: "/theme",
+    path: "#themePage",
     section: "left",
     tabIndex: 2,
   },
@@ -94,16 +94,29 @@ function Navbar() {
         {/* theme, speakers, sponsors */}
         {navBarLinks
           .filter((link) => link.section === "left")
-          .map((link) => (
-            <Link to={link.path} key={link.name}>
-              <div
-                className={`navbar-left-section-${link.name} navbar-link`}
-                tabIndex={link.tabIndex}
-              >
-                {link.text}
-              </div>
-            </Link>
-          ))}
+          .map((link) => {
+            if (link.name === "theme") {
+              return (
+                <a href={link.path} key={link.name}>
+                  <div
+                    className={`navbar-left-section-${link.name} navbar-link`}
+                    tabIndex={link.tabIndex}
+                  >
+                    {link.text}
+                  </div>
+                </a>
+              )
+            } else return (
+              <Link to={link.path} key={link.name}>
+                <div
+                  className={`navbar-left-section-${link.name} navbar-link`}
+                  tabIndex={link.tabIndex}
+                >
+                  {link.text}
+                </div>
+              </Link>
+            );
+          })}
       </nav>
 
       <div className="navbar-logo">

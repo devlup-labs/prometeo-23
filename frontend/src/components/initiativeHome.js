@@ -10,29 +10,52 @@ export default function InitiativeHome() {
         <div id="initiativeHome-container">
             <div id="initiativeHome">
                 <div id="initiativeHome-left-section">
-                    <div id="initiativeHome-left-section-top">
+                    {/* <div id="initiativeHome-left-section-top"> */}
                         <div id="initiativeHome-title">
-                            INITIATIVE
+                            <div id="initiativeHome-subheading">
+                                SOCIAL INITIATIVE
+                            </div>
+                            <div id="initiativeHome-heading">
+                                UMANG
+                            </div>
                         </div>
                         <div id="initiativeHome-description">
                             {/* lorem 100 */}
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Nullam auctor, nisl eget ultricies tincidunt, nunc
-                            tortor lacinia nisl, nec ultricies nunc nisl nec
-                            libero. Sed euismod, nisl nec tincidunt lacinia, nunc
+                            Prometeo's vision is to raise awareness in society
+                            through social upliftment activities. We believe
+                            that it is the societal responsibility of the
+                            forefront of the nation to balance and empower those
+                            who are less fortunate. In post, we organized blood
+                            donation drives and year-long problem statements
+                            related to sustainability with big prize money,
+                            Continuing this legacy, In this edition of Prometeo,
+                            we aim to acquaint underprivileged women to new
+                            technologies and raise awareness about the heights
+                            they can achieve with the help of it. We plan to
+                            collaborate with several NGOs ond hold workshops for
+                            indigent children which will instigate their
+                            interest towards several domains of technology and
+                            inspire to pursue them.
                         </div>
-                    </div>
-                    <div id="initiativeHome-left-section-links">
+                    {/* </div> */}
+                    {/* <div id="initiativeHome-left-section-links">
                         <Link to="/initiative">
-                            <button id="preregister-button" className="button-29">
+                            <button
+                                id="preregister-button"
+                                className="button-29"
+                            >
                                 View More
                             </button>
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
                 <div id="initiativeHome-right-section">
                     <div id="initiativeHome-image">
-                        <img id="initiativeHome-image-img" src={initiativePageImg} alt="image" />
+                        <img
+                            id="initiativeHome-image-img"
+                            src={initiativePageImg}
+                            alt="image"
+                        />
                     </div>
                 </div>
             </div>

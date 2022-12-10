@@ -6,7 +6,9 @@ export default function Introduction() {
         <div id="intro-container">
             <div id="intro">
                 <div id="intro-section-1">
-                    <div id="intro-title">Prometeo 2023</div>
+                    <div id="intro-title">
+                        ABOUT
+                    </div>
                     <div id="intro-text">
                         Prometeo 2023 is the third edition of IIT Jodhpur's National
                         Technical + Entrepreneurial Festival. Prometeo derives its name
