@@ -1,4 +1,4 @@
-.preRegistration {
+.login {
 	font-family: 'Josefin Sans', sans-serif;
 	overflow-y: auto;
 	box-sizing: border-box;
@@ -17,8 +17,9 @@
     justify-content: center;
 }
 
-.preRegistration-container {
+.login-container {
     height: max-content;
+    min-height: 80%;
     width: 70%;
     box-sizing: border-box;
     display: flex;
@@ -31,7 +32,7 @@
     /* border: 1px solid #84f4eb; */
 }
 
-.preRegistration-container-left {
+.login-container-left {
     width: 47%;
     height: 100%;
     background-size: contain;
@@ -41,20 +42,20 @@
     overflow: hidden;
 }
 
-.preRegistration-container-left img {
+.login-container-left img {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.preRegistration-container-right {
+.login-container-right {
     position: relative;
     height: 100%;
     width: 53%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     padding: 2vh 4vw;
     background-color: #101c27;
@@ -62,14 +63,14 @@
     overflow: hidden;
 }
 
-.preRegistration-container-right-title {
+.login-container-right-title {
 	color: #84f4eb;
 	font-family: 'Share Tech', sans-serif;
     font-size: 4vmin;
     padding-bottom: 3vh;
 }
 
-.preRegistration-form {
+.login-form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -77,59 +78,17 @@
     align-items: center;
 }
 
-.preRegistration-container-right-title, .preRegistration-form {
+.login-container-right-title, .login-form {
     z-index: 1;
     opacity: 1;
     transition: opacity 0.5s ease-out;
 }
 
-.preRegistration-form input {
+.login-form input {
     width: 100%;
 }
 
-.preRegistration-state-dropdown {
-    box-sizing: border-box;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.preRegistration-state-dropdown-label {
-    height: 100%;
-    width: 40%;
-    color: #63ccf5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.preRegistration-state-dropdown-select {
-    width: 60%;
-}
-
-.preRegistration-collegeYear-dropdown {
-    box-sizing: border-box;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-
-.preRegistration-collegeYear-dropdown-label {
-    height: 100%;
-    width: 40%;
-    color: #63ccf5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.preRegistration-collegeYear-dropdown-select {
-    width: 60%;
-}
-
-.preRegistration-form input, .preRegistration-state-dropdown-select, .preRegistration-collegeYear-dropdown-select {
+.login-form input {
     box-sizing: border-box;
     height: 5vh;
     margin: 8px 0;
@@ -142,15 +101,15 @@
     background-color: rgb(151, 189, 185);
 }
 
-.preRegistration-form input:focus, .preRegistration-state-dropdown-select:focus, .preRegistration-collegeYear-dropdown-select:focus {
+.login-form input:focus {
     outline: 3px solid #84f4eb;
 }
 
-.preRegistration-form input::placeholder, .preRegistration-state-dropdown-select::placeholder, .preRegistration-collegeYear-dropdown-select::placeholder {
+.login-form input::placeholder {
     color: #3c3b3b;
 }
 
-#preRegistration-form-submit {
+#login-form-submit {
     width: 40%;
     height: 5vh;
     margin: 15px 0 5px;
@@ -164,29 +123,11 @@
     color: #101c27;
 }
 
-#preRegistration-form-submit:hover {
+#login-form-submit:hover {
     background-color: #63ccf5e4;
     cursor: pointer;
 }
 
-.preRegistration-form-success {
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-	color: #84f4eb;
-	font-family: 'Share Tech', sans-serif;
-    font-size: 3vmin;
-    padding: 1vh 2vw;
-}
 
 .google-button{
 	display: flex;
@@ -220,50 +161,62 @@
 	padding-right: 1px;
 }
 
-.preRegistration-form-success-gif {
-    margin-bottom: 1vmin;
+.login-noaccount {
+    color: #84f4eb;
+    font-size: 1.8vmin;
+    text-decoration: none;
+}
+
+.login-noaccount > a {
+    font-weight: 700;
+    color: #63ccf5;
+    text-decoration: none;
+}
+
+.login-noaccount > a:hover {
+    color: #63ccf5e4;
 }
 
 @media (max-width: 1000px) {
-    .preRegistration-container {
+    .login-container {
         width: 90%;
     }
 }
 
 @media (max-width: 700px) {
-    .preRegistration-container {
+    .login-container {
         width: 100%;
     }
 }
 
 @media (orientation: portrait) {
-    .preRegistration-container {
+    .login-container {
         flex-direction: column;
         height: min-content;
         width: 100%;
     }
 
-    .preRegistration-container-left {
+    .login-container-left {
         width: 100%;
         height: 20vh;
         border-radius: 20px 20px 0 0;
     }
     
-    .preRegistration-container-right {
+    .login-container-right {
         width: 100%;
         height: fit-content;
         border-radius: 0 0 20px 20px;
     }
 
-    .preRegistration-container-right-title {
+    .login-container-right-title {
         font-size: max(26px, 4vmin);
     }
 
-    .preRegistration-form input, .preRegistration-state-dropdown-select, .preRegistration-collegeYear-dropdown-select {
+    .login-form input {
         font-size: max(12px, 1.8vmin);
     }
 
-    #preRegistration-form-submit {
+    #login-form-submit {
         font-size: max(13px, 2vmin);
     }
 }
