@@ -35,12 +35,12 @@ function App() {
           <Route path="/past-speakers" element={<Speaker />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/past-sponsors" element={<Sponsors />} />
-          <Route path="/past-events" element={<Events />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/theme" element={<Theme />} />
           <Route path="/register" element={<Register />} />
           <Route path="/pre-register" element={<PreRegistration />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/Event_details" element={<EventDetails />} />
+          <Route path="/event-details" element={<EventDetails />} />
 
           <Route path="/*" element={<Page_404 />} />
         </Routes>

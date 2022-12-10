@@ -10,7 +10,7 @@ const navBarLinks = [
   {
     name: "theme",
     text: "Theme",
-    path: "#themePage",
+    path: "/theme",
     section: "left",
     tabIndex: 2,
   },

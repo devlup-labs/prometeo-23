@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import event_data from "./event_info";
-import "./event_page.css";
+import "./event.css";
 
 import logo from "../assets/navbar/prometeo_logo_23.png";
 import FadeIn from "../components/fadein";
@@ -32,10 +32,7 @@ function createEntry(eventTerm) {
 		return (
 			<Entry
 				key={eventTerm.id}
-				name={eventTerm.name}
-				img={eventTerm.image.replace("0.0.0.0:8888", "apiv.prometeo.in")}
-				prize={eventTerm.prize}
-				date={eventTerm.date}
+				event={eventTerm}
 			/>
 		)
 	}
@@ -43,32 +40,50 @@ function createEntry(eventTerm) {
 }
 
 function Entry(props) {
-	// console.log(props)
+	const event = props.event;
+	// console.log("Event:", event)
 	return (
-		<a className="event_Card" href="#">
-			<div
-				className="event_Card-background"
+		<div className="event_Card">
+			<div className="event_Card-background" 
 				style={{
-					backgroundImage: `url(${props.img})`,
+					backgroundImage: `url(${event.image.replace("0.0.0.0:8888", "apiv.prometeo.in")})`
 				}}
-			>
-				{/*  <div class="blue_layer"></div>     blue layer on hover*/}
-			</div>
+			></div>
 			<div className="event_Card-content">
 				{/* <div className="card"></div> */}
-				<h3 className="event_Card-heading">{props.name}</h3>
+				<h3 className="event_Card-heading">{event.name}</h3>
 
 				<div className="event_Card-info">
-					<h1 className="event_Card-date">{props.date}</h1>
+					<h1 className="event_Card-date">{event.date}</h1>
 					{
-						(props.prize && props.prize !== "NA") && 
-						<h3 className="event_Card-prize">Prize {props.prize}</h3>
+						(event.prize && event.prize !== "NA") && 
+						<h3 className="event_Card-prize">Prize {event.prize}</h3>
 					}
 				</div>
 			</div>
-			{/* <button className="button1">Register</button>
-			<button className="button2">View More</button> */}
-		</a>
+			<div id="buttons">
+				{/* <Link 
+					id="button1"
+					// to={{
+					// 	pathname: '/event-details/',
+					// 	search: `?id=${event.id}`,
+					// }}
+				>
+					Register
+				</Link> */}
+				{/* <button className="button2">View more</button> */}
+				<Link 
+					id="button2"
+					to={{
+						pathname: '/event-details/',
+						search: `?id=${event.id}&name=${event.name}`,
+					}}
+					state = {event}
+				>
+					View More
+				</Link>
+			</div>
+		</div>
 	);
 }
 
@@ -106,7 +121,7 @@ function Events() {
 					setEventData([
 						...data
 					]);
-					// console.log(data);
+					console.log("Data:", data);
 				})
 				.catch((error) => {
 					console.error("Error:", error);
@@ -122,11 +137,17 @@ function Events() {
 					{
 						urlParams.get("type") 
 						? eventTypeToName[urlParams.get("type")]
-						: "Past Events"
+						: "Events"
 					}
 				</h2>
 				<section className="event_Hero-section">
-					<div className="event_Card-grid">{eventData.map(createEntry)}</div>
+					{
+						(eventData.length > 0) ?
+						<div className="event_Card-grid">{eventData.map(createEntry)}</div> :
+						<div className="event_Card-coming-soon">
+							Coming Soon
+						</div>
+					}
 				</section>
 				{/* <div className="event_cards">{event_data.map(createEntry)}</div> */}
 			</div>
