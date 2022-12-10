@@ -26,6 +26,7 @@ djangorestframework-simplejwt = "*"
 django-import-export = "*"
 psycopg2-binary = "*"
 pysocks = "*"
+djangorestframework-jwt = "*"
 
 [dev-packages]
 
