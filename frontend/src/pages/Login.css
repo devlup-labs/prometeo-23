@@ -1,21 +1,269 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Josefin+Sans&family=Teko:wght@300&display=swap');
+.preRegistration {
+	font-family: 'Josefin Sans', sans-serif;
+	overflow-y: auto;
+	box-sizing: border-box;
+	padding: 0 1vw;
+	width: 100vw;
+	height: 90vh;
+	background: rgb(16, 28, 39);
+	background: radial-gradient(circle, rgba(16, 28, 39, 1) 10%, rgba(0, 0, 0, 1) 90%);
+    /* background-image: url('../assets/homePage/background_pattern_t4.png'); */
+	/* background-repeat: repeat; */
+	/* background-size: 20%; */
+	min-height: 90vh;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-#login {
-    height: 90vh;
+.preRegistration-container {
+    height: max-content;
+    width: 70%;
+    box-sizing: border-box;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* padding: 5vh 3vw; */
+    box-shadow: 0 0 10px 0 rgba(35, 82, 126, 0.5);
+    border-radius: 20px;
+    /* border: 1px solid #84f4eb; */
+}
+
+.preRegistration-container-left {
+    width: 47%;
+    height: 100%;
+    background-size: contain;
+    border-radius: 20px 0 0 20px;
+    /* border: 1px solid whitesmoke; */
+    /* border-right: none; */
+    overflow: hidden;
+}
+
+.preRegistration-container-left img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.preRegistration-container-right {
+    position: relative;
+    height: 100%;
+    width: 53%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2vh 4vw;
+    background-color: #101c27;
+    border-radius: 0 20px 20px 0;
+    overflow: hidden;
+}
+
+.preRegistration-container-right-title {
+	color: #84f4eb;
+	font-family: 'Share Tech', sans-serif;
+    font-size: 4vmin;
+    padding-bottom: 3vh;
+}
+
+.preRegistration-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#login-text {
+.preRegistration-container-right-title, .preRegistration-form {
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.preRegistration-form input {
+    width: 100%;
+}
+
+.preRegistration-state-dropdown {
     box-sizing: border-box;
-    padding: 10vh 0;
-    color: white;
-    /* height: 100vh; */
-    /* width: "100vw"; */
+    width: 100%;
     display: flex;
-    font-family: "Josefin Sans", sans-serif;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.preRegistration-state-dropdown-label {
+    height: 100%;
+    width: 40%;
+    color: #63ccf5;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+.preRegistration-state-dropdown-select {
+    width: 60%;
+}
+
+.preRegistration-collegeYear-dropdown {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.preRegistration-collegeYear-dropdown-label {
+    height: 100%;
+    width: 40%;
+    color: #63ccf5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.preRegistration-collegeYear-dropdown-select {
+    width: 60%;
+}
+
+.preRegistration-form input, .preRegistration-state-dropdown-select, .preRegistration-collegeYear-dropdown-select {
+    box-sizing: border-box;
+    height: 5vh;
+    margin: 8px 0;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.8vmin;
+    font-family: 'Josefin Sans', sans-serif;
+    color: black;
+    background-color: rgb(151, 189, 185);
+}
+
+.preRegistration-form input:focus, .preRegistration-state-dropdown-select:focus, .preRegistration-collegeYear-dropdown-select:focus {
+    outline: 3px solid #84f4eb;
+}
+
+.preRegistration-form input::placeholder, .preRegistration-state-dropdown-select::placeholder, .preRegistration-collegeYear-dropdown-select::placeholder {
+    color: #3c3b3b;
+}
+
+#preRegistration-form-submit {
+    width: 40%;
+    height: 5vh;
+    margin: 15px 0 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 2vmin;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #63ccf5;
+    color: #101c27;
+}
+
+#preRegistration-form-submit:hover {
+    background-color: #63ccf5e4;
+    cursor: pointer;
+}
+
+.preRegistration-form-success {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin: 0;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+	color: #84f4eb;
+	font-family: 'Share Tech', sans-serif;
+    font-size: 3vmin;
+    padding: 1vh 2vw;
+}
+
+.google-button{
+	display: flex;
+	white-space: nowrap;
+	/* margin-left:0% !important; */
+}
+
+.form-google-signin{
+	width: 240px !important;
+    height: 5vh !important;
+    margin: 15px 0 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 20px !important;
+    font-weight: 700;
+    font-size: 2vmin;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #ffffff !important;
+    color: #101c27;
+}
+
+.google-button{
+	margin: auto;
+}
+
+.google-img{
+    width: 28px;
+	height:28px;
+	margin-top: 18px;
+    margin-left: -35px;
+	padding-right: 1px;
+}
+
+.preRegistration-form-success-gif {
+    margin-bottom: 1vmin;
+}
+
+@media (max-width: 1000px) {
+    .preRegistration-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 700px) {
+    .preRegistration-container {
+        width: 100%;
+    }
+}
+
+@media (orientation: portrait) {
+    .preRegistration-container {
+        flex-direction: column;
+        height: min-content;
+        width: 100%;
+    }
+
+    .preRegistration-container-left {
+        width: 100%;
+        height: 20vh;
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .preRegistration-container-right {
+        width: 100%;
+        height: fit-content;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .preRegistration-container-right-title {
+        font-size: max(26px, 4vmin);
+    }
+
+    .preRegistration-form input, .preRegistration-state-dropdown-select, .preRegistration-collegeYear-dropdown-select {
+        font-size: max(12px, 1.8vmin);
+    }
+
+    #preRegistration-form-submit {
+        font-size: max(13px, 2vmin);
+    }
 }

@@ -1,9 +1,10 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 from .models import Carousel, Theme, Sponsors, SponsorDesignation
 
 
 @admin.register(Carousel)
-class CarouselAdmin(admin.ModelAdmin):
+class CarouselAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['id', 'name', 'active', ]
     list_filter = ['active', ]
 
@@ -13,7 +14,7 @@ class CarouselAdmin(admin.ModelAdmin):
 
 
 @admin.register(Theme)
-class ThemeAdmin(admin.ModelAdmin):
+class ThemeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['id', 'name' ]
 
     class Meta:
@@ -25,7 +26,7 @@ class SponsorsAdmin(admin.StackedInline):
     model = Sponsors
 
 
-class SponsorsDesignationAdmin(admin.ModelAdmin):
+class SponsorsDesignationAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     model = SponsorDesignation
     list_display = ['sponsor_type']
     inlines = [SponsorsAdmin, ]
