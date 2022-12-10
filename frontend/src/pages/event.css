@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Poppins:600");
 @import url("https://fonts.googleapis.com/css2?family=Exo+2&family=Teko:wght@300&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Josefin+Sans&family=Teko:wght@300&display=swap');
+
 #eventsPage {
   overflow-y: auto;
   box-sizing: border-box;
@@ -61,6 +63,10 @@ body {
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 .event_Hero-section {
   /* align-items: flex-start; */
   /* background-image: linear-gradient(15deg, #0f4667 0%, #2a6973 150%); */
@@ -89,6 +95,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  font-family: "Josefin Sans", sans-serif;
   width: 100%;
   height: 100%;
   color: white;
@@ -230,6 +237,7 @@ body {
   height: 70%;
   width: 45%;
   /* padding: 1vmin; */
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -238,7 +246,7 @@ body {
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Exo 2", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   background: #13bed4;
   transition: all 0.2s;
 }

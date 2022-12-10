@@ -118,7 +118,8 @@ function Details(props) {
             </div>
         </div>
     );
-}
+  }
+
 
 function EventDetails() {
     const [eventSponsor, setEventSponsor] = useState([]);
