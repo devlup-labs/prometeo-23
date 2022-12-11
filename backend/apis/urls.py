@@ -1,5 +1,6 @@
 from django.urls import path,include
 from .views import *
+from . import views
 from rest_framework import routers
 # from users.views import SignUpViewSet
 from django.contrib import admin
@@ -32,11 +33,9 @@ router.register("preregistration",PreRegistrationViewSet)
 
 router.register("signup",ExtendedUserViewSet)
 
-# router.register("login",MyObtainTokenPairView, basename='login')
-
 urlpatterns=[
     path(r'',include(router.urls)), 
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('login/', MyObtainTokenPairView.as_view(), name='login'),
+    path('login/', views.UserLoginView.as_view(), name='login'),
 ]
