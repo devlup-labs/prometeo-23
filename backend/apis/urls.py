@@ -37,5 +37,5 @@ urlpatterns=[
     path(r'',include(router.urls)), 
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('login/', MyObtainTokenPairView.as_view(), name='login'),
+    path('login/', views.UserLoginView.as_view(), name='login'),
 ]
