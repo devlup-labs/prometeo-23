@@ -61,7 +61,7 @@ function Entry(props) {
 					}
 				</div>
 			</div>
-			{/* <div id="buttons"> */}
+			<div id="buttons">
 				{/* <Link 
 					id="button1"
 					// to={{
@@ -72,7 +72,7 @@ function Entry(props) {
 					Register
 				</Link> */}
 				{/* <button className="button2">View more</button> */}
-				{/* <Link 
+				<Link 
 					id="button2"
 					to={{
 						pathname: '/event-details/',
@@ -81,8 +81,8 @@ function Entry(props) {
 					state = {event}
 				>
 					View More
-				</Link> */}
-			{/* </div> */}
+				</Link>
+			</div>
 		</div>
 	);
 }
