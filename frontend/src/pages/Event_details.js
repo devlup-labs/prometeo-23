@@ -55,44 +55,53 @@ function Details(props) {
         <div className="event-details">
             <div className="event-details__header">
                 <div className="event-details__title">
-                  {eventTerm.name}
-                  <div className="event-details__title__underline"></div>
+                    {eventTerm.name}
+                    <div className="event-details__title__underline"></div>
                 </div>
-                {
-                  eventSponsor.length > 0 &&
-                  <div className="event-details__sponsors">
-                    <div className="event-details__sponsors_text">Sponsored by</div>
-                    <div className="event-details__sponsors_images">
-                      {eventSponsor.map((sponsor) => {
-                        return (
-                          <img 
-                            src={
-                              sponsor.image ?
-                              sponsor.image.replace("0.0.0.0:8888", "apiv.prometeo.in") :
-                              ""
-                            }
-                            title={sponsor.name}
-                            alt="Sponsor Image"
-                          />
-                        );
-                      })}
+                {eventSponsor.length > 0 && (
+                    <div className="event-details__sponsors">
+                        <div className="event-details__sponsors_text">
+                            Sponsored by
+                        </div>
+                        <div className="event-details__sponsors_images">
+                            {eventSponsor.map((sponsor) => {
+                                return (
+                                    <img
+                                        src={
+                                            sponsor.image
+                                                ? sponsor.image.replace(
+                                                      "0.0.0.0:8888",
+                                                      "apiv.prometeo.in"
+                                                  )
+                                                : ""
+                                        }
+                                        title={sponsor.name}
+                                        alt="Sponsor Image"
+                                        key={sponsor.id}
+                                    />
+                                );
+                            })}
+                        </div>
                     </div>
-                  </div>
-                }
+                )}
             </div>
             <div className="event-details__body">
                 <div className="event-details__body__left">
-                  <div className="event-details__body__left__image">
-                    <img className="event-details__body__left__image__img"
-                      src={
-                        eventTerm.image ?
-                        eventTerm.image.replace("0.0.0.0:8888", "apiv.prometeo.in") :
-                        ""
-                      } 
-                      alt="Event Image" 
-                    />
-                  </div>
-                  <div className="event-details__body__left__buttons">
+                    <div className="event-details__body__left__image">
+                        <img
+                            className="event-details__body__left__image__img"
+                            src={
+                                eventTerm.image
+                                    ? eventTerm.image.replace(
+                                          "0.0.0.0:8888",
+                                          "apiv.prometeo.in"
+                                      )
+                                    : ""
+                            }
+                            alt="Event Image"
+                        />
+                    </div>
+                    {/* <div className="event-details__body__left__buttons">
                     <Link 
                       to={
                         eventTerm.registration_link || ""
@@ -102,27 +111,46 @@ function Details(props) {
                       <span>REGISTER</span>
                     </Link>
                     <Link className="event-details-rulebook button-64"><span>RULEBOOK</span></Link>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="event-details__body__right">
                     <div className="event-details__body__right__top">
-                        <div className="event-details__body__right__top__on">On <span id="event-details-text">{eventTerm.date}</span></div>
-                        <div className="event-details__body__right__top__prize">Prize Money <span id="event-details-text">{eventTerm.prize}</span></div>
-                        <div className="event-details__body__right__top__participation-type">Participation Type <span id="event-details-text">{eventTerm.participation_type}</span></div>
-                        {
-                          eventTerm.max_team_size > 1 &&
-                          <div className="event-details__body__right__top__teams">Team Size <span id="event-details-text">`${eventTerm.min_team_size}-${eventTerm.max_team_size}`</span></div>
-                        }
+                        <div className="event-details__body__right__top__on">
+                            On{" "}
+                            <span id="event-details-text">
+                                {eventTerm.date}
+                            </span>
+                        </div>
+                        <div className="event-details__body__right__top__prize">
+                            Prize Money{" "}
+                            <span id="event-details-text">
+                                {eventTerm.prize}
+                            </span>
+                        </div>
+                        <div className="event-details__body__right__top__participation-type">
+                            Participation Type{" "}
+                            <span id="event-details-text">
+                                {eventTerm.participation_type}
+                            </span>
+                        </div>
+                        {eventTerm.max_team_size > 1 && (
+                            <div className="event-details__body__right__top__teams">
+                                Team Size{" "}
+                                <span id="event-details-text">
+                                    {eventTerm.min_team_size}-
+                                    {eventTerm.max_team_size}
+                                </span>
+                            </div>
+                        )}
                     </div>
                     <div className="event-details__body__right__bottom">
-                      { eventTerm.description }
+                        {eventTerm.description}
                     </div>
                 </div>
             </div>
         </div>
     );
-  }
-
+}
 
 function EventDetails() {
     const [eventSponsor, setEventSponsor] = useState([]);
@@ -154,8 +182,8 @@ function EventDetails() {
                     data = data.filter(
                         (item) => item.id == urlParams.get("id")
                     );
-                    setEventInfo([...data]);
-                    // console.log("Data:", data);
+                    setEventInfo(data[0]);
+                    // console.log("Data:", data[0]);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -169,10 +197,14 @@ function EventDetails() {
             //   console.log("pewpewpew");
             setEventInfo(card);
         } else {
-            //   console.log("pewpewpew2");
+            // console.log("pewpewpew2");
             fetchData();
         }
     }, []);
+
+    // useEffect(() => {
+    //   console.log("data fetched: ", eventInfo);
+    // }, [eventInfo]);
 
     useEffect(() => {
         async function fetchData2() {
@@ -195,7 +227,7 @@ function EventDetails() {
                         (item) => item.event == urlParams.get("id")
                     );
                     setEventSponsor([...data]);
-                    console.log("Data:", data);
+                    // console.log("Data:", data);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
