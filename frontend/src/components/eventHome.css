@@ -1,8 +1,8 @@
 #eventHome-container {
     position: relative;
     width: 100vw;
-    height: 80vh;
-    padding: 5vh 2vw 0 2vw;
+    height: 90vh;
+    /* padding: 5vh 2vw 0 2vw; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,10 +23,10 @@
     /* add text shadow */
     text-shadow: 0 2px 5px black;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
     padding: 3vmin;
-    padding-bottom: 0;
+    padding-top: 0;
     /* line height */
     line-height: 1.3;
     z-index: 1;
@@ -63,7 +63,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 #eventHome-title {
@@ -73,7 +73,7 @@
     /* padding-left: 5vmin; */
     /* margin-bottom: 5vmin; */
     font-family: Gentona;
-    font-size: 10vmin;
+    font-size: 15vmin;
     text-align: right;
 }
 
@@ -84,9 +84,10 @@
 
 #eventHome-image-img {
     position: absolute;
-    left: 0;
+    left: -10%;
+    bottom: 0;
     /* height: 100%; */
-    width: 40%;
+    width: 60%;
     object-fit: cover;
     /* max-height: 300px; */
 }
@@ -99,17 +100,30 @@
     justify-content: center;
 }
 
-#eventHome-eventCircles > div {
+#eventHome-eventCircles > a {
     position: relative;
-    width: 25vmin;
-    height: 25vmin;
-    margin: 1vmin max(0.5vmin, calc(calc(100% - 2*25vmin) / 4));
+    width: 30vmin;
+    height: 30vmin;
+    margin: 1vmin max(0.5vmin, calc(calc(100% - 2*30vmin) / 4));
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 42% 56% 72% 28% / 42% 42% 56% 28%;
     overflow: hidden;
     /* border: 2px solid red; */
+    animation: eventBlob 10s ease-in-out infinite;
+}
+
+#eventHome-eventCircle1 {
+    animation-delay: 0ms !important;
+}
+
+#eventHome-eventCircle2 {
+    animation-delay: 3000ms !important;
+}
+
+#eventHome-eventCircle3 {
+    animation-delay: 5000ms !important;
 }
 
 .eventHome-eventCircle-gradient {
@@ -117,13 +131,45 @@
     top: 0;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 2;
     background-image: linear-gradient(to right, #3437a270, #8223e170);
+    color: transparent;
+    user-select: none;
+    text-shadow: none;
+    text-align: center;
 }
 
-#eventHome-eventCircles > div > img {
+.eventHome-eventCircle-gradient:hover {
+    text-shadow: 0 2px 5px black;
+    color: white;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #3438a290, #8223e190);
+}
+
+#eventHome-eventCircles > a:hover {
+    box-shadow: 3px 3px 6px 3px #6712b6;
+}
+
+#eventHome-eventCircles > a > img {
     z-index: 1;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+@keyframes eventBlob {
+    0%, 100% {
+        border-radius: 42% 56% 72% 28% / 42% 42% 56% 28%;
+    }
+
+    33% {
+        border-radius: 42% 28% 48% 48% / 28% 28% 72% 72%;
+    }
+
+    66% {
+        border-radius: 100% 56% 56% 100% / 100% 100% 56% 56%;
+    }
 }

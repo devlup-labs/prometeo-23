@@ -62,18 +62,21 @@ function Details(props) {
                   eventSponsor.length > 0 &&
                   <div className="event-details__sponsors">
                     <div className="event-details__sponsors_text">Sponsored by</div>
-                    {eventSponsor.map((sponsor) => {
-                      return (
-                        <img 
-                          src={
-                            sponsor.image ?
-                            sponsor.image.replace("0.0.0.0:8888", "apiv.prometeo.in") :
-                            ""
-                          }
-                          alt="Sponsor Image"
-                        />
-                      );
-                    })}
+                    <div className="event-details__sponsors_images">
+                      {eventSponsor.map((sponsor) => {
+                        return (
+                          <img 
+                            src={
+                              sponsor.image ?
+                              sponsor.image.replace("0.0.0.0:8888", "apiv.prometeo.in") :
+                              ""
+                            }
+                            title={sponsor.name}
+                            alt="Sponsor Image"
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
                 }
             </div>
