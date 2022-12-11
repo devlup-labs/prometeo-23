@@ -112,7 +112,12 @@ function Details(props) {
                         )}
                         {eventTerm.rulebook && (
                             <a
-                                href={eventTerm.rulebook || ""}
+                                href={
+                                    eventTerm.rulebook.replace(
+                                        "0.0.0.0:8888",
+                                        "apiv.prometeo.in"
+                                    ) || ""
+                                }
                                 className="event-details-rulebook button-64"
                             >
                                 <span>RULEBOOK</span>
