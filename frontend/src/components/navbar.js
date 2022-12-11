@@ -28,19 +28,26 @@ const navBarLinks = [
     section: "left",
     tabIndex: 4,
   },
+  // {
+  //   name: "team",
+  //   text: "Team",
+  //   path: "/team",
+  //   section: "left",
+  //   tabIndex: 5,
+  // },
   {
     name: "events",
     text: "Events",
     path: "/events",
     section: "right",
-    tabIndex: 5,
+    tabIndex: 6,
   },
   {
     name: "gallery",
     text: "Gallery",
     path: "/gallery",
     section: "right",
-    tabIndex: 6,
+    tabIndex: 7,
   },
   // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
   {
@@ -48,14 +55,14 @@ const navBarLinks = [
     text: "Pre-Register",
     path: "/pre-register",
     section: "right",
-    tabIndex: 7,
+    tabIndex: 8,
   },
   {
     name: "login",
     text: "Login",
     path: "/login",
     section: "right",
-    tabIndex: 8,
+    tabIndex: 9,
   },
 ];
 
