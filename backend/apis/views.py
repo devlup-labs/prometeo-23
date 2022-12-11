@@ -2,8 +2,12 @@ from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from apis.models import *
 from rest_framework import viewsets
+from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication 
+from rest_framework import status
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.response import Response
 from . import permissions
 from .serializers import *
 from home.models import *
@@ -96,3 +100,29 @@ class NewsViewSet(viewsets.ModelViewSet):
 class PreRegistrationViewSet(viewsets.ModelViewSet):
     queryset = PreRegistration.objects.all()
     serializer_class = PreRegistrationSerializers
+
+# class LoginViewSet(viewsets.ViewSet):
+
+#     serializer_class = AuthTokenSerializer
+
+#     def create(self, request):
+
+#         return ObtainAuthToken().post(request)
+
+class UserLoginView(RetrieveAPIView):
+
+    serializer_class = UserLoginSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        response = {
+            'success' : 'True',
+            'status code' : status.HTTP_200_OK,
+            'message': 'User logged in  successfully',
+            'token' : serializer.data['token'],
+            }
+        status_code = status.HTTP_200_OK
+
+        return Response(response, status=status_code)
+    

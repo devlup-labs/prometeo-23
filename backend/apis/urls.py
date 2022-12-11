@@ -1,5 +1,6 @@
 from django.urls import path,include
 from .views import *
+from . import views
 from rest_framework import routers
 # from users.views import SignUpViewSet
 from django.contrib import admin
@@ -31,8 +32,6 @@ router.register("eventsponsors",EventSponsorsViewSet)
 router.register("preregistration",PreRegistrationViewSet)
 
 router.register("signup",ExtendedUserViewSet)
-
-# router.register("login",MyObtainTokenPairView, basename='login')
 
 urlpatterns=[
     path(r'',include(router.urls)), 

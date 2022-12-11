@@ -61,6 +61,7 @@ class ExtendedUser(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True,blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     pass_type = models.IntegerField(default=0)
+    secondary_email = models.EmailField(blank=True, null=True, verbose_name='Secondary Email')
     objects = UserManager()
     REQUIRED_FIELDS = []
 
@@ -109,18 +110,6 @@ class ExtendedUser(AbstractUser):
 
     #     # return token.decode('utf-8')
     #     return jwt.decode(encoded_jwt, "q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9", algorithms=["HS256"])
-
-
-
-# @receiver(post_save, sender=ExtendedUser)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         ExtendedUser.objects.create(user=instance)
-
-
-# @receiver(post_save, sender=ExtendedUser)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.extendeduser.save()
 
 
 class Team(models.Model):
