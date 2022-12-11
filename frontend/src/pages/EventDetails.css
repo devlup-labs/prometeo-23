@@ -122,7 +122,7 @@
     align-items: center;
     justify-content: space-evenly;
 	/* border: 2px solid white; */
-	width: 35%;
+	width: 45%;
 }
 
 .event-details__body__right {
@@ -130,7 +130,7 @@
 	flex-direction: column;
     justify-content: space-evenly;
 	/* border: 2px solid white; */
-	width: 65%;
+	width: 55%;
 }
 
 .event-details__body__right__top {
@@ -146,6 +146,7 @@
 	align-items: center;
     color: blanchedalmond;
 	font-weight: 600;
+    margin-left: 2vmin;
 	/* border: 2px solid white; */
 }
 
@@ -226,6 +227,8 @@
 .button-64:active,
 .button-64:hover {
     outline: 0;
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff;
 }
 
 .button-64 span {
