@@ -16,7 +16,7 @@ import Introduction from "../components/intro";
 import Theme from "../components/Theme";
 import InitiativeHome from "../components/initiativeHome";
 import EventHome from "../components/eventHome";
-import GalleryHome from "../components/galleryHome";
+import StatsHome from "../components/statsHome";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,7 +58,7 @@ export default function HomePage() {
                 <div id="black-filler"></div>
                 <EventHome />
                 <div id="purple-filler"></div>
-                <GalleryHome /> */}
+                <StatsHome /> */}
               </div>
             </div>
           </div>

@@ -62,6 +62,16 @@ a {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#140327",endColorstr="#2f0c5c",GradientType=1);
 }
 
+@media screen and (max-width: 768px) {
+    #black-filler {
+        height: 20%;
+    }
+
+    #purple-filler {
+        height: 20%;
+    }
+}
+
 #loader-gif {
   position: absolute;
   top: 50%;
