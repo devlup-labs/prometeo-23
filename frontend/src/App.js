@@ -49,9 +49,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* <Route path="/event-details" element={<EventDetails />} /> */}
 
-          {/* <Route path="/test-events" element={<EventHome />} /> */}
-          {/* <Route path="/test-gallery" element={<GalleryHome />} /> */}
-          {/* <Route path="/Team" element={<Team />} /> */}
+          {/* <Route path="/test-events" element={<EventHome />} />
+          <Route path="/test-gallery" element={<GalleryHome />} />
+          <Route path="/team" element={<Team />} /> */}
 
           <Route path="/*" element={<Page_404 />} />
         </Routes>

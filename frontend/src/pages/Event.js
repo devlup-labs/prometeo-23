@@ -21,7 +21,7 @@ const eventTypeToName = {
 	"workshop": "Workshops",
 	"poster_presentation": "Poster Presentation",
 	"panel_discussion": "Panel Discussion",
-	"exhibition": "Exhibition",
+	"exhibition": "Tech Carnival",
 }
 
 function createEntry(eventTerm) {
