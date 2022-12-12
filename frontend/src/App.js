@@ -48,7 +48,7 @@ function App() {
                     <Route path="/pre-register" element={<PreRegistration />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/event-details" element={<EventDetails />} />
-                    <Route path="/team" element={<Team />} />
+                    {/* <Route path="/team" element={<Team />} /> */}
 
                     {/* <Route path="/test-events" element={<EventHome />} />
           <Route path="/test-gallery" element={<GalleryHome />} />

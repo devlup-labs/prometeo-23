@@ -28,13 +28,13 @@ const navBarLinks = [
     section: "left",
     tabIndex: 4,
   },
-  {
-    name: "team",
-    text: "Team",
-    path: "/team",
-    section: "left",
-    tabIndex: 5,
-  },
+  // {
+  //   name: "team",
+  //   text: "Team",
+  //   path: "/team",
+  //   section: "left",
+  //   tabIndex: 5,
+  // },
   {
     name: "events",
     text: "Events",
