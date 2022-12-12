@@ -107,10 +107,16 @@
     align-items: flex-start;
     /* border: 2px solid white; */
     font-family: Gentona;
-    font-size: 9vmin;
+    font-size: 13vmin;
     color: #ffe35a;
     padding: 0;
     margin-top: -5vmin;
+}
+
+@media screen and (max-width: 480px) {
+    #initiativeHome-heading {
+		font-size: 17vmin;
+	}
 }
 
 #initiativeHome-subheading {
@@ -123,6 +129,12 @@
     font-size: 5.7vmin;
     padding: 0;
     margin-bottom: -1vmin;
+}
+
+@media screen and (max-width: 480px) {
+    #initiativeHome-subheading {
+		font-size: 7.3vmin;
+	}
 }
 
 #initiativeHome-bottom-section {

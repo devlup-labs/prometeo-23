@@ -5,7 +5,7 @@ export default function Introduction() {
     return (
         <div id="intro-container">
             <div id="intro">
-                <div id="intro-title"><h2>ABOUT</h2></div>
+                <div id="intro-title">ABOUT</div>
                 <div id="intro-section-2">
                     <div id="intro-text">
                         Prometeo 2023 is the third edition of IIT Jodhpur's

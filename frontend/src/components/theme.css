@@ -104,12 +104,18 @@
 	justify-content: flex-end;
 	text-align: right;
 	font-family: Gentona;
-    font-size: 9vmin;
+    font-size: 13vmin;
 	padding-right: 8vmin;
     padding-top: 6vmin;
     color: #ffe35a;
 	z-index: 1;
     user-select: none;
+}
+
+@media screen and (max-width: 480px) {
+	.themeHeader {
+		font-size: 17vmin;
+	}
 }
 
 #themeColumns {

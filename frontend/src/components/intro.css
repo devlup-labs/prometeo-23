@@ -106,12 +106,18 @@
     padding-top: 4vmin;
     /* margin-bottom: 5vmin; */
     font-family: Gentona;
-    font-size: 9vmin;
+    font-size: 13vmin;
     color: #ffe35a;
     z-index: 1;
     display: flex;
     align-items: center;
     user-select: none;
+}
+
+@media screen and (max-width: 480px) {
+	#intro-title {
+		font-size: 17vmin;
+	}
 }
 
 #intro-section-2 {
