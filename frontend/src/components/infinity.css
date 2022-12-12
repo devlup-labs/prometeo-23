@@ -32,8 +32,6 @@
     color: white;
     width: fit-content;
     height: 100%;
-    font-family: Gentona;
-    font-size: 9vmin;
     text-shadow: 0 2px 5px black;
     display: flex;
     flex-direction: column;
@@ -51,6 +49,15 @@
 
 #infinity-text {
     width: fit-content;
+    font-family: Gentona;
+    font-size: 9vmin;
+    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+    #infinity-text {
+        font-size: 12vmin;
+    }
 }
 
 #infinity-yellow {
