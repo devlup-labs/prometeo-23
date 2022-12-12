@@ -13,47 +13,43 @@ function Theme(props) {
         <FadeIn duration={500}>
             <div id="themePage" className="contentDiv">
                 <div className="themeContent">
-                    <div className="themeHeader">
-                        <h2>THEME</h2>
-                    </div>
-                    <div id="themeColumns">
-                        <div className="themeColumn">
-                            <div className="video-box d-flex justify-content-center">
-                                <div className="theme-video-container">
-                                    <iframe
-                                        className="responsive-iframe"
-                                        src="https://www.youtube.com/embed/GdNceDHonLU?rel=0"
-                                        title="Prometeo'23 | IIT Jodhpur"
-                                        frameBorder="0"
-                                        allowFullScreen="allowfullscreen"
-                                    ></iframe>
-                                </div>
+                    <div className="themeColumn">
+                        <div className="video-box d-flex justify-content-center">
+                            <div className="theme-video-container">
+                                <iframe
+                                    className="responsive-iframe"
+                                    src="https://www.youtube.com/embed/GdNceDHonLU?rel=0"
+                                    title="Prometeo'23 | IIT Jodhpur"
+                                    frameBorder="0"
+                                    allowFullScreen="allowfullscreen"
+                                ></iframe>
                             </div>
                         </div>
-                        <div className="themeColumn">
-                            <p align="justify">
-                                {/* <b> Origin to Infinity </b>: */}
-                                <br /> Technology has been the heart of the
-                                development of the human race from the very
-                                beginning and is speculated to be its heart till
-                                infinity. The theme of Prometeo 2023,
-                                <b> “Origin to Infinity” </b>is centered around the
-                                same thought where we explore what technology has
-                                been in the past, what it is now and what it can be
-                                in the future. This year we are going to explore the
-                                past and future of technological and entrepreneurial
-                                developments through a wide range of ideas developed
-                                and presented during the course of Prometeo'23.
-                                <br /> How did it all start? How did technology and
-                                economics reach where it is today? What will it look
-                                like in the future? Will we ever reach a saturation
-                                point?
-                                <br /> We, the team of Prometeo'23 invites you all
-                                to join us and participate in Prometeo'23 and
-                                explore the answers to all these questions through
-                                your participation, ideation and dedication.
-                            </p>
-                        </div>
+                    </div>
+                    <div className="themeColumn">
+                        <h2>THEME</h2>
+                        <p align="justify">
+                            {/* <b> Origin to Infinity </b>: */}
+                            <br /> Technology has been the heart of the
+                            development of the human race from the very
+                            beginning and is speculated to be its heart till
+                            infinity. The theme of Prometeo 2023,
+                            <b> “Origin to Infinity” </b>is centered around the
+                            same thought where we explore what technology has
+                            been in the past, what it is now and what it can be
+                            in the future. This year we are going to explore the
+                            past and future of technological and entrepreneurial
+                            developments through a wide range of ideas developed
+                            and presented during the course of Prometeo'23.
+                            <br /> How did it all start? How did technology and
+                            economics reach where it is today? What will it look
+                            like in the future? Will we ever reach a saturation
+                            point?
+                            <br /> We, the team of Prometeo'23 invites you all
+                            to join us and participate in Prometeo'23 and
+                            explore the answers to all these questions through
+                            your participation, ideation and dedication.
+                        </p>
                     </div>
                 </div>
             </div>
