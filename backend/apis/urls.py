@@ -33,6 +33,8 @@ router.register("preregistration",PreRegistrationViewSet)
 
 router.register("signup",ExtendedUserViewSet)
 
+router.register("team",TeamViewSet)
+
 urlpatterns=[
     path(r'',include(router.urls)), 
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

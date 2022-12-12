@@ -1,12 +1,13 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.models import update_last_login
 from home.models import *
 from events.models import *
 from coordinator.models import *
 from users.models import *
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
+import uuid
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -76,6 +77,43 @@ class TeamSerializers(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = '__all__'
+        extra_kwargs = {'id' : {'read_only' : True},
+                        'isEligible' : {'read_only' : True}}
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+        # u = get_object_or_404(ExtendedUser, user=user)      
+        # if ExtendedUser.objects.filter(self.context['request'].user).exists():
+        team = Team.objects.create(
+        id = 'PRO' + str(uuid.uuid4().int)[:6],
+        name = validated_data['name'],
+        leader = self.context['request'].user,
+        event = validated_data['event'],
+        )
+        team.members.add(user)
+        team.isEligible()
+        
+        team.save()
+
+        return team
+       
+
+    def update(self,validate_data):
+        user = self.context['request'].user
+        team = Team.objects.filter(name=validate_data['name'])
+        if Team.objects.filter(name=validate_data['name']).exists():
+            if team.members.all().count() < team.event.max_team_size:
+                team.members.add(user)
+                team.save()
+                return team
+            else :
+                return team
+        
+        else:
+            return team
+
+
+        
 
 class SubmissionsSerializers(serializers.ModelSerializer):
     class Meta:
