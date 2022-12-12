@@ -10,7 +10,7 @@ const navBarLinks = [
   {
     name: "theme",
     text: "Theme",
-    path: "/theme",
+    path: "#theme",
     section: "left",
     tabIndex: 2,
   },
@@ -127,7 +127,7 @@ function Navbar() {
       </nav>
 
       <div className="navbar-logo">
-        <Link to="/" tabIndex={1}>
+        <a href="#home" tabIndex={1}>
           <img
             id="navbar-logo-img"
             src={PrometeoLogo}
@@ -138,7 +138,7 @@ function Navbar() {
               }
             }}
           />
-        </Link>
+        </a>
       </div>
 
       <nav className="navbar-right-section">

@@ -15,7 +15,7 @@ function Theme(props) {
     return (
         <FadeIn duration={500}>
             <div id="themePage" className="contentDiv">
-                <div className="themeContent">
+                <div className="themeContent" id="theme">
                     <div className="themeHeader">
                         <h2>THEME</h2>
                     </div>

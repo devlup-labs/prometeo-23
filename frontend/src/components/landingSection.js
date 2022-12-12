@@ -12,7 +12,7 @@ export default function LandingSection() {
         clock();
     }, []);
     return (
-        <div id="landing-container">
+        <div className="landing-container" id="home">
             <div id="landing">
                 <div id="landing-image">
                     <img
