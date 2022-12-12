@@ -28,13 +28,13 @@ const navBarLinks = [
     section: "left",
     tabIndex: 4,
   },
-  // {
-  //   name: "team",
-  //   text: "Team",
-  //   path: "/team",
-  //   section: "left",
-  //   tabIndex: 5,
-  // },
+  {
+    name: "team",
+    text: "Team",
+    path: "/team",
+    section: "left",
+    tabIndex: 5,
+  },
   {
     name: "events",
     text: "Events",
@@ -127,7 +127,7 @@ function Navbar() {
       </nav>
 
       <div className="navbar-logo">
-        <a href="#home" tabIndex={1}>
+        <Link to="/" tabIndex={1}>
           <img
             id="navbar-logo-img"
             src={PrometeoLogo}
@@ -138,7 +138,7 @@ function Navbar() {
               }
             }}
           />
-        </a>
+        </Link>
       </div>
 
       <nav className="navbar-right-section">

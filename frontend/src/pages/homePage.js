@@ -19,6 +19,7 @@ import InitiativeHome from "../components/initiativeHome";
 import EventHome from "../components/eventHome";
 import StatsHome from "../components/statsHome";
 import Infinity from "../components/infinity";
+import Footer from "../components/footer";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -71,6 +72,7 @@ export default function HomePage() {
                 <StatsHome />
                 <div id="purple-filler-reverse"></div>
                 <Infinity />
+                <Footer />
               </div>
           </FadeIn>
         )
