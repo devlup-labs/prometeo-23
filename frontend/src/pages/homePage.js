@@ -19,6 +19,7 @@ import InitiativeHome from "../components/initiativeHome";
 import EventHome from "../components/eventHome";
 import StatsHome from "../components/statsHome";
 
+
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);

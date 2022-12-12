@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-// import 'bootstrap/dist/css/bootstrap.css';
-// 1) first install npm install bootstrap
-// 2) Put any other imports below so that CSS from your components takes precedence over default styles.
+
 import "./theme.css";
 import FadeIn from "../components/fadein";
 
@@ -10,7 +8,6 @@ function Theme(props) {
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
-        // document.body.style.overflow = "auto";
     });
     return (
         <FadeIn duration={500}>
