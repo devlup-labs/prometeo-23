@@ -1,4 +1,4 @@
-#landing-container {
+.landing-container {
     box-sizing: border-box;
     height: 100%;
     min-height: 90vh;
@@ -68,6 +68,7 @@
     /* top: -10vmin; */
     height: 40vmin;
     max-height: 300px;
+    user-select: none;
 }
 
 #landing-text {

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
 
 #initiativeHome-container {
     box-sizing: border-box;
@@ -69,6 +69,24 @@
     #initiativeHome::before {
         height: 95%;
         padding: 0;
+        background: -moz-linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
+        background: -webkit-linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
+        background: linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
     }
 }
 
@@ -78,31 +96,45 @@
     padding: 7vmin 0 0 7vmin;
     user-select: none;
     z-index: 1;
-    /* margin-bottom: 2vmin; */
+    margin-bottom: 2vmin;
     /* font-family: Gentona;
     font-size: 10vmin; */
 }
 
 #initiativeHome-heading {
-    height: 8vmin;
+    height: fit-content;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     /* border: 2px solid white; */
     font-family: Gentona;
-    font-size: 10vmin;
+    font-size: 13vmin;
     color: #ffe35a;
     padding: 0;
+    margin-top: -5vmin;
+}
+
+@media screen and (max-width: 480px) {
+    #initiativeHome-heading {
+		font-size: 17vmin;
+	}
 }
 
 #initiativeHome-subheading {
-    height: 4vmin;
+    height: fit-content;
     display: flex;
     align-items: center;
     /* border: 2px solid white; */
     font-family: Kanit;
     font-weight: 300;
-    font-size: 4.25vmin;
+    font-size: 5.7vmin;
     padding: 0;
+    margin-bottom: -1vmin;
+}
+
+@media screen and (max-width: 480px) {
+    #initiativeHome-subheading {
+		font-size: 7.3vmin;
+	}
 }
 
 #initiativeHome-bottom-section {
@@ -116,6 +148,7 @@
     #initiativeHome-bottom-section {
         flex-direction: column-reverse;
         margin-top: 4vmin;
+        padding-bottom: 3vmin;
     }
 }
 
@@ -131,7 +164,14 @@
 
 @media screen and (max-width: 768px) {
     #initiativeHome-description {
-        font-size: 3vmin;
+        font-size: 3.6vmin;
+        padding: 3vmin 8vmin 3vmin 6vmin;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #initiativeHome-description {
+        font-size: 4.7vmin;
     }
 }
 
