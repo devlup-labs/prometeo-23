@@ -33,7 +33,7 @@
 	border-radius: 5px;
 	z-index: 1;
 	background: inherit;
-    text-shadow: 0 2px 5px black;
+    text-shadow: 0 3px 3px black;
 	/* margin-bottom: 3%; */
 	/* border: 1px solid white; */
 	/* overflow: hidden; */
@@ -76,6 +76,7 @@
 	font-family: Gentona;
     font-size: 10vmin;
 	padding-right: 7vmin;
+    color: #ffe35a;
 }
 
 .themeColumn p {

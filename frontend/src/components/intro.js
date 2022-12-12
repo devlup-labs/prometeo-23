@@ -1,5 +1,5 @@
 import "./intro.css";
-import comp from "../assets/homePage/caveman2.png";
+import logo_stone from "../assets/homePage/logo_stone.png";
 
 export default function Introduction() {
     return (
@@ -17,7 +17,7 @@ export default function Introduction() {
                     </div>
                 </div>
                 <div id="intro-section-2">
-                    <img id="the-image-img2" src={comp} alt="image" />
+                    <img id="the-image-img2" src={logo_stone} alt="image" />
                 </div>
             </div>
         </div>

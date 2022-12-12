@@ -87,31 +87,43 @@ function Details(props) {
             </div>
             <div className="event-details__body">
                 <div className="event-details__body__left">
-                    <div className="event-details__body__left__image">
-                        <img
-                            className="event-details__body__left__image__img"
-                            src={
-                                eventTerm.image
-                                    ? eventTerm.image.replace(
-                                          "0.0.0.0:8888",
-                                          "apiv.prometeo.in"
-                                      )
-                                    : ""
-                            }
-                            alt="Event Image"
-                        />
+                    {/* <div className="event-details__body__left__image"> */}
+                    <img
+                        className="event-details__body__left__image__img"
+                        src={
+                            eventTerm.image
+                                ? eventTerm.image.replace(
+                                      "0.0.0.0:8888",
+                                      "apiv.prometeo.in"
+                                  )
+                                : ""
+                        }
+                        alt="Event Image"
+                    />
+                    {/* </div> */}
+                    <div className="event-details__body__left__buttons">
+                        {eventTerm.external_link && (
+                            <a
+                                href={eventTerm.external_link || ""}
+                                className="event-details-register button-64"
+                            >
+                                <span>REGISTER</span>
+                            </a>
+                        )}
+                        {eventTerm.rulebook && (
+                            <a
+                                href={
+                                    eventTerm.rulebook.replace(
+                                        "0.0.0.0:8888",
+                                        "apiv.prometeo.in"
+                                    ) || ""
+                                }
+                                className="event-details-rulebook button-64"
+                            >
+                                <span>RULEBOOK</span>
+                            </a>
+                        )}
                     </div>
-                    {/* <div className="event-details__body__left__buttons">
-                    <Link 
-                      to={
-                        eventTerm.registration_link || ""
-                      }
-                      className="event-details-register button-64"
-                    >
-                      <span>REGISTER</span>
-                    </Link>
-                    <Link className="event-details-rulebook button-64"><span>RULEBOOK</span></Link>
-                  </div> */}
                 </div>
                 <div className="event-details__body__right">
                     <div className="event-details__body__right__top">
@@ -143,8 +155,30 @@ function Details(props) {
                             </div>
                         )}
                     </div>
+                    <hr className="event-details__body__right__bottom1__hr" />
                     <div className="event-details__body__right__bottom">
-                        {eventTerm.description}
+                        {eventTerm.description && (
+                            <>
+                                <p id="event-content-heading">Description</p>
+                                <div className="event-details__body__right__bottom2">
+                                    {eventTerm.description}
+                                </div>
+                                <hr className="event-details__body__right__bottom1__hr" />
+                            </>
+                        )}
+                        {eventTerm.problem_statement && (
+                            <>
+                                <p id="event-content-heading">
+                                    Problem Statement
+                                </p>
+                                <div
+                                    className="event-details__body__right__bottom1"
+                                    dangerouslySetInnerHTML={{
+                                        __html: eventTerm.problem_statement,
+                                    }}
+                                ></div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

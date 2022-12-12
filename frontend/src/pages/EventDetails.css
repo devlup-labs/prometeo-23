@@ -116,6 +116,13 @@
 	/* border: 2px solid red; */
 }
 
+@media screen and (max-width: 900px) {
+    .event-details__body {
+        flex-direction: column;
+    }
+     
+}
+
 .event-details__body__left {
 	display: flex;
 	flex-direction: column;
@@ -123,6 +130,14 @@
     justify-content: space-evenly;
 	/* border: 2px solid white; */
 	width: 45%;
+    max-height: 500px;
+}
+
+@media screen and (max-width: 900px) {
+    .event-details__body__left {
+        width: 100%;
+        /* max-height: 100vh; */
+    }
 }
 
 .event-details__body__right {
@@ -133,12 +148,24 @@
 	width: 55%;
 }
 
+@media screen and (max-width: 900px) {
+    .event-details__body__right {
+        width: 100%;
+    }
+}
+
 .event-details__body__right__top {
     font-size: 3vmin !important;
 	width: 100%;
 	display: flex;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
+}
+
+@media screen and (max-width: 900px) {
+    .event-details__body__right__top {
+        font-size: 4vmin !important;
+    }
 }
 
 .event-details__body__right__top * {
@@ -168,8 +195,17 @@
 }
 
 .event-details__body__left__image__img {
-	width: 80%;
-    object-fit: cover;
+	/* width: 30%; */
+    max-width: 30vw;
+    max-height: 70%;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 900px) {
+    .event-details__body__left__image__img {
+        max-width: 80vw;
+        max-height: 70vh;
+    }
 }
 
 .event-details__body__right__bottom {
@@ -178,8 +214,37 @@
 	line-height: 1.5;
 }
 
+#event-content-heading {
+    color: white;
+    font-family: Gentona;
+    font-weight: 300;
+    font-size: 5vmin !important;
+    text-shadow: 0 2px 10px black;
+}
+
+.event-details__body__right__bottom1 {
+    font-size: 3vmin;
+}
+
+.event-details__body__right__bottom1 * {
+    margin-left: 2vmin;
+}
+
+.event-details__body__right__bottom1 h3 {
+    font-weight: 600;
+    color: blanchedalmond;
+    font-size: 4vmin;
+    margin-left: 0;
+}
+
+.event-details__body__right__bottom1 strong {
+    margin-right: 1vmin;
+    text-decoration: underline;
+    margin-left: auto;
+}
+
 .event-details__body__left__buttons {
-    size: 3%;
+    /* size: 3%; */
     font-size: 2em;
     padding: 3px;
     margin: 5px;
@@ -191,6 +256,12 @@
     justify-content: center;
     /* white-space: nowrap; */
     /* display: inline-block; */
+}
+
+@media screen and (max-width: 900px) {
+    .event-details__body__left__buttons {
+        margin: 4vmin;
+    }
 }
 
 @keyframes glow {
@@ -239,6 +310,12 @@
     height: 100%;
     transition: 300ms;
     font-size: 3vmin;
+}
+
+@media screen and (max-width: 900px) {
+    .button-64 span {
+        font-size: 4vmin;
+    }
 }
 
 .button-64:hover span {
