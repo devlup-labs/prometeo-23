@@ -55,21 +55,21 @@ def get_all_event_participation():
     for submission in submissions:
         if submission.event.participation_type == 'individual':
             worksheet2.write(row2, 0, submission.user.email)
-            worksheet2.write(row2, 1, submission.user.extendeduser.first_name + ' ' + submission.user.extendeduser.last_name)
+            worksheet2.write(row2, 1, submission.user.first_name + ' ' + submission.user.last_name)
             worksheet2.write(row2, 2, 'NA')
-            worksheet2.write(row2, 3, submission.user.extendeduser.contact)
+            worksheet2.write(row2, 3, submission.user.contact)
             worksheet2.write(row2, 4, submission.event.name)
-            worksheet2.write(row2, 5, submission.user.extendeduser.college)
+            worksheet2.write(row2, 5, submission.user.college)
             worksheet2.write(row2, 6, submission.file_url)
             row2 += 1
         else:
             for submitted_user in submission.user.teams.get(event=submission.event).members.all():
                 worksheet2.write(row2, 0, submitted_user.email)
-                worksheet2.write(row2, 1, submitted_user.extendeduser.first_name + ' ' + submitted_user.extendeduser.last_name)
+                worksheet2.write(row2, 1, submitted_user.first_name + ' ' + submitted_user.last_name)
                 worksheet2.write(row2, 2, submission.user.teams.get(event=submission.event).name)
-                worksheet2.write(row2, 3, submitted_user.extendeduser.contact)
+                worksheet2.write(row2, 3, submitted_user.contact)
                 worksheet2.write(row2, 4, submission.event.name)
-                worksheet2.write(row2, 5, submitted_user.extendeduser.college)
+                worksheet2.write(row2, 5, submitted_user.college)
                 worksheet2.write(row2, 6, submission.file_url)
                 row2 += 1
     workbook2.close()
@@ -116,9 +116,9 @@ def get_submissions(event, filename):
         row2 = 2
         for submission in submissions:
             worksheet2.write(row2, 0, submission.user.email)
-            worksheet2.write(row2, 1, submission.user.extendeduser.first_name + ' ' + submission.user.extendeduser.last_name)
-            worksheet2.write(row2, 2, submission.user.extendeduser.contact)
-            worksheet2.write(row2, 3, submission.user.extendeduser.college)
+            worksheet2.write(row2, 1, submission.user.first_name + ' ' + submission.user.last_name)
+            worksheet2.write(row2, 2, submission.user.contact)
+            worksheet2.write(row2, 3, submission.user.college)
             worksheet2.write(row2, 4, submission.file_url)
             row2 += 1
     else:
@@ -135,10 +135,10 @@ def get_submissions(event, filename):
                 if submission.user in team.members.all():
                     worksheet2.write(row2, 0, team.name)
                     break
-            worksheet2.write(row2, 1, submission.user.extendeduser.first_name + ' ' + submission.user.extendeduser.last_name)
+            worksheet2.write(row2, 1, submission.user.first_name + ' ' + submission.user.last_name)
             worksheet2.write(row2, 2, submission.user.email)
-            worksheet2.write(row2, 3, submission.user.extendeduser.contact)
-            worksheet2.write(row2, 4, submission.user.extendeduser.college)
+            worksheet2.write(row2, 3, submission.user.contact)
+            worksheet2.write(row2, 4, submission.user.college)
             worksheet2.write(row2, 5, submission.file_url)
             row2 += 1
     workbook2.close()
@@ -157,7 +157,7 @@ def get_ca_export(filename):
     ca_referred_count = dict()
     for user in users:
         if user.ambassador:
-            ca_referred_count[user.user.email] = 0
+            ca_referred_count[user.email] = 0
     for user in users:
         if user.referred_by:
             try:
@@ -200,10 +200,10 @@ def get_ca_export(filename):
     worksheet.write(1, 5, "College", header_format)
     for ca in ca_list:
         if 'iitj' not in ca.college.lower() and 'iit jodhpur' not in ca.college.lower() and 'indian institute of technology jodhpur' not in ca.college.lower() and 'indian institute of technology, jodhpur' not in ca.college.lower():
-            worksheet.write(row, 0, ca.user.email)
+            worksheet.write(row, 0, ca.email)
             worksheet.write(row, 1, ca.first_name + ' ' + ca.last_name)
             worksheet.write(row, 2, ca.invite_referral)
-            worksheet.write(row, 3, ca_referred_count[ca.user.email])
+            worksheet.write(row, 3, ca_referred_count[ca.email])
             worksheet.write(row, 4, ca.contact)
             worksheet.write(row, 5, ca.college)
             row += 1
@@ -248,7 +248,7 @@ def get_all_user_export(filename):
     row2 = 2
 
     for user in users:
-        worksheet2.write(row2, 0, user.user.email)
+        worksheet2.write(row2, 0, user.email)
         worksheet2.write(row2, 1, user.first_name + ' ' + user.last_name)
         worksheet2.write(row2, 2, user.contact)
         worksheet2.write(row2, 3, str(user.referred_by)) if user.referred_by is not None else worksheet2.write(row2, 3, 'NA')
@@ -392,7 +392,7 @@ def event_type_info(request, type):
             worksheet.write(1, 7, "Gender", header_format)
             row = 2
             for participant in participants:
-                worksheet.write(row, 0, participant.user.email)
+                worksheet.write(row, 0, participant.email)
                 worksheet.write(row, 1, participant.first_name)
                 worksheet.write(row, 2, participant.last_name)
                 worksheet.write(row, 3, participant.contact)
@@ -427,7 +427,7 @@ def event_type_info(request, type):
                 worksheet.write(row, 1, team.name)
                 i = 2
                 for member in team.members.all():
-                    worksheet.write(row, i, member.extendeduser.first_name + ' ' + member.extendeduser.last_name + f' ({member.email}, {member.extendeduser.contact})')
+                    worksheet.write(row, i, member.first_name + ' ' + member.last_name + f' ({member.email}, {member.contact})')
                     i = i + 1
                 worksheet.write(row, event.max_team_size+2, team.leader.first_name + team.leader.last_name + f' ({team.leader.email})')
                 if (team.members.all().count() < event.min_team_size or team.members.all().count() > event.max_team_size):
@@ -439,7 +439,7 @@ def event_type_info(request, type):
                     worksheet2.write(row2, 1, team.name)
                     i2 = 2
                     for member in team.members.all():
-                        worksheet2.write(row2, i2, member.extendeduser.first_name + ' ' + member.extendeduser.last_name + f' ({member.email}, {member.extendeduser.contact})')
+                        worksheet2.write(row2, i2, member.first_name + ' ' + member.last_name + f' ({member.email}, {member.contact})')
                         i2 = i2 + 1
                     worksheet2.write(row2, event.max_team_size+2, team.leader.first_name + team.leader.last_name + f' ({team.leader.email})')
                     worksheet2.write(row2, event.max_team_size+3, "ELIGIBLE")
@@ -535,7 +535,7 @@ def event_info(request, type, eventid):
         worksheet.write(1, 7, "Gender", header_format)
         row = 2
         for participant in event.participants.all():
-            worksheet.write(row, 0, participant.user.email)
+            worksheet.write(row, 0, participant.email)
             worksheet.write(row, 1, participant.first_name)
             worksheet.write(row, 2, participant.last_name)
             worksheet.write(row, 3, participant.contact)
@@ -570,7 +570,7 @@ def event_info(request, type, eventid):
             worksheet.write(row, 1, team.name)
             i = 2
             for member in team.members.all():
-                worksheet.write(row, i, f' ({member.email}, {member.extendeduser.contact})')
+                worksheet.write(row, i, f' ({member.email}, {member.contact})')
                 i = i + 1
             worksheet.write(row, event.max_team_size+2, f'{team.leader.first_name} {team.leader.last_name}' + f' ({team.leader.email})')
             if (team.members.all().count() < event.min_team_size or team.members.all().count() > event.max_team_size):
@@ -583,7 +583,7 @@ def event_info(request, type, eventid):
                 worksheet2.write(row2, 1, team.name)
                 i2 = 2
                 for member in team.members.all():
-                    worksheet2.write(row2, i2, f' ({member.email}, {member.extendeduser.contact})')
+                    worksheet2.write(row2, i2, f' ({member.email}, {member.contact})')
                     i2 = i2 + 1
                 worksheet2.write(row2, event.max_team_size+2, f'{team.leader.first_name} {team.leader.last_name}' + f' ({team.leader.email})')
                 row2 = row2 + 1

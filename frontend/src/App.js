@@ -18,10 +18,7 @@ import Register from "./pages/Register.js";
 import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
 import EventDetails from "./pages/Event_details";
-import Team from "./pages/team";
 import Theme from "./components/Theme";
-import EventHome from "./components/eventHome";
-import GalleryHome from "./components/galleryHome";
 
 function App() {
 
