@@ -4,6 +4,7 @@ import event_data from "./event_info";
 import "./event.css";
 
 import logo from "../assets/navbar/prometeo_logo_23.png";
+import Footer from "../components/footer";
 import FadeIn from "../components/fadein";
 import { backendURL } from "../backendURL";
 
@@ -150,6 +151,7 @@ function Events() {
 					}
 				</section>
 				{/* <div className="event_cards">{event_data.map(createEntry)}</div> */}
+				{/* <Footer /> */}
 			</div>
 		</FadeIn>
 	);
