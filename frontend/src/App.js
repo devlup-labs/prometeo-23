@@ -18,7 +18,7 @@ import Register from "./pages/Register.js";
 import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
 import EventDetails from "./pages/Event_details";
-// import Theme from "./components/Theme";
+import Theme from "./components/Theme";
 
 function App() {
 
