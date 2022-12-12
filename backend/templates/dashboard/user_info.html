@@ -29,7 +29,7 @@
   
   <ul class="navbar-nav ml-auto ml-md-0" style="float: right;">
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'home:home' %}" role="button">
+      <a class="nav-link" href="" role="button">
         View Site
       </a>
     </li>
@@ -123,11 +123,6 @@
       <i class="fas fa-users"></i>
       <span>Users</span></a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'mass_mail' %}">
-      <i class="fas fa-envelope"></i>
-      <span>Send Mass Mail</span></a>
-  </li>
 </ul>
 
 {% endblock %}
@@ -140,38 +135,38 @@
     <li><b>Email: </b>{{ cur_user.email }}</li>
     <li><b>First Name: </b>{{ cur_user.first_name }}</li>
     <li><b>Last Name: </b>{{ cur_user.last_name }}</li>
-    <li><b>Contact: </b>{{ cur_user.extendeduser.contact }}</li>
+    <li><b>Contact: </b>{{ cur_user.contact }}</li>
     <li><b>Referred By: </b>
-        {% if cur_user.extendeduser.referred_by %}
-        <a href="{% url 'user_info' cur_user.extendeduser.referred_by.pk %}">{{ cur_user.extendeduser.referred_by.user.email }} ({{ cur_user.extendeduser.referred_by.first_name }} {{ cur_user.extendeduser.referred_by.last_name }})</a>
+        {% if cur_user.referred_by %}
+        <a href="{% url 'user_info' cur_user.referred_by.pk %}">{{ cur_user.referred_by.user.email }} ({{ cur_user.referred_by.first_name }} {{ cur_user.referred_by.last_name }})</a>
         {% else %}
         NA
         {% endif %}
     </li>
     <li><b>Campus Ambassador: </b>{% if cur_user.ambassador %}Yes{% else %}No{% endif %}</li>
     <li><b>Invite Referral Code: </b>{% if cur_user.ambassador %}{{ cur_user.invite_referral }}{% else %}NA{% endif %}</li>
-    <li style="text-transform: capitalize;"><b>Gender: </b>{{ cur_user.extendeduser.gender }}</li>
-    <li><b>College: </b>{{ cur_user.extendeduser.college }}</li>
+    <li style="text-transform: capitalize;"><b>Gender: </b>{{ cur_user.gender }}</li>
+    <li><b>College: </b>{{ cur_user.college }}</li>
     <li><b>Current Year: </b>
-        {% if cur_user.extendeduser.current_year == '1' %}
+        {% if cur_user.current_year == '1' %}
         First Year
-        {% elif cur_user.extendeduser.current_year == '2' %}
+        {% elif cur_user.current_year == '2' %}
         Second Year
-        {% elif cur_user.extendeduser.current_year == '3' %}
+        {% elif cur_user.current_year == '3' %}
         Third Year
-        {% elif cur_user.extendeduser.current_year == '4' %}
+        {% elif cur_user.current_year == '4' %}
         Fourth Year
-        {% elif cur_user.extendeduser.current_year == '5' %}
+        {% elif cur_user.current_year == '5' %}
         Fifth Year
-        {% elif cur_user.extendeduser.current_year == '6' %}
+        {% elif cur_user.current_year == '6' %}
         Graduated
-        {% elif cur_user.extendeduser.current_year == '7' %}
+        {% elif cur_user.current_year == '7' %}
         Faculty/Staff
-        {% elif cur_user.extendeduser.current_year == '8' %}
+        {% elif cur_user.current_year == '8' %}
         NA
         {% endif %}
     </li>
-    <li><b>City: </b>{{ cur_user.extendeduser.city.capitalize }}</li>
+    <li><b>City: </b>{{ cur_user.city.capitalize }}</li>
 
 </ul>
 
@@ -192,7 +187,7 @@
                     <th>Team Registered</th>
                 </thead>
                 <tbody>
-                    {% for event in cur_user.extendeduser.events.all %}
+                    {% for event in cur_user.events.all %}
                     {% for team in cur_user.teams.all %}
                         {% if team.event == event %}
                             {% if team.members.all.count > event.max_team_size or team.members.all.count < event.min_team_size %}
@@ -279,7 +274,7 @@
     </div>
 </div>
 
-{% if cur_user.extendeduser.ambassador %}
+{% if cur_user.ambassador %}
 <h2>Users Referred by {{ cur_user.email }}</h2>
 <hr>
 <div class="card mb-3">
@@ -297,7 +292,7 @@
                     <th>Contact</th>
                 </thead>
                 <tbody>
-                    {% for ref_user in cur_user.extendeduser.referred_users.all %}
+                    {% for ref_user in cur_user.referred_users.all %}
                     <tr>
                         <td><a href="{% url 'user_info' ref_user.pk %}">{{ ref_user.username }}</a></td>
                         <td>{{ ref_user.first_name }}</td>
