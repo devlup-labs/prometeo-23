@@ -68,6 +68,29 @@
     border-radius: 10vmin;
 }
 
+@media screen and (max-width: 768px) {
+	.themeContent:before {
+		background: -moz-linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
+        background: -webkit-linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
+        background: linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
+	}
+}
+
 .themeHeader {
 	width: 100%;
 	display: flex;
@@ -75,6 +98,7 @@
 	text-align: right;
 	font-family: Gentona;
     font-size: 10vmin;
+	padding-top: 2vmin;
 	padding-right: 7vmin;
     color: #ffe35a;
 }
@@ -97,12 +121,15 @@
 	/* display: flex;
 	align-items: center;
 	justify-content: center; */
+	/* border: 2px solid red; */
+	padding-bottom: 6vmin;
+	padding-right: 2vmin;
 }
 
 .themeColumn p {
 	font-family: "Josefin Sans", sans-serif;
-    font-size: min(2vw, 3.3vmin);
-	line-height: 1.5;
+    font-size: min(1.8vw, 3vmin);
+	line-height: 1.3;
 	padding-right: 3vmin;
 	padding-left: 2vmin;
 }

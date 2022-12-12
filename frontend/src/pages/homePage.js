@@ -61,13 +61,13 @@ export default function HomePage() {
               </div> */}
               <div id="homepage-content">
                 <LandingSection />
-                {/* <Introduction />
+                <Introduction />
                 <Theme />
                 <InitiativeHome />
                 <div id="black-filler"></div>
                 <EventHome />
                 <div id="purple-filler"></div>
-                <StatsHome /> */}
+                <StatsHome />
               </div>
           </FadeIn>
         )

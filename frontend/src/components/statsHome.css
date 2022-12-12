@@ -215,6 +215,14 @@
     color: blanchedalmond;
     font-family: "Exo 2", sans-serif;
     text-shadow: 0 1px 4px rgb(142, 142, 142);
+    font-size: 6vmin;
+}
+
+@media screen and (max-width: 768px) {
+    #statsHome-description-top {
+        font-size: 3vmin;
+        /* height: fit-content; */
+    }
 }
 
 #statsHome-description-top * {
@@ -229,5 +237,11 @@
 #stats-icon {
     max-width: 3vw;
     margin: 2vmin 0 1vmin 0;
+}
+
+@media screen and (max-width: 768px) {
+    #stats-icon {
+        max-width: 5vw;
+    }
 }
 

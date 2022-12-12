@@ -65,15 +65,16 @@ const Sun = (props) => {
     // const texture = useLoader(TextureLoader, sun);
     // texture.encoding = sRGBEncoding;
 
-    useFrame(() => (mesh.current.rotation.y += 0.0008));
+    useFrame(() => (mesh.current.rotation.y += 0.0012));
     
     return (
         <mesh {...props} ref={mesh}>
             <sphereGeometry args={[109, 200, 200]} />
             <meshStandardMaterial
                 map={sunTexture}
-                emissive="#4dddda"
-                emissiveIntensity={0.4}
+                // emissive="#4dddda"
+                emissive="#14d2cf"
+                emissiveIntensity={0.7}
             />
         </mesh>
     );

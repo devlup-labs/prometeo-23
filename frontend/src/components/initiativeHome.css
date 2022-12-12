@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
 
 #initiativeHome-container {
     box-sizing: border-box;
@@ -69,6 +69,24 @@
     #initiativeHome::before {
         height: 95%;
         padding: 0;
+        background: -moz-linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
+        background: -webkit-linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
+        background: linear-gradient(
+            0deg,
+            rgba(82, 225, 255, 0.2) 0%,
+            rgba(16, 160, 191, 0.1) 35%,
+            rgba(8, 153, 167, 0) 100%
+        );
     }
 }
 
