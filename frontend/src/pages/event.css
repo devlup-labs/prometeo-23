@@ -6,7 +6,7 @@
 #eventsPage {
   overflow-y: auto;
   box-sizing: border-box;
-  padding: 0 1vw;
+  /* padding: 0 1vw; */
   width: 100vw;
   height: 90vh;
   background: rgb(16, 28, 39);
