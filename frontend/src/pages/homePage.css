@@ -62,6 +62,16 @@ a {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#140327",endColorstr="#2f0c5c",GradientType=1);
 }
 
+@media screen and (max-width: 768px) {
+    #black-filler {
+        height: 20%;
+    }
+
+    #purple-filler {
+        height: 20%;
+    }
+}
+
 #loader-gif {
   position: absolute;
   top: 50%;
@@ -77,7 +87,7 @@ a {
     height: 90vh;
     width: 100vw;
     /* margin-top: 10vh; */
-    opacity: 0;
+    /* opacity: 0; */
     background: rgb(16, 28, 39);
     background: radial-gradient(
         circle,
@@ -88,8 +98,15 @@ a {
     scroll-behavior: smooth;
 }
 
+#homepage-solarSystem {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
 #homepage-content {
     position: absolute;
+    top: 10vh;
+    z-index: 1;
     box-sizing: border-box;
     height: 90vh;
     width: 100vw;

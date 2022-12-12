@@ -7,6 +7,9 @@ from events.models import *
 from coordinator.models import *
 from users.models import *
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+import requests
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.views import TokenObtainPairView
 import uuid
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -132,7 +135,6 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         extra_kwargs = {'password' : {'write_only' : True}}
 
     def create(self, validated_data):
-       
         user = ExtendedUser.objects.create(
         email=validated_data['email'],
         first_name=validated_data['first_name'],
@@ -142,6 +144,12 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         city=validated_data['city']
         )
         user.set_password(validated_data['password'])
+        if(validated_data['referral_code'] != ''):
+            user.referral_code = validated_data['referral_code']
+            ca = ExtendedUser.objects.filter(invite_referral=validated_data['referral_code']).first()
+            if(ca):
+                user.referred_by = ca
+                ca.ca_count += 1
         user.save()
 
         return user
@@ -180,3 +188,23 @@ class UserLoginSerializer(serializers.Serializer):
     #         'email':user.email,
     #         'token': jwt_token
     #     }
+
+
+
+class CampusAmbassadorSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = ['email',]
+
+    def create(self, validated_data):
+        if(ExtendedUser.objects.filter(email=validated_data['email']).first().ambassador == False):
+            user = ExtendedUser.objects.filter(email=validated_data['email'])
+            user.ambassador = True
+            invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
+            user.invite_referral = invite_referral
+            user.save()
+            return user
+        else:
+            user = ExtendedUser.objects.filter(email=validated_data['email'])
+            return user
+        

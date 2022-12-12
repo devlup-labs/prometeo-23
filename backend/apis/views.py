@@ -15,11 +15,17 @@ from home.models import *
 from events.models import *
 from coordinator.models import *
 from users.models import *
-
+import requests
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny
 from .serializers import MyTokenObtainPairSerializer
+from rest_framework.utils import json
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.models import User
+
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.hashers import make_password
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -30,7 +36,7 @@ class MyObtainTokenPairView(TokenObtainPairView):
 class SponsorsViewSet(viewsets.ModelViewSet):
     queryset = Sponsors.objects.all()
     serializer_class = SponsorsSerializers
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
@@ -135,3 +141,51 @@ class UserLoginView(RetrieveAPIView):
 
         return Response(response, status=status_code)
     
+
+class GoogleView(APIView):
+    def post(self, request):
+        payload = {'access_token': request.data.get("token")}  # validate the token
+        r = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', params=payload)
+        data = json.loads(r.text)
+
+        if 'error' in data:
+            content = {'message': 'wrong google token / this google token is already expired.'}
+            return Response(content)
+
+        # create user if not exist
+        try:
+            user = User.objects.get(email=data['email'])
+        except User.DoesNotExist:
+            user = User()
+            user.username = data['email']
+            # provider random default password
+            user.password = make_password(BaseUserManager().make_random_password())
+            user.email = data['email']
+            # redirect to profile page to complete the profile
+            user.save()
+
+        token = RefreshToken.for_user(user)  # generate token without username & password
+        response = {}
+        response['username'] = user.username
+        response['access_token'] = str(token.access_token)
+        response['refresh_token'] = str(token)
+        return Response(response)
+
+
+
+class CampusAmbassadorView(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class = CampusAmbassadorSerializers
+    permission_classes = (IsAuthenticated,)
+    def post(self, request, *args, **kwargs):
+        if(request.user.is_authenticated==False):
+            return Response({'message':'User not authenticated'},status=status.HTTP_401_UNAUTHORIZED)
+        user=request.user
+        if(user.ambassador==False):
+            user.ambassador = True
+            invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
+            user.invite_referral = invite_referral
+            user.save()
+            return user
+        else:
+            return user
