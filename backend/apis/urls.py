@@ -33,9 +33,14 @@ router.register("preregistration",PreRegistrationViewSet)
 
 router.register("signup",ExtendedUserViewSet)
 
+# router.register("campusambassador",CampusAmbassadorViewSet)
+
+
 urlpatterns=[
     path(r'',include(router.urls)), 
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('login/', MyObtainTokenPairView.as_view(), name='login'),
+    path('google/', views.GoogleView.as_view(), name='google'),
+    path('campusambassador/', views.CampusAmbassadorView.as_view(), name='campusambassador'),
 ]
