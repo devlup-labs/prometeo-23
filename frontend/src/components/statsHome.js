@@ -105,7 +105,7 @@ export default function StatsHome() {
                                         className="js-num"
                                         data-target="12000"
                                     >
-                                        12000
+                                        5000
                                     </span>
                                     <span>+</span>
                                 </div>

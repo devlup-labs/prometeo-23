@@ -120,7 +120,7 @@
     /* border: 2px solid pink; */
     display: flex;
     /* justify-content: center; */
-    align-items: center;
+    align-items: flex-start;
     z-index: 1;
 }
 
@@ -136,7 +136,7 @@
     display: flex;
     align-items: center;
     padding: 0 0 0 6vmin;
-    margin-top: -4vmin;
+    margin-top: 4vmin;
     line-height: 1.6;
 }
 
@@ -159,14 +159,16 @@
 
 #the-image {
     width: 40%;
-    height: 100%;
+    height: 80%;
+    margin-top: -6vmin;
     /* border: 2px solid white; */
 }
 
 @media screen and (max-width: 768px) {
     #the-image {
+        margin-top: 0;
         width: 100%;
-        max-height: 40vh;
+        max-height: 30vh;
     }
 }
 
