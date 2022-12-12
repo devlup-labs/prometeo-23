@@ -4,13 +4,15 @@ import "./gallery.css";
 import FadeIn from "../components/fadein";
 import galleryData from "./galleryData.js";
 
+import { backendURL } from "../backendURL";
+
 // var imagePaths = [];
 
 // for (var i = 0; i < galleryData.length; i++) {
 // 	  imagePaths.push(galleryData[i].image);
 // }
 
-const imagePaths = [
+var imagePaths = [
 	"https://i.imgur.com/4w6Cdfy.jpg",
 	"https://i.imgur.com/E7ffaYE.jpg",
 	"https://i.imgur.com/j0YvuP5.jpg",
@@ -90,7 +92,7 @@ class Loading {
 			const path = this.imagePaths[i];
 			const image = new Image();
 			image.src = path;
-			// image.crossOrigin = "anonymous";
+			// image.crossOrigin = "http://localhost:3000";
 			image.addEventListener("load", () => {
 				this.percentage = this.getPercentage(this.loadedNumber++);
 			});
@@ -524,6 +526,7 @@ class Shape {
 		this.numberOfShape = params.n;
 		this.size = params.s;
 		this.image = new Image();
+		// this.image.crossOrigin = "http://localhost:3000";
 		this.image.crossOrigin = "anonymous";
 		this.image.src = params.p;
 		this.ratio = 0;
@@ -669,15 +672,49 @@ function Gallery() {
 
 	useEffect(  // when the component has rendered then add the event listener to it
 		() => {
-			// if (!loadedOnce) {
-			// 	console.log(loadedOnce)
-				const F = new FullScreen();
-				const L = new Loading();
-				L.initialize().then(() => {
-					const S = new Sketch();
-				})
-				// handleLoadedOnce();
-			// }
+			async function fetchData() {
+				let headers = new Headers();
+				headers.append('Content-Type', 'application/json');
+				headers.append('Accept', 'application/json');
+				headers.append('Origin', 'http://localhost:3000');
+	
+				const requestOptions = {
+					method: 'GET',
+					headers: headers,
+				}
+				
+				const fetchURL = `${backendURL}/api/sponsors/`;
+				
+				await fetch(fetchURL, requestOptions)
+					.then((response) => response.json())
+					.then((data) => {
+						// setEventData([
+						// 	...data
+						// ]);
+						imagePaths = [
+							...imagePaths,
+							...data.map((item) => item.image.replace("0.0.0.0:8888", "apiv.prometeo.in"))
+						]
+						// console.log(data);
+					})
+					.catch((error) => {
+						console.error("Error:", error);
+					});
+			}
+
+			fetchData()
+				.then(() => {
+					console.log(imagePaths)
+				// if (!loadedOnce) {
+				// 	console.log(loadedOnce)
+					const F = new FullScreen();
+					const L = new Loading();
+					L.initialize().then(() => {
+						const S = new Sketch();
+					})
+					// handleLoadedOnce();
+				// }
+			})
 			
 			const navBarEle = document.getElementById("navbar");
 			navBarEle.style.opacity = 1;

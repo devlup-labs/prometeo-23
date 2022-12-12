@@ -40,7 +40,7 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/past-sponsors" element={<Sponsors />} />
           <Route path="/events" element={<Events />} />
-          {/* <Route path="/theme" element={<Theme />} /> */}
+          <Route path="/theme" element={<Theme />} />
           {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/pre-register" element={<PreRegistration />} />
           <Route path="/login" element={<Login />} />

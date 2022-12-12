@@ -22,6 +22,9 @@ import future from "../assets/space/future.jpg";
 
 import moon from "../assets/space/moon.jpg";
 
+import spinner from "../assets/loading/logo.gif";
+
+
 let bgTexture, sunTexture, mercuryTexture, venusTexture, firstEarthTexture, secondEarthTexture, thirdEarthTexture, fourthEarthTexture, fifthEarthTexture, marsTexture, jupiterTexture, saturnTexture, uranusTexture, neptuneTexture, moonTexture;
 
 const r = 25;
@@ -31,8 +34,15 @@ const tilt = 0.41;
 
 function Loader({setIsLoading}) {
     const { progress } = useProgress()
-    setIsLoading(false);
+    if (progress === 100) {
+        setIsLoading(false);
+    }
     // return <Html center>{progress} % loaded</Html>
+    // return <Html center>
+    //         <div className="spinner">
+    //             <img src={spinner} id = "loader-gif" alt="Loading..." />
+    //         </div>
+    //     </Html>
 }
 
 const Background = (props) => {
@@ -81,7 +91,7 @@ function Planet({ planet: { textureFile, xRadius, zRadius, size, widthSegments, 
         const t = (orbitSpeed * clock.getElapsedTime()) % (2 * Math.PI) + offset;
         const x = xRadius * Math.sin(t);
         const z = zRadius * Math.cos(t);
-        planetRef.current.position.x = x;
+        planetRef.current.position.x = -x;
         planetRef.current.position.z = z;
     });
 
@@ -123,8 +133,10 @@ function EarthMoonSystem({
         const t = (earthSpeed * clock.getElapsedTime()) % (2 * Math.PI) + offset;
         const x = xRadius * Math.sin(t);
         const z = zRadius * Math.cos(t);
-        earthMoonSystemRef.current.position.x = x;
+        earthMoonSystemRef.current.position.x = -x;
         earthMoonSystemRef.current.position.z = z;
+
+        // if (offset == 0) console.log(earthMoonSystemRef.current.position);
 
         const mt = (moonSpeed * clock.getElapsedTime()) % (2 * Math.PI) + moonOffset;
         const mx = -1 * moonRadius * Math.cos(mt);
@@ -189,7 +201,7 @@ function Ecliptic({ xRadius = 1, zRadius = 1 }) {
     );
 }
 
-function CreateScene() {
+function CreateScene({setIsLoading}) {
     [bgTexture, sunTexture, mercuryTexture, venusTexture, firstEarthTexture, secondEarthTexture, thirdEarthTexture, fourthEarthTexture, fifthEarthTexture, marsTexture, jupiterTexture, saturnTexture, uranusTexture, neptuneTexture, moonTexture] = useLoader(
         TextureLoader, [bg, sun, mercury, venus, first, second, ice, today, future, mars, jupiter, saturn, uranus, neptune, moon]
     )
@@ -385,6 +397,10 @@ function CreateScene() {
         },
     ]
     
+    const { progress } = useProgress()
+    if (progress === 100) {
+        setIsLoading(false);
+    }
     return (
         <>
             <Background />
@@ -406,7 +422,7 @@ function CreateScene() {
                             moonSize: 5,
                             moonWidthSegments: 40,
                             moonHeightSegments: 20,
-                            moonSpeed: 0.2,
+                            moonSpeed: 0.3,
                             moonOffset: index,
                         }} 
                     />
@@ -438,18 +454,18 @@ function NewSolarSystem({setIsLoading}) {
                 width: "100vw",
             }}
         >
-            <ambientLight
-                color="#ffffff"
-                intensity={0.2}
-            />
-            <pointLight color="#ffffff" intensity={1} />
-
             <Suspense fallback={<Loader setIsLoading={setIsLoading} />}>
-                <CreateScene />
-            </Suspense>
+                <ambientLight
+                    color="#ffffff"
+                    intensity={0.2}
+                />
+                <pointLight color="#ffffff" intensity={1} />
 
-            <UpdateCamera />
-            <Stats />
+                <CreateScene setIsLoading={setIsLoading} />
+
+                <UpdateCamera />
+            </Suspense>
+            {/* <Stats /> */}
         </Canvas>
     );
 }

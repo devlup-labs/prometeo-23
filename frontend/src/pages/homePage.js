@@ -9,6 +9,7 @@ import spinner from "../assets/loading/logo.gif";
 import scrollGif from "../assets/homePage/scrolldown.gif";
 
 import { loadTextures, createScene } from "./solarsystem";
+import NewSolarSystem from "./newSolarSystem";
 import FadeIn from "../components/fadein";
 
 import LandingSection from "../components/landingSection";
@@ -20,33 +21,41 @@ import StatsHome from "../components/statsHome";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
+  const [showContent, setShowContent] = useState(false);
 
-  useEffect(() => {
-    loadTextures(isLoading, setIsLoading);
-  }, []);
+  // useEffect(() => {
+  //   loadTextures(isLoading, setIsLoading);
+  // }, []);
 
   useEffect(() => {
     console.log("isLoading: ", isLoading);
     if (!isLoading) {
       const navBarEle = document.getElementById("navbar");
       navBarEle.style.opacity = 1;
-      const homePageEle = document.getElementById("homepage");
+      const homePageEle = document.getElementById("homepage-solarSystem");
       homePageEle.style.opacity = 1;
       
-      createScene();
+      // createScene();
+      setShowContent(true);
     }
   }, [isLoading]);
 
-
-  return isLoading ? 
-      (
-        <div className="spinner">
-          <img src={spinner} id = "loader-gif" alt="Loading..." />
-        </div>
-      ) : (
-        // <FadeIn duration={500}>
-          <div>
-            <div id="homepage">
+  return (
+    <div id="homepage">
+      <NewSolarSystem setIsLoading={setIsLoading} onLoad />
+      {
+        !showContent ?
+        // isLoading &&
+        (
+          <div className="spinner">
+            <img src={spinner} id = "loader-gif" alt="Loading..." />
+          </div>
+        ) :
+      // }
+      // {
+      //   showContent &&
+        (
+          <FadeIn duration={500}>
               {/* <div id="scroll-down">
                 <img src={scrollGif} alt="Scroll Down" id="scroll-down-gif" />
               </div> */}
@@ -60,8 +69,37 @@ export default function HomePage() {
                 <div id="purple-filler"></div>
                 <StatsHome /> */}
               </div>
-            </div>
-          </div>
-        // </FadeIn>  
-      );
+          </FadeIn>
+        )
+      }
+    </div>
+  );
+
+
+  // return isLoading ? 
+  //     (
+  //       <div className="spinner">
+  //         <img src={spinner} id = "loader-gif" alt="Loading..." />
+  //       </div>
+  //     ) : (
+  //       // <FadeIn duration={500}>
+  //         <div>
+  //           <div id="homepage">
+  //             {/* <div id="scroll-down">
+  //               <img src={scrollGif} alt="Scroll Down" id="scroll-down-gif" />
+  //             </div> */}
+  //             <div id="homepage-content">
+  //               <LandingSection />
+  //               {/* <Introduction />
+  //               <Theme />
+  //               <InitiativeHome />
+  //               <div id="black-filler"></div>
+  //               <EventHome />
+  //               <div id="purple-filler"></div>
+  //               <GalleryHome /> */}
+  //             </div>
+  //           </div>
+  //         </div>
+  //       // </FadeIn>  
+  //     );
 }
