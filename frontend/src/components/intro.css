@@ -147,6 +147,13 @@
         padding: 0 4vmin;
         line-height: 1.4;
         margin-top: 0;
+        font-size: 3.6vmin;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #intro-text {
+        font-size: 4.7vmin;
     }
 }
 
