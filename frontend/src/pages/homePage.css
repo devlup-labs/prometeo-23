@@ -86,6 +86,7 @@ a {
     /* box-sizing: border-box; */
     height: 90vh;
     width: 100vw;
+    /* margin-top: 10vh; */
     /* opacity: 0; */
     background: rgb(16, 28, 39);
     background: radial-gradient(
@@ -97,8 +98,15 @@ a {
     scroll-behavior: smooth;
 }
 
+#homepage-solarSystem {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
 #homepage-content {
     position: absolute;
+    top: 10vh;
+    z-index: 1;
     box-sizing: border-box;
     height: 90vh;
     width: 100vw;
