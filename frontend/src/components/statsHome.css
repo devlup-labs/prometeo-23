@@ -87,6 +87,7 @@
     flex-direction: column;
     justify-content: space-between;
     /* border: 2px solid yellow; */
+    user-select: none;
 }
 
 @media screen and (max-width: 768px) {

@@ -11,7 +11,7 @@ export default function InitiativeHome() {
             <div id="initiativeHome">
                 <div id="initiativeHome-title">
                     <div id="initiativeHome-subheading">SOCIAL INITIATIVE</div>
-                    <div id="initiativeHome-heading">UMANG</div>
+                    <div id="initiativeHome-heading"><h2>UMANG</h2></div>
                 </div>
                 <div id="initiativeHome-bottom-section">
                     <div id="initiativeHome-description">

@@ -20,7 +20,7 @@ function Theme(props) {
                         <h2>THEME</h2>
                     </div>
                     <div id="themeColumns">
-                        <div className="themeColumn">
+                        <div className="themeColumn theme-video">
                             <div className="video-box d-flex justify-content-center">
                                 <div className="theme-video-container">
                                     <iframe
@@ -33,7 +33,7 @@ function Theme(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className="themeColumn">
+                        <div className="themeColumn theme-desc">
                             <p align="justify">
                                 {/* <b> Origin to Infinity </b>: */}
                                 <br /> Technology has been the heart of the

@@ -68,6 +68,7 @@
     /* top: -10vmin; */
     height: 40vmin;
     max-height: 300px;
+    user-select: none;
 }
 
 #landing-text {

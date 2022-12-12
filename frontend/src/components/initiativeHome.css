@@ -96,31 +96,33 @@
     padding: 7vmin 0 0 7vmin;
     user-select: none;
     z-index: 1;
-    /* margin-bottom: 2vmin; */
+    margin-bottom: 2vmin;
     /* font-family: Gentona;
     font-size: 10vmin; */
 }
 
 #initiativeHome-heading {
-    height: 8vmin;
+    height: fit-content;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     /* border: 2px solid white; */
     font-family: Gentona;
-    font-size: 10vmin;
+    font-size: 9vmin;
     color: #ffe35a;
     padding: 0;
+    margin-top: -5vmin;
 }
 
 #initiativeHome-subheading {
-    height: 4vmin;
+    height: fit-content;
     display: flex;
     align-items: center;
     /* border: 2px solid white; */
     font-family: Kanit;
     font-weight: 300;
-    font-size: 4.25vmin;
+    font-size: 5.7vmin;
     padding: 0;
+    margin-bottom: -1vmin;
 }
 
 #initiativeHome-bottom-section {

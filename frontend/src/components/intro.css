@@ -101,16 +101,17 @@
 
 #intro-title {
     width: 100%;
-    height: 20%;
+    height: fit-content;
     padding-left: 8vmin;
-    padding-top: 6vmin;
+    padding-top: 4vmin;
     /* margin-bottom: 5vmin; */
     font-family: Gentona;
-    font-size: 10vmin;
+    font-size: 9vmin;
     color: #ffe35a;
     z-index: 1;
     display: flex;
     align-items: center;
+    user-select: none;
 }
 
 #intro-section-2 {
@@ -130,11 +131,13 @@
 }
 
 #intro-text {
-    height: 60%;
+    /* height: 60%; */
     width: 60%;
     display: flex;
     align-items: center;
     padding: 0 0 0 6vmin;
+    margin-top: -4vmin;
+    line-height: 1.6;
 }
 
 @media screen and (max-width: 768px) {
@@ -142,6 +145,8 @@
         width: 100%;
         height: 60%;
         padding: 0 4vmin;
+        line-height: 1.4;
+        margin-top: 0;
     }
 }
 
