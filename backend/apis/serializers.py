@@ -239,3 +239,7 @@ class CampusAmbassadorSerializers(serializers.ModelSerializer):
             user = ExtendedUser.objects.filter(email=validated_data['email'])
             return user
         
+class CoreTeamSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Coordinator
+        fields = '__all__'

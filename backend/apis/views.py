@@ -189,3 +189,7 @@ class CampusAmbassadorView(APIView):
             return user
         else:
             return user
+
+class CoreTeamViewSet(viewsets.ModelViewSet):
+    queryset = Coordinator.objects.all()
+    serializer_class = CoreTeamSerializers
