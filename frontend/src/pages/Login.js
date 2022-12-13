@@ -77,7 +77,7 @@ function Login() {
                         <img src={loginImg} alt="Login Image" />
                     </div>
                     <div className="login-container-right">
-                        <div className="login-container-right-title">Login</div>
+                        <div className="login-container-right-title">LOGIN</div>
                         <form className="login-form" onSubmit={handleSubmit}>
                             {/* <input type="text" placeholder="Full Name" name="full_name" required /> */}
                             <input

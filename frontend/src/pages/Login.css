@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap');
+
 .login {
 	font-family: 'Josefin Sans', sans-serif;
 	overflow-y: auto;
@@ -65,8 +67,9 @@
 
 .login-container-right-title {
 	color: #84f4eb;
-	font-family: 'Share Tech', sans-serif;
-    font-size: 4vmin;
+	font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    font-size: 6vmin;
     padding-bottom: 3vh;
 }
 
@@ -180,7 +183,9 @@
 
 .login-noaccount {
     color: #84f4eb;
-    font-size: 1.8vmin;
+    /* font-family: 'Kanit', sans-serif; */
+    font-weight: 300;
+    font-size: 2vmin;
     text-decoration: none;
 }
 
