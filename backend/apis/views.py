@@ -8,6 +8,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from . import permissions
 from .serializers import *
 from home.models import *
@@ -84,6 +85,14 @@ class ThemeViewSet(viewsets.ModelViewSet):
 class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
     serializer_class = TeamSerializers
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def post(self, request, *args, **kwargs):
+        if Team.objects.filter(name=request.name).exists():
+            return self.update(request, *args, **kwargs )
+        else :
+            return self.create(request, *args, **kwargs)
+
 
 class SubmissionsViewSet(viewsets.ModelViewSet):
     queryset = Submissions.objects.all()
@@ -180,3 +189,7 @@ class CampusAmbassadorView(APIView):
             return user
         else:
             return user
+
+class CoreTeamViewSet(viewsets.ModelViewSet):
+    queryset = Coordinator.objects.all()
+    serializer_class = CoreTeamSerializers
