@@ -21,6 +21,8 @@ import EventDetails from "./pages/Event_details";
 import Theme from "./components/Theme";
 import Team from "./pages/team";
 
+import SignUp from "./pages/SignUp";
+
 function App() {
     // const [bigBang, setBigBang] = useState(true);
 
@@ -50,9 +52,7 @@ function App() {
                     <Route path="/event-details" element={<EventDetails />} />
                     {/* <Route path="/team" element={<Team />} /> */}
 
-                    {/* <Route path="/test-events" element={<EventHome />} />
-          <Route path="/test-gallery" element={<GalleryHome />} />
-          <Route path="/team" element={<Team />} /> */}
+                    <Route path="/sign-up" element={<SignUp />} />
 
                     <Route path="/*" element={<Page_404 />} />
                 </Routes>
