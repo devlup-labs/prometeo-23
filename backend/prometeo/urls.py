@@ -7,7 +7,7 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('', include('apis.urls')),
+    path('api/', include('apis.urls')),
     path('accounts/',include('allauth.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('admin/', admin.site.urls),

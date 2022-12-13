@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -8,9 +8,13 @@ import FadeIn from '../components/fadein';
 
 import signInImg from '../assets/backgrounds/peeking.png';
 
+import AuthContext from '../context/AuthContext';
 import { backendURL } from '../backendURL';
 
 function SignUp() {
+    const { registerUser } = useContext(AuthContext);
+    console.log(registerUser)
+
     useEffect(() => {
         const navBarEle = document.getElementById('navbar');
         navBarEle.style.opacity = 1;
@@ -19,45 +23,57 @@ function SignUp() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const data = {
-            first_name: e.target.first_name.value,
-            last_name: e.target.last_name.value,
-            city: e.target.city.value,
-            college: e.target.college.value,
-            contact: e.target.phone.value,
-            gender: e.target.gender.value,
-            email: e.target.email.value,
-            password: e.target.password.value,
-        };
+        const first_name = e.target.first_name.value;
+        const last_name = e.target.last_name.value;
+        const city = e.target.city.value;
+        const college = e.target.college.value;
+        const contact = e.target.phone.value;
+        const gender = e.target.gender.value;
+        const referral_code = e.target.referral_code.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        
+        registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password);
 
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Accept', 'application/json');
-        headers.append('Origin', 'http://localhost:3000');
+        // const data = {
+        //     first_name: e.target.first_name.value,
+        //     last_name: e.target.last_name.value,
+        //     city: e.target.city.value,
+        //     college: e.target.college.value,
+        //     contact: e.target.phone.value,
+        //     gender: e.target.gender.value,
+        //     email: e.target.email.value,
+        //     password: e.target.password.value,
+        // };
 
-        const requestOptions = {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(data),
-        };
+        // let headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
+        // headers.append('Accept', 'application/json');
+        // headers.append('Origin', 'http://localhost:3000');
 
-        fetch(`${backendURL}/api/signup/`, requestOptions)
-            .then((response) => {
-                console.log(response.status);
-                if (response.status === 201) {
-                    toast.success('Signed up Successfully!');
-                } else {
-                    toast.error('Something went wrong!');
-                }
+        // const requestOptions = {
+        //     method: 'POST',
+        //     headers: headers,
+        //     body: JSON.stringify(data),
+        // };
 
-                return response.json();
-            })
-            .then((data) => {
-                console.log('Data: ', data);
-            })
-            .catch((error) => {
-                console.log('Error: ', error);
-            });
+        // fetch(`${backendURL}/api/signup/`, requestOptions)
+        //     .then((response) => {
+        //         console.log(response.status);
+        //         if (response.status === 201) {
+        //             toast.success('Signed up Successfully!');
+        //         } else {
+        //             toast.error('Something went wrong!');
+        //         }
+
+        //         return response.json();
+        //     })
+        //     .then((data) => {
+        //         console.log('Data: ', data);
+        //     })
+        //     .catch((error) => {
+        //         console.log('Error: ', error);
+        //     });
     };
 
     const handleConfirmPassword = (e) => {
@@ -143,6 +159,11 @@ function SignUp() {
                                     <option className="signup-gender-option" value="Other">Other</option>
                                 </select>
                             </div>
+                            <input
+                                type="text"
+                                name="referral_code"
+                                placeholder="Referral Code (If any)"
+                            />
                             <input
                                 type="email"
                                 name="email"

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -8,9 +8,12 @@ import FadeIn from "../components/fadein";
 import loginImg from "../assets/backgrounds/circularRing.png";
 import googleImg from "../assets/icons/google.png";
 
+import AuthContext from "../context/AuthContext";
 import { backendURL } from "../backendURL";
 
 function Login() {
+    const { loginUser } = useContext(AuthContext);
+
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
@@ -18,40 +21,45 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        
+        loginUser(email, password);
 
-        const data = {
-            email: e.target.email.value,
-            password: e.target.password.value,
-        };
 
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json");
-        headers.append("Origin", "http://localhost:3000");
+        // const data = {
+        //     email: e.target.email.value,
+        //     password: e.target.password.value,
+        // };
 
-        const requestOptions = {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(data),
-        };
+        // let headers = new Headers();
+        // headers.append("Content-Type", "application/json");
+        // headers.append("Accept", "application/json");
+        // headers.append("Origin", "http://localhost:3000");
 
-        fetch(`${backendURL}/api/login/`, requestOptions)
-            .then((response) => {
-                console.log(response.status);
-                if (response.status === 201) {
-                    toast.success("Logged in Successfully!");
-                } else {
-                    toast.error("Something went wrong!");
-                }
+        // const requestOptions = {
+        //     method: "POST",
+        //     headers: headers,
+        //     body: JSON.stringify(data),
+        // };
 
-                return response.json();
-            })
-            .then((data) => {
-                console.log("Data: ", data);
-            })
-            .catch((error) => {
-                console.log("Error: ", error);
-            });
+        // fetch(`${backendURL}/api/login/`, requestOptions)
+        //     .then((response) => {
+        //         console.log(response.status);
+        //         if (response.status === 201) {
+        //             toast.success("Logged in Successfully!");
+        //         } else {
+        //             toast.error("Something went wrong!");
+        //         }
+
+        //         return response.json();
+        //     })
+        //     .then((data) => {
+        //         console.log("Data: ", data);
+        //     })
+        //     .catch((error) => {
+        //         console.log("Error: ", error);
+        //     });
     };
 
     return (
