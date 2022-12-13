@@ -23,7 +23,7 @@ import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
 import EventDetails from "./pages/Event_details";
 import Theme from "./components/Theme";
-import Team from "./pages/team";
+import Team from "./pages/newTeam";
 
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
@@ -55,9 +55,7 @@ function App() {
                         {/* <Route path="/register" element={<Register />} /> */}
                         {/* <Route path="/login" element={<Login />} /> */}
                         <Route path="/event-details" element={<EventDetails />} />
-                        {/* <Route path="/team" element={<Team />} /> */}
-
-                        <Route path="/sign-up" element={<SignUp />} />
+                        <Route path="/team" element={<Team />} />
 
                         <Route exact path='/pre-register' element={<RestrictedRoute />} >
                             <Route exact path='/pre-register' element={<PreRegistration />} />
@@ -66,7 +64,11 @@ function App() {
                         <Route exact path='/login' element={<RestrictedRoute />}>
                             <Route exact path='/login' element={<Login />} />
                         </Route>
-
+                        
+                        <Route exact path='/sign-up' element={<RestrictedRoute />}>
+                            <Route path="/sign-up" element={<SignUp />} />
+                        </Route>
+                        
                         <Route exact path='/dashboard' element={<PrivateRoute />}>
                             <Route exact path='/dashboard' element={<Dashboard />}/>
                         </Route>
