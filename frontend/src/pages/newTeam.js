@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 
 import "./newTeam.css";
+import FadeIn from "../components/fadein";
+
 import team_data from "./team_info";
 import user from "../assets/icons/user.png";
 import Footer from "../components/footer";
@@ -175,6 +177,7 @@ function createPerson(person) {
         <div
             className="team-profile-card team-profile-card-mobile"
             id={person.id}
+            key={person.id}
         >
             <div className="team-img">
                 {person.image && <img src={person.image}></img>}
@@ -202,7 +205,7 @@ export default function Team() {
     });
 
     return (
-        <>
+        <FadeIn duration={500}>
             <div className="team-container">
                 <div className="team-header">
                     <span id="team-title">
@@ -212,9 +215,9 @@ export default function Team() {
                         Meet the people behind the festival!
                     </span>
                 </div>
-                {team_data.map((team) => {
+                {team_data.map((team, index) => {
                     return (
-                        <div id={team.teamName}>
+                        <div id={team.teamName} key={index}>
                             <span>{team.teamName}</span>
                             <div className="team-main">
                                 {team.members.map((person) => {
@@ -225,6 +228,6 @@ export default function Team() {
                     );
                 })}
             </div>
-        </>
+        </FadeIn>
     );
 }

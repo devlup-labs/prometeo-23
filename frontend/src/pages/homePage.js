@@ -30,7 +30,7 @@ export default function HomePage() {
   // }, []);
 
   useEffect(() => {
-    console.log("isLoading: ", isLoading);
+    // console.log("isLoading: ", isLoading);
     if (!isLoading) {
       const navBarEle = document.getElementById("navbar");
       navBarEle.style.opacity = 1;

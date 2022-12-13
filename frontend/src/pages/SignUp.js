@@ -13,7 +13,7 @@ import { backendURL } from '../backendURL';
 
 function SignUp() {
     const { registerUser } = useContext(AuthContext);
-    console.log(registerUser)
+    // console.log(registerUser)
 
     useEffect(() => {
         const navBarEle = document.getElementById('navbar');
