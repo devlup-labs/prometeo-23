@@ -22,10 +22,6 @@ a {
     overflow-y: auto;
 }
 
-.section-team .header-section {
-	/* margin-bottom: 50px; */
-}
-
 .team-title{
     color: aquamarine;
     text-align: center;
@@ -46,6 +42,8 @@ a {
     color: #3e64ff;
 }
 
+
+
 .section-team .header-section .small-title {
     font-weight: 500;
     font-size: 4vmin;
@@ -59,6 +57,10 @@ a {
     background: #a9ced9;
 	border-radius: 5px;
     transition: all 0.2s ease;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section-team .single-person:hover {
@@ -72,6 +74,7 @@ a {
     border-radius: 50%;
     border: 4px dashed transparent;
     transition: padding .3s;
+    max-width: 60vw;
 }
 
 .section-team .single-person:hover .person-image {
@@ -103,6 +106,15 @@ a {
     font-size: 24px;
 }
 
+@media screen and (max-width: 768px) {
+    .section-team .single-person .person-image .icon {
+        width: 12vmin;
+        height: 12vmin;
+        line-height: 80px;
+        font-size: 32px;
+    }
+}
+
 .section-team .single-person:hover .person-image .icon {
 	background: none;
 	background-color: #fff;
@@ -115,10 +127,22 @@ a {
     font-weight: 700;
 }
 
+@media screen and (max-width: 768px) {
+    .section-team .single-person .person-info .full-name {
+        font-size: 6vmin;
+    }
+}
+
 .section-team .single-person .person-info .speciality {
     text-transform: uppercase;
     font-size: 2.5vmin;
     color: #016cec;
+}
+
+@media screen and (max-width: 768px) {
+    .section-team .single-person .person-info .speciality {
+        font-size: 4vmin;
+    }
 }
 
 .section-team .single-person:hover .full-name,
