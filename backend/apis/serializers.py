@@ -170,3 +170,8 @@ class CampusAmbassadorSerializers(serializers.ModelSerializer):
             user = ExtendedUser.objects.filter(email=validated_data['email'])
             return user
         
+
+class CAViewSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = ['email', 'first_name', 'last_name', 'college', 'contact', 'city', 'ca_count']
