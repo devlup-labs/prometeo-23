@@ -20,14 +20,8 @@ function Login() {
         e.preventDefault();
 
         const data = {
-            name: e.target.full_name.value,
             email: e.target.email.value,
-            contact: e.target.phone_number.value,
-            college: e.target.college_name.value,
-            state: e.target.state.value,
-            year: e.target.collegeYear.value,
-            // por: e.target.position_of_responsibility.value,
-            // poc_por: e.target.contact_of_any_por_holder.value,
+            password: e.target.password.value,
         };
 
         let headers = new Headers();
@@ -41,13 +35,11 @@ function Login() {
             body: JSON.stringify(data),
         };
 
-        console.log("Submitted");
-
         fetch(`${backendURL}/api/login/`, requestOptions)
             .then((response) => {
                 console.log(response.status);
                 if (response.status === 201) {
-                    toast.success("Registered Successfully!");
+                    toast.success("Logged in Successfully!");
                 } else {
                     toast.error("Something went wrong!");
                 }
