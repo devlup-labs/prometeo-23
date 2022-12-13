@@ -19,7 +19,7 @@ import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
 import EventDetails from "./pages/Event_details";
 import Theme from "./components/Theme";
-import Team from "./pages/team";
+import Team from "./pages/newTeam";
 
 import SignUp from "./pages/SignUp";
 
@@ -50,7 +50,7 @@ function App() {
                     <Route path="/pre-register" element={<PreRegistration />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/event-details" element={<EventDetails />} />
-                    {/* <Route path="/team" element={<Team />} /> */}
+                    <Route path="/team" element={<Team />} />
 
                     <Route path="/sign-up" element={<SignUp />} />
 
