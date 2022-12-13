@@ -71,6 +71,10 @@
     font-weight: 600;
 }
 
+#footer-content-left-col1-contact-email > a {
+    color: rgb(225, 224, 224);
+}
+
 #footer-content-left-col1-contact-phone {
     display: flex;
     /* border: 2px solid white; */
@@ -91,6 +95,10 @@
     font-weight: 300;
 }
 
+#footer-content-left-col1-contact-phone > div > span > a { 
+    color: rgb(225, 224, 224);
+}
+
 #footer-content-left-col1-contact a {
     font-weight: 400;
     margin-right: 5px;
@@ -107,7 +115,7 @@
     font-family: Kanit, sans-serif;
     color: #d7c04b;
     font-size: max(3vmin, 18px);
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 15px;
 }
 
