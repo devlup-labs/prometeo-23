@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.models import update_last_login
+from django.core.mail import get_connection, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from home.models import *
 from events.models import *
 from coordinator.models import *
@@ -79,6 +83,43 @@ class TeamSerializers(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = '__all__'
+        extra_kwargs = {'id' : {'read_only' : True},
+                        'isEligible' : {'read_only' : True}}
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+        # u = get_object_or_404(ExtendedUser, user=user)      
+        # if ExtendedUser.objects.filter(self.context['request'].user).exists():
+        team = Team.objects.create(
+        id = 'PRO' + str(uuid.uuid4().int)[:6],
+        name = validated_data['name'],
+        leader = self.context['request'].user,
+        event = validated_data['event'],
+        )
+        team.members.add(user)
+        team.isEligible()
+        
+        team.save()
+
+        return team
+       
+
+    def update(self,validate_data):
+        user = self.context['request'].user
+        team = Team.objects.filter(name=validate_data['name'])
+        if Team.objects.filter(name=validate_data['name']).exists():
+            if team.members.all().count() < team.event.max_team_size:
+                team.members.add(user)
+                team.save()
+                return team
+            else :
+                return team
+        
+        else:
+            return team
+
+
+        
 
 class SubmissionsSerializers(serializers.ModelSerializer):
     class Meta:
@@ -113,6 +154,20 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
                 user.referred_by = ca
                 ca.ca_count += 1
         user.save()
+        with get_connection(
+                username=settings.EMAIL_HOST_USER,
+                password=settings.EMAIL_HOST_PASSWORD
+            ) as connection:
+                sendMailID = settings.FROM_EMAIL_USER
+                subject = "Registeration"
+                message = "You have successfully registered."
+                html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
+                text_content = strip_tags(html_content)
+                message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+                message.attach_alternative(html_content, "text/html")
+                message.mixed_subtype = 'related'
+                message.send()
+
 
         return user
 
@@ -165,8 +220,31 @@ class CampusAmbassadorSerializers(serializers.ModelSerializer):
             invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
             user.invite_referral = invite_referral
             user.save()
+            with get_connection(
+                username=settings.EMAIL_HOST_USER,
+                password=settings.EMAIL_HOST_PASSWORD
+            ) as connection:
+                sendMailID = settings.FROM_EMAIL_USER
+                subject = "Registeration as Campus Ambassador"
+                message = "You have successfully registered as Campus Ambassador."
+                html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
+                text_content = strip_tags(html_content)
+                message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+                message.attach_alternative(html_content, "text/html")
+                message.mixed_subtype = 'related'
+                message.send()
+
             return user
         else:
             user = ExtendedUser.objects.filter(email=validated_data['email'])
             return user
         
+class CoreTeamSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Coordinator
+        fields = '__all__'
+
+class CAViewSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = ['email', 'first_name', 'last_name', 'college', 'contact', 'city', 'ca_count']

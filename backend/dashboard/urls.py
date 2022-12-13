@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import user_info, change_registration, update_event_state, event_info, downloadfile, event_type_info, events_info, users_info, mass_mail
+from apis.views import CampusAmbassadorListView
+
 
 # app_name = 'dashboard'
 urlpatterns = [
@@ -10,5 +12,6 @@ urlpatterns = [
     path('events/', events_info, name='events_info'),
     path('events/<slug:type>/', event_type_info, name='event_type_info'),
     path('events/<slug:type>/<int:eventid>/', event_info, name='event_info'),
-    path('events/<slug:type>/<int:eventid>/change_registration/<slug:value>/', change_registration, name="change_registration")
+    path('events/<slug:type>/<int:eventid>/change_registration/<slug:value>/', change_registration, name="change_registration"),
+    path('ca/', CampusAmbassadorListView),
 ]
