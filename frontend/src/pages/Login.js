@@ -42,7 +42,7 @@ function Login() {
         //     body: JSON.stringify(data),
         // };
 
-        // fetch(`${backendURL}/api/login/`, requestOptions)
+        // fetch(`${backendURL}/login/`, requestOptions)
         //     .then((response) => {
         //         console.log(response.status);
         //         if (response.status === 201) {

@@ -118,7 +118,7 @@ function Sponsors() {
 					console.error("Error:", error);
 				});
 			// try {
-			// 	const response = await api.get(`${backendURL}/api/sponsors/`);
+			// 	const response = await api.get(`${backendURL}/sponsors/`);
 			// 	// console.log(response)
 			// 	let data = response.data;			
 			// 	let newData = {}
