@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 import "./Login.css";
 import FadeIn from "../components/fadein";
-
 import loginImg from "../assets/backgrounds/circularRing.png";
 import googleImg from "../assets/icons/google.png";
 
