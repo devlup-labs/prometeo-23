@@ -13,7 +13,7 @@ const navBarLinks = [
   {
     name: "theme",
     text: "Theme",
-    path: "#theme",
+    path: "/#theme",
     section: "left",
     tabIndex: 2,
   },
@@ -39,18 +39,25 @@ const navBarLinks = [
     tabIndex: 5,
   },
   {
+    name: "ca",
+    text: "CA",
+    path: "/campus-ambassador",
+    section: "right",
+    tabIndex: 6,
+  },
+  {
     name: "events",
     text: "Events",
     path: "/events",
     section: "right",
-    tabIndex: 6,
+    tabIndex: 7,
   },
   {
     name: "gallery",
     text: "Gallery",
     path: "/gallery",
     section: "right",
-    tabIndex: 7,
+    tabIndex: 8,
   },
   // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
   {
@@ -58,14 +65,14 @@ const navBarLinks = [
     text: "Pre-Register",
     path: "/pre-register",
     section: "right",
-    tabIndex: 8,
+    tabIndex: 9,
   },
   {
     name: "login",
     text: "Login",
     path: "/login",
     section: "right",
-    tabIndex: 9,
+    tabIndex: 10,
   },
 ];
 
@@ -191,14 +198,14 @@ function Navbar() {
 							// console.log("While creating: ", user)
 							return (
 								user ?
-									<div
-										className={`navbar-right-section-logout navbar-link`}
-										key={link.name}
-										tabIndex={link.tabIndex}
-										onClick={logoutUser}
-									>
-										{"Logout"}
-									</div>
+									<Link to={"/dashboard"} key={"profile"}>
+										<div
+											className={`navbar-right-section-profile navbar-link`}
+											tabIndex={link.tabIndex}
+										>
+											{"Profile"}
+										</div>
+									</Link>
 									:
 									<Link to={link.path} key={link.name}>
 										<div
@@ -268,14 +275,14 @@ function Navbar() {
 						else if (link.name === "login") {
 							return (
 								user ?
-									<div
-										className={`navbar-mobile-link navbar-link navbar-mobile-link-logout`}
-										key={link.name}
-										tabIndex={link.tabIndex}
-										onClick={logoutUser}
-									>
-										{"Logout"}
-									</div>
+									<Link to={"/dashboard"} key={"profile"}>
+										<div
+											className={`navbar-right-section-profile navbar-link`}
+											tabIndex={link.tabIndex}
+										>
+											{"Profile"}
+										</div>
+									</Link>
 									:
 									<Link to={link.path} key={link.name}>
 										<div

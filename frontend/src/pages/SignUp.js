@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import './Signup.css';
@@ -13,6 +13,7 @@ import { backendURL } from '../backendURL';
 
 function SignUp() {
     const { registerUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     // console.log(registerUser)
 
     useEffect(() => {
@@ -32,8 +33,32 @@ function SignUp() {
         const referral_code = e.target.referral_code.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const ambassador = e.target.ca.value === "on";
+
+        // console.log(ambassador)
+        const myPromise = new Promise((resolve) => {            
+            registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador)
+                .then((res)=>{
+                    console.log(res)
+                    resolve(res)
+                })
+        })
         
-        registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password);
+        toast.promise(myPromise, 
+            {
+                pending: 'Loading',
+                success: 'Registered Successfully!',
+                error: 'Something went wrong!',
+            }
+        )
+        // toast.onChange((state, toast) => {
+        //     if (state === 'removed' && toast.type === 'success') {
+        //         console.log("closed")
+        //     }
+        // });
+        
+        // registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador)
+        
 
         // const data = {
         //     first_name: e.target.first_name.value,
@@ -57,7 +82,7 @@ function SignUp() {
         //     body: JSON.stringify(data),
         // };
 
-        // fetch(`${backendURL}/api/signup/`, requestOptions)
+        // fetch(`${backendURL}/signup/`, requestOptions)
         //     .then((response) => {
         //         console.log(response.status);
         //         if (response.status === 201) {
@@ -158,6 +183,10 @@ function SignUp() {
                                     <option className="signup-gender-option" value="Female">Female</option>
                                     <option className="signup-gender-option" value="Other">Other</option>
                                 </select>
+                            </div>
+                            <div className="signup-ca-checkbox">
+                                <input type="checkbox" name="ca" id="signup-ca-checkbox-input" />
+                                <label htmlFor="ca" className="signup-ca-checkbox-label">I want to signup for <Link to="/ca">CA Program</Link></label>
                             </div>
                             <input
                                 type="text"

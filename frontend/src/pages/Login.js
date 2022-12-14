@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 import "./Login.css";
 import FadeIn from "../components/fadein";
-
 import loginImg from "../assets/backgrounds/circularRing.png";
 import googleImg from "../assets/icons/google.png";
 
@@ -43,7 +42,7 @@ function Login() {
         //     body: JSON.stringify(data),
         // };
 
-        // fetch(`${backendURL}/api/login/`, requestOptions)
+        // fetch(`${backendURL}/login/`, requestOptions)
         //     .then((response) => {
         //         console.log(response.status);
         //         if (response.status === 201) {

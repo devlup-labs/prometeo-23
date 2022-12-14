@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import "./newTeam.css";
 import FadeIn from "../components/fadein";
-
 import team_data from "./team_info";
 import user from "../assets/icons/user.png";
 import Footer from "../components/footer";
