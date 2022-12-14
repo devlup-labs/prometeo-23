@@ -12,11 +12,9 @@ body {
     overflow: hidden;
     /* background-color: #010001; */
     background: rgb(16, 28, 39);
-    background: radial-gradient(
-        circle,
-        rgba(16, 28, 39, 1) 10%,
-        rgba(0, 0, 0, 1) 90%
-    );
+    background: radial-gradient(circle,
+            rgba(16, 28, 39, 1) 10%,
+            rgba(0, 0, 0, 1) 90%);
 }
 
 * {
@@ -35,29 +33,26 @@ code {
 
 ::-webkit-scrollbar-thumb {
     background: rgb(16, 28, 39);
-    background: linear-gradient(
-        0deg,
-        rgb(16, 28, 39) 0%,
-        rgba(105, 192, 185, 1) 40%,
-        rgba(105, 192, 185, 1) 60%,
-        rgba(16, 28, 39, 1) 100%
-    );
+    background: linear-gradient(0deg,
+            rgb(16, 28, 39) 0%,
+            rgba(105, 192, 185, 1) 40%,
+            rgba(105, 192, 185, 1) 60%,
+            rgba(16, 28, 39, 1) 100%);
     border: 1px solid #84f4eb;
     border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(10, 17, 24);
-    background: linear-gradient(
-        0deg,
-        rgba(10, 17, 24, 1) 0%,
-        rgba(84, 159, 153, 1) 40%,
-        rgba(84, 159, 153, 1) 60%,
-        rgba(10, 17, 24, 1) 100%
-    );
+    background: linear-gradient(0deg,
+            rgba(10, 17, 24, 1) 0%,
+            rgba(84, 159, 153, 1) 40%,
+            rgba(84, 159, 153, 1) 60%,
+            rgba(10, 17, 24, 1) 100%);
     outline: 1px solid #84f4eb;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.8);
 }
