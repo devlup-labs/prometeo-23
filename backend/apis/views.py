@@ -210,3 +210,15 @@ class CampusAmbassadorListView(APIView):
             serializer = CampusAmbassadorSerializers(queryset, many=True)
             return Response(serializer.data)
     
+class LoginDashboardViewSet(APIView):
+    queryset = ExtendedUser.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = LoginDashboardSerializers
+
+    def post(self, request, *args, **kwargs):
+        user_email = request.data.get('email')
+        if(ExtendedUser.objects.filter(email=user_email)).exists():
+            user = ExtendedUser.objects.filter(email=user_email).first()
+            serializers = LoginDashboardSerializers(user)
+            return Response(serializers.data)
+            
