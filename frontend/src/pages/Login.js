@@ -23,7 +23,33 @@ function Login() {
         const email = e.target.email.value;
         const password = e.target.password.value;
         
-        loginUser(email, password);
+        
+        const myPromise = new Promise((resolve, reject) => {            
+            loginUser(email, password)
+                .then((res)=>{
+                    // console.log(res)
+                    resolve(res)
+                })
+                .catch((err)=>{
+                    // console.log(err)
+                    reject(err)
+                })
+        })
+        
+        toast.promise(myPromise, 
+            {
+                pending: 'Logging you in...',
+                success: 'Logged in successfully!',
+                error: {
+                    render: ({ data }) => {
+                        if (data == "Unauthorized") {
+                            return "Invalid Credentials!"
+                        }
+                        return "Something went wrong!"
+                    }
+                },
+            }
+        )
 
 
         // const data = {
