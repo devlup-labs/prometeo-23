@@ -369,6 +369,7 @@
 	}
 
 	#navbar {
+		justify-content: flex-end;
 		z-index: 999;
 	}
 
