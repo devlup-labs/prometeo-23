@@ -186,9 +186,11 @@ class CampusAmbassadorView(APIView):
             invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
             user.invite_referral = invite_referral
             user.save()
-            return user
+            response = {}
+            response['referral_code'] = invite_referral
+            return Response(response)
         else:
-            return user
+            return Response(user.invite_referral)
 
 class CoreTeamViewSet(viewsets.ModelViewSet):
     queryset = Coordinator.objects.all()

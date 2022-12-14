@@ -1,5 +1,9 @@
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 import "./ca.css";
+
+import useAxios from "../context/context_useAxios";
+import { backendURL } from "../backendURL";
 
 import boat from "../assets/ca/boat.png";
 import socialMedia1 from "../assets/ca/social_media.png";
@@ -13,11 +17,29 @@ import logo from "../assets/homePage/logo.png";
 import FadeIn from "../components/fadein";
 
 export default function CA() {
+    const api = useAxios();
+    console.log("Api:", api);
+
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
-        document.body.style.overflow = "hidden";
+        // document.body.style.overflow = "hidden";
     }, []);
+    
+    const handleSubmit = (e) => {
+        async function fetchData() {
+            try {
+                const response = await api.post(`${backendURL}/campusambassador/`);
+                if (response.status === 200) {
+                    toast.success("Registered Successfully!");
+                }
+            }
+            catch(error) {
+                console.log("Error:", error)
+            }
+        }
+        fetchData();
+    };
 
     return (
         <FadeIn duration={1000}>
@@ -34,7 +56,7 @@ export default function CA() {
                     />
 
                     <span id="ca-title-desc">
-                        <button className="button-48" role="button">
+                        <button className="button-48" role="button" onClick={handleSubmit}>
                             <span className="button-text">REGISTER!</span>
                         </button>
                         This is the description of the campus ambassador program
