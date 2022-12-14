@@ -16,6 +16,8 @@ current_year_dict = {'1': '1st Year', '2': '2nd Year', '3': '3rd Year', '4': '4t
                      '6': 'Graduated', '7': 'Faculty/Staff', '8': 'NA'}
 
 
+
+
 def get_all_event_participation():
     submissions = Submissions.objects.all().order_by('event')
     wbname2 = 'Event_Participants.xlsx'
