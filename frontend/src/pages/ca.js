@@ -67,7 +67,7 @@ export default function CA() {
                     <div className="ca-content-title" id="ca-title-left">
                         HEADING 1
                     </div>
-                    <div className="ca-content-text">
+                    <div className="ca-content-text ca-left">
                         <span className="ca-content-desc-left">
                             lorem ipsum dolor sit amet, consectetur adipiscing
                             elit. Nulla vitae elit libero, a pharetra augue.
@@ -86,7 +86,7 @@ export default function CA() {
                     <div className="ca-content-title" id="ca-title-right">
                         HEADING 2
                     </div>
-                    <div className="ca-content-text">
+                    <div className="ca-content-text ca-right">
                         <img
                             className="ca-content-img red-shadow"
                             src={socialMedia2}
@@ -179,7 +179,7 @@ export default function CA() {
                     <div className="ca-content-title" id="ca-title-left">
                         REGISTRATION
                     </div>
-                    <div className="ca-content-text">
+                    <div className="ca-content-text ca-left">
                         <span className="ca-content-desc-left ca-register">
                             So what are you waiting for? Register now and become
                             a part of the Prometeo'23 family!
@@ -188,7 +188,7 @@ export default function CA() {
                             </button>
                         </span>
                         <img
-                            className="ca-content-img blue-shadow"
+                            className="ca-content-img blue-shadow ca-pr-logo"
                             src={logo}
                             alt="social-media"
                         />
