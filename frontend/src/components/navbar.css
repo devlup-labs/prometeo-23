@@ -75,7 +75,7 @@
 }
 
 .navbar-right-section-login,
-.navbar-right-section-logout {
+.navbar-right-section-profile {
 	box-sizing: border-box;
 	padding: 3px 8px 1px;
 	border: 2px solid #63ccf5;
@@ -86,19 +86,19 @@
 }
 
 .navbar-right-section-login:hover,
-.navbar-right-section-logout:hover {
+.navbar-right-section-profile:hover {
 	color: #84f4eb;
 	background: #010001;
 	padding: 2px 7px 0px;
 	border: 3px solid #84f4eb;
 }
 
-.navbar-right-section-logout:hover {
+.navbar-right-section-profile:hover {
 	cursor: pointer;
 }
 
 .navbar-right-section-login::after,
-.navbar-right-section-logout::after {
+.navbar-right-section-profile::after {
 	content: "";
 	display: block;
 	margin-top: 0.5vmin;
@@ -149,7 +149,7 @@
 	display: none;
 }
 
-.navbar-mobile-link-logout:hover {
+.navbar-mobile-link-profile:hover {
 	color: #e2f7f5;
 	cursor: pointer;
 }
@@ -415,7 +415,7 @@
 	}
 
 	.navbar-right-section-login,
-	.navbar-right-section-logout {
+	.navbar-right-section-profile {
 		margin-bottom: 10px;
 	}
 }

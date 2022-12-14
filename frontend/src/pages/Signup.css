@@ -144,6 +144,35 @@
     /* margin: 0 1%; */
 }
 
+.signup-ca-checkbox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#signup-ca-checkbox-input {
+    height: fit-content;
+    width: fit-content;
+    color: black;
+    background-color: rgb(151, 189, 185);
+}
+
+#signup-ca-checkbox-input:focus {
+    outline: none;
+}
+
+.signup-ca-checkbox-label {
+    box-sizing: border-box;
+    padding-left: 5%;
+    color: #63ccf5;
+}
+
+.signup-ca-checkbox-label a {
+    color: #84f4eb;
+}
+
 .signup-form-confirmpassword-container {
     width: 100%;
     display: flex;

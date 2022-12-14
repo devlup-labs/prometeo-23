@@ -10,7 +10,7 @@ const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
 
     const axiosInstance = axios.create({
-        baseURL,
+        backendURL,
         headers: { Authorization: `Bearer ${authTokens?.access}` }
     });
 
