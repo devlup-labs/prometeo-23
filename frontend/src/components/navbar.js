@@ -191,14 +191,14 @@ function Navbar() {
 							// console.log("While creating: ", user)
 							return (
 								user ?
-									<div
-										className={`navbar-right-section-logout navbar-link`}
-										key={link.name}
-										tabIndex={link.tabIndex}
-										onClick={logoutUser}
-									>
-										{"Logout"}
-									</div>
+									<Link to={"/dashboard"} key={"profile"}>
+										<div
+											className={`navbar-right-section-profile navbar-link`}
+											tabIndex={link.tabIndex}
+										>
+											{"Profile"}
+										</div>
+									</Link>
 									:
 									<Link to={link.path} key={link.name}>
 										<div
@@ -268,14 +268,14 @@ function Navbar() {
 						else if (link.name === "login") {
 							return (
 								user ?
-									<div
-										className={`navbar-mobile-link navbar-link navbar-mobile-link-logout`}
-										key={link.name}
-										tabIndex={link.tabIndex}
-										onClick={logoutUser}
-									>
-										{"Logout"}
-									</div>
+									<Link to={"/dashboard"} key={"profile"}>
+										<div
+											className={`navbar-right-section-profile navbar-link`}
+											tabIndex={link.tabIndex}
+										>
+											{"Profile"}
+										</div>
+									</Link>
 									:
 									<Link to={link.path} key={link.name}>
 										<div

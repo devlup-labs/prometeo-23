@@ -159,6 +159,10 @@ function SignUp() {
                                     <option className="signup-gender-option" value="Other">Other</option>
                                 </select>
                             </div>
+                            <div className="signup-ca-checkbox">
+                                <input type="checkbox" name="ca" id="signup-ca-checkbox-input" />
+                                <label htmlFor="ca" className="signup-ca-checkbox-label">I want to signup for <Link to="/ca">CA Program</Link></label>
+                            </div>
                             <input
                                 type="text"
                                 name="referral_code"
