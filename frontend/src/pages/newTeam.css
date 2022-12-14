@@ -165,6 +165,7 @@
     align-items: center;
     gap: 1vmin;
     justify-content: space-between;
+    transition: 0.5s;
     /* border: 2px solid black; */
 }
 .team-profile-card:hover .team-bottom {

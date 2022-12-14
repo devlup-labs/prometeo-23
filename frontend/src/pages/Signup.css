@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap');
 
-.login {
+.signup {
 	font-family: 'Josefin Sans', sans-serif;
 	overflow-y: auto;
 	box-sizing: border-box;
-	padding: 0 1vw;
+	padding: 4vh 1vw;
 	width: 100vw;
 	height: 90vh;
 	background: rgb(16, 28, 39);
@@ -14,12 +14,12 @@
 	/* background-size: 20%; */
 	min-height: 90vh;
 	display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* flex-direction: column;
+    align-items: center; */
     justify-content: center;
 }
 
-.login-container {
+.signup-container {
     height: max-content;
     min-height: 80%;
     width: 70%;
@@ -27,16 +27,16 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     /* padding: 5vh 3vw; */
     box-shadow: 0 0 10px 0 rgba(35, 82, 126, 0.5);
     border-radius: 20px;
     /* border: 1px solid #84f4eb; */
 }
 
-.login-container-left {
+.signup-container-left {
     width: 47%;
-    height: 100%;
+    /* height: 100%; */
     background-size: contain;
     border-radius: 20px 0 0 20px;
     /* border: 1px solid whitesmoke; */
@@ -44,14 +44,14 @@
     overflow: hidden;
 }
 
-.login-container-left img {
+.signup-container-left img {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.login-container-right {
-    position: relative;
+.signup-container-right {
+    /* position: relative; */
     height: 100%;
     width: 53%;
     box-sizing: border-box;
@@ -65,7 +65,7 @@
     overflow: hidden;
 }
 
-.login-container-right-title {
+.signup-container-right-title {
 	color: #84f4eb;
 	font-family: 'Kanit', sans-serif;
     font-weight: 500;
@@ -73,7 +73,7 @@
     padding-bottom: 3vh;
 }
 
-.login-form {
+.signup-form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -81,22 +81,41 @@
     align-items: center;
 }
 
-.login-container-right-title, .login-form {
+.signup-container-right-title, .signup-form {
     z-index: 1;
     opacity: 1;
     transition: opacity 0.5s ease-out;
 }
 
-.login-form input {
+.signup-gender-dropdown {
+    box-sizing: border-box;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.login-form input {
+.signup-gender-dropdown-label {
+    height: 100%;
+    width: 40%;
+    color: #63ccf5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.signup-gender-dropdown-select {
+    width: 60%;
+}
+
+.signup-form input, .signup-gender-dropdown-select {
+    width: 100%;
     box-sizing: border-box;
     height: 5vh;
     margin: 8px 0;
     padding: 5px 8px;
-    border: none;
+    border: 3px solid transparent;
     border-radius: 5px;
     font-size: 1.8vmin;
     font-family: 'Josefin Sans', sans-serif;
@@ -104,15 +123,74 @@
     background-color: rgb(151, 189, 185);
 }
 
-.login-form input:focus {
+.signup-form input:focus, .signup-gender-dropdown-select:focus {
     outline: 3px solid #84f4eb;
 }
 
-.login-form input::placeholder {
+.signup-form input::placeholder, .signup-gender-dropdown-select::placeholder {
     color: #3c3b3b;
 }
 
-#login-form-submit, #google-login-form-submit {
+.signup-form-name {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signup-form-name input {
+    width: 48%;
+    /* margin: 0 1%; */
+}
+
+.signup-ca-checkbox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#signup-ca-checkbox-input {
+    height: fit-content;
+    width: fit-content;
+    color: black;
+    background-color: rgb(151, 189, 185);
+}
+
+#signup-ca-checkbox-input:focus {
+    outline: none;
+}
+
+.signup-ca-checkbox-label {
+    box-sizing: border-box;
+    padding-left: 5%;
+    color: #63ccf5;
+}
+
+.signup-ca-checkbox-label a {
+    color: #84f4eb;
+}
+
+.signup-form-confirmpassword-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#signup-form-confirmpassword-warning {
+    color: #ff0000;
+    font-size: 1.7vmin;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+}
+
+#signup-form-submit, #google-signup-form-submit {
     width: 40%;
     height: 5vh;
     padding: 5px;
@@ -127,12 +205,12 @@
     text-align: center;
 }
 
-#google-login-form-submit {
+#google-signup-form-submit {
     margin: 0;
     border-radius: inherit;
 }
 
-#login-form-submit:hover {
+#signup-form-submit:hover {
     background-color: #63ccf5e4;
     cursor: pointer;
 }
@@ -181,7 +259,7 @@
     top: 52%;
 }
 
-.login-noaccount {
+.signup-alreadyAccount {
     color: #84f4eb;
     /* font-family: 'Kanit', sans-serif; */
     font-weight: 300;
@@ -189,61 +267,66 @@
     text-decoration: none;
 }
 
-.login-noaccount > a {
+.signup-alreadyAccount > a {
     font-weight: 700;
     color: #63ccf5;
     text-decoration: none;
 }
 
-.login-noaccount > a:hover {
+.signup-alreadyAccount > a:hover {
     color: #63ccf5e4;
 }
 
 @media (max-width: 1000px) {
-    .login-container {
+    .signup-container {
         width: 90%;
     }
 }
 
 @media (max-width: 700px) {
-    .login-container {
+    .signup-container {
         width: 100%;
     }
 }
 
 @media (orientation: portrait) {
-    .login-container {
+    .signup-container {
+        /* position: absolute;
+        top: 4%; */
         flex-direction: column;
         height: min-content;
         width: 90%;
     }
 
-    .login-container-left {
+    .signup-container-left {
         width: 100%;
         height: 20vh;
         border-radius: 20px 20px 0 0;
     }
     
-    .login-container-right {
+    .signup-container-right {
         width: 100%;
-        flex-grow: 1;
         height: fit-content;
         border-radius: 0 0 20px 20px;
     }
 
-    .login-container-right-title {
+    .signup-container-right-title {
         font-size: max(26px, 4vmin);
     }
 
-    .login-form input {
+    .signup-form input {
         font-size: max(12px, 1.8vmin);
     }
 
-    #login-form-submit, #google-login-form-submit {
+    #signup-form-confirmpassword-warning {
+        font-size: max(11px, 1.7vmin);
+    }
+
+    #signup-form-submit, #google-signup-form-submit {
         font-size: max(13px, 2vmin);
     }
 
-    .login-noaccount {
+    .signup-alreadyAccount {
         font-size: max(12px, 2vmin);
     }
 }
