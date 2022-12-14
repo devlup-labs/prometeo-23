@@ -79,52 +79,51 @@ function Dashboard() {
                         Logout
                     </div>
                 </div>
-                <div id="dashboard-middle">
-                    <div id="dashboard-middle-left">
-                        <div id="dashboard-pass">
-                            <div id="dashboard-pass-container">
-                                <div id="dashboard-pass-left">
-                                    <div id="dashboard-pass-left-title">
-                                        TICKET
-                                    </div>
-                                    <div id="dashboard-pass-left-image">
-                                        <img src={rocketImg} alt="pass" />
-                                    </div>
-                                </div>
-                                <div id="dashboard-pass-right">
-                                    <div id="dashboard-pass-right-title">
-                                        {"Prometeo '23"}
-                                    </div>
-                                    <div id="dashboard-pass-right-content">
-                                        {"You have not purchased any pass :("}
-                                    </div>
-                                </div>
+                <div id="dashboard-pass-and-details">
+                    <div id="dashboard-personalDetails">
+                        <div id="dashboard-personalDetails-title">
+                            Personal Details
+                        </div>
+                        <div id="dashboard-personalDetails-content">
+                            <div className="dashboard-personalDetails-content-title">
+                                Name: <span className="dashboard-personalDetails-content-value">{user.username}</span>
+                            </div>
+                            <div className="dashboard-personalDetails-content-title">
+                                Email: <span className="dashboard-personalDetails-content-value">{user.email}</span>
                             </div>
                         </div>
-                        <div id="dashboard-personalDetails">
-                            <div id="dashboard-personalDetails-title">
-                                Personal Details
-                            </div>
-                            <div id="dashboard-personalDetails-content">
-                                <div className="dashboard-personalDetails-content-title">
-                                    Name: <span className="dashboard-personalDetails-content-value">{user.username}</span>
+                    </div>
+                    <div id="dashboard-pass">
+                        <div id="dashboard-pass-container">
+                            <div id="dashboard-pass-left">
+                                <div id="dashboard-pass-left-title">
+                                    TICKET
                                 </div>
-                                <div className="dashboard-personalDetails-content-title">
-                                    Email: <span className="dashboard-personalDetails-content-value">{user.email}</span>
+                                <div id="dashboard-pass-left-image">
+                                    <img src={rocketImg} alt="pass" />
+                                </div>
+                            </div>
+                            <div id="dashboard-pass-right">
+                                <div id="dashboard-pass-right-title">
+                                    {"Prometeo '23"}
+                                </div>
+                                <div id="dashboard-pass-right-content">
+                                    {"You have not purchased any pass :("}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="dashboard-registeredEvents">
-                        <div id="dashboard-registeredEvents-title">
-                            Registered Events
-                        </div>
-                        <div id="dashboard-registeredEvents-content">
-                            {
-                                ([].length > 0) ?
+                </div>
+                <div id="dashboard-registeredEvents">
+                    <div id="dashboard-registeredEvents-title">
+                        Registered Events
+                    </div>
+                    <div id="dashboard-registeredEvents-content">
+                        {
+                            (registered_events.length > 0) ?
                                 registered_events.map((event, index) => {
                                     return (
-                                        <div className="dashboard-registeredEvents-content-event" key={index}>  
+                                        <div className="dashboard-registeredEvents-content-event" key={index}>
                                             <div className="dashboard-registeredEvents-content-event-image">
                                                 <img src={event.image} alt="Event Image" />
                                             </div>
@@ -142,8 +141,7 @@ function Dashboard() {
                                 <div id="dashboard-registeredEvents-noEvent">
                                     You have not registered for any event!
                                 </div>
-                            }
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
