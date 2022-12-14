@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
     const loginUser = async (email, password) => {
-        const response = await fetch(`${backendURL}/api/login/`, {
+        const response = await fetch(`${backendURL}/login/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -48,20 +48,22 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const registerUser = async (first_name, last_name, city, college, contact, gender, referral_code, email, password) => {
-        const response = await fetch(`${backendURL}/api/signup/`, {
+    const registerUser = async (first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador) => {
+        console.log("Ambassador: ", ambassador)
+        const response = await fetch(`${backendURL}/signup/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                first_name, last_name, city, college, contact, gender, referral_code, email, password
+                first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador
             })
         });
         if (response.status === 201) {
             navigate("/login");
+            return response;
         } else {
-            alert("Something went wrong!");
+            throw("signup failed")
         }
     };
 
