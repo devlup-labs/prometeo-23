@@ -4,9 +4,9 @@ import "./eventHome.css";
 
 import eventPageImg from "../assets/backgrounds/roboguy.jpg";
 
-import img1 from "../assets/events/Image1.jpg";
-import img2 from "../assets/events/Image2.jpg";
-import img3 from "../assets/events/Image3.jpg";
+import img1 from "../assets/homePage/technical.jpg";
+import img2 from "../assets/homePage/informal.jpg";
+import img3 from "../assets/homePage/talk.jpg";
 
 export default function EventHome() {
     return (

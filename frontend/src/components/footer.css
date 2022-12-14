@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Josefin+Sans&family=Teko:wght@300&display=swap');
 
 #footer {
-    /* position: relative; */
+    position: relative;
     box-sizing: border-box;
     background-color: #273543;
     color: #91c8cf;
@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 999;
 }
 
 #footer-content {
