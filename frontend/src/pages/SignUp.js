@@ -36,17 +36,21 @@ function SignUp() {
         const ambassador = e.target.ca.value === "on";
 
         // console.log(ambassador)
-        const myPromise = new Promise((resolve) => {            
+        const myPromise = new Promise((resolve, reject) => {            
             registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador)
                 .then((res)=>{
-                    console.log(res)
+                    // console.log(res)
                     resolve(res)
+                })
+                .catch((err)=>{
+                    // console.log(err)
+                    reject(err)
                 })
         })
         
         toast.promise(myPromise, 
             {
-                pending: 'Loading',
+                pending: 'Creating your account...',
                 success: 'Registered Successfully!',
                 error: 'Something went wrong!',
             }

@@ -1,4 +1,6 @@
 import { createContext, useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import { toast } from "react-toastify";
 import jwt_decode from "jwt-decode";
 
 import { useNavigate } from "react-router-dom";
@@ -41,29 +43,30 @@ export const AuthProvider = ({ children }) => {
             setAuthTokens(data);
             setUser(jwt_decode(data.access));
             localStorage.setItem("authTokens", JSON.stringify(data));
-            console.log("Logged in");
-            navigate("/");
+            // console.log("Logged in");
+            navigate("/dashboard");
+            return response;
         } else {
-            alert("Something went wrong!");
+            throw(response.statusText)
         }
     };
 
     const registerUser = async (first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador) => {
-        console.log("Ambassador: ", ambassador)
+        console.log("ambassador: ", ambassador)
+        const requestData = { first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador }
+
         const response = await fetch(`${backendURL}/signup/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador
-            })
+            body: JSON.stringify(requestData)
         });
         if (response.status === 201) {
             navigate("/login");
             return response;
         } else {
-            throw("signup failed")
+            throw(response.statusText)
         }
     };
 
@@ -71,8 +74,9 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem("authTokens");
-        console.log("Logged out");
+        // console.log("Logged out");
         navigate("/");
+        toast.success("Logged out successfully!");
     };
 
     const contextData = {
