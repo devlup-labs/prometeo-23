@@ -12,6 +12,20 @@ function Theme(props) {
         navBarEle.style.opacity = 1;
         // document.body.style.overflow = "auto";
     });
+
+    useEffect(() => {
+        // get current url
+        const currentURL = window.location.href;
+        // get the last part of the url
+        const lastPart = currentURL.split("/").pop();
+        console.log("lastPart: ", lastPart)
+        // if last part points to theme, scroll to theme
+        if (lastPart === "#theme") {
+          const themeEle = document.getElementById("theme");
+          themeEle.scrollIntoView();
+        }
+      }, []);
+
     return (
         <FadeIn duration={500}>
             <div id="themePage" className="contentDiv">

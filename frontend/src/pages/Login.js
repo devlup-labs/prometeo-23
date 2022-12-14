@@ -43,7 +43,7 @@ function Login() {
 
         console.log("Submitted");
 
-        fetch(`${backendURL}/api/login/`, requestOptions)
+        fetch(`${backendURL}/login/`, requestOptions)
             .then((response) => {
                 console.log(response.status);
                 if (response.status === 201) {

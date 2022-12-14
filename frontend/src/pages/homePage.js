@@ -24,10 +24,11 @@ import Footer from "../components/footer";
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [hideGif, setHideGif] = useState(false);
 
-  // useEffect(() => {
-  //   loadTextures(isLoading, setIsLoading);
-  // }, []);
+  // write code to hide the scroll when footer is in view
+
+  
 
   useEffect(() => {
     console.log("isLoading: ", isLoading);
@@ -58,9 +59,9 @@ export default function HomePage() {
       //   showContent &&
         (
           <FadeIn duration={500}>
-              {/* <div id="scroll-down">
+              <div id="scroll-down">
                 <img src={scrollGif} alt="Scroll Down" id="scroll-down-gif" />
-              </div> */}
+              </div>
               <div id="homepage-content">
                 <LandingSection />
                 <Introduction />

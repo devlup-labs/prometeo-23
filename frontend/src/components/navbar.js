@@ -10,7 +10,7 @@ const navBarLinks = [
   {
     name: "theme",
     text: "Theme",
-    path: "#theme",
+    path: "/#theme",
     section: "left",
     tabIndex: 2,
   },
@@ -36,18 +36,25 @@ const navBarLinks = [
     tabIndex: 5,
   },
   {
+    name: "ca",
+    text: "CA",
+    path: "/campus-ambassador",
+    section: "right",
+    tabIndex: 5,
+  },
+  {
     name: "events",
     text: "Events",
     path: "/events",
     section: "right",
-    tabIndex: 6,
+    tabIndex: 7,
   },
   {
     name: "gallery",
     text: "Gallery",
     path: "/gallery",
     section: "right",
-    tabIndex: 7,
+    tabIndex: 8,
   },
   // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
   {
@@ -55,14 +62,14 @@ const navBarLinks = [
     text: "Pre-Register",
     path: "/pre-register",
     section: "right",
-    tabIndex: 8,
+    tabIndex: 9,
   },
   {
     name: "login",
     text: "Login",
     path: "/login",
     section: "right",
-    tabIndex: 9,
+    tabIndex: 10,
   },
 ];
 

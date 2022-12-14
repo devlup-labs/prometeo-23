@@ -91,7 +91,7 @@ function Sponsors() {
 				headers: headers,
 			}
 
-			await fetch(`${backendURL}/api/sponsors/`, requestOptions)
+			await fetch(`${backendURL}/sponsors/`, requestOptions)
 				.then((response) => response.json())
 				.then((data) => {
 					let newData = {}
