@@ -15,7 +15,7 @@ import Navbar from "./components/navbar";
 import HomePage from "./pages/homePage";
 import Page_404 from "./pages/404";
 import Speaker from "./pages/Speaker";
-import Gallery from "./pages/Gallery";
+import Gallery from "./pages/newGallery";
 import Sponsors from "./pages/Sponsors";
 import Events from "./pages/Event.js";
 import Register from "./pages/Register.js";

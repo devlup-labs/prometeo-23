@@ -1,1 +1,1 @@
-export const backendURL = "https://apiv.prometeo.in";
+export const backendURL = "https://apiv.prometeo.in/api";

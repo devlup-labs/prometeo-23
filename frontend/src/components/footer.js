@@ -1,8 +1,25 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./footer.css";
 
-export default function Footer() {
+export default function Footer(props) {
+
+    useEffect(() => {
+        const footerEle = document.getElementById("footer");
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    props.view(true);
+                } else {
+                    props.view(false);
+                }
+            },
+            { threshold: 0.1 }
+        );
+        observer.observe(footerEle);
+    }, []);
+
     return (
         <div id="footer">
             <div id="footer-content">
