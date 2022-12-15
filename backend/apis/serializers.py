@@ -248,3 +248,9 @@ class CAViewSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = ['email', 'first_name', 'last_name', 'college', 'contact', 'city', 'ca_count']
+
+class LoginDashboardSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = '__all__'
+        
