@@ -18,24 +18,25 @@ import FadeIn from "../components/fadein";
 
 export default function CA() {
     const api = useAxios();
-    console.log("Api:", api);
+    // console.log("Api:", api);
 
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
         // document.body.style.overflow = "hidden";
     }, []);
-    
+
     const handleSubmit = (e) => {
         async function fetchData() {
             try {
-                const response = await api.post(`${backendURL}/campusambassador/`);
+                const response = await api.post(
+                    `${backendURL}/campusambassador/`
+                );
                 if (response.status === 200) {
                     toast.success("Registered Successfully!");
                 }
-            }
-            catch(error) {
-                console.log("Error:", error)
+            } catch (error) {
+                console.log("Error:", error);
             }
         }
         fetchData();
@@ -56,7 +57,11 @@ export default function CA() {
                     />
 
                     <span id="ca-title-desc">
-                        <button className="button-48" role="button" onClick={handleSubmit}>
+                        <button
+                            className="button-48"
+                            role="button"
+                            onClick={handleSubmit}
+                        >
                             <span className="button-text">REGISTER!</span>
                         </button>
                         This is the description of the campus ambassador program
@@ -65,15 +70,14 @@ export default function CA() {
                 </div>
                 <div className="ca-content">
                     <div className="ca-content-title" id="ca-title-left">
-                        HEADING 1
+                        ABOUT THE PROGRAM
                     </div>
                     <div className="ca-content-text ca-left">
                         <span className="ca-content-desc-left">
-                            lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Nulla vitae elit libero, a pharetra augue.
-                            Nullam id dolor id nibh ultricies vehicula ut id
-                            elit. Nullam id dolor id nibh ultricies vehicula ut
-                            id elit. Nullam id.
+                            In the campus ambassador program, you will represent
+                            our fest, Prometeo, in your college community and
+                            encourage students to participate by highlighting
+                            the advantages of taking part in the fest.
                         </span>
                         <img
                             className="ca-content-img blue-shadow"
@@ -84,7 +88,7 @@ export default function CA() {
                 </div>
                 <div className="ca-content">
                     <div className="ca-content-title" id="ca-title-right">
-                        HEADING 2
+                        AN OPPORTUNITY TO GROW
                     </div>
                     <div className="ca-content-text ca-right">
                         <img
@@ -93,11 +97,17 @@ export default function CA() {
                             alt="social-media"
                         />
                         <span className="ca-content-desc-right">
-                            lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Nulla vitae elit libero, a pharetra augue.
-                            Nullam id dolor id nibh ultricies vehicula ut id
-                            elit. Nullam id dolor id nibh ultricies vehicula ut
-                            id elit. Nullam id.
+                            Your task as the campus ambassador is very flexible
+                            and easy to do, ranging from providing information
+                            about Prometeo'23 to asking students to register for
+                            the fest using your referral code. By becoming the
+                            campus ambassador you will serve as a link between
+                            the students of your college and Prometeo'23. <br></br><br></br>It
+                            will help to boost your confidence and leadership
+                            skills. Your communication skills will also bloom
+                            extravagantly. The campus ambassador program will
+                            become an asset if you are a student looking for great
+                            learning and networking opportunities.
                         </span>
                     </div>
                 </div>
@@ -181,8 +191,8 @@ export default function CA() {
                     </div>
                     <div className="ca-content-text ca-left">
                         <span className="ca-content-desc-left ca-register">
-                            So what are you waiting for? Register now and become
-                            a part of the Prometeo'23 family!
+                            So, grab the opportunity and sign up as soon as
+                            possible to win the goodies and wonderful perks!
                             <button className="button-48" role="button">
                                 <span className="button-text">I'M IN!</span>
                             </button>
