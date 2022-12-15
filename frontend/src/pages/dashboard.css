@@ -24,7 +24,7 @@
     background-color: rgba(255, 255, 255, 0.104);
     backdrop-filter: blur(30px);
     border-radius: 20px;
-    padding: 3vh 2vw 2vh;
+    padding: 3vh 2vw 4vh;
 }
 
 #dashboard-top {
@@ -36,7 +36,8 @@
 
 #dashboard-top-left {
     color: #eeeeee;
-    font-size: max(4vmin, 24px);
+    font-family: Kanit, sans-serif;
+    font-size: max(5vmin, 30px);
     font-weight: 600;
 }
 
@@ -184,7 +185,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 0.5vmin 1vmin;
+    padding: 1vmin 1.8vmin;
+    /* background-color: #cf9eac8d; */
     background-color: rgba(214, 214, 214, 0.104);
     backdrop-filter: blur(30px);
     border-radius: 15px;
@@ -194,8 +196,9 @@
 #dashboard-personalDetails-title,
 #dashboard-registeredEvents-title {
     color: #eeeeee;
+    font-family: Kanit, sans-serif;
     font-size: max(3vmin, 18px);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 #dashboard-personalDetails-content {
@@ -229,7 +232,7 @@
     justify-content: space-between;
     width: 100%;
     /* height: 100%; */
-    padding: 1vmin;
+    padding: 1vmin 1vmin 1vmin 0;
     overflow-y: auto;
 }
 
@@ -242,7 +245,7 @@
     align-items: flex-start;
     justify-content: space-between;
     margin: 1vmin 0;
-    padding: 0.5vmin;
+    padding: 0.5vmin 1vmin;
     background-color: rgba(100, 100, 100, 0.227);
     backdrop-filter: blur(30px);
     border-radius: 8px;

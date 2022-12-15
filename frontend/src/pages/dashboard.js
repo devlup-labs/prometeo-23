@@ -1,8 +1,10 @@
-import { useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import './dashboard.css';
 
+import { backendURL } from '../backendURL';
 import AuthContext from '../context/AuthContext'
+import useAxios from '../context/context_useAxios'
 
 import rocketImg from '../assets/icons/rocket.png';
 
@@ -60,13 +62,39 @@ const registered_events = [
 ]
 
 function Dashboard() {
+    const [userData, setUserData] = useState({})
     const { user, logoutUser } = useContext(AuthContext);
     console.log(user)
+    const api = useAxios();
 
     useEffect(() => {
         const navBarEle = document.getElementById('navbar');
         navBarEle.style.opacity = 1;
     });
+
+    useEffect(() => {
+        async function fetchData() {
+            try{
+                const response = await api.post(`${backendURL}/logindashboard/`, {
+                    email: user.email,
+                });
+
+                if (response.status === 200) {
+                    const data = response.data;
+                    console.log("Login Dashboard Data:", data)
+                    setUserData({
+                        ...data
+                    })
+                }
+                else {
+                    throw(response.statusText)
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchData();
+    }, [])
 
     return (
         <div id="dashboard-container">
