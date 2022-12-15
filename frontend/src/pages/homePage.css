@@ -150,11 +150,11 @@ a {
     bottom: 1%;
     left: 50%;
     z-index: 99;
+    opacity: 1;
 }
 
 #scroll-down-gif {
     position: relative;
-    opacity: 1;
     width: 30px;
 }
 
