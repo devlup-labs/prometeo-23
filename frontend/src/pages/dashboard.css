@@ -24,7 +24,7 @@
     background-color: rgba(255, 255, 255, 0.104);
     backdrop-filter: blur(30px);
     border-radius: 20px;
-    padding: 3vh 2vw 2vh;
+    padding: 3vh 2vw 4vh;
 }
 
 #dashboard-top {
@@ -36,7 +36,8 @@
 
 #dashboard-top-left {
     color: #eeeeee;
-    font-size: max(4vmin, 24px);
+    font-family: Kanit, sans-serif;
+    font-size: max(5vmin, 30px);
     font-weight: 600;
 }
 
@@ -164,6 +165,59 @@
     font-weight: 500;
 }
 
+#dashboard-caDetails {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #928bb4;
+    /* border: 2px solid transparent;
+    background: linear-gradient(#e1d1e2, #e1d1e2) padding-box,
+                linear-gradient(135deg, #e9018d 10%, #020041 50%, #057dde 90%) border-box; */
+    border-radius: 8px;
+    padding: 0.5vmin 1vmin;
+}
+
+#dashboard-caDetails-title {
+    color: #ffde38;
+    /* background: -webkit-linear-gradient(135deg, #e9018d 10%, #020041 50%, #057dde 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    font-family: 'Kanit', sans-serif;
+    font-size: max(3vmin, 18px);
+    font-weight: 700;
+}
+
+#dashboard-caDetails-content {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0.4vmin 0;
+}
+
+.dashboard-caDetails-content-title {
+    color: #f1d54a;
+    font-size: max(2.2vmin, 13px);
+    font-weight: 600;
+}
+
+.dashboard-caDetails-content-value {
+    color: #fffee8;
+    font-weight: 400;
+}
+
+.dashboard-caDetails-content-title .fa-copy {
+    fill: #f1d54a;
+    height: max(2.2vmin, 13px);
+    margin-left: 4px;
+}
+
+.dashboard-caDetails-content-title .fa-copy:hover {
+    cursor: pointer;
+    fill: #f1d54a95;
+}
+
 #dashboard-personalDetails {
     height: 100%;
     width: 40%;
@@ -184,9 +238,10 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 0.5vmin 1vmin;
-    background-color: rgba(214, 214, 214, 0.104);
-    backdrop-filter: blur(30px);
+    padding: 1vmin 1.8vmin;
+    background-color: #ae9eaf;
+    /* background-color: rgba(214, 214, 214, 0.104);
+    backdrop-filter: blur(30px); */
     border-radius: 15px;
     box-shadow: 0 0 8px rgb(169, 169, 169);
 }
@@ -194,8 +249,10 @@
 #dashboard-personalDetails-title,
 #dashboard-registeredEvents-title {
     color: #eeeeee;
+    text-shadow: 2px 2px black;
+    font-family: Kanit, sans-serif;
     font-size: max(3vmin, 18px);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 #dashboard-personalDetails-content {
@@ -205,18 +262,19 @@
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    flex-grow: 0.5;
     padding: 1vmin 0;
 }
 
 .dashboard-personalDetails-content-title {
-    color: #15eac5;
+    color: #022f82;
     font-size: max(2.2vmin, 13px);
     font-weight: 600;
 }
 
 .dashboard-personalDetails-content-value {
-    color: #b0e7c7;
+    color: #3d0073;
     font-weight: 400;
 }
 
@@ -229,7 +287,7 @@
     justify-content: space-between;
     width: 100%;
     /* height: 100%; */
-    padding: 1vmin;
+    padding: 1vmin 1vmin 1vmin 0;
     overflow-y: auto;
 }
 
@@ -242,7 +300,7 @@
     align-items: flex-start;
     justify-content: space-between;
     margin: 1vmin 0;
-    padding: 0.5vmin;
+    padding: 0.5vmin 1vmin;
     background-color: rgba(100, 100, 100, 0.227);
     backdrop-filter: blur(30px);
     border-radius: 8px;
@@ -272,13 +330,13 @@
 }
 
 .dashboard-registeredEvents-content-event-title {
-    color: #15eac5;
+    color: #022f82;
     font-size: max(2.2vmin, 13px);
     font-weight: 600;
 }
 
 .dashboard-registeredEvents-content-event-date {
-    color: #b0e7c7;
+    color: #3d0073;
     font-size: max(1.8vmin, 11px);
     font-weight: 400;
 }
