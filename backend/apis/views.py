@@ -36,7 +36,7 @@ class MyObtainTokenPairView(TokenObtainPairView):
 class SponsorsViewSet(viewsets.ModelViewSet):
     queryset = Sponsors.objects.all()
     serializer_class = SponsorsSerializers
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
