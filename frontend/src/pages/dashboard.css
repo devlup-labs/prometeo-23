@@ -1,9 +1,9 @@
 #dashboard-container {
     box-sizing: border-box;
-    width: 100vw;
-    height: 90vh;
+    width: 100%;
+    /* height: 90vh; */
     min-height: 90vh;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     padding: 5vh 2vw;
     background: rgb(13, 46, 69);
     /* background: linear-gradient(315deg, rgba(13,46,69,1) 30%, rgba(40,74,101,1) 70%); */

@@ -9,7 +9,7 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* background-color: #010001; */
     background: rgb(16, 28, 39);
     background: radial-gradient(circle,
