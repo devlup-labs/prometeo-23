@@ -20,7 +20,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
         # Add custom claims
-        token['username'] = user.first_name+user.last_name
+        token['username'] = user.first_name+'_'+user.last_name
         token['email'] = user.email
         return token
 
@@ -248,3 +248,9 @@ class CAViewSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = ['email', 'first_name', 'last_name', 'college', 'contact', 'city', 'ca_count']
+
+class LoginDashboardSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = '__all__'
+        
