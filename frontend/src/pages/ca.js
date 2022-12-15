@@ -65,7 +65,7 @@ export default function CA() {
                             <span className="button-text">REGISTER!</span>
                         </button>
                         This is the description of the campus ambassador program
-                        of Prometeo'23.
+                        of Prometeo '23.
                     </span>
                 </div>
                 <div className="ca-content">
@@ -99,10 +99,10 @@ export default function CA() {
                         <span className="ca-content-desc-right">
                             Your task as the campus ambassador is very flexible
                             and easy to do, ranging from providing information
-                            about Prometeo'23 to asking students to register for
+                            about Prometeo '23 to asking students to register for
                             the fest using your referral code. By becoming the
                             campus ambassador you will serve as a link between
-                            the students of your college and Prometeo'23. <br></br><br></br>It
+                            the students of your college and Prometeo '23. <br></br><br></br>It
                             will help to boost your confidence and leadership
                             skills. Your communication skills will also bloom
                             extravagantly. The campus ambassador program will
