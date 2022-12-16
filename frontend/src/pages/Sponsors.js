@@ -41,12 +41,12 @@ function Entry(props) {
 	const sponsorCategory = props.sponsorCategory;
 	
 	return (
-		<div className="teamContainer" key={sponsorCategory.designation}>
+		<div className="sponsorContainer" key={sponsorCategory.designation}>
 			<div className="section-header">
 				<span>{mapDesignationToType[sponsorCategory.designation]}</span>
 			</div>
 
-			<div className="team-card">
+			<div className="sponsor-card">
 				{sponsorCategory.sponsors.map(logo)};
 			</div>
 		</div>

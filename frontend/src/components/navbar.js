@@ -225,14 +225,17 @@ function Navbar() {
                     navBarLinks.map((link) => {
                         if (link.name === "events")
                             return (
-                                <div key={link.name}>
+                                <div style={{width: "100%", overflowX: "hidden"}} key={link.name}>
                                     <div
                                         className="dropdown dropdown-5"
                                         key={link.name}
+                                        // onClick={() => setShowIcons(false)}
                                     >
-                                        <div className="navbar-mobile-link navbar-link">
+										<input type="checkbox" id="navbar-mobile-eventCheckbox" />
+                                        <label id="navbar-mobile-eventLabel" for="navbar-mobile-eventCheckbox" className="navbar-mobile-link navbar-link">
                                             {link.text}
-                                        </div>
+											{/* <label >{link.text}</label> */}
+                                        </label>
                                         {/* {link.text} */}
                                         <ul className="dropdown_menu dropdown_menu-5">
                                             {eventTypes.map((item, index) => (

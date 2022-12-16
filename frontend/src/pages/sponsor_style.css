@@ -50,7 +50,7 @@ body {
 }
 */
 
-.team-card img {
+.sponsor-card img {
   width: 250px;
   /* height: 200px; */
   margin: auto;
@@ -78,7 +78,7 @@ body {
   -webkit-background-clip: text;
 }
 
-.team-card {
+.sponsor-card {
   display: flex;
   flex-wrap: wrap;
   /* justify-content: space-between; */
