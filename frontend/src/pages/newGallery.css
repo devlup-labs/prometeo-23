@@ -1,6 +1,6 @@
 #gallery-container {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 90vh;
     display: flex;
     justify-content: center;
@@ -8,9 +8,10 @@
     font-family: "Kanit", sans-serif;
     background-image: url("../assets/backgrounds/gallery_bg.png");
     background-size: cover;
+    overflow: hidden;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (hover: none) {
     #gallery-container {
         flex-direction: column;
         justify-content: space-evenly;
@@ -88,7 +89,7 @@
     /* text-shadow: 3px 3px 5px rgba(255, 255, 255, 0.3); */
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (hover: none) {
     #gallery-heading {
         z-index: 99;
         font-size: 15vmin;
@@ -109,7 +110,7 @@
     transition: opacity 1s ease;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (hover: none) {
     #gallery-image-track {
         display: flex;
         transform: translate(-50%, 0%);
@@ -127,7 +128,7 @@
     box-shadow: 0 0 20px 4px rgba(0, 166, 255, 0.1);
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (hover: none) {
     #gallery-image-track > .gallery-image {
         width: 100%;
         object-fit: cover;

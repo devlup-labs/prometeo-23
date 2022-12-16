@@ -6,7 +6,7 @@
     width: 100%;
 
     /* For scrollbar behind navbar */
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     padding-top: 10vh;
     height: fit-content;
