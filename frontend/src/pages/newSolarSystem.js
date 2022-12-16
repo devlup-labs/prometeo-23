@@ -4,7 +4,7 @@ import { Mesh, TextureLoader, sRGBEncoding, DoubleSide, Vector3, BufferGeometry 
 import { Stats, Html, useProgress } from "@react-three/drei";
 
 import bg from "../assets/space/bg.jpg";
-import sun from "../assets/space/sun2.jpg";
+import sun from "../assets/space/sun.png";
 
 import mercury from "../assets/planets/mercury.jpg";
 import venus from "../assets/planets/venus.jpg";
@@ -73,8 +73,8 @@ const Sun = (props) => {
             <meshStandardMaterial
                 map={sunTexture}
                 // emissive="#4dddda"
-                emissive="#ff5700"
-                emissiveIntensity={0.5}
+                emissive="#14d2cf"
+                emissiveIntensity={0.7}
             />
         </mesh>
     );
@@ -452,7 +452,7 @@ function NewSolarSystem({setIsLoading}) {
             }}
             style={{
                 height: "90vh",
-                width: "100%",
+                width: "100vw",
             }}
         >
             <Suspense fallback={<Loader setIsLoading={setIsLoading} />}>

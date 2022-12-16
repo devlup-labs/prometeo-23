@@ -14,11 +14,11 @@ body {
 } */
 
 #sponsors_body {
-  /* overflow-y: auto; */
+  overflow-y: auto;
   box-sizing: border-box;
   padding: 0 1vw;
-  width: 100%;
-  /* height: 90vh; */
+  width: 100vw;
+  height: 90vh;
   background: rgb(16,28,39);
   background: radial-gradient(circle, rgba(16,28,39,1) 10%, rgba(0,0,0,1) 90%);
   /* background-image: url("../assets/homePage/background_pattern_t3.png"); */
@@ -50,7 +50,7 @@ body {
 }
 */
 
-.sponsor-card img {
+.team-card img {
   width: 250px;
   /* height: 200px; */
   margin: auto;
@@ -78,7 +78,7 @@ body {
   -webkit-background-clip: text;
 }
 
-.sponsor-card {
+.team-card {
   display: flex;
   flex-wrap: wrap;
   /* justify-content: space-between; */
