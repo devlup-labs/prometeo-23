@@ -33,7 +33,8 @@ function SignUp() {
         const referral_code = e.target.referral_code.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const ambassador = e.target.ca.value === "on";
+        const ambassador = false;
+        // const ambassador = e.target.ca.value === "on";
 
         // console.log(ambassador)
         const myPromise = new Promise((resolve, reject) => {            
@@ -188,10 +189,10 @@ function SignUp() {
                                     <option className="signup-gender-option" value="Other">Other</option>
                                 </select>
                             </div>
-                            <div className="signup-ca-checkbox">
+                            {/* <div className="signup-ca-checkbox">
                                 <input type="checkbox" name="ca" id="signup-ca-checkbox-input" />
                                 <label htmlFor="ca" className="signup-ca-checkbox-label">I want to signup for <Link to="/ca">CA Program</Link></label>
-                            </div>
+                            </div> */}
                             <input
                                 type="text"
                                 name="referral_code"
