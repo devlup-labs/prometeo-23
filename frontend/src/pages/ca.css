@@ -2,8 +2,18 @@
 
 #ca-container {
     box-sizing: border-box;
-    height: 90vh;
-    width: 100vw;
+    /* height: 90vh; */
+    width: 100%;
+
+    /* For scrollbar behind navbar */
+    position: absolute;
+    top: 0;
+    padding-top: 10vh;
+    height: 100vh;
+    
+    /* For scrollbar at right */
+    /* height: 100%; */
+
     overflow-y: auto;
     overflow-x: hidden;
     background-image: url("../assets/backgrounds/ca_bg.jpg");

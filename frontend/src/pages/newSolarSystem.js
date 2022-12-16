@@ -452,7 +452,7 @@ function NewSolarSystem({setIsLoading}) {
             }}
             style={{
                 height: "90vh",
-                width: "100vw",
+                width: "100%",
             }}
         >
             <Suspense fallback={<Loader setIsLoading={setIsLoading} />}>
