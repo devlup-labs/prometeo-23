@@ -107,11 +107,11 @@ export default function Gallery() {
         // if touch device
         if ("ontouchstart" in window) {
             setStop(true);
+            track.style.transform = `translate(${-50}%, 0%)`;
         }
 
 
-
-    }, []);
+    }, [window]);
 
     useEffect(() => {
         // console.log(galleryData);
@@ -167,6 +167,8 @@ export default function Gallery() {
             const mouseDelta =
                     parseFloat(track.dataset.mouseDownAt) - e.clientX,
                 maxDelta = window.innerWidth / 2;
+
+                console.log(mouseDelta, maxDelta);
 
             const percentage = (mouseDelta / maxDelta) * -100,
                 nextPercentageUnconstrained =

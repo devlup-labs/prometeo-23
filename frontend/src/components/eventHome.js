@@ -6,7 +6,7 @@ import eventPageImg from "../assets/backgrounds/roboguy.jpg";
 
 import img1 from "../assets/homePage/technical.jpg";
 import img2 from "../assets/homePage/informal.jpg";
-import img3 from "../assets/homePage/talk.jpg";
+import img3 from "../assets/homePage/entre.jpg";
 
 export default function EventHome() {
     return (
@@ -55,14 +55,15 @@ export default function EventHome() {
                         </Link>
                         <Link
                             to={{
-                                pathname: "/past-speakers",
+                                pathname: "/events",
+                                search: "?type=entrepreneurial",
                             }}
                             id="eventHome-eventCircle3"
                         >
                             <div className="eventHome-eventCircle-gradient">
-                                <span>Talks</span>
+                                <span>Entrepreneurial Events</span>
                             </div>
-                            <img src={img3} alt="Talks" />
+                            <img src={img3} alt="Entrepreneurial Events" />
                         </Link>
                     </div>
                 </div>
