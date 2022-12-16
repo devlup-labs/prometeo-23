@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from 'react';
 
 import { backendURL } from "../backendURL";
-// import useAxios from "../context/context_useAxios";
 
 import sponsor_data from "./sponsor_info";
 import './sponsor_style.css';
@@ -41,12 +40,12 @@ function Entry(props) {
 	const sponsorCategory = props.sponsorCategory;
 	
 	return (
-		<div className="sponsorContainer" key={sponsorCategory.designation}>
+		<div className="teamContainer" key={sponsorCategory.designation}>
 			<div className="section-header">
 				<span>{mapDesignationToType[sponsorCategory.designation]}</span>
 			</div>
 
-			<div className="sponsor-card">
+			<div className="team-card">
 				{sponsorCategory.sponsors.map(logo)};
 			</div>
 		</div>
@@ -73,8 +72,6 @@ const mapDesignationToType = {
 function Sponsors() {
 	const [sponsorsData, setSponsorsData] = useState([]);
 
-	// const api = useAxios();
-
 	useEffect(  // when the component has rendered then add the event listener to it
 		() => {
 			const navBarEle = document.getElementById("navbar")
@@ -94,7 +91,7 @@ function Sponsors() {
 				headers: headers,
 			}
 
-			await fetch(`${backendURL}/sponsors/`, requestOptions)
+			await fetch(`${backendURL}/api/sponsors/`, requestOptions)
 				.then((response) => response.json())
 				.then((data) => {
 					let newData = {}
@@ -117,31 +114,6 @@ function Sponsors() {
 				.catch((error) => {
 					console.error("Error:", error);
 				});
-			// try {
-			// 	const response = await api.get(`${backendURL}/sponsors/`);
-			// 	// console.log(response)
-			// 	let data = response.data;			
-			// 	let newData = {}
-			// 	data.forEach((sponsor) => {
-			// 		newData[sponsor.designation] = newData[sponsor.designation] || {}
-			// 		newData[sponsor.designation].designation = sponsor.designation;
-			// 		newData[sponsor.designation].sponsors = [...newData[sponsor.designation].sponsors || [], sponsor]
-			// 	})
-
-			// 	data = []
-			// 	for (var key in newData) {
-			// 		data = [...data, newData[key]]
-			// 	}
-
-			// 	setSponsorsData([
-			// 		...data
-			// 	]);
-
-			// 	// setSponsorsData(response.json());
-			// }
-			// catch(error) {
-			// 	console.log("Error:", error)
-			// }
 		}
 		fetchData();
 	}, [])

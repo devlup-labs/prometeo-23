@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Josefin+Sans&family=Teko:wght@300&display=swap');
 
 #footer {
-    position: relative;
+    /* position: relative; */
     box-sizing: border-box;
     background-color: #273543;
     color: #91c8cf;
@@ -14,7 +14,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 999;
 }
 
 #footer-content {
@@ -72,10 +71,6 @@
     font-weight: 600;
 }
 
-#footer-content-left-col1-contact-email > a {
-    color: rgb(225, 224, 224);
-}
-
 #footer-content-left-col1-contact-phone {
     display: flex;
     /* border: 2px solid white; */
@@ -96,10 +91,6 @@
     font-weight: 300;
 }
 
-#footer-content-left-col1-contact-phone > div > span > a { 
-    color: rgb(225, 224, 224);
-}
-
 #footer-content-left-col1-contact a {
     font-weight: 400;
     margin-right: 5px;
@@ -116,7 +107,7 @@
     font-family: Kanit, sans-serif;
     color: #d7c04b;
     font-size: max(3vmin, 18px);
-    /* font-weight: bold; */
+    font-weight: bold;
     margin-bottom: 15px;
 }
 

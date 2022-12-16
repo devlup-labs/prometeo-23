@@ -113,8 +113,8 @@ function Events() {
 			}
 			
 			const fetchURL = (urlParams.get("type")) 
-				? `${backendURL}/events/?type=${urlParams.get("type")}` 
-				: `${backendURL}/events/`;
+				? `${backendURL}/api/events/?type=${urlParams.get("type")}` 
+				: `${backendURL}/api/events/`;
 			
 			await fetch(fetchURL, requestOptions)
 				.then((response) => response.json())
