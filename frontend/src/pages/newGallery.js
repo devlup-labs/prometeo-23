@@ -15,19 +15,23 @@ export default function Gallery() {
     let drag = false;
     let animationDuration = 200;
 
-    const imageLinks = [
-        "https://i.imgur.com/B2ieX9p.jpg",
-        "https://i.imgur.com/AlLF2g2.jpg",
-        "https://i.imgur.com/XKI6vlW.jpg",
-        "https://i.imgur.com/Fp7LGVZ.jpg",
-        "https://i.imgur.com/QMfpyZr.jpg",
-    ];
+    var imageLinks = [];
+
+    // const imageLinks = [
+    //     "https://i.imgur.com/B2ieX9p.jpg",
+    //     "https://i.imgur.com/AlLF2g2.jpg",
+    //     "https://i.imgur.com/XKI6vlW.jpg",
+    //     "https://i.imgur.com/Fp7LGVZ.jpg",
+    //     "https://i.imgur.com/QMfpyZr.jpg",
+    // ];
 
     // change this to the number of images from backend
-    const numOfImages = imageLinks.length;
+    
+    const [numOfImages, setNumOfImages] = useState(0);
 
     useEffect(() => {
-        let percentage = (100 * galleryCompData.length) / numOfImages;
+        console.log(galleryData.length, numOfImages);
+        let percentage = parseInt((100 * galleryData.length) / numOfImages ? (100 * galleryData.length) / numOfImages : 0);
         let loaderText = document.getElementById("gallery-loader-text");
         loaderText.innerHTML = `${percentage}%`;
         let loaderBar = document.getElementById("gallery-loader-bar");
@@ -49,36 +53,13 @@ export default function Gallery() {
                 container.style.cursor = "grab";
             }, 500);
         }
-    }, [galleryCompData]);
+    }, [galleryData, numOfImages]);
 
     useEffect(() => {
         // delete all images
         let track = document.getElementById("gallery-image-track");
         while (track.firstChild) {
             track.removeChild(track.lastChild);
-        }
-
-        for (let i = 0; i < imageLinks.length; i++) {
-            let img = new Image();
-            img.src = imageLinks[i];
-            img.draggable = false;
-            img.id = `gallery-image-${i}`;
-            img.className = "gallery-image";
-            // img.onclick = () => {
-            //     console.log("clicked");
-            //     handleClick(i);
-            // };
-
-            img.onload = function () {
-                // console.log("image loaded");
-                let obj = {
-                    src: img.src,
-                    image: img,
-                };
-                setGalleryCompData((prev) => [...prev, obj]);
-                let track = document.getElementById("gallery-image-track");
-                track.appendChild(img);
-            };
         }
 
         async function fetchData() {
@@ -95,14 +76,56 @@ export default function Gallery() {
             await fetch(`${backendURL}/gallery/`, requestOptions)
                 .then((response) => response.json())
                 .then((data) => {
-                    setGalleryData(data);
-                    // console.log(...data);
+                    // choose image link and id
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].image === null) continue;
+                        if (data[i].name === "Prometeo-23-logo" || data[i].name === "Theme Reveal") continue;
+                        imageLinks.push({
+                            link: data[i].image.replace("0.0.0.0:8888","apiv.prometeo.in"),
+                            id: data[i].id,
+                        });
+                    }
+                    console.log(data);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
                 });
         }
-        // fetchData();
+
+        // wait for fetch to finish
+        fetchData().then(() => {
+
+            console.log("our data is", imageLinks[0]);
+
+            setNumOfImages(imageLinks.length);
+
+            console.log("num of images", numOfImages);
+
+            for (let i = 0; i < imageLinks.length; i++) {
+                // if (imageLinks[i].id === 1) continue;
+                let img = new Image();
+                img.src = imageLinks[i].link;
+                img.draggable = false;
+                img.id = `gallery-image-${imageLinks[i].id}`;
+                img.className = "gallery-image";
+                // img.onclick = () => {
+                //     console.log("clicked");
+                //     handleClick(i);
+                // };
+    
+                img.onload = function () {
+                    // console.log("image loaded");
+                    let obj = {
+                        src: img.src,
+                        image: img,
+                    };
+                    console.log("image loaded");
+                    setGalleryData((prev) => [...prev, obj]);
+                    let track = document.getElementById("gallery-image-track");
+                    track.appendChild(img);
+                };
+            }
+        });
 
         // if touch device
         if ("ontouchstart" in window) {
@@ -171,7 +194,7 @@ export default function Gallery() {
                     parseFloat(track.dataset.mouseDownAt) - e.clientX,
                 maxDelta = window.innerWidth / 2;
 
-                console.log(mouseDelta, maxDelta);
+                // console.log(mouseDelta, maxDelta);
 
             const percentage = (mouseDelta / maxDelta) * -100,
                 nextPercentageUnconstrained =
