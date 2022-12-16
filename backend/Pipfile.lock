@@ -34,6 +34,7 @@
         },
         "boto3": {
             "hashes": [
+
                 "sha256:4cef9ebc9c15fd0abd5097d6fa2676a8785c7b80d3e9242a783480b6192df2ea",
                 "sha256:5a37503ad456a6beae2740d2367c0a514b07ef0e134cdcc2b77cc8481832751b"
             ],
@@ -259,11 +260,11 @@
         },
         "django-import-export": {
             "hashes": [
-                "sha256:ae77a44c08d94b98e50dec11ea53fd5f65702b7d8c3c929c88c310a4e4444507",
-                "sha256:f0f08f119b1f3a39e67dab8f945609ee13e264a798be532bdd7210e1c851efe2"
+                "sha256:5dc87e0742601c5321b33c35072a2b0e8ecfb88cc27afa78eb785a2fbe6b52e3",
+                "sha256:608974431037ab75480b62c106075a08d6d7c84d61d54507b4e295ebf9d0133f"
             ],
             "index": "pypi",
-            "version": "==3.0.2"
+            "version": "==3.0.1"
         },
         "django-inlinecss": {
             "hashes": [

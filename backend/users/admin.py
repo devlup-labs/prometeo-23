@@ -75,4 +75,3 @@ class preregisterAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Submissions, SubmissionsAdmin)
 admin.site.register(PreRegistration,preregisterAdmin)
-admin.site.register(CampusAmbassador)

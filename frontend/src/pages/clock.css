@@ -9,13 +9,13 @@
 	text-shadow: 0 0 16px rgb(100, 255, 100);
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
     #landing-countdown {
         font-size: 1.2vw;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
     #landing-countdown {
         font-size: 1.8vw;
     }

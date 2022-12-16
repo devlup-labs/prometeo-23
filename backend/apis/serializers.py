@@ -20,7 +20,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
         # Add custom claims
-        token['username'] = user.first_name+'_'+user.last_name
+        token['username'] = user.first_name+user.last_name
         token['email'] = user.email
         return token
 
@@ -150,13 +150,9 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         if(validated_data['referral_code'] != ''):
             user.referral_code = validated_data['referral_code']
             ca = ExtendedUser.objects.filter(invite_referral=validated_data['referral_code']).first()
-            CA=CampusAmbassador.objects.filter(invite_referral=validated_data['referral_code']).first()
             if(ca):
                 user.referred_by = ca
                 ca.ca_count += 1
-                CA.ca_count +=1
-                ca.save()
-                CA.save()
         user.save()
         with get_connection(
                 username=settings.EMAIL_HOST_USER,
@@ -214,41 +210,34 @@ class UserLoginSerializer(serializers.Serializer):
 
 class CampusAmbassadorSerializers(serializers.ModelSerializer):
     class Meta:
-        model = CampusAmbassador
-        fields = '__all__'
-        extra_kwargs = {'invite_referral' : {'read_only' : True},
-                        'ca_count' : {'read_only' : True}
-                        }
-
+        model = ExtendedUser
+        fields = ['email',]
 
     def create(self, validated_data):
         if(ExtendedUser.objects.filter(email=validated_data['email']).first().ambassador == False):
             user = ExtendedUser.objects.filter(email=validated_data['email'])
             user.ambassador = True
-            ca= CampusAmbassador.objects.filter(email=validated_data['email'])
-            user.invite_referral = ca.invite_referral
+            invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
+            user.invite_referral = invite_referral
             user.save()
-    #         # invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
-    #         # user.invite_referral = invite_referral
-    #         # user.save()
-            # with get_connection(
-            #     username=settings.EMAIL_HOST_USER,
-            #     password=settings.EMAIL_HOST_PASSWORD
-            # ) as connection:
-            #     sendMailID = settings.FROM_EMAIL_USER
-            #     subject = "Registeration as Campus Ambassador"
-            #     message = "You have successfully registered as Campus Ambassador."
-            #     html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
-            #     text_content = strip_tags(html_content)
-            #     message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-            #     message.attach_alternative(html_content, "text/html")
-            #     message.mixed_subtype = 'related'
-            #     message.send()
+            with get_connection(
+                username=settings.EMAIL_HOST_USER,
+                password=settings.EMAIL_HOST_PASSWORD
+            ) as connection:
+                sendMailID = settings.FROM_EMAIL_USER
+                subject = "Registeration as Campus Ambassador"
+                message = "You have successfully registered as Campus Ambassador."
+                html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
+                text_content = strip_tags(html_content)
+                message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+                message.attach_alternative(html_content, "text/html")
+                message.mixed_subtype = 'related'
+                message.send()
 
-            return ca
+            return user
         else:
-            ca = CampusAmbassador.objects.filter(email=validated_data['email'])
-            return ca
+            user = ExtendedUser.objects.filter(email=validated_data['email'])
+            return user
         
 class CoreTeamSerializers(serializers.ModelSerializer):
     class Meta:
@@ -259,15 +248,3 @@ class CAViewSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = ['email', 'first_name', 'last_name', 'college', 'contact', 'city', 'ca_count']
-        # fields = '__all__'
-
-class LoginDashboardSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = ExtendedUser
-        fields = '__all__'
-        
-class CARefereeSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = ExtendedUser
-        fields = ['email','referral_code']
-        extra_kwargs = {'referral_code' : {'read_only':True}}
