@@ -229,6 +229,7 @@ function Navbar() {
                                     <div
                                         className="dropdown dropdown-5"
                                         key={link.name}
+                                        // onClick={() => setShowIcons(false)}
                                     >
 										<input type="checkbox" id="navbar-mobile-eventCheckbox" />
                                         <label id="navbar-mobile-eventLabel" for="navbar-mobile-eventCheckbox" className="navbar-mobile-link navbar-link">

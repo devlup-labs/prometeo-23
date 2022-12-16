@@ -347,15 +347,19 @@
 
 	.dropdown {
 		flex-direction: column;
+		width: 100%;
+		/* border: 2px solid white; */
 	}
 
 	.dropdown_menu {
 		position: relative;
 		width: 100%;
+		/* border: 2px solid white; */
 	}
 
 	.dropdown_menu li {
 		text-align: center;
+
 	}
 
 	.dropdown:hover .dropdown_menu li {
@@ -385,17 +389,18 @@
 	.navbar-mobile {
 		position: fixed;
 		top: 10vh;
-		width: 100vw;
+		width: 100%;
 		background-color: rgb(16, 28, 39, 0.9);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-evenly;
+		/* border: 2px solid white; */
 	}
 
 	.navbar-mobile-link {
 		text-align: center;
-		width: 100vw;
+		width: 100%;
 	}
 
 	#navbar {
