@@ -74,8 +74,8 @@ export default function HomePage() {
             <img src={spinner} id = "loader-gif" alt="Loading..." />
           </div>
         ) :
-      // }
-      // {
+      //  }
+      //  {
       //   showContent &&
         (
           <FadeIn duration={500}>

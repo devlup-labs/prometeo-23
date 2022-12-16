@@ -165,7 +165,7 @@ function Dashboard() {
                             </div>
                             <div id="dashboard-pass-right">
                                 <div id="dashboard-pass-right-title">
-                                    {"Prometeo '23"}
+                                    {"Prometeo  '23"}
                                 </div>
                                 <div id="dashboard-pass-right-content">
                                     {"You have not purchased any pass :("}

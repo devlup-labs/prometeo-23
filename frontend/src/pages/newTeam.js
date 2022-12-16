@@ -173,26 +173,28 @@ function createSocialLinks(props) {
 
 function createPerson(person) {
     return (
-        <div
-            className="team-profile-card team-profile-card-mobile"
-            id={person.id}
-            key={person.id}
-        >
-            <div className="team-img">
-                {person.image && <img src={person.image}></img>}
-                {!person.image && <img src={user}></img>}
-            </div>
-            <div className="team-bottom">
-                <div className="team-caption">
-                    <div>
-                        <h3>{person.name}</h3>
-                        {person.por && <p>{person.por}</p>}
-                    </div>
-                    <div className="team-social-links">
-                        {createSocialLinks(person)}
+        <div className="team-card" key={person.id}>
+            <div
+                className="team-profile-card team-profile-card-mobile"
+                id={person.id}
+                key={person.id}
+            >
+                <div className="team-img">
+                    {person.image && <img src={person.image}></img>}
+                    {!person.image && <img src={user}></img>}
+                </div>
+                <div className="team-bottom">
+                    <div className="team-caption">
+                        <div>
+                            {person.por && <p>{person.por}</p>}
+                        </div>
+                        <div className="team-social-links">
+                            {createSocialLinks(person)}
+                        </div>
                     </div>
                 </div>
             </div>
+            <h3 id="team-person-name">{person.name}</h3>
         </div>
     );
 }
