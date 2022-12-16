@@ -22,7 +22,8 @@ import Infinity from "../components/infinity";
 import Footer from "../components/footer";
 
 export default function HomePage() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading1, setIsLoading1] = useState(true);
+  const [isLoading2, setIsLoading2] = useState(true);
   const [showContent, setShowContent] = useState(false);
   const [hideGif, setHideGif] = useState(false);
   const [footerInView, setFooterInView] = useState(false);
@@ -32,8 +33,8 @@ export default function HomePage() {
   
 
   useEffect(() => {
-    // console.log("isLoading: ", isLoading);
-    if (!isLoading) {
+    // console.log("isLoading1: ", isLoading1);
+    if (!isLoading1 && !isLoading2) {
       const navBarEle = document.getElementById("navbar");
       navBarEle.style.opacity = 1;
       const homePageEle = document.getElementById("homepage-solarSystem");
@@ -42,7 +43,7 @@ export default function HomePage() {
       // createScene();
       setShowContent(true);
     }
-  }, [isLoading]);
+  }, [isLoading1, isLoading2]);
 
   useEffect(() => {
     if (footerInView) {
@@ -65,10 +66,10 @@ export default function HomePage() {
 
   return (
     <div id="homepage">
-      <NewSolarSystem setIsLoading={setIsLoading} onLoad />
+      <NewSolarSystem setIsLoading={setIsLoading1} onLoad />
       {
         !showContent ?
-        // isLoading &&
+        // isLoading1 || isLoading2 ?
         (
           <div className="spinner">
             <img src={spinner} id = "loader-gif" alt="Loading..." />
@@ -83,7 +84,7 @@ export default function HomePage() {
                 <img src={scrollGif} alt="Scroll Down" id="scroll-down-gif" />
               </div>
               <div id="homepage-content">
-                <LandingSection />
+                <LandingSection setIsLoading = {setIsLoading2}/>
                 <Introduction />
                 <Theme />
                 <InitiativeHome />
@@ -103,7 +104,7 @@ export default function HomePage() {
   );
 
 
-  // return isLoading ? 
+  // return isLoading1 ? 
   //     (
   //       <div className="spinner">
   //         <img src={spinner} id = "loader-gif" alt="Loading..." />
