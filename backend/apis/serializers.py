@@ -150,9 +150,13 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         if(validated_data['referral_code'] != ''):
             user.referral_code = validated_data['referral_code']
             ca = ExtendedUser.objects.filter(invite_referral=validated_data['referral_code']).first()
+            CA=CampusAmbassador.objects.filter(invite_referral=validated_data['referral_code']).first()
             if(ca):
                 user.referred_by = ca
                 ca.ca_count += 1
+                CA.ca_count +=1
+                ca.save()
+                CA.save()
         user.save()
         with get_connection(
                 username=settings.EMAIL_HOST_USER,
@@ -262,3 +266,8 @@ class LoginDashboardSerializers(serializers.ModelSerializer):
         model = ExtendedUser
         fields = '__all__'
         
+class CARefereeSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = ['email','referral_code']
+        extra_kwargs = {'referral_code' : {'read_only':True}}

@@ -191,7 +191,15 @@ class CampusAmbassadorView(APIView):
         if(CampusAmbassador.objects.filter(email=user_email)).exists():
             ca = CampusAmbassador.objects.filter(email=user_email).first()
             serializers = CampusAmbassadorSerializers(ca)
-            return Response(serializers.data)
+            referee_dict={}
+            referee = ExtendedUser.objects.filter(referral_code=ca.invite_referral).all()
+            serializer = CARefereeSerializers(referee,many=True)
+            # referee_dict = {'ca':serializer.data}
+            # referee_dict['referees']=referee_list
+            # data = {'ca':serializers.data} + referee_dict
+            
+            
+            return Response(serializer.data)
         else :
             ca = CampusAmbassador.objects.create(
                 email = user_email,
