@@ -66,7 +66,7 @@ function Speaker() {
 				headers: headers,
 			}
 
-			await fetch(`${backendURL}/events/?type=talk`, requestOptions)
+			await fetch(`${backendURL}/api/events/?type=talk`, requestOptions)
 				.then((response) => response.json())
 				.then((data) => {
 					setSpeakerData([

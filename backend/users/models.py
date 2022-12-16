@@ -147,14 +147,3 @@ class PreRegistration(models.Model):
     poc_por = models.CharField(max_length=100,null=True,blank=True)
     def __str__(self):
         return self.email
-
-
-class CampusAmbassador(models.Model):
-    username = None
-    email = models.EmailField(unique=True, blank=False, null=False, verbose_name='Email',default='ca_mail')
-    USERNAME_FIELD = 'email'
-    invite_referral = models.CharField(max_length=8, unique=True, null=True, blank=True, verbose_name='Referral Code for Inviting')
-    ca_count = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.email    

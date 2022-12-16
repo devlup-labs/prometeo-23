@@ -208,7 +208,7 @@ function EventDetails() {
                 headers: headers,
             };
 
-            const fetchURL = `${backendURL}/events/`;
+            const fetchURL = `${backendURL}/api/events/`;
 
             await fetch(fetchURL, requestOptions)
                 .then((response) => response.json())
@@ -252,7 +252,7 @@ function EventDetails() {
                 headers: headers,
             };
 
-            const fetchURL = `${backendURL}/eventsponsors/`;
+            const fetchURL = `${backendURL}/api/eventsponsors/`;
 
             await fetch(fetchURL, requestOptions)
                 .then((response) => response.json())
