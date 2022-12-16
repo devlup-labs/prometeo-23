@@ -23,15 +23,6 @@
     /* border: 2px solid white; */
 }
 
-@media screen and (max-width: 800px) {
-    #landing {
-        flex-direction: column;
-        height: 100vh;
-        /* height: fit-content;
-        padding-top: 20vh; */
-    }
-}
-
 #landing:before {
 	position: absolute;
     width: 100%;
@@ -144,6 +135,10 @@
     flex-wrap: wrap;
 }
 
+.button-27 {
+    background-color: #1e5e67; 
+}
+
 #landing-text {
     /* border: 2px solid red; */
     z-index: 1;
@@ -153,6 +148,19 @@
     font-family: "Josefin Sans", sans-serif;
     /* line-height: 3.5vmin; */
     text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    #landing {
+        flex-direction: column;
+        height: 100vh;
+        /* height: fit-content;
+        padding-top: 20vh; */
+    }
+
+    #landing-image-img2 {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 800px) {
