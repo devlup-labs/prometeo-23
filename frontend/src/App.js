@@ -15,7 +15,7 @@ import Navbar from "./components/navbar";
 import HomePage from "./pages/homePage";
 import Page_404 from "./pages/404";
 import Speaker from "./pages/Speaker";
-import Gallery from "./pages/Gallery";
+import Gallery from "./pages/newGallery";
 import Sponsors from "./pages/Sponsors";
 import Events from "./pages/Event.js";
 import Register from "./pages/Register.js";
@@ -57,22 +57,22 @@ function App() {
                         <Route path="/event-details" element={<EventDetails />} />
                         <Route path="/team" element={<Team />} />
 
-                    <Route path="/campus-ambassador" element={<CA />} />
+                        <Route path="/campus-ambassador" element={<CA />} />
+
                         <Route exact path='/pre-register' element={<RestrictedRoute />} >
                             <Route exact path='/pre-register' element={<PreRegistration />} />
                         </Route>
 
-
                         <Route exact path='/login' element={<RestrictedRoute />}>
                             <Route exact path='/login' element={<Login />} />
                         </Route>
-                        
+
                         <Route exact path='/sign-up' element={<RestrictedRoute />}>
                             <Route path="/sign-up" element={<SignUp />} />
                         </Route>
-                        
+
                         <Route exact path='/dashboard' element={<PrivateRoute />}>
-                            <Route exact path='/dashboard' element={<Dashboard />}/>
+                            <Route exact path='/dashboard' element={<Dashboard />} />
                         </Route>
 
                         <Route path="/*" element={<Page_404 />} />

@@ -3,13 +3,84 @@ import { useState, useEffect } from "react";
 import { backendURL } from "../backendURL";
 
 export default function Gallery() {
-    const [galleryData, setGalleryData] = useState([]);
-    const [currentImage, setCurrentImage] = useState(-1);
+    useEffect(() => {
+        const navBarEle = document.getElementById("navbar");
+        navBarEle.style.opacity = 1;
+    });
 
+    const [galleryData, setGalleryData] = useState([]);
+    const [stop, setStop] = useState(false);
+    const [galleryCompData, setGalleryCompData] = useState([]);
+
+    let drag = false;
     let animationDuration = 200;
-    
+
+    const imageLinks = [
+        "https://i.imgur.com/B2ieX9p.jpg",
+        "https://i.imgur.com/AlLF2g2.jpg",
+        "https://i.imgur.com/XKI6vlW.jpg",
+        "https://i.imgur.com/Fp7LGVZ.jpg",
+        "https://i.imgur.com/QMfpyZr.jpg",
+    ];
+
+    // change this to the number of images from backend
+    const numOfImages = imageLinks.length;
 
     useEffect(() => {
+        let percentage = (100 * galleryCompData.length) / numOfImages;
+        let loaderText = document.getElementById("gallery-loader-text");
+        loaderText.innerHTML = `${percentage}%`;
+        let loaderBar = document.getElementById("gallery-loader-bar");
+        loaderBar.style.width = `${percentage}%`;
+
+        if (percentage === 100) {
+            setTimeout(() => {
+                let loader = document.getElementById("gallery-loader");
+                loader.style.opacity = 0;
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 500);
+                let heading = document.getElementById("gallery-heading");
+                heading.style.opacity = 1;
+                let track = document.getElementById("gallery-image-track");
+                track.style.opacity = 1;
+                if (!("ontouchstart" in window)) track.style.transform = `translate(${-50}%, 0%)`;
+                let container = document.getElementById("gallery-container");
+                container.style.cursor = "grab";
+            }, 500);
+        }
+    }, [galleryCompData]);
+
+    useEffect(() => {
+        // delete all images
+        let track = document.getElementById("gallery-image-track");
+        while (track.firstChild) {
+            track.removeChild(track.lastChild);
+        }
+
+        for (let i = 0; i < imageLinks.length; i++) {
+            let img = new Image();
+            img.src = imageLinks[i];
+            img.draggable = false;
+            img.id = `gallery-image-${i}`;
+            img.className = "gallery-image";
+            // img.onclick = () => {
+            //     console.log("clicked");
+            //     handleClick(i);
+            // };
+
+            img.onload = function () {
+                // console.log("image loaded");
+                let obj = {
+                    src: img.src,
+                    image: img,
+                };
+                setGalleryCompData((prev) => [...prev, obj]);
+                let track = document.getElementById("gallery-image-track");
+                track.appendChild(img);
+            };
+        }
+
         async function fetchData() {
             let headers = new Headers();
             headers.append("Content-Type", "application/json");
@@ -31,8 +102,16 @@ export default function Gallery() {
                     console.error("Error:", error);
                 });
         }
-        fetchData();
-    }, []);
+        // fetchData();
+
+        // if touch device
+        if ("ontouchstart" in window) {
+            setStop(true);
+            track.style.transform = `translate(${-50}%, 0%)`;
+        }
+
+
+    }, [window]);
 
     useEffect(() => {
         // console.log(galleryData);
@@ -40,28 +119,56 @@ export default function Gallery() {
         const track = document.getElementById("gallery-image-track");
 
         const handleOnDown = (e) => {
-            track.dataset.mouseDownAt = e.clientX
+            if (e.button !== 0) {
+                return;
+            }
+            track.dataset.mouseDownAt = e.clientX;
             // console.log(e.clientX)
         };
 
-        const handleOnUp = () => {
+        const handleOnUp = (e) => {
+            if (e.button !== 0) {
+                return;
+            }
             track.dataset.mouseDownAt = "0";
-            track.dataset.prevPercentage = track.dataset.percentage;
+            track.dataset.prevPercentage = track.dataset.percentage
+                ? track.dataset.percentage
+                : 0;
+            if (!drag) {
+                // console.log("clicked", e.target.id);
+                // console.log(isNaN(e.target.id.split( "-")[2]));
+                if (!isNaN(e.target.id.split("-")[2])) {
+                    openImage(parseInt(e.target.id.split("-")[2]));
+                }
+                // if (e.target.id === "gallery-image-track") {
+                //     openImage(-1);
+                // }
+                // else {
+                //     console.log("thats the right spot");
+                //     openImage(parseInt(e.target.id.split("-")[2]));
+                // }
+            } else {
+                // console.log("yall be dragging")
+                drag = false;
+            }
         };
 
         const handleOnMove = (e) => {
-            // console.log("moving");
-            if (track.dataset.mouseDownAt === "0") {
-                console.log("mouseDownAt is 0");
-                if (currentImage!==-1) openImage(currentImage);
+            if (e.button !== 0) {
                 return;
             }
+            // console.log("mouseDownAt: ", track.dataset.mouseDownAt);
+            if (track.dataset.mouseDownAt === "0") {
+                return;
+            }
+
+            drag = true;
 
             const mouseDelta =
                     parseFloat(track.dataset.mouseDownAt) - e.clientX,
                 maxDelta = window.innerWidth / 2;
 
-            // console.log(mouseDelta);
+                console.log(mouseDelta, maxDelta);
 
             const percentage = (mouseDelta / maxDelta) * -100,
                 nextPercentageUnconstrained =
@@ -71,11 +178,12 @@ export default function Gallery() {
                     -100
                 );
 
+            // console.log(nextPercentageUnconstrained, nextPercentage);
             track.dataset.percentage = nextPercentage;
 
             track.animate(
                 {
-                    transform: `translate(${nextPercentage}%, -50%)`,
+                    transform: `translate(${nextPercentage}%, 0%)`,
                 },
                 { duration: 1200, fill: "forwards" }
             );
@@ -90,60 +198,58 @@ export default function Gallery() {
             }
         };
 
-        // const ele = document.getElementById("gallery-image-track");
-        const ele = window;
+        const container = document.getElementById("gallery-container");
 
-        if (currentImage === -1) {
-            ele.onmousedown = (e) => {
-                document.getElementById("gallery-image-track").style.cursor =
-                    "grabbing";
+        if (stop) {
+            // remove all event listeners
+            // console.log("removing event listeners")
+            container.onmousedown = null;
+            container.onmouseup = null;
+            container.onmousemove = null;
+        } else {
+            // console.log("adding event listeners")
+            container.onmousedown = (e) => {
+                // console.log("mousedown")
+                container.style.cursor = "grabbing";
                 handleOnDown(e);
             };
 
-            ele.ontouchstart = (e) => handleOnDown(e.touches[0]);
 
-            ele.onmouseup = (e) => {
-                document.getElementById("gallery-image-track").style.cursor =
-                    "grab";
+            container.onmouseup = (e) => {
+                // console.log("mouseup")
+                container.style.cursor = "grab";
                 handleOnUp(e);
             };
 
-            ele.ontouchend = (e) => handleOnUp(e.touches[0]);
 
-            ele.onmousemove = (e) => handleOnMove(e);
+            container.onmousemove = (e) => handleOnMove(e);
 
-            ele.ontouchmove = (e) => handleOnMove(e.touches[0]);
         }
-    }, [galleryData]);
-
-    useEffect(() => {
-        console.log(currentImage);
-    }, [currentImage]);
+    }, [stop]);
 
     const openImage = (num) => {
-        console.log("opening image");
-        if (num === -1) return;
+        // disable pointer events
+        setStop(true);
+        // console.log("opening image", num);
         const image = document.getElementById(`gallery-image-${num}`);
         const showcase = document.getElementById("gallery-showcase");
-
-        showcase.innerHTML = `<img src="${image.src}" alt="showcase-image" id="gallery-showcase-img" />`;
+        showcase.innerHTML = `<img src=${image.src} id="gallery-showcase-image" />`;
         showcase.style.display = "flex";
-        // animate the opacity
-        // showcase.animate(
-        //     {
-        //         opacity: [0, 1],
-        //     },
-        //     { duration: animationDuration, fill: "forwards" }
-        // );
-    };
-
-    const handleClick = (id) => {
-        console.log(id);
-        setCurrentImage(id);
+        // animate opacity
+        showcase.animate(
+            {
+                opacity: [0, 1],
+            },
+            { duration: animationDuration, fill: "forwards" }
+        );
     };
 
     return (
-        <div className="gallery-container">
+        <div id="gallery-container">
+            <div id="gallery-loader">
+                <div id="gallery-loader-text">0%</div>
+                <div id="gallery-loader-bar"></div>
+            </div>
             <div
                 id="gallery-showcase"
                 onClick={() => {
@@ -153,41 +259,29 @@ export default function Gallery() {
                     //     },
                     //     { duration: animationDuration, fill: "forwards" }
                     // );
-                    setTimeout(() => {
-                        document.getElementById(
-                            "gallery-showcase"
-                        ).style.display = "none";
-                    }, 300);
-                    setCurrentImage(-1);
+                    let showcase = document.getElementById("gallery-showcase");
+                    showcase.innerHTML = "";
+                    // animate opacity
+                    showcase.animate(
+                        {
+                            opacity: [1, 0],
+                        },
+                        { duration: animationDuration, fill: "forwards" }
+                    );
+                    showcase.style.display = "none";
+                    setStop(false);
+                    // setCurrentImage(-1);
+                    // document.getElementById(
+                    //     "gallery-image-track"
+                    // ).style.pointerEvents = "all";
                 }}
             ></div>
+            <div id="gallery-heading">GALLERY</div>
             <div
                 id="gallery-image-track"
                 data-mouse-down-at="0"
-                data-prev-percentage="0"
-            >
-                {galleryData.map((data) => {
-                    return (
-                        <img
-                            className="gallery-image"
-                            src={data.image.replace(
-                                "0.0.0.0:8888",
-                                "apiv.prometeo.in"
-                            )}
-                            alt="image"
-                            key={data.id}
-                            id={`gallery-image-${data.id}`}
-                            draggable="false"
-                            onClick={() =>
-                                {
-                                    console.log("clicked");
-                                    handleClick(data.id);
-                                }
-                            }
-                        />
-                    );
-                })}
-            </div>
+                data-prev-percentage="-50"
+            ></div>
         </div>
     );
 }

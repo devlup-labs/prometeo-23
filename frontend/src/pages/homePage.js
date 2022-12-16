@@ -25,6 +25,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
   const [hideGif, setHideGif] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
 
   // write code to hide the scroll when footer is in view
 
@@ -43,6 +44,25 @@ export default function HomePage() {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    if (footerInView) {
+      // console.log("footer in view");
+      const scrollDownEle = document.getElementById("scroll-down");
+      if (scrollDownEle) {
+        // console.log("scroll down ele: ", scrollDownEle);
+        scrollDownEle.style.opacity = 0;
+      }
+    }
+    else {
+      // console.log("footer not in view");
+      const scrollDownEle = document.getElementById("scroll-down");
+      if (scrollDownEle) {
+        // console.log("scroll down ele: ", scrollDownEle);
+        scrollDownEle.style.opacity = 1;
+      }
+    }
+  }, [footerInView]);
+
   return (
     <div id="homepage">
       <NewSolarSystem setIsLoading={setIsLoading} onLoad />
@@ -54,8 +74,8 @@ export default function HomePage() {
             <img src={spinner} id = "loader-gif" alt="Loading..." />
           </div>
         ) :
-      // }
-      // {
+      //  }
+      //  {
       //   showContent &&
         (
           <FadeIn duration={500}>
@@ -73,7 +93,8 @@ export default function HomePage() {
                 <StatsHome />
                 <div id="purple-filler-reverse"></div>
                 <Infinity />
-                <Footer />
+                {/* footer with props */}
+                <Footer view={setFooterInView}/>
               </div>
           </FadeIn>
         )
