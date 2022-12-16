@@ -3,7 +3,7 @@
 #navbar {
 	box-sizing: border-box;
 	/* background-color: #000000; */
-	position: absolute;
+	position: sticky;
 	top: 0;
 	color: #63ccf5;
 	font-family: "Exo 2", sans-serif;
@@ -13,11 +13,12 @@
 	justify-content: space-between;
 	align-items: center;
 	height: 10vh;
-	width: 100vw;
+	width: 100%;
 	opacity: 0;
 	transition: opacity 0.5s ease-out;
 	z-index: 999;
-	background: rgb(16, 28, 39);
+	background: rgba(16, 28, 39, 0.6);
+	backdrop-filter: blur(10px) invert(10%);
 	user-select: none;
 }
 
