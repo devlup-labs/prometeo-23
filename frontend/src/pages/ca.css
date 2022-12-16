@@ -67,6 +67,7 @@
     #ca-title-img {
         top: 0;
         width: 100%;
+        object-position: 0 25%;
     }
 }
 
@@ -131,6 +132,7 @@
 @media screen and (orientation: portrait) {
     .ca-content-title {
         font-size: 13vmin;
+        text-align: center;
     }
 }
 
@@ -144,6 +146,14 @@
     justify-content: flex-start;
     color: #ab47bc;
     padding-left: 7vmin;
+}
+
+@media screen and (orientation: portrait) {
+    #ca-title-right, #ca-title-left  {
+        justify-content: center;
+        padding-left: 3vmin;
+        padding-right: 3vmin;
+    }
 }
 
 .ca-content-text {

@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import "./ca.css";
 
 import useAxios from "../context/context_useAxios";
 import { backendURL } from "../backendURL";
+import AuthContext from '../context/AuthContext'
 
 import boat from "../assets/ca/boat.png";
 import socialMedia1 from "../assets/ca/social_media.png";
@@ -17,6 +18,8 @@ import logo from "../assets/homePage/logo.png";
 import FadeIn from "../components/fadein";
 
 export default function CA() {
+    const [userData, setUserData] = useState({})
+    const { user, logoutUser } = useContext(AuthContext);
     const api = useAxios();
     // console.log("Api:", api);
 
@@ -25,6 +28,38 @@ export default function CA() {
         navBarEle.style.opacity = 1;
         // document.body.style.overflow = "hidden";
     }, []);
+
+    useEffect(() => {
+
+
+        async function fetchData() {
+            try{
+                const response = await api.post(`${backendURL}/logindashboard/`, {
+                    email: user.email,
+                });
+
+                if (response.status === 200) {
+                    const data = response.data;
+                    console.log("Login Dashboard Data:", data)
+                    setUserData({
+                        ...data
+                    })
+                }
+                else {
+                    console.log("Error:", response.statusText)
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        
+        if (user === null) {
+            console.log("Not logged in");
+        }
+        else {
+            fetchData();
+        }
+    }, [])
 
     const handleSubmit = (e) => {
         async function fetchData() {
@@ -59,7 +94,6 @@ export default function CA() {
                     <span id="ca-title-desc">
                         <button
                             className="button-48"
-                            role="button"
                             onClick={handleSubmit}
                         >
                             <span className="button-text">REGISTER!</span>
@@ -193,7 +227,7 @@ export default function CA() {
                         <span className="ca-content-desc-left ca-register">
                             So, grab the opportunity and sign up as soon as
                             possible to win the goodies and wonderful perks!
-                            <button className="button-48" role="button">
+                            <button className="button-48">
                                 <span className="button-text">I'M IN!</span>
                             </button>
                         </span>
