@@ -362,6 +362,30 @@
 
 	}
 
+	.dropdown:hover .dropdown_menu li {
+		display: none;
+	}
+
+	/* .dropdown:focus .dropdown_menu li {
+		display: block;
+	} */
+
+	.dropdown:hover .dropdown_menu--animated {
+		display: none;
+	}
+
+	/* .dropdown:focus .dropdown_menu--animated {
+		display: block;
+	} */
+	
+	#navbar-mobile-eventCheckbox {
+		display: none;
+	}
+
+	#navbar-mobile-eventCheckbox:checked ~ .dropdown_menu li, #navbar-mobile-eventCheckbox:checked ~ .dropdown_menu--animated {
+		display: block;
+	}
+
 	.navbar-mobile {
 		position: fixed;
 		top: 10vh;
