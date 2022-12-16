@@ -199,6 +199,34 @@ function createPerson(person) {
     );
 }
 
+function createFC(person) {
+    return (
+        <div className="team-card-fc" key={person.id}>
+            <div
+                className="team-profile-card-fc team-profile-card-fc-mobile"
+                id={person.id}
+                key={person.id}
+            >
+                <div className="team-img">
+                    {person.image && <img src={person.image}></img>}
+                    {!person.image && <img src={user}></img>}
+                </div>
+                <div className="team-bottom">
+                    <div className="team-caption">
+                        <div>
+                            {person.por && <p>{person.por}</p>}
+                        </div>
+                        <div className="team-social-links">
+                            {createSocialLinks(person)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 id="team-person-name">{person.name}</h3>
+        </div>
+    );
+}
+
 export default function Team() {
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
@@ -222,7 +250,9 @@ export default function Team() {
                             <span>{team.teamName}</span>
                             <div className="team-main">
                                 {team.members.map((person) => {
-                                    return createPerson(person);
+                                    if (team.teamName === "Festival Chiefs")
+                                        return createFC(person);
+                                    else return createPerson(person);
                                 })}
                             </div>
                         </div>

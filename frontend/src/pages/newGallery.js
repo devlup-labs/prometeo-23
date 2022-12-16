@@ -109,6 +109,9 @@ export default function Gallery() {
             setStop(true);
             track.style.transform = `translate(${-50}%, 0%)`;
         }
+        else {
+            setStop(false);
+        }
 
 
     }, [window]);
@@ -202,12 +205,12 @@ export default function Gallery() {
 
         if (stop) {
             // remove all event listeners
-            // console.log("removing event listeners")
+            console.log("removing event listeners")
             container.onmousedown = null;
             container.onmouseup = null;
             container.onmousemove = null;
         } else {
-            // console.log("adding event listeners")
+            console.log("adding event listeners")
             container.onmousedown = (e) => {
                 // console.log("mousedown")
                 container.style.cursor = "grabbing";
