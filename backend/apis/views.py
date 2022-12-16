@@ -26,6 +26,10 @@ from django.contrib.auth.models import User
 
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
+from decouple import config
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -186,9 +190,82 @@ class CampusAmbassadorView(APIView):
             invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
             user.invite_referral = invite_referral
             user.save()
-            return user
-        else:
-            return user
+
+            # with get_connection(
+            #     username=settings.EMAIL_HOST_USER,
+            #     password=settings.EMAIL_HOST_PASSWORD
+            # ) as connection:
+            #     sendMailID = settings.FROM_EMAIL_USER
+            #     subject = "Registeration as Campus Ambassador"
+            #     message = "You have successfully registered as Campus Ambassador."
+            #     html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
+            #     text_content = strip_tags(html_content)
+            #     message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+            #     message.attach_alternative(html_content, "text/html")
+            #     message.mixed_subtype = 'related'
+            #     message.send()
+            msg = "You have successfully registered as Campus Ambassador."
+            # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+            SENDGRID_API_KEY = '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'
+            message = Mail(
+                from_email='no-reply@prometeo.in',
+                to_emails=user.email,
+                # reply_to='prometeo@iitj.ac.in',
+                subject='Registeration as Campus Ambassador',
+                html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg}))
+            try:
+                sg = SendGridAPIClient(SENDGRID_API_KEY)
+                
+                response = sg.send(message)
+                print(response.status_code)
+                print(response.body)
+                print(response.headers)
+            except Exception as e:
+                print(e)
+            
+
+            return Response(serializers.data)
+
+    # def post(self, request, *args, **kwargs):
+    #     # if(request.user.is_authenticated==False):
+    #     #     return Response({'message':'User not authenticated'},status=status.HTTP_401_UNAUTHORIZED)
+    #     user_email = request.data.get('email')
+    #     # user=ExtendedUser.objects.filter(email=request.data.get('email')).first()
+    #     if(ExtendedUser.objects.filter(email= user_email)).exists:
+    #         if(CampusAmbassador.objects.filter(email=user_email)).exists:
+    #             ca = CampusAmbassador.objects.filter(email=user_email).first()
+    #             return Response(ca.invite_referral)
+    #         else:
+    #             ca= CampusAmbassador.objects.create(
+    #                 email=user_email,
+    #                 invite_referral = 'CA',
+    #                 ca_count = 0,
+    #             )
+    #             ca.save()
+    #             ca.invite_referral += str(ca.id)
+    #             ca.save()
+    #             response = {}
+    #             response['referral_code'] =  ca.invite_referral
+    #             return Response(response)
+
+
+        # if(user.ambassador==False):
+        #     user.ambassador = True
+        #     ca = CampusAmbassador.objects.create(
+        #         email = request.data.get('email'),
+        #     )
+        #     ca.save()
+        #     ca.invite_referral = "CA"+str(ca.id)
+        #     # invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
+        #     # user.invite_referral = invite_referral
+        #     # user.save()
+        #     # ca.save()
+        #     response = {}
+        #     response['referral_code'] =  ca.invite_referral
+        #     return Response(response)
+        # else:
+        #     return Response(user.invite_referral)
+
 
 class CoreTeamViewSet(viewsets.ModelViewSet):
     queryset = Coordinator.objects.all()
