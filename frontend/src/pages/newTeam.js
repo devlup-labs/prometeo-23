@@ -235,6 +235,7 @@ export default function Team() {
 
     return (
         <FadeIn duration={500}>
+            {/* <div className="team-bg"></div> */}
             <div className="team-container">
                 <div className="team-header">
                     <span id="team-title">
