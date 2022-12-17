@@ -154,19 +154,19 @@ export default function CA() {
                     />
 
                     <span id="ca-title-desc">
-                        {/* <button
+                        <button
                             id="ca-register-button"
                             className="button-48"
-                            onClick={handleSubmit}
-                            disabled={userData.ambassador}
+                            // onClick={handleSubmit}
+                            // disabled={userData.ambassador}
                         >
-                            <span className="button-text">
-                                {userData.ambassador
-                                    ? "Already Registered"
-                                    : "REGISTER!"}
+                            <span className="button-text"> COMING SOON!
+                                {/* {userData.ambassador */}
+                                    {/* ? "Already Registered" */}
+                                    {/* : "REGISTER!"} */}
                             </span>
-                        </button> */}
-                        <span id="ca-referral-info">
+                        </button>
+                        {/* <span id="ca-referral-info"> */}
                             {/* {userData.ambassador ? (
                                 <div>
                                     Your referral code is{" "}
@@ -183,8 +183,8 @@ export default function CA() {
                                     Lakshya Nitin Tandon orz
                                 </div>
                             )} */}
-                            Registrations will be up soon!
-                        </span>
+                            {/* Registrations will be up soon! */}
+                        {/* </span> */}
                     </span>
                 </div>
                 <div className="ca-content">
@@ -314,13 +314,13 @@ export default function CA() {
                         <span className="ca-content-desc-left ca-register">
                             So, grab the opportunity and sign up as soon as
                             possible to win the goodies and wonderful perks!
-                            {/* <button
+                            <button
                                 id="ca-register-button"
                                 className="button-48"
-                                onClick={handleSubmit}
+                                // onClick={handleSubmit}
                             >
-                                <span className="button-text">I'M IN!</span>
-                            </button> */}
+                                <span className="button-text">COMING SOON!</span>
+                            </button>
                         </span>
                         <img
                             className="ca-content-img blue-shadow ca-pr-logo"
