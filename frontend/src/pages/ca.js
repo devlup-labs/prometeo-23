@@ -179,8 +179,8 @@ export default function CA() {
                                 </div>
                             ) : (
                                 <div>
-                                    this is a description provided by Sir
-                                    Lakshya Nitin Tandon orz
+                                    {/* this is a description provided by Sir
+                                    Lakshya Nitin Tandon orz */}
                                 </div>
                             )}
                         </span>
