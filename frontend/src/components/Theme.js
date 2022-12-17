@@ -12,6 +12,20 @@ function Theme(props) {
         navBarEle.style.opacity = 1;
         // document.body.style.overflow = "auto";
     });
+
+    useEffect(() => {
+        // get current url
+        const currentURL = window.location.href;
+        // get the last part of the url
+        const lastPart = currentURL.split("/").pop();
+        console.log("lastPart: ", lastPart)
+        // if last part points to theme, scroll to theme
+        if (lastPart === "#theme") {
+          const themeEle = document.getElementById("theme");
+          themeEle.scrollIntoView();
+        }
+      }, []);
+
     return (
         <FadeIn duration={500}>
             <div id="themePage" className="contentDiv">
@@ -24,7 +38,7 @@ function Theme(props) {
                                     <iframe
                                         className="responsive-iframe"
                                         src="https://www.youtube.com/embed/GdNceDHonLU?rel=0"
-                                        title="Prometeo'23 | IIT Jodhpur"
+                                        title="Prometeo '23 | IIT Jodhpur"
                                         frameBorder="0"
                                         allowFullScreen="allowfullscreen"
                                     ></iframe>
@@ -45,13 +59,13 @@ function Theme(props) {
                                 are going to explore the past and future of
                                 technological and entrepreneurial developments
                                 through a wide range of ideas developed and
-                                presented during the course of Prometeo'23.
+                                presented during the course of Prometeo '23.
                                 <br /> How did it all start? How did technology
                                 and economics reach where it is today? What will
                                 it look like in the future? Will we ever reach a
                                 saturation point?
-                                <br /> We, the team of Prometeo'23 invites you
-                                all to join us and participate in Prometeo'23
+                                <br /> We, the team of Prometeo '23 invites you
+                                all to join us and participate in Prometeo '23
                                 and explore the answers to all these questions
                                 through your participation, ideation and
                                 dedication.
