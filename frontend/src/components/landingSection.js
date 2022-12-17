@@ -6,11 +6,13 @@ import "../pages/clock.css";
 import clock from "../pages/clock.js";
 
 import PrometeoLogo from "../assets/navbar/prometeo_logo_23.png";
-import space from "../assets/homePage/hero.png";
+import hero from "../assets/homePage/hero.png";
+import locationIcon from "../assets/icons/location.png";
 
 export default function LandingSection() {
     useEffect(() => {
         clock();
+        // hi
         // const script = document.createElement("script");
 
         // script.src = "https://d23jutsnau9x47.cloudfront.net/back/v1.0.9/viewer.js";
@@ -21,7 +23,7 @@ export default function LandingSection() {
         // document.body.appendChild(script);
 
         // return () => {
-            // document.body.removeChild(script);
+        // document.body.removeChild(script);
         // };
     }, []);
     return (
@@ -29,11 +31,7 @@ export default function LandingSection() {
             <div id="landing">
                 <div id="landing-left-section">
                     <div id="landing-image">
-                        <img
-                            id="landing-image-img"
-                            src={PrometeoLogo}
-                            alt="image"
-                        />
+                        <img id="landing-image-img" src={PrometeoLogo} alt="" />
                     </div>
                     <div id="landing-text">
                         <div id="landing-countdown-title">
@@ -44,33 +42,20 @@ export default function LandingSection() {
                 </div>
                 <div id="landing-right-section">
                     <div id="landing-image">
-                        <img id="landing-image-img2" src={space} alt="image" />
+                        <img id="landing-image-img2" src={hero} alt="" />
                     </div>
                     <div id="landing-links">
-                        <Link to="/pre-register">
-                            <button
-                                id="preregister-button"
-                                className="button-27"
-                            >
-                                Pre-register now!
+                        <Link to="/sign-up">
+                            <button id="register-button" className="button-27">
+                            <span>Register Now!</span>
                             </button>
                         </Link>
-                        <Link to="/pre-register">
-                            <button
-                                id="preregister-button"
-                                className="button-27"
-                            >
-                                Button 2
+                        <a href="https://goo.gl/maps/7ttdfmtFevqhP4ii6">
+                            <button id="location-button" className="button-27">
+                                <img src={locationIcon}></img>
+                                <span>IIT Jodhpur</span>
                             </button>
-                        </Link>
-                        <Link to="/pre-register">
-                            <button
-                                id="preregister-button"
-                                className="button-27"
-                            >
-                                Button 3
-                            </button>
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>

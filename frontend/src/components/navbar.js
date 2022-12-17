@@ -60,19 +60,19 @@ const navBarLinks = [
         tabIndex: 8,
     },
     // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
-    {
-        name: "preregister",
-        text: "Pre-Register",
-        path: "/pre-register",
-        section: "right",
-        tabIndex: 9,
-    },
+    // {
+    //     name: "preregister",
+    //     text: "Pre-Register",
+    //     path: "/pre-register",
+    //     section: "right",
+    //     tabIndex: 9,
+    // },
     {
         name: "login",
         text: "Login",
         path: "/login",
         section: "right",
-        tabIndex: 10,
+        tabIndex: 9,
     },
 ];
 
@@ -229,10 +229,11 @@ function Navbar() {
                                     <div
                                         className="dropdown dropdown-5"
                                         key={link.name}
+                                        tabIndex={link.tabIndex}
                                         // onClick={() => setShowIcons(false)}
                                     >
 										<input type="checkbox" id="navbar-mobile-eventCheckbox" />
-                                        <label id="navbar-mobile-eventLabel" for="navbar-mobile-eventCheckbox" className="navbar-mobile-link navbar-link">
+                                        <label id="navbar-mobile-eventLabel" htmlFor="navbar-mobile-eventCheckbox" className="navbar-mobile-link navbar-link">
                                             {link.text}
 											{/* <label >{link.text}</label> */}
                                         </label>
@@ -280,6 +281,9 @@ function Navbar() {
                                     <div
                                         className={`navbar-right-section-profile navbar-link`}
                                         tabIndex={link.tabIndex}
+                                        onClick={() =>
+                                            setShowIcons(false)
+                                        }
                                     >
                                         {"Profile"}
                                     </div>
@@ -289,6 +293,9 @@ function Navbar() {
                                     <div
                                         className={`navbar-mobile-link navbar-link`}
                                         tabIndex={link.tabIndex}
+                                        onClick={() =>
+                                            setShowIcons(false)
+                                        }
                                     >
                                         {link.text}
                                     </div>
@@ -300,6 +307,9 @@ function Navbar() {
                                     <div
                                         className={`navbar-mobile-link navbar-link`}
                                         tabIndex={link.tabIndex}
+                                        onClick={() =>
+                                            setShowIcons(false)
+                                        }
                                     >
                                         {link.text}
                                     </div>

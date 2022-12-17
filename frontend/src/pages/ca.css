@@ -98,6 +98,10 @@
     /* border: 2px solid red; */
 }
 
+#ca-yellow {
+    color: #ffde38;
+}
+
 @media screen and (orientation: portrait) {
     #ca-title-desc {
         bottom: 10%;
