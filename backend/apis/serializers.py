@@ -293,3 +293,8 @@ class CARefereeSerializers(serializers.ModelSerializer):
         model = ExtendedUser
         fields = ['email','referral_code']
         extra_kwargs = {'referral_code' : {'read_only':True}}
+
+class UserCheckSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = ['email']

@@ -334,4 +334,28 @@ class LoginDashboardViewSet(APIView):
             user = ExtendedUser.objects.filter(email=user_email).first()
             serializers = LoginDashboardSerializers(user)
             return Response(serializers.data)
-            
+
+class UserCheckViewSet(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class = UserCheckSerializers
+
+    def post(self,request):
+        email = request.data.get('email')
+        if(ExtendedUser.objects.filter(email=email)).exists():
+            response = {
+            'success' : 'True',
+            'status code' : status.HTTP_200_OK,
+            'message': 'User exist',
+            }
+            status_code = status.HTTP_200_OK
+
+            return Response(response, status=status_code)
+        else :
+            response = {
+            'success' : 'False',
+            'status code' : status.HTTP_200_OK,
+            'message': 'User does not exist',
+            }
+            status_code = status.HTTP_200_OK
+
+            return Response(response, status=status_code)
