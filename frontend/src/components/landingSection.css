@@ -133,6 +133,7 @@
     display: flex;
     gap: 2vmin;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .button-27 > img {
