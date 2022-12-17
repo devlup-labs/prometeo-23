@@ -26,6 +26,7 @@ django-import-export = "*"
 psycopg2-binary = "*"
 pysocks = "*"
 razorpay = "*"
+sendgrid = "*"
 
 [dev-packages]
 

@@ -14,6 +14,10 @@ import requests
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 import uuid
+from decouple import config
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -158,19 +162,37 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
                 ca.save()
                 CA.save()
         user.save()
-        with get_connection(
-                username=settings.EMAIL_HOST_USER,
-                password=settings.EMAIL_HOST_PASSWORD
-            ) as connection:
-                sendMailID = settings.FROM_EMAIL_USER
-                subject = "Registeration"
-                message = "You have successfully registered."
-                html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
-                text_content = strip_tags(html_content)
-                message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-                message.attach_alternative(html_content, "text/html")
-                message.mixed_subtype = 'related'
-                message.send()
+        # with get_connection(
+        #         username=settings.EMAIL_HOST_USER,
+        #         password=settings.EMAIL_HOST_PASSWORD
+        #     ) as connection:
+        #         sendMailID = settings.FROM_EMAIL_USER
+        #         subject = "Registeration"
+        #         message = "You have successfully registered."
+        #         html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
+        #         text_content = strip_tags(html_content)
+        #         message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+        #         message.attach_alternative(html_content, "text/html")
+        #         message.mixed_subtype = 'related'
+        #         message.send()
+        msg = "You have successfully registered."
+        # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+        SENDGRID_API_KEY = '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'
+        message = Mail(
+            from_email='no-reply@prometeo.in',
+            to_emails=user.email,
+            # reply_to='prometeo@iitj.ac.in',
+            subject='Registeration',
+            html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg}))
+        try:
+            sg = SendGridAPIClient(SENDGRID_API_KEY)
+            
+            response = sg.send(message)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+        except Exception as e:
+            print(e)
 
 
         return user
