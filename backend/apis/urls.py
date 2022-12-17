@@ -39,6 +39,8 @@ router.register("team",TeamViewSet)
 
 router.register("coreteam",CoreTeamViewSet)
 
+# router.register("logindashboard", LoginDashboardViewSet)
+
 urlpatterns=[
     path(r'',include(router.urls)), 
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -46,4 +48,5 @@ urlpatterns=[
     path('login/', MyObtainTokenPairView.as_view(), name='login'),
     path('google/', views.GoogleView.as_view(), name='google'),
     path('campusambassador/', views.CampusAmbassadorView.as_view(), name='campusambassador'),
+    path('logindashboard/', views.LoginDashboardViewSet.as_view(), name='logindashboard'),
 ]

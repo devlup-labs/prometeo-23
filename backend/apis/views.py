@@ -23,13 +23,12 @@ from .serializers import MyTokenObtainPairSerializer
 from rest_framework.utils import json
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
+from django.core.mail import get_connection, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
-from decouple import config
-import os
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -178,50 +177,66 @@ class GoogleView(APIView):
 
 
 class CampusAmbassadorView(APIView):
-    queryset = ExtendedUser.objects.all()
+    queryset = CampusAmbassador.objects.all()
     serializer_class = CampusAmbassadorSerializers
     permission_classes = (IsAuthenticated,)
-    def post(self, request, *args, **kwargs):
-        if(request.user.is_authenticated==False):
-            return Response({'message':'User not authenticated'},status=status.HTTP_401_UNAUTHORIZED)
-        user=request.user
-        if(user.ambassador==False):
-            user.ambassador = True
-            invite_referral = 'CA' + str(uuid.uuid4().int)[:6]
-            user.invite_referral = invite_referral
-            user.save()
 
-            # with get_connection(
-            #     username=settings.EMAIL_HOST_USER,
-            #     password=settings.EMAIL_HOST_PASSWORD
-            # ) as connection:
-            #     sendMailID = settings.FROM_EMAIL_USER
-            #     subject = "Registeration as Campus Ambassador"
-            #     message = "You have successfully registered as Campus Ambassador."
-            #     html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
-            #     text_content = strip_tags(html_content)
-            #     message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-            #     message.attach_alternative(html_content, "text/html")
-            #     message.mixed_subtype = 'related'
-            #     message.send()
-            msg = "You have successfully registered as Campus Ambassador."
-            # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
-            SENDGRID_API_KEY = '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'
-            message = Mail(
-                from_email='no-reply@prometeo.in',
-                to_emails=user.email,
-                # reply_to='prometeo@iitj.ac.in',
-                subject='Registeration as Campus Ambassador',
-                html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg}))
-            try:
-                sg = SendGridAPIClient(SENDGRID_API_KEY)
-                
-                response = sg.send(message)
-                print(response.status_code)
-                print(response.body)
-                print(response.headers)
-            except Exception as e:
-                print(e)
+    def get(self, request):
+        ca = CampusAmbassador.objects.all()
+        serializer = CampusAmbassadorSerializers(ca, many=True)
+        return Response({"ca": serializer.data})
+    
+    def post(self, request):
+        user_email = request.data.get('email')
+        if(CampusAmbassador.objects.filter(email=user_email)).exists():
+            ca = CampusAmbassador.objects.filter(email=user_email).first()
+            serializers = CampusAmbassadorSerializers(ca)
+            referee_dict={}
+            referee = ExtendedUser.objects.filter(referral_code=ca.invite_referral).all()
+            serializer = CARefereeSerializers(referee,many=True)
+            # referee_dict = {'ca':serializer.data}
+            # referee_dict['referees']=referee_list
+            # data = {'ca':serializers.data} + referee_dict
+            
+            
+            return Response(serializer.data)
+        else :
+            ca = CampusAmbassador.objects.create(
+                email = user_email,
+                ca_count=0,
+            )
+            ca.save()
+            code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+            user = CampusAmbassador.objects.all()
+            def referral_check(c):
+                for u in user:
+                    if c == u.invite_referral:
+                        c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                        referral_check(c)
+                return c
+
+            ca.invite_referral = referral_check(code)
+            # ca.invite_referral='CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+            ca.save()
+            serializers= CampusAmbassadorSerializers(ca)
+            user=ExtendedUser.objects.filter(email=user_email).first()
+            user.ambassador=True
+            user.invite_referral = ca.invite_referral
+            user.ca_count = ca.ca_count
+            user.save()
+            with get_connection(
+                username=settings.EMAIL_HOST_USER,
+                password=settings.EMAIL_HOST_PASSWORD
+            ) as connection:
+                sendMailID = settings.FROM_EMAIL_USER
+                subject = "Registeration as Campus Ambassador"
+                message = "You have successfully registered as Campus Ambassador."
+                html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
+                text_content = strip_tags(html_content)
+                message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+                message.attach_alternative(html_content, "text/html")
+                message.mixed_subtype = 'related'
+                message.send()
             
 
             return Response(serializers.data)
@@ -266,7 +281,6 @@ class CampusAmbassadorView(APIView):
         # else:
         #     return Response(user.invite_referral)
 
-
 class CoreTeamViewSet(viewsets.ModelViewSet):
     queryset = Coordinator.objects.all()
     serializer_class = CoreTeamSerializers
@@ -287,3 +301,15 @@ class CampusAmbassadorListView(APIView):
             serializer = CampusAmbassadorSerializers(queryset, many=True)
             return Response(serializer.data)
     
+class LoginDashboardViewSet(APIView):
+    queryset = ExtendedUser.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = LoginDashboardSerializers
+
+    def post(self, request, *args, **kwargs):
+        user_email = request.data.get('email')
+        if(ExtendedUser.objects.filter(email=user_email)).exists():
+            user = ExtendedUser.objects.filter(email=user_email).first()
+            serializers = LoginDashboardSerializers(user)
+            return Response(serializers.data)
+            
