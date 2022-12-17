@@ -154,7 +154,7 @@ export default function CA() {
                     />
 
                     <span id="ca-title-desc">
-                        <button
+                        {/* <button
                             id="ca-register-button"
                             className="button-48"
                             onClick={handleSubmit}
@@ -165,9 +165,9 @@ export default function CA() {
                                     ? "Already Registered"
                                     : "REGISTER!"}
                             </span>
-                        </button>
+                        </button> */}
                         <span id="ca-referral-info">
-                            {userData.ambassador ? (
+                            {/* {userData.ambassador ? (
                                 <div>
                                     Your referral code is{" "}
                                     <span id="ca-yellow">
@@ -179,10 +179,11 @@ export default function CA() {
                                 </div>
                             ) : (
                                 <div>
-                                    {/* this is a description provided by Sir
-                                    Lakshya Nitin Tandon orz */}
+                                    this is a description provided by Sir
+                                    Lakshya Nitin Tandon orz
                                 </div>
-                            )}
+                            )} */}
+                            Registrations will be up soon!
                         </span>
                     </span>
                 </div>
@@ -313,13 +314,13 @@ export default function CA() {
                         <span className="ca-content-desc-left ca-register">
                             So, grab the opportunity and sign up as soon as
                             possible to win the goodies and wonderful perks!
-                            <button
+                            {/* <button
                                 id="ca-register-button"
                                 className="button-48"
                                 onClick={handleSubmit}
                             >
                                 <span className="button-text">I'M IN!</span>
-                            </button>
+                            </button> */}
                         </span>
                         <img
                             className="ca-content-img blue-shadow ca-pr-logo"

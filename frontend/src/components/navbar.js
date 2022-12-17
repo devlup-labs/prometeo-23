@@ -60,20 +60,20 @@ const navBarLinks = [
         tabIndex: 8,
     },
     // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
-    // {
-    //     name: "preregister",
-    //     text: "Pre-Register",
-    //     path: "/pre-register",
-    //     section: "right",
-    //     tabIndex: 9,
-    // },
     {
-        name: "login",
-        text: "Login",
-        path: "/login",
+        name: "preregister",
+        text: "Pre-Register",
+        path: "/pre-register",
         section: "right",
         tabIndex: 9,
     },
+    // {
+    //     name: "login",
+    //     text: "Login",
+    //     path: "/login",
+    //     section: "right",
+    //     tabIndex: 9,
+    // },
 ];
 
 // live technical informal entrepreneurial workshops poster_presentation panel_discussion exhibition
@@ -130,85 +130,95 @@ function Navbar() {
             </nav>
 
             <nav className="navbar-right-section">
-
-                {navBarLinks
-                    .map((link) => {
-                        if (link.name === "events") {
-                            return (
+                {navBarLinks.map((link) => {
+                    if (link.name === "theme") {
+                        return (
+                            <a href={link.path} key={link.name}>
                                 <div
-                                    className="dropdown dropdown-5"
-                                    key={link.name}
+                                    className={`navbar-right-section-${link.name} navbar-link`}
+                                    tabIndex={link.tabIndex}
                                 >
-                                    <div className="navbar-link">
-                                        {link.text}
-                                    </div>
-                                    {/* {link.text} */}
-                                    <ul className="dropdown_menu dropdown_menu-5">
-                                        {eventTypes.map((item, index) => (
-                                            <Link
-                                                to={{
-                                                    pathname: link.path,
-                                                    search: `?type=${item.type}`,
-                                                }}
-                                                key={index}
-                                            >
-                                                <li
-                                                    className={`dropdown_item-${
-                                                        index + 1
-                                                    }`}
-                                                >
-                                                    {item.name}
-                                                </li>
-                                            </Link>
-                                        ))}
-                                    </ul>
+                                    {link.text}
                                 </div>
-                            );
-                        } else if (link.name === "preregister") {
-                            return user ? null : (
-                                <Link to={link.path} key={link.name}>
-                                    <div
-                                        className={`navbar-right-section-${link.name} navbar-link`}
-                                        tabIndex={link.tabIndex}
-                                    >
-                                        {link.text}
-                                    </div>
-                                </Link>
-                            );
-                        } else if (link.name === "login") {
-                            // console.log("While creating: ", user)
-                            return user ? (
-                                <Link to={"/dashboard"} key={"profile"}>
-                                    <div
-                                        className={`navbar-right-section-profile navbar-link`}
-                                        tabIndex={link.tabIndex}
-                                    >
-                                        {"Profile"}
-                                    </div>
-                                </Link>
-                            ) : (
-                                <Link to={link.path} key={link.name}>
-                                    <div
-                                        className={`navbar-right-section-${link.name} navbar-link`}
-                                        tabIndex={link.tabIndex}
-                                    >
-                                        {link.text}
-                                    </div>
-                                </Link>
-                            );
-                        } else {
-                            return (
-                                <Link to={link.path} key={link.name}>
-                                    <div
-                                        className={`navbar-right-section-${link.name} navbar-link`}
-                                        tabIndex={link.tabIndex}
-                                    >
-                                        {link.text}
-                                    </div>
-                                </Link>
-                            );
-                        }
-                    })}
+                            </a>
+                        );
+                    }
+                    else if (link.name === "events") {
+                        return (
+                            <div
+                                className="dropdown dropdown-5"
+                                key={link.name}
+                            >
+                                <div className="navbar-link">{link.text}</div>
+                                {/* {link.text} */}
+                                <ul className="dropdown_menu dropdown_menu-5">
+                                    {eventTypes.map((item, index) => (
+                                        <Link
+                                            to={{
+                                                pathname: link.path,
+                                                search: `?type=${item.type}`,
+                                            }}
+                                            key={index}
+                                        >
+                                            <li
+                                                className={`dropdown_item-${
+                                                    index + 1
+                                                }`}
+                                            >
+                                                {item.name}
+                                            </li>
+                                        </Link>
+                                    ))}
+                                </ul>
+                            </div>
+                        );
+                    } else if (link.name === "preregister") {
+                        // return user ? null : (
+                        return (
+                            <Link to={link.path} key={link.name}>
+                                <div
+                                    className={`navbar-right-section-${link.name} navbar-link`}
+                                    tabIndex={link.tabIndex}
+                                >
+                                    {link.text}
+                                </div>
+                            </Link>
+                        );
+                        // );
+                    } else if (link.name === "login") {
+                        // console.log("While creating: ", user)
+                        return user ? (
+                            <Link to={"/dashboard"} key={"profile"}>
+                                <div
+                                    className={`navbar-right-section-profile navbar-link`}
+                                    tabIndex={link.tabIndex}
+                                >
+                                    {"Profile"}
+                                </div>
+                            </Link>
+                        ) : (
+                            <Link to={link.path} key={link.name}>
+                                <div
+                                    className={`navbar-right-section-${link.name} navbar-link`}
+                                    tabIndex={link.tabIndex}
+                                >
+                                    {link.text}
+                                </div>
+                            </Link>
+                        );
+                    } else {
+                        return (
+                            <Link to={link.path} key={link.name}>
+                                <div
+                                    className={`navbar-right-section-${link.name} navbar-link`}
+                                    tabIndex={link.tabIndex}
+                                >
+                                    {link.text}
+                                </div>
+                            </Link>
+                        );
+                    }
+                })}
             </nav>
 
             <div className="hamburger-menu">
@@ -225,17 +235,30 @@ function Navbar() {
                     navBarLinks.map((link) => {
                         if (link.name === "events")
                             return (
-                                <div style={{width: "100%", overflowX: "hidden"}} key={link.name}>
+                                <div
+                                    style={{
+                                        width: "100%",
+                                        overflowX: "hidden",
+                                    }}
+                                    key={link.name}
+                                >
                                     <div
                                         className="dropdown dropdown-5"
                                         key={link.name}
                                         tabIndex={link.tabIndex}
                                         // onClick={() => setShowIcons(false)}
                                     >
-										<input type="checkbox" id="navbar-mobile-eventCheckbox" />
-                                        <label id="navbar-mobile-eventLabel" htmlFor="navbar-mobile-eventCheckbox" className="navbar-mobile-link navbar-link">
+                                        <input
+                                            type="checkbox"
+                                            id="navbar-mobile-eventCheckbox"
+                                        />
+                                        <label
+                                            id="navbar-mobile-eventLabel"
+                                            htmlFor="navbar-mobile-eventCheckbox"
+                                            className="navbar-mobile-link navbar-link"
+                                        >
                                             {link.text}
-											{/* <label >{link.text}</label> */}
+                                            {/* <label >{link.text}</label> */}
                                         </label>
                                         {/* {link.text} */}
                                         <ul className="dropdown_menu dropdown_menu-5">
@@ -281,9 +304,7 @@ function Navbar() {
                                     <div
                                         className={`navbar-right-section-profile navbar-link`}
                                         tabIndex={link.tabIndex}
-                                        onClick={() =>
-                                            setShowIcons(false)
-                                        }
+                                        onClick={() => setShowIcons(false)}
                                     >
                                         {"Profile"}
                                     </div>
@@ -293,9 +314,7 @@ function Navbar() {
                                     <div
                                         className={`navbar-mobile-link navbar-link`}
                                         tabIndex={link.tabIndex}
-                                        onClick={() =>
-                                            setShowIcons(false)
-                                        }
+                                        onClick={() => setShowIcons(false)}
                                     >
                                         {link.text}
                                     </div>
@@ -307,9 +326,7 @@ function Navbar() {
                                     <div
                                         className={`navbar-mobile-link navbar-link`}
                                         tabIndex={link.tabIndex}
-                                        onClick={() =>
-                                            setShowIcons(false)
-                                        }
+                                        onClick={() => setShowIcons(false)}
                                     >
                                         {link.text}
                                     </div>
