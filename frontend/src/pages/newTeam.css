@@ -139,9 +139,10 @@
     }
 }
 
-#team-person-name {
+.team-person-name {
     position: absolute;
-    width: 100%;
+    width: max-content;
+    /* width: 100%; */
     bottom: 1%;
     left: 50%;
     transform: translateX(-50%);
@@ -153,7 +154,7 @@
 }
 
 @media screen and (orientation: portrait) {
-    #team-person-name {
+    .team-person-name {
         font-size: min(50px, 4vh);
         padding: 0 4vmin;
         word-wrap: break-word;
@@ -224,7 +225,7 @@
     /* border: 2px solid green; */
     position: relative;
     height: 100%;
-    max-height: 180px;
+    /* max-height: 180px; */
     object-fit: cover;
     transition: 0.3s;
     padding: 10px;
@@ -235,7 +236,7 @@
     /* border: 2px solid green; */
     position: relative;
     height: 100%;
-    max-height: 180px;
+    /* max-height: 180px; */
     object-fit: cover;
     transition: 0.3s;
     padding: 10px;
