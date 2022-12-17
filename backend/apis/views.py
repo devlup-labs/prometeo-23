@@ -29,6 +29,10 @@ from django.utils.html import strip_tags
 
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
+from decouple import config
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -224,19 +228,37 @@ class CampusAmbassadorView(APIView):
             user.invite_referral = ca.invite_referral
             user.ca_count = ca.ca_count
             user.save()
-            with get_connection(
-                username=settings.EMAIL_HOST_USER,
-                password=settings.EMAIL_HOST_PASSWORD
-            ) as connection:
-                sendMailID = settings.FROM_EMAIL_USER
-                subject = "Registeration as Campus Ambassador"
-                message = "You have successfully registered as Campus Ambassador."
-                html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
-                text_content = strip_tags(html_content)
-                message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-                message.attach_alternative(html_content, "text/html")
-                message.mixed_subtype = 'related'
-                message.send()
+            # with get_connection(
+            #     username=settings.EMAIL_HOST_USER,
+            #     password=settings.EMAIL_HOST_PASSWORD
+            # ) as connection:
+            #     sendMailID = settings.FROM_EMAIL_USER
+            #     subject = "Registeration as Campus Ambassador"
+            #     message = "You have successfully registered as Campus Ambassador."
+            #     html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
+            #     text_content = strip_tags(html_content)
+            #     message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+            #     message.attach_alternative(html_content, "text/html")
+            #     message.mixed_subtype = 'related'
+            #     message.send()
+            msg = "You have successfully registered as Campus Ambassador."
+            # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+            SENDGRID_API_KEY = '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'
+            message = Mail(
+                from_email='no-reply@prometeo.in',
+                to_emails=user.email,
+                # reply_to='prometeo@iitj.ac.in',
+                subject='Registeration as Campus Ambassador',
+                html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg}))
+            try:
+                sg = SendGridAPIClient(SENDGRID_API_KEY)
+                
+                response = sg.send(message)
+                print(response.status_code)
+                print(response.body)
+                print(response.headers)
+            except Exception as e:
+                print(e)
             
 
             return Response(serializers.data)
@@ -312,4 +334,28 @@ class LoginDashboardViewSet(APIView):
             user = ExtendedUser.objects.filter(email=user_email).first()
             serializers = LoginDashboardSerializers(user)
             return Response(serializers.data)
-            
+
+class UserCheckViewSet(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class = UserCheckSerializers
+
+    def post(self,request):
+        email = request.data.get('email')
+        if(ExtendedUser.objects.filter(email=email)).exists():
+            response = {
+            'success' : 'True',
+            'status code' : status.HTTP_200_OK,
+            'message': 'User exist',
+            }
+            status_code = status.HTTP_200_OK
+
+            return Response(response, status=status_code)
+        else :
+            response = {
+            'success' : 'False',
+            'status code' : status.HTTP_200_OK,
+            'message': 'User does not exist',
+            }
+            status_code = status.HTTP_200_OK
+
+            return Response(response, status=status_code)
