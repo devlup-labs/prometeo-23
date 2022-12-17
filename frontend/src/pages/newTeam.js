@@ -186,7 +186,8 @@ function createPerson(person) {
                 <div className="team-bottom">
                     <div className="team-caption">
                         <div>
-                            {person.por && <p>{person.por}</p>}
+                            {false && <p>{person.por}</p>}
+                            {/* {person.por && <p>{person.por}</p>} */}
                         </div>
                         <div className="team-social-links">
                             {createSocialLinks(person)}
@@ -194,7 +195,7 @@ function createPerson(person) {
                     </div>
                 </div>
             </div>
-            <h3 id="team-person-name">{person.name}</h3>
+            <h3 className="team-person-name">{person.name}</h3>
         </div>
     );
 }
@@ -222,7 +223,7 @@ function createFC(person) {
                     </div>
                 </div>
             </div>
-            <h3 id="team-person-name">{person.name}</h3>
+            <h3 className="team-person-name">{person.name}</h3>
         </div>
     );
 }
