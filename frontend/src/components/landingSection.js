@@ -47,7 +47,7 @@ export default function LandingSection() {
                     <div id="landing-links">
                         <Link to="/pre-register">
                             <button id="register-button" className="button-27">
-                            <span>Pre-tegister Now!</span>
+                            <span>Pre-register Now!</span>
                             </button>
                         </Link>
                         <a href="https://goo.gl/maps/7ttdfmtFevqhP4ii6">
