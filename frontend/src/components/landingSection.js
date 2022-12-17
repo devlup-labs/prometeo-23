@@ -45,9 +45,9 @@ export default function LandingSection() {
                         <img id="landing-image-img2" src={hero} alt="" />
                     </div>
                     <div id="landing-links">
-                        <Link to="/sign-up">
+                        <Link to="/pre-register">
                             <button id="register-button" className="button-27">
-                            <span>Register Now!</span>
+                            <span>Pre-register Now!</span>
                             </button>
                         </Link>
                         <a href="https://goo.gl/maps/7ttdfmtFevqhP4ii6">
