@@ -10,56 +10,56 @@ import useAxios from "../context/context_useAxios";
 import rocketImg from "../assets/icons/rocket.png";
 
 const registered_events = [
-    {
-        name: "Event 1",
-        date: "Date 1",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 2",
-        date: "Date 2",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 3",
-        date: "Date 3",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 4",
-        date: "Date 4",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 5",
-        date: "Date 5",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 6",
-        date: "Date 6",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 7",
-        date: "Date 7",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 8",
-        date: "Date 8",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 9",
-        date: "Date 9",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
-    {
-        name: "Event 10",
-        date: "Date 10",
-        image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    },
+//     {
+//         name: "Event 1",
+//         date: "Date 1",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 2",
+//         date: "Date 2",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 3",
+//         date: "Date 3",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 4",
+//         date: "Date 4",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 5",
+//         date: "Date 5",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 6",
+//         date: "Date 6",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 7",
+//         date: "Date 7",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 8",
+//         date: "Date 8",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 9",
+//         date: "Date 9",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
+//     {
+//         name: "Event 10",
+//         date: "Date 10",
+//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+//     },
 ];
 
 function Dashboard() {
