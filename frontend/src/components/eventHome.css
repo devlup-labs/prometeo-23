@@ -1,6 +1,6 @@
 #eventHome-container {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: fit-content;
     display: flex;
     align-items: center;
@@ -235,7 +235,6 @@
 
 .eventHome-eventCircle-gradient:hover span {
     text-shadow: 0 2px 3px #07fbfd;
-    transform: scale(1.1);
 }
 
 #eventHome-eventCircles > a {
@@ -251,6 +250,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: all 0.1s ease;
+}
+
+#eventHome-eventCircles > a:hover img {
+    transform: scale(1.1);
+    filter: brightness(0.8);
 }
 
 @keyframes eventBlob {

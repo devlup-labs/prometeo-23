@@ -24,13 +24,15 @@ import Footer from "../components/footer";
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [hideGif, setHideGif] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
 
-  // useEffect(() => {
-  //   loadTextures(isLoading, setIsLoading);
-  // }, []);
+  // write code to hide the scroll when footer is in view
+
+  
 
   useEffect(() => {
-    console.log("isLoading: ", isLoading);
+    // console.log("isLoading: ", isLoading);
     if (!isLoading) {
       const navBarEle = document.getElementById("navbar");
       navBarEle.style.opacity = 1;
@@ -41,6 +43,25 @@ export default function HomePage() {
       setShowContent(true);
     }
   }, [isLoading]);
+
+  useEffect(() => {
+    if (footerInView) {
+      // console.log("footer in view");
+      const scrollDownEle = document.getElementById("scroll-down");
+      if (scrollDownEle) {
+        // console.log("scroll down ele: ", scrollDownEle);
+        scrollDownEle.style.opacity = 0;
+      }
+    }
+    else {
+      // console.log("footer not in view");
+      const scrollDownEle = document.getElementById("scroll-down");
+      if (scrollDownEle) {
+        // console.log("scroll down ele: ", scrollDownEle);
+        scrollDownEle.style.opacity = 1;
+      }
+    }
+  }, [footerInView]);
 
   return (
     <div id="homepage">
@@ -53,14 +74,14 @@ export default function HomePage() {
             <img src={spinner} id = "loader-gif" alt="Loading..." />
           </div>
         ) :
-      // }
-      // {
+      //  }
+      //  {
       //   showContent &&
         (
           <FadeIn duration={500}>
-              {/* <div id="scroll-down">
+              <div id="scroll-down">
                 <img src={scrollGif} alt="Scroll Down" id="scroll-down-gif" />
-              </div> */}
+              </div>
               <div id="homepage-content">
                 <LandingSection />
                 <Introduction />
@@ -72,7 +93,8 @@ export default function HomePage() {
                 <StatsHome />
                 <div id="purple-filler-reverse"></div>
                 <Infinity />
-                <Footer />
+                {/* footer with props */}
+                <Footer view={setFooterInView}/>
               </div>
           </FadeIn>
         )
