@@ -60,19 +60,19 @@ const navBarLinks = [
         tabIndex: 8,
     },
     // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
-    {
-        name: "preregister",
-        text: "Pre-Register",
-        path: "/pre-register",
-        section: "right",
-        tabIndex: 9,
-    },
+    // {
+    //     name: "preregister",
+    //     text: "Pre-Register",
+    //     path: "/pre-register",
+    //     section: "right",
+    //     tabIndex: 9,
+    // },
     {
         name: "login",
         text: "Login",
         path: "/login",
         section: "right",
-        tabIndex: 10,
+        tabIndex: 9,
     },
 ];
 
