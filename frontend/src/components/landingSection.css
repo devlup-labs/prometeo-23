@@ -120,7 +120,7 @@
     max-width: 40vw;
     object-fit: contain;
     user-select: none;
-    filter: drop-shadow(0 0 0.7rem #3097dd);
+    filter: drop-shadow(0 0 0.3rem #5719ff);
 }
 
 @media screen and (max-width: 800px) {

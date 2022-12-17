@@ -6,7 +6,7 @@ import "../pages/clock.css";
 import clock from "../pages/clock.js";
 
 import PrometeoLogo from "../assets/navbar/prometeo_logo_23.png";
-import space from "../assets/homePage/robots.jpg";
+import hero from "../assets/homePage/hero.png";
 import locationIcon from "../assets/icons/location.png";
 
 export default function LandingSection() {
@@ -42,7 +42,7 @@ export default function LandingSection() {
                 </div>
                 <div id="landing-right-section">
                     <div id="landing-image">
-                        <img id="landing-image-img2" src={space} alt="" />
+                        <img id="landing-image-img2" src={hero} alt="" />
                     </div>
                     <div id="landing-links">
                         <Link to="/sign-up">
