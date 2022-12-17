@@ -49,4 +49,5 @@ urlpatterns=[
     path('google/', views.GoogleView.as_view(), name='google'),
     path('campusambassador/', views.CampusAmbassadorView.as_view(), name='campusambassador'),
     path('logindashboard/', views.LoginDashboardViewSet.as_view(), name='logindashboard'),
+    path('usercheck/', UserCheckViewSet.as_view(), name='usercheck'),
 ]
