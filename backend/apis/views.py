@@ -183,7 +183,7 @@ class GoogleView(APIView):
 class CampusAmbassadorView(APIView):
     queryset = CampusAmbassador.objects.all()
     serializer_class = CampusAmbassadorSerializers
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         ca = CampusAmbassador.objects.all()
@@ -241,7 +241,8 @@ class CampusAmbassadorView(APIView):
             #     message.attach_alternative(html_content, "text/html")
             #     message.mixed_subtype = 'related'
             #     message.send()
-            msg = "You have successfully registered as Campus Ambassador."
+            msg = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
+            isCA=True
             # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
             SENDGRID_API_KEY = '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'
             message = Mail(
@@ -249,7 +250,7 @@ class CampusAmbassadorView(APIView):
                 to_emails=user.email,
                 # reply_to='prometeo@iitj.ac.in',
                 subject='Registeration as Campus Ambassador',
-                html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg}))
+                html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'isCA': isCA, 'invite_referral': ca.invite_referral}))
             try:
                 sg = SendGridAPIClient(SENDGRID_API_KEY)
                 

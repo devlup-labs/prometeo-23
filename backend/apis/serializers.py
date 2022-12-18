@@ -175,7 +175,7 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         #         message.attach_alternative(html_content, "text/html")
         #         message.mixed_subtype = 'related'
         #         message.send()
-        msg = "You have successfully registered."
+        msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo'23 - the Technical Fest of IIT Jodhpur ."
         # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
         SENDGRID_API_KEY = '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'
         message = Mail(

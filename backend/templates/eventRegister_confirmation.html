@@ -36,6 +36,8 @@
       }
       .content-body {
         background-color: #030e5e;
+        background-image: url(https://raw.githubusercontent.com/rohitkori/image/main/bg.jpg);
+        background-size: contain;
         padding: 10px 20px 0 20px;
       }
       h1 {
@@ -110,16 +112,21 @@
       <div
         class="content-body-image"
         style="
-          background-image: url(https://raw.githubusercontent.com/Sahil1479/images/main/ca_mail_top.png);
+        background-color:black;
+          background-image: url(https://raw.githubusercontent.com/rohitkori/image/main/logo_stone.png);
+          /* background-image: url('prometeo_logo_23_new.png'); */
+          /* background-size:contain; */
         "
-      ></div>
+      > 
+      
+    </div>
       <div class="content-body">
         <div class="content-body-text" style="padding-bottom: 30px">
           <h1>Hello, {{first_name}}</h1>
           <p>
             <!-- Your team <b>{{team_name}}</b> have just registered for the {{event_type}} event
             <b>{{event_name}}</b>. -->
-            {{message}}
+            {{msg}}
           </p>
           <p
             style="
@@ -131,10 +138,6 @@
           >
           {% if isTeamEvent %}  
           Team ID
-          {% else %}
-          Registration ID
-          {% endif %}
-          </p>
           <div
             class="button"
             class="button-link"
@@ -153,13 +156,53 @@
               >{{team_id}}</a
             >
           </div>
+          {% elif isCA %}
+          Referral Code 
+          <div
+          class="button"
+          class="button-link"
+          style="
+            background: none;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            padding: 10px 5px;
+            /* align-items: center; */
+            text-align: center;
+          "
+          >
+          <a
+            href="#"
+            style="text-decoration: none; color: #fff; font-size: 15px"
+            >{{invite_referral}}</a
+          >
+          </div>
+          {% endif %}
+          </p>
+          <!-- <div
+            class="button"
+            class="button-link"
+            style="
+              background: none;
+              border: 2px solid #fff;
+              border-radius: 4px;
+              padding: 10px 5px;
+              /* align-items: center; */
+              text-align: center;
+            "
+          >
+            <a
+              href="#"
+              style="text-decoration: none; color: #fff; font-size: 15px"
+              >{{team_id}}</a
+            >
+          </div> -->
           <p
             style="font-size: 15px; margin: 10px; color: #fff; font-weight: 500"
           >
           {% if isTeamEvent %}  
           Share this ID with your other team members to join your team.
-          {% else %}
-          Do not share this ID with others.
+          {% elif isCA %}
+          Share this code with other people and ask them to register.
           {% endif %}
             
           </p>
@@ -167,10 +210,12 @@
             style="font-size: 14px; margin-top: 40px; color: #fff; font-weight: 400"
           >
             Regards,<br>
-            Team Prometeo'22
+            Team Prometeo'23
           </p>
         </div>
       </div>
     </div>
   </body>
 </html>
+
+
