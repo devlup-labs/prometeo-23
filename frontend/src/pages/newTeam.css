@@ -336,7 +336,7 @@
     font-size: 21px;
     line-height: 1;
 }
-.team-caption p {
+.team-caption a {
     font-size: 16px;
     color: #0c52a1;
     /* margin: 2px 0 9px 0; */
@@ -458,7 +458,7 @@
     .team-caption h3 {
         font-size: 25px;
     }
-    .team-caption p {
+    .team-caption a {
         font-size: 22px;
         /* margin: 2px 0 9px 0; */
     }

@@ -215,7 +215,7 @@ function createFC(person) {
                 <div className="team-bottom">
                     <div className="team-caption">
                         <div>
-                            {person.por && <p>{person.por}</p>}
+                            {person.phone && <a href={`tel:${person.phone}`}>{person.phone}</a>}
                         </div>
                         <div className="team-social-links">
                             {createSocialLinks(person)}
