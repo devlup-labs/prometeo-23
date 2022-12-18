@@ -84,14 +84,15 @@ export default function HomePage() {
               </div>
               <div id="homepage-content">
                 <LandingSection />
+                <div id="filler-1"></div>
                 <Introduction />
                 <Theme />
                 <InitiativeHome />
-                <div id="black-filler"></div>
+                <div id="filler-2"></div>
                 <EventHome />
-                <div id="purple-filler"></div>
+                <div id="filler-3"></div>
                 <StatsHome />
-                <div id="purple-filler-reverse"></div>
+                <div id="filler-4"></div>
                 <Infinity />
                 {/* footer with props */}
                 <Footer view={setFooterInView}/>

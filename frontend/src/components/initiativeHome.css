@@ -9,8 +9,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../assets/backgrounds/bg-01.png");
-    background-size: cover;
+    background-image: url("../assets/homePage/umang_bg.png");
+    background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
 }
