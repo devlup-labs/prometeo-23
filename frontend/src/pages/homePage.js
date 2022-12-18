@@ -33,16 +33,16 @@ export default function HomePage() {
 
   useEffect(() => {
     // console.log("isLoading: ", isLoading);
-    if (!isLoading) {
+    // if (!isLoading) {
       const navBarEle = document.getElementById("navbar");
       navBarEle.style.opacity = 1;
-      const homePageEle = document.getElementById("homepage-solarSystem");
-      homePageEle.style.opacity = 1;
+      // const homePageEle = document.getElementById("homepage-solarSystem");
+      // homePageEle.style.opacity = 1;
       
       // createScene();
       setShowContent(true);
-    }
-  }, [isLoading]);
+    // }
+  }, []);
 
   useEffect(() => {
     if (footerInView) {
@@ -65,7 +65,7 @@ export default function HomePage() {
 
   return (
     <div id="homepage">
-      <NewSolarSystem setIsLoading={setIsLoading} onLoad />
+      {/* <NewSolarSystem setIsLoading={setIsLoading} onLoad /> */}
       {
         !showContent ?
         // isLoading &&
@@ -84,14 +84,15 @@ export default function HomePage() {
               </div>
               <div id="homepage-content">
                 <LandingSection />
+                <div id="filler-1"></div>
                 <Introduction />
                 <Theme />
                 <InitiativeHome />
-                <div id="black-filler"></div>
+                <div id="filler-2"></div>
                 <EventHome />
-                <div id="purple-filler"></div>
+                <div id="filler-3"></div>
                 <StatsHome />
-                <div id="purple-filler-reverse"></div>
+                <div id="filler-4"></div>
                 <Infinity />
                 {/* footer with props */}
                 <Footer view={setFooterInView}/>
