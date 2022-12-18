@@ -16,7 +16,7 @@
 
 @media screen and (max-width: 768px) {
     .landing-container {
-        background-position: right;
+        background-position: center bottom;
     }
 }
 
