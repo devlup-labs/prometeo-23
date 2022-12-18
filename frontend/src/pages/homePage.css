@@ -24,17 +24,17 @@ a {
     background: rgb(3, 4, 4);
     background: -moz-linear-gradient(
         180deg,
-        rgba(3, 4, 4, 1) 0%,
+        #08062e 0%,
         rgba(20, 3, 39, 1) 100%
     );
     background: -webkit-linear-gradient(
         180deg,
-        rgba(3, 4, 4, 1) 0%,
+        #08062e 0%,
         rgba(20, 3, 39, 1) 100%
     );
     background: linear-gradient(
         180deg,
-        rgba(3, 4, 4, 1) 0%,
+        #08062e 0%,
         rgba(20, 3, 39, 1) 100%
     );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#030404",endColorstr="#140327",GradientType=1);
