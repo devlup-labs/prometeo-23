@@ -35,7 +35,7 @@
         margin: 20px auto;
       }
       .content-body {
-        background-color: #030e5e;
+        /* background-color: #030e5e; */
         background-image: url(https://raw.githubusercontent.com/rohitkori/image/main/bg.jpg);
         background-size: contain;
         padding: 10px 20px 0 20px;
@@ -158,6 +158,65 @@
           </div>
           {% elif isCA %}
           Referral Code 
+          <div
+          class="button"
+          class="button-link"
+          style="
+            background: none;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            padding: 10px 5px;
+            /* align-items: center; */
+            text-align: center;
+          "
+          >
+          <a
+            href="#"
+            style="text-decoration: none; color: #fff; font-size: 15px"
+            >{{invite_referral}}</a
+          >
+          </div>
+          {% elif isRegistration %}
+          Registration ID 
+          <div
+          class="button"
+          class="button-link"
+          style="
+            background: none;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            padding: 10px 5px;
+            /* align-items: center; */
+            text-align: center;
+          "
+          >
+          <a
+            href="#"
+            style="text-decoration: none; color: #fff; font-size: 15px"
+            >{{registration_id}}</a
+          >
+          </div>
+          {% elif isCAregistration %}
+          Registration ID 
+          <div
+          class="button"
+          class="button-link"
+          style="
+            background: none;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            padding: 10px 5px;
+            /* align-items: center; */
+            text-align: center;
+          "
+          >
+          <a
+            href="#"
+            style="text-decoration: none; color: #fff; font-size: 15px"
+            >{{registration_id}}</a
+          >
+          </div>
+          Referral Code
           <div
           class="button"
           class="button-link"
