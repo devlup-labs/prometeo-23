@@ -171,7 +171,7 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         id = id_check(id_registration)
         user.registration_id =id
         #CA INVITE REFERRAL
-        if (validated_data['ambassador']==True):
+        if (validated_data['ambassador']==True and validated_data['referral_code']==''):
             user.ambassador=True
             ca = CampusAmbassador.objects.create(
                 email = validated_data['email'],

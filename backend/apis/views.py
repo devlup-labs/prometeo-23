@@ -192,6 +192,7 @@ class CampusAmbassadorView(APIView):
     
     def post(self, request):
         user_email = request.data.get('email')
+        user = ExtendedUser.objects.filter(email=user_email).first()
         if(CampusAmbassador.objects.filter(email=user_email)).exists():
             ca = CampusAmbassador.objects.filter(email=user_email).first()
             serializers = CampusAmbassadorSerializers(ca)
@@ -204,7 +205,7 @@ class CampusAmbassadorView(APIView):
             
             
             return Response(serializer.data)
-        else :
+        elif user.referral_code=='':
             ca = CampusAmbassador.objects.create(
                 email = user_email,
                 ca_count=0,
@@ -265,6 +266,14 @@ class CampusAmbassadorView(APIView):
             
 
             return Response(serializers.data)
+        else:
+            response = {
+            'success' : 'False',
+            'message': 'CA cannot be created ',
+            }
+            status_code = status.HTTP_200_OK
+
+            return Response(response, status=status_code)
 
     # def post(self, request, *args, **kwargs):
     #     # if(request.user.is_authenticated==False):
