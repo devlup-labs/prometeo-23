@@ -152,15 +152,42 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         )
         user.set_password(validated_data['password'])
         if(validated_data['referral_code'] != ''):
-            user.referral_code = validated_data['referral_code']
-            ca = ExtendedUser.objects.filter(invite_referral=validated_data['referral_code']).first()
-            CA=CampusAmbassador.objects.filter(invite_referral=validated_data['referral_code']).first()
-            if(ca):
+            if(CampusAmbassador.objects.filter(invite_referral=validated_data['referral_code'])).exists():
+                ca = ExtendedUser.objects.filter(invite_referral=validated_data['referral_code']).first()
+                CA=CampusAmbassador.objects.filter(invite_referral=validated_data['referral_code']).first()
+                user.referral_code = validated_data['referral_code']
                 user.referred_by = ca
                 ca.ca_count += 1
                 CA.ca_count +=1
                 ca.save()
                 CA.save()
+        #REGISTRATION ID
+        id_registration= 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+        def id_check(c):
+            if(ExtendedUser.objects.filter(registration_id=c)).exists():
+                c = 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+                id_check(c)
+            return c
+        id = id_check(id_registration)
+        user.registration_id =id
+        #CA INVITE REFERRAL
+        if (validated_data['ambassador']==True):
+            user.ambassador=True
+            ca = CampusAmbassador.objects.create(
+                email = validated_data['email'],
+                ca_count=0,
+            )
+            # ca.save()
+            code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+            def referral_check(c):
+                if(CampusAmbassador.objects.filter(invite_referral=c)).exists():
+                    c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                    referral_check(c)
+                return c
+            invite_referral = referral_check(code)
+            ca.invite_referral = invite_referral
+            user.invite_referral = invite_referral
+            ca.save()
         user.save()
         # with get_connection(
         #         username=settings.EMAIL_HOST_USER,

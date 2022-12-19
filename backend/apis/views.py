@@ -183,7 +183,7 @@ class GoogleView(APIView):
 class CampusAmbassadorView(APIView):
     queryset = CampusAmbassador.objects.all()
     serializer_class = CampusAmbassadorSerializers
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         ca = CampusAmbassador.objects.all()
@@ -209,7 +209,6 @@ class CampusAmbassadorView(APIView):
                 email = user_email,
                 ca_count=0,
             )
-            ca.save()
             code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
             user = CampusAmbassador.objects.all()
             def referral_check(c):
