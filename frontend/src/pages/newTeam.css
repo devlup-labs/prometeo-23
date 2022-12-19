@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap");
 .team-container {
+    /* position: absolute; */
+    /* top: 10vh; */
     width: 100%;
     /* height: 90vh;
     overflow-y: auto; */
@@ -7,18 +9,28 @@
     justify-content: center;
     align-items: center; */
     font-family: "Kanit", sans-serif;
-    background: #20002c; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
+    /* background: #20002c; fallback for old browsers */
+    /* background: -webkit-linear-gradient(
         180deg,
         #734e82,
         #09000c
-    ); /* Chrome 10-25, Safari 5.1-6 */
+    ); 
     background: linear-gradient(
         180deg,
         #734e82,
         #0b000f
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    );  */
+    background: -webkit-linear-gradient(
+        180deg,
+        #734e82,
+        #09000c
+    ); 
+    background: linear-gradient(
+        180deg,
+        #734e82,
+        #0b000f
+    ); 
+    background-attachment: fixed;
 }
 
 #team-title {
@@ -139,9 +151,10 @@
     }
 }
 
-#team-person-name {
+.team-person-name {
     position: absolute;
-    width: 100%;
+    width: max-content;
+    /* width: 100%; */
     bottom: 1%;
     left: 50%;
     transform: translateX(-50%);
@@ -153,7 +166,7 @@
 }
 
 @media screen and (orientation: portrait) {
-    #team-person-name {
+    .team-person-name {
         font-size: min(50px, 4vh);
         padding: 0 4vmin;
         word-wrap: break-word;
@@ -224,7 +237,7 @@
     /* border: 2px solid green; */
     position: relative;
     height: 100%;
-    max-height: 180px;
+    /* max-height: 180px; */
     object-fit: cover;
     transition: 0.3s;
     padding: 10px;
@@ -235,7 +248,7 @@
     /* border: 2px solid green; */
     position: relative;
     height: 100%;
-    max-height: 180px;
+    /* max-height: 180px; */
     object-fit: cover;
     transition: 0.3s;
     padding: 10px;
@@ -323,7 +336,7 @@
     font-size: 21px;
     line-height: 1;
 }
-.team-caption p {
+.team-caption a {
     font-size: 16px;
     color: #0c52a1;
     /* margin: 2px 0 9px 0; */
@@ -445,7 +458,7 @@
     .team-caption h3 {
         font-size: 25px;
     }
-    .team-caption p {
+    .team-caption a {
         font-size: 22px;
         /* margin: 2px 0 9px 0; */
     }

@@ -157,17 +157,17 @@ export default function CA() {
                         <button
                             id="ca-register-button"
                             className="button-48"
-                            onClick={handleSubmit}
-                            disabled={userData.ambassador}
+                            // onClick={handleSubmit}
+                            // disabled={userData.ambassador}
                         >
-                            <span className="button-text">
-                                {userData.ambassador
-                                    ? "Already Registered"
-                                    : "REGISTER!"}
+                            <span className="button-text"> COMING SOON!
+                                {/* {userData.ambassador */}
+                                    {/* ? "Already Registered" */}
+                                    {/* : "REGISTER!"} */}
                             </span>
                         </button>
-                        <span id="ca-referral-info">
-                            {userData.ambassador ? (
+                        {/* <span id="ca-referral-info"> */}
+                            {/* {userData.ambassador ? (
                                 <div>
                                     Your referral code is{" "}
                                     <span id="ca-yellow">
@@ -179,11 +179,12 @@ export default function CA() {
                                 </div>
                             ) : (
                                 <div>
-                                    {/* this is a description provided by Sir
-                                    Lakshya Nitin Tandon orz */}
+                                    this is a description provided by Sir
+                                    Lakshya Nitin Tandon orz
                                 </div>
-                            )}
-                        </span>
+                            )} */}
+                            {/* Registrations will be up soon! */}
+                        {/* </span> */}
                     </span>
                 </div>
                 <div className="ca-content">
@@ -316,9 +317,9 @@ export default function CA() {
                             <button
                                 id="ca-register-button"
                                 className="button-48"
-                                onClick={handleSubmit}
+                                // onClick={handleSubmit}
                             >
-                                <span className="button-text">I'M IN!</span>
+                                <span className="button-text">COMING SOON!</span>
                             </button>
                         </span>
                         <img

@@ -45,12 +45,15 @@ export default function LandingSection() {
                         <img id="landing-image-img2" src={hero} alt="" />
                     </div>
                     <div id="landing-links">
-                        <Link to="/sign-up">
+                        <Link to="/pre-register" id="landing-button-1">
                             <button id="register-button" className="button-27">
-                            <span>Register Now!</span>
+                                <span>Pre-register Now!</span>
                             </button>
                         </Link>
-                        <a href="https://goo.gl/maps/7ttdfmtFevqhP4ii6">
+                        <a
+                            href="https://goo.gl/maps/7ttdfmtFevqhP4ii6"
+                            id="landing-button-2"
+                        >
                             <button id="location-button" className="button-27">
                                 <img src={locationIcon}></img>
                                 <span>IIT Jodhpur</span>
