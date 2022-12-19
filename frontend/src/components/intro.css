@@ -12,7 +12,7 @@
     background: rgb(0,0,43);
     background: 
         linear-gradient(0deg, rgba(0,0,43,1) 1%, rgba(0,0,43,0) 6%, rgba(0,0,43,0) 94%, rgba(0,0,43,1) 99%),
-        url("../assets/backgrounds/intro_bg.png");
+        url("../assets/homePage/intro_bg.png");
     background-size: cover;
     /* background-size: 100% 100%; */
     background-position: center;
@@ -23,6 +23,10 @@
 @media screen and (max-width: 768px) {
     #intro-container {
         height: fit-content;
+        background: linear-gradient(0deg, rgba(0,0,43,1) 1%, rgba(0,0,43,0) 6%, rgba(0,0,43,0) 94%, rgba(0,0,43,1) 99%),
+        url("../assets/homePage/intro_bg2.jpg");
+        background-position-x: center;
+        background-position-y: 80%;
     }
 }
 

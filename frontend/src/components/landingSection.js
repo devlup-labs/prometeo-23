@@ -8,6 +8,8 @@ import clock from "../pages/clock.js";
 import PrometeoLogo from "../assets/navbar/prometeo_logo_23.png";
 import hero from "../assets/homePage/hero.png";
 import locationIcon from "../assets/icons/location.png";
+import landingRock1 from "../assets/homePage/rock1_.png";
+import landingRock2 from "../assets/homePage/rock2_.png";
 
 export default function LandingSection() {
     useEffect(() => {
@@ -41,9 +43,9 @@ export default function LandingSection() {
                     </div>
                 </div>
                 <div id="landing-right-section">
-                    <div id="landing-image">
+                    {/* <div id="landing-image">
                         <img id="landing-image-img2" src={hero} alt="" />
-                    </div>
+                    </div> */}
                     <div id="landing-links">
                         <Link to="/pre-register" id="landing-button-1">
                             <button id="register-button" className="button-27">
@@ -59,6 +61,20 @@ export default function LandingSection() {
                                 <span>IIT Jodhpur</span>
                             </button>
                         </a>
+                        <div id="landing-spl-button-1">
+                            <a
+                                href="https://goo.gl/maps/7ttdfmtFevqhP4ii6"
+                                id="landing-spl-button-1-link"
+                            ></a>
+                            <img src={landingRock1} id="landing-rock-1" />
+                        </div>
+                        <div id="landing-spl-button-2">
+                            <Link
+                                to="/pre-register"
+                                id="landing-spl-button-2-link"
+                            ></Link>
+                            <img src={landingRock2} id="landing-rock-2" />
+                        </div>
                     </div>
                 </div>
             </div>
