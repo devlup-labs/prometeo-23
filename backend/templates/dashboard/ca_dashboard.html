@@ -130,9 +130,6 @@
 
 {% endblock %}
 
-{% block footer %} 
- 
-{% endblock %}
 {% block content %}
 <h1>User Info: {{ cur_user.email }}</h1>
 <hr>
@@ -198,7 +195,7 @@
                     {% for student in referred_users %}
                         <tr>
                             <td>{{student.first_name}} {{student.last_name}}</td>
-                            <td>{{student.email}}</td>
+                            <td><a href="{% url 'user_info' student.pk %}">{{student.email}}</a></td>
                             <td>{{student.college}}</td>
                         </tr>
                     {% endfor %}

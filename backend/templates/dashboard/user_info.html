@@ -290,7 +290,7 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <th>Username</th>
+                    <!-- <th>Username</th> -->
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -299,10 +299,10 @@
                 <tbody>
                     {% for ref_user in cur_user.referred_users.all %}
                     <tr>
-                        <td><a href="{% url 'user_info' ref_user.pk %}">{{ ref_user.username }}</a></td>
                         <td>{{ ref_user.first_name }}</td>
                         <td>{{ ref_user.last_name }}</td>
-                        <td>{{ ref_user.email }}</td>
+                        <td><a href="{% url 'user_info' ref_user.pk %}">{{ ref_user.email }}</a></td>
+                        <!-- <td>{{ ref_user.email }}</td> -->
                         <td>{{ ref_user.contact }}</td>
                     </tr>
                     {% endfor %}
