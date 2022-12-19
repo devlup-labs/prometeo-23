@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import user_passes_test
-from users.models import  ExtendedUser, Team, Submissions
+from users.models import  ExtendedUser, Team, Submissions, CampusAmbassador
 from events.models import Event
 import xlsxwriter
 import os
@@ -290,6 +290,8 @@ def users_info(request):
     wbname2 = 'Campus_Ambassador_List'
     return render(request, 'dashboard/users_info.html', {'users': users, 'wbname': wbname, 'wbname2': wbname2})
 
+def dashboard(request):
+    return redirect(users_info)
 
 @user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/users/')
 def user_info(request, userid):
@@ -298,6 +300,26 @@ def user_info(request, userid):
     for team in user.teams.all():
         teams[team.event.pk] = team.name
     return render(request, 'dashboard/user_info.html', {'cur_user': user, 'teams': teams})
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/ca/')
+def ca_info(request):
+    CAs = CampusAmbassador.objects.all()
+    # CAs = ExtendedUser.objects.filter(ambassador=True).all()
+    wbname = 'User_List'
+    wbname2 = 'Campus_Ambassador_List'
+    return render(request, 'dashboard/ca_info.html', {'CAs': CAs, 'wbname': wbname, 'wbname2': wbname2})
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/users/')
+def ca_dashboard(request, caid):
+    ca = get_object_or_404(CampusAmbassador, pk=caid)
+    # email = ca.email
+    user = ExtendedUser.objects.filter(email=ca.email).first()
+
+    invite_referral = ca.invite_referral
+    count = ca.ca_count
+    referred_users = ExtendedUser.objects.filter(referred_by=user).all()
+    return render(request, 'dashboard/ca_dashboard.html', {'cur_user': user, 'cur_ca': ca, 'referred_users': referred_users, 'invite_referral': invite_referral, 'count':count})
+
 
 
 @user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/events/')

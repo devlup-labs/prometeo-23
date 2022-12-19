@@ -28,11 +28,11 @@
   <!-- Navbar -->
   
   <ul class="navbar-nav ml-auto ml-md-0" style="float: right;">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="" role="button">
         View Site
       </a>
-    </li>
+    </li> -->
     <li>
       <a class="nav-link" href="{% url 'users_info' %}" role="button">
         Users
@@ -122,6 +122,11 @@
     <a class="nav-link" href="{% url 'users_info' %}">
       <i class="fas fa-users"></i>
       <span>Users</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'ca_info' %}">
+      <i class="fas fa-users"></i>
+      <span>CA</span></a>
   </li>
 </ul>
 
@@ -285,7 +290,7 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <th>Username</th>
+                    <!-- <th>Username</th> -->
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -294,10 +299,10 @@
                 <tbody>
                     {% for ref_user in cur_user.referred_users.all %}
                     <tr>
-                        <td><a href="{% url 'user_info' ref_user.pk %}">{{ ref_user.username }}</a></td>
                         <td>{{ ref_user.first_name }}</td>
                         <td>{{ ref_user.last_name }}</td>
-                        <td>{{ ref_user.email }}</td>
+                        <td><a href="{% url 'user_info' ref_user.pk %}">{{ ref_user.email }}</a></td>
+                        <!-- <td>{{ ref_user.email }}</td> -->
                         <td>{{ ref_user.contact }}</td>
                     </tr>
                     {% endfor %}

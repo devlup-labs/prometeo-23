@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% load static %}
-{% block title %} Users Info {% endblock %}
+{% block title %} Campus Ambassadors Info {% endblock %}
 
 {% block topnavbar %}
 
@@ -32,13 +32,13 @@
       </a>
     </li> -->
     <li>
-      <a class="nav-link" href="{% url 'users_info' %}" role="button">
-        Users
+      <a class="nav-link" href="{% url 'ca_info' %}" role="button">
+        CA
       </a>
     </li>
     <li>
-      <a class="nav-link" href="{% url 'ca_info' %}" role="button">
-        CA
+      <a class="nav-link" href="{% url 'users_info' %}" role="button">
+        Users
       </a>
     </li>
     <li class="nav-item dropdown">
@@ -118,13 +118,13 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'users_info' %}">
-      <i class="fas fa-users"></i>
+      <i class="fas fa-CAs"></i>
       <span>Users</span></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'ca_info' %}">
-      <i class="fas fa-users"></i>
-      <span>CA</span></a>
+        <i class="fas fa-CAs"></i>
+        <span>CA</span></a>
   </li>
 </ul>
 
@@ -132,15 +132,15 @@
 
 {% block content %}
 
-<h1>All Users</h1>
+<h1>All CAs</h1>
 <hr>
-<span> <i class="fas fa-download"></i> <a href="{% url 'downloadfile' wbname %}"> Download All Users list</a></span> 
+<span> <i class="fas fa-download"></i> <a href="{% url 'downloadfile' wbname %}"> Download All users list</a></span> 
 <br>
 <span> <i class="fas fa-download"></i> <a href="{% url 'downloadfile' wbname2 %}"> Download Campus Ambassador list</a></span> 
 <div class="card mb-3">
     <div class="card-header">
       <i class="fas fa-table"></i>
-      Users Table</div>
+      CA Table</div>
     
     <div class="card-body">
         <div class="table-responsive">
@@ -149,68 +149,65 @@
                     <tr>
                    
                     <th>Email</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Contact</th>
-                    <th>Referred By</th>
-                    <th>Ambassador</th>
+                    <!-- <th>First Name</th> -->
+                    <!-- <th>Last Name</th> -->
+                    <!-- <th>Contact</th> -->
                     <th>Invite Referral Code</th>
-                    <th>Gender</th>
-                    <th>College</th>
-                    <th>Current Year</th>
-                    <th>City</th>
+                    <!-- <th>Gender</th> -->
+                    <!-- <th>College</th> -->
+                    <!-- <th>Current Year</th> -->
+                    <!-- <th>City</th> -->
+                    <th>CA count</th>
                     </tr>
                 </thead>
                 <!-- <tfoot>
                     <tr>
                        
                         <th>Email</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Contact</th>
-                        <th>Referred By</th>
-                        <th>Ambassador</th>
-                        <th>Invite Referral Code</th>
-                        <th>Gender</th>
-                        <th>College</th>
-                        <th>Current Year</th>
-                        <th>City</th>
-                    </tr>
-                </tfoot> -->
+                        <!-- <th>First Name</th> -->
+                        <!-- <th>Last Name</th> -->
+                        <!-- <th>Contact</th> -->
+                        <!-- <th>Invite Referral Code</th> -->
+                        <!-- <th>Gender</th> -->
+                        <!-- <th>College</th> -->
+                        <!-- <th>Current Year</th> -->
+                        <!-- <th>City</th> -->
+                        <!-- <th>CA count</th> -->
+                    <!-- </tr> -->
+                <!-- </tfoot> --> -->
                 <tbody>
-                    {% for cur_user in users %}
-                    {% if not cur_user.is_staff %}
+                    {% for ca in CAs %}
+                    {% if not ca.is_staff %}
                         <tr>
-                            <td><a href="{% url 'user_info' cur_user.pk %}">{{ cur_user.email }}</a></td>
-                            <td>{{ cur_user.first_name }}</td>
-                            <td>{{ cur_user.last_name }}</td>
-                            <td>{{ cur_user.contact }}</td>
-                            <td>{% if cur_user.referred_by %}{{ cur_user.referred_by }}{% else %}NA{% endif %}</td>
-                            <td>{% if cur_user.ambassador %}Yes{% else %}No{% endif %}</td>
-                            <td>{% if cur_user.ambassador %}{{ cur_user.invite_referral }}{% else %}NA{% endif %}</td>
-                            <td style="text-transform: capitalize;">{{ cur_user.gender }}</td>
-                            <td>{{ cur_user.college }}</td>
-                            <td>
+                            <td><a href="{% url 'ca_dashboard' ca.pk %}">{{ ca.email }}</a></td>
+                            <!-- <td>{{ ca.first_name }}</td> -->
+                            <!-- <td>{{ ca.last_name }}</td> -->
+                            <!-- <td>{{ ca.contact }}</td> -->
+                            <td>{{ ca.invite_referral }}</td>
+                            <!-- <td style="text-transform: capitalize;">{{ ca.gender }}</td> -->
+                            <!-- <td>{{ ca.college }}</td> -->
+                            <!-- <td>
                               
-                                {% if cur_user.current_year == '1' %}
+                                {% if ca.current_year == '1' %}
                                 First Year
-                                {% elif cur_user.current_year == '2' %}
+                                {% elif ca.current_year == '2' %}
                                 Second Year
-                                {% elif cur_user.current_year == '3' %}
+                                {% elif ca.current_year == '3' %}
                                 Third Year
-                                {% elif cur_user.current_year == '4' %}
+                                {% elif ca.current_year == '4' %}
                                 Fourth Year
-                                {% elif cur_user.current_year == '5' %}
+                                {% elif ca.current_year == '5' %}
                                 Fifth Year
-                                {% elif cur_user.current_year == '6' %}
+                                {% elif ca.current_year == '6' %}
                                 Graduated
-                                {% elif cur_user.current_year == '7' %}
+                                {% elif ca.current_year == '7' %}
                                 Faculty/Staff
-                                {% elif cur_user.current_year == '8' %}
+                                {% elif ca.current_year == '8' %}
                                 NA
                                 {% endif %}
-                            </td>
-                            <td>{{ cur_user.city }}</td>
+                            </td> -->
+                            <!-- <td>{{ ca.city }}</td> -->
+                            <td>{{ca.ca_count}}</td>
                         </tr>
                         {% endif %}
                     {% endfor %}
