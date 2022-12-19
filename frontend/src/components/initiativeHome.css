@@ -9,8 +9,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../assets/homePage/umang_bg.png");
-    background-size: 100% 100%;
+    background: rgb(23, 2, 36);
+    background-image: 
+        linear-gradient(0deg, rgba(12,5,43,1) 1%, rgba(12,5,43,0) 10%, rgba(23,2,36,0) 94%, rgba(26,1,35,1) 99%),
+        url("../assets/homePage/umang_bg.png");
+    background-size: cover;
+    /* border: 1px solid red; */
+    /* background-size: 100% 100%; */
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -18,6 +23,15 @@
 @media screen and (max-width: 768px) {
     #initiativeHome-container {
         height: fit-content;
+        background-size: 100% auto;
+        background-position: bottom;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #initiativeHome-container {
+        background-size: 130% auto;
+        background-position: bottom;
     }
 }
 
