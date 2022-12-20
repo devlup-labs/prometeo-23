@@ -193,13 +193,15 @@ def get_ca_export(filename):
         'bg_color': 'black'
     })
     row = 2
-    worksheet.merge_range('A1:F1', 'Campus Ambassadors', merge_format)
+    worksheet.merge_range('A1:H1', 'Campus Ambassadors', merge_format)
     worksheet.write(1, 0, "Email", header_format)
     worksheet.write(1, 1, "Name", header_format)
     worksheet.write(1, 2, "Referral Id", header_format)
     worksheet.write(1, 3, "No of referred users", header_format)
     worksheet.write(1, 4, "Contact", header_format)
     worksheet.write(1, 5, "College", header_format)
+    worksheet.write(1, 6, "Gender", header_format)
+    worksheet.write(1, 7, "City", header_format)
     for ca in ca_list:
         if 'iitj' not in ca.college.lower() and 'iit jodhpur' not in ca.college.lower() and 'indian institute of technology jodhpur' not in ca.college.lower() and 'indian institute of technology, jodhpur' not in ca.college.lower():
             worksheet.write(row, 0, ca.email)
@@ -208,6 +210,8 @@ def get_ca_export(filename):
             worksheet.write(row, 3, ca_referred_count[ca.email])
             worksheet.write(row, 4, ca.contact)
             worksheet.write(row, 5, ca.college)
+            worksheet.write(row, 6, ca.gender)
+            worksheet.write(row, 7, ca.city)
             row += 1
     workbook.close()
 
@@ -239,7 +243,7 @@ def get_all_user_export(filename):
         'font_color': 'white',
         'bg_color': 'black'
     })
-    worksheet2.merge_range('A1:G1', 'User List', merge_format2)
+    worksheet2.merge_range('A1:I1', 'User List', merge_format2)
     worksheet2.write(1, 0, "Email", header_format2)
     worksheet2.write(1, 1, "Name", header_format2)
     worksheet2.write(1, 2, "Contact", header_format2)
@@ -247,6 +251,9 @@ def get_all_user_export(filename):
     worksheet2.write(1, 4, "Campus Ambassador", header_format2)
     worksheet2.write(1, 5, "College", header_format2)
     worksheet2.write(1, 6, "Current Year", header_format2)
+    worksheet2.write(1, 7, "Gender", header_format2)
+    worksheet2.write(1, 8, "Registration ID", header_format2)
+
     row2 = 2
 
     for user in users:
@@ -257,6 +264,8 @@ def get_all_user_export(filename):
         worksheet2.write(row2, 4, 'YES') if user.ambassador else worksheet2.write(row2, 4, 'NO')
         worksheet2.write(row2, 5, user.college)
         worksheet2.write(row2, 6, current_year_dict[user.current_year])
+        worksheet2.write(row2, 7, user.gender)
+        worksheet2.write(row2, 8, user.registration_id)
         row2 += 1
     workbook2.close()
 
