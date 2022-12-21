@@ -35,10 +35,11 @@ function SignUp() {
         const password = e.target.password.value;
         const ambassador = false;
         // const ambassador = e.target.ca.value === "on";
+        const accommodation = e.target.acc.value === "on";
 
         // console.log(ambassador)
         const myPromise = new Promise((resolve, reject) => {            
-            registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador)
+            registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador, accommodation)
                 .then((res)=>{
                     // console.log(res)
                     resolve(res)
@@ -193,6 +194,10 @@ function SignUp() {
                                 <input type="checkbox" name="ca" id="signup-ca-checkbox-input" />
                                 <label htmlFor="ca" className="signup-ca-checkbox-label">I want to signup for <Link to="/ca">CA Program</Link></label>
                             </div> */}
+                            <div className="signup-acc-checkbox">
+                                <input type="checkbox" name="acc" id="signup-acc-checkbox-input" />
+                                <label htmlFor="acc" className="signup-acc-checkbox-label">I'd like to avail accommodation at IIT Jodhpur campus.</label>
+                            </div>
                             <input
                                 type="text"
                                 name="referral_code"
