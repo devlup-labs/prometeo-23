@@ -64,6 +64,7 @@ class ExtendedUser(AbstractUser):
     secondary_email = models.EmailField(blank=True, null=True, verbose_name='Secondary Email')
     referral_code = models.CharField(max_length=8, null=True, blank=True, verbose_name='Referral Code')
     ca_count = models.IntegerField(default=0)
+    registration_id = models.CharField(max_length=9, unique=True, null=True, blank=True, verbose_name='Registration ID') 
     objects = UserManager()
     REQUIRED_FIELDS = []
 

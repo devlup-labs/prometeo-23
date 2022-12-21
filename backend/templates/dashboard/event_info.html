@@ -27,21 +27,21 @@
   <!-- Navbar -->
   
   <ul class="navbar-nav ml-auto ml-md-0" style="float: right;">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="" role="button">
         View Site
       </a>
-    </li>
+    </li> -->
     <li>
       <a class="nav-link" href="{% url 'users_info' %}" role="button">
         Users
       </a>
     </li>
-    <!-- <li>
-      <a class="nav-link" href="{% url 'events_info' %}" role="button">
-        All Events
+    <li>
+      <a class="nav-link" href="{% url 'ca_info' %}" role="button">
+        CA
       </a>
-    </li> -->
+    </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Events
@@ -122,6 +122,11 @@
       <i class="fas fa-users"></i>
       <span>Users</span></a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'users_info' %}">
+      <i class="fas fa-users"></i>
+      <span>CA</span></a>
+  </li>
 </ul>
 
 {% endblock %}
@@ -156,7 +161,7 @@
 {% else %} 
 <a href="{% url 'change_registration' event.type event.pk 'open' %}" class="btn btn-primary" style="margin-bottom: 20px;">Reopen Registration</a><br>
 {% endif %}
-<i class="fas fa-external-link-alt"></i> <a href="{% url 'events:event' event.type event.pk %}">Go to actual page</a><br>
+<i class="fas fa-external-link-alt"></i> <a href="{% url 'event_info' event.type event.pk %}">Go to actual page</a><br>
 {% if event.participation_type == 'team' %}
 <i class="fas fa-download"></i> <a href="{% url 'downloadfile' wbname3 %}"> Download Submissions</a>
 <br>

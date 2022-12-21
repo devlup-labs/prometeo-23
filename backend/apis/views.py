@@ -192,6 +192,7 @@ class CampusAmbassadorView(APIView):
     
     def post(self, request):
         user_email = request.data.get('email')
+        user = ExtendedUser.objects.filter(email=user_email).first()
         if(CampusAmbassador.objects.filter(email=user_email)).exists():
             ca = CampusAmbassador.objects.filter(email=user_email).first()
             serializers = CampusAmbassadorSerializers(ca)
@@ -204,12 +205,11 @@ class CampusAmbassadorView(APIView):
             
             
             return Response(serializer.data)
-        else :
+        elif user.referral_code=='':
             ca = CampusAmbassador.objects.create(
                 email = user_email,
                 ca_count=0,
             )
-            ca.save()
             code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
             user = CampusAmbassador.objects.all()
             def referral_check(c):
@@ -228,40 +228,52 @@ class CampusAmbassadorView(APIView):
             user.invite_referral = ca.invite_referral
             user.ca_count = ca.ca_count
             user.save()
-            # with get_connection(
-            #     username=settings.EMAIL_HOST_USER,
-            #     password=settings.EMAIL_HOST_PASSWORD
-            # ) as connection:
-            #     sendMailID = settings.FROM_EMAIL_USER
-            #     subject = "Registeration as Campus Ambassador"
-            #     message = "You have successfully registered as Campus Ambassador."
-            #     html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message})
-            #     text_content = strip_tags(html_content)
-            #     message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-            #     message.attach_alternative(html_content, "text/html")
-            #     message.mixed_subtype = 'related'
-            #     message.send()
-            msg = "You have successfully registered as Campus Ambassador."
-            # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
-            SENDGRID_API_KEY = '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'
-            message = Mail(
-                from_email='no-reply@prometeo.in',
-                to_emails=user.email,
-                # reply_to='prometeo@iitj.ac.in',
-                subject='Registeration as Campus Ambassador',
-                html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg}))
-            try:
-                sg = SendGridAPIClient(SENDGRID_API_KEY)
+            with get_connection(
+                username=settings.EMAIL_HOST_USER,
+                password=settings.EMAIL_HOST_PASSWORD
+            ) as connection:
+                sendMailID = settings.FROM_EMAIL_USER
+                # subject = "Registration as Campus Ambassador"
+                subject='Registration as Campus Ambassador'
+                # message = "You have successfully registered as Campus Ambassador."
+                message = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
+                isCA=True
+                html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message, 'isCA':isCA})
+                text_content = strip_tags(html_content)
+                message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+                message.attach_alternative(html_content, "text/html")
+                message.mixed_subtype = 'related'
+                message.send()
+            # msg = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
+            # isCA=True
+            # # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+            # SENDGRID_API_KEY = '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'
+            # message = Mail(
+            #     from_email='no-reply@prometeo.in',
+            #     to_emails=user.email,
+            #     # reply_to='prometeo@iitj.ac.in',
+            #     subject='Registration as Campus Ambassador',
+            #     html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'isCA': isCA, 'invite_referral': ca.invite_referral}))
+            # try:
+            #     sg = SendGridAPIClient(SENDGRID_API_KEY)
                 
-                response = sg.send(message)
-                print(response.status_code)
-                print(response.body)
-                print(response.headers)
-            except Exception as e:
-                print(e)
+            #     response = sg.send(message)
+            #     print(response.status_code)
+            #     print(response.body)
+            #     print(response.headers)
+            # except Exception as e:
+            #     print(e)
             
 
             return Response(serializers.data)
+        else:
+            response = {
+            'success' : 'False',
+            'message': 'CA cannot be created ',
+            }
+            status_code = status.HTTP_200_OK
+
+            return Response(response, status=status_code)
 
     # def post(self, request, *args, **kwargs):
     #     # if(request.user.is_authenticated==False):
