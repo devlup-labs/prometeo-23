@@ -148,7 +148,8 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         last_name=validated_data['last_name'],
         college = validated_data['college'],
         contact = validated_data['contact'],
-        city=validated_data['city']
+        city=validated_data['city'],
+        accomodation=validated_data['accomodation'],
         )
         user.set_password(validated_data['password'])
         if(validated_data['referral_code'] != ''):
