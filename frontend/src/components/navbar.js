@@ -59,21 +59,27 @@ const navBarLinks = [
         section: "right",
         tabIndex: 8,
     },
-    // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
-    {
-        name: "preregister",
-        text: "Pre-Register",
-        path: "/pre-register",
-        section: "right",
-        tabIndex: 9,
-    },
     // {
-    //     name: "login",
-    //     text: "Login",
-    //     path: "/login",
+    //     name: "register",
+    //     text: "Register",
+    //     path: "/register",
+    //     section: "right",
+    //     tabIndex: 7,
+    // },
+    // {
+    //     name: "preregister",
+    //     text: "Pre-Register",
+    //     path: "/pre-register",
     //     section: "right",
     //     tabIndex: 9,
     // },
+    {
+        name: "login",
+        text: "Login",
+        path: "/login",
+        section: "right",
+        tabIndex: 9,
+    },
 ];
 
 // live technical informal entrepreneurial workshops poster_presentation panel_discussion exhibition
@@ -142,8 +148,7 @@ function Navbar() {
                                 </div>
                             </a>
                         );
-                    }
-                    else if (link.name === "events") {
+                    } else if (link.name === "events") {
                         return (
                             <div
                                 className="dropdown dropdown-5"
