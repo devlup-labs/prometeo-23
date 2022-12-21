@@ -156,6 +156,7 @@
                     <th>Ambassador</th>
                     <th>Invite Referral Code</th>
                     <th>Gender</th>
+                    <th>Accomodation</th>
                     <th>College</th>
                     <th>Current Year</th>
                     <th>City</th>
@@ -190,6 +191,7 @@
                             <td>{% if cur_user.ambassador %}Yes{% else %}No{% endif %}</td>
                             <td>{% if cur_user.ambassador %}{{ cur_user.invite_referral }}{% else %}NA{% endif %}</td>
                             <td style="text-transform: capitalize;">{{ cur_user.gender }}</td>
+                            <td>{% if cur_user.accomodation %}Yes{% else %}No{% endif %}</td>
                             <td>{{ cur_user.college }}</td>
                             <td>
                               
