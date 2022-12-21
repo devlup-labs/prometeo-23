@@ -57,6 +57,7 @@ class ExtendedUser(AbstractUser):
     college = models.CharField(max_length=60, verbose_name='College Name')
     city = models.CharField(max_length=40, verbose_name='City')
     ambassador = models.BooleanField(verbose_name='Campus Ambassador', default=False, blank=True)
+    accomodation = models.BooleanField(verbose_name='Accomodation', default=False, blank=True)
     isProfileCompleted = models.BooleanField(verbose_name='Is Profile Completed', default=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True,blank=True)
     updated_at = models.DateTimeField(auto_now=True)
