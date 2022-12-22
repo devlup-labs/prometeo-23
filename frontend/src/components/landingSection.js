@@ -6,10 +6,7 @@ import "../pages/clock.css";
 import clock from "../pages/clock.js";
 
 import PrometeoLogo from "../assets/navbar/prometeo_logo_23.png";
-import hero from "../assets/homePage/hero.png";
-import locationIcon from "../assets/icons/location.png";
-import landingRock1 from "../assets/homePage/rock1_.png";
-import landingRock2 from "../assets/homePage/rock2_.png";
+import reg_rock from "../assets/homePage/reg_rock.png";
 
 export default function LandingSection() {
     useEffect(() => {
@@ -52,7 +49,7 @@ export default function LandingSection() {
                                 <span>Pre-register Now!</span>
                             </button>
                         </Link>
-                        <a
+                        {/* <a
                             href="https://goo.gl/maps/7ttdfmtFevqhP4ii6"
                             id="landing-button-2"
                         >
@@ -67,13 +64,14 @@ export default function LandingSection() {
                                 id="landing-spl-button-1-link"
                             ></a>
                             <img src={landingRock1} id="landing-rock-1" />
-                        </div>
+                        </div> */}
                         <div id="landing-spl-button-2">
                             <Link
                                 to="/pre-register"
                                 id="landing-spl-button-2-link"
-                            ></Link>
-                            <img src={landingRock2} id="landing-rock-2" />
+                            >
+                                <img src={reg_rock} id="landing-rock-2" />
+                            </Link>
                         </div>
                     </div>
                 </div>

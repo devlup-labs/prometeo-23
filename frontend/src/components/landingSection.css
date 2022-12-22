@@ -92,7 +92,7 @@
 #landing-right-section {
     position: relative;
     /* border: 2px solid red; */
-    height: 50vh;
+    height: 70vh;
 }
 
 
@@ -102,11 +102,16 @@
     /* border: 2px solid white; */
 }
 
-#landing-spl-button-1, #landing-spl-button-2 {
-    position: absolute;
-    bottom: 0;
-    /* border: 2px solid white; */
-    animation: bounce 3s infinite;
+
+/* #landing-spl-button-1-link:hover ~ #landing-rock-1 {
+    filter: drop-shadow(0 0 0.3rem #ffd67c);
+} */
+
+#landing-rock-2 {
+    max-height: 40vh;
+    max-width: 30vw;
+    animation: bounce 2s infinite;
+    transition: 0.3s;
 }
 
 @keyframes bounce {
@@ -114,65 +119,14 @@
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-7%);
+        transform: translateY(-100px);
     }
     100% {
         transform: translateY(0);
     }
 }
 
-#landing-rock-1,
-#landing-rock-2 {
-    pointer-events: none;
-    max-height: 40vh;
-    max-width: 25vw;
-    transition: all 0.3s ease;
-}
-
-#landing-spl-button-2 {
-    display: flex;
-    justify-content: flex-end;
-}
-
-#landing-rock-2 {
-    width: 90%;
-    transform: translateY(20%);
-    /* border: 2px solid red; */
-}
-
-#landing-spl-button-1 {
-    left: 0;
-}
-
-#landing-spl-button-2 {
-    right: 0;
-}
-
-#landing-spl-button-1-link {
-    position: absolute;
-    top: 63%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 50%;
-    height: 12%;
-    /* border: 2px solid orange; */
-}
-
-#landing-spl-button-2-link {
-    position: absolute;
-    top: 63%;
-    left: 50%;
-    transform: translate(-40%, 0);
-    width: 60%;
-    height: 20%;
-    /* border: 2px solid orange; */
-}
-
-#landing-spl-button-1-link:hover ~ #landing-rock-1 {
-    filter: drop-shadow(0 0 0.3rem #ffd67c);
-}
-
-#landing-spl-button-2-link:hover ~ #landing-rock-2 {
+#landing-rock-2:hover {
     filter: drop-shadow(0 0 0.3rem #ffd67c);
 }
 
