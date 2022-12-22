@@ -35,10 +35,11 @@ function SignUp() {
         const password = e.target.password.value;
         const ambassador = false;
         // const ambassador = e.target.ca.value === "on";
+        const  accomodation = e.target.acc.value === "on";
 
         // console.log(ambassador)
         const myPromise = new Promise((resolve, reject) => {            
-            registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador)
+            registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador,  accomodation)
                 .then((res)=>{
                     // console.log(res)
                     resolve(res)
