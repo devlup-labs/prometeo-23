@@ -148,7 +148,8 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         last_name=validated_data['last_name'],
         college = validated_data['college'],
         contact = validated_data['contact'],
-        city=validated_data['city']
+        city=validated_data['city'],
+        accomodation=validated_data['accomodation'],
         )
         user.set_password(validated_data['password'])
         if(validated_data['referral_code'] != ''):
@@ -197,7 +198,7 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
                     isCAregistration=True
                     msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo'23 - the Technical Fest of IIT Jodhpur ."
                     # message = "You have successfully registered."
-                    html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'invite_referral':user.invite_referral, 'isCAregistration': isCAregistration})
+                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'invite_referral':user.invite_referral, 'isCAregistration': isCAregistration})
                     text_content = strip_tags(html_content)
                     message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
                     message.attach_alternative(html_content, "text/html")
@@ -213,7 +214,7 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
                     isRegistration=True
                     msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo'23 - the Technical Fest of IIT Jodhpur ."
                     # message = "You have successfully registered."
-                    html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'isRegistration': isRegistration})
+                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'isRegistration': isRegistration})
                     text_content = strip_tags(html_content)
                     message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
                     message.attach_alternative(html_content, "text/html")
