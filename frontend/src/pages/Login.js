@@ -123,7 +123,7 @@ function Login() {
                                 id="login-form-submit"
                             />
                             <br />
-                            <div className="google-button parent">
+                            {/* <div className="google-button parent">
                                 <input
                                     type="submit"
                                     value="Log In Using Google"
@@ -134,7 +134,7 @@ function Login() {
                                     src={googleImg}
                                     className="google-img child"
                                 ></img>
-                            </div>
+                            </div> */}
                         </form>
                         <div className="login-noaccount">
                             Don't have an account?{" "}
