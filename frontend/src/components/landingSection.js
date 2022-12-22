@@ -67,7 +67,7 @@ export default function LandingSection() {
                         </div> */}
                         <div id="landing-spl-button-2">
                             <Link
-                                to="/pre-register"
+                                to="/git sign-up"
                                 id="landing-spl-button-2-link"
                             >
                                 <img src={reg_rock} id="landing-rock-2" />
