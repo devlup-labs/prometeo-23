@@ -143,7 +143,7 @@
 .event-details__body__right {
 	display: flex;
 	flex-direction: column;
-    justify-content: space-evenly;
+    ;
 	/* border: 2px solid white; */
 	width: 55%;
 }
@@ -169,8 +169,8 @@
 }
 
 .event-details__body__right__top * {
-	display: flex;
-	align-items: center;
+	/* display: flex;
+	align-items: center; */
     color: blanchedalmond;
 	font-weight: 600;
     margin-left: 2vmin;
@@ -207,11 +207,19 @@
         max-height: 70vh;
     }
 }
-
+.top-event-mains{
+    padding-right: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
 .event-details__body__right__bottom {
 	font-size: 3vmin !important;
 	width: 100%;
 	line-height: 1.5;
+}
+.event-details__body__right__bottom2 {
+	color: #c6eaed !important;
 }
 
 #event-content-heading {
@@ -321,3 +329,62 @@
 .button-64:hover span {
     background: none;
 }
+
+
+/* FOR TABS */
+
+
+.tabs {
+    /* Reset default styles for the unordered list */
+    position: relative;
+    list-style: none;
+    margin-left: 10px;
+    padding: 0;
+    overflow: hidden;
+  }
+  #tab2{
+    padding: 3%;
+  }
+  .tabs li {
+    /* Float the list items horizontally */
+    float: left;
+  }
+  
+  .tabs a {
+    /* Style the tab links */
+    display: block;
+    padding: 15px 20px;
+    background-color: transparent;
+    color:  #BA94D1;
+    text-decoration: dashed;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-radius: 10px;
+    border-color: #c3ccde;
+    border-style: groove;
+    position: relative;
+  }
+  
+  .tabs a:hover,
+  .tabs a.active {
+    /* Change the background color of the tab links when hovered or active */
+    background-color: #4f35cf64;
+   
+  }
+  
+  .tab-content {
+    /* Hide the tab content by default */
+    display: none;
+    padding: 15px;
+    border: 1px solid #ccc;
+  }
+  
+  /* .default-active{
+    display: block;
+  } */
+  
+  .tab-content:target {
+    /* Show the tab content when the corresponding tab link is clicked */
+    display: block;
+  }
+  

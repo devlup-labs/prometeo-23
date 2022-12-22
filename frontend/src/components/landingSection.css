@@ -135,7 +135,8 @@
 }
 
 #landing-rock-2 {
-    width: 80%;
+    width: 90%;
+    transform: translateY(20%);
     /* border: 2px solid red; */
 }
 
@@ -159,7 +160,7 @@
 
 #landing-spl-button-2-link {
     position: absolute;
-    top: 43%;
+    top: 63%;
     left: 50%;
     transform: translate(-40%, 0);
     width: 60%;
