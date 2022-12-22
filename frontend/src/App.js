@@ -25,6 +25,7 @@ import EventDetails from "./pages/Event_details";
 import Theme from "./components/Theme";
 import Team from "./pages/newTeam";
 import CA from "./pages/ca";
+import Accommodation from "./pages/accomodation";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
 
@@ -58,12 +59,14 @@ function App() {
                         <Route path="/team" element={<Team />} />
 
                         <Route path="/campus-ambassador" element={<CA />} />
+                        <Route path="/Accommodation" element={<Accommodation />} />
+
 
                         {/* <Route exact path='/pre-register' element={<RestrictedRoute />} > */}
-                            <Route exact path='/pre-register' element={<PreRegistration />} />
+                            {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
                         {/* </Route> */}
 
-                        {/* <Route exact path='/login' element={<RestrictedRoute />}>
+                        <Route exact path='/login' element={<RestrictedRoute />}>
                             <Route exact path='/login' element={<Login />} />
                         </Route>
 
@@ -73,7 +76,7 @@ function App() {
 
                         <Route exact path='/dashboard' element={<PrivateRoute />}>
                             <Route exact path='/dashboard' element={<Dashboard />} />
-                        </Route> */}
+                        </Route>
 
                         <Route path="/*" element={<Page_404 />} />
                     </Routes>
