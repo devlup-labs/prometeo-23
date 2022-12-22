@@ -238,7 +238,7 @@ class CampusAmbassadorView(APIView):
                 # message = "You have successfully registered as Campus Ambassador."
                 message = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
                 isCA=True
-                html_content = render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'message': message, 'isCA':isCA})
+                html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'message': message, 'isCA':isCA})
                 text_content = strip_tags(html_content)
                 message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
                 message.attach_alternative(html_content, "text/html")
