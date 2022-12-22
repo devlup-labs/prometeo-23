@@ -105,8 +105,20 @@
 #landing-spl-button-1, #landing-spl-button-2 {
     position: absolute;
     bottom: 0;
-    user-select: none;
     /* border: 2px solid white; */
+    animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-7%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 #landing-rock-1,
@@ -115,6 +127,17 @@
     max-height: 40vh;
     max-width: 25vw;
     transition: all 0.3s ease;
+}
+
+#landing-spl-button-2 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#landing-rock-2 {
+    width: 90%;
+    transform: translateY(20%);
+    /* border: 2px solid red; */
 }
 
 #landing-spl-button-1 {
@@ -137,7 +160,7 @@
 
 #landing-spl-button-2-link {
     position: absolute;
-    top: 43%;
+    top: 63%;
     left: 50%;
     transform: translate(-40%, 0);
     width: 60%;

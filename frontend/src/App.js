@@ -63,10 +63,10 @@ function App() {
 
 
                         {/* <Route exact path='/pre-register' element={<RestrictedRoute />} > */}
-                            <Route exact path='/pre-register' element={<PreRegistration />} />
+                            {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
                         {/* </Route> */}
 
-                        {/* <Route exact path='/login' element={<RestrictedRoute />}>
+                        <Route exact path='/login' element={<RestrictedRoute />}>
                             <Route exact path='/login' element={<Login />} />
                         </Route>
 
@@ -76,7 +76,7 @@ function App() {
 
                         <Route exact path='/dashboard' element={<PrivateRoute />}>
                             <Route exact path='/dashboard' element={<Dashboard />} />
-                        </Route> */}
+                        </Route>
 
                         <Route path="/*" element={<Page_404 />} />
                     </Routes>

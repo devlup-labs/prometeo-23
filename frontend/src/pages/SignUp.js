@@ -194,6 +194,10 @@ function SignUp() {
                                 <input type="checkbox" name="ca" id="signup-ca-checkbox-input" />
                                 <label htmlFor="ca" className="signup-ca-checkbox-label">I want to signup for <Link to="/ca">CA Program</Link></label>
                             </div> */}
+                            <div className="signup-acc-checkbox">
+                                <input type="checkbox" name="acc" id="signup-acc-checkbox-input" />
+                                <label htmlFor="acc" className="signup-acc-checkbox-label">I would like to avail <Link to="/Accommodation">accommodation</Link> at IIT Jodhpur campus.</label>
+                            </div>
                             <input
                                 type="text"
                                 name="referral_code"
