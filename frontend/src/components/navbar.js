@@ -59,21 +59,27 @@ const navBarLinks = [
         section: "right",
         tabIndex: 8,
     },
-    // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
-    {
-        name: "preregister",
-        text: "Pre-Register",
-        path: "/pre-register",
-        section: "right",
-        tabIndex: 9,
-    },
     // {
-    //     name: "login",
-    //     text: "Login",
-    //     path: "/login",
+    //     name: "register",
+    //     text: "Register",
+    //     path: "/register",
+    //     section: "right",
+    //     tabIndex: 7,
+    // },
+    // {
+    //     name: "preregister",
+    //     text: "Pre-Register",
+    //     path: "/pre-register",
     //     section: "right",
     //     tabIndex: 9,
     // },
+    {
+        name: "login",
+        text: "Login",
+        path: "/login",
+        section: "right",
+        tabIndex: 9,
+    },
 ];
 
 // live technical informal entrepreneurial workshops poster_presentation panel_discussion exhibition
@@ -142,36 +148,35 @@ function Navbar() {
                                 </div>
                             </a>
                         );
-                    }
-                    else if (link.name === "events") {
-                        return (
-                            <div
-                                className="dropdown dropdown-5"
-                                key={link.name}
-                            >
-                                <div className="navbar-link">{link.text}</div>
-                                {/* {link.text} */}
-                                <ul className="dropdown_menu dropdown_menu-5">
-                                    {eventTypes.map((item, index) => (
-                                        <Link
-                                            to={{
-                                                pathname: link.path,
-                                                search: `?type=${item.type}`,
-                                            }}
-                                            key={index}
-                                        >
-                                            <li
-                                                className={`dropdown_item-${
-                                                    index + 1
-                                                }`}
-                                            >
-                                                {item.name}
-                                            </li>
-                                        </Link>
-                                    ))}
-                                </ul>
-                            </div>
-                        );
+                    // } else if (link.name === "events") {
+                    //     return (
+                    //         <div
+                    //             className="dropdown dropdown-5"
+                    //             key={link.name}
+                    //         >
+                    //             <div className="navbar-link">{link.text}</div>
+                    //             {/* {link.text} */}
+                    //             <ul className="dropdown_menu dropdown_menu-5">
+                    //                 {eventTypes.map((item, index) => (
+                    //                     <Link
+                    //                         to={{
+                    //                             pathname: link.path,
+                    //                             search: `?type=${item.type}`,
+                    //                         }}
+                    //                         key={index}
+                    //                     >
+                    //                         <li
+                    //                             className={`dropdown_item-${
+                    //                                 index + 1
+                    //                             }`}
+                    //                         >
+                    //                             {item.name}
+                    //                         </li>
+                    //                     </Link>
+                    //                 ))}
+                    //             </ul>
+                    //         </div>
+                    //     );
                     } else if (link.name === "preregister") {
                         // return user ? null : (
                         return (

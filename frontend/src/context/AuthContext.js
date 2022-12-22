@@ -51,9 +51,9 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const registerUser = async (first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador) => {
+    const registerUser = async (first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador,  accomodation) => {
         // console.log("ambassador: ", ambassador)
-        const requestData = { first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador }
+        const requestData = { first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador,  accomodation }
 
         const response = await fetch(`${backendURL}/signup/`, {
             method: "POST",

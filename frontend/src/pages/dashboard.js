@@ -226,7 +226,7 @@ function Dashboard() {
                             })
                         ) : (
                             <div id="dashboard-registeredEvents-noEvent">
-                                You have not registered for any event!
+                                Please check your UnStop account!
                             </div>
                         )}
                     </div>

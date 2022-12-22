@@ -12,7 +12,7 @@
     background: rgb(0,0,43);
     background: 
         linear-gradient(0deg, rgba(0,0,43,1) 1%, rgba(0,0,43,0) 6%, rgba(0,0,43,0) 94%, rgba(0,0,43,1) 99%),
-        url("../assets/homePage/intro_bg.png");
+        url("../assets/homePage/bg_dots_2-min.png");
     background-size: cover;
     /* background-size: 100% 100%; */
     background-position: center;
