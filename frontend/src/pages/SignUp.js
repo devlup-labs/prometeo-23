@@ -2,14 +2,14 @@ import { useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import './Signup.css';
+import "./Signup.css";
 
-import FadeIn from '../components/fadein';
+import FadeIn from "../components/fadein";
 
-import signInImg from '../assets/backgrounds/peeking.png';
+import signInImg from "../assets/backgrounds/peeking.png";
 
-import AuthContext from '../context/AuthContext';
-import { backendURL } from '../backendURL';
+import AuthContext from "../context/AuthContext";
+import { backendURL } from "../backendURL";
 
 function SignUp() {
     const { registerUser } = useContext(AuthContext);
@@ -17,7 +17,7 @@ function SignUp() {
     // console.log(registerUser)
 
     useEffect(() => {
-        const navBarEle = document.getElementById('navbar');
+        const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
     });
 
@@ -33,38 +33,48 @@ function SignUp() {
         const referral_code = e.target.referral_code.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const ambassador = false;
-        // const ambassador = e.target.ca.value === "on";
-        const  accomodation = e.target.acc.value === "on";
+        // const ambassador = false;
+        const ambassador = e.target.ca.checked;
+        const accomodation = e.target.acc.checked;
+        // const  accomodation = e.target.acc.value === "on";
 
         // console.log(ambassador)
-        const myPromise = new Promise((resolve, reject) => {            
-            registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador,  accomodation)
-                .then((res)=>{
+        const myPromise = new Promise((resolve, reject) => {
+            registerUser(
+                first_name,
+                last_name,
+                city,
+                college,
+                contact,
+                gender,
+                referral_code,
+                email,
+                password,
+                ambassador,
+                accomodation
+            )
+                .then((res) => {
                     // console.log(res)
-                    resolve(res)
+                    resolve(res);
                 })
-                .catch((err)=>{
+                .catch((err) => {
                     // console.log(err)
-                    reject(err)
-                })
-        })
-        
-        toast.promise(myPromise, 
-            {
-                pending: 'Creating your account...',
-                success: 'Registered Successfully!',
-                error: 'Something went wrong!',
-            }
-        )
+                    reject(err);
+                });
+        });
+
+        toast.promise(myPromise, {
+            pending: "Creating your account...",
+            success: "Registered Successfully!",
+            error: "Something went wrong!",
+        });
         // toast.onChange((state, toast) => {
         //     if (state === 'removed' && toast.type === 'success') {
         //         console.log("closed")
         //     }
         // });
-        
+
         // registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador)
-        
 
         // const data = {
         //     first_name: e.target.first_name.value,
@@ -108,24 +118,26 @@ function SignUp() {
     };
 
     const handleConfirmPassword = (e) => {
-        let passEle = document.getElementById('signup-form-password');
-        let confPassEle = document.getElementById('signup-form-confirmpassword');
-        let confPassWarningEle = document.getElementById('signup-form-confirmpassword-warning');
+        let passEle = document.getElementById("signup-form-password");
+        let confPassEle = document.getElementById(
+            "signup-form-confirmpassword"
+        );
+        let confPassWarningEle = document.getElementById(
+            "signup-form-confirmpassword-warning"
+        );
         if (confPassEle.value != "") {
             if (passEle.value == confPassEle.value) {
-                confPassEle.style.color = 'green';
-                confPassWarningEle.style.visibility = 'hidden';
+                confPassEle.style.color = "green";
+                confPassWarningEle.style.visibility = "hidden";
             } else {
-                confPassEle.style.color = 'red';
-                confPassWarningEle.style.visibility = 'visible';
+                confPassEle.style.color = "red";
+                confPassWarningEle.style.visibility = "visible";
             }
+        } else {
+            confPassEle.style.color = "black";
+            confPassWarningEle.style.visibility = "hidden";
         }
-        else {
-            confPassEle.style.color = 'black';
-            confPassWarningEle.style.visibility = 'hidden';
-        }
-    }
-
+    };
 
     return (
         <FadeIn duration={500}>
@@ -138,10 +150,7 @@ function SignUp() {
                         <div className="signup-container-right-title">
                             SIGN UP
                         </div>
-                        <form
-                            className="signup-form"
-                            onSubmit={handleSubmit}
-                        >
+                        <form className="signup-form" onSubmit={handleSubmit}>
                             <div className="signup-form-name">
                                 <input
                                     type="text"
@@ -174,29 +183,84 @@ function SignUp() {
                                 placeholder="Phone Number *"
                                 pattern="[6-9]{1}[0-9]{9}"
                                 onInput={(e) => {
-                                    e.target.setCustomValidity('');
+                                    e.target.setCustomValidity("");
                                 }}
                                 onInvalid={(e) => {
-                                    e.target.setCustomValidity('Please enter a valid phone number e.g. 9876543210');
+                                    e.target.setCustomValidity(
+                                        "Please enter a valid phone number e.g. 9876543210"
+                                    );
                                 }}
                                 required
                             />
                             <div className="signup-gender-dropdown">
-                                <label htmlFor="gender" className="signup-gender-dropdown-label">Gender</label>
-                                <select name="gender" id="gender" className="signup-gender-dropdown-select">
-                                    <option className="signup-gender-option" selected disabled hidden>-- Select --</option>
-                                    <option className="signup-gender-option" value="Male">Male</option>
-                                    <option className="signup-gender-option" value="Female">Female</option>
-                                    <option className="signup-gender-option" value="Other">Other</option>
+                                <label
+                                    htmlFor="gender"
+                                    className="signup-gender-dropdown-label"
+                                >
+                                    Gender
+                                </label>
+                                <select
+                                    name="gender"
+                                    id="gender"
+                                    className="signup-gender-dropdown-select"
+                                >
+                                    <option
+                                        className="signup-gender-option"
+                                        selected
+                                        disabled
+                                        hidden
+                                    >
+                                        -- Select --
+                                    </option>
+                                    <option
+                                        className="signup-gender-option"
+                                        value="Male"
+                                    >
+                                        Male
+                                    </option>
+                                    <option
+                                        className="signup-gender-option"
+                                        value="Female"
+                                    >
+                                        Female
+                                    </option>
+                                    <option
+                                        className="signup-gender-option"
+                                        value="Other"
+                                    >
+                                        Other
+                                    </option>
                                 </select>
                             </div>
-                            {/* <div className="signup-ca-checkbox">
-                                <input type="checkbox" name="ca" id="signup-ca-checkbox-input" />
-                                <label htmlFor="ca" className="signup-ca-checkbox-label">I want to signup for <Link to="/ca">CA Program</Link></label>
-                            </div> */}
+                            <div className="signup-ca-checkbox">
+                                <input
+                                    type="checkbox"
+                                    name="ca"
+                                    id="signup-ca-checkbox-input"
+                                />
+                                <label
+                                    htmlFor="ca"
+                                    className="signup-ca-checkbox-label"
+                                >
+                                    I want to signup for{" "}
+                                    <Link to="/campus-ambassador">
+                                        CA Program
+                                    </Link>
+                                </label>
+                            </div>
                             <div className="signup-acc-checkbox">
-                                <input type="checkbox" name="acc" id="signup-acc-checkbox-input" />
-                                <label htmlFor="acc" className="signup-acc-checkbox-label">I would like to avail <Link to="/Accommodation">accommodation</Link> at IIT Jodhpur campus.</label>
+                                <input
+                                    type="checkbox"
+                                    name="acc"
+                                    id="signup-acc-checkbox-input"
+                                />
+                                <label
+                                    htmlFor="acc"
+                                    className="signup-acc-checkbox-label"
+                                >
+                                    I would like to avail accommodation at IIT
+                                    Jodhpur campus.
+                                </label>
                             </div>
                             <input
                                 type="text"
@@ -214,7 +278,7 @@ function SignUp() {
                                 type="password"
                                 name="password"
                                 placeholder="Password *"
-                                onKeyUp={handleConfirmPassword} 
+                                onKeyUp={handleConfirmPassword}
                                 required
                             />
                             <div className="signup-form-confirmpassword-container">
@@ -223,12 +287,12 @@ function SignUp() {
                                     type="password"
                                     name="confirmPassword"
                                     placeholder="Confirm Password *"
-                                    onKeyUp={handleConfirmPassword} 
+                                    onKeyUp={handleConfirmPassword}
                                     required
                                 />
                                 <div id="signup-form-confirmpassword-warning">
                                     Passwords do not match!
-                                </div>                                
+                                </div>
                             </div>
                             <input
                                 type="submit"

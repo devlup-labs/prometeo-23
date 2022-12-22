@@ -98,7 +98,13 @@
     /* border: 2px solid red; */
 }
 
+#ca-referral-info {
+    font-family: Gentona;
+    font-size: 3vmin;
+}
+
 #ca-yellow {
+    cursor: pointer;
     color: #ffde38;
 }
 
