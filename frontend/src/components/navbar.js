@@ -59,7 +59,13 @@ const navBarLinks = [
         section: "right",
         tabIndex: 8,
     },
-    // { name: 'register', text: 'Register', path: '/register', section: 'right', tabIndex: 7 },
+    // {
+    //     name: "register",
+    //     text: "Register",
+    //     path: "/register",
+    //     section: "right",
+    //     tabIndex: 7,
+    // },
     // {
     //     name: "preregister",
     //     text: "Pre-Register",
@@ -142,8 +148,7 @@ function Navbar() {
                                 </div>
                             </a>
                         );
-                    }
-                    else if (link.name === "events") {
+                    } else if (link.name === "events") {
                         return (
                             <div
                                 className="dropdown dropdown-5"
