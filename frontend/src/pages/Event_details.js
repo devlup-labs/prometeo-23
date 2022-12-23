@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect,Component } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useSearchParams, Link } from "react-router-dom";
 
 import "./EventDetails.css";
@@ -47,14 +47,6 @@ function CreateEntry(props) {
     );
 }
 
-
-// function MakeActiveClass() {
-//     const tab1 = document.getElementsByClassName('.tab-content');
-//     tab1.classList.remove('active');
-//         const tab2 = document.getElementsByClassName('.default-active');
-//         tab2.classList.add('active');
-
-//      }
 function Details(props) {
     const eventTerm = props.eventTerm;
     const eventSponsor = props.eventSponsor;
@@ -133,21 +125,8 @@ function Details(props) {
                         )}
                     </div>
                 </div>
-
-
-            <div className="event-details__body__right">                   
-                  
-                <div className="event-details__body__right__top">
-
-
-                    <ul className="tabs">
-                        <li className=""><a href="#tab1">Event Description</a></li>
-                        <li><a href="#tab2">Other Details</a></li>
-                        <li><a href="#tab3">Contact Us</a></li>
-                    </ul>
-
-                    <div className="tab-content default-active" id="tab1">
-                     <div className="top-event-mains"> 
+                <div className="event-details__body__right">
+                    <div className="event-details__body__right__top">
                         <div className="event-details__body__right__top__on">
                             On{" "}
                             <span id="event-details-text">
@@ -175,74 +154,34 @@ function Details(props) {
                                 </span>
                             </div>
                         )}
-                     </div>
-                        <hr className="event-details__body__right__bottom1__hr" />
-                        <div className="event-details__body__right__bottom">
-                            {eventTerm.description && (
-                                <>
-                                    <p id="event-content-heading">Description</p>
-                                    <div className="event-details__body__right__bottom2">
-                                        {eventTerm.description}
-                                    </div>
-                                    <hr className="event-details__body__right__bottom1__hr" />
-                                </>
-                            )}
-                        </div>
                     </div>
-                
-                            
-
-                </div>
-
-                    <div className="tab-content" id="tab2">
-                        {/* <h2>Tab 2 Content</h2> */}
-                        
-                        <hr className="event-details__body__right__bottom1__hr" />
-                        <div className="event-details__body__right__bottom">
-                            {eventTerm.problem_statement && (
-                                <>
-                                    <p id="event-content-heading">
-                                        Problem Statement
-                                    </p>
-                                    <div
-                                        className="event-details__body__right__bottom1"
-                                        dangerouslySetInnerHTML={{
-                                            __html: eventTerm.problem_statement,
-                                        }}
-                                    ></div>
-                                </>
-                            )}
-                        </div>   
+                    <hr className="event-details__body__right__bottom1__hr" />
+                    <div className="event-details__body__right__bottom">
+                        {eventTerm.description && (
+                            <>
+                                <p id="event-content-heading">Description</p>
+                                <div className="event-details__body__right__bottom2">
+                                    {eventTerm.description}
+                                </div>
+                                <hr className="event-details__body__right__bottom1__hr" />
+                            </>
+                        )}
+                        {eventTerm.problem_statement && (
+                            <>
+                                <p id="event-content-heading">
+                                    Problem Statement
+                                </p>
+                                <div
+                                    className="event-details__body__right__bottom1"
+                                    dangerouslySetInnerHTML={{
+                                        __html: eventTerm.problem_statement,
+                                    }}
+                                ></div>
+                            </>
+                        )}
                     </div>
-
-                    <div className="tab-content" id="tab3">
-                       
-
-
-                        <hr className="event-details__body__right__bottom1__hr" />
-                        <div className="event-details__body__right__bottom">
-                        <h3> Name</h3>
-
-                                    
-                                    <div
-                                        className="event-details__body__right__bottom1">
-                                     contact number  
-                                     <br></br>
-                                     email
-                                    </div>
-                
-                
-                        </div>   
-
-                          
-                    </div>
-                   
-
-                    
                 </div>
             </div>
-
-
         </div>
     );
 }
@@ -351,4 +290,3 @@ function EventDetails() {
 }
 
 export default EventDetails;
-
