@@ -44,48 +44,60 @@ function Entry(props) {
 	const event = props.event;
 	// console.log("Event:", event)
 	return (
-		<div className="event_Card">
-			<div className="event_Card-background" 
-				style={{
-					backgroundImage: `url(${event.image.replace("0.0.0.0:8888", "apiv.prometeo.in")})`
-				}}
-			></div>
-			<div className="event_Card-content">
-				{/* <div className="card"></div> */}
-				<h3 className="event_Card-heading">{event.name}</h3>
+    <div className="event_Card">
+      <Link
+        id=""
+        to={{
+          pathname: "/event-details/",
+          search: `?id=${event.id}&name=${event.name}`,
+        }}
+        state={event}
+      >
+        <div
+          className="event_Card-background"
+          style={{
+            backgroundImage: `url(${event.image.replace(
+              "0.0.0.0:8888",
+              "apiv.prometeo.in"
+            )})`,
+          }}
+        ></div>
+        <div className="event_Card-content">
+          {/* <div className="card"></div> */}
+          <h3 className="event_Card-heading">{event.name}</h3>
 
-				<div className="event_Card-info">
-					<h1 className="event_Card-date">{event.date}</h1>
-					{
-						(event.prize && event.prize !== "NA") && 
-						<h3 className="event_Card-prize">Prize {event.prize}</h3>
-					}
-				</div>
-			</div>
-			<div id="buttons">
-				{/* <Link 
-					id="button1"
-					// to={{
-					// 	pathname: '/event-details/',
-					// 	search: `?id=${event.id}`,
-					// }}
-				>
-					Register
-				</Link> */}
-				{/* <button className="button2">View more</button> */}
-				<Link 
-					id="button2"
-					to={{
-						pathname: '/event-details/',
-						search: `?id=${event.id}&name=${event.name}`,
-					}}
-					state = {event}
-				>
-					View More
-				</Link>
-			</div>
-		</div>
-	);
+          <div className="event_Card-info">
+            <h1 className="event_Card-date">{event.date}</h1>
+            {event.prize && event.prize !== "NA" && (
+              <h3 className="event_Card-prize">Prize {event.prize}</h3>
+            )}
+          </div>
+        </div>
+      </Link>
+      <div id="buttons">
+			{/* <Link 
+						id="button1"
+						// to={{
+						// 	pathname: '/event-details/',
+						// 	search: `?id=${event.id}`,
+						// }}
+					>
+						Register
+					</Link> */}
+			{/* <button className="button2">View more</button> */}
+			<Link
+			id="button2"
+			to={{
+				pathname: "/event-details/",
+				search: `?id=${event.id}&name=${event.name}`,
+			}}
+			state={event}
+			>
+			View More
+			</Link>
+      </div>
+    </div>
+  );
 }
 
 function Events() {
