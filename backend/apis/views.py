@@ -184,7 +184,7 @@ class CampusAmbassadorView(APIView):
     queryset = CampusAmbassador.objects.all()
     serializer_class = CampusAmbassadorSerializers
     permission_classes = (IsAuthenticated,)
-
+    print(1)
     def get(self, request):
         ca = CampusAmbassador.objects.all()
         serializer = CampusAmbassadorSerializers(ca, many=True)
@@ -193,7 +193,8 @@ class CampusAmbassadorView(APIView):
     def post(self, request):
         user_email = request.data.get('email')
         user = ExtendedUser.objects.filter(email=user_email).first()
-        if(CampusAmbassador.objects.filter(email=user_email)).exists():
+        print(request.data)
+        if(CampusAmbassador.objects.filter(email=user_email).exists()):
             ca = CampusAmbassador.objects.filter(email=user_email).first()
             serializers = CampusAmbassadorSerializers(ca)
             referee_dict={}
@@ -202,10 +203,11 @@ class CampusAmbassadorView(APIView):
             # referee_dict = {'ca':serializer.data}
             # referee_dict['referees']=referee_list
             # data = {'ca':serializers.data} + referee_dict
-            
-            
+        
             return Response(serializer.data)
-        elif user.referral_code=='':
+
+        elif user.referral_code==None or user.referral_code=="":
+            print(1)
             ca = CampusAmbassador.objects.create(
                 email = user_email,
                 ca_count=0,
@@ -228,22 +230,22 @@ class CampusAmbassadorView(APIView):
             user.invite_referral = ca.invite_referral
             user.ca_count = ca.ca_count
             user.save()
-            with get_connection(
-                username=settings.EMAIL_HOST_USER,
-                password=settings.EMAIL_HOST_PASSWORD
-            ) as connection:
-                sendMailID = settings.FROM_EMAIL_USER
-                # subject = "Registration as Campus Ambassador"
-                subject='Registration as Campus Ambassador'
-                # message = "You have successfully registered as Campus Ambassador."
-                message = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
-                isCA=True
-                html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'message': message, 'isCA':isCA})
-                text_content = strip_tags(html_content)
-                message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-                message.attach_alternative(html_content, "text/html")
-                message.mixed_subtype = 'related'
-                message.send()
+            # with get_connection(
+            #     username=settings.EMAIL_HOST_USER,
+            #     password=settings.EMAIL_HOST_PASSWORD
+            # ) as connection:
+            #     sendMailID = settings.FROM_EMAIL_USER
+            #     # subject = "Registration as Campus Ambassador"
+            #     subject='Registration as Campus Ambassador'
+            #     # message = "You have successfully registered as Campus Ambassador."
+            #     message = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
+            #     isCA=True
+            #     html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'message': message, 'isCA':isCA})
+            #     text_content = strip_tags(html_content)
+            #     message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+            #     message.attach_alternative(html_content, "text/html")
+            #     message.mixed_subtype = 'related'
+            #     message.send()
             # msg = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
             # isCA=True
             # # SENDGRID_API_KEY = config('SENDGRID_API_KEY')

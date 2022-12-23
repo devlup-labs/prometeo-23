@@ -152,7 +152,7 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         accomodation=validated_data['accomodation'],
         )
         user.set_password(validated_data['password'])
-        if(validated_data['referral_code'] != ''):
+        if(validated_data['referral_code'] != None):
             if(CampusAmbassador.objects.filter(invite_referral=validated_data['referral_code'])).exists():
                 ca = ExtendedUser.objects.filter(invite_referral=validated_data['referral_code']).first()
                 CA=CampusAmbassador.objects.filter(invite_referral=validated_data['referral_code']).first()
@@ -172,7 +172,9 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         id = id_check(id_registration)
         user.registration_id =id
         #CA INVITE REFERRAL
-        if (validated_data['ambassador']==True and validated_data['referral_code']==None):
+        print(validated_data['ambassador'])
+        print(22)
+        if (validated_data['ambassador']==True and (validated_data['referral_code']==None or validated_data['referral_code']=='' or validated_data['referral_code']=='none')):
             print('hi')
             user.ambassador=True
             ca = CampusAmbassador.objects.create(
@@ -190,37 +192,37 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
             ca.invite_referral = invite_referral
             user.invite_referral = invite_referral
             ca.save()
-            with get_connection(
-                    username=settings.EMAIL_HOST_USER,
-                    password=settings.EMAIL_HOST_PASSWORD
-                ) as connection:
-                    sendMailID = settings.FROM_EMAIL_USER
-                    subject = "Registration"
-                    isCAregistration=True
-                    msg = f"Congratulations, {user.first_name} you have successfully registered in Prometeo'23 - the Technical Fest of IIT Jodhpur ."
-                    # message = "You have successfully registered."
-                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'invite_referral':user.invite_referral, 'isCAregistration': isCAregistration})
-                    text_content = strip_tags(html_content)
-                    message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-                    message.attach_alternative(html_content, "text/html")
-                    message.mixed_subtype = 'related'
-                    message.send()
-        else:
-            with get_connection(
-                    username=settings.EMAIL_HOST_USER,
-                    password=settings.EMAIL_HOST_PASSWORD
-                ) as connection:
-                    sendMailID = settings.FROM_EMAIL_USER
-                    subject = "Registration"
-                    isRegistration=True
-                    msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo'23 - the Technical Fest of IIT Jodhpur ."
-                    # message = "You have successfully registered."
-                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'isRegistration': isRegistration})
-                    text_content = strip_tags(html_content)
-                    message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-                    message.attach_alternative(html_content, "text/html")
-                    message.mixed_subtype = 'related'
-                    message.send()
+        #     with get_connection(
+        #             username=settings.EMAIL_HOST_USER,
+        #             password=settings.EMAIL_HOST_PASSWORD
+        #         ) as connection:
+        #             sendMailID = settings.FROM_EMAIL_USER
+        #             subject = "Registration"
+        #             isCAregistration=True
+        #             msg = f"Congratulations, {user.first_name} you have successfully registered in Prometeo'23 - the Technical Fest of IIT Jodhpur ."
+        #             # message = "You have successfully registered."
+        #             html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'invite_referral':user.invite_referral, 'isCAregistration': isCAregistration})
+        #             text_content = strip_tags(html_content)
+        #             message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+        #             message.attach_alternative(html_content, "text/html")
+        #             message.mixed_subtype = 'related'
+        #             message.send()
+        # else:
+        #     with get_connection(
+        #             username=settings.EMAIL_HOST_USER,
+        #             password=settings.EMAIL_HOST_PASSWORD
+        #         ) as connection:
+        #             sendMailID = settings.FROM_EMAIL_USER
+        #             subject = "Registration"
+        #             isRegistration=True
+        #             msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo'23 - the Technical Fest of IIT Jodhpur ."
+        #             # message = "You have successfully registered."
+        #             html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'isRegistration': isRegistration})
+        #             text_content = strip_tags(html_content)
+        #             message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+        #             message.attach_alternative(html_content, "text/html")
+        #             message.mixed_subtype = 'related'
+        #             message.send()
         # msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo'23 - the Technical Fest of IIT Jodhpur ."
         # # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
         # SENDGRID_API_KEY = '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'
