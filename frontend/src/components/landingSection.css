@@ -80,6 +80,13 @@
     filter: drop-shadow(0 0 0.3rem #000000);
 }
 
+#landing-countdown-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    filter: drop-shadow(0 0.2rem 0.5rem #000000);
+}
+
 @media screen and (max-width: 800px) {
     #landing > div {
         width: 100%;
@@ -108,7 +115,7 @@
 } */
 
 #landing-rock-2 {
-    max-height: 40vh;
+    max-height: 35vh;
     max-width: 30vw;
     animation: bounce 2s infinite;
     transition: 0.3s;
