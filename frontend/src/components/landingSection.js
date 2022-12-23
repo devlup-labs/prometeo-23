@@ -66,12 +66,13 @@ export default function LandingSection() {
                             <img src={landingRock1} id="landing-rock-1" />
                         </div> */}
                         <div id="landing-spl-button-2">
-                            <Link
-                                to="/git sign-up"
-                                id="landing-spl-button-2-link"
-                            >
-                                <img src={reg_rock} id="landing-rock-2" />
-                            </Link>
+                            <a
+                  href="https://unstop.com/festival/prometeo23-indian-institute-of-technology-iit-jodhpur-80491"
+                  target="_blank"
+                  id="landing-spl-button-2-link"
+                >
+                  <img src={reg_rock} id="landing-rock-2" />
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -43,7 +43,7 @@ export default function CA() {
 
                 if (response.status === 200) {
                     const data = response.data;
-                    // console.log("Login Dashboard Data:", data);
+                    console.log("Login Dashboard Data:", data);
                     setUserData({
                         ...data,
                     });
@@ -73,6 +73,7 @@ export default function CA() {
             // console.log("Not logged in");
         } else {
             fetchData();
+
         }
     }, []);
 
@@ -87,11 +88,15 @@ export default function CA() {
         async function fetchData() {
             try {
                 console.log("Fetching data for user:", user.email);
+                const obj ={
+                    email: user.email,
+                    // ambassador: user.ambassador,
+                    referral : user.referral_code,
+                }
+                console.log(obj);
                 const response = await api.post(
                     `${backendURL}/campusambassador/`,
-                    {
-                        email: user.email,
-                    }
+                    obj
                 );
                 if (response.status === 200) {
                     let data = response.data;
