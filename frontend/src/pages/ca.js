@@ -43,7 +43,7 @@ export default function CA() {
 
                 if (response.status === 200) {
                     const data = response.data;
-                    // console.log("Login Dashboard Data:", data);
+                    console.log("Login Dashboard Data:", data);
                     setUserData({
                         ...data,
                     });
@@ -73,22 +73,34 @@ export default function CA() {
             // console.log("Not logged in");
         } else {
             fetchData();
+
         }
     }, []);
+
+    // useEffect(() => {
+    function copyText() {
+        navigator.clipboard.writeText(userData.invite_referral);
+        toast.success("Copied to clipboard!");
+    }
+    // }, []);
 
     const handleSubmit = (e) => {
         async function fetchData() {
             try {
-                // console.log("Fetching data for user:", user.email);
+                console.log("Fetching data for user:", user.email);
+                const obj ={
+                    email: user.email,
+                    // ambassador: user.ambassador,
+                    referral : user.referral_code,
+                }
+                console.log(obj);
                 const response = await api.post(
                     `${backendURL}/campusambassador/`,
-                    {
-                        email: user.email,
-                    }
+                    obj
                 );
                 if (response.status === 200) {
                     let data = response.data;
-                    // console.log(data);
+                    console.log(data);
                     let invite_code;
                     // toast.success("Registered Successfully!");
                     invite_code = data.invite_referral;
@@ -98,9 +110,9 @@ export default function CA() {
                     document.getElementById("ca-register-button").innerHTML =
                         "Registered!";
                     document.getElementById("ca-referral-info").innerHTML =
-                        "Your referral code is: <span id='ca-yellow'>" +
+                        "Your referral code is: <span id='ca-yellow' onClick={copyText}>" +
                         invite_code +
-                        "</span>. Share it with your friends and get them to register using your referral code to get a chance to win exciting prizes!";
+                        "</span> (click to copy!). Share it with your friends and get them to register using your referral code to get a chance to win exciting prizes!";
                     // }
                 } else {
                     toast.error("Error: " + response.statusText);
@@ -113,29 +125,27 @@ export default function CA() {
         if (user === null) {
             toast.error("Please login to register as Campus Ambassador!");
         } else {
-            const myPromise = new Promise((resolve, reject) => {            
+            const myPromise = new Promise((resolve, reject) => {
                 fetchData()
-                    .then((res)=>{
+                    .then((res) => {
                         // console.log(res)
-                        resolve(res)
+                        resolve(res);
                     })
-                    .catch((err)=>{
+                    .catch((err) => {
                         // console.log(err)
-                        reject(err)
-                    })
-            })
-            
-            toast.promise(myPromise, 
-                {
-                    pending: 'Registering...',
-                    success: 'Registered successfully!',
-                    error: {
-                        render: ({ data }) => {
-                            return "Something went wrong!"
-                        }
+                        reject(err);
+                    });
+            });
+
+            toast.promise(myPromise, {
+                pending: "Registering...",
+                success: "Registered successfully!",
+                error: {
+                    render: ({ data }) => {
+                        return "Something went wrong!";
                     },
-                }
-            )
+                },
+            });
         }
     };
 
@@ -157,34 +167,30 @@ export default function CA() {
                         <button
                             id="ca-register-button"
                             className="button-48"
-                            // onClick={handleSubmit}
-                            // disabled={userData.ambassador}
+                            onClick={handleSubmit}
+                            disabled={userData.ambassador}
                         >
-                            <span className="button-text"> COMING SOON!
-                                {/* {userData.ambassador */}
-                                    {/* ? "Already Registered" */}
-                                    {/* : "REGISTER!"} */}
+                            <span className="button-text">
+                                {userData.ambassador
+                                    ? "Already Registered"
+                                    : "REGISTER!"}
                             </span>
                         </button>
-                        {/* <span id="ca-referral-info"> */}
-                            {/* {userData.ambassador ? (
+                        <span id="ca-referral-info">
+                            {userData.ambassador ? (
                                 <div>
                                     Your referral code is{" "}
-                                    <span id="ca-yellow">
+                                    <span id="ca-yellow" onClick={copyText}>
                                         {userData.invite_referral}{" "}
                                     </span>{" "}
-                                    . You have registered{" "}
-                                    {userData.ca_count} participants using
-                                    your referral code!
+                                    (click to copy!). You have registered{" "}
+                                    {userData.ca_count} participants using your
+                                    referral code!
                                 </div>
                             ) : (
-                                <div>
-                                    this is a description provided by Sir
-                                    Lakshya Nitin Tandon orz
-                                </div>
-                            )} */}
-                            {/* Registrations will be up soon! */}
-                        {/* </span> */}
+                                <div></div>
+                            )}
+                        </span>
                     </span>
                 </div>
                 <div className="ca-content">
@@ -196,9 +202,12 @@ export default function CA() {
                             In the campus ambassador program, you will represent
                             our fest, Prometeo, in your college community and
                             encourage students to participate by highlighting
-                            the advantages of taking part in the fest.
+                            the advantages of taking part in the fest. Campus
+                            Ambassador is a very reputed position as you will be
+                            representing your entire institute.
                         </span>
                         <img
+                            style={{ maxWidth: 30 + "vw" }}
                             className="ca-content-img blue-shadow"
                             src={socialMedia1}
                             alt="social-media"
@@ -317,10 +326,30 @@ export default function CA() {
                             <button
                                 id="ca-register-button"
                                 className="button-48"
-                                // onClick={handleSubmit}
+                                onClick={handleSubmit}
+                                disabled={userData.ambassador}
                             >
-                                <span className="button-text">COMING SOON!</span>
+                                <span className="button-text">
+                                    {userData.ambassador
+                                        ? "Already Registered"
+                                        : "REGISTER!"}
+                                </span>
                             </button>
+                            <span id="ca-referral-info">
+                                {userData.ambassador ? (
+                                    <div>
+                                        Your referral code is{" "}
+                                        <span id="ca-yellow">
+                                            {userData.invite_referral}{" "}
+                                        </span>{" "}
+                                        . You have registered{" "}
+                                        {userData.ca_count} participants using
+                                        your referral code!
+                                    </div>
+                                ) : (
+                                    <div></div>
+                                )}
+                            </span>
                         </span>
                         <img
                             className="ca-content-img blue-shadow ca-pr-logo"

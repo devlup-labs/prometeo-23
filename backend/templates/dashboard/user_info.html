@@ -152,6 +152,7 @@
     <li><b>Campus Ambassador: </b>{% if cur_user.ambassador %}Yes{% else %}No{% endif %}</li>
     <li><b>Invite Referral Code: </b>{% if cur_user.ambassador %}{{ cur_user.invite_referral }}{% else %}NA{% endif %}</li>
     <li style="text-transform: capitalize;"><b>Gender: </b>{{ cur_user.gender }}</li>
+    <li><b>Accomodation: </b>{% if cur_user.accomodation %}Yes{% else %}No{% endif %}</li>
     <li><b>College: </b>{{ cur_user.college }}</li>
     <li><b>Current Year: </b>
         {% if cur_user.current_year == '1' %}
