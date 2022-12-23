@@ -38,7 +38,7 @@ class Coordinator(models.Model):
     facebook_link = models.URLField(max_length=1000, blank=True, null=True)
     linkedin_link = models.URLField(max_length=1000, blank=True, null=True)
     email = models.CharField(max_length=100, blank=False, null=False)
-    phoneNo = models.CharField(max_length=100, blank=False, null=False)
+    phoneNo = models.CharField(max_length=100, blank=True, null=True)
 
     def _str_(self):
         return f"{self.name} [{self.team}]"
