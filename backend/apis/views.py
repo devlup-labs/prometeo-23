@@ -184,7 +184,7 @@ class CampusAmbassadorView(APIView):
     queryset = CampusAmbassador.objects.all()
     serializer_class = CampusAmbassadorSerializers
     permission_classes = (IsAuthenticated,)
-
+    print(1)
     def get(self, request):
         ca = CampusAmbassador.objects.all()
         serializer = CampusAmbassadorSerializers(ca, many=True)
@@ -193,7 +193,8 @@ class CampusAmbassadorView(APIView):
     def post(self, request):
         user_email = request.data.get('email')
         user = ExtendedUser.objects.filter(email=user_email).first()
-        if(CampusAmbassador.objects.filter(email=user_email)).exists():
+        print(request.data)
+        if(CampusAmbassador.objects.filter(email=user_email).exists()):
             ca = CampusAmbassador.objects.filter(email=user_email).first()
             serializers = CampusAmbassadorSerializers(ca)
             referee_dict={}
@@ -202,10 +203,11 @@ class CampusAmbassadorView(APIView):
             # referee_dict = {'ca':serializer.data}
             # referee_dict['referees']=referee_list
             # data = {'ca':serializers.data} + referee_dict
-            
-            
+        
             return Response(serializer.data)
-        elif user.referral_code=='':
+
+        elif user.referral_code==None or user.referral_code=="":
+            print(1)
             ca = CampusAmbassador.objects.create(
                 email = user_email,
                 ca_count=0,
