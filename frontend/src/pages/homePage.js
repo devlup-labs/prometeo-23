@@ -20,6 +20,7 @@ import EventHome from "../components/eventHome";
 import StatsHome from "../components/statsHome";
 import Infinity from "../components/infinity";
 import Footer from "../components/footer";
+import CA_Homepage from "../components/ca";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -86,12 +87,13 @@ export default function HomePage() {
                 <LandingSection />
                 <div id="filler-1"></div>
                 <Introduction />
-                <Theme />
-                <InitiativeHome />
                 <div id="filler-2"></div>
+                <StatsHome />
+                <CA_Homepage />
+                <Theme />
                 <EventHome />
                 <div id="filler-3"></div>
-                <StatsHome />
+                <InitiativeHome />
                 <div id="filler-4"></div>
                 <Infinity />
                 {/* footer with props */}

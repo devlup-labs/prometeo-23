@@ -30,7 +30,7 @@ function SignUp() {
         const college = e.target.college.value;
         const contact = e.target.phone.value;
         const gender = e.target.gender.value;
-        const referral_code = e.target.referral_code.value;
+        const referral_code = e.target.referral_code.value === "" ? "none" : e.target.referral_code.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         // const ambassador = false;

@@ -44,18 +44,6 @@ export default function EventHome() {
                         <Link
                             to={{
                                 pathname: "/events",
-                                search: "?type=informal",
-                            }}
-                            id="eventHome-eventCircle2"
-                        >
-                            <div className="eventHome-eventCircle-gradient">
-                                <span>Informals</span>
-                            </div>
-                            <img src={img2} alt="Informal Events" />
-                        </Link>
-                        <Link
-                            to={{
-                                pathname: "/events",
                                 search: "?type=entrepreneurial",
                             }}
                             id="eventHome-eventCircle3"
@@ -64,6 +52,18 @@ export default function EventHome() {
                                 <span>Entrepreneurial Events</span>
                             </div>
                             <img src={img3} alt="Entrepreneurial Events" />
+                        </Link>
+                        <Link
+                            to={{
+                                pathname: "/events",
+                                search: "?type=informal",
+                            }}
+                            id="eventHome-eventCircle2"
+                        >
+                            <div className="eventHome-eventCircle-gradient">
+                                <span>Informals</span>
+                            </div>
+                            <img src={img2} alt="Informal Events" />
                         </Link>
                     </div>
                 </div>
