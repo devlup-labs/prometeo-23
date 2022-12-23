@@ -10,6 +10,7 @@ from django.contrib import messages
 from .forms import EmailForm
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.urls import reverse
+from users.models import *
 
 sendMailID = settings.FROM_EMAIL_USER
 current_year_dict = {'1': '1st Year', '2': '2nd Year', '3': '3rd Year', '4': '4th Year', '5': '5th Year',
@@ -694,3 +695,12 @@ def change_registration(request, type, eventid, value):
         messages.success(request, 'Successfully closed registration for event ' + event.name + '.')
     event.save()
     return redirect('event_info', type, eventid)
+
+
+# dashboard page for preregistration
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/preregistration/')
+def preregistration_page(request):
+    preregistrations = PreRegistration.objects.all()
+    return render(request, 'dashboard/preregistration.html', {'Preregistrations': preregistrations})
+
