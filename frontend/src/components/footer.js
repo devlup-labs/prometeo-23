@@ -47,7 +47,7 @@ export default function Footer(props) {
                                 <div>
                                     <span>
                                         <a
-                                            href="tel:7725973739"
+                                            href="https://wa.me/917725973739"
                                             target="_blank"
                                         >
                                             +91 7725973739
@@ -56,7 +56,7 @@ export default function Footer(props) {
                                     </span>
                                     <span>
                                         <a
-                                            href="tel:8840836373"
+                                            href="https://wa.me/918840836373"
                                             target="_blank"
                                         >
                                             +91 8840836373
