@@ -34,7 +34,7 @@ const team_data = [
             },
             {
                 id: 3,
-                image: "https://i.ibb.co/G2CBWvb/person1.jpg",
+                image: "https://i.imgur.com/Srzgz1v.jpg",
                 name: "Neielotpal Rao",
                 por: " ",
                 phone: "7988389822",

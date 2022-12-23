@@ -242,7 +242,7 @@ export default function CA() {
                         <div className="ca-content-incentive">
                             <div className="ca-content-incentive-title silver">
                                 SILVER <span>Campus Ambassador</span>
-                                <div>15+ Registrations</div>
+                                <div>10+ Registrations (with accommodation)</div>
                             </div>
                             <div className="ca-content-incentive-desc">
                                 <div className="ca-content-incentive-desc-item">
@@ -261,13 +261,21 @@ export default function CA() {
                                     />
                                     Certificate
                                 </div>
-                                <div className="ca-content-incentive-desc-item">
+                                {/* <div className="ca-content-incentive-desc-item">
                                     <img
                                         className="blue-shadow2"
                                         src={goodies}
                                         alt="goodies"
                                     />
                                     Goodies (T-shirt)
+                                </div> */}
+                                <div className="ca-content-incentive-desc-item">
+                                    <img
+                                        className="yellow-shadow2"
+                                        src={tickets}
+                                        alt="workshop"
+                                    />
+                                    Free Entry to 1 Workshop
                                 </div>
                             </div>
                         </div>
@@ -293,17 +301,17 @@ export default function CA() {
                                     />
                                     Certificate
                                 </div>
-                                <div className="ca-content-incentive-desc-item">
+                                {/* <div className="ca-content-incentive-desc-item">
                                     <img src={goodies} alt="goodies" />
                                     Goodies (Hoodie, Vouchers)
-                                </div>
+                                </div> */}
                                 <div className="ca-content-incentive-desc-item">
                                     <img
                                         className="yellow-shadow2"
                                         src={tickets}
                                         alt="workshop"
                                     />
-                                    Free Entry to 1 Workshop
+                                    Free Entry to 2 Workshops
                                 </div>
                             </div>
                         </div>

@@ -185,10 +185,15 @@ function createPerson(person) {
                 </div>
                 <div className="team-bottom">
                     <div className="team-caption">
-                        <div>
-                            {false && <p>{person.por}</p>}
+                        {/* <div> */}
+                            {person.phone && (
+                                <a href={`https://wa.me/91${person.phone}`}>
+                                    {person.phone}
+                                </a>
+                            )}
+                            {/* {false && <p>{person.por}</p>} */}
                             {/* {person.por && <p>{person.por}</p>} */}
-                        </div>
+                        {/* </div> */}
                         <div className="team-social-links">
                             {createSocialLinks(person)}
                         </div>
@@ -215,7 +220,11 @@ function createFC(person) {
                 <div className="team-bottom">
                     <div className="team-caption">
                         <div>
-                            {person.phone && <a href={`tel:${person.phone}`}>{person.phone}</a>}
+                            {person.phone && (
+                                <a href={`tel:${person.phone}`}>
+                                    {person.phone}
+                                </a>
+                            )}
                         </div>
                         <div className="team-social-links">
                             {createSocialLinks(person)}
@@ -253,11 +262,12 @@ export default function Team() {
                             <span>{team.teamName}</span>
                             <div className="team-main">
                                 {/* {console.log(team.teamName)} */}
-                                
+
                                 {team.members.map((person) => {
-                                    if (team.teamName === "Festival Chiefs")
-                                        return createFC(person);
-                                    else return createPerson(person);
+                                    // if (team.teamName === "Festival Chiefs")
+                                    //     return createFC(person);
+                                    // else return createPerson(person);
+                                    return createPerson(person);
                                 })}
                             </div>
                         </div>
