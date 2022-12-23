@@ -333,7 +333,6 @@
 
 /* FOR TABS */
 
-
 .tabs {
     /* Reset default styles for the unordered list */
     position: relative;
@@ -382,9 +381,16 @@
   /* .default-active{
     display: block;
   } */
-  
+
   .tab-content:target {
     /* Show the tab content when the corresponding tab link is clicked */
     display: block;
   }
-  
+
+
+  #tab1:target{
+    display: block;
+  }
+  .tab-hide{
+    display: none;
+  }

@@ -48,16 +48,20 @@ function CreateEntry(props) {
 }
 
 
-// function MakeActiveClass() {
-//     const tab1 = document.getElementsByClassName('.tab-content');
-//     tab1.classList.remove('active');
-//         const tab2 = document.getElementsByClassName('.default-active');
-//         tab2.classList.add('active');
+function MakeActiveClass() {
+    // const tab1 = document.getElementsByClassName('.tab-content');
+    // tab1.classList.remove('active');
+        const tab2 = document.getElementById('tab1');
+        tab2.classList.add('active');
 
-//      }
+     }
+
 function Details(props) {
     const eventTerm = props.eventTerm;
     const eventSponsor = props.eventSponsor;
+
+    // const checkProblem = props.problem_statement == null ? "tab-content" : "tab-hide"
+    const tabHeading = props.problem_statement == null ?  null : "tab-hide"
 
     return (
         <div className="event-details">
@@ -137,13 +141,11 @@ function Details(props) {
 
             <div className="event-details__body__right">                   
                   
-                <div className="event-details__body__right__top">
-
-
+                            <div className="event-details__body__right__top">                
                     <ul className="tabs">
                         <li className=""><a href="#tab1">Event Description</a></li>
-                        <li><a href="#tab2">Other Details</a></li>
-                        <li><a href="#tab3">Contact Us</a></li>
+                        <li className={tabHeading}><a href="#tab2">Other Details</a></li>
+                        {/* <li><a href="#tab3">Contact Us</a></li> */}
                     </ul>
 
                     <div className="tab-content default-active" id="tab1">
@@ -215,7 +217,7 @@ function Details(props) {
                         </div>   
                     </div>
 
-                    <div className="tab-content" id="tab3">
+                    {/* <div className="tab-content" id="tab3">
                        
 
 
@@ -234,11 +236,11 @@ function Details(props) {
                 
                         </div>   
 
-                          
-                    </div>
+                     {/* <MakeActiveClass />  */}
+   
+                   {/* </div> */}
                    
 
-                    
                 </div>
             </div>
 

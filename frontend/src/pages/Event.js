@@ -63,15 +63,15 @@ function Entry(props) {
 				</div>
 			</div>
 			<div id="buttons">
-				{/* <Link 
-					id="button1"
+				<div 
+				id="button1"
 					// to={{
 					// 	pathname: '/event-details/',
 					// 	search: `?id=${event.id}`,
 					// }}
 				>
-					Register
-				</Link> */}
+					{event.date}
+				</div>
 				{/* <button className="button2">View more</button> */}
 				<Link 
 					id="button2"
@@ -84,6 +84,8 @@ function Entry(props) {
 					View More
 				</Link>
 			</div>
+			{/* </tr> */}
+		 {/* </table> */}
 		</div>
 	);
 }
