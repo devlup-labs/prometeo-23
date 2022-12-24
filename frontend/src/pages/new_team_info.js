@@ -182,6 +182,23 @@ const team_data = [
            
         ],
     },
+    
+    {
+        teamName: "Content Writing",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/oPigWVd.jpg",
+                name: "Lakshya Nitin Tandon ",
+                por: "Head",
+                mail: "tandon.1@iitj.ac.in ",
+                instagram:"https://instagram.com/alaukik_lnt09?igshid=ZDdkNTZiNTM=",
+                linkedin:"",
+                github: ""
+            },
+        ],
+    },
+    
     {
         teamName: "Web Development Team",
         members: [
@@ -357,23 +374,6 @@ const team_data = [
                 mail: "kushwah.4@iitj.ac.in ",
                 instagram:"https://www.instagram.com/karanrajawat7021/",
                 linkedin:"https://www.linkedin.com/in/karan-singh-kushwah-475429219",
-                github: ""
-            },
-        ],
-    },
-    
-
-    {
-        teamName: "Content Writing",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/oPigWVd.jpg",
-                name: "Lakshya Nitin Tandon ",
-                por: "Head",
-                mail: "tandon.1@iitj.ac.in ",
-                instagram:"https://instagram.com/alaukik_lnt09?igshid=ZDdkNTZiNTM=",
-                linkedin:"",
                 github: ""
             },
         ],
