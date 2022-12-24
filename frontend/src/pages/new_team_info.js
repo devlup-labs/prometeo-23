@@ -1,50 +1,204 @@
 const team_data = [
     {
-        teamName: "Festival Chiefs",
+        teamName: "Public Relations",
         members: [
             {
                 id: 0,
-                image: "https://media-exp1.licdn.com/dms/image/C5603AQGDTRLnyF0SHw/profile-displayphoto-shrink_800_800/0/1641058794143?e=1675900800&v=beta&t=XO1aBlMBolLJ6QA3R_d16ijtmUj04docnpwJVxptoy4",
-                name: "Yash Ruhatiya",
-                por: "",
-                phone: "8605835009",
-                mail: "ruhatiya.1@iitj.ac.in",
-                instagram:"https://instagram.com/yash_ruhatiya24?igshid=YmMyMTA2M2Y=",
-                linkedin:"https://www.linkedin.com/in/yash-ruhatiya-308831206",
+                image: "https://i.imgur.com/DWO7yNR.jpg",
+                name: "Abu Shahid ",
+                por: "Head",
+                mail: "shahid.3@iitj.ac.in",
+                instagram:"https://www.instagram.com/ceyxasm/",
+                linkedin:"",
+                github: ""
             },
             {
                 id: 1,
-                image: "https://media-exp1.licdn.com/dms/image/C4D03AQGa_1PjeJ7B7g/profile-displayphoto-shrink_800_800/0/1661627598565?e=1675900800&v=beta&t=sqON6g5iuTaGDxzS-f2la7QoemJC87JBLjHNnk7I5NI",
-                name: "Dhruv Agarwal",
-                por: " ",
-                phone: "8741011311",
-                mail: "agarwal.18@iitj.ac.in",
-                instagram:"https://www.instagram.com/dhruv_3005/",
-                linkedin:"https://www.linkedin.com/in/dhruv-agarwal-3480611a7",
+                image: "https://i.imgur.com/2zLMQCB.jpg",
+                name: "Tanmay",
+                por: "Head",
+                mail: "tanmay.1@iitj.ac.in ",
+                instagram:"https://www.instagram.com/1__tanmay__/",
+                linkedin:"",
+                github: ""
             },
             {
                 id: 2,
-                image: "https://rahulgopathi.tech/assets/img/My%20photo.png",
-                name: "Rahul Gopathi",
-                por: "",
-                phone: "8919430577",
-                mail: "gopathi.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/rahul_gopathi/",
-                linkedin:"https://www.linkedin.com/in/rahul-gopathi-a8084a1b8/",
+                image: "https://i.imgur.com/MV241a1.jpg",
+                name: "Yashmita",
+                por: "Head",
+                mail: "yashmita.1@iitj.ac.in",
+                instagram:"https://www.instagram.com/Yashmita__sangwan/",
+                linkedin:"https://in.linkedin.com/in/yashmita-sangwan-6a403820a",
+                github: ""
+            },
+        ],
+    },
+    {
+        teamName: "Technical events",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/AW0d3d5.jpg",
+                name: "Sumit Kumar Prajapati",
+                por: "Head",
+                mail: "prajapati.3@iitj.ac.in",
+                instagram:"https://www.instagram.com/the.sumitprajapati/",
+                linkedin:"https://www.linkedin.com/in/sumit-prajapati-2a0a551bb/",
             },
             {
-                id: 3,
-                image: "https://i.ibb.co/G2CBWvb/person1.jpg",
-                name: "Neielotpal Rao",
-                por: " ",
-                phone: "7988389822",
-                mail: "rao.5@iitj.ac.in",
-                instagram:"",
+                id: 1,
+                image: "https://i.imgur.com/ZjdLbgK.jpg",
+                name: "Somil Maheshwari ",
+                por: "Head",
+                mail: "maheshwari.7@iitj.ac.in",
+                instagram:"https://www.instagram.com/somil_maheshwari/",
                 linkedin:"",
             },
         ],
     },
+    {
+        teamName: "Entrepreneurial events",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/V6JhE4z.jpg",
+                name: "Harshita Kalani",
+                por: "Head",
+                mail: "kalani.1@iitj.ac.in",
+                instagram:"https://www.instagram.com/harsheyyyy_11/",
+                linkedin:"https://www.linkedin.com/in/harshita-kalani-604866225?trk=public_profile_samename-profile&originalSubdomain=in",
+            },
+            {
+                id: 1,
+                image: "https://i.imgur.com/kLW8SyF.jpg",
+                name: "Jaimin Gajjar",
+                por: "Head",
+                mail: "jaimingajjar01@gmail.com",
+                instagram:"https://www.instagram.com/jaimin002/",
+                linkedin:"http://linkedin.com/in/jaimin-gajjar-0386b31b9",
+            },
+        ],
+    },
+    {
+        teamName: "Informals",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/sstMbOd.jpg",
+                name: "Ritish Khichi",
+                por: "Head",
+                mail: "khichi.1@iitj.ac.in",
+                instagram:"https://www.instagram.com/ritish.khichi/",
+                linkedin:"https://www.linkedin.com/in/ritish-khichi-06a30a209",
+                github: ""
+            },
+            {
+                id: 1,
+                image: "https://i.imgur.com/zBrnO4l.jpg",
+                name: "Bhavya Sharma",
+                por: "Head",
+                mail: "sharma.91@iitj.ac.in",
+                instagram:"https://instagram.com/bms.0212?igshid=YmMyMTA2M2Y=",
+                linkedin:"https://www.linkedin.com/in/bhavya-sharma-04772b209",
+                github: ""
+            },
+        ],
+    },
+    {
+        teamName: "Pronite",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/xkkcmd2.jpg",
+                name: "Ayush Abad",
+                por: "Head",
+                mail: "abad.1@iitj.ac.in",
+                instagram:"https://www.instagram.com/Ayush_abad_/",
+                linkedin:"",
+                github: ""
+            },
+            {
+                id: 1,
+                image: "https://i.imgur.com/9ozKlyT.jpg",
+                name: "Aman Mithoriya",
+                por: "Head",
+                mail: "mithoriya.1@iitj.ac.in",
+                instagram:"https://www.instagram.com/amanmithoriya/",
+                linkedin:"",
+                github: ""
+            },
 
+        ],
+    },
+    {
+        teamName: "Marketing",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/KtQhoZH.jpg",
+                name: "Harshita Gupta ",
+                por: "Head",
+                mail: "gupta.75@iitj.ac.in",
+                instagram:"",
+                linkedin:"",
+                github: ""
+            },
+            {
+                id: 1,
+                image: "https://i.imgur.com/PpP9GWi.jpg",
+                name: "Heet Shah",
+                por: "Head",
+                mail: "shahheet85@gmail.com",
+                instagram:"https://www.instagram.com/shahheet85/",
+                linkedin:"https://www.linkedin.com/in/heet-shah-9ab2301b0/",
+                github: ""
+            },
+        ],
+    },
+    {
+        teamName: "Design and Creativity ",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/qYhdB6r.jpg",
+                name: "Haardik Ravat",
+                por: "Head",
+                mail: "ravat.1@iitj.ac.in",
+                instagram:"https://instagram.com/haardik_ravat",
+                linkedin:"https://www.linkedin.com/in/haardik-ravat",
+                github: ""
+            },
+            {
+                id: 1,
+                image: "https://i.imgur.com/24rxcmH.jpg",
+                name: "Himanshu Parmeshwar",
+                por: "Head",
+                mail: "parmeshwar.1@iitj.ac.in",
+                instagram:"",
+                linkedin:"https://www.linkedin.com/in/himanshu-parmeshwar-85234a24a/",
+                github: ""
+            },
+           
+        ],
+    },
+    
+    {
+        teamName: "Content Writing",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/oPigWVd.jpg",
+                name: "Lakshya Nitin Tandon ",
+                por: "Head",
+                mail: "tandon.1@iitj.ac.in ",
+                instagram:"https://instagram.com/alaukik_lnt09?igshid=ZDdkNTZiNTM=",
+                linkedin:"",
+                github: ""
+            },
+        ],
+    },
+    
     {
         teamName: "Web Development Team",
         members: [
@@ -89,9 +243,45 @@ const team_data = [
                 image: "https://media-exp1.licdn.com/dms/image/C4D03AQEFSqJ1M2MpDw/profile-displayphoto-shrink_800_800/0/1636205452815?e=1675900800&v=beta&t=kkDvsFcfmGQced2pFQLXmYatWZKUu6iWLWkGw4zKa3c",
                 name: "Pranav Goswami",
                 por: "Head",
+                mail: "goswami.4@iitj.ac.in",
                 instagram:"https://www.instagram.com/pranav_chiku/",
                 linkedin:"https://www.linkedin.com/in/pranav-goswami-30a365207/",
                 github: "https://github.com/pranavchiku"
+            },
+        ],
+    },
+    {
+        teamName: "Publicity and Media",
+        members: [
+            {
+                id: 0,
+                image: "https://i.imgur.com/7Xgn3Vp.jpg",
+                name: "Divyanshi Singh Bora",
+                por: "Head",
+                mail: "bora.1@iitj.ac.in",
+                instagram:"https://www.instagram.com/bora_divyanshi_/",
+                linkedin:"https://www.linkedin.com/in/divyanshi-singh-bora-40a322205/",
+                github: ""
+            },
+            {
+                id: 1,
+                image: "https://i.imgur.com/Ciree2k.jpg",
+                name: "Suborno Biswas",
+                por: "Head",
+                mail: "biswas.4@iitj.ac.in",
+                instagram:"https://www.instagram.com/ivan_biswas/",
+                linkedin:"https://www.linkedin.com/in/subornobiswas/",
+                github: ""
+            },
+            {
+                id: 2,
+                image: "https://i.imgur.com/6DbJuhI.jpg",
+                name: "Prajjwal Chand",
+                por: "Head",
+                mail: "chand.1@iitj.ac.in ",
+                instagram:"https://instagram.com/prajjwalchand_?igshid=YmMyMTA2M2Y=",
+                linkedin:"https://www.linkedin.com/in/prajjwalchand",
+                github: ""
             },
         ],
     },
@@ -107,6 +297,7 @@ const team_data = [
 
                 instagram:"https://www.instagram.com/virgrammid_8302",
                 linkedin:"",
+                github: ""
             },
             {
                 id: 1,
@@ -116,6 +307,7 @@ const team_data = [
                 mail: "dubeymanasi22@gmail.com ",
                 instagram:"",
                 linkedin:"https://www.linkedin.com/in/manasi-dubey-391335243",
+                github: ""
             },
             {
                 id: 2,
@@ -125,6 +317,7 @@ const team_data = [
                 mail: "yaduvanshi.2@iitj.ac.in",
                 instagram:"https://instagram.com/parthyadu1shi?igshid=YmMyMTA2M2Y=",
                 linkedin:"https://www.linkedin.com/in/parth-yaduvanshi-b84907200",
+                github: ""
             },
             {
                 id: 3,
@@ -134,173 +327,12 @@ const team_data = [
                 mail: "arora.9@iitj.ac.in",
                 instagram:"https://www.instagram.com/_arora_sam/",
                 linkedin:"",
+                github: ""
             },
            
         ],
     },
-    {
-        teamName: "Public Relations",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/DWO7yNR.jpg",
-                name: "Abu Shahid ",
-                por: "Head",
-                mail: "shahid.3@iitj.ac.in",
-                instagram:"https://www.instagram.com/ceyxasm/",
-                linkedin:"",
-            },
-            {
-                id: 1,
-                image: "https://i.imgur.com/2zLMQCB.jpg",
-                name: "Tanmay",
-                por: "Head",
-                mail: "tanmay.1@iitj.ac.in ",
-                instagram:"https://www.instagram.com/1__tanmay__/",
-                linkedin:"",
-            },
-            {
-                id: 2,
-                image: "https://i.imgur.com/MV241a1.jpg",
-                name: "Yashmita",
-                por: "Head",
-                mail: "yashmita.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/Yashmita__sangwan/",
-                linkedin:"https://in.linkedin.com/in/yashmita-sangwan-6a403820a",
-            },
-        ],
-    },
-
-    {
-        teamName: "Publicity and Media",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/7Xgn3Vp.jpg",
-                name: "Divyanshi Singh Bora",
-                por: "Head",
-                mail: "bora.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/bora_divyanshi_/",
-                linkedin:"https://www.linkedin.com/in/divyanshi-singh-bora-40a322205/",
-            },
-            {
-                id: 1,
-                image: "https://i.imgur.com/Ciree2k.jpg",
-                name: "Suborno Biswas",
-                por: "Head",
-                mail: "biswas.4@iitj.ac.in",
-                instagram:"https://www.instagram.com/ivan_biswas/",
-                linkedin:"https://www.linkedin.com/in/subornobiswas/",
-            },
-            {
-                id: 2,
-                image: "https://i.imgur.com/6DbJuhI.jpg",
-                name: "Prajjwal Chand",
-                por: "Head",
-                mail: "chand.1@iitj.ac.in ",
-                instagram:"https://instagram.com/prajjwalchand_?igshid=YmMyMTA2M2Y=",
-                linkedin:"https://www.linkedin.com/in/prajjwalchand",
-            },
-        ],
-    },
-
-    {
-        teamName: "Design and Creativity ",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/qYhdB6r.jpg",
-                name: "Haardik Ravat",
-                por: "Head",
-                mail: "ravat.1@iitj.ac.in",
-                instagram:"https://instagram.com/haardik_ravat",
-                linkedin:"https://www.linkedin.com/in/haardik-ravat",
-            },
-            {
-                id: 1,
-                image: "https://i.imgur.com/24rxcmH.jpg",
-                name: "Himanshu Parmeshwar",
-                por: "Head",
-                mail: "parmeshwar.1@iitj.ac.in",
-                instagram:"",
-                linkedin:"https://www.linkedin.com/in/himanshu-parmeshwar-85234a24a/",
-            },
-           
-        ],
-    },
-
-    {
-        teamName: "Informals",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/sstMbOd.jpg",
-                name: "Ritish Khichi",
-                por: "Head",
-                mail: "khichi.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/ritish.khichi/",
-                linkedin:"https://www.linkedin.com/in/ritish-khichi-06a30a209",
-            },
-            {
-                id: 1,
-                image: "https://i.imgur.com/zBrnO4l.jpg",
-                name: "Bhavya Sharma",
-                por: "Head",
-                mail: "sharma.91@iitj.ac.in",
-                instagram:"https://instagram.com/bms.0212?igshid=YmMyMTA2M2Y=",
-                linkedin:"https://www.linkedin.com/in/bhavya-sharma-04772b209",
-            },
-        ],
-    },
-
-    {
-        teamName: "Coordinator",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/1tbujA7.jpg",
-                name: "Anirudh Bajaj",
-                por: "Head",
-                mail: "bajaj.3@iitj.ac.in",
-                instagram:"",
-                linkedin:"",
-            },
-            {
-                id: 1,
-                image: "https://i.imgur.com/v9ZEVnX.jpg",
-                name: "Aryan Tiwari",
-                por: "Head",
-                mail: "tiwari.16@iitj.ac.in",
-                instagram:"https://www.instagram.com/aryantiwxri/",
-                linkedin:"",
-            },
-        ],
-    },
-
-    {
-        teamName: "Pronite",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/xkkcmd2.jpg",
-                name: "Ayush Abad",
-                por: "Head",
-                mail: "abad.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/Ayush_abad_/",
-                linkedin:"",
-            },
-            {
-                id: 1,
-                image: "https://i.imgur.com/9ozKlyT.jpg",
-                name: "Aman Mithoriya",
-                por: "Head",
-                mail: "mithoriya.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/amanmithoriya/",
-                linkedin:"",
-            },
-
-        ],
-    },
+    
     {
         teamName: "Resource Management ",
         members: [
@@ -312,6 +344,7 @@ const team_data = [
                 mail: "sangwan.2@iitj.ac.in",
                 instagram:"https://www.instagram.com/sangs_gaurav/",
                 linkedin:"https://www.linkedin.com/in/gaurav-sangwan",
+                github: ""
             },
             {
                 id: 1,
@@ -321,6 +354,7 @@ const team_data = [
                 mail: "verma.31@iitj.ac.in",
                 instagram:"",
                 linkedin:"",
+                github: ""
             },
             {
                 id: 2,
@@ -330,6 +364,7 @@ const team_data = [
                 mail: "gupta.77@iitj.ac.in",
                 instagram:"https://www.instagram.com/dhruvgupta_1212/",
                 linkedin:"",
+                github: ""
             },
             {
                 id: 3,
@@ -339,94 +374,61 @@ const team_data = [
                 mail: "kushwah.4@iitj.ac.in ",
                 instagram:"https://www.instagram.com/karanrajawat7021/",
                 linkedin:"https://www.linkedin.com/in/karan-singh-kushwah-475429219",
+                github: ""
             },
         ],
     },
+
     {
-        teamName: "Entrepreneurial events",
+        teamName: "Festival Chiefs",
         members: [
             {
                 id: 0,
-                image: "https://i.imgur.com/V6JhE4z.jpg",
-                name: "Harshita Kalani",
-                por: "Head",
-                mail: "kalani.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/harsheyyyy_11/",
-                linkedin:"https://www.linkedin.com/in/harshita-kalani-604866225?trk=public_profile_samename-profile&originalSubdomain=in",
+                image: "https://media-exp1.licdn.com/dms/image/C5603AQGDTRLnyF0SHw/profile-displayphoto-shrink_800_800/0/1641058794143?e=1675900800&v=beta&t=XO1aBlMBolLJ6QA3R_d16ijtmUj04docnpwJVxptoy4",
+                name: "Yash Ruhatiya",
+                por: "",
+                phone: "8605835009",
+                mail: "ruhatiya.1@iitj.ac.in",
+                instagram:"https://instagram.com/yash_ruhatiya24?igshid=YmMyMTA2M2Y=",
+                linkedin:"https://www.linkedin.com/in/yash-ruhatiya-308831206",
+                github: ""
             },
             {
                 id: 1,
-                image: "https://i.imgur.com/kLW8SyF.jpg",
-                name: "Jaimin Gajjar",
-                por: "Head",
-                mail: "jaimingajjar01@gmail.com",
-                instagram:"https://www.instagram.com/jaimin002/",
-                linkedin:"http://linkedin.com/in/jaimin-gajjar-0386b31b9",
+                image: "https://media-exp1.licdn.com/dms/image/C4D03AQGa_1PjeJ7B7g/profile-displayphoto-shrink_800_800/0/1661627598565?e=1675900800&v=beta&t=sqON6g5iuTaGDxzS-f2la7QoemJC87JBLjHNnk7I5NI",
+                name: "Dhruv Agarwal",
+                por: " ",
+                phone: "8741011311",
+                mail: "agarwal.18@iitj.ac.in",
+                instagram:"https://www.instagram.com/dhruv_3005/",
+                linkedin:"https://www.linkedin.com/in/dhruv-agarwal-3480611a7",
+                github: ""
             },
-        ],
-    },
-    {
-        teamName: "Marketing",
-        members: [
             {
-                id: 0,
-                image: "https://i.imgur.com/KtQhoZH.jpg",
-                name: "Harshita Gupta ",
-                por: "Head",
-                mail: "gupta.75@iitj.ac.in",
+                id: 2,
+                image: "https://rahulgopathi.tech/assets/img/My%20photo.png",
+                name: "Rahul Gopathi",
+                por: "",
+                phone: "8919430577",
+                mail: "gopathi.1@iitj.ac.in",
+                instagram:"https://www.instagram.com/rahul_gopathi/",
+                linkedin:"https://www.linkedin.com/in/rahul-gopathi-a8084a1b8/",
+                github: ""
+            },
+            {
+                id: 3,
+                image: "https://i.imgur.com/Srzgz1v.jpg",
+                name: "Neielotpal Rao",
+                por: " ",
+                phone: "7988389822",
+                mail: "rao.5@iitj.ac.in",
                 instagram:"",
                 linkedin:"",
-            },
-            {
-                id: 1,
-                image: "https://i.imgur.com/PpP9GWi.jpg",
-                name: "Heet Shah",
-                por: "Head",
-                mail: "shahheet85@gmail.com",
-                instagram:"https://www.instagram.com/shahheet85/",
-                linkedin:"https://www.linkedin.com/in/heet-shah-9ab2301b0/",
+                github: ""
             },
         ],
     },
 
-    {
-        teamName: "Technical events",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/AW0d3d5.jpg",
-                name: "Sumit Kumar Prajapati",
-                por: "Head",
-                mail: "prajapati.3@iitj.ac.in",
-                instagram:"https://www.instagram.com/the.sumitprajapati/",
-                linkedin:"https://www.linkedin.com/in/sumit-prajapati-2a0a551bb/",
-            },
-            {
-                id: 1,
-                image: "https://i.imgur.com/ZjdLbgK.jpg",
-                name: "Somil Maheshwari ",
-                por: "Head",
-                mail: "maheshwari.7@iitj.ac.in",
-                instagram:"https://www.instagram.com/somil_maheshwari/",
-                linkedin:"",
-            },
-        ],
-    },
-
-    {
-        teamName: "Content Writing",
-        members: [
-            {
-                id: 0,
-                image: "https://i.imgur.com/oPigWVd.jpg",
-                name: "Lakshya Nitin Tandon ",
-                por: "Head",
-                mail: "tandon.1@iitj.ac.in ",
-                instagram:"https://instagram.com/alaukik_lnt09?igshid=ZDdkNTZiNTM=",
-                linkedin:"",
-            },
-        ],
-    }
 
 ];
 

@@ -159,4 +159,22 @@ class CampusAmbassador(models.Model):
     ca_count = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.email    
+        return self.email 
+
+
+
+
+class RoboWars(models.Model):
+    rw_id = models.CharField(max_length=9, primary_key=True, verbose_name='Robowars_Team ID')
+    rw_name = models.CharField(max_length=50, verbose_name="Robowars Team Name", unique=True)
+    rw_leader = models.ForeignKey(ExtendedUser, blank=True, related_name="Robowars_team_leader", on_delete=models.CASCADE)
+    rw_team_size = models.IntegerField(default=1)
+    rw_country = models.CharField(max_length=50, verbose_name="Country")
+    bot_name = models.CharField(max_length=50, verbose_name="Bot Name")
+    rw_category = models.CharField(max_length=50, verbose_name="RW Category")
+    rw_members = models.ManyToManyField(ExtendedUser, related_name="Robowars_teams")
+    # event = models.ForeignKey(Event, blank=True, related_name="participating_teams", on_delete=models.CASCADE)
+    rw_isEligible = models.BooleanField(default=False, verbose_name="Is Team Eligible or Not")
+
+    def __str__(self):
+        return self.name

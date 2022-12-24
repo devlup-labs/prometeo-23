@@ -43,7 +43,7 @@ export default function CA() {
 
                 if (response.status === 200) {
                     const data = response.data;
-                    // console.log("Login Dashboard Data:", data);
+                    console.log("Login Dashboard Data:", data);
                     setUserData({
                         ...data,
                     });
@@ -73,6 +73,7 @@ export default function CA() {
             // console.log("Not logged in");
         } else {
             fetchData();
+
         }
     }, []);
 
@@ -87,11 +88,15 @@ export default function CA() {
         async function fetchData() {
             try {
                 console.log("Fetching data for user:", user.email);
+                const obj ={
+                    email: user.email,
+                    // ambassador: user.ambassador,
+                    referral : user.referral_code,
+                }
+                console.log(obj);
                 const response = await api.post(
                     `${backendURL}/campusambassador/`,
-                    {
-                        email: user.email,
-                    }
+                    obj
                 );
                 if (response.status === 200) {
                     let data = response.data;
@@ -242,7 +247,7 @@ export default function CA() {
                         <div className="ca-content-incentive">
                             <div className="ca-content-incentive-title silver">
                                 SILVER <span>Campus Ambassador</span>
-                                <div>15+ Registrations</div>
+                                <div>10+ Registrations (with accommodation)</div>
                             </div>
                             <div className="ca-content-incentive-desc">
                                 <div className="ca-content-incentive-desc-item">
@@ -261,13 +266,21 @@ export default function CA() {
                                     />
                                     Certificate
                                 </div>
-                                <div className="ca-content-incentive-desc-item">
+                                {/* <div className="ca-content-incentive-desc-item">
                                     <img
                                         className="blue-shadow2"
                                         src={goodies}
                                         alt="goodies"
                                     />
                                     Goodies (T-shirt)
+                                </div> */}
+                                <div className="ca-content-incentive-desc-item">
+                                    <img
+                                        className="yellow-shadow2"
+                                        src={tickets}
+                                        alt="workshop"
+                                    />
+                                    Free Entry to 1 Workshop
                                 </div>
                             </div>
                         </div>
@@ -293,17 +306,17 @@ export default function CA() {
                                     />
                                     Certificate
                                 </div>
-                                <div className="ca-content-incentive-desc-item">
+                                {/* <div className="ca-content-incentive-desc-item">
                                     <img src={goodies} alt="goodies" />
                                     Goodies (Hoodie, Vouchers)
-                                </div>
+                                </div> */}
                                 <div className="ca-content-incentive-desc-item">
                                     <img
                                         className="yellow-shadow2"
                                         src={tickets}
                                         alt="workshop"
                                     />
-                                    Free Entry to 1 Workshop
+                                    Free Entry to 2 Workshops
                                 </div>
                             </div>
                         </div>

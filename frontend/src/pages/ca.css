@@ -13,7 +13,6 @@
     
     /* For scrollbar at right */
     /* height: 100%; */
-
     overflow-y: auto;
     overflow-x: hidden;
     background-image: url("../assets/backgrounds/ca_bg.jpg");
@@ -139,7 +138,7 @@
 .ca-content-title {
     width: 100%;
     font-family: Gentona;
-    font-size: min(50px, 10vmin);
+    font-size: 10vmin;
     text-shadow: 0 3px 5px #000000;
     /* border: 2px solid white; */
     flex-grow: 1;
@@ -214,12 +213,12 @@
 }
 
 .ca-content-desc-right {
-    font-size: min(20px, 4vmin);
+    font-size: 3.4vmin;
     padding: 0 1vmin 0 3vmin;
 }
 
 .ca-content-desc-left {
-    font-size: min(20px, 4vmin);
+    font-size: 3.4vmin;
     padding: 0 3vmin 0 1vmin;
 }
 

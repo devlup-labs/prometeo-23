@@ -10,6 +10,7 @@ from django.contrib import messages
 from .forms import EmailForm
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.urls import reverse
+from users.models import *
 
 sendMailID = settings.FROM_EMAIL_USER
 current_year_dict = {'1': '1st Year', '2': '2nd Year', '3': '3rd Year', '4': '4th Year', '5': '5th Year',
@@ -243,7 +244,7 @@ def get_all_user_export(filename):
         'font_color': 'white',
         'bg_color': 'black'
     })
-    worksheet2.merge_range('A1:I1', 'User List', merge_format2)
+    worksheet2.merge_range('A1:J1', 'User List', merge_format2)
     worksheet2.write(1, 0, "Email", header_format2)
     worksheet2.write(1, 1, "Name", header_format2)
     worksheet2.write(1, 2, "Contact", header_format2)
@@ -252,7 +253,8 @@ def get_all_user_export(filename):
     worksheet2.write(1, 5, "College", header_format2)
     worksheet2.write(1, 6, "Current Year", header_format2)
     worksheet2.write(1, 7, "Gender", header_format2)
-    worksheet2.write(1, 8, "Registration ID", header_format2)
+    worksheet2.write(1, 8, "Accomodation", header_format2)
+    worksheet2.write(1, 9, "Registration ID", header_format2)
 
     row2 = 2
 
@@ -265,7 +267,8 @@ def get_all_user_export(filename):
         worksheet2.write(row2, 5, user.college)
         worksheet2.write(row2, 6, current_year_dict[user.current_year])
         worksheet2.write(row2, 7, user.gender)
-        worksheet2.write(row2, 8, user.registration_id)
+        worksheet2.write(row2, 8, 'YES') if user.accomodation else worksheet2.write(row2, 8, 'NO')
+        worksheet2.write(row2, 9, user.registration_id)
         row2 += 1
     workbook2.close()
 
@@ -692,3 +695,12 @@ def change_registration(request, type, eventid, value):
         messages.success(request, 'Successfully closed registration for event ' + event.name + '.')
     event.save()
     return redirect('event_info', type, eventid)
+
+
+# dashboard page for preregistration
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/preregistration/')
+def preregistration_page(request):
+    preregistrations = PreRegistration.objects.all()
+    return render(request, 'dashboard/preregistration.html', {'Preregistrations': preregistrations})
+
