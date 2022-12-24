@@ -1,8 +1,11 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { useLocation, useSearchParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useSearchParams, Link } from "react-router-dom";
+import event_data from "./event_info";
+import "./event.css";
 
-import "./EventDetails.css";
+import logo from "../assets/navbar/prometeo_logo_23.png";
+import Footer from "../components/footer";
+import FadeIn from "../components/fadein";
 import { backendURL } from "../backendURL";
 
 // function logo(url){
@@ -97,96 +100,48 @@ function Entry(props) {
   );
 }
 
-function EventDetails() {
-    const [eventSponsor, setEventSponsor] = useState([]);
-    const [eventInfo, setEventInfo] = useState([]);
-    const [urlParams] = useSearchParams();
+function Events() {
+	const [urlParams] = useSearchParams();
+	// console.log("Type: ", urlParams.get("type"));
 
-    const location = useLocation();
-    //   console.log(location.state);
+	const [eventData, setEventData] = useState([])
 
-    useEffect(() => {
-        // console.log("useEffect");
+	useEffect(() => {
+		const navBarEle = document.getElementById("navbar");
+		navBarEle.style.opacity = 1;
+		document.body.style.overflow = "auto";
+	});
 
-        async function fetchData() {
-            let headers = new Headers();
-            headers.append("Content-Type", "application/json");
-            headers.append("Accept", "application/json");
-            headers.append("Origin", "http://localhost:3000");
+	useEffect(() => {
+		async function fetchData() {
+			let headers = new Headers();
+			headers.append('Content-Type', 'application/json');
+			headers.append('Accept', 'application/json');
+			headers.append('Origin', 'http://localhost:3000');
 
-            const requestOptions = {
-                method: "GET",
-                headers: headers,
-            };
-
-            const fetchURL = `${backendURL}/events/`;
-
-            await fetch(fetchURL, requestOptions)
-                .then((response) => response.json())
-                .then((data) => {
-                    data = data.filter(
-                        (item) => item.id == urlParams.get("id")
-                    );
-                    setEventInfo(data[0]);
-                    // console.log("Data:", data[0]);
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                });
-        }
-
-        const card = location.state;
-        // console.log("Card:", card);
-
-        if (card) {
-            //   console.log("pewpewpew");
-            setEventInfo(card);
-        } else {
-            // console.log("pewpewpew2");
-            fetchData();
-        }
-    }, []);
-
-    // useEffect(() => {
-    //   console.log("data fetched: ", eventInfo);
-    // }, [eventInfo]);
-
-    useEffect(() => {
-        async function fetchData2() {
-            let headers = new Headers();
-            headers.append("Content-Type", "application/json");
-            headers.append("Accept", "application/json");
-            headers.append("Origin", "http://localhost:3000");
-
-            const requestOptions = {
-                method: "GET",
-                headers: headers,
-            };
-
-            const fetchURL = `${backendURL}/eventsponsors/`;
-
-            await fetch(fetchURL, requestOptions)
-                .then((response) => response.json())
-                .then((data) => {
-                    data = data.filter(
-                        (item) => item.event == urlParams.get("id")
-                    );
-                    setEventSponsor([...data]);
-                    // console.log("Data:", data);
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                });
-        }
-
-        fetchData2();
-    }, []);
-
-    useEffect(() => {
-        const navBarEle = document.getElementById("navbar");
-        navBarEle.style.opacity = 1;
-        document.body.style.overflow = "auto";
-    });
+			const requestOptions = {
+				method: 'GET',
+				headers: headers,
+			}
+			
+			const fetchURL = (urlParams.get("type")) 
+				? `${backendURL}/events/?type=${urlParams.get("type")}` 
+				: `${backendURL}/events/`;
+			
+			await fetch(fetchURL, requestOptions)
+				.then((response) => response.json())
+				.then((data) => {
+					setEventData([
+						...data
+					]);
+					console.log("Data:", data);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		}
+		fetchData();
+	}, [urlParams])
 
 	return (
 		<FadeIn duration={500}>
@@ -214,4 +169,4 @@ function EventDetails() {
 	);
 }
 
-export default EventDetails;
+export default Events;

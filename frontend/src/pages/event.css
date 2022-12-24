@@ -235,6 +235,7 @@ a {
   color: rgb(2, 48, 48);
   font-family: "Exo 2", sans-serif;
   margin-bottom: 4%;
+  transition: 0.2s;
 }
 
 #button1, #button2 {
