@@ -287,7 +287,7 @@ export default function CA() {
                         <div className="ca-content-incentive">
                             <div className="ca-content-incentive-title gold">
                                 GOLD <span>Campus Ambassador</span>
-                                <div>25+ Registrations</div>
+                                <div>20+ Registrations (with accommodation)</div>
                             </div>
                             <div className="ca-content-incentive-desc">
                                 <div className="ca-content-incentive-desc-item">
@@ -306,10 +306,10 @@ export default function CA() {
                                     />
                                     Certificate
                                 </div>
-                                {/* <div className="ca-content-incentive-desc-item">
+                                <div className="ca-content-incentive-desc-item">
                                     <img src={goodies} alt="goodies" />
-                                    Goodies (Hoodie, Vouchers)
-                                </div> */}
+                                    Goodies
+                                </div>
                                 <div className="ca-content-incentive-desc-item">
                                     <img
                                         className="yellow-shadow2"
