@@ -276,7 +276,7 @@
 @-moz-keyframes translateX {
     0% {
         opacity: 0;
-        transform: translateX(60px);
+        transform: translateX(10px);
     }
 
     80% {
@@ -292,7 +292,7 @@
 @-webkit-keyframes translateX {
     0% {
         opacity: 0;
-        transform: translateX(60px);
+        transform: translateX(10px);
     }
 
     80% {
@@ -308,7 +308,7 @@
 @-o-keyframes translateX {
     0% {
         opacity: 0;
-        transform: translateX(60px);
+        transform: translateX(10px);
     }
 
     80% {
@@ -324,7 +324,7 @@
 @keyframes translateX {
     0% {
         opacity: 0;
-        transform: translateX(60px);
+        transform: translateX(10px);
     }
 
     80% {

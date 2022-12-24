@@ -30,6 +30,7 @@ import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
+import NewGallery from "./pages/newNewGallery";
 
 function App() {
     // const [bigBang, setBigBang] = useState(true);
