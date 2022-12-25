@@ -56,8 +56,8 @@ export default function Accommodation() {
                             Hope to see you at Prometeo 2022-23.
                         </span>
                         <span className="acc-content-desc-left">
-                            Please visit the Freqently Asked Questions (FAQ)
-                            section to get most of your queries resolved.
+                            Please visit the <a href="#acc-faq-div">Frequently Asked Questions (FAQ)
+                            section</a> to get most of your queries resolved.
                         </span>
                     </div>
                 </div>
@@ -229,7 +229,7 @@ export default function Accommodation() {
                 </div> */}
 
                 <div className="acc-content">
-                    <div className="acc-content-title">
+                    <div className="acc-content-title" id="acc-faq-div">
                         FAQ's
                     </div>
                     <div className="acc-content-text">

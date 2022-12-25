@@ -343,7 +343,7 @@
     }
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1140px) {
     .dropdown {
         flex-direction: column;
         width: 100%;

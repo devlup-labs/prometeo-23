@@ -212,6 +212,7 @@
     text-shadow: none;
     text-align: center;
     padding: 1vmin;
+    /* border: 2px solid white; */
 }
 
 .eventHome-eventCircle-gradient:hover {
@@ -224,6 +225,7 @@
     color: white;
     transition: all 0.1s ease;
     text-shadow: 0 2px 3px #000000;
+    font-size: 3.7vmin;
 }
 
 @media screen and (max-width: 768px) {
