@@ -209,7 +209,7 @@ const team_data = [
             {
                 id: 2,
                 image: "https://i.imgur.com/kVPgMcO.jpg",
-                name: "Tanmay gupta ",
+                name: "Tanmay Gupta ",
                 por: "Head",
                 mail: "gupta.80@iitj.ac.in",
                 instagram: "https://www.instagram.com/tanmay_gupta__/",
