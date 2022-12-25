@@ -9,8 +9,8 @@ export default function NewGallery() {
     });
 
     const [galleryData, setGalleryData] = useState([]);
-    const [stop, setStop] = useState(false);
-    const [galleryCompData, setGalleryCompData] = useState([]);
+
+    var stop = false;
 
     // let drag = false;
     let animationDuration = 200;
@@ -28,13 +28,12 @@ export default function NewGallery() {
     // change this to the number of images from backend
 
     const [numOfImages, setNumOfImages] = useState(0);
+    const N = 10;
 
     useEffect(() => {
-        console.log(galleryData.length, numOfImages);
+        console.log(galleryData.length, N);
         let percentage = parseInt(
-            (100 * galleryData.length) / numOfImages
-                ? (100 * galleryData.length) / numOfImages
-                : 0
+            (100 * galleryData.length) / N ? (100 * galleryData.length) / N : 0
         );
         let loaderText = document.getElementById("gallery-loader-text");
         loaderText.innerHTML = `${percentage}%`;
@@ -42,8 +41,18 @@ export default function NewGallery() {
         loaderBar.style.width = `${percentage}%`;
 
         if (percentage === 100) {
-            setTimeout(() => {
+            // clone each image node in track and append it to the end only if device is not touch
+            if (!("ontouchstart" in window)) {
+                let track = document.getElementById("slider-image-track");
+                let images = track.children;
+                let imagesLength = images.length;
+                for (let i = 0; i < imagesLength; i++) {
+                    let image = images[i].cloneNode(true);
+                    track.appendChild(image);
+                }
+            }
 
+            setTimeout(() => {
                 let loader = document.getElementById("gallery-loader");
                 loader.style.opacity = 0;
                 setTimeout(() => {
@@ -113,18 +122,20 @@ export default function NewGallery() {
 
             console.log("num of images", numOfImages);
 
-            for (let i = 0; i < imageLinks.length; i++) {
+            for (let i = 0; i < N; i++) {
                 // if (imageLinks[i].id === 1) continue;
                 let img = new Image();
                 img.src = imageLinks[i].link;
                 img.draggable = false;
                 // img.id = `gallery-image-${imageLinks[i].id}`;
                 img.className = "slider-image";
+                img.height = '40vh';
+                img.width = '35vw';
                 // img.height = 300;
-                // img.onclick = () => {
-                //     console.log("clicked");
-                //     handleClick(i);
-                // };
+                let track = document.getElementById("slider-image-track");
+                img.onclick = () => {
+                    openImage(img.src);
+                };
 
                 img.onload = function () {
                     // console.log("image loaded");
@@ -137,24 +148,19 @@ export default function NewGallery() {
                     let div = document.createElement("div");
                     div.className = "slide";
                     div.appendChild(img);
-                    // clone
-                    let div2 = div.cloneNode(true);
-                    let track1 = document.getElementById("track-1");
-                    track1.appendChild(div);
-                    let track2 = document.getElementById("track-2");
-                    track2.appendChild(div2);
+                    track.appendChild(div);
                 };
             }
         });
     }, []);
 
-    const openImage = (num) => {
+    const openImage = (src) => {
+        if ("ontouchstart" in window) return;
         // disable pointer events
-        setStop(true);
+        let track = document.getElementById("slider-image-track");
         // console.log("opening image", num);
-        const image = document.getElementById(`gallery-image-${num}`);
         const showcase = document.getElementById("gallery-showcase");
-        showcase.innerHTML = `<img src=${image.src} id="gallery-showcase-image" />`;
+        showcase.innerHTML = `<img src=${src} id="gallery-showcase-image" />`;
         showcase.style.display = "flex";
         // animate opacity
         showcase.animate(
@@ -164,6 +170,32 @@ export default function NewGallery() {
             { duration: animationDuration, fill: "forwards" }
         );
     };
+
+    useEffect(() => {
+        console.log("stop is", stop);
+        let track = document.getElementById("slider-image-track");
+        track.addEventListener("mouseover", () => {
+            // console.log("hover!");
+            track.style.animationPlayState = "paused";
+        });
+
+        track.addEventListener("mouseout", () => {
+            // console.log("hover out!");
+            track.style.animationPlayState = "running";
+        });
+
+        let showcase = document.getElementById("gallery-showcase");
+        showcase.addEventListener("mouseover", () => {
+            // console.log("hover!");
+            track.style.animationPlayState = "paused";
+        });
+
+        // add click event listener to showcase
+        showcase.addEventListener("click", () => {
+            // console.log("hover out!");
+            track.style.animationPlayState = "running";
+        });
+    }, []);
 
     return (
         <div id="gallery-container">
@@ -190,7 +222,9 @@ export default function NewGallery() {
                         { duration: animationDuration, fill: "forwards" }
                     );
                     showcase.style.display = "none";
-                    setStop(false);
+                    let track = document.getElementById("slider-image-track");
+                    track.style.pointerEvents = "all";
+                    stop = false;
                     // setCurrentImage(-1);
                     // document.getElementById(
                     //     "slider-image-track"
@@ -200,8 +234,8 @@ export default function NewGallery() {
             <div id="gallery-heading">GALLERY</div>
             <div className="slider">
                 <div className="slide-track" id="slider-image-track">
-                    <div id="track-1"></div>
-                    <div id="track-2"></div>
+                    {/* <div id="track-1"></div> */}
+                    {/* <div id="track-2"></div> */}
                 </div>
             </div>
         </div>

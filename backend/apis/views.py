@@ -238,7 +238,7 @@ class CampusAmbassadorView(APIView):
                 # subject = "Registration as Campus Ambassador"
                 subject='Registration as Campus Ambassador'
                 # message = "You have successfully registered as Campus Ambassador."
-                message = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
+                message = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo '23 - the Techical Fest of IIT Jodhpur ."
                 isCA=True
                 html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'message': message, 'isCA':isCA})
                 text_content = strip_tags(html_content)
@@ -246,7 +246,7 @@ class CampusAmbassadorView(APIView):
                 message.attach_alternative(html_content, "text/html")
                 message.mixed_subtype = 'related'
                 message.send()
-            # msg = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo'23 - the Techical Fest of IIT Jodhpur ."
+            # msg = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo '23 - the Techical Fest of IIT Jodhpur ."
             # isCA=True
             # # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
             # SENDGRID_API_KEY = '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'
