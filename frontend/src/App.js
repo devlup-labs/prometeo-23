@@ -30,6 +30,7 @@ import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
+import NewGallery from "./pages/newNewGallery";
 
 function App() {
     // const [bigBang, setBigBang] = useState(true);
@@ -51,7 +52,7 @@ function App() {
                         />
 
                         <Route path="/past-speakers" element={<Speaker />} />
-                        <Route path="/gallery" element={<Gallery />} />
+                        <Route path="/gallery" element={<NewGallery />} />
                         <Route path="/past-sponsors" element={<Sponsors />} />
                         <Route path="/events" element={<Events />} />
                         {/* <Route path="/theme" element={<Theme />} /> */}

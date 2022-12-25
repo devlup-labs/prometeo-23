@@ -234,6 +234,10 @@
     padding: 0 3vmin 0 3vmin;
 }
 
+.acc-content-desc-left > a {
+    text-decoration: underline;
+}
+
 .text-justify {
     text-align: justify;
 }

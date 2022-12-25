@@ -46,18 +46,25 @@ const navBarLinks = [
         tabIndex: 6,
     },
     {
+        name: "accommodation",
+        text: "Accommodation",
+        path: "/accommodation",
+        section: "right",
+        tabIndex: 7,
+    },
+    {
         name: "events",
         text: "Events",
         path: "/events",
         section: "right",
-        tabIndex: 7,
+        tabIndex: 8,
     },
     {
         name: "gallery",
         text: "Gallery",
         path: "/gallery",
         section: "right",
-        tabIndex: 8,
+        tabIndex: 9,
     },
     // {
     //     name: "register",
@@ -78,7 +85,7 @@ const navBarLinks = [
         text: "Login",
         path: "/login",
         section: "right",
-        tabIndex: 9,
+        tabIndex: 10,
     },
 ];
 

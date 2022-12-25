@@ -7,30 +7,46 @@ const team_data = [
                 image: "https://i.imgur.com/DWO7yNR.jpg",
                 name: "Abu Shahid ",
                 por: "Head",
+                phone: "8840836373",
                 mail: "shahid.3@iitj.ac.in",
-                instagram:"https://www.instagram.com/ceyxasm/",
-                linkedin:"",
-                github: ""
+                instagram: "https://www.instagram.com/ceyxasm/",
+                linkedin: "",
+                github: "",
             },
             {
                 id: 1,
                 image: "https://i.imgur.com/2zLMQCB.jpg",
                 name: "Tanmay",
                 por: "Head",
+                phone: "8368753323",
                 mail: "tanmay.1@iitj.ac.in ",
-                instagram:"https://www.instagram.com/1__tanmay__/",
-                linkedin:"",
-                github: ""
+                instagram: "https://www.instagram.com/1__tanmay__/",
+                linkedin: "",
+                github: "",
             },
             {
                 id: 2,
                 image: "https://i.imgur.com/MV241a1.jpg",
                 name: "Yashmita",
                 por: "Head",
+                phone: "7015696881",
                 mail: "yashmita.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/Yashmita__sangwan/",
-                linkedin:"https://in.linkedin.com/in/yashmita-sangwan-6a403820a",
-                github: ""
+                instagram: "https://www.instagram.com/Yashmita__sangwan/",
+                linkedin:
+                    "https://in.linkedin.com/in/yashmita-sangwan-6a403820a",
+                github: "",
+            },
+            {
+                id: 3,
+                image: "https://i.imgur.com/DG2w36d.jpg",
+                name: "Ayush Didel",
+                por: "Head",
+                phone: "7725973739",
+                mail: "didel.1@iitj.ac.in",
+                instagram:
+                    "https://instagram.com/didelayush2003?igshid=YmMyMTA2M2Y=",
+                linkedin: "https://www.linkedin.com/in/ayush-didel-64087b220",
+                //Public Relations
             },
         ],
     },
@@ -38,13 +54,23 @@ const team_data = [
         teamName: "Technical events",
         members: [
             {
+                id: 2,
+                image: "https://i.imgur.com/Z1gn8Wu.jpg",
+                name: "Adarsh Palaskar ",
+                por: "Head",
+                mail: "palaskar.1@iitj.ac.in",
+                instagram: "https://www.instagram.com/adarsh_palaskar99",
+                linkedin: "https://www.linkedin.com/in/adarsh-palaskar/",
+            },
+            {
                 id: 0,
                 image: "https://i.imgur.com/AW0d3d5.jpg",
                 name: "Sumit Kumar Prajapati",
                 por: "Head",
                 mail: "prajapati.3@iitj.ac.in",
-                instagram:"https://www.instagram.com/the.sumitprajapati/",
-                linkedin:"https://www.linkedin.com/in/sumit-prajapati-2a0a551bb/",
+                instagram: "https://www.instagram.com/the.sumitprajapati/",
+                linkedin:
+                    "https://www.linkedin.com/in/sumit-prajapati-2a0a551bb/",
             },
             {
                 id: 1,
@@ -52,8 +78,8 @@ const team_data = [
                 name: "Somil Maheshwari ",
                 por: "Head",
                 mail: "maheshwari.7@iitj.ac.in",
-                instagram:"https://www.instagram.com/somil_maheshwari/",
-                linkedin:"",
+                instagram: "https://www.instagram.com/somil_maheshwari/",
+                linkedin: "",
             },
         ],
     },
@@ -66,8 +92,9 @@ const team_data = [
                 name: "Harshita Kalani",
                 por: "Head",
                 mail: "kalani.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/harsheyyyy_11/",
-                linkedin:"https://www.linkedin.com/in/harshita-kalani-604866225?trk=public_profile_samename-profile&originalSubdomain=in",
+                instagram: "https://www.instagram.com/harsheyyyy_11/",
+                linkedin:
+                    "https://www.linkedin.com/in/harshita-kalani-604866225?trk=public_profile_samename-profile&originalSubdomain=in",
             },
             {
                 id: 1,
@@ -75,8 +102,19 @@ const team_data = [
                 name: "Jaimin Gajjar",
                 por: "Head",
                 mail: "jaimingajjar01@gmail.com",
-                instagram:"https://www.instagram.com/jaimin002/",
-                linkedin:"http://linkedin.com/in/jaimin-gajjar-0386b31b9",
+                instagram: "https://www.instagram.com/jaimin002/",
+                linkedin: "http://linkedin.com/in/jaimin-gajjar-0386b31b9",
+            },
+            {
+                id: 2,
+                image: "https://i.imgur.com/6KxdwTx.jpg",
+                name: "Tejas Parmar ",
+                por: "Head",
+                mail: "parmar.2@iitj.ac.in",
+                instagram:
+                    "https://instagram.com/_tejas.parmar?igshid=YmMyMTA2M2Y=",
+                linkedin: "https://www.linkedin.com/in/tejas-parmar-990832204",
+                //Entrepreneurial events
             },
         ],
     },
@@ -89,9 +127,9 @@ const team_data = [
                 name: "Ritish Khichi",
                 por: "Head",
                 mail: "khichi.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/ritish.khichi/",
-                linkedin:"https://www.linkedin.com/in/ritish-khichi-06a30a209",
-                github: ""
+                instagram: "https://www.instagram.com/ritish.khichi/",
+                linkedin: "https://www.linkedin.com/in/ritish-khichi-06a30a209",
+                github: "",
             },
             {
                 id: 1,
@@ -99,9 +137,19 @@ const team_data = [
                 name: "Bhavya Sharma",
                 por: "Head",
                 mail: "sharma.91@iitj.ac.in",
-                instagram:"https://instagram.com/bms.0212?igshid=YmMyMTA2M2Y=",
-                linkedin:"https://www.linkedin.com/in/bhavya-sharma-04772b209",
-                github: ""
+                instagram: "https://instagram.com/bms.0212?igshid=YmMyMTA2M2Y=",
+                linkedin: "https://www.linkedin.com/in/bhavya-sharma-04772b209",
+                github: "",
+            },
+            {
+                id: 2,
+                image: "https://i.imgur.com/hUqsKIP.jpg",
+                name: "Uday Bhanu ",
+                por: "Head",
+                mail: "bhanu.2@iitj.ac.in",
+                instagram: "https://www.instagram.com/_uday_bhanu_/",
+                linkedin: "https://www.linkedin.com/in/uday-bhanu-983653204/",
+                //Informals
             },
         ],
     },
@@ -114,9 +162,9 @@ const team_data = [
                 name: "Ayush Abad",
                 por: "Head",
                 mail: "abad.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/Ayush_abad_/",
-                linkedin:"",
-                github: ""
+                instagram: "https://www.instagram.com/Ayush_abad_/",
+                linkedin: "",
+                github: "",
             },
             {
                 id: 1,
@@ -124,11 +172,10 @@ const team_data = [
                 name: "Aman Mithoriya",
                 por: "Head",
                 mail: "mithoriya.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/amanmithoriya/",
-                linkedin:"",
-                github: ""
+                instagram: "https://www.instagram.com/amanmithoriya/",
+                linkedin: "",
+                github: "",
             },
-
         ],
     },
     {
@@ -140,9 +187,9 @@ const team_data = [
                 name: "Harshita Gupta ",
                 por: "Head",
                 mail: "gupta.75@iitj.ac.in",
-                instagram:"",
-                linkedin:"",
-                github: ""
+                instagram: "",
+                linkedin: "",
+                github: "",
             },
             {
                 id: 1,
@@ -150,9 +197,19 @@ const team_data = [
                 name: "Heet Shah",
                 por: "Head",
                 mail: "shahheet85@gmail.com",
-                instagram:"https://www.instagram.com/shahheet85/",
-                linkedin:"https://www.linkedin.com/in/heet-shah-9ab2301b0/",
-                github: ""
+                instagram: "https://www.instagram.com/shahheet85/",
+                linkedin: "https://www.linkedin.com/in/heet-shah-9ab2301b0/",
+                github: "",
+            },
+            {
+                id: 2,
+                image: "https://i.imgur.com/kVPgMcO.jpg",
+                name: "Tanmay gupta ",
+                por: "Head",
+                mail: "gupta.80@iitj.ac.in",
+                instagram: "https://www.instagram.com/tanmay_gupta__/",
+                linkedin: "https://www.linkedin.com/in/tanmay-gupta-502040201/",
+                //Marketing
             },
         ],
     },
@@ -165,9 +222,9 @@ const team_data = [
                 name: "Haardik Ravat",
                 por: "Head",
                 mail: "ravat.1@iitj.ac.in",
-                instagram:"https://instagram.com/haardik_ravat",
-                linkedin:"https://www.linkedin.com/in/haardik-ravat",
-                github: ""
+                instagram: "https://instagram.com/haardik_ravat",
+                linkedin: "https://www.linkedin.com/in/haardik-ravat",
+                github: "",
             },
             {
                 id: 1,
@@ -175,14 +232,14 @@ const team_data = [
                 name: "Himanshu Parmeshwar",
                 por: "Head",
                 mail: "parmeshwar.1@iitj.ac.in",
-                instagram:"",
-                linkedin:"https://www.linkedin.com/in/himanshu-parmeshwar-85234a24a/",
-                github: ""
+                instagram: "",
+                linkedin:
+                    "https://www.linkedin.com/in/himanshu-parmeshwar-85234a24a/",
+                github: "",
             },
-           
         ],
     },
-    
+
     {
         teamName: "Content Writing",
         members: [
@@ -192,13 +249,14 @@ const team_data = [
                 name: "Lakshya Nitin Tandon ",
                 por: "Head",
                 mail: "tandon.1@iitj.ac.in ",
-                instagram:"https://instagram.com/alaukik_lnt09?igshid=ZDdkNTZiNTM=",
-                linkedin:"",
-                github: ""
+                instagram:
+                    "https://instagram.com/alaukik_lnt09?igshid=ZDdkNTZiNTM=",
+                linkedin: "",
+                github: "",
             },
         ],
     },
-    
+
     {
         teamName: "Web Development Team",
         members: [
@@ -208,9 +266,9 @@ const team_data = [
                 name: "Yash Bhargava",
                 por: "Front End Head",
                 mail: "bhargava.3@iitj.ac.in",
-                instagram:"https://instagram.com/cyan_tarantula",
-                linkedin:"https://linkedin.com/in/yashbhargava02",
-                github: "https://github.com/CyanTarantula"
+                instagram: "https://instagram.com/cyan_tarantula",
+                linkedin: "https://linkedin.com/in/yashbhargava02",
+                github: "https://github.com/CyanTarantula",
             },
             {
                 id: 1,
@@ -218,19 +276,19 @@ const team_data = [
                 name: "Soumil Sinha",
                 por: "Front End Head",
                 mail: "sinha.5@iitj.ac.in",
-                instagram:"https://www.instagram.com/soumil.sinha/",
-                linkedin:"https://www.linkedin.com/in/soumil-sinha-979845204/",
-                github: "https://github.com/sawmill811"
+                instagram: "https://www.instagram.com/soumil.sinha/",
+                linkedin: "https://www.linkedin.com/in/soumil-sinha-979845204/",
+                github: "https://github.com/sawmill811",
             },
             {
-              id: 2,
-              image: "https://i.imgur.com/cAdiPmR.jpg",
-              name: "Samkit Shah",
-              por: "Back End Head",
-              mail: "shah.11@iitj.ac.in",
-              instagram:"",
-              linkedin:"https://www.linkedin.com/in/samkit-shah-432147209/",
-              github: "https://github.com/samkitshah1262"
+                id: 2,
+                image: "https://i.imgur.com/cAdiPmR.jpg",
+                name: "Samkit Shah",
+                por: "Back End Head",
+                mail: "shah.11@iitj.ac.in",
+                instagram: "",
+                linkedin: "https://www.linkedin.com/in/samkit-shah-432147209/",
+                github: "https://github.com/samkitshah1262",
             },
         ],
     },
@@ -244,9 +302,10 @@ const team_data = [
                 name: "Pranav Goswami",
                 por: "Head",
                 mail: "goswami.4@iitj.ac.in",
-                instagram:"https://www.instagram.com/pranav_chiku/",
-                linkedin:"https://www.linkedin.com/in/pranav-goswami-30a365207/",
-                github: "https://github.com/pranavchiku"
+                instagram: "https://www.instagram.com/pranav_chiku/",
+                linkedin:
+                    "https://www.linkedin.com/in/pranav-goswami-30a365207/",
+                github: "https://github.com/pranavchiku",
             },
         ],
     },
@@ -259,9 +318,10 @@ const team_data = [
                 name: "Divyanshi Singh Bora",
                 por: "Head",
                 mail: "bora.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/bora_divyanshi_/",
-                linkedin:"https://www.linkedin.com/in/divyanshi-singh-bora-40a322205/",
-                github: ""
+                instagram: "https://www.instagram.com/bora_divyanshi_/",
+                linkedin:
+                    "https://www.linkedin.com/in/divyanshi-singh-bora-40a322205/",
+                github: "",
             },
             {
                 id: 1,
@@ -269,9 +329,9 @@ const team_data = [
                 name: "Suborno Biswas",
                 por: "Head",
                 mail: "biswas.4@iitj.ac.in",
-                instagram:"https://www.instagram.com/ivan_biswas/",
-                linkedin:"https://www.linkedin.com/in/subornobiswas/",
-                github: ""
+                instagram: "https://www.instagram.com/ivan_biswas/",
+                linkedin: "https://www.linkedin.com/in/subornobiswas/",
+                github: "",
             },
             {
                 id: 2,
@@ -279,9 +339,10 @@ const team_data = [
                 name: "Prajjwal Chand",
                 por: "Head",
                 mail: "chand.1@iitj.ac.in ",
-                instagram:"https://instagram.com/prajjwalchand_?igshid=YmMyMTA2M2Y=",
-                linkedin:"https://www.linkedin.com/in/prajjwalchand",
-                github: ""
+                instagram:
+                    "https://instagram.com/prajjwalchand_?igshid=YmMyMTA2M2Y=",
+                linkedin: "https://www.linkedin.com/in/prajjwalchand",
+                github: "",
             },
         ],
     },
@@ -295,9 +356,9 @@ const team_data = [
                 por: "Head",
                 mail: "viraj.1@iitj.ac.in",
 
-                instagram:"https://www.instagram.com/virgrammid_8302",
-                linkedin:"",
-                github: ""
+                instagram: "https://www.instagram.com/virgrammid_8302",
+                linkedin: "",
+                github: "",
             },
             {
                 id: 1,
@@ -305,9 +366,9 @@ const team_data = [
                 name: "Manasi Dubey",
                 por: "Head",
                 mail: "dubeymanasi22@gmail.com ",
-                instagram:"",
-                linkedin:"https://www.linkedin.com/in/manasi-dubey-391335243",
-                github: ""
+                instagram: "",
+                linkedin: "https://www.linkedin.com/in/manasi-dubey-391335243",
+                github: "",
             },
             {
                 id: 2,
@@ -315,9 +376,11 @@ const team_data = [
                 name: "Parth Yaduvanshi",
                 por: "Head",
                 mail: "yaduvanshi.2@iitj.ac.in",
-                instagram:"https://instagram.com/parthyadu1shi?igshid=YmMyMTA2M2Y=",
-                linkedin:"https://www.linkedin.com/in/parth-yaduvanshi-b84907200",
-                github: ""
+                instagram:
+                    "https://instagram.com/parthyadu1shi?igshid=YmMyMTA2M2Y=",
+                linkedin:
+                    "https://www.linkedin.com/in/parth-yaduvanshi-b84907200",
+                github: "",
             },
             {
                 id: 3,
@@ -325,14 +388,13 @@ const team_data = [
                 name: "Saiyam Arora",
                 por: "Head",
                 mail: "arora.9@iitj.ac.in",
-                instagram:"https://www.instagram.com/_arora_sam/",
-                linkedin:"",
-                github: ""
+                instagram: "https://www.instagram.com/_arora_sam/",
+                linkedin: "",
+                github: "",
             },
-           
         ],
     },
-    
+
     {
         teamName: "Resource Management ",
         members: [
@@ -342,9 +404,9 @@ const team_data = [
                 name: "Gaurav Sangwan ",
                 por: "Head",
                 mail: "sangwan.2@iitj.ac.in",
-                instagram:"https://www.instagram.com/sangs_gaurav/",
-                linkedin:"https://www.linkedin.com/in/gaurav-sangwan",
-                github: ""
+                instagram: "https://www.instagram.com/sangs_gaurav/",
+                linkedin: "https://www.linkedin.com/in/gaurav-sangwan",
+                github: "",
             },
             {
                 id: 1,
@@ -352,9 +414,9 @@ const team_data = [
                 name: "Vinayak Verma",
                 por: "Head",
                 mail: "verma.31@iitj.ac.in",
-                instagram:"",
-                linkedin:"",
-                github: ""
+                instagram: "",
+                linkedin: "",
+                github: "",
             },
             {
                 id: 2,
@@ -362,9 +424,9 @@ const team_data = [
                 name: "Dhruv Gupta",
                 por: "Head",
                 mail: "gupta.77@iitj.ac.in",
-                instagram:"https://www.instagram.com/dhruvgupta_1212/",
-                linkedin:"",
-                github: ""
+                instagram: "https://www.instagram.com/dhruvgupta_1212/",
+                linkedin: "",
+                github: "",
             },
             {
                 id: 3,
@@ -372,9 +434,10 @@ const team_data = [
                 name: "Karan Singh Kushwah ",
                 por: "Head",
                 mail: "kushwah.4@iitj.ac.in ",
-                instagram:"https://www.instagram.com/karanrajawat7021/",
-                linkedin:"https://www.linkedin.com/in/karan-singh-kushwah-475429219",
-                github: ""
+                instagram: "https://www.instagram.com/karanrajawat7021/",
+                linkedin:
+                    "https://www.linkedin.com/in/karan-singh-kushwah-475429219",
+                github: "",
             },
         ],
     },
@@ -389,9 +452,10 @@ const team_data = [
                 por: "",
                 phone: "8605835009",
                 mail: "ruhatiya.1@iitj.ac.in",
-                instagram:"https://instagram.com/yash_ruhatiya24?igshid=YmMyMTA2M2Y=",
-                linkedin:"https://www.linkedin.com/in/yash-ruhatiya-308831206",
-                github: ""
+                instagram:
+                    "https://instagram.com/yash_ruhatiya24?igshid=YmMyMTA2M2Y=",
+                linkedin: "https://www.linkedin.com/in/yash-ruhatiya-308831206",
+                github: "",
             },
             {
                 id: 1,
@@ -400,9 +464,9 @@ const team_data = [
                 por: " ",
                 phone: "8741011311",
                 mail: "agarwal.18@iitj.ac.in",
-                instagram:"https://www.instagram.com/dhruv_3005/",
-                linkedin:"https://www.linkedin.com/in/dhruv-agarwal-3480611a7",
-                github: ""
+                instagram: "https://www.instagram.com/dhruv_3005/",
+                linkedin: "https://www.linkedin.com/in/dhruv-agarwal-3480611a7",
+                github: "",
             },
             {
                 id: 2,
@@ -411,9 +475,10 @@ const team_data = [
                 por: "",
                 phone: "8919430577",
                 mail: "gopathi.1@iitj.ac.in",
-                instagram:"https://www.instagram.com/rahul_gopathi/",
-                linkedin:"https://www.linkedin.com/in/rahul-gopathi-a8084a1b8/",
-                github: ""
+                instagram: "https://www.instagram.com/rahul_gopathi/",
+                linkedin:
+                    "https://www.linkedin.com/in/rahul-gopathi-a8084a1b8/",
+                github: "",
             },
             {
                 id: 3,
@@ -422,14 +487,12 @@ const team_data = [
                 por: " ",
                 phone: "7988389822",
                 mail: "rao.5@iitj.ac.in",
-                instagram:"",
-                linkedin:"",
-                github: ""
+                instagram: "",
+                linkedin: "",
+                github: "",
             },
         ],
     },
-
-
 ];
 
 export default team_data;
