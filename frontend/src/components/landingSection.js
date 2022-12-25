@@ -44,11 +44,15 @@ export default function LandingSection() {
                         <img id="landing-image-img2" src={hero} alt="" />
                     </div> */}
                     <div id="landing-links">
-                        <Link to="/pre-register" id="landing-button-1">
+                        <a
+                            href="https://unstop.com/festival/prometeo23-indian-institute-of-technology-iit-jodhpur-80491"
+                            target="_blank"
+                            id="landing-button-1"
+                        >
                             <button id="register-button" className="button-27">
-                                <span>Pre-register Now!</span>
+                                <span>Register Now!</span>
                             </button>
-                        </Link>
+                        </a>
                         {/* <a
                             href="https://goo.gl/maps/7ttdfmtFevqhP4ii6"
                             id="landing-button-2"
@@ -67,11 +71,11 @@ export default function LandingSection() {
                         </div> */}
                         <div id="landing-spl-button-2">
                             <a
-                  href="https://unstop.com/festival/prometeo23-indian-institute-of-technology-iit-jodhpur-80491"
-                  target="_blank"
-                  id="landing-spl-button-2-link"
-                >
-                  <img src={reg_rock} id="landing-rock-2" />
+                                href="https://unstop.com/festival/prometeo23-indian-institute-of-technology-iit-jodhpur-80491"
+                                target="_blank"
+                                id="landing-spl-button-2-link"
+                            >
+                                <img src={reg_rock} id="landing-rock-2" />
                             </a>
                         </div>
                     </div>

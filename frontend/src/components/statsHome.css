@@ -119,13 +119,13 @@
 
 @media screen and (max-width: 768px) {
     #statsHome-heading {
-        font-size: 7vw;
+        font-size: 7.6vw;
     }
 }
 
 @media screen and (max-width: 480px) {
     #statsHome-heading {
-        font-size: 8.5vw;
+        font-size: 9vw;
     }
 }
 
@@ -207,7 +207,7 @@
 
 @media screen and (max-width: 768px) {
     #statsHome-description-row * {
-        font-size: 4vmin;
+        font-size: 5vmin;
     }
 }
 
@@ -216,7 +216,7 @@
     color: blanchedalmond;
     font-family: "Exo 2", sans-serif;
     text-shadow: 0 1px 4px rgb(142, 142, 142);
-    font-size: 6vmin;
+    font-size: 5.5vmin;
 }
 
 @media screen and (max-width: 768px) {

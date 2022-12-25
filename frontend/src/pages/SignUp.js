@@ -259,7 +259,7 @@ function SignUp() {
                                     className="signup-acc-checkbox-label"
                                 >
                                     I would like to avail accommodation at IIT
-                                    Jodhpur campus.
+                                    Jodhpur campus and agree to abide by the <Link to="/accommodation">guidelines</Link> of the same.
                                 </label>
                             </div>
                             <input
