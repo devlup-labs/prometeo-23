@@ -154,29 +154,38 @@ class UserLoginView(RetrieveAPIView):
 
 class GoogleView(APIView):
     def post(self, request):
-        payload = {'access_token': request.data.get("token")}  # validate the token
-        r = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', params=payload)
-        data = json.loads(r.text)
+        # payload = {'access_token': request.data.get("token")}  # validate the token
+        # r = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', params=payload)
+        # data = json.loads(r.text)
 
-        if 'error' in data:
-            content = {'message': 'wrong google token / this google token is already expired.'}
-            return Response(content)
+        # if 'error' in data:
+        #     content = {'message': 'wrong google token / this google token is already expired.'}
+        #     return Response(content)
 
         # create user if not exist
+
         try:
-            user = User.objects.get(email=data['email'])
+            user = User.objects.get(email=request.data['email'])
         except User.DoesNotExist:
             user = User()
             # user.username = data['email']
             # provider random default password
-            user.email = data['email']
+            user.email = request.data['email']
             user.password = make_password(BaseUserManager().make_random_password())
+            fname = request.data['given_name'].split()[0]
+            lname = request.data['given_name'].split()[1:]
+            user.first_name = fname
+            user.last_name = lname
             # redirect to profile page to complete the profile
             user.save()
 
-        token = RefreshToken.for_user(user)  # generate token without username & password
+        # token = RefreshToken.for_user(user)  # generate token without username & password
+        # Add custom claims
+        token = MyTokenObtainPairSerializer.get_token(user)
         response = {}
         response['email'] = user.email
+        response['first_name'] = user.first_name
+        response['last_name'] = user.last_name
         response['access_token'] = str(token.access_token)
         response['refresh_token'] = str(token)
         return Response(response)
@@ -380,44 +389,57 @@ class UserCheckViewSet(APIView):
 
 
 
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from dj_rest_auth.registration.views import SocialLoginView
-from allauth.socialaccount.providers.oauth2.client import OAuth2Client
-from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
+# from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+# from dj_rest_auth.registration.views import SocialLoginView
+# from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+# from django.conf import settings
+# from django.views.decorators.csrf import csrf_exempt
 
-class GoogleLogin(SocialLoginView):
-    authentication_classes = [] # disable authentication
-    adapter_class = GoogleOAuth2Adapter
-    callback_url = "http://localhost:3000"
-    client_class = OAuth2Client
+# class GoogleLogin(SocialLoginView):
+#     authentication_classes = [] # disable authentication
+#     adapter_class = GoogleOAuth2Adapter
+#     callback_url = "http://localhost:3000"
+#     client_class = OAuth2Client
 
-    @csrf_exempt
-    def google_token(request):
+#     @csrf_exempt
+#     def google_token(request):
 
-        if "code" not in request.body.decode():
-            from rest_framework_simplejwt.settings import api_settings as jwt_settings
-            from rest_framework_simplejwt.views import TokenRefreshView
+#         if "code" not in request.body.decode():
+#             from rest_framework_simplejwt.settings import api_settings as jwt_settings
+#             from rest_framework_simplejwt.views import TokenRefreshView
             
-            class RefreshNuxtAuth(TokenRefreshView):
-                # By default, Nuxt auth accept and expect postfix "_token"
-                # while simple_jwt library doesnt accept nor expect that postfix
-                def post(self, request, *args, **kwargs):
-                    request.data._mutable = True
-                    request.data["refresh"] = request.data.get("refresh_token")
-                    request.data._mutable = False
-                    response = super().post(request, *args, **kwargs)
-                    response.data['refresh_token'] = response.data['refresh']
-                    response.data['access_token'] = response.data['access']
-                    return response
+#             class RefreshNuxtAuth(TokenRefreshView):
+#                 # By default, Nuxt auth accept and expect postfix "_token"
+#                 # while simple_jwt library doesnt accept nor expect that postfix
+#                 def post(self, request, *args, **kwargs):
+#                     request.data._mutable = True
+#                     request.data["refresh"] = request.data.get("refresh_token")
+#                     request.data._mutable = False
+#                     response = super().post(request, *args, **kwargs)
+#                     response.data['refresh_token'] = response.data['refresh']
+#                     response.data['access_token'] = response.data['access']
+#                     return response
 
-            return RefreshNuxtAuth.as_view()(request)
+#             return RefreshNuxtAuth.as_view()(request)
 
-        else:
-            return GoogleLogin.as_view()(request)
+#         else:
+#             return GoogleLogin.as_view()(request)
 
 
 
 class RoboWarsViewSet(viewsets.ModelViewSet):
     queryset = RoboWars.objects.all()
     serializer_class = RoboWarsSerializers
+
+
+class GoogleCompleteProfileViewSet(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class = GoogleCompleteProfileSerializers
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        user_email = request.data.get('email')
+        if(ExtendedUser.objects.filter(email=user_email)).exists():
+            user = ExtendedUser.objects.filter(email=user_email).first()
+            serializers = GoogleCompleteProfileSerializers(user)
+            return Response(serializers.data)

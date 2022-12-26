@@ -352,3 +352,27 @@ class RoboWarsSerializers(serializers.ModelSerializer):
     class Meta:
         model = RoboWars
         fields = '__all__'
+
+
+class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = ['first_name', 'last_name', 'college', 'contact', 'city','gender','referral_code']
+
+    def update(self, instance, validated_data):
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.college = validated_data.get('college', instance.college)
+        instance.contact = validated_data.get('contact', instance.contact)
+        instance.city = validated_data.get('city', instance.city)
+        instance.gender = validated_data.get('gender', instance.gender)
+        rc = validated_data.get('referral_code', instance.referral_code)
+        if rc:
+            instance.referral_code = rc
+            ca = CampusAmbassador.objects.filter(invite_referral=instance.referral_code).first()
+            if ca:
+                ca.ca_count = ca.ca_count + 1
+                ca.save()
+                instance.referred_by = ca.email
+        instance.save()
+        return instance
