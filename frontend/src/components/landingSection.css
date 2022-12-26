@@ -6,7 +6,7 @@
     padding: 5vh 2vw;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     /* background: url("../assets/backgrounds/10851.jpg"); */
     background-image: url("../assets/homePage/landing_bg.png");
     background-size: cover;

@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Teko:wght@300;500&display=swap");
 
-
-
 #EventDetailsPage {
     /* padding-top: 10vh; */
     /* border: 2px solid red; */
@@ -55,6 +53,22 @@
     /* border: 2px solid red; */
 }
 
+.event-details__back-button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.fa-backBtn {
+    width: max(3vmin, 18px);
+    fill: #ffffff;
+}
+
+.fa-backBtn:hover {
+    fill: #9772FB;
+}
+
 .event-details__title {
     font-size: 7vmin;
     font-family: "Exo 2", sans-serif;
@@ -69,7 +83,7 @@
 .event-details__title__underline {
     width: 40%;
     height: 0.5vmin;
-    background: #9772FB;
+    background: #9772fb;
     box-shadow: 0 0 10px #b8a9e0;
     margin-top: 1vmin;
     border-radius: 20px;
@@ -102,7 +116,7 @@
     flex-wrap: wrap;
 }
 
-.event-details__sponsors_images>img {
+.event-details__sponsors_images > img {
     /* width: 20%; */
     height: 8vmin;
     object-fit: contain;
@@ -116,27 +130,10 @@
     /* border: 2px solid red; */
 }
 
-.event-details__back-button {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.fa-backBtn {
-    width: max(3vmin, 18px);
-    fill: #ffffff;
-}
-
-.fa-backBtn:hover {
-    fill: #9772FB;
-}
-
 @media screen and (max-width: 900px) {
     .event-details__body {
         flex-direction: column;
     }
-
 }
 
 .event-details__body__left {
@@ -146,7 +143,7 @@
     justify-content: space-evenly;
     /* border: 2px solid white; */
     width: 45%;
-    max-height: 500px;
+    /* max-height: 500px; */
 }
 
 @media screen and (max-width: 900px) {
@@ -159,7 +156,6 @@
 .event-details__body__right {
     display: flex;
     flex-direction: column;
-    ;
     /* border: 2px solid white; */
     width: 55%;
 }
@@ -223,20 +219,17 @@
         max-height: 70vh;
     }
 }
-
 .top-event-mains {
     padding-right: 5%;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
-
 .event-details__body__right__bottom {
     font-size: 3vmin !important;
     width: 100%;
     line-height: 1.5;
 }
-
 .event-details__body__right__bottom2 {
     color: #c6eaed !important;
 }
@@ -295,7 +288,6 @@
     from {
         text-shadow: 0 0 10px #397286;
     }
-
     to {
         text-shadow: 0 0 15px #34b3c1, 0 0 5px #4dbbc7;
     }
@@ -348,4 +340,71 @@
 
 .button-64:hover span {
     background: none;
+}
+
+/* FOR TABS */
+
+.tabs {
+    /* Reset default styles for the unordered list */
+    position: relative;
+    list-style: none;
+    margin-left: 10px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.tabs > li {
+    text-decoration: underline;
+}
+#tab2 {
+    padding: 3%;
+}
+.tabs li {
+    /* Float the list items horizontally */
+    float: left;
+}
+
+.tabs a {
+    /* Style the tab links */
+    display: block;
+    padding: 15px 20px;
+    background-color: transparent;
+    color: #ba94d1;
+    text-decoration: dashed;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-radius: 10px;
+    border-color: #c3ccde;
+    border-style: groove;
+    position: relative;
+    transition: 0.2s;
+}
+
+.tabs a:hover,
+.tabs a.active {
+    /* Change the background color of the tab links when hovered or active */
+    background-color: #4f35cf64;
+}
+
+.tab-content {
+    /* Hide the tab content by default */
+    display: none;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+
+.default-active{
+    display: block;
+  }
+
+.tab-content:target {
+    /* Show the tab content when the corresponding tab link is clicked */
+    display: block;
+}
+
+#tab1:target {
+    display: block;
+}
+.tab-hide {
+    display: none;
 }
