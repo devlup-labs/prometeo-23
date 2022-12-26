@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 import { backendURL } from "../backendURL";
+// import { useAxios } from  "./context_useAxios"
 
 const AuthContext = createContext();
 
@@ -101,23 +102,25 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const completeProfileGoogleUser = async (first_name, last_name, city, college, contact, gender, referral_code, email, ambassador, accomodation) => {
-        const requestData = { first_name, last_name, city, college, contact, gender, referral_code, email, ambassador, accomodation }
+    // const completeProfileGoogleUser = async (city, college, contact, gender, referral_code, email, ambassador, accomodation) => {
+    //     // const api = useAxios();
+    //     const requestData = { city, college, contact, gender, referral_code, email, ambassador, accomodation }
 
-        const response = await fetch(`${backendURL}/google/completeprofile/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(requestData)
-        });
-        if (response.status === 201) {
-            navigate("/dashboard");
-            return response;
-        } else {
-            throw(response.statusText)
-        }
-    }
+    //     try {
+    //         const response = await api.post(
+    //             `${backendURL}/google/completeprofile/`,
+    //             requestData
+    //         );
+    //         if (response.status === 201) {
+    //             navigate("/dashboard");
+    //             return response;
+    //         } else {
+    //             throw(response.statusText)
+    //         }
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
 
     const logoutUser = () => {
         setAuthTokens(null);
@@ -134,7 +137,7 @@ export const AuthProvider = ({ children }) => {
         authTokens,
         setAuthTokens,
         registerUser,
-        completeProfileGoogleUser,
+        // completeProfileGoogleUser,
         loginUser,
         loginGoogleUser,
         logoutUser

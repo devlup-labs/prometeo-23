@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
 
 import "./dashboard.css";
@@ -8,6 +9,7 @@ import AuthContext from "../context/AuthContext";
 import useAxios from "../context/context_useAxios";
 
 import rocketImg from "../assets/icons/rocket.png";
+import { Navigate } from "react-router-dom";
 
 const registered_events = [
 //     {
@@ -63,6 +65,7 @@ const registered_events = [
 ];
 
 function Dashboard() {
+    const navigate = useNavigate();
     const [userData, setUserData] = useState({});
     const { user, logoutUser } = useContext(AuthContext);
     console.log("User(dashboard):", user)
@@ -86,9 +89,14 @@ function Dashboard() {
                 if (response.status === 200) {
                     const data = response.data;
                     // console.log("Login Dashboard Data:", data);
-                    setUserData({
-                        ...data,
-                    });
+                    if (data.isProfileCompleted === false) {
+                        navigate("/complete-profile");
+                    }
+                    else {
+                        setUserData({
+                            ...data,
+                        });
+                    }
                 } else {
                     throw response.statusText;
                 }

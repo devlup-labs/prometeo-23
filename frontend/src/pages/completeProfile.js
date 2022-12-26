@@ -9,11 +9,38 @@ import FadeIn from "../components/fadein";
 import signInImg from "../assets/backgrounds/peeking.png";
 
 import AuthContext from "../context/AuthContext";
+import useAxios from "../context/context_useAxios";
 import { backendURL } from "../backendURL";
 
 function CompleteProfile() {
-    const { completeProfileGoogleUser } = useContext(AuthContext);
+    const { user, logoutUser } = useContext(AuthContext);
+    const api = useAxios();
     const navigate = useNavigate();
+
+    async function checkWhetherProfileComplete() {
+        try {
+            const response = await api.post(
+                `${backendURL}/logindashboard/`,
+                {
+                    email: user.email,
+                }
+            );
+
+            if (response.status === 200) {
+                const data = response.data;
+                // console.log("Login Dashboard Data:", data);
+                if (data.isProfileCompleted === true) {
+                    navigate("/dashboard");
+                }
+            } else {
+                logoutUser();
+                throw response.statusText;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    checkWhetherProfileComplete();
     // console.log(registerUser)
 
     useEffect(() => {
@@ -24,6 +51,26 @@ function CompleteProfile() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const completeProfileGoogleUser = async (city, college, contact, gender, referral_code, email, ambassador, accomodation) => {
+            const requestData = { city, college, contact, gender, referral_code, email, ambassador, accomodation }
+            
+            try {
+                // console.log("Request Data:", requestData)
+                const response = await api.post(
+                    `${backendURL}/google/completeprofile/`,
+                    requestData
+                );
+                if (response.status === 200) {
+                    navigate("/dashboard");
+                    return response;
+                } else {
+                    throw(response.statusText)
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
         // const first_name = e.target.first_name.value;
         // const last_name = e.target.last_name.value;
         const city = e.target.city.value;
@@ -31,25 +78,25 @@ function CompleteProfile() {
         const contact = e.target.phone.value;
         const gender = e.target.gender.value;
         const referral_code = e.target.referral_code.value === "" ? "none" : e.target.referral_code.value;
-        // const email = e.target.email.value;
+        const email = user.email;
         // const password = e.target.password.value;
         // const ambassador = false;
         const ambassador = e.target.ca.checked;
         const accomodation = e.target.acc.checked;
         // const  accomodation = e.target.acc.value === "on";
 
-        // console.log(ambassador)
+        console.log(city, college, contact, gender, referral_code, email, ambassador, accomodation)
         const myPromise = new Promise((resolve, reject) => {
             completeProfileGoogleUser(
-                first_name,
-                last_name,
+                // first_name,
+                // last_name,
                 city,
                 college,
                 contact,
                 gender,
                 referral_code,
                 email,
-                password,
+                // password,
                 ambassador,
                 accomodation
             )
@@ -64,8 +111,8 @@ function CompleteProfile() {
         });
 
         toast.promise(myPromise, {
-            pending: "Creating your account...",
-            success: "Registered Successfully!",
+            pending: "Updating profile details...",
+            success: "Updated successfully!",
             error: "Something went wrong!",
         });
         // toast.onChange((state, toast) => {
@@ -148,7 +195,7 @@ function CompleteProfile() {
                     </div>
                     <div className="completeProfile-container-right">
                         <div className="completeProfile-container-right-title">
-                            SIGN UP
+                            COMPLETE PROFILE
                         </div>
                         <form className="completeProfile-form" onSubmit={handleSubmit}>
                             {/* <div className="completeProfile-form-name">
@@ -242,7 +289,7 @@ function CompleteProfile() {
                                     htmlFor="ca"
                                     className="completeProfile-ca-checkbox-label"
                                 >
-                                    I want to completeProfile for{" "}
+                                    I want to signup for{" "}
                                     <Link to="/campus-ambassador">
                                         CA Program
                                     </Link>
