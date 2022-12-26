@@ -192,37 +192,37 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
             ca.invite_referral = invite_referral
             user.invite_referral = invite_referral
             ca.save()
-            with get_connection(
-                    username=settings.EMAIL_HOST_USER,
-                    password=settings.EMAIL_HOST_PASSWORD
-                ) as connection:
-                    sendMailID = settings.FROM_EMAIL_USER
-                    subject = "Registration"
-                    isCAregistration=True
-                    msg = f"Congratulations, {user.first_name} you have successfully registered in Prometeo '23 - the Technical Fest of IIT Jodhpur ."
-                    # message = "You have successfully registered."
-                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'invite_referral':user.invite_referral, 'isCAregistration': isCAregistration})
-                    text_content = strip_tags(html_content)
-                    message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-                    message.attach_alternative(html_content, "text/html")
-                    message.mixed_subtype = 'related'
-                    message.send()
-        else:
-            with get_connection(
-                    username=settings.EMAIL_HOST_USER,
-                    password=settings.EMAIL_HOST_PASSWORD
-                ) as connection:
-                    sendMailID = settings.FROM_EMAIL_USER
-                    subject = "Registration"
-                    isRegistration=True
-                    msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo '23 - the Technical Fest of IIT Jodhpur ."
-                    # message = "You have successfully registered."
-                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'isRegistration': isRegistration})
-                    text_content = strip_tags(html_content)
-                    message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
-                    message.attach_alternative(html_content, "text/html")
-                    message.mixed_subtype = 'related'
-                    message.send()
+        #     with get_connection(
+        #             username=settings.EMAIL_HOST_USER,
+        #             password=settings.EMAIL_HOST_PASSWORD
+        #         ) as connection:
+        #             sendMailID = settings.FROM_EMAIL_USER
+        #             subject = "Registration"
+        #             isCAregistration=True
+        #             msg = f"Congratulations, {user.first_name} you have successfully registered in Prometeo '23 - the Technical Fest of IIT Jodhpur ."
+        #             # message = "You have successfully registered."
+        #             html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'invite_referral':user.invite_referral, 'isCAregistration': isCAregistration})
+        #             text_content = strip_tags(html_content)
+        #             message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+        #             message.attach_alternative(html_content, "text/html")
+        #             message.mixed_subtype = 'related'
+        #             message.send()
+        # else:
+        #     with get_connection(
+        #             username=settings.EMAIL_HOST_USER,
+        #             password=settings.EMAIL_HOST_PASSWORD
+        #         ) as connection:
+        #             sendMailID = settings.FROM_EMAIL_USER
+        #             subject = "Registration"
+        #             isRegistration=True
+        #             msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo '23 - the Technical Fest of IIT Jodhpur ."
+        #             # message = "You have successfully registered."
+        #             html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'isRegistration': isRegistration})
+        #             text_content = strip_tags(html_content)
+        #             message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+        #             message.attach_alternative(html_content, "text/html")
+        #             message.mixed_subtype = 'related'
+        #             message.send()
         # msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo '23 - the Technical Fest of IIT Jodhpur ."
         # # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
         # SENDGRID_API_KEY = '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'
@@ -241,7 +241,7 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         #     print(response.headers)
         # except Exception as e:
         #     print(e)
-
+        user.isProfileCompleted = True
         user.save()
         return user
 
@@ -357,22 +357,24 @@ class RoboWarsSerializers(serializers.ModelSerializer):
 class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
-        fields = ['first_name', 'last_name', 'college', 'contact', 'city','gender','referral_code']
+        # fields = ['first_name', 'last_name', 'college', 'contact', 'city','gender','referral_code','ambassador','accomodation']
+        fields = '__all__'
 
-    def update(self, instance, validated_data):
-        instance.first_name = validated_data.get('first_name', instance.first_name)
-        instance.last_name = validated_data.get('last_name', instance.last_name)
-        instance.college = validated_data.get('college', instance.college)
-        instance.contact = validated_data.get('contact', instance.contact)
-        instance.city = validated_data.get('city', instance.city)
-        instance.gender = validated_data.get('gender', instance.gender)
-        rc = validated_data.get('referral_code', instance.referral_code)
-        if rc:
-            instance.referral_code = rc
-            ca = CampusAmbassador.objects.filter(invite_referral=instance.referral_code).first()
-            if ca:
-                ca.ca_count = ca.ca_count + 1
-                ca.save()
-                instance.referred_by = ca.email
-        instance.save()
-        return instance
+    # def update(self, instance, validated_data):
+    #     # instance.first_name = validated_data.get('first_name', instance.first_name)
+    #     # instance.last_name = validated_data.get('last_name', instance.last_name)
+    #     instance.college = validated_data.get('college', instance.college)
+    #     instance.contact = validated_data.get('contact', instance.contact)
+    #     instance.city = validated_data.get('city', instance.city)
+    #     instance.gender = validated_data.get('gender', instance.gender)
+    #     instance.accomodation = validated_data.get('accomodation', instance.accomodation)
+    #     rc = validated_data.get('referral_code', instance.referral_code)
+    #     if rc:
+    #         instance.referral_code = rc
+    #         ca = CampusAmbassador.objects.filter(invite_referral=instance.referral_code).first()
+    #         if ca:
+    #             ca.ca_count = ca.ca_count + 1
+    #             ca.save()
+    #             instance.referred_by = ca.email
+    #     instance.save()
+    #     return instance

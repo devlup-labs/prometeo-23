@@ -443,5 +443,64 @@ class GoogleCompleteProfileViewSet(APIView):
         user_email = request.data.get('email')
         if(ExtendedUser.objects.filter(email=user_email)).exists():
             user = ExtendedUser.objects.filter(email=user_email).first()
-            serializers = GoogleCompleteProfileSerializers(user)
-            return Response(serializers.data)
+            # serializers = GoogleCompleteProfileSerializers(user)
+            # return Response(serializers.data)
+            # user.first_name = request.data.get('first_name')
+            # user.last_name = request.data.get('last_name')
+            user.contact = request.data.get('contact')
+            user.college = request.data.get('college')
+            user.gender = request.data.get('gender')
+            user.city = request.data.get('city')
+            user.accomodation = request.data.get('accomodation')
+            is_ca = request.data.get('ambassador')
+            rc = request.data.get('referral_code')
+            if(rc != None and rc != "" and is_ca == False):
+                if(ExtendedUser.objects.filter(invite_referral=rc)).exists():
+                    user.referral_code = rc
+                    # user.ambassador = 
+                    user.referred_by = ExtendedUser.objects.filter(invite_referral=rc).first()
+                    user.save()
+                    myca1 = CampusAmbassador.objects.filter(invite_referral=rc).first()
+                    myca1.ca_count += 1
+                    myca1.save()
+                    myca2 = ExtendedUser.objects.filter(invite_referral=rc).first()
+                    myca2.ca_count += 1
+
+            if(is_ca == True and rc == None):
+                user.ambassador = True
+                ca= CampusAmbassador.objects.create(user=user)
+                code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                user = CampusAmbassador.objects.all()
+                def referral_check(c):
+                    for u in user:
+                        if c == u.invite_referral:
+                            c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                            referral_check(c)
+                    return c
+
+                ca.invite_referral = referral_check(code)
+                # ca.invite_referral='CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                ca.save()
+                user.invite_referral = ca.invite_referral
+                with get_connection(
+                username=settings.EMAIL_HOST_USER,
+                password=settings.EMAIL_HOST_PASSWORD
+                ) as connection:
+                    sendMailID = settings.FROM_EMAIL_USER
+                    # subject = "Registration as Campus Ambassador"
+                    subject='Registration as Campus Ambassador'
+                    # message = "You have successfully registered as Campus Ambassador."
+                    message = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo '23 - the Techical Fest of IIT Jodhpur ."
+                    isCA=True
+                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'message': message, 'isCA':isCA})
+                    text_content = strip_tags(html_content)
+                    message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+                    message.attach_alternative(html_content, "text/html")
+                    message.mixed_subtype = 'related'
+                    message.send()
+            
+            user.isProfileCompleted = True
+            user.save()
+            return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})
+        else:
+            return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'User does not exist'})
