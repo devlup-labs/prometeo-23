@@ -18,7 +18,7 @@ function Theme(props) {
         const currentURL = window.location.href;
         // get the last part of the url
         const lastPart = currentURL.split("/").pop();
-        console.log("lastPart: ", lastPart)
+        // console.log("lastPart: ", lastPart)
         // if last part points to theme, scroll to theme
         if (lastPart === "#theme") {
           const themeEle = document.getElementById("theme");

@@ -31,7 +31,7 @@ export default function NewGallery() {
     const N = 10;
 
     useEffect(() => {
-        console.log(galleryData.length, N);
+        // console.log(galleryData.length, N);
         let percentage = parseInt(
             (100 * galleryData.length) / N ? (100 * galleryData.length) / N : 0
         );
@@ -107,7 +107,7 @@ export default function NewGallery() {
                             id: data[i].id,
                         });
                     }
-                    console.log(data);
+                    // console.log(data);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -116,11 +116,11 @@ export default function NewGallery() {
 
         // wait for fetch to finish
         fetchData().then(() => {
-            console.log("our data is", imageLinks[0]);
+            // console.log("our data is", imageLinks[0]);
 
             setNumOfImages(imageLinks.length);
 
-            console.log("num of images", numOfImages);
+            // console.log("num of images", numOfImages);
 
             for (let i = 0; i < N; i++) {
                 // if (imageLinks[i].id === 1) continue;
@@ -143,7 +143,7 @@ export default function NewGallery() {
                         src: img.src,
                         image: img,
                     };
-                    console.log("image loaded");
+                    // console.log("image loaded");
                     setGalleryData((prev) => [...prev, obj]);
                     let div = document.createElement("div");
                     div.className = "slide";
@@ -172,7 +172,7 @@ export default function NewGallery() {
     };
 
     useEffect(() => {
-        console.log("stop is", stop);
+        // console.log("stop is", stop);
         let track = document.getElementById("slider-image-track");
         track.addEventListener("mouseover", () => {
             // console.log("hover!");
