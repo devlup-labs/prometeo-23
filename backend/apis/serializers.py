@@ -346,3 +346,9 @@ class UserCheckSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = ['email']
+
+
+class RoboWarsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = RoboWars
+        fields = '__all__'
