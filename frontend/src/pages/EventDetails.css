@@ -53,6 +53,22 @@
     /* border: 2px solid red; */
 }
 
+.event-details__back-button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.fa-backBtn {
+    width: max(3vmin, 18px);
+    fill: #ffffff;
+}
+
+.fa-backBtn:hover {
+    fill: #9772FB;
+}
+
 .event-details__title {
     font-size: 7vmin;
     font-family: "Exo 2", sans-serif;
