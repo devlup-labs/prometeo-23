@@ -72,6 +72,14 @@ const team_data = [
                 linkedin:
                     "https://www.linkedin.com/in/sumit-prajapati-2a0a551bb/",
             },
+            {
+                id: 2,
+                image: "https://i.imgur.com/E6AmTLq.jpg",
+                name: "Likhith Ayinala",
+                mail: "ayinala.1@iitj.ac.in",
+                instagram: "https://instagram.com/likhith_25603?igshid=NTA5ZTk1NTc=",
+                linkedin: "https://www.linkedin.com/in/likhith-ayinala-4ba7441b9/",
+            }
         ],
     },
     {
@@ -112,7 +120,7 @@ const team_data = [
             },
             {
                 id: 2,
-                image: "https://i.imgur.com/6KxdwTx.jpg",
+                image: "https://i.imgur.com/BxTVz9t.png",
                 name: "Tejas Parmar ",
                 por: "Head",
                 mail: "parmar.2@iitj.ac.in",
