@@ -51,6 +51,30 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const loginGoogleUser = async (email) => {
+        const response = await fetch(`${backendURL}/google/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email
+            })
+        });
+        const data = await response.json();
+
+        if (response.status === 200) {
+            setAuthTokens(data);
+            setUser(jwt_decode(data.access));
+            localStorage.setItem("authTokens", JSON.stringify(data));
+            // console.log("Logged in");
+            navigate("/dashboard");
+            return response;
+        } else {
+            throw(response.statusText)
+        }
+    }
+
     const registerUser = async (first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador,  accomodation) => {
         // console.log("ambassador: ", ambassador)
         const requestData = { first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador,  accomodation }
@@ -86,6 +110,7 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens,
         registerUser,
         loginUser,
+        loginGoogleUser,
         logoutUser
     };
 

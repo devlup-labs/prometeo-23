@@ -117,11 +117,13 @@ function Events() {
             await fetch(fetchURL, requestOptions)
                 .then((response) => response.json())
                 .then((data) => {
-                    setEventData([...data]);
+                    if (data.length === 0) setEventData([...[{name: "no data"}]]);
+                    else setEventData([...data]);
                     console.log("Data:", data);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
+                    setEventData([...[{name: "no data"}]]);
                 });
         }
         fetchData();
@@ -136,15 +138,23 @@ function Events() {
                         : "Events"}
                 </h2>
                 <section className="event_Hero-section">
-                    {eventData.length > 0 ? (
-                        <div className="event_Card-grid">
-                            {eventData.map(createEntry)}
-                        </div>
-                    ) : (
-                        <div className="event_Card-coming-soon">
-                            Coming Soon!
-                        </div>
-                    )}
+                    {
+                        eventData.length > 0 ? (
+                            eventData[0].name === "no data" ? (
+                                <div className="event_Card-coming-soon">
+                                    Coming Soon!
+                                </div>
+                            ) : (
+                                <div className="event_Card-grid">
+                                    {eventData.map(createEntry)}
+                                </div>
+                            )
+                        ) : (
+                            <div className="event_Card-coming-soon">
+                                Loading...
+                            </div>
+                        )
+                    }
                 </section>
                 {/* <div className="event_cards">{event_data.map(createEntry)}</div> */}
                 {/* <Footer /> */}
