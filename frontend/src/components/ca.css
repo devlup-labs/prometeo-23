@@ -102,6 +102,16 @@
     }
 }
 
+/* @media screen and (orientation: portrait) {
+    #ca-div-desc {
+        height: fit-content;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4vmin 0;
+    }
+} */
+
 #ca-div-desc-text {
     font-family: Gentona;
     font-size: 3vmin;
@@ -119,16 +129,16 @@
 
 @media screen and (max-width: 768px) {
     #ca-div-desc-text {
-        font-size: min(3vw, 5vmin);
-        padding: 0 2vmin;
+        font-size: min(3vh, 4.5vmin);
+        padding: 0 4vmin;
     }
 }
-
+/* 
 @media screen and (orientation: portrait) {
     #ca-div-desc-text {
-        font-size: 5vmin;
+        font-size: 4.5vmin;
     }
-}
+} */
 
 #ca-div-button {
     font-size: 3vmin;
