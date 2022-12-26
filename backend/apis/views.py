@@ -154,22 +154,22 @@ class UserLoginView(RetrieveAPIView):
 
 class GoogleView(APIView):
     def post(self, request):
-        payload = {'access_token': request.data.get("token")}  # validate the token
-        r = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', params=payload)
-        data = json.loads(r.text)
+        # payload = {'access_token': request.data.get("token")}  # validate the token
+        # r = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', params=payload)
+        # data = json.loads(r.text)
 
-        if 'error' in data:
-            content = {'message': 'wrong google token / this google token is already expired.'}
-            return Response(content)
+        # if 'error' in data:
+        #     content = {'message': 'wrong google token / this google token is already expired.'}
+        #     return Response(content)
 
         # create user if not exist
         try:
-            user = User.objects.get(email=data['email'])
+            user = User.objects.get(email=request.data['email'])
         except User.DoesNotExist:
             user = User()
             # user.username = data['email']
             # provider random default password
-            user.email = data['email']
+            user.email = request.data['email']
             user.password = make_password(BaseUserManager().make_random_password())
             # redirect to profile page to complete the profile
             user.save()

@@ -29,10 +29,11 @@ function Login() {
         const userObject = jwt_decode(res.credential);
         console.log("Success:", userObject);
 
-        const email = userObject.email;        
+        const email = userObject.email;
+        const given_name = userObject.given_name;
         
         const myPromise = new Promise((resolve, reject) => {            
-            loginGoogleUser(email)
+            loginGoogleUser(email, given_name)
                 .then((res)=>{
                     // console.log(res)
                     resolve(res)
