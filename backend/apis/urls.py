@@ -53,5 +53,5 @@ urlpatterns=[
     path('campusambassador/', views.CampusAmbassadorView.as_view(), name='campusambassador'),
     path('logindashboard/', views.LoginDashboardViewSet.as_view(), name='logindashboard'),
     path('usercheck/', UserCheckViewSet.as_view(), name='usercheck'),
-    path('google/completeprofile/', views.GoogleCompleteProfile.as_view(), name='googlecompleteprofile'),
+    path('google/completeprofile/', views.GoogleCompleteProfileViewSet.as_view(), name='googlecompleteprofile'),
 ]

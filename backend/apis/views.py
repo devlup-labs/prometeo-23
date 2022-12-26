@@ -173,7 +173,9 @@ class GoogleView(APIView):
             user.email = request.data['email']
             user.password = make_password(BaseUserManager().make_random_password())
             fname = request.data['given_name'].split()[0]
-            lname = request.data['given_name'].split()[1:]
+            # lname = request.data['given_name'].split()[1:]
+            lname_lis= request.data['given_name'].split()
+            lname = " ".join(lname_lis[1:])
             user.first_name = fname
             user.last_name = lname
             # redirect to profile page to complete the profile

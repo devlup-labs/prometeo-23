@@ -65,7 +65,7 @@ const registered_events = [
 function Dashboard() {
     const [userData, setUserData] = useState({});
     const { user, logoutUser } = useContext(AuthContext);
-    // console.log("User(dashboard):", user)
+    console.log("User(dashboard):", user)
     const api = useAxios();
 
     useEffect(() => {
