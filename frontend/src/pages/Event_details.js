@@ -93,7 +93,7 @@ function Details(props) {
           {eventTerm.name}
           <div className="event-details__title__underline"></div>
         </div>
-        {eventSponsor.length > 0 && (
+        {eventTerm.name === "Blockchain Hackathon" && (
           <div className="event-details__sponsors">
             {/* <div className="event-details__sponsors_text">Sponsored by</div> */}
             <div className="devfolio_button">
@@ -158,7 +158,14 @@ function Details(props) {
                   />
                 </div>
               </div>
-              {/* {eventSponsor.map((sponsor) => {
+            </div>
+          </div>
+        )}
+        {eventSponsor.length > 0 && (
+          <div className="event-details__sponsors">
+            <div className="event-details__sponsors_text">Sponsored by</div>
+            <div className="event-details__sponsors_images">
+              {eventSponsor.map((sponsor) => {
                                 return (
                                     <img
                                         src={
@@ -174,7 +181,7 @@ function Details(props) {
                                         key={sponsor.id}
                                     />
                                 );
-                            })} */}
+                })}
             </div>
           </div>
         )}
@@ -423,7 +430,6 @@ function EventDetails() {
     navBarEle.style.opacity = 1;
     document.body.style.overflow = "auto";
   });
-
   return (
     <FadeIn duration={500}>
       <div id="EventDetailsPage" className="contentDiv">
