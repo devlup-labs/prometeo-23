@@ -75,6 +75,10 @@ INSTALLED_APPS = [
     'django_extensions',
     'import_export',
     'rest_framework_simplejwt',
+    "rest_framework.authtoken",
+    # Auth & social auth
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -275,6 +279,9 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#          "rest_framework.authentication.BasicAuthentication",
+# +        "rest_framework.authentication.SessionAuthentication",
+      "dj_rest_auth.utils.JWTCookieAuthentication",
     ),
     'DEFAULT_SCHEMA_CLASS':
         'rest_framework.schemas.coreapi.AutoSchema',
@@ -313,6 +320,18 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 # REST_SESSION_LOGIN = False
 # REST_USE_JWT = True
