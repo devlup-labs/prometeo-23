@@ -161,30 +161,32 @@ function Details(props) {
             </div>
           </div>
         )}
-        {eventSponsor.length > 0 && (
-          <div className="event-details__sponsors">
-            <div className="event-details__sponsors_text">Sponsored by</div>
-            <div className="event-details__sponsors_images">
-              {eventSponsor.map((sponsor) => {
-                                return (
-                                    <img
-                                        src={
-                                            sponsor.image
-                                                ? sponsor.image.replace(
-                                                      "0.0.0.0:8888",
-                                                      "apiv.prometeo.in"
-                                                  )
-                                                : ""
-                                        }
-                                        title={sponsor.name}
-                                        alt="Sponsor Image"
-                                        key={sponsor.id}
-                                    />
-                                );
-                })}
-            </div>
-          </div>
-        )}
+        {eventSponsor.length > 0 &&
+          eventTerm.name !==
+            "Blockchain Hackathon" &&(
+              <div className="event-details__sponsors">
+                <div className="event-details__sponsors_text">Sponsored by</div>
+                <div className="event-details__sponsors_images">
+                  {eventSponsor.map((sponsor) => {
+                    return (
+                      <img
+                        src={
+                          sponsor.image
+                            ? sponsor.image.replace(
+                                "0.0.0.0:8888",
+                                "apiv.prometeo.in"
+                              )
+                            : ""
+                        }
+                        title={sponsor.name}
+                        alt="Sponsor Image"
+                        key={sponsor.id}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )}
       </div>
       <div className="event-details__body">
         <div className="event-details__body__left">
