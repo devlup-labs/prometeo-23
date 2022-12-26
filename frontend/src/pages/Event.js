@@ -118,7 +118,7 @@ function Events() {
                 .then((response) => response.json())
                 .then((data) => {
                     setEventData([...data]);
-                    console.log("Data:", data);
+                    // console.log("Data:", data);
                 })
                 .catch((error) => {
                     console.error("Error:", error);

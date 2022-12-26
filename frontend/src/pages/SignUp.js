@@ -258,8 +258,8 @@ function SignUp() {
                                     htmlFor="acc"
                                     className="signup-acc-checkbox-label"
                                 >
-                                    I would like to avail <Link to="/accommodation">accommodation</Link> at IIT
-                                    Jodhpur campus.
+                                    I would like to avail accommodation at IIT
+                                    Jodhpur campus and agree to abide by the <Link to="/accommodation">guidelines</Link> of the same.
                                 </label>
                             </div>
                             <input

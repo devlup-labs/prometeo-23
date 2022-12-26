@@ -54,7 +54,7 @@ const team_data = [
         teamName: "Technical events",
         members: [
             {
-                id: 2,
+                id: 0,
                 image: "https://i.imgur.com/Z1gn8Wu.jpg",
                 name: "Adarsh Palaskar ",
                 por: "Head",
@@ -63,7 +63,7 @@ const team_data = [
                 linkedin: "https://www.linkedin.com/in/adarsh-palaskar/",
             },
             {
-                id: 0,
+                id: 1,
                 image: "https://i.imgur.com/AW0d3d5.jpg",
                 name: "Sumit Kumar Prajapati",
                 por: "Head",
@@ -72,6 +72,19 @@ const team_data = [
                 linkedin:
                     "https://www.linkedin.com/in/sumit-prajapati-2a0a551bb/",
             },
+            {
+                id: 2,
+                image: "https://i.imgur.com/E6AmTLq.jpg",
+                name: "Likhith Ayinala",
+                mail: "ayinala.1@iitj.ac.in",
+                instagram: "https://instagram.com/likhith_25603?igshid=NTA5ZTk1NTc=",
+                linkedin: "https://www.linkedin.com/in/likhith-ayinala-4ba7441b9/",
+            }
+        ],
+    },
+    {
+        teamName: "Tech Carnival",
+        members: [
             {
                 id: 1,
                 image: "https://i.imgur.com/ZjdLbgK.jpg",
@@ -107,7 +120,7 @@ const team_data = [
             },
             {
                 id: 2,
-                image: "https://i.imgur.com/6KxdwTx.jpg",
+                image: "https://i.imgur.com/BxTVz9t.png",
                 name: "Tejas Parmar ",
                 por: "Head",
                 mail: "parmar.2@iitj.ac.in",
@@ -204,7 +217,7 @@ const team_data = [
             {
                 id: 2,
                 image: "https://i.imgur.com/kVPgMcO.jpg",
-                name: "Tanmay gupta ",
+                name: "Tanmay Gupta ",
                 por: "Head",
                 mail: "gupta.80@iitj.ac.in",
                 instagram: "https://www.instagram.com/tanmay_gupta__/",
