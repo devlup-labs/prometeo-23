@@ -20,7 +20,54 @@
     box-sizing: border-box;
     overflow-y: auto;
 }
+.event_sponsors_image1{
+  /* background: linear-gradient(0deg, transparent 0%, 	rgb(168,153,39) 0%, transparent 200%);
+  box-shadow: gold 0px 0px 0px,gold 0px 10px 40px ; */
+    /* background-color: goldenrod; */
+    width: 40%;
+    display: flex;
+    /* margin-left: 500px; */
+    /* margin-right: 500px; */
+    margin: 5px 130px;
+    align-items: center
+}
+.event_sponsors_image2{
+      /* background: linear-gradient(0deg, transparent 0%,rgb(192,192,192,0.5) 0%, transparent 200%);
+  box-shadow: silver 0px 0px 0px,silver 0px 8px 24px ; */
+      
+    width: 40%;
+    display: flex;
+    /* margin-left: 500px; */
+    /* margin-right: 500px; */
+    margin: 5px 130px;
+    align-items: center
+}
+.event_sponsors_image1 img, .event_sponsors_image2 img{
+    align-items: center;
+    width: 30%;
+    margin: auto;
+    padding: 0px 10px;
+}
 
+/* #eventRegis-button{
+  height: 10%;
+  width: 20vw;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 0;
+  position: relative;
+  border-radius: .2em;
+  border: solid white 1px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Exo 2", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: transparent;
+  transition: all 0.2s;
+} */
 .event-details {
     position: relative;
     width: 95%;
@@ -54,10 +101,13 @@
 }
 
 .event-details__back-button {
+    position: absolute;
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    top: 3vmin;
+    left: 3vmin;
 }
 
 .fa-backBtn {
@@ -140,7 +190,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    flex-direction: column-reverse;
     /* border: 2px solid white; */
     width: 45%;
     /* max-height: 500px; */
@@ -282,6 +333,12 @@
     .event-details__body__left__buttons {
         margin: 4vmin;
     }
+    .event_sponsors_image1 , .event_sponsors_image2{
+        width: 70%;
+        background: none;
+        box-shadow: none;
+        margin: 20px auto;
+    }
 }
 
 @keyframes glow {
@@ -368,6 +425,7 @@
     /* Style the tab links */
     display: block;
     padding: 15px 20px;
+    margin: auto;
     background-color: transparent;
     color: #ba94d1;
     text-decoration: dashed;
@@ -388,6 +446,7 @@
 
 .tab-content {
     /* Hide the tab content by default */
+    margin: auto;
     display: none;
     padding: 15px;
     border: 1px solid #ccc;
