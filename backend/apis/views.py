@@ -504,3 +504,9 @@ class GoogleCompleteProfileViewSet(APIView):
             return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})
         else:
             return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'User does not exist'})
+
+
+class AccomodationPassesViewSet(viewsets.ModelViewSet):
+    queryset = Passes.objects.all()
+    serializer_class = AccomodationSerializers  
+    permission_classes = (IsAuthenticated,)

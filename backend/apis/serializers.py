@@ -26,6 +26,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         token['username'] = user.first_name+'_'+user.last_name
         token['email'] = user.email
+        # token['isProfileCompleted'] = user.isProfileCompleted
         return token
 
 class SponsorsSerializers(serializers.ModelSerializer):
@@ -378,3 +379,10 @@ class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
     #             instance.referred_by = ca.email
     #     instance.save()
     #     return instance
+
+
+
+class AccomodationSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Passes
+        fields = '__all__'

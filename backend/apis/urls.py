@@ -41,6 +41,9 @@ router.register("coreteam",CoreTeamViewSet)
 
 router.register("robowars",RoboWarsViewSet)
 
+router.register("accomodationpasses",AccomodationPassesViewSet)
+
+
 # router.register("logindashboard", LoginDashboardViewSet)
 
 urlpatterns=[
