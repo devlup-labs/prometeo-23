@@ -148,7 +148,7 @@ function Events() {
 
   const [eventData, setEventData] = useState([]);
 
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState("technical");
     // const [DataTransferItemList, setDatalist]= useState(data);
     const setStatusFilter = (status) => {
       setStatus(status);
@@ -172,15 +172,17 @@ function Events() {
         method: "GET",
         headers: headers,
       };
-      const fetchURL = urlParams.get("type")
-        ? `${backendURL}/events/?type=${urlParams.get("type")}`
-        : `${backendURL}/events/`;
+      const fetchURL = `${backendURL}/events/`;
+      // urlParams.get("type")
+      //   ? `${backendURL}/events/?type=${urlParams.get("type")}`
+      //   : `${backendURL}/events/`;
 
         await fetch(fetchURL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
+          // console.log(data);
           if (data.length === 0) setEventData([...[{ name: "no data" }]]);
-          else if (status !== "") setEventData([...data.filter( e => e.type===status)]);
+          // else if (status !== "") setEventData([...data.filter( e => e.type===status)]);
           // else if (data.type !== "") console.log(status);
           else setEventData([...data]);
 
@@ -192,7 +194,7 @@ function Events() {
         });
     }
     fetchData();
-  }, [urlParams,status]);
+  }, []);
 
   // tabs
 
@@ -253,16 +255,16 @@ function Events() {
                 <p>
                   <section className="event_Hero-section">
                     {eventData.length > 0 ? (
-                      eventData[0].name === "no data" ? (
-                        <div className="event_Card-coming-soon">
+                      eventData.filter((e) => e.type === status).length > 0 ? (
+                        <div className="event_Card-grid">
+                          {eventData.filter((e) => e.type === status).map(createEntry)}
+                        </div>
+                      ):(
+                      <div className="event_Card-coming-soon">
                           Coming Soon!
                         </div>
-                      ) : (
-                        <div className="event_Card-grid">
-                          {eventData.map(createEntry)}
-                        </div>
-                      )
-                    ) : (
+                        )
+                     ): (
                       <div className="event_Card-coming-soon">Loading...</div>
                     )}
                   </section>
