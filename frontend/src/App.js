@@ -61,7 +61,7 @@ function App() {
                             element={<AccForm />}
                         />
 
-                        <Route path="/robowars" element={<Robowar />} />
+                        {/* <Route path="/robowars" element={<Robowar />} /> */}
                         {/* <Route path="/drone-race" element={<DroneRace />} /> */}
 
                         <Route path="/past-speakers" element={<Speaker />} />
@@ -129,13 +129,13 @@ function App() {
                             />
                         </Route>
 
-                        <Route exact path='/create-team' element={<PrivateRoute />}>
+                        {/* <Route exact path='/create-team' element={<PrivateRoute />}>
                             <Route exact path='/create-team' element={<Event_createTeam />} />
                         </Route>
 
                         <Route exact path='/join-team' element={<PrivateRoute />}>
                             <Route exact path='/join-team' element={<Event_joinTeam />} />
-                        </Route>
+                        </Route> */}
 
                         <Route path="/*" element={<Page_404 />} />
                     </Routes>
