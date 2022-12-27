@@ -42,7 +42,7 @@
     color: white;
     display: flex;
     text-align: center;
-    /* flex-direction: column; */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 5vmin;
@@ -492,11 +492,12 @@
     background-color: #ffde38;
     border-width: 0;
     box-sizing: border-box;
+    /* border: 2px solid white; */
     color: #000000;
     cursor: pointer;
     /* display: inline-block; */
     font-family: "Poppins", sans-serif;
-    font-size: 4vmin;
+    font-size: 3vmin;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 1em;
@@ -517,7 +518,7 @@
     touch-action: manipulation;
     vertical-align: baseline;
     white-space: nowrap;
-    margin:3vmin;
+    /* margin:3vmin; */
 }
 
 @media screen and (orientation: portrait) {
