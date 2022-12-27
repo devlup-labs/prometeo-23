@@ -72,7 +72,20 @@ class preregisterAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('name', 'email', 'contact', 'college')
     list_filter = ('college',)
 
+class CampusAmbassadorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('name', 'email', 'college', 'contact', 'city')
+    list_filter = ('college',)
+    search_fields = ['name', 'email', 'college', 'contact', 'city']
+
+class PassesAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('user', 'dob','address','aadhar_card','full_name','pass_type',)
+    list_filter = ('user',)
+
+
+
+
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Submissions, SubmissionsAdmin)
 admin.site.register(PreRegistration,preregisterAdmin)
 admin.site.register(CampusAmbassador)
+admin.site.register(Passes)

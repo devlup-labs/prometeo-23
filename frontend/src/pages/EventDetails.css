@@ -193,6 +193,7 @@
     object-fit: contain;
     margin: 1vmin;
     background-color: #ffffff79;
+    user-select: none;
 }
 .event_sponsors_image1 {
   /* background: linear-gradient(0deg, transparent 0%, 	rgb(168,153,39) 0%, transparent 200%);
@@ -330,6 +331,7 @@
     max-width: 30vw;
     max-height: 70%;
     object-fit: contain;
+    user-select: none;
 }
 
 @media screen and (max-width: 900px) {
@@ -476,6 +478,7 @@
     margin-left: 10px;
     padding: 0;
     overflow: hidden;
+    width: 100%;
 }
 
 .tabs > li {

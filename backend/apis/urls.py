@@ -41,6 +41,9 @@ router.register("coreteam",CoreTeamViewSet)
 
 router.register("robowars",RoboWarsViewSet)
 
+router.register("accomodationpasses",AccomodationPassesViewSet)
+
+
 # router.register("logindashboard", LoginDashboardViewSet)
 
 urlpatterns=[
@@ -49,8 +52,9 @@ urlpatterns=[
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('login/', MyObtainTokenPairView.as_view(), name='login'),
     path('google/', views.GoogleView.as_view(), name='google'),
-    path('googlelogin/',GoogleLogin.as_view(), name='google'),
+    # path('googlelogin/',GoogleLogin.as_view(), name='google'),
     path('campusambassador/', views.CampusAmbassadorView.as_view(), name='campusambassador'),
     path('logindashboard/', views.LoginDashboardViewSet.as_view(), name='logindashboard'),
     path('usercheck/', UserCheckViewSet.as_view(), name='usercheck'),
+    path('google/completeprofile/', views.GoogleCompleteProfileViewSet.as_view(), name='googlecompleteprofile'),
 ]

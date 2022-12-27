@@ -163,46 +163,20 @@ function Events() {
         ? `${backendURL}/events/?type=${urlParams.get("type")}`
         : `${backendURL}/events/`;
 
-      await fetch(fetchURL, requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-          setEventData([...data]);
-          console.log("Data:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
-    fetchData();
-  }, [urlParams]);
-
-  // taabs
-
-  var taabLinks = document.querySelectorAll(".taablinks");
-  var taabContent = document.querySelectorAll(".taabcontent");
-  // console.log(taabLinks);
-  taabLinks.forEach(function (el) {
-    el.addEventListener("click", openTabs);
-  });
-
-  function openTabs(el) {
-    var btnTarget = el.currentTarget;
-    console.log(btnTarget);
-    var country = btnTarget.dataset.country;
-
-    taabContent.forEach(function (el) {
-      el.classList.remove("active_taab");
-    });
-
-    taabLinks.forEach(function (el) {
-      el.classList.remove("active_taab");
-      // console.log(el.classList);
-    });
-
-    document.querySelector("#" + country).classList.add("active_taab");
-
-    btnTarget.classList.add("active_taab");
-  }
+            await fetch(fetchURL, requestOptions)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.length === 0) setEventData([...[{name: "no data"}]]);
+                    else setEventData([...data]);
+                    console.log("Data:", data);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    setEventData([...[{name: "no data"}]]);
+                });
+        }
+        fetchData();
+    }, [urlParams]);
 
   return (
     <FadeIn duration={500}>
@@ -339,13 +313,23 @@ function Events() {
               <div id="Technical events" class="taabcontent active_taab">
                 <p>
                   <section className="event_Hero-section">
-                    {eventData.length > 0 ? (
-                      <div className="event_Card-grid">
-                        {eventData.map(createEntry)}
-                      </div>
-                    ) : (
-                      <div className="event_Card-coming-soon">Coming Soon!</div>
-                    )}
+                    {
+                        eventData.length > 0 ? (
+                            eventData[0].name === "no data" ? (
+                                <div className="event_Card-coming-soon">
+                                    Coming Soon!
+                                </div>
+                            ) : (
+                                <div className="event_Card-grid">
+                                    {eventData.map(createEntry)}
+                                </div>
+                            )
+                        ) : (
+                            <div className="event_Card-coming-soon">
+                                Loading...
+                            </div>
+                        )
+                    }
                   </section>
                 </p>
               </div>
