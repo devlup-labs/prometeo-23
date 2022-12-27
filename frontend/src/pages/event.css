@@ -206,9 +206,14 @@ a {
 
 .event_Card-prize {
     color: var(--text-lighter);
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-bottom: var(--spacing-s);
     text-transform: uppercase;
+}
+
+.event_Card-prize-val {
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .event_Card-heading {
@@ -219,7 +224,7 @@ a {
     opacity: 100%;
     /* text-shadow: 1px 1px 2px rgb(16, 28, 39); */
     line-height: 1.4;
-    word-spacing: 100vw;
+    /* word-spacing: 100vw; */
     hyphens: auto;
 }
 .event_Card-date {
@@ -323,6 +328,9 @@ a {
         text-align: left;
     }
     .event_Card-prize {
+        font-size: 1rem;
+    }
+    .event_Card-prize-val {
         font-size: 1.5rem;
     }
     .event_Card-heading {
@@ -367,6 +375,9 @@ a {
         grid-template-columns: repeat(3, 1fr);
     }
     .event_Card-prize {
+        font-size: 1.2rem;
+    }
+    .event_Card-prize-val {
         font-size: 1.7rem;
     }
     .event_Card-heading {

@@ -49,10 +49,22 @@ class SponsorsViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 class EventViewSet(viewsets.ModelViewSet):
-    queryset = Event.objects.all()
+    queryset = Event.objects.filter(hidden=False)
     serializer_class = EventSerializers
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['type','id']
+    filterset_fields = ['type','id',]
+
+
+class GetEventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.filter(hidden=False)
+    serializer_class = EventSerializers
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id','type']
+
+    def get(self):
+        queryset = Event.objects.filter(hidden=False)
+        serializer = EventSerializers(queryset, many=True)
+        return Response(serializer.data)   
 
 class BrochureViewSet(viewsets.ModelViewSet):
     queryset = Brochure.objects.all()
@@ -336,10 +348,10 @@ class CoreTeamViewSet(viewsets.ModelViewSet):
     serializer_class = CoreTeamSerializers
 
 
-class CampusAmbassadorListView(APIView):
+class CampusAmbassadorListView(viewsets.ModelViewSet):
     queryset = ExtendedUser.objects.all()
     serializer_class = CAViewSerializers
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     def get(self, request, *args, **kwargs):
         # if(request.user.is_authenticated==False):
         #     return Response({'message':'User not authenticated'},status=status.HTTP_401_UNAUTHORIZED)
@@ -501,7 +513,17 @@ class GoogleCompleteProfileViewSet(APIView):
             
             user.isProfileCompleted = True
             user.save()
-            return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})
+            print(user.isProfileCompleted)
+            token = MyTokenObtainPairSerializer.get_token(user)
+            response = {}
+            response['email'] = user.email
+            response['first_name'] = user.first_name
+            response['last_name'] = user.last_name
+            response['isProfileCompleted'] = user.isProfileCompleted
+            response['access_token'] = str(token.access_token)
+            response['refresh_token'] = str(token)
+            return Response(response)
+            # return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})    
         else:
             return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'User does not exist'})
 

@@ -710,3 +710,9 @@ def preregistration_page(request):
 def passtype_page(request):
     passtypes = Passes.objects.all()
     return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/passtypechange/')
+def change_passtype(request, value):
+    # changed = request.data['pass_type'] = value
+    # user = request.data['user']
+    print(request.data)

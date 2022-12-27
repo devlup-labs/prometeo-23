@@ -53,7 +53,7 @@ function Entry(props) {
                     <h1 className="event_Card-date">{event.date}</h1>
                     {event.prize && event.prize !== "NA" && (
                         <h3 className="event_Card-prize">
-                            Prize {event.prize}
+                            Prizes worth <span className="event_Card-prize-val">{event.prize.split(" ").slice(1).join(" ")}</span>
                         </h3>
                     )}
                 </div>
