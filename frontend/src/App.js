@@ -89,6 +89,14 @@ function App() {
                             <Route exact path='/complete-profile' element={<CompleteProfile />} />
                         </Route>
 
+                        <Route exact path='/complete-profile' element={<PrivateRoute />}>
+                            <Route exact path='/complete-profile' element={<CompleteProfile />} />
+                        </Route>
+
+                        <Route exact path='/complete-profile' element={<PrivateRoute />}>
+                            <Route exact path='/complete-profile' element={<CompleteProfile />} />
+                        </Route>
+
             <Route path="/*" element={<Page_404 />} />
           </Routes>
           <ToastContainer theme="dark" />

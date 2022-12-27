@@ -175,8 +175,8 @@ function Events() {
       const fetchURL = urlParams.get("type")
         ? `${backendURL}/events/?type=${urlParams.get("type")}`
         : `${backendURL}/events/`;
-        if (status !== "")
-      await fetch(fetchURL, requestOptions)
+
+        await fetch(fetchURL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
           if (data.length === 0) setEventData([...[{ name: "no data" }]]);
