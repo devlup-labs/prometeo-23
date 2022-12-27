@@ -178,3 +178,15 @@ class RoboWars(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class Passes(models.Model):
+    user = models.ForeignKey(ExtendedUser, on_delete=models.CASCADE)
+    aadhar_card = models.CharField(max_length=15, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    dob = models.DateField(blank=True, null=True)
+    full_name = models.CharField(max_length=100, blank=True, null=True)
+    pass_type = models.IntegerField(default=0, blank=True, null=True)
+    class Meta:
+        verbose_name_plural = 'passes'

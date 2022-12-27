@@ -78,9 +78,20 @@ export default function CA() {
     }, []);
 
     // useEffect(() => {
-    function copyText() {
-        navigator.clipboard.writeText(userData.invite_referral);
-        toast.success("Copied to clipboard!");
+    function copyText(invite_referral="") {
+        if (invite_referral === "") {
+            navigator.clipboard.writeText(userData.invite_referral);
+        }
+        else {
+            navigator.clipboard.writeText(invite_referral);
+        }
+        toast.info(
+            "Copied to clipboard",
+            {
+                position:
+                    "bottom-right",
+            }
+        );
     }
     // }, []);
 
@@ -110,10 +121,11 @@ export default function CA() {
                     document.getElementById("ca-register-button").innerHTML =
                         "Registered!";
                     document.getElementById("ca-referral-info").innerHTML =
-                        "Your referral code is: <span id='ca-yellow' onClick={copyText}>" +
+                        'Your referral code is: <span id="ca-yellow">' +
                         invite_code +
-                        "</span> (click to copy!). Share it with your friends and get them to register using your referral code to get a chance to win exciting prizes!";
+                        ' (click to copy!)</span>. Share it with your friends and get them to register using your referral code to get a chance to win exciting prizes!';
                     // }
+                    document.getElementById("ca-yellow").onclick = () => {copyText(invite_code)};
                 } else {
                     toast.error("Error: " + response.statusText);
                 }
@@ -181,9 +193,9 @@ export default function CA() {
                                 <div>
                                     Your referral code is{" "}
                                     <span id="ca-yellow" onClick={copyText}>
-                                        {userData.invite_referral}{" "}
-                                    </span>{" "}
-                                    (click to copy!). You have registered{" "}
+                                        {userData.invite_referral}{" (click to copy!)"}
+                                    </span>
+                                    . You have registered{" "}
                                     {userData.ca_count} participants using your
                                     referral code!
                                 </div>

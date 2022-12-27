@@ -33,6 +33,9 @@ from decouple import config
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from django.conf import settings
+
+User = ExtendedUser
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -151,29 +154,40 @@ class UserLoginView(RetrieveAPIView):
 
 class GoogleView(APIView):
     def post(self, request):
-        payload = {'access_token': request.data.get("token")}  # validate the token
-        r = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', params=payload)
-        data = json.loads(r.text)
+        # payload = {'access_token': request.data.get("token")}  # validate the token
+        # r = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', params=payload)
+        # data = json.loads(r.text)
 
-        if 'error' in data:
-            content = {'message': 'wrong google token / this google token is already expired.'}
-            return Response(content)
+        # if 'error' in data:
+        #     content = {'message': 'wrong google token / this google token is already expired.'}
+        #     return Response(content)
 
         # create user if not exist
+
         try:
-            user = User.objects.get(email=data['email'])
+            user = User.objects.get(email=request.data['email'])
         except User.DoesNotExist:
             user = User()
-            user.username = data['email']
+            # user.username = data['email']
             # provider random default password
+            user.email = request.data['email']
             user.password = make_password(BaseUserManager().make_random_password())
-            user.email = data['email']
+            fname = request.data['given_name'].split()[0]
+            # lname = request.data['given_name'].split()[1:]
+            lname_lis= request.data['given_name'].split()
+            lname = " ".join(lname_lis[1:])
+            user.first_name = fname
+            user.last_name = lname
             # redirect to profile page to complete the profile
             user.save()
 
-        token = RefreshToken.for_user(user)  # generate token without username & password
+        # token = RefreshToken.for_user(user)  # generate token without username & password
+        # Add custom claims
+        token = MyTokenObtainPairSerializer.get_token(user)
         response = {}
-        response['username'] = user.username
+        response['email'] = user.email
+        response['first_name'] = user.first_name
+        response['last_name'] = user.last_name
         response['access_token'] = str(token.access_token)
         response['refresh_token'] = str(token)
         return Response(response)
@@ -373,3 +387,126 @@ class UserCheckViewSet(APIView):
             status_code = status.HTTP_200_OK
 
             return Response(response, status=status_code)
+
+
+
+
+# from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+# from dj_rest_auth.registration.views import SocialLoginView
+# from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+# from django.conf import settings
+# from django.views.decorators.csrf import csrf_exempt
+
+# class GoogleLogin(SocialLoginView):
+#     authentication_classes = [] # disable authentication
+#     adapter_class = GoogleOAuth2Adapter
+#     callback_url = "http://localhost:3000"
+#     client_class = OAuth2Client
+
+#     @csrf_exempt
+#     def google_token(request):
+
+#         if "code" not in request.body.decode():
+#             from rest_framework_simplejwt.settings import api_settings as jwt_settings
+#             from rest_framework_simplejwt.views import TokenRefreshView
+            
+#             class RefreshNuxtAuth(TokenRefreshView):
+#                 # By default, Nuxt auth accept and expect postfix "_token"
+#                 # while simple_jwt library doesnt accept nor expect that postfix
+#                 def post(self, request, *args, **kwargs):
+#                     request.data._mutable = True
+#                     request.data["refresh"] = request.data.get("refresh_token")
+#                     request.data._mutable = False
+#                     response = super().post(request, *args, **kwargs)
+#                     response.data['refresh_token'] = response.data['refresh']
+#                     response.data['access_token'] = response.data['access']
+#                     return response
+
+#             return RefreshNuxtAuth.as_view()(request)
+
+#         else:
+#             return GoogleLogin.as_view()(request)
+
+
+
+class RoboWarsViewSet(viewsets.ModelViewSet):
+    queryset = RoboWars.objects.all()
+    serializer_class = RoboWarsSerializers
+
+
+class GoogleCompleteProfileViewSet(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class = GoogleCompleteProfileSerializers
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        user_email = request.data.get('email')
+        if(ExtendedUser.objects.filter(email=user_email)).exists():
+            user = ExtendedUser.objects.filter(email=user_email).first()
+            # serializers = GoogleCompleteProfileSerializers(user)
+            # return Response(serializers.data)
+            # user.first_name = request.data.get('first_name')
+            # user.last_name = request.data.get('last_name')
+            user.contact = request.data.get('contact')
+            user.college = request.data.get('college')
+            user.gender = request.data.get('gender')
+            user.city = request.data.get('city')
+            user.accomodation = request.data.get('accomodation')
+            is_ca = request.data.get('ambassador')
+            rc = request.data.get('referral_code')
+            if(rc != None and rc != "" and is_ca == False):
+                if(ExtendedUser.objects.filter(invite_referral=rc)).exists():
+                    user.referral_code = rc
+                    # user.ambassador = 
+                    user.referred_by = ExtendedUser.objects.filter(invite_referral=rc).first()
+                    user.save()
+                    myca1 = CampusAmbassador.objects.filter(invite_referral=rc).first()
+                    myca1.ca_count += 1
+                    myca1.save()
+                    myca2 = ExtendedUser.objects.filter(invite_referral=rc).first()
+                    myca2.ca_count += 1
+
+            if(is_ca == True and rc == None):
+                user.ambassador = True
+                ca= CampusAmbassador.objects.create(user=user)
+                code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                user = CampusAmbassador.objects.all()
+                def referral_check(c):
+                    for u in user:
+                        if c == u.invite_referral:
+                            c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                            referral_check(c)
+                    return c
+
+                ca.invite_referral = referral_check(code)
+                # ca.invite_referral='CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                ca.save()
+                user.invite_referral = ca.invite_referral
+                with get_connection(
+                username=settings.EMAIL_HOST_USER,
+                password=settings.EMAIL_HOST_PASSWORD
+                ) as connection:
+                    sendMailID = settings.FROM_EMAIL_USER
+                    # subject = "Registration as Campus Ambassador"
+                    subject='Registration as Campus Ambassador'
+                    # message = "You have successfully registered as Campus Ambassador."
+                    message = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo '23 - the Techical Fest of IIT Jodhpur ."
+                    isCA=True
+                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'message': message, 'isCA':isCA})
+                    text_content = strip_tags(html_content)
+                    message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+                    message.attach_alternative(html_content, "text/html")
+                    message.mixed_subtype = 'related'
+                    message.send()
+            
+            user.isProfileCompleted = True
+            user.save()
+            return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})
+        else:
+            return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'User does not exist'})
+
+
+class AccomodationPassesViewSet(viewsets.ModelViewSet):
+    queryset = Passes.objects.all()
+    serializer_class = AccomodationSerializers  
+    permission_classes = (IsAuthenticated,)
