@@ -31,42 +31,49 @@ const tabsName = [
     id: "Technical_events",
     data_content: "Technical_events",
     data_title: "Technical events",
+    status: "technical",
   },
   {
     name: "Entrepreneurial",
     id: "Entrepreneurial_events",
     data_content: "Entrepreneurial_events",
     data_title: "Entrepreneurial events",
+    status: "entrepreneurial",
   },
   {
     name: "Tech Carnival",
     id: "Tech_Carnival",
     data_content: "Tech_Carnival",
     data_title: "Tech Carnival",
+    status: "exhibition",
   },
   {
     name: "Workshops",
     id: "Workshops",
     data_content: "Workshops",
     data_title: "Workshops",
+    status: "workshop",
   },
   {
     name: "Informals",
     id: "Informals_events",
     data_content: "Informals_events",
     data_title: "Informals_events",
+    status: "informal",
   },
   {
     name: "Poster Presentation",
     id: "Poster_Presentation",
     data_content: "Poster_Presentation",
     data_title: "Poster Presentation",
+    status: "poster_presentation",
   },
   {
     name: "Panel Discussion",
     id: "Panel_Discussion",
     data_content: "Panel_Discussion",
     data_title: "Panel Discussion",
+    status: "panel_discussion",
   },
 ];
 function createEntry(eventTerm) {
@@ -141,6 +148,13 @@ function Events() {
 
   const [eventData, setEventData] = useState([]);
 
+    const [status, setStatus] = useState("");
+    // const [DataTransferItemList, setDatalist]= useState(data);
+    const setStatusFilter = (status) => {
+      setStatus(status);
+    };
+    // console.log(status);
+
   useEffect(() => {
     const navBarEle = document.getElementById("navbar");
     navBarEle.style.opacity = 1;
@@ -158,25 +172,54 @@ function Events() {
         method: "GET",
         headers: headers,
       };
-
       const fetchURL = urlParams.get("type")
         ? `${backendURL}/events/?type=${urlParams.get("type")}`
         : `${backendURL}/events/`;
+        if (status !== "")
+      await fetch(fetchURL, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.length === 0) setEventData([...[{ name: "no data" }]]);
+          else if (status !== "") setEventData([...data.filter( e => e.type===status)]);
+          // else if (data.type !== "") console.log(status);
+          else setEventData([...data]);
 
-            await fetch(fetchURL, requestOptions)
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.length === 0) setEventData([...[{name: "no data"}]]);
-                    else setEventData([...data]);
-                    console.log("Data:", data);
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    setEventData([...[{name: "no data"}]]);
-                });
-        }
-        fetchData();
-    }, [urlParams]);
+          // console.log("Data:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          setEventData([...[{ name: "no data" }]]);
+        });
+    }
+    fetchData();
+  }, [urlParams,status]);
+
+  // tabs
+
+  var tabLinks = document.querySelectorAll(".taablinks");
+  // var tabContent = document.querySelectorAll(".taabcontent");
+
+  tabLinks.forEach(function (el) {
+    el.addEventListener("click", openTabs);
+  });
+
+  function openTabs(el) {
+    var btnTarget = el.currentTarget;
+    var country = btnTarget.dataset.country;
+
+    // tabContent.forEach(function (el) {
+    //   el.classList.remove("active_taab");
+    // });
+
+    tabLinks.forEach(function (el) {
+      el.classList.remove("active_taab");
+    });
+
+    document.querySelector("#" + country).classList.add("active_taab");
+
+    btnTarget.classList.add("active_taab");
+  }
+
 
   return (
     <FadeIn duration={500}>
@@ -192,144 +235,36 @@ function Events() {
             {/* <!-- taab links --> */}
             <div class="taabs">
               {tabsName.map((item, index) => (
-                <Link
-                  to={{
-                    pathname: "/events",
-                    search: `?type=${item.type}`,
-                  }}
-                  key={index}
+                <button
+                  id={item.id}
+                  class="taablinks"
+                  // style={[status === item.status && styles.active]}
+                  data-country={item.data_content}
+                  onClick={() => setStatusFilter(item.status)}
                 >
-                  <button
-                    id={item.id}
-                    class="taablinks active_taab"
-                    data-country={item.data_content}
-                  >
-                    <p data-title={item.data_title}>{item.name}</p>
-                  </button>
-                </Link>
+                  <p data-title={item.data_title}>{item.name}</p>
+                </button>
               ))}
-              {/* <Link
-                to={{
-                  pathname: "/events",
-                  search: "?type=technical",
-                }}
-              >
-                <button
-                  id="Technical_events"
-                  class="taablinks active_taab"
-                  data-country="Technical_events"
-                >
-                  <p data-title="Technical events">Technical</p>
-                </button>
-              </Link>
-              <Link
-                to={{
-                  pathname: "/events",
-                  search: "?type=entrepreneurial",
-                }}
-              >
-                <button
-                  id="Entrepreneurial_events"
-                  class="taablinks"
-                  data-country="Entrepreneurial_events"
-                >
-                  <p data-title="Entrepreneurial events">Entrepreneurial</p>
-                </button>
-              </Link>
-              <Link
-                to={{
-                  pathname: "/events",
-                  search: "?type=exhibition",
-                }}
-              >
-                <button
-                  id="Tech_Carnival"
-                  class="taablinks"
-                  data-country="Tech_Carnival"
-                >
-                  <p data-title="Tech Carnival">Tech Carnival</p>
-                </button>
-              </Link>
-              <Link
-                to={{
-                  pathname: "/events",
-                  search: "?type=workshop",
-                }}
-              >
-                <button
-                  id="Workshops"
-                  class="taablinks"
-                  data-country="Workshops"
-                >
-                  <p data-title="Workshops">Workshops</p>
-                </button>
-              </Link>
-              <Link
-                to={{
-                  pathname: "/events",
-                  search: "?type=informal",
-                }}
-              >
-                <button
-                  id="Informal_events"
-                  class="taablinks"
-                  data-country="Informal_events"
-                >
-                  <p data-title="Informal_events">Informals</p>
-                </button>
-              </Link>
-              <Link
-                to={{
-                  pathname: "/events",
-                  search: "?type=poster_presentation",
-                }}
-              >
-                <button
-                  id="Poster_Presentation"
-                  class="taablinks"
-                  data-country="Poster_Presentation"
-                >
-                  <p data-title="Poster Presentation">Poster Presentation</p>
-                </button>
-              </Link>
-              <Link
-                to={{
-                  pathname: "/events",
-                  search: "?type=panel_discussion",
-                }}
-              >
-                <button
-                  id="Panel_Discussion"
-                  class="taablinks"
-                  data-country="Panel_Discussion"
-                >
-                  <p data-title="Panel Discussion">Panel Discussion</p>
-                </button>
-              </Link> */}
             </div>
 
             {/* <!-- taab content --> */}
             <div class="wrapper_taabcontent">
-              <div id="Technical events" class="taabcontent active_taab">
+              <div class="taabcontent active_taab">
                 <p>
                   <section className="event_Hero-section">
-                    {
-                        eventData.length > 0 ? (
-                            eventData[0].name === "no data" ? (
-                                <div className="event_Card-coming-soon">
-                                    Coming Soon!
-                                </div>
-                            ) : (
-                                <div className="event_Card-grid">
-                                    {eventData.map(createEntry)}
-                                </div>
-                            )
-                        ) : (
-                            <div className="event_Card-coming-soon">
-                                Loading...
-                            </div>
-                        )
-                    }
+                    {eventData.length > 0 ? (
+                      eventData[0].name === "no data" ? (
+                        <div className="event_Card-coming-soon">
+                          Coming Soon!
+                        </div>
+                      ) : (
+                        <div className="event_Card-grid">
+                          {eventData.map(createEntry)}
+                        </div>
+                      )
+                    ) : (
+                      <div className="event_Card-coming-soon">Loading...</div>
+                    )}
                   </section>
                 </p>
               </div>
