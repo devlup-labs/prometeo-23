@@ -5,6 +5,7 @@ import "./event.css";
 import "./eventsTabs.css";
 
 import logo from "../assets/navbar/prometeo_logo_23.png";
+import topIcon from "../assets/icons/up-arrow.png";
 import Footer from "../components/footer";
 import FadeIn from "../components/fadein";
 import { backendURL } from "../backendURL";
@@ -148,12 +149,12 @@ function Events() {
 
   const [eventData, setEventData] = useState([]);
 
-    const [status, setStatus] = useState("technical");
-    // const [DataTransferItemList, setDatalist]= useState(data);
-    const setStatusFilter = (status) => {
-      setStatus(status);
-    };
-    // console.log(status);
+  const [status, setStatus] = useState("technical");
+  // const [DataTransferItemList, setDatalist]= useState(data);
+  const setStatusFilter = (status) => {
+    setStatus(status);
+  };
+  // console.log(status);
 
   useEffect(() => {
     const navBarEle = document.getElementById("navbar");
@@ -177,7 +178,7 @@ function Events() {
       //   ? `${backendURL}/events/?type=${urlParams.get("type")}`
       //   : `${backendURL}/events/`;
 
-        await fetch(fetchURL, requestOptions)
+      await fetch(fetchURL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
           // console.log(data);
@@ -222,7 +223,6 @@ function Events() {
     btnTarget.classList.add("active_taab");
   }
 
-
   return (
     <FadeIn duration={500}>
       <div id="eventsPage" key={urlParams.get("type")}>
@@ -236,41 +236,53 @@ function Events() {
           <div class="taabs_content">
             {/* <!-- taab links --> */}
             <div class="taabs">
-              {tabsName.map((item, index) => (
-                <button
-                  id={item.id}
-                  class="taablinks"
-                  // style={[status === item.status && styles.active]}
-                  data-country={item.data_content}
-                  onClick={() => setStatusFilter(item.status)}
-                >
-                  <p data-title={item.data_title}>{item.name}</p>
-                </button>
-              ))}
+              {tabsName.map((item, index) => {
+                if (item.status === "technical") return (
+                  <button
+                    id={item.id}
+                    class="taablinks active_taab"
+                    data-country={item.data_content}
+                    onClick={() => setStatusFilter(item.status)}
+                  >
+                    <p data-title={item.data_title}>{item.name}</p>
+                  </button>
+                )
+                else return (
+                  <button
+                    id={item.id}
+                    class="taablinks"
+                    data-country={item.data_content}
+                    onClick={() => setStatusFilter(item.status)}
+                  >
+                    <p data-title={item.data_title}>{item.name}</p>
+                  </button>
+                )
+              })}
             </div>
 
             {/* <!-- taab content --> */}
             <div class="wrapper_taabcontent">
               <div class="taabcontent active_taab">
-                <p>
-                  <section className="event_Hero-section">
-                    {eventData.length > 0 ? (
-                      eventData.filter((e) => e.type === status).length > 0 ? (
-                        <div className="event_Card-grid">
-                          {eventData.filter((e) => e.type === status).map(createEntry)}
-                        </div>
-                      ):(
-                      <div className="event_Card-coming-soon">
-                          Coming Soon!
-                        </div>
-                        )
-                     ): (
-                      <div className="event_Card-coming-soon">Loading...</div>
-                    )}
-                  </section>
-                </p>
+                <section className="event_Hero-section">
+                  {eventData.length > 0 ? (
+                    eventData.filter((e) => e.type === status).length > 0 ? (
+                      <div className="event_Card-grid">
+                        {eventData
+                          .filter((e) => e.type === status)
+                          .map(createEntry)}
+                      </div>
+                    ) : (
+                      <div className="event_Card-coming-soon">Coming Soon!</div>
+                    )
+                  ) : (
+                    <div className="event_Card-coming-soon">Loading...</div>
+                  )}
+                </section>
               </div>
             </div>
+            <a id="back-to-top" href="#">
+              <img src={topIcon} />
+            </a>
           </div>
         </section>
         {/* <section className="event_Hero-section">
