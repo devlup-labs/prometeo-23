@@ -18,8 +18,6 @@ import Speaker from "./pages/Speaker";
 import Gallery from "./pages/newGallery";
 import Sponsors from "./pages/Sponsors";
 import Events from "./pages/Event.js";
-import Robowar from "./pages/robowar.js";
-import DroneRace from "./pages/drone_race.js";
 import Register from "./pages/Register.js";
 import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
@@ -58,8 +56,6 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/past-sponsors" element={<Sponsors />} />
             <Route path="/events" element={<Events />} />
-            <Route path="/robowar" element={<Robowar />} />
-            <Route path="/drone_race" element={<DroneRace />} />
             {/* <Route path="/theme" element={<Theme />} /> */}
             {/* <Route path="/register" element={<Register />} /> */}
             {/* <Route path="/login" element={<Login />} /> */}
