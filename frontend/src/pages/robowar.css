@@ -7,7 +7,7 @@
   font-family: "Josefin Sans", sans-serif;
   box-sizing: border-box;
   /* padding: 0 1vw; */
-  width: 100vw;
+  width: 100%;
   /* background: rgb(16, 28, 39); */
   /* background: radial-gradient(circle, rgba(16, 28, 39, 1) 10%, rgba(0, 0, 0, 1) 90%); */
   min-height: 90vh;
