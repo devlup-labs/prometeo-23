@@ -342,12 +342,9 @@ export default function Accommodation() {
                                 data-bs-parent="#accordionFlushExample"
                             >
                                 <div className="accordion-body">
-                                    No, food facilities are not included in the
-                                    accommodation charges. Participants can
-                                    purchase their meals from food court,
-                                    Shamiyana - Institute Cafe or Hostel mess.
-                                    There are two hostel messes: one veg & one
-                                    non-veg.
+                                    Yes, food facilities are included in the
+                                    accommodation charges. Participants will be
+                                    provided with two meals a day.
                                 </div>
                             </div>
                         </div>
