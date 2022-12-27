@@ -68,9 +68,9 @@ function AccForm() {
             }
         }
 
-        if (user === null) {
-            toast.error("Please login to register as Campus Ambassador!");
-        } else {
+        // if (user === null) {
+        //     toast.error("Please login to register as Campus Ambassador!");
+        // } else {
             const myPromise = new Promise((resolve, reject) => {
                 fetchData()
                     .then((res) => {
@@ -92,7 +92,7 @@ function AccForm() {
                     },
                 },
             });
-        }
+        // }
     };
 
     const [accData, setAccData] = useState([]);
@@ -113,6 +113,9 @@ function AccForm() {
                         document.getElementById("acc-success").style.display =
                             "flex";
                     }
+                    else {
+                        document.getElementById("acc-success").style.display = "none";
+                    }
                 } else {
                     // console.log(response)
                     // toast.error("Error: " + response.statusText);
@@ -123,12 +126,16 @@ function AccForm() {
         }
 
         if (user !== null) {
+            console.log("Fetching data for user:", user.email)
             fetchData();
+        }
+        else {
+            document.getElementById("acc-success").style.display = "none";
         }
     }, []);
 
     useEffect(() => {
-        console.log(accData);
+        // console.log(accData);
     }, [accData]);
 
     function paymentPending(data) {

@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import FadeIn from "../components/fadein";
+import AuthContext from "../context/AuthContext";
 
 export default function Accommodation() {
     useEffect(() => {
@@ -14,6 +15,8 @@ export default function Accommodation() {
         navBarEle.style.opacity = 1;
         // document.body.style.overflow = "hidden";
     }, []);
+
+    const { user, logoutUser } = useContext(AuthContext);
 
     return (
         <FadeIn duration={1000}>
@@ -23,14 +26,23 @@ export default function Accommodation() {
                         Accommodation In <span>Prometeo</span>
                     </div>
 
-                    <Link to="/accommodation-registration">
+                    {/* <Link to="/accommodation-registration"> */}
                         <button
                             id="acc-register-button"
                             className="acc-button-48"
+                            onClick={() => {
+                                if (user) {
+                                    toast.success("Redirecting to form!");
+                                    window.location.href = "/accommodation-registration";
+                                } else {
+                                    toast.error("Please login first!");
+
+                            }
+                        }}
                         >
                             <span className="button-text">REGISTER NOW!</span>
                         </button>
-                    </Link>
+                    {/* </Link> */}
                 </div>
                 <div className="acc-content">
                     <div className="acc-content-title">About Us</div>

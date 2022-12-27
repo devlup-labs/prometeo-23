@@ -32,7 +32,7 @@
     align-items: center;
     justify-content: center;
     background-color: #101c27;
-    z-index: 999;
+    z-index: 2;
 }
 
 @media screen and (max-width: 768px) {
