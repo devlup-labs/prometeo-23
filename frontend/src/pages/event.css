@@ -203,22 +203,27 @@ a {
 }
 
 .event_Card-prize {
-  color: var(--text-lighter);
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-s);
-  text-transform: uppercase;
+    color: var(--text-lighter);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-s);
+    text-transform: uppercase;
+}
+
+.event_Card-prize-val {
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .event_Card-heading {
-  width: 100%;
-  color: var(--text-lighter);
-  font-size: 1.8rem;
-  font-weight: 800;
-  opacity: 100%;
-  /* text-shadow: 1px 1px 2px rgb(16, 28, 39); */
-  line-height: 1.4;
-  word-spacing: 100vw;
-  hyphens: auto;
+    width: 100%;
+    color: var(--text-lighter);
+    font-size: 1.9rem;
+    font-weight: 800;
+    opacity: 100%;
+    /* text-shadow: 1px 1px 2px rgb(16, 28, 39); */
+    line-height: 1.4;
+    /* word-spacing: 100vw; */
+    hyphens: auto;
 }
 .event_Card-date {
   margin-top: 5px;
@@ -282,31 +287,34 @@ a {
     top: 0;
     bottom: 0;
   } */
-  .event_Card:hover .event_Card-background {
-    transform: none;
-    transition: none;
-    background-position: center;
-    /* filter: none; */
-  }
-  .event_Card-content {
-    text-align: left;
-  }
-  .event_Card-prize {
-    font-size: 1.5rem;
-  }
-  .event_Card-heading {
-    font-size: 1.5rem;
-  }
-  .event_Card-date {
-    font-size: 1.0rem;
-  }
-  .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
-    filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(1px);
-  }
-  #buttons {
-    font-size: max(12px, 3vmin);
-    margin-bottom: 0;
-  }
+    .event_Card:hover .event_Card-background {
+        transform: none;
+        transition: none;
+        background-position: center;
+        /* filter: none; */
+    }
+    .event_Card-content {
+        text-align: left;
+    }
+    .event_Card-prize {
+        font-size: 1rem;
+    }
+    .event_Card-prize-val {
+        font-size: 1.5rem;
+    }
+    .event_Card-heading {
+        font-size: 1.5rem;
+    }
+    .event_Card-date {
+        font-size: 1rem;
+    }
+    .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
+        filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(1px);
+    }
+    #buttons {
+        font-size: max(12px, 3vmin);
+        margin-bottom: 0;
+    }
 }
 @media (840px < width <= 1060px) {
   .event_Card-grid {
@@ -336,14 +344,17 @@ a {
     grid-template-columns: repeat(3, 1fr);
   }
     .event_Card-prize {
-    font-size: 1.7rem;
-  }
-  .event_Card-heading {
-    font-size: 1.7rem;
-  }
-  .event_Card-date {
-    font-size: 1.2rem;
-  }
+        font-size: 1.2rem;
+    }
+    .event_Card-prize-val {
+        font-size: 1.7rem;
+    }
+    .event_Card-heading {
+        font-size: 1.7rem;
+    }
+    .event_Card-date {
+        font-size: 1.2rem;
+    }
 }
 @media (1150px < width <=1330px) {
   .event_Card-grid {

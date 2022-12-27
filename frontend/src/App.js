@@ -32,25 +32,30 @@ import CompleteProfile from "./pages/completeProfile";
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
 import NewGallery from "./pages/newNewGallery";
+import Robowar from "./pages/robowar";
+import DroneRace from "./pages/drone_race";
 
 function App() {
   // const [bigBang, setBigBang] = useState(true);
 
-  return (
-    <Router>
-      <div className="App">
-        <AuthProvider>
-          <Navbar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <HomePage
-                // bb={bigBang}
-                // bbFunc={setBigBang}
-                />
-              }
-            />
+    return (
+        <Router>
+            <div className="App">
+                <AuthProvider>
+                    <Navbar />
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <HomePage
+                                // bb={bigBang}
+                                // bbFunc={setBigBang}
+                                />
+                            }
+                        />
+
+                        {/* <Route path="/robowar" element={<Robowar />} /> */}
+                        {/* <Route path="/drone-race" element={<DroneRace />} /> */}
 
             <Route path="/past-speakers" element={<Speaker />} />
             <Route path="/gallery" element={<Gallery />} />

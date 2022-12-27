@@ -109,38 +109,41 @@ function Entry(props) {
           {/* <div className="card"></div> */}
           <h3 className="event_Card-heading">{event.name}</h3>
 
-          <div className="event_Card-info">
-            <h1 className="event_Card-date">{event.date}</h1>
-            {event.prize && event.prize !== "NA" && (
-              <h3 className="event_Card-prize">Prize {event.prize}</h3>
-            )}
-          </div>
+                <div className="event_Card-info">
+                    <h1 className="event_Card-date">{event.date}</h1>
+                    {event.prize && event.prize !== "NA" && (
+                        <h3 className="event_Card-prize">
+                            Prizes worth <span className="event_Card-prize-val">{event.prize.split(" ").slice(1).join(" ")}</span>
+                        </h3>
+                    )}
+                </div>
+            </div>
+            <div id="buttons">
+                <div
+                    id="button1"
+                    // to={{
+                    // 	pathname: '/event-details/',
+                    // 	search: `?id=${event.id}`,
+                    // }}
+                >
+                    {event.date}
+                </div>
+                {/* <button className="button2">View more</button> */}
+                <Link
+                    id="button2"
+                    to={{
+                        pathname: "/event-details/",
+                        search: `?id=${event.id}&name=${event.name}`,
+                    }}
+                    state={event}
+                >
+                    View More
+                </Link>
+            </div>
+            {/* </tr> */}
+            {/* </table> */}
         </div>
-      </Link>
-      <div id="buttons">
-        {/* <Link 
-						id="button1"
-						// to={{
-						// 	pathname: '/event-details/',
-						// 	search: `?id=${event.id}`,
-						// }}
-					>
-						Register
-					</Link> */}
-        {/* <button className="button2">View more</button> */}
-        <Link
-          id="button2"
-          to={{
-            pathname: "/event-details/",
-            search: `?id=${event.id}&name=${event.name}`,
-          }}
-          state={event}
-        >
-          View More
-        </Link>
-      </div>
-    </div>
-  );
+    );
 }
 
 function Events() {
