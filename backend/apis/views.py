@@ -54,6 +54,12 @@ class EventViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['type','id']
 
+    def get(self):
+        queryset = Event.objects.all().filter(hidden=False)
+        serializer = EventSerializers(queryset, many=True)
+        return Response(serializer.data)
+        
+
 class BrochureViewSet(viewsets.ModelViewSet):
     queryset = Brochure.objects.all()
     serializer_class = BrochureSerializers
@@ -501,7 +507,17 @@ class GoogleCompleteProfileViewSet(APIView):
             
             user.isProfileCompleted = True
             user.save()
-            return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})
+            print(user.isProfileCompleted)
+            token = MyTokenObtainPairSerializer.get_token(user)
+            response = {}
+            response['email'] = user.email
+            response['first_name'] = user.first_name
+            response['last_name'] = user.last_name
+            response['isProfileCompleted'] = user.isProfileCompleted
+            response['access_token'] = str(token.access_token)
+            response['refresh_token'] = str(token)
+            return Response(response)
+            # return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})    
         else:
             return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'User does not exist'})
 

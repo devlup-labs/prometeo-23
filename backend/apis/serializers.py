@@ -38,6 +38,7 @@ class EventSerializers(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+    
 
 class BrochureSerializers(serializers.ModelSerializer):
     class Meta:
