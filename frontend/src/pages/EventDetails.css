@@ -365,6 +365,7 @@
 .event-details__body__left__image__img {
     /* width: 30%; */
     max-width: 30vw;
+    flex-grow: 1;
     max-height: 70%;
     object-fit: contain;
     user-select: none;
