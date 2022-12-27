@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Event, Contacts, Brochure, Panel, EventSponsors, Gallery, StreamLinks
+from users.models import *
 from import_export.admin import ImportExportModelAdmin
 from django.utils.translation import ugettext_lazy as _
 
@@ -59,3 +60,15 @@ class GalleryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     class Meta:
         model = Gallery
         fields = '__all__'
+
+
+@admin.register(RoboWars)
+class RoboWarsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ['rw_name','bot_name','rw_category','rw_id']
+    list_filter = ('rw_category', )
+    search_fields = ['rw_name', ]
+
+    class Meta:
+        model = RoboWars
+        fields = '__all__'
+        

@@ -445,6 +445,41 @@ class RoboWarsViewSet(viewsets.ModelViewSet):
     queryset = RoboWars.objects.all()
     serializer_class = RoboWarsSerializers
 
+    def post(self,request,*args,**kwargs):
+        if request.data['rw_id']!=None:
+            rw_id = request.data['rw_id']
+            rw = RoboWars.objects.get(id=rw_id)
+            x = len(rw.team_members.all())
+            if x+1>rw.team_size:
+                return Response({'message':'Team size exceeded'},status=status.HTTP_400_BAD_REQUEST)
+            else:
+                rw.team_members.add(request.user)
+                rw.save()
+                return Response({'message':'Team member added'},status=status.HTTP_200_OK)
+        else:
+            rw = RoboWars.objects.create(rw_team_size=request.data['team_size'],rw_leader=request.user,team_members=request.user,rw_name=request.data['team_name'],bot_name = request.data['bot_name'],rw_country=request.data['country'],rw_category=request.data['category'])
+            
+            # make unique id
+            
+            code= 'RW' + str(uuid.uuid4().int)[:4]
+            
+            teams = RoboWars.objects.all() 
+            
+            def referral_check(c):
+                for u in teams:
+                    if c == u.rw_id:
+                        c = 'RW' + str(uuid.uuid4().int)[:4]
+                        referral_check(c)
+                return c
+
+            rw.rw_id = referral_check(code)
+
+            rw.save()
+            return Response({'message':'Team created'},status=status.HTTP_200_OK)
+            
+
+
+
 
 class GoogleCompleteProfileViewSet(APIView):
     queryset = ExtendedUser.objects.all()
