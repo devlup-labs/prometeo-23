@@ -43,6 +43,9 @@ router.register("robowars",RoboWarsViewSet)
 
 router.register("accomodationpasses",AccomodationPassesViewSet)
 
+# router.register("campusambassadorlistview",CampusAmbassadorListView)
+
+router.register("getevent",GetEventViewSet)
 
 # router.register("logindashboard", LoginDashboardViewSet)
 

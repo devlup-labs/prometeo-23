@@ -52,13 +52,19 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializers
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['type','id']
+    filterset_fields = ['type','id',]
+
+
+class GetEventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.filter(hidden=False)
+    serializer_class = EventSerializers
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id','type']
 
     def get(self):
-        queryset = Event.objects.all().filter(hidden=False)
+        queryset = Event.objects.filter(hidden=False)
         serializer = EventSerializers(queryset, many=True)
-        return Response(serializer.data)
-        
+        return Response(serializer.data)   
 
 class BrochureViewSet(viewsets.ModelViewSet):
     queryset = Brochure.objects.all()
@@ -342,10 +348,10 @@ class CoreTeamViewSet(viewsets.ModelViewSet):
     serializer_class = CoreTeamSerializers
 
 
-class CampusAmbassadorListView(APIView):
+class CampusAmbassadorListView(viewsets.ModelViewSet):
     queryset = ExtendedUser.objects.all()
     serializer_class = CAViewSerializers
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     def get(self, request, *args, **kwargs):
         # if(request.user.is_authenticated==False):
         #     return Response({'message':'User not authenticated'},status=status.HTTP_401_UNAUTHORIZED)
