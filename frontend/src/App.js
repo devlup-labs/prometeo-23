@@ -32,6 +32,7 @@ import CompleteProfile from "./pages/completeProfile";
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
 import NewGallery from "./pages/newNewGallery";
+import AccForm from "./pages/accForm";
 import Robowar from "./pages/robowar";
 import DroneRace from "./pages/drone_race";
 import Event_createTeam from "./pages/event_createTeam";
@@ -55,6 +56,10 @@ function App() {
                                 />
                             }
                         />
+                        <Route
+                            path="/accommodation-registration"
+                            element={<AccForm />}
+                        />
 
                         <Route path="/robowars" element={<Robowar />} />
                         {/* <Route path="/drone-race" element={<DroneRace />} /> */}
@@ -66,33 +71,62 @@ function App() {
                         {/* <Route path="/theme" element={<Theme />} /> */}
                         {/* <Route path="/register" element={<Register />} /> */}
                         {/* <Route path="/login" element={<Login />} /> */}
-                        <Route path="/event-details" element={<EventDetails />} />
+                        <Route
+                            path="/event-details"
+                            element={<EventDetails />}
+                        />
                         <Route path="/team" element={<Team />} />
 
                         <Route path="/campus-ambassador" element={<CA />} />
-                        <Route path="/accommodation" element={<Accommodation />} />
+                        <Route
+                            path="/accommodation"
+                            element={<Accommodation />}
+                        />
                         <Route path="/tnc" element={<Tnc />} />
                         <Route path="/privacy-policy" element={<PP />} />
 
-
                         {/* <Route exact path='/pre-register' element={<RestrictedRoute />} > */}
-                            {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
+                        {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
                         {/* </Route> */}
 
-                        <Route exact path='/login' element={<RestrictedRoute />}>
-                            <Route exact path='/login' element={<Login />} />
+                        <Route
+                            exact
+                            path="/login"
+                            element={<RestrictedRoute />}
+                        >
+                            <Route exact path="/login" element={<Login />} />
                         </Route>
 
-                        <Route exact path='/sign-up' element={<RestrictedRoute />}>
+                        <Route
+                            exact
+                            path="/sign-up"
+                            element={<RestrictedRoute />}
+                        >
                             <Route path="/sign-up" element={<SignUp />} />
                         </Route>
 
-                        <Route exact path='/dashboard' element={<PrivateRoute />}>
-                            <Route exact path='/dashboard' element={<Dashboard />} />
+                        <Route
+                            exact
+                            path="/dashboard"
+                            element={<PrivateRoute />}
+                        >
+                            <Route
+                                exact
+                                path="/dashboard"
+                                element={<Dashboard />}
+                            />
                         </Route>
 
-                        <Route exact path='/complete-profile' element={<PrivateRoute />}>
-                            <Route exact path='/complete-profile' element={<CompleteProfile />} />
+                        <Route
+                            exact
+                            path="/complete-profile"
+                            element={<PrivateRoute />}
+                        >
+                            <Route
+                                exact
+                                path="/complete-profile"
+                                element={<CompleteProfile />}
+                            />
                         </Route>
 
                         <Route exact path='/create-team' element={<PrivateRoute />}>
