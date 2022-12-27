@@ -49,7 +49,7 @@ class SponsorsViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 class EventViewSet(viewsets.ModelViewSet):
-    queryset = Event.objects.all()
+    queryset = Event.objects.filter(hidden=False)
     serializer_class = EventSerializers
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['type','id',]
