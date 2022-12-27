@@ -79,7 +79,7 @@ function Details(props) {
         <div className="event-details">
             <div className="event-details__header">
                 <div className="event-details__back-button">
-                    <Link to={`/events?type=${props.eventTerm.type}`}>
+                    <Link to={`/events`}>
                         <svg
                             className="fa fa-backBtn"
                             xmlns="http://www.w3.org/2000/svg"

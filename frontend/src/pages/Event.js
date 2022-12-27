@@ -5,7 +5,6 @@ import "./event.css";
 import "./eventsTabs.css";
 
 import logo from "../assets/navbar/prometeo_logo_23.png";
-import topIcon from "../assets/icons/up-arrow.png";
 import Footer from "../components/footer";
 import FadeIn from "../components/fadein";
 import { backendURL } from "../backendURL";
@@ -86,64 +85,59 @@ function createEntry(eventTerm) {
 function Entry(props) {
   const event = props.event;
   // console.log("Event:", event)
+
   return (
     <div className="event_Card">
-      <Link
-        id=""
-        to={{
-          pathname: "/event-details/",
-          search: `?id=${event.id}&name=${event.name}`,
+      <div
+        className="event_Card-background"
+        style={{
+          backgroundImage: `url(${event.image.replace(
+            "0.0.0.0:8888",
+            "apiv.prometeo.in"
+          )})`,
         }}
-        state={event}
-      >
-        <div
-          className="event_Card-background"
-          style={{
-            backgroundImage: `url(${event.image.replace(
-              "0.0.0.0:8888",
-              "apiv.prometeo.in"
-            )})`,
-          }}
-        ></div>
-        <div className="event_Card-content">
-          {/* <div className="card"></div> */}
-          <h3 className="event_Card-heading">{event.name}</h3>
-
-                <div className="event_Card-info">
-                    <h1 className="event_Card-date">{event.date}</h1>
-                    {event.prize && event.prize !== "NA" && (
-                        <h3 className="event_Card-prize">
-                            Prizes worth <span className="event_Card-prize-val">{event.prize.split(" ").slice(1).join(" ")}</span>
-                        </h3>
-                    )}
-                </div>
-            </div>
-            <div id="buttons">
-                <div
-                    id="button1"
-                    // to={{
-                    // 	pathname: '/event-details/',
-                    // 	search: `?id=${event.id}`,
-                    // }}
-                >
-                    {event.date}
-                </div>
-                {/* <button className="button2">View more</button> */}
-                <Link
-                    id="button2"
-                    to={{
-                        pathname: "/event-details/",
-                        search: `?id=${event.id}&name=${event.name}`,
-                    }}
-                    state={event}
-                >
-                    View More
-                </Link>
-            </div>
-            {/* </tr> */}
-            {/* </table> */}
+      ></div>
+      <div className="event_Card-content">
+        {/* <div className="card"></div> */}
+        <h3 className="event_Card-heading">{event.name}</h3>
+        <div className="event_Card-info">
+          <h1 className="event_Card-date">{event.date}</h1>
+          {event.prize && event.prize !== "NA" && (
+            <h3 className="event_Card-prize">
+              Prizes worth <br />
+              <span className="event_Card-prize-val">
+                {event.prize.split(" ").slice(1).join(" ")}
+              </span>
+            </h3>
+          )}
         </div>
-    );
+      </div>
+      <div id="buttons">
+        <div
+          id="button1"
+          // to={{
+          // 	pathname: '/event-details/',
+          // 	search: `?id=${event.id}`,
+          // }}
+        >
+          {event.date}
+        </div>
+        {/* <button className="button2">View more</button> */}
+        <Link
+          id="button2"
+          to={{
+            pathname: "/event-details/",
+            search: `?id=${event.id}&name=${event.name}`,
+          }}
+          state={event}
+        >
+          View More
+        </Link>
+      </div>
+      {/* </tr> */}
+      {/* </table> */}
+    </div>
+  );
 }
 
 function Events() {
@@ -188,7 +182,18 @@ function Events() {
           if (data.length === 0) setEventData([...[{ name: "no data" }]]);
           // else if (status !== "") setEventData([...data.filter( e => e.type===status)]);
           // else if (data.type !== "") console.log(status);
-          else setEventData([...data]);
+          else {
+            data.forEach((data) => {
+              var datePart = data.date.match(/\d+/g),
+                year = datePart[0].substring(2), // get only two digits
+                month = datePart[1],
+                day = datePart[2];
+
+              data.date = day + "-" + month + "-" + year;
+            }, data);
+            console.log(data);
+            setEventData([...data]);
+          }
 
           // console.log("Data:", data);
         })
@@ -240,26 +245,28 @@ function Events() {
             {/* <!-- taab links --> */}
             <div class="taabs">
               {tabsName.map((item, index) => {
-                if (item.status === "technical") return (
-                  <button
-                    id={item.id}
-                    class="taablinks active_taab"
-                    data-country={item.data_content}
-                    onClick={() => setStatusFilter(item.status)}
-                  >
-                    <p data-title={item.data_title}>{item.name}</p>
-                  </button>
-                )
-                else return (
-                  <button
-                    id={item.id}
-                    class="taablinks"
-                    data-country={item.data_content}
-                    onClick={() => setStatusFilter(item.status)}
-                  >
-                    <p data-title={item.data_title}>{item.name}</p>
-                  </button>
-                )
+                if (item.status === "technical")
+                  return (
+                    <button
+                      id={item.id}
+                      class="taablinks active_taab"
+                      data-country={item.data_content}
+                      onClick={() => setStatusFilter(item.status)}
+                    >
+                      <p data-title={item.data_title}>{item.name}</p>
+                    </button>
+                  );
+                else
+                  return (
+                    <button
+                      id={item.id}
+                      class="taablinks"
+                      data-country={item.data_content}
+                      onClick={() => setStatusFilter(item.status)}
+                    >
+                      <p data-title={item.data_title}>{item.name}</p>
+                    </button>
+                  );
               })}
             </div>
 
@@ -273,6 +280,7 @@ function Events() {
                         {eventData
                           .filter((e) => e.type === status)
                           .map(createEntry)}
+                        {/* {console.log(e)} */}
                       </div>
                     ) : (
                       <div className="event_Card-coming-soon">Coming Soon!</div>
@@ -283,9 +291,6 @@ function Events() {
                 </section>
               </div>
             </div>
-            <a id="back-to-top" href="#">
-              <img src={topIcon} />
-            </a>
           </div>
         </section>
         {/* <section className="event_Hero-section">

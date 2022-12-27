@@ -274,7 +274,7 @@ function Navbar() {
       <div className="navbar-mobile">
         {showIcons &&
           navBarLinks.map((link) => {
-            if (link.name === "events")
+            if (link.name === "flagshipEvents")
               return (
                 <div
                   style={{
@@ -300,7 +300,7 @@ function Navbar() {
                     </label>
                     {/* {link.text} */}
                     <ul className="dropdown_menu dropdown_menu-5">
-                      {eventTypes.map((item, index) => (
+                      {flagshipEventTypes.map((item, index) => (
                         <Link
                           to={{
                             pathname: link.path,

@@ -76,6 +76,9 @@ body {
 } */
 
 /* taab Links */
+#Technical_events{
+  margin-left: -5px;
+}
 .taablinks {
   background: transparent;
   /* background-image: linear-gradient(90deg, transparent 70%, rgba(255, 255, 255, 0.2) 100%); */
