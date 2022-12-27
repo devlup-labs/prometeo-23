@@ -579,14 +579,14 @@ export default function Accommodation() {
                 </div> */}
 
                 <div className="acc-content">
-                    {/* <Link to="/accommodation-registration">
+                    <Link to="/accommodation-registration">
                         <button
                             id="acc-register-button"
                             className="acc-button-48"
                         >
                             <span className="button-text">REGISTER NOW!</span>
                         </button>
-                    </Link> */}
+                    </Link>
                 </div>
                 {/* <img
                             className="acc-content-img blue-shadow acc-pr-logo"

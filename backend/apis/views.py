@@ -532,3 +532,9 @@ class AccomodationPassesViewSet(viewsets.ModelViewSet):
     queryset = Passes.objects.all()
     serializer_class = AccomodationSerializers  
     permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+        # Passes.objects.create(user=request.user, pass_type=request.data.get('pass_type'), aadhar_card=request.data.get('aadhar_card'),dob=request.data['dob'],address=request.data['address'],full_name=request.user.first_name + " " + request.user.last_name)
+        # return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Passes Booked Successfully'})
+

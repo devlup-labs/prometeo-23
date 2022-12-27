@@ -30,9 +30,9 @@ function AccForm() {
         try {
             console.log("Fetching data for user:", user.email);
             const obj = {
-                email: user.email,
-                name: e.target.full_name.value,
-                aadhar: e.target.aadhar.value,
+                // email: user.email,
+                full_name: e.target.full_name.value,
+                aadhar_card: e.target.aadhar.value,
                 dob: e.target.dob.value,
                 address: e.target.address.value
                 // ambassador: user.ambassador,
