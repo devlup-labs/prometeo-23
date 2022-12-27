@@ -52,13 +52,13 @@ const navBarLinks = [
     section: "right",
     tabIndex: 7,
   },
-  {
-    name: "flagshipEvents",
-    text: "Events",
-    path: "/robowar",
-    section: "right",
-    tabIndex: 8,
-  },
+  // {
+  //   name: "flagshipEvents",
+  //   text: "Events",
+  //   path: "/robowar",
+  //   section: "right",
+  //   tabIndex: 8,
+  // },
   //   {
   //     name: "drone_race",
   //     text: "Drone Race",
@@ -71,7 +71,7 @@ const navBarLinks = [
     text: "Gallery",
     path: "/gallery",
     section: "right",
-    tabIndex: 9,
+    tabIndex: 8,
   },
   // {
   //     name: "register",
