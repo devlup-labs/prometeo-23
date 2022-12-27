@@ -18,6 +18,8 @@ import Speaker from "./pages/Speaker";
 import Gallery from "./pages/newGallery";
 import Sponsors from "./pages/Sponsors";
 import Events from "./pages/Event.js";
+import Robowar from "./pages/robowar.js";
+import DroneRace from "./pages/drone_race.js";
 import Register from "./pages/Register.js";
 import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
@@ -28,68 +30,64 @@ import CA from "./pages/ca";
 import Accommodation from "./pages/accomodation";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
-import Tnc from "./pages/tnc";
-import PP from "./pages/privacy_policy";
-import NewGallery from "./pages/newNewGallery";
 
 function App() {
-    // const [bigBang, setBigBang] = useState(true);
+  // const [bigBang, setBigBang] = useState(true);
 
-    return (
-        <Router>
-            <div className="App">
-                <AuthProvider>
-                    <Navbar />
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <HomePage
-                                // bb={bigBang}
-                                // bbFunc={setBigBang}
-                                />
-                            }
-                        />
+  return (
+    <Router>
+      <div className="App">
+        <AuthProvider>
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomePage
+                // bb={bigBang}
+                // bbFunc={setBigBang}
+                />
+              }
+            />
 
-                        <Route path="/past-speakers" element={<Speaker />} />
-                        <Route path="/gallery" element={<NewGallery />} />
-                        <Route path="/past-sponsors" element={<Sponsors />} />
-                        <Route path="/events" element={<Events />} />
-                        {/* <Route path="/theme" element={<Theme />} /> */}
-                        {/* <Route path="/register" element={<Register />} /> */}
-                        {/* <Route path="/login" element={<Login />} /> */}
-                        <Route path="/event-details" element={<EventDetails />} />
-                        <Route path="/team" element={<Team />} />
+            <Route path="/past-speakers" element={<Speaker />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/past-sponsors" element={<Sponsors />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/robowar" element={<Robowar />} />
+            <Route path="/drone_race" element={<DroneRace />} />
+            {/* <Route path="/theme" element={<Theme />} /> */}
+            {/* <Route path="/register" element={<Register />} /> */}
+            {/* <Route path="/login" element={<Login />} /> */}
+            <Route path="/event-details" element={<EventDetails />} />
+            <Route path="/team" element={<Team />} />
 
-                        <Route path="/campus-ambassador" element={<CA />} />
-                        <Route path="/accommodation" element={<Accommodation />} />
-                        <Route path="/tnc" element={<Tnc />} />
-                        <Route path="/privacy-policy" element={<PP />} />
+            <Route path="/campus-ambassador" element={<CA />} />
+            <Route path="/Accommodation" element={<Accommodation />} />
 
+            {/* <Route exact path='/pre-register' element={<RestrictedRoute />} > */}
+            {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
+            {/* </Route> */}
 
-                        {/* <Route exact path='/pre-register' element={<RestrictedRoute />} > */}
-                            {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
-                        {/* </Route> */}
+            <Route exact path="/login" element={<RestrictedRoute />}>
+              <Route exact path="/login" element={<Login />} />
+            </Route>
 
-                        <Route exact path='/login' element={<RestrictedRoute />}>
-                            <Route exact path='/login' element={<Login />} />
-                        </Route>
+            <Route exact path="/sign-up" element={<RestrictedRoute />}>
+              <Route path="/sign-up" element={<SignUp />} />
+            </Route>
 
-                        <Route exact path='/sign-up' element={<RestrictedRoute />}>
-                            <Route path="/sign-up" element={<SignUp />} />
-                        </Route>
+            <Route exact path="/dashboard" element={<PrivateRoute />}>
+              <Route exact path="/dashboard" element={<Dashboard />} />
+            </Route>
 
-                        <Route exact path='/dashboard' element={<PrivateRoute />}>
-                            <Route exact path='/dashboard' element={<Dashboard />} />
-                        </Route>
-
-                        <Route path="/*" element={<Page_404 />} />
-                    </Routes>
-                    <ToastContainer theme="dark" />
-                </AuthProvider>
-            </div>
-        </Router>
-    );
+            <Route path="/*" element={<Page_404 />} />
+          </Routes>
+          <ToastContainer theme="dark" />
+        </AuthProvider>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
