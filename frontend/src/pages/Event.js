@@ -119,7 +119,7 @@ function Events() {
                 .then((data) => {
                     if (data.length === 0) setEventData([...[{name: "no data"}]]);
                     else setEventData([...data]);
-                    console.log("Data:", data);
+                    // console.log("Data:", data);
                 })
                 .catch((error) => {
                     console.error("Error:", error);

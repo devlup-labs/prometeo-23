@@ -2,14 +2,10 @@ import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import "./accomodation.css";
 
-import useAxios from "../context/context_useAxios";
-import { backendURL } from "../backendURL";
-import AuthContext from "../context/AuthContext";
-
-import logo from "../assets/homePage/logo.png";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import FadeIn from "../components/fadein";
-import { Navigate } from "react-router-dom";
 
 export default function Accommodation() {
     useEffect(() => {
@@ -27,9 +23,7 @@ export default function Accommodation() {
                     </div>
                 </div>
                 <div className="acc-content">
-                    <div className="acc-content-title">
-                        About Us
-                    </div>
+                    <div className="acc-content-title">About Us</div>
                     <div className="acc-content-text">
                         <span className="acc-content-desc-left text-justify">
                             Indian Institute of Technology Jodhpur was
@@ -56,8 +50,11 @@ export default function Accommodation() {
                             Hope to see you at Prometeo 2022-23.
                         </span>
                         <span className="acc-content-desc-left">
-                            Please visit the <a href="#acc-faq-div">Frequently Asked Questions (FAQ)
-                            section</a> to get most of your queries resolved.
+                            Please visit the{" "}
+                            <a href="#acc-faq-div">
+                                Frequently Asked Questions (FAQ) section
+                            </a>{" "}
+                            to get most of your queries resolved.
                         </span>
                     </div>
                 </div>
@@ -232,6 +229,160 @@ export default function Accommodation() {
                     <div className="acc-content-title" id="acc-faq-div">
                         FAQ's
                     </div>
+                    <div
+                        className="acc-content-text accordion accordion-flush"
+                        id="faq-accordion"
+                    >
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="flush-headingOne">
+                                <button
+                                    className="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne"
+                                    aria-expanded="false"
+                                    aria-controls="flush-collapseOne"
+                                >
+                                    What are the accommodation charges?
+                                </button>
+                            </h2>
+                            <div
+                                id="flush-collapseOne"
+                                className="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne"
+                                data-bs-parent="#accordionFlushExample"
+                            >
+                                <div className="accordion-body">
+                                    The accommodation charges and other
+                                    important details will be available on the
+                                    website or will be notified by the PR team
+                                    soon.
+                                </div>
+                            </div>
+                        </div>
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="flush-headingTwo">
+                                <button
+                                    className="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo"
+                                    aria-expanded="false"
+                                    aria-controls="flush-collapseTwo"
+                                >
+                                    Will all the team members be given
+                                    accommodation at the same place?
+                                </button>
+                            </h2>
+                            <div
+                                id="flush-collapseTwo"
+                                className="accordion-collapse collapse"
+                                aria-labelledby="flush-headingTwo"
+                                data-bs-parent="#accordionFlushExample"
+                            >
+                                <div className="accordion-body">
+                                    We will try but there is no surety of the
+                                    same.
+                                </div>
+                            </div>
+                        </div>
+                        <div className="accordion-item">
+                            <h2
+                                className="accordion-header"
+                                id="flush-headingThree"
+                            >
+                                <button
+                                    className="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree"
+                                    aria-expanded="false"
+                                    aria-controls="flush-collapseThree"
+                                >
+                                    What kind of accommodation will be provided?
+                                </button>
+                            </h2>
+                            <div
+                                id="flush-collapseThree"
+                                className="accordion-collapse collapse"
+                                aria-labelledby="flush-headingThree"
+                                data-bs-parent="#accordionFlushExample"
+                            >
+                                <div className="accordion-body">
+                                    Accommodation will be provided on a shared
+                                    basis inside campus hostels or outside
+                                    hotels. One mattress, and enough space for
+                                    keeping luggage, and other essential
+                                    commodities will be provided. Girls and boys
+                                    will be accommodated separately. Number of
+                                    participants in a room will be decided by
+                                    Techfest and will be allotted by the
+                                    Prometeo '23 team.
+                                </div>
+                            </div>
+                        </div>
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="flush-headingFour">
+                                <button
+                                    className="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseFour"
+                                    aria-expanded="false"
+                                    aria-controls="flush-collapseFour"
+                                >
+                                    Does the accommodation charges include food
+                                    facilities too?
+                                </button>
+                            </h2>
+                            <div
+                                id="flush-collapseFour"
+                                className="accordion-collapse collapse"
+                                aria-labelledby="flush-headingFour"
+                                data-bs-parent="#accordionFlushExample"
+                            >
+                                <div className="accordion-body">
+                                    No, food facilities are not included in the
+                                    accommodation charges. Participants can
+                                    purchase their meals from food court,
+                                    Shamiyana - Institute Cafe or Hostel mess.
+                                    There are two hostel messes: one veg & one
+                                    non-veg.
+                                </div>
+                            </div>
+                        </div>
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="flush-headingFive">
+                                <button
+                                    className="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseFive"
+                                    aria-expanded="false"
+                                    aria-controls="flush-collapseFive"
+                                >
+                                    Can I enter the IIT-J Campus anytime?
+                                </button>
+                            </h2>
+                            <div
+                                id="flush-collapseFive"
+                                className="accordion-collapse collapse"
+                                aria-labelledby="flush-headingFive"
+                                data-bs-parent="#accordionFlushExample"
+                            >
+                                <div className="accordion-body">
+                                    You can enter IIT Main gate anytime by
+                                    showing valid photo ID proof during 6am to
+                                    10pm.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="acc-content">
+                    <div className="acc-content-title" id="acc-faq-div">
+                        FAQ's
+                    </div>
                     <div className="acc-content-text">
                         <span className="acc-content-desc-right">
                             <ol className="acc-plain-list acc-faq">
@@ -264,16 +415,16 @@ export default function Accommodation() {
                                         accommodation will be provided?
                                     </span>
                                     <span>
-                                        <strong>A.</strong> Accommodation will be provided on a
-                                        shared basis inside campus hostels or
-                                        outside hotels. One mattress, and enough
-                                        space for keeping luggage, and other
-                                        essential commodities will be provided.
-                                        Girls and boys will be accommodated
-                                        separately. Number of participants in a
-                                        room will be decided by Techfest and
-                                        will be allotted by the Prometeo '23
-                                        team.
+                                        <strong>A.</strong> Accommodation will
+                                        be provided on a shared basis inside
+                                        campus hostels or outside hotels. One
+                                        mattress, and enough space for keeping
+                                        luggage, and other essential commodities
+                                        will be provided. Girls and boys will be
+                                        accommodated separately. Number of
+                                        participants in a room will be decided
+                                        by Techfest and will be allotted by the
+                                        Prometeo '23 team.
                                     </span>
                                 </li>
                                 <li>
@@ -306,7 +457,7 @@ export default function Accommodation() {
                             </ol>
                         </span>
                     </div>
-                </div>
+                </div> */}
 
                 {/* <div className="acc-content">
                     <div className="acc-content-title">
@@ -424,12 +575,12 @@ export default function Accommodation() {
                                 </span>
                             </button>
                         </span> */}
-                        {/* <img
+                {/* <img
                             className="acc-content-img blue-shadow acc-pr-logo"
                             src={logo}
                             alt="social-media"
                         /> */}
-                    {/* </div> */}
+                {/* </div> */}
                 {/* </div> */}
             </div>
         </FadeIn>

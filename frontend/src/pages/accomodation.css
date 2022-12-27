@@ -183,7 +183,7 @@
     font-family: "Josefin Sans", sans-serif;
     width: 100%;
     /* max-height: 80vh; */
-    text-shadow: 0 3px 5px #000000;
+    /* text-shadow: 0 3px 5px #000000; */
     color: white;
     display: flex;
     flex-direction: column;
@@ -195,9 +195,22 @@
     /* padding: 0 4vmin; */
 }
 
+#faq-accordion {
+    width: 80%;
+    /* border: 2px solid white; */
+}
+
+/* .acc-content-text div, .acc-content-text button {
+    background-color: transparent;
+} */
+
 @media screen and (max-width: 768px) {
     .acc-content-text {
         line-height: 1.2;
+    }
+
+    #faq-accordion {
+        width: 100%;
     }
 }
 
@@ -205,6 +218,15 @@
     .acc-content-text {
         max-height: none;
         line-height: 1.2;
+        font-size: 5vmin;
+    }
+
+    #faq-accordion {
+        width: 100%;
+    }
+
+    .acc-content-text button {
+        font-size: 5vmin;
     }
 
     .acc-left {
@@ -236,6 +258,7 @@
 
 .acc-content-desc-left > a {
     text-decoration: underline;
+    color: inherit;
 }
 
 .text-justify {
