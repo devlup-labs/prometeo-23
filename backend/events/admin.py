@@ -62,13 +62,4 @@ class GalleryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         fields = '__all__'
 
 
-@admin.register(RoboWars)
-class RoboWarsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ['rw_name','bot_name','rw_category','rw_id']
-    list_filter = ('rw_category', )
-    search_fields = ['rw_name', ]
 
-    class Meta:
-        model = RoboWars
-        fields = '__all__'
-        

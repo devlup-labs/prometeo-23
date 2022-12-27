@@ -171,7 +171,7 @@ class RoboWars(models.Model):
     rw_team_size = models.IntegerField(default=1)
     rw_country = models.CharField(max_length=50, verbose_name="Country")
     bot_name = models.CharField(max_length=50, verbose_name="Bot Name")
-    rw_category = models.IntegerField(max_length=50, verbose_name="RW Category")
+    rw_category = models.CharField(max_length=50, verbose_name="RW Category")
     rw_members = models.ManyToManyField(ExtendedUser, related_name="Robowars_teams")
     # event = models.ForeignKey(Event, blank=True, related_name="participating_teams", on_delete=models.CASCADE)
     rw_isEligible = models.BooleanField(default=False, verbose_name="Is Team Eligible or Not")
