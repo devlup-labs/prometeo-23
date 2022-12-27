@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./accomodation.css";
 
@@ -21,6 +22,15 @@ export default function Accommodation() {
                     <div id="acc-title-text">
                         Accommodation In <span>Prometeo</span>
                     </div>
+
+                    <Link to="/accommodation-registration">
+                        <button
+                            id="acc-register-button"
+                            className="acc-button-48"
+                        >
+                            <span className="button-text">REGISTER NOW!</span>
+                        </button>
+                    </Link>
                 </div>
                 <div className="acc-content">
                     <div className="acc-content-title">About Us</div>
@@ -234,7 +244,10 @@ export default function Accommodation() {
                         id="faq-accordion"
                     >
                         <div className="accordion-item">
-                            <h2 className="accordion-header" id="flush-headingOne">
+                            <h2
+                                className="accordion-header"
+                                id="flush-headingOne"
+                            >
                                 <button
                                     className="accordion-button collapsed"
                                     type="button"
@@ -261,7 +274,10 @@ export default function Accommodation() {
                             </div>
                         </div>
                         <div className="accordion-item">
-                            <h2 className="accordion-header" id="flush-headingTwo">
+                            <h2
+                                className="accordion-header"
+                                id="flush-headingTwo"
+                            >
                                 <button
                                     className="accordion-button collapsed"
                                     type="button"
@@ -310,19 +326,21 @@ export default function Accommodation() {
                             >
                                 <div className="accordion-body">
                                     Accommodation will be provided on a shared
-                                    basis inside campus hostels or outside
-                                    hotels. One mattress, and enough space for
-                                    keeping luggage, and other essential
-                                    commodities will be provided. Girls and boys
-                                    will be accommodated separately. Number of
-                                    participants in a room will be decided by
-                                    Techfest and will be allotted by the
-                                    Prometeo '23 team.
+                                    basis inside campus hostels. One mattress,
+                                    and enough space for keeping luggage, and
+                                    other essential commodities will be
+                                    provided. Girls and boys will be
+                                    accommodated separately. Number of
+                                    participants in a room will be decided and
+                                    will be allotted by the Prometeo '23 team.
                                 </div>
                             </div>
                         </div>
                         <div className="accordion-item">
-                            <h2 className="accordion-header" id="flush-headingFour">
+                            <h2
+                                className="accordion-header"
+                                id="flush-headingFour"
+                            >
                                 <button
                                     className="accordion-button collapsed"
                                     type="button"
@@ -342,17 +360,19 @@ export default function Accommodation() {
                                 data-bs-parent="#accordionFlushExample"
                             >
                                 <div className="accordion-body">
-                                    No, food facilities are not included in the
-                                    accommodation charges. Participants can
-                                    purchase their meals from food court,
-                                    Shamiyana - Institute Cafe or Hostel mess.
-                                    There are two hostel messes: one veg & one
-                                    non-veg.
+                                    Yes, Food facilities are included in the
+                                    accommodation charges and will be provided
+                                    in the Hostel mess. Paid services such as
+                                    food court, Shamiyana - Institute Cafe, and
+                                    canteen are also available.
                                 </div>
                             </div>
                         </div>
                         <div className="accordion-item">
-                            <h2 className="accordion-header" id="flush-headingFive">
+                            <h2
+                                className="accordion-header"
+                                id="flush-headingFive"
+                            >
                                 <button
                                     className="accordion-button collapsed"
                                     type="button"
@@ -372,8 +392,8 @@ export default function Accommodation() {
                             >
                                 <div className="accordion-body">
                                     You can enter IIT Main gate anytime by
-                                    showing valid photo ID proof during 6am to
-                                    10pm.
+                                    showing valid photo ID proof and the
+                                    registration ID (mail) during 6am to 10pm.
                                 </div>
                             </div>
                         </div>
@@ -558,23 +578,16 @@ export default function Accommodation() {
                     </div>
                 </div> */}
 
-                {/* <div className="acc-content">
-                    <div className="acc-content-title">
-                        REGISTRATION
-                    </div>
-                    <div className="acc-content-text">
-                        <span className="acc-content-desc-left acc-register">
-                            So, grab the opportunity and register ASAP!
-                            <button
-                                id="acc-register-button"
-                                className="acc-button-48"
-                                // onClick={handleSubmit}
-                            >
-                                <span className="button-text">
-                                    Register Now !
-                                </span>
-                            </button>
-                        </span> */}
+                <div className="acc-content">
+                    <Link to="/accommodation-registration">
+                        <button
+                            id="acc-register-button"
+                            className="acc-button-48"
+                        >
+                            <span className="button-text">REGISTER NOW!</span>
+                        </button>
+                    </Link>
+                </div>
                 {/* <img
                             className="acc-content-img blue-shadow acc-pr-logo"
                             src={logo}

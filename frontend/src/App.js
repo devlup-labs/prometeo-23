@@ -31,6 +31,7 @@ import Dashboard from "./pages/dashboard";
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
 import NewGallery from "./pages/newNewGallery";
+import AccForm from "./pages/accForm";
 
 function App() {
     // const [bigBang, setBigBang] = useState(true);
@@ -50,6 +51,10 @@ function App() {
                                 />
                             }
                         />
+                        <Route
+                            path="/accommodation-registration"
+                            element={<AccForm />}
+                        />
 
                         <Route path="/past-speakers" element={<Speaker />} />
                         <Route path="/gallery" element={<NewGallery />} />
@@ -58,29 +63,50 @@ function App() {
                         {/* <Route path="/theme" element={<Theme />} /> */}
                         {/* <Route path="/register" element={<Register />} /> */}
                         {/* <Route path="/login" element={<Login />} /> */}
-                        <Route path="/event-details" element={<EventDetails />} />
+                        <Route
+                            path="/event-details"
+                            element={<EventDetails />}
+                        />
                         <Route path="/team" element={<Team />} />
 
                         <Route path="/campus-ambassador" element={<CA />} />
-                        <Route path="/accommodation" element={<Accommodation />} />
+                        <Route
+                            path="/accommodation"
+                            element={<Accommodation />}
+                        />
                         <Route path="/tnc" element={<Tnc />} />
                         <Route path="/privacy-policy" element={<PP />} />
 
-
                         {/* <Route exact path='/pre-register' element={<RestrictedRoute />} > */}
-                            {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
+                        {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
                         {/* </Route> */}
 
-                        <Route exact path='/login' element={<RestrictedRoute />}>
-                            <Route exact path='/login' element={<Login />} />
+                        <Route
+                            exact
+                            path="/login"
+                            element={<RestrictedRoute />}
+                        >
+                            <Route exact path="/login" element={<Login />} />
                         </Route>
 
-                        <Route exact path='/sign-up' element={<RestrictedRoute />}>
+                        <Route
+                            exact
+                            path="/sign-up"
+                            element={<RestrictedRoute />}
+                        >
                             <Route path="/sign-up" element={<SignUp />} />
                         </Route>
 
-                        <Route exact path='/dashboard' element={<PrivateRoute />}>
-                            <Route exact path='/dashboard' element={<Dashboard />} />
+                        <Route
+                            exact
+                            path="/dashboard"
+                            element={<PrivateRoute />}
+                        >
+                            <Route
+                                exact
+                                path="/dashboard"
+                                element={<Dashboard />}
+                            />
                         </Route>
 
                         <Route path="/*" element={<Page_404 />} />
