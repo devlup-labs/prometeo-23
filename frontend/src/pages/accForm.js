@@ -27,124 +27,163 @@ function AccForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         async function fetchData() {
-        try {
-            console.log("Fetching data for user:", user.email);
-            const obj = {
-                // email: user.email,
-                full_name: e.target.full_name.value,
-                aadhar_card: e.target.aadhar.value,
-                dob: e.target.dob.value,
-                address: e.target.address.value
-                // ambassador: user.ambassador,
-                // referral: user.referral_code,
-            };
-            console.log(obj);
-            const response = await api.post(
-                `${backendURL}/accomodationpasses/`,
-                obj
-            );
-            if (response.status === 200) {
-                let data = response.data;
-                console.log(data);
-                // let invite_code;
-                // // toast.success("Registered Successfully!");
-                // invite_code = data.invite_referral;
-                // document.getElementById("ca-register-button").disabled = true;
-                // document.getElementById("ca-register-button").innerHTML =
-                //     "Registered!";
-                // document.getElementById("ca-referral-info").innerHTML =
-                //     "Your referral code is: <span id='ca-yellow' onClick={copyText}>" +
-                //     invite_code +
-                //     "</span> (click to copy!). Share it with your friends and get them to register using your referral code to get a chance to win exciting prizes!";
-                // }
-            } else {
-                console.log(response)
-                // toast.error("Error: " + response.statusText);
+            try {
+                // console.log("Fetching data for user:", user.email);
+                const obj = {
+                    // email: user.email,
+                    full_name: e.target.full_name.value,
+                    aadhar_card: e.target.aadhar.value,
+                    dob: e.target.dob.value,
+                    address: e.target.address.value,
+                    // ambassador: user.ambassador,
+                    // referral: user.referral_code,
+                };
+                // console.log(obj);
+                const response = await api.post(
+                    `${backendURL}/accomodationpasses/`,
+                    obj
+                );
+                if (response.status === 201) {
+                    let data = response.data;
+                    document.getElementById("acc-success").style.display =
+                        "flex";
+                    // console.log(data);
+                    // let invite_code;
+                    // // toast.success("Registered Successfully!");
+                    // invite_code = data.invite_referral;
+                    // document.getElementById("ca-register-button").disabled = true;
+                    // document.getElementById("ca-register-button").innerHTML =
+                    //     "Registered!";
+                    // document.getElementById("ca-referral-info").innerHTML =
+                    //     "Your referral code is: <span id='ca-yellow' onClick={copyText}>" +
+                    //     invite_code +
+                    //     "</span> (click to copy!). Share it with your friends and get them to register using your referral code to get a chance to win exciting prizes!";
+                    // }
+                } else {
+                    // console.log(response)
+                    // toast.error("Error: " + response.statusText);
+                }
+            } catch (error) {
+                console.log("Error:", error);
             }
-        } catch (error) {
-            console.log("Error:", error);
+        }
+
+        if (user === null) {
+            toast.error("Please login to register as Campus Ambassador!");
+        } else {
+            const myPromise = new Promise((resolve, reject) => {
+                fetchData()
+                    .then((res) => {
+                        // console.log(res)
+                        resolve(res);
+                    })
+                    .catch((err) => {
+                        // console.log(err)
+                        reject(err);
+                    });
+            });
+
+            toast.promise(myPromise, {
+                pending: "Registering...",
+                success: "Registered successfully!",
+                error: {
+                    render: ({ data }) => {
+                        return "Something went wrong!";
+                    },
+                },
+            });
+        }
+    };
+
+    const [accData, setAccData] = useState([]);
+
+    useEffect(() => {
+        // perform get request to check if user is already registered
+        async function fetchData() {
+            try {
+                // console.log("Fetching data for user:", user.email);
+                const response = await api.get(
+                    `${backendURL}/accomodationpasses/`,
+                    user.email
+                );
+                if (response.status === 200) {
+                    let data = response.data;
+                    setAccData(data);
+                    if (data.length > 0) {
+                        document.getElementById("acc-success").style.display =
+                            "flex";
+                    }
+                } else {
+                    // console.log(response)
+                    // toast.error("Error: " + response.statusText);
+                }
+            } catch (error) {
+                console.log("Error:", error);
+            }
+        }
+
+        if (user !== null) {
+            fetchData();
+        }
+    }, []);
+
+    useEffect(() => {
+        console.log(accData);
+    }, [accData]);
+
+    function paymentPending(data) {
+        if (data.length > 0) {
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].pass_type === 0) {
+                    return true;
+                }
+            }
+            return false; 
+        } else {
+            return false;
         }
     }
-
-    if (user === null) {
-        toast.error("Please login to register as Campus Ambassador!");
-    } else {
-        const myPromise = new Promise((resolve, reject) => {
-            fetchData()
-                .then((res) => {
-                    // console.log(res)
-                    resolve(res);
-                })
-                .catch((err) => {
-                    // console.log(err)
-                    reject(err);
-                });
-        });
-
-        toast.promise(myPromise, {
-            pending: "Registering...",
-            success: "Registered successfully!",
-            error: {
-                render: ({ data }) => {
-                    return "Something went wrong!";
-                },
-            },
-        });
-    }
-};  
-
-    // toast.onChange((state, toast) => {
-    //     if (state === 'removed' && toast.type === 'success') {
-    //         console.log("closed")
-    //     }
-    // });
-
-    // registerUser(first_name, last_name, city, college, contact, gender, referral_code, email, password, ambassador)
-
-    // const data = {
-    //     first_name: e.target.first_name.value,
-    //     last_name: e.target.last_name.value,
-    //     city: e.target.city.value,
-    //     college: e.target.college.value,
-    //     contact: e.target.phone.value,
-    //     gender: e.target.gender.value,
-    //     email: e.target.email.value,
-    //     password: e.target.password.value,
-    // };
-
-    // let headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
-    // headers.append('Accept', 'application/json');
-    // headers.append('Origin', 'http://localhost:3000');
-
-    // const requestOptions = {
-    //     method: 'POST',
-    //     headers: headers,
-    //     body: JSON.stringify(data),
-    // };
-
-    // fetch(`${backendURL}/signup/`, requestOptions)
-    //     .then((response) => {
-    //         console.log(response.status);
-    //         if (response.status === 201) {
-    //             toast.success('Signed up Successfully!');
-    //         } else {
-    //             toast.error('Something went wrong!');
-    //         }
-
-    //         return response.json();
-    //     })
-    //     .then((data) => {
-    //         console.log('Data: ', data);
-    //     })
-    //     .catch((error) => {
-    //         console.log('Error: ', error);
-    //     });
 
     return (
         <FadeIn duration={500}>
             <div className="acc-form">
                 <div className="acc-container">
+                    <div id="acc-success" className="acc-success">
+                        <div>
+                            Congratulations! You are now eligible for the Early
+                            Bird discount! Please select the Jumbo Pass option
+                            in the payment checkout form which includes
+                            accommodation at 50% discount and Cultural Night
+                            pass, all for ₹ 1500 only!<br></br>
+                            <br></br>
+                            Note:
+                            <ul>
+                                <li>
+                                    Don't forget to enter your CA referral code
+                                    (if you have one) in the payment checkout
+                                    form.
+                                </li>
+                                <li>
+                                    The Early Bird discount is only for a few
+                                    days, so inform your friends to register as
+                                    soon as possible!
+                                </li>
+                            </ul>
+                        </div>
+                        <a
+                            href="https://forms.eduqfix.com/prometeo/add"
+                            target="_blank"
+                        >
+                            {paymentPending(accData) && (
+                                <button
+                                    type="submit"
+                                    className="acc-pay-button"
+                                >
+                                    Pay Now
+                                </button>
+                            )}
+                        </a>
+                    </div>
                     <div className="acc-container-left">
                         <img src={signInImg} alt="sign in" />
                     </div>

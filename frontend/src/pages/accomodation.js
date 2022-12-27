@@ -23,14 +23,14 @@ export default function Accommodation() {
                         Accommodation In <span>Prometeo</span>
                     </div>
 
-                    {/* <Link to="/accommodation-registration">
+                    <Link to="/accommodation-registration">
                         <button
                             id="acc-register-button"
                             className="acc-button-48"
                         >
                             <span className="button-text">REGISTER NOW!</span>
                         </button>
-                    </Link> */}
+                    </Link>
                 </div>
                 <div className="acc-content">
                     <div className="acc-content-title">About Us</div>
