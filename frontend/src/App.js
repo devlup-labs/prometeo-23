@@ -28,10 +28,13 @@ import CA from "./pages/ca";
 import Accommodation from "./pages/accomodation";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
+import CompleteProfile from "./pages/completeProfile";
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
 import NewGallery from "./pages/newNewGallery";
 import AccForm from "./pages/accForm";
+import Robowar from "./pages/robowar";
+import DroneRace from "./pages/drone_race";
 
 function App() {
     // const [bigBang, setBigBang] = useState(true);
@@ -55,6 +58,9 @@ function App() {
                             path="/accommodation-registration"
                             element={<AccForm />}
                         />
+
+                        {/* <Route path="/robowar" element={<Robowar />} /> */}
+                        {/* <Route path="/drone-race" element={<DroneRace />} /> */}
 
                         <Route path="/past-speakers" element={<Speaker />} />
                         <Route path="/gallery" element={<NewGallery />} />
@@ -106,6 +112,18 @@ function App() {
                                 exact
                                 path="/dashboard"
                                 element={<Dashboard />}
+                            />
+                        </Route>
+
+                        <Route
+                            exact
+                            path="/complete-profile"
+                            element={<PrivateRoute />}
+                        >
+                            <Route
+                                exact
+                                path="/complete-profile"
+                                element={<CompleteProfile />}
                             />
                         </Route>
 

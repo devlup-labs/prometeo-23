@@ -65,7 +65,16 @@ function Details(props) {
 
     // const checkProblem = props.problem_statement == null ? "tab-content" : "tab-hide"
     const tabHeading = props.problem_statement == null ? null : "tab-hide";
-
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://apply.devfolio.co/v2/sdk.js";
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
     return (
         <div className="event-details">
             <div className="event-details__header">
@@ -84,32 +93,101 @@ function Details(props) {
                     {eventTerm.name}
                     <div className="event-details__title__underline"></div>
                 </div>
-                {eventSponsor.length > 0 && (
+                {eventTerm.name === "Blockchain Hackathon" && (
                     <div className="event-details__sponsors">
-                        <div className="event-details__sponsors_text">
-                            Sponsored by
+                        {/* <div className="event-details__sponsors_text">Sponsored by</div> */}
+                        {/* <div className="devfolio_button"> */}
+                        {/* <Link id="eventRegis-button">Register</Link> */}
+                        {/* <span>Apply with Devfolio</span> */}
+                        <div
+                            className="apply-button"
+                            data-hackathon-slug="prometeo23-blockchain-hackathon"
+                            data-button-theme="dark-inverted"
+                        >
+                            {/* Apply with Devfolio */}
                         </div>
+                        {/* </div> */}
                         <div className="event-details__sponsors_images">
-                            {eventSponsor.map((sponsor) => {
-                                return (
+                            <div className="sponsor_metal1">
+                                <div className="sponsor_metal1_name">
+                                    Diamond Sponsors
+                                </div>
+                                <div className="event_sponsors_image1">
                                     <img
-                                        src={
-                                            sponsor.image
-                                                ? sponsor.image.replace(
-                                                      "0.0.0.0:8888",
-                                                      "apiv.prometeo.in"
-                                                  )
-                                                : ""
-                                        }
-                                        title={sponsor.name}
+                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                                        // src="../assets/logo_sponsors/Devfolio_Logo-White.svg"
+                                        src="https://drive.google.com/uc?export=view&id=1dlWFRAQ9btrZxXNO0DnbghJaOrfADMps"
+                                        //   title={sponsor.name}
                                         alt="Sponsor Image"
-                                        key={sponsor.id}
+                                        //   key={sponsor.id}
                                     />
-                                );
-                            })}
+                                    <img
+                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                                        src="https://drive.google.com/uc?export=view&id=1oNsLi1garvuatbkdnMw2wR7MXOz5DzpV"
+                                        //   title={sponsor.name}
+                                        alt="Sponsor Image"
+                                        //   key={sponsor.id}
+                                    />
+                                </div>
+                            </div>
+                            <div className="sponsor_metal2">
+                                <div className="sponsor_metal2_name">
+                                    Gold Sponsors
+                                </div>
+                                <div className="event_sponsors_image2">
+                                    <img
+                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                                        src="https://drive.google.com/uc?export=view&id=1Ehq2SEFjT8tUY_QqH23yp2WHi-l9Q3XF"
+                                        //   title={sponsor.name}
+                                        alt="Sponsor Image"
+                                        //   key={sponsor.id}
+                                    />
+                                    <img
+                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                                        src="https://drive.google.com/uc?export=view&id=1twz-NvQkg8F4_0RnA6S9fQW8eNYIEw7j"
+                                        //   title={sponsor.name}
+                                        alt="Sponsor Image"
+                                        //   key={sponsor.id}
+                                    />
+                                    <img
+                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                                        src="https://drive.google.com/uc?export=view&id=1Ci9qGZs9QdNCWHp9nmxqBstp0iQ9aqTY"
+                                        //   title={sponsor.name}
+                                        alt="Sponsor Image"
+                                        //   key={sponsor.id}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}
+                {eventSponsor.length > 0 &&
+                    eventTerm.name !== "Blockchain Hackathon" && (
+                        <div className="event-details__sponsors">
+                            <div className="event-details__sponsors_text">
+                                Sponsored by
+                            </div>
+                            <div className="event-details__sponsors_images">
+                                {eventSponsor.map((sponsor) => {
+                                    return (
+                                        <img
+                                            src={
+                                                sponsor.image
+                                                    ? sponsor.image.replace(
+                                                          "0.0.0.0:8888",
+                                                          "apiv.prometeo.in"
+                                                      )
+                                                    : ""
+                                            }
+                                            title={sponsor.name}
+                                            alt="Sponsor Image"
+                                            key={sponsor.id}
+                                        />
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
             </div>
             <div className="event-details__body">
                 <div className="event-details__body__left">
@@ -128,6 +206,15 @@ function Details(props) {
                     />
                     {/* </div> */}
                     <div className="event-details__body__left__buttons">
+                        {/* <Link id="eventRegis-button">Register</Link> */}
+
+                        {/* {eventTerm.name == "Blockchain Hackathon" ? 
+              <a
+                href={eventTerm.external_link || ""}
+                className="event-details-register button-64"
+              >
+                <span>REGISTER</span>
+              </a>: "" } */}
                         {eventTerm.external_link && (
                             <a
                                 href={eventTerm.external_link || ""}
@@ -366,7 +453,6 @@ function EventDetails() {
         navBarEle.style.opacity = 1;
         document.body.style.overflow = "auto";
     });
-
     return (
         <FadeIn duration={500}>
             <div id="EventDetailsPage" className="contentDiv">

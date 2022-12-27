@@ -704,3 +704,9 @@ def preregistration_page(request):
     preregistrations = PreRegistration.objects.all()
     return render(request, 'dashboard/preregistration.html', {'Preregistrations': preregistrations})
 
+
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/passtype/')
+def passtype_page(request):
+    passtypes = Passes.objects.all()
+    return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})

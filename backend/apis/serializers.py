@@ -26,6 +26,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         token['username'] = user.first_name+'_'+user.last_name
         token['email'] = user.email
+        # token['isProfileCompleted'] = user.isProfileCompleted
         return token
 
 class SponsorsSerializers(serializers.ModelSerializer):
@@ -241,7 +242,7 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
         #     print(response.headers)
         # except Exception as e:
         #     print(e)
-
+        user.isProfileCompleted = True
         user.save()
         return user
 
@@ -346,3 +347,42 @@ class UserCheckSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = ['email']
+
+
+class RoboWarsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = RoboWars
+        fields = '__all__'
+
+
+class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        # fields = ['first_name', 'last_name', 'college', 'contact', 'city','gender','referral_code','ambassador','accomodation']
+        fields = '__all__'
+
+    # def update(self, instance, validated_data):
+    #     # instance.first_name = validated_data.get('first_name', instance.first_name)
+    #     # instance.last_name = validated_data.get('last_name', instance.last_name)
+    #     instance.college = validated_data.get('college', instance.college)
+    #     instance.contact = validated_data.get('contact', instance.contact)
+    #     instance.city = validated_data.get('city', instance.city)
+    #     instance.gender = validated_data.get('gender', instance.gender)
+    #     instance.accomodation = validated_data.get('accomodation', instance.accomodation)
+    #     rc = validated_data.get('referral_code', instance.referral_code)
+    #     if rc:
+    #         instance.referral_code = rc
+    #         ca = CampusAmbassador.objects.filter(invite_referral=instance.referral_code).first()
+    #         if ca:
+    #             ca.ca_count = ca.ca_count + 1
+    #             ca.save()
+    #             instance.referred_by = ca.email
+    #     instance.save()
+    #     return instance
+
+
+
+class AccomodationSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Passes
+        fields = '__all__'
