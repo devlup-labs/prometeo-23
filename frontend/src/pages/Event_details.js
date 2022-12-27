@@ -96,17 +96,17 @@ function Details(props) {
                 {eventTerm.name === "Blockchain Hackathon" && (
                     <div className="event-details__sponsors">
                         {/* <div className="event-details__sponsors_text">Sponsored by</div> */}
-                        <div className="devfolio_button">
-                            {/* <Link id="eventRegis-button">Register</Link> */}
-                            {/* <span>Apply with Devfolio</span> */}
-                            <div
-                                className="apply-button"
-                                data-hackathon-slug="prometeo23-blockchain-hackathon"
-                                data-button-theme="dark-inverted"
-                            >
-                                {/* Apply with Devfolio */}
-                            </div>
+                        {/* <div className="devfolio_button"> */}
+                        {/* <Link id="eventRegis-button">Register</Link> */}
+                        {/* <span>Apply with Devfolio</span> */}
+                        <div
+                            className="apply-button"
+                            data-hackathon-slug="prometeo23-blockchain-hackathon"
+                            data-button-theme="dark-inverted"
+                        >
+                            {/* Apply with Devfolio */}
                         </div>
+                        {/* </div> */}
                         <div className="event-details__sponsors_images">
                             <div className="sponsor_metal1">
                                 <div className="sponsor_metal1_name">
