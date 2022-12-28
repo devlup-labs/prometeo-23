@@ -228,7 +228,7 @@ export default function Event_createTeam() {
                                 name="team_size"
                                 placeholder="Team Size *"
                                 min={1}
-                                max={5}
+                                max={20}
                                 step={1}
                                 required
                             />

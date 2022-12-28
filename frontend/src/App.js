@@ -70,7 +70,7 @@ function App() {
                         <Route path="/past-speakers" element={<Speaker />} />
                         <Route path="/gallery" element={<NewGallery />} />
                         <Route path="/past-sponsors" element={<Sponsors />} />
-                        <Route path="/events" element={<Events />} />
+                        <Route path="/competitions" element={<Events />} />
                         {/* <Route path="/theme" element={<Theme />} /> */}
                         {/* <Route path="/register" element={<Register />} /> */}
                         {/* <Route path="/login" element={<Login />} /> */}
