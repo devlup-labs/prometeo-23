@@ -25,6 +25,8 @@
     border: 2px solid white;
     height: 90vh;
     width: 100vw;
+    background-size: cover;
+    background-position: top center;
 }
 
 .flagTop-Container h1::before {
@@ -66,6 +68,14 @@
     gap: 2vmin;
     left: 50%;
     transform: translate(-50%, 0);
+}
+
+#rw-create-button {
+  box-shadow: 0 0 20px 3px black;
+}
+
+#rw-join-button {
+  box-shadow: 0 0 20px 3px black;
 }
 
 /* .flag-bottom-bg{
