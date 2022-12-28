@@ -82,21 +82,23 @@ class PassesAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_filter = ('user',)
 
 # @admin.register(RoboWars)
-# class RoboWarsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-#     list_display = ['rw_name','bot_name','rw_category','rw_id']
-#     list_filter = ('rw_category', )
-#     search_fields = ['rw_name', ]
+class RoboWarsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ['rw_name','bot_name','rw_category','rw_leader','get_members']
+    list_filter = ('rw_category', )
+    search_fields = ['rw_name', ]
 
-#     class Meta:
-#         model = RoboWars
-#         fields = '__all__'
+    def get_members(self, obj):
+        return "\n".join([p.email for p in obj.rw_members.all()])
+    # class Meta:
+    #     model = RoboWars
+    #     fields = '__all__'
 
 
 # admin.site.unregister(RoboWars)
-# admin.site.register(RoboWars, RoboWarsAdmin)
+admin.site.register(RoboWars, RoboWarsAdmin)
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Submissions, SubmissionsAdmin)
 admin.site.register(PreRegistration,preregisterAdmin)
 admin.site.register(CampusAmbassador)
 admin.site.register(Passes)
-admin.site.register(RoboWars)
+# admin.site.register(RoboWars)

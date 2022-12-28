@@ -34,21 +34,22 @@ export default function Robowar_createTeam() {
         const postTeam = async (rw_name, rw_country, bot_name, rw_category, rw_leader, rw_team_size) => {
             const requestData = { rw_name, rw_country, bot_name, rw_category, rw_leader, rw_team_size }
             
-            try {
+            // try {
                 // console.log("Request Data:", requestData)
                 const response = await api.post(
-                    `${backendURL}/robowars/`,
+                    `${backendURL}/createteamrw/`,
                     requestData
                 );
-                if (response.status === 200) {
+                if (response.status === 201) {
                     navigate("/robowars");
                     return response;
                 } else {
                     throw(response.statusText)
                 }
-            } catch (err) {
-                console.log(err);
-            }
+            // }
+            //  catch (err) {
+            //     console.log(err);
+            // }
         }
 
         const myPromise = new Promise((resolve, reject) => {
