@@ -44,13 +44,20 @@ const navBarLinks = [
     path: "/campus-ambassador",
     section: "right",
     tabIndex: 6,
-  },
+  },    
+  {
+    name: "accommodation",
+    text: "Accommodation",
+    path: "/accommodation",
+    section: "right",
+    tabIndex: 7,
+},
   {
     name: "events",
     text: "Competitions",
     path: "/competitions",
     section: "right",
-    tabIndex: 7,
+    tabIndex: 8,
   },
   // {
   //   name: "flagshipEvents",
@@ -71,7 +78,7 @@ const navBarLinks = [
     text: "Gallery",
     path: "/gallery",
     section: "right",
-    tabIndex: 8,
+    tabIndex: 9,
   },
   // {
   //     name: "register",
