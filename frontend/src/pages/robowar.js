@@ -42,7 +42,7 @@ function Entry(props) {
         []
     );
     const ref = useRef();
-    // const onScreen = useOnScreen(ref);
+    const onScreen = useOnScreen(ref);
 
     const [countDone, setCountDone] = useState(false);
     function countUp() {
@@ -67,15 +67,15 @@ function Entry(props) {
             );
     }
 
-    // useEffect(() => {
-    //     const counters = document.querySelectorAll(".counter");
-    //     const speed = 200;
+    useEffect(() => {
+        const counters = document.querySelectorAll(".counter");
+        const speed = 200;
 
-    //     if (!countDone && onScreen) {
-    //         $(".js-num").each(countUp);
-    //         setCountDone(true);
-    //     }
-    // }, [onScreen]);
+        if (!countDone && onScreen) {
+            $(".js-num").each(countUp);
+            setCountDone(true);
+        }
+    }, [onScreen]);
 
     return (
         <div className="flag">
@@ -87,12 +87,16 @@ function Entry(props) {
             >
                 <h1 data-title={props.name}>{props.name}</h1>
                 <div class="rw-buttons">
+                  <Link to="/robowars-create-team">
                     <button id="rw-create-button" className="button-48">
                         <span className="button-text">CREATE TEAM</span>
                     </button>
+                  </Link>
+                  <Link to="/robowars-join-team">
                     <button id="rw-join-button" className="button-48">
-                        <span className="button-text">JOIN TEAM</span>
+                        <span className="button-text"> TEAM</span>
                     </button>
+                  </Link>
                 </div>
                 {/* <div class="table center">
           <div class="monitor-wrapper center">
@@ -104,6 +108,105 @@ function Entry(props) {
 
                 {/* <img src={props.image} /> */}
             </div>
+            <section
+                className="flag-bottom-bg"
+                style={{
+                    backgroundImage:
+                        "https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFV2EPcpTU&#x2F;view?",
+                }}
+            >
+                <div className="flagAbout">
+                    <h3 className="title-shadow">ABOUT</h3>
+                    <section className="Abouttable">
+                        <div id="flag_prize">
+                            <img
+                                src={prizeImg}
+                                alt="icon"
+                                id="flag_prize-icon"
+                            />
+                            <div id="flagPrize-description">
+                                <span className="js-num" data-target="12000">
+                                    100
+                                </span>
+                                <span>K+</span>
+                                <br />
+                                <span ref={ref}>Prize Pool</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p className="about-description">
+                                {props.description}
+                            </p>
+                            <Link id="flagAbout-button">
+                                Registrations Opening Soon
+                            </Link>
+                        </div>
+                    </section>
+                    {/* <p>{props.description}</p> */}
+                </div>
+                {/* <hr /> */}
+                <div className="flagResources">
+                    <h3 className="title-shadow">RESOURCES</h3>
+                    <div className="flag_Allcards">
+                        <div
+                            className="flag_card card0"
+                            style={{
+                                backgroundImage: `url(${props.cardbg1})`,
+                                boxShadow:
+                                    "inset 0 0 60px 60px rgba(0,0,0,0.9)",
+                            }}
+                        >
+                            <div className="flag_card-border">
+                                <h2>15 Kg</h2>
+                            </div>
+                        </div>
+                        <div
+                            className="flag_card card0"
+                            style={{
+                                backgroundImage: `url(${props.cardbg2})`,
+                            }}
+                        >
+                            <div className="flag_card-border">
+                                <h2>60 Kg</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <hr /> */}
+                {/* <div className="flagSponsors">
+          <h3 className="title-shadow">SPONSORS</h3>
+          <img src="https://apiv.prometeo.in/media/sponsors/smasung_sWRoaY5.webp" />
+        </div> */}
+                <div className="flagContactUs">
+                    <h3 className="title-shadow">CONTACT US</h3>
+                    <div class="canvas">
+                        <div id="contact-card" class="contact-card">
+                            <div>
+                                <p className="flagContactUs-name">
+                                    NAME SURNAME
+                                </p>
+                                <p className="flagContactUs-mail">
+                                    fake.1@iitj.ac.in
+                                </p>
+                                <p className="flagContactUs-phone">
+                                    +91 123456789
+                                </p>
+                            </div>
+                            <div>
+                                <p className="flagContactUs-name">
+                                    NAME SURNAME
+                                </p>
+                                <p className="flagContactUs-mail">
+                                    fake.1@iitj.ac.in
+                                </p>
+                                <p className="flagContactUs-phone">
+                                    +91 123456789
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }

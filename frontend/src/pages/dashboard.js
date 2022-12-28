@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import "./dashboard.css";
@@ -12,65 +12,21 @@ import rocketImg from "../assets/icons/rocket.png";
 import { Navigate } from "react-router-dom";
 
 const eventImages = {
-    "robowars": "https://i0.wp.com/roboticsindia.live/wp-content/uploads/2021/03/SAVE_20210324_194657.jpg",
+    robowars:
+        "https://i0.wp.com/roboticsindia.live/wp-content/uploads/2021/03/SAVE_20210324_194657.jpg",
 };
 
-const registered_events = [
-    // {
-    //     name: "Event 1",
-    //     date: "Date 1",
-    //     image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-    // },
-//     {
-//         name: "Event 2",
-//         date: "Date 2",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-//     {
-//         name: "Event 3",
-//         date: "Date 3",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-//     {
-//         name: "Event 4",
-//         date: "Date 4",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-//     {
-//         name: "Event 5",
-//         date: "Date 5",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-//     {
-//         name: "Event 6",
-//         date: "Date 6",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-//     {
-//         name: "Event 7",
-//         date: "Date 7",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-//     {
-//         name: "Event 8",
-//         date: "Date 8",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-//     {
-//         name: "Event 9",
-//         date: "Date 9",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-//     {
-//         name: "Event 10",
-//         date: "Date 10",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
-];
+const test = {
+    robowars: {
+        event_name: "Robowars",
+        team_id: "RW232525",
+    },
+};
 
 function Dashboard() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({});
+    const [registeredEvents, setRegisteredEvents] = useState(test);
     const { user, logoutUser } = useContext(AuthContext);
     // console.log("User(dashboard):", user)
     const api = useAxios();
@@ -95,8 +51,7 @@ function Dashboard() {
                     // console.log("Login Dashboard Data:", data);
                     if (data.isProfileCompleted === false) {
                         navigate("/complete-profile");
-                    }
-                    else {
+                    } else {
                         setUserData({
                             ...data,
                         });
@@ -116,20 +71,17 @@ function Dashboard() {
         // perform get request to check if user is registered in robowars
         async function fetchData() {
             try {
-                const response = await api.post(
-                    `${backendURL}/robowars/`,
-                    {
-                        user: userData.user_id,
-                    }
-                );
+                const response = await api.post(`${backendURL}/robowars/`, {
+                    user: userData.user_id,
+                });
 
                 if (response.status === 200) {
                     const data = response.data;
                     // console.log("Registered Events:", data);
                     if (data.length > 0) {
-                        setUserData({
-                            ...userData,
-                            registeredEvents: data,
+                        setRegisteredEvents({
+                            ...registeredEvents,
+                            Robowars: data,
                         });
                     }
                 } else {
@@ -242,8 +194,10 @@ function Dashboard() {
                         Registered Events
                     </div>
                     <div id="dashboard-registeredEvents-content">
-                        {registered_events.length > 0 ? (
-                            registered_events.map((event, index) => {
+                        {Object.keys(registeredEvents).length > 0 ? (
+                            // console.log(registeredEvents),
+                            Object.keys(registeredEvents).map((key, index) => {
+                                // console.log(registeredEvents[key], key)
                                 return (
                                     <div
                                         className="dashboard-registeredEvents-content-event"
@@ -251,17 +205,63 @@ function Dashboard() {
                                     >
                                         <div className="dashboard-registeredEvents-content-event-image">
                                             <img
-                                                src={event.image}
+                                                src={eventImages[key]}
                                                 alt="Event Image"
                                             />
                                         </div>
                                         <div className="dashboard-registeredEvents-content-event-details">
-                                            <div className="dashboard-registeredEvents-content-event-title">
-                                                {event.name}
-                                            </div>
-                                            <div className="dashboard-registeredEvents-content-event-date">
-                                                {event.date}
-                                            </div>
+                                            {registeredEvents[key]
+                                                .event_name && (
+                                                <div className="dashboard-registeredEvents-content-event-title">
+                                                    {
+                                                        registeredEvents[key]
+                                                            .event_name
+                                                    }
+                                                </div>
+                                            )}
+                                            {registeredEvents[key].date && (
+                                                <div className="dashboard-registeredEvents-content-event-date">
+                                                    {registeredEvents[key].date}
+                                                </div>
+                                            )}
+                                            {registeredEvents[key].team_id && (
+                                                <div className="dashboard-registeredEvents-content-event-team-id">
+                                                    Team ID:{" "}
+                                                    <strong
+                                                        onClick={() => {
+                                                            navigator.clipboard.writeText(
+                                                                registeredEvents[
+                                                                    key
+                                                                ].team_id
+                                                            );
+                                                            toast.info(
+                                                                "Copied to clipboard",
+                                                                {
+                                                                    position:
+                                                                        "bottom-right",
+                                                                }
+                                                            );
+                                                        }}
+                                                    >
+                                                        {
+                                                            registeredEvents[
+                                                                key
+                                                            ].team_id
+                                                        }
+                                                    </strong>
+                                                </div>
+                                            )}
+                                            {/* view more button */}
+                                            {key === "robowars" && (
+                                                <div className="dashboard-registeredEvents-content-event-view-more">
+                                                    <Link
+                                                        to="/robowars"
+                                                        className="dashboard-registeredEvents-content-event-view-more-button"
+                                                    >
+                                                        View More
+                                                    </Link>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 );
