@@ -11,12 +11,16 @@ import useAxios from "../context/context_useAxios";
 import rocketImg from "../assets/icons/rocket.png";
 import { Navigate } from "react-router-dom";
 
+const eventImages = {
+    "robowars": "https://i0.wp.com/roboticsindia.live/wp-content/uploads/2021/03/SAVE_20210324_194657.jpg",
+};
+
 const registered_events = [
-//     {
-//         name: "Event 1",
-//         date: "Date 1",
-//         image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
-//     },
+    // {
+    //     name: "Event 1",
+    //     date: "Date 1",
+    //     image: "https://cdn.dribbble.com/users/6234/screenshots/16070942/media/a810368884a6fba842788d144ff70a51.png?compress=1&resize=1000x750&vertical=top",
+    // },
 //     {
 //         name: "Event 2",
 //         date: "Date 2",
@@ -68,7 +72,7 @@ function Dashboard() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({});
     const { user, logoutUser } = useContext(AuthContext);
-    console.log("User(dashboard):", user)
+    // console.log("User(dashboard):", user)
     const api = useAxios();
 
     useEffect(() => {
@@ -106,6 +110,36 @@ function Dashboard() {
         }
         fetchData();
     }, []);
+
+    // once user data is loaded
+    useEffect(() => {
+        // perform get request to check if user is registered in robowars
+        async function fetchData() {
+            try {
+                const response = await api.post(
+                    `${backendURL}/robowars/`,
+                    {
+                        user: userData.user_id,
+                    }
+                );
+
+                if (response.status === 200) {
+                    const data = response.data;
+                    // console.log("Registered Events:", data);
+                    if (data.length > 0) {
+                        setUserData({
+                            ...userData,
+                            registeredEvents: data,
+                        });
+                    }
+                } else {
+                    throw response.statusText;
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    }, [userData]);
 
     return (
         <div id="dashboard-container">
