@@ -48,7 +48,7 @@ const navBarLinks = [
   {
     name: "events",
     text: "Competitions",
-    path: "/events",
+    path: "/competitions",
     section: "right",
     tabIndex: 7,
   },
