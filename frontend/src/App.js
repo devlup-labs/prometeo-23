@@ -39,7 +39,7 @@ import Event_createTeam from "./pages/event_createTeam";
 import Event_joinTeam from "./pages/event_joinTeam";
 
 function App() {
-    // const [bigBang, setBigBang] = useState(true);
+  // const [bigBang, setBigBang] = useState(true);
 
     return (
         <Router>
@@ -63,6 +63,7 @@ function App() {
 
                         {/* <Route path="/robowars" element={<Robowar />} /> */}
                         {/* <Route path="/drone-race" element={<DroneRace />} /> */}
+
 
                         <Route path="/past-speakers" element={<Speaker />} />
                         <Route path="/gallery" element={<NewGallery />} />
@@ -128,7 +129,6 @@ function App() {
                                 element={<CompleteProfile />}
                             />
                         </Route>
-
                         {/* <Route exact path='/create-team' element={<PrivateRoute />}>
                             <Route exact path='/create-team' element={<Event_createTeam />} />
                         </Route>

@@ -189,6 +189,7 @@
 
 .dropdown:hover .dropdown_menu li {
     display: block;
+    font-size: 20px;
 }
 
 .dropdown_menu {
@@ -213,6 +214,7 @@
     padding: 1.1vmin 2vmin 1.3vmin 1.5vmin;
     font-size: 2.3vmin;
     opacity: 0;
+    padding: 5px 40px;
 }
 
 .dropdown_menu li:hover {
