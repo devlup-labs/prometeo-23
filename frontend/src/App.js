@@ -37,6 +37,8 @@ import Robowar from "./pages/robowar";
 import DroneRace from "./pages/drone_race";
 import Event_createTeam from "./pages/event_createTeam";
 import Event_joinTeam from "./pages/event_joinTeam";
+import Robowar_createTeam from "./pages/robowar_createTeam";
+import Robowar_joinTeam from "./pages/robowar_joinTeam";
 
 function App() {
   // const [bigBang, setBigBang] = useState(true);
@@ -135,6 +137,14 @@ function App() {
 
                         <Route exact path='/join-team' element={<PrivateRoute />}>
                             <Route exact path='/join-team' element={<Event_joinTeam />} />
+                        </Route> */}
+
+                        {/* <Route exact path='/robowar-create-team' element={<PrivateRoute />}>
+                            <Route exact path='/robowar-create-team' element={<Robowar_createTeam />} />
+                        </Route>
+
+                        <Route exact path='/robowar-join-team' element={<PrivateRoute />}>
+                            <Route exact path='/robowar-join-team' element={<Robowar_joinTeam />} />
                         </Route> */}
 
                         <Route path="/*" element={<Page_404 />} />
