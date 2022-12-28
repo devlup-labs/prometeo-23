@@ -19,6 +19,11 @@ function AccForm() {
     const api = useAxios();
     // console.log(registerUser)
 
+    // useEffect(() => {
+    //     console.log(user);
+    // }, [user]);
+
+
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
@@ -30,6 +35,7 @@ function AccForm() {
             try {
                 // console.log("Fetching data for user:", user.email);
                 const obj = {
+                    user: user.user_id,
                     // email: user.email,
                     full_name: e.target.full_name.value,
                     aadhar_card: e.target.aadhar.value,
@@ -103,19 +109,28 @@ function AccForm() {
             try {
                 // console.log("Fetching data for user:", user.email);
                 const response = await api.get(
-                    `${backendURL}/accomodationpasses/`,
-                    user.email
+                    `${backendURL}/accomodationpasses/?user=${user.user_id}`
                 );
                 if (response.status === 200) {
                     let data = response.data;
+                    console.log(data);
                     setAccData(data);
+                    // if (paymentPending(data)) {
+                    //     document.getElementById("acc-pay-button").style.display = "block";
+                    // }
+                    // else {
+                    //     document.getElementById("acc-pay-button").style.display = "none";
+                    // }
                     if (data.length > 0) {
                         document.getElementById("acc-success").style.display =
-                            "flex";
+                        "flex";
                     }
+                    // console.log(data);
                     else {
-                        document.getElementById("acc-success").style.display = "none";
+                        document.getElementById("acc-success").style.display =
+                        "none";
                     }
+                            // console.log(userData
                 } else {
                     // console.log(response)
                     // toast.error("Error: " + response.statusText);
@@ -126,7 +141,7 @@ function AccForm() {
         }
 
         if (user !== null) {
-            console.log("Fetching data for user:", user.email)
+            // console.log("Fetching data for user:", user.email)
             fetchData();
         }
         else {
@@ -134,9 +149,9 @@ function AccForm() {
         }
     }, []);
 
-    useEffect(() => {
-        // console.log(accData);
-    }, [accData]);
+    // useEffect(() => {
+    //     console.log(accData);
+    // }, [accData]);
 
     function paymentPending(data) {
         if (data.length > 0) {
@@ -161,7 +176,7 @@ function AccForm() {
                             Bird discount! Please select the Jumbo Pass option
                             in the payment checkout form which includes
                             accommodation at 50% discount and Cultural Night
-                            pass, all for ₹ 1500 only!<br></br>
+                            pass, all for ₹ 999 only!<br></br>
                             <br></br>
                             Note:
                             <ul>
@@ -180,15 +195,14 @@ function AccForm() {
                         <a
                             href="https://forms.eduqfix.com/prometeo/add"
                             target="_blank"
+                            id="acc-pay-button"
                         >
-                            {paymentPending(accData) && (
                                 <button
                                     type="submit"
                                     className="acc-pay-button"
                                 >
                                     Pay Now
                                 </button>
-                            )}
                         </a>
                     </div>
                     <div className="acc-container-left">

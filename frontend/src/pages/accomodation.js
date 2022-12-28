@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./accomodation.css";
 
@@ -18,6 +18,8 @@ export default function Accommodation() {
 
     const { user, logoutUser } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
     return (
         <FadeIn duration={1000}>
             <div id="acc-container">
@@ -27,21 +29,21 @@ export default function Accommodation() {
                     </div>
 
                     {/* <Link to="/accommodation-registration"> */}
-                        <button
-                            id="acc-register-button"
-                            className="acc-button-48"
-                            onClick={() => {
-                                if (user) {
-                                    toast.success("Redirecting to form!");
-                                    window.location.href = "/accommodation-registration";
-                                } else {
-                                    toast.error("Please login first!");
-
+                    <button
+                        id="acc-register-button"
+                        className="acc-button-48"
+                        onClick={() => {
+                            if (user) {
+                                toast.success("Redirecting to form!");
+                                navigate("/accommodation-registration");
+                            } else {
+                                toast.error("Please login first!");
+                                navigate("/login");
                             }
                         }}
-                        >
-                            <span className="button-text">REGISTER NOW!</span>
-                        </button>
+                    >
+                        <span className="button-text">REGISTER NOW!</span>
+                    </button>
                     {/* </Link> */}
                 </div>
                 <div className="acc-content">
