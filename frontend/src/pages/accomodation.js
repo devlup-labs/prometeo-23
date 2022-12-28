@@ -92,20 +92,19 @@ export default function Accommodation() {
                                 <li>
                                     Every participant shall at all times be in
                                     possession of a current, government-issued
-                                    photo ID. The student participants must
-                                    always carry a valid photo ID issued by
-                                    their college. If a visitor cannot present
-                                    their identification card, they will not be
-                                    permitted to enter the Prometeo '23 campus.
+                                    photo ID and student participants must also
+                                    carry a valid photo ID issued by their
+                                    college. If a visitor cannot present their
+                                    identification card, they will not be
+                                    permitted to enter the Prometeo'23 campus.
                                 </li>
                                 <li>
                                     Alcohol, drugs, illegal substances, sharp
                                     objects, and any kind of explosives are
                                     absolutely prohibited on campus. Anything
                                     else that is deemed hazardous is prohibited.
-                                    The Security and Prometeo '23 team's
-                                    decision shall be final if there are any
-                                    disputes.
+                                    The Security and Prometeo'23 team's decision
+                                    shall be final if there are any disputes.
                                 </li>
                                 <li>
                                     Throughout the fest of Prometeo '23, no
@@ -158,11 +157,10 @@ export default function Accommodation() {
                                     participants.
                                 </li>
                                 <li>
-                                    Institute will provide the{" "}
-                                    <strong>pickup and drop facility</strong> to
-                                    the participants between bus/railway
-                                    stations and campus during the dates and
-                                    times listed below:
+                                    Institute will provide the <strong>pickup and drop
+                                    facility</strong> to the participants between
+                                    bus/railway stations and campus during the
+                                    dates which will be announced soon.
                                 </li>
                             </ol>
                         </span>
