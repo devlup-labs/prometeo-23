@@ -567,6 +567,7 @@ class AccomodationPassesViewSet(viewsets.ModelViewSet):
     queryset = Passes.objects.all()
     serializer_class = AccomodationSerializers  
     permission_classes = (IsAuthenticated,)
+    filterset_fields = ['user']
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
