@@ -16,7 +16,7 @@ function Page_404() {
                     padding: "10vh 0",
                     color: "white",
                     height: "100vh",
-                    width: "100vw",
+                    width: "100%",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",

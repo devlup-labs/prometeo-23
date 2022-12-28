@@ -354,6 +354,11 @@ class RoboWarsSerializers(serializers.ModelSerializer):
     class Meta:
         model = RoboWars
         fields = '__all__'
+    
+    # def create(self, validated_data):
+    #     return super().create(validated_data)
+    
+    # def update(self, instance, validated_data):
 
 
 class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
@@ -386,7 +391,7 @@ class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
 class AccomodationSerializers(serializers.ModelSerializer):
     class Meta:
         model = Passes
-        fields = ['aadhar_card','address','dob','full_name','pass_type']
+        fields = ['user', 'aadhar_card','address','dob','full_name','pass_type']
         # extra_kwargs = {'user' : {'read_only' : True},}
 
     def create(self, validated_data):
