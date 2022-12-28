@@ -402,84 +402,71 @@ class UserCheckViewSet(APIView):
 
 
 
+# class RoboWarsViewSet(viewsets.ModelViewSet):
+#     queryset = RoboWars.objects.all()
+#     serializer_class = RoboWarsSerializers
 
-# from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-# from dj_rest_auth.registration.views import SocialLoginView
-# from allauth.socialaccount.providers.oauth2.client import OAuth2Client
-# from django.conf import settings
-# from django.views.decorators.csrf import csrf_exempt
-
-# class GoogleLogin(SocialLoginView):
-#     authentication_classes = [] # disable authentication
-#     adapter_class = GoogleOAuth2Adapter
-#     callback_url = "http://localhost:3000"
-#     client_class = OAuth2Client
-
-#     @csrf_exempt
-#     def google_token(request):
-
-#         if "code" not in request.body.decode():
-#             from rest_framework_simplejwt.settings import api_settings as jwt_settings
-#             from rest_framework_simplejwt.views import TokenRefreshView
-            
-#             class RefreshNuxtAuth(TokenRefreshView):
-#                 # By default, Nuxt auth accept and expect postfix "_token"
-#                 # while simple_jwt library doesnt accept nor expect that postfix
-#                 def post(self, request, *args, **kwargs):
-#                     request.data._mutable = True
-#                     request.data["refresh"] = request.data.get("refresh_token")
-#                     request.data._mutable = False
-#                     response = super().post(request, *args, **kwargs)
-#                     response.data['refresh_token'] = response.data['refresh']
-#                     response.data['access_token'] = response.data['access']
-#                     return response
-
-#             return RefreshNuxtAuth.as_view()(request)
-
+#     def post(self,request,*args,**kwargs):
+#         if request.data['rw_id']!=None:
+#             rw_id = request.data['rw_id']
+#             rw = RoboWars.objects.get(id=rw_id)
+#             x = len(rw.team_members.all())
+#             if x+1>rw.team_size:
+#                 return Response({'message':'Team size exceeded'},status=status.HTTP_400_BAD_REQUEST)
+#             else:
+#                 rw.team_members.add(request.user)
+#                 rw.save()
+#                 return Response({'message':'Team member added'},status=status.HTTP_200_OK)
 #         else:
-#             return GoogleLogin.as_view()(request)
+#             rw = RoboWars.objects.create(rw_team_size=request.data['team_size'],rw_leader=request.user,team_members=request.user,rw_name=request.data['team_name'],bot_name = request.data['bot_name'],rw_country=request.data['country'],rw_category=request.data['category'])
+            
+#             # make unique id
+            
+#             code= 'RW' + str(uuid.uuid4().int)[:4]
+            
+#             teams = RoboWars.objects.all() 
+            
+#             def referral_check(c):
+#                 for u in teams:
+#                     if c == u.rw_id:
+#                         c = 'RW' + str(uuid.uuid4().int)[:4]
+#                         referral_check(c)
+#                 return c
+
+#             rw.rw_id = referral_check(code)
+
+#             rw.save()
+#             return Response({'message':'Team created'},status=status.HTTP_200_OK)
 
 
-
-class RoboWarsViewSet(viewsets.ModelViewSet):
+class CreateTeamViewSetRW(viewsets.ModelViewSet):
     queryset = RoboWars.objects.all()
-    serializer_class = RoboWarsSerializers
+    serializer_class = RoboWarsSerializersCreate
 
     def post(self,request,*args,**kwargs):
-        if request.data['rw_id']!=None:
-            rw_id = request.data['rw_id']
-            rw = RoboWars.objects.get(id=rw_id)
-            x = len(rw.team_members.all())
-            if x+1>rw.team_size:
-                return Response({'message':'Team size exceeded'},status=status.HTTP_400_BAD_REQUEST)
-            else:
-                rw.team_members.add(request.user)
-                rw.save()
-                return Response({'message':'Team member added'},status=status.HTTP_200_OK)
+        return self.create(request, *args, **kwargs)
+
+class UpdateTeamViewSetRW(APIView):
+    queryset = RoboWars.objects.all()
+    serializer_class = RoboWarsSerializersUpdate
+
+    def post(self,request,*args,**kwargs):
+        name = request.data['rw_name']
+        rw = RoboWars.objects.get(rw_name=name)
+        # rw.rw_team_size = request.data['rw_team_size']
+        rw.rw_members.add(request.user)
+        rw.save()
+        return Response({'message':'Team updated'},status=status.HTTP_200_OK)
+
+class CheckTeamViewSetRW(APIView):
+    queryset = RoboWars.objects.all()
+    # serializer_class = RoboWarsSerializers
+    def get(self,request,*args,**kwargs):
+        rw = RoboWars.objects.filter(rw_members=request.user)
+        if rw.exists():
+            return Response({'message':'You are already in a Team'},status=status.HTTP_200_OK)
         else:
-            rw = RoboWars.objects.create(rw_team_size=request.data['team_size'],rw_leader=request.user,team_members=request.user,rw_name=request.data['team_name'],bot_name = request.data['bot_name'],rw_country=request.data['country'],rw_category=request.data['category'])
-            
-            # make unique id
-            
-            code= 'RW' + str(uuid.uuid4().int)[:4]
-            
-            teams = RoboWars.objects.all() 
-            
-            def referral_check(c):
-                for u in teams:
-                    if c == u.rw_id:
-                        c = 'RW' + str(uuid.uuid4().int)[:4]
-                        referral_check(c)
-                return c
-
-            rw.rw_id = referral_check(code)
-
-            rw.save()
-            return Response({'message':'Team created'},status=status.HTTP_200_OK)
-            
-
-
-
+            return Response({'message':'You are not in a Team'},status=status.HTTP_200_OK)
 
 class GoogleCompleteProfileViewSet(APIView):
     queryset = ExtendedUser.objects.all()

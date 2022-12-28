@@ -165,9 +165,8 @@ class CampusAmbassador(models.Model):
 
 
 class RoboWars(models.Model):
-    rw_id = models.CharField(max_length=9, primary_key=True, verbose_name='Robowars_Team ID')
     rw_name = models.CharField(max_length=50, verbose_name="Robowars Team Name", unique=True)
-    rw_leader = models.ForeignKey(ExtendedUser, blank=True, related_name="Robowars_team_leader", on_delete=models.CASCADE)
+    rw_leader = models.OneToOneField(ExtendedUser, related_name="Robowars_team_leader", on_delete=models.CASCADE,unique=True)
     rw_team_size = models.IntegerField(default=1)
     rw_country = models.CharField(max_length=50, verbose_name="Country")
     bot_name = models.CharField(max_length=50, verbose_name="Bot Name")
@@ -177,7 +176,7 @@ class RoboWars(models.Model):
     rw_isEligible = models.BooleanField(default=False, verbose_name="Is Team Eligible or Not")
 
     def __str__(self):
-        return self.name
+        return self.rw_name
 
     class Meta:
         verbose_name_plural = 'RoboWars'

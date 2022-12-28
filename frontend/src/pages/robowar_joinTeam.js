@@ -25,21 +25,21 @@ export default function Robowar_joinTeam() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const rw_id = e.target.team_id.value;
-        const rw_name = e.target.team_name.value;
-        const rw_country = e.target.country.value;
-        const bot_name = e.target.bot_name.value;
-        const rw_category = e.target.category.value;
-        const rw_leader = user.email;
-        const rw_team_size = e.target.team_size.value;
+        // const rw_id = e.target.team_id.value;
+        const rw_name = e.target.rw_name.value;
+        // const rw_country = e.target.country.value;
+        // const bot_name = e.target.bot_name.value;
+        // const rw_category = e.target.category.value;
+        // const rw_leader = user.email;
+        // const rw_team_size = e.target.team_size.value;
 
-        const postTeam = async (rw_name, rw_country, bot_name, rw_category, rw_leader, rw_team_size) => {
-            const requestData = { rw_name, rw_country, bot_name, rw_category, rw_leader, rw_team_size }
+        const postTeam = async (rw_name) => {
+            const requestData = { rw_name}
             
             try {
                 // console.log("Request Data:", requestData)
                 const response = await api.post(
-                    `${backendURL}/robowars/`,
+                    `${backendURL}/updateteamrw/`,
                     requestData
                 );
                 if (response.status === 200) {
@@ -54,7 +54,7 @@ export default function Robowar_joinTeam() {
         }
 
         const myPromise = new Promise((resolve, reject) => {
-            postTeam(rw_name, rw_country, bot_name, rw_category, rw_leader, rw_team_size)
+            postTeam(rw_name)
             .then((res) => {
                 // console.log(res)
                 resolve(res);
@@ -95,7 +95,7 @@ export default function Robowar_joinTeam() {
                         <form className="robowar_joinTeam-form" onSubmit={handleSubmit}>
                             <input
                                 type="text"
-                                name="team_id"
+                                name="rw_name"
                                 placeholder="Enter team ID *"
                                 required
                             />
