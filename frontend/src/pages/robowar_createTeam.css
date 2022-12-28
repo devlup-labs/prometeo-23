@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap');
 
-.joinTeam {
+.robowar_createTeam {
 	font-family: 'Josefin Sans', sans-serif;
 	overflow-y: auto;
 	box-sizing: border-box;
@@ -19,7 +19,7 @@
     justify-content: center;
 }
 
-.joinTeam-container {
+.robowar_createTeam-container {
     height: max-content;
     min-height: 80%;
     width: 70%;
@@ -34,7 +34,7 @@
     /* border: 1px solid #84f4eb; */
 }
 
-.joinTeam-container-left {
+.robowar_createTeam-container-left {
     width: 47%;
     /* height: 100%; */
     background-size: contain;
@@ -44,13 +44,13 @@
     overflow: hidden;
 }
 
-.joinTeam-container-left img {
+.robowar_createTeam-container-left img {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.joinTeam-container-right {
+.robowar_createTeam-container-right {
     /* position: relative; */
     /* height: 100%; */
     width: 53%;
@@ -65,7 +65,7 @@
     overflow: hidden;
 }
 
-.joinTeam-container-right-title {
+.robowar_createTeam-container-right-title {
 	color: #84f4eb;
 	font-family: 'Kanit', sans-serif;
     font-weight: 500;
@@ -73,7 +73,7 @@
     padding-bottom: 3vh;
 }
 
-.joinTeam-container-right-subtitle {
+.robowar_createTeam-container-right-subtitle {
     color: #84f4eb;
     font-family: 'Kanit', sans-serif;
     font-weight: 400;
@@ -81,7 +81,7 @@
     padding-bottom: 3vh;
 }
 
-.joinTeam-form {
+.robowar_createTeam-form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -89,13 +89,13 @@
     align-items: center;
 }
 
-.joinTeam-container-right-title, .joinTeam-form {
+.robowar_createTeam-container-right-title, .robowar_createTeam-form {
     z-index: 1;
     opacity: 1;
     transition: opacity 0.5s ease-out;
 }
 
-.joinTeam-category-dropdown {
+.robowar_createTeam-category-dropdown {
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -104,7 +104,7 @@
     justify-content: flex-start;
 }
 
-.joinTeam-category-dropdown-label {
+.robowar_createTeam-category-dropdown-label {
     height: 100%;
     width: 40%;
     color: #63ccf5;
@@ -113,11 +113,11 @@
     justify-content: center;
 }
 
-.joinTeam-category-dropdown-select {
+.robowar_createTeam-category-dropdown-select {
     width: 60%;
 }
 
-.joinTeam-form input, .joinTeam-category-dropdown-select {
+.robowar_createTeam-form input, .robowar_createTeam-category-dropdown-select {
     width: 100%;
     box-sizing: border-box;
     height: 5vh;
@@ -131,15 +131,15 @@
     background-color: rgb(151, 189, 185);
 }
 
-.joinTeam-form input:focus, .joinTeam-category-dropdown-select:focus {
+.robowar_createTeam-form input:focus, .robowar_createTeam-category-dropdown-select:focus {
     outline: 3px solid #84f4eb;
 }
 
-.joinTeam-form input::placeholder, .joinTeam-category-dropdown-select::placeholder {
+.robowar_createTeam-form input::placeholder, .robowar_createTeam-category-dropdown-select::placeholder {
     color: #3c3b3b;
 }
 
-.joinTeam-form-name {
+.robowar_createTeam-form-name {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -147,12 +147,12 @@
     align-items: center;
 }
 
-.joinTeam-form-name input {
+.robowar_createTeam-form-name input {
     width: 48%;
     /* margin: 0 1%; */
 }
 
-.joinTeam-ca-checkbox, .joinTeam-acc-checkbox {
+.robowar_createTeam-ca-checkbox, .robowar_createTeam-acc-checkbox {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -160,28 +160,28 @@
     align-items: center;
 }
 
-#joinTeam-ca-checkbox-input, #joinTeam-acc-checkbox-input {
+#robowar_createTeam-ca-checkbox-input, #robowar_createTeam-acc-checkbox-input {
     height: fit-content;
     width: fit-content;
     color: black;
     background-color: rgb(151, 189, 185);
 }
 
-#joinTeam-ca-checkbox-input:focus, #joinTeam-acc-checkbox-input:focus {
+#robowar_createTeam-ca-checkbox-input:focus, #robowar_createTeam-acc-checkbox-input:focus {
     outline: none;
 }
 
-.joinTeam-ca-checkbox-label, .joinTeam-acc-checkbox-label {
+.robowar_createTeam-ca-checkbox-label, .robowar_createTeam-acc-checkbox-label {
     box-sizing: border-box;
     padding-left: 5%;
     color: #63ccf5;
 }
 
-.joinTeam-ca-checkbox-label a {
+.robowar_createTeam-ca-checkbox-label a {
     color: #84f4eb;
 }
 
-.joinTeam-acc-checkbox {
+.robowar_createTeam-acc-checkbox {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -189,28 +189,28 @@
     align-items: center;
 }
 
-#joinTeam-acc-checkbox-input {
+#robowar_createTeam-acc-checkbox-input {
     height: fit-content;
     width: fit-content;
     color: black;
     background-color: rgb(151, 189, 185);
 }
 
-#joinTeam-acc-checkbox-input:focus {
+#robowar_createTeam-acc-checkbox-input:focus {
     outline: none;
 }
 
-.joinTeam-acc-checkbox-label {
+.robowar_createTeam-acc-checkbox-label {
     box-sizing: border-box;
     padding-left: 5%;
     color: #63ccf5;
 }
 
-.joinTeam-acc-checkbox-label a {
+.robowar_createTeam-acc-checkbox-label a {
     color: #84f4eb;
 }
 
-.joinTeam-form-confirmpassword-container {
+.robowar_createTeam-form-confirmpassword-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -218,7 +218,7 @@
     align-items: flex-start;
 }
 
-#joinTeam-form-confirmpassword-warning {
+#robowar_createTeam-form-confirmpassword-warning {
     color: #ff0000;
     font-size: 1.7vmin;
     font-weight: 700;
@@ -227,19 +227,19 @@
     visibility: hidden;
 }
 
-.joinTeam-members {
+.robowar_createTeam-members {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.joinTeam-members-title {
+.robowar_createTeam-members-title {
     color: #63ccf5;
     font-size: 2.5vmin;
     font-weight: 700;
 }
 
-.joinTeam-member-field {
+.robowar_createTeam-member-field {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -247,7 +247,7 @@
     /* align-items: center; */
 }
 
-.joinTeam-member-field__top {
+.robowar_createTeam-member-field__top {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -255,23 +255,23 @@
     align-items: center;
 }
 
-.joinTeam-member-field__title {
+.robowar_createTeam-member-field__title {
     color: #63ccf5;
     font-size: 1.8vmin;
     /* font-weight: 700; */
 }
 
-.joinTeam-member-field__remove {
+.robowar_createTeam-member-field__remove {
     color: #ff0000;
     font-size: 1.7vmin;
     font-weight: 500;
 }
 
-.joinTeam-member-field__remove:hover {
+.robowar_createTeam-member-field__remove:hover {
     cursor: pointer;
 }
 
-.joinTeam-members-add {
+.robowar_createTeam-members-add {
     aspect-ratio: 1 / 1;
     /* height: auto; */
     width: fit-content;
@@ -285,12 +285,12 @@
     justify-content: center;
 }
 
-.joinTeam-members-add:hover {
+.robowar_createTeam-members-add:hover {
     background-color: #63ccf5e4;
     cursor: pointer;
 }
 
-#joinTeam-form-submit, #google-joinTeam-form-submit {
+#robowar_createTeam-form-submit, #google-robowar_createTeam-form-submit {
     width: 40%;
     height: 5vh;
     padding: 5px;
@@ -305,12 +305,12 @@
     text-align: center;
 }
 
-#google-joinTeam-form-submit {
+#google-robowar_createTeam-form-submit {
     margin: 0;
     border-radius: inherit;
 }
 
-#joinTeam-form-submit:hover {
+#robowar_createTeam-form-submit:hover {
     background-color: #63ccf5e4;
     cursor: pointer;
 }
@@ -359,7 +359,7 @@
     top: 52%;
 }
 
-.joinTeam-alreadyAccount {
+.robowar_createTeam-alreadyAccount {
     color: #84f4eb;
     /* font-family: 'Kanit', sans-serif; */
     font-weight: 300;
@@ -367,30 +367,30 @@
     text-decoration: none;
 }
 
-.joinTeam-alreadyAccount > a {
+.robowar_createTeam-alreadyAccount > a {
     font-weight: 700;
     color: #63ccf5;
     text-decoration: none;
 }
 
-.joinTeam-alreadyAccount > a:hover {
+.robowar_createTeam-alreadyAccount > a:hover {
     color: #63ccf5e4;
 }
 
 @media (max-width: 1000px) {
-    .joinTeam-container {
+    .robowar_createTeam-container {
         width: 90%;
     }
 }
 
 @media (max-width: 700px) {
-    .joinTeam-container {
+    .robowar_createTeam-container {
         width: 100%;
     }
 }
 
 @media (orientation: portrait) {
-    .joinTeam-container {
+    .robowar_createTeam-container {
         /* position: absolute;
         top: 4%; */
         flex-direction: column;
@@ -398,35 +398,35 @@
         width: 90%;
     }
 
-    .joinTeam-container-left {
+    .robowar_createTeam-container-left {
         width: 100%;
         height: 20vh;
         border-radius: 20px 20px 0 0;
     }
     
-    .joinTeam-container-right {
+    .robowar_createTeam-container-right {
         width: 100%;
         height: fit-content;
         border-radius: 0 0 20px 20px;
     }
 
-    .joinTeam-container-right-title {
+    .robowar_createTeam-container-right-title {
         font-size: max(26px, 4vmin);
     }
 
-    .joinTeam-form input {
+    .robowar_createTeam-form input {
         font-size: max(12px, 1.8vmin);
     }
 
-    #joinTeam-form-confirmpassword-warning {
+    #robowar_createTeam-form-confirmpassword-warning {
         font-size: max(11px, 1.7vmin);
     }
 
-    #joinTeam-form-submit, #google-joinTeam-form-submit {
+    #robowar_createTeam-form-submit, #google-robowar_createTeam-form-submit {
         font-size: max(13px, 2vmin);
     }
 
-    .joinTeam-alreadyAccount {
+    .robowar_createTeam-alreadyAccount {
         font-size: max(12px, 2vmin);
     }
 }
