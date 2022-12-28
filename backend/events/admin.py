@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Event, Contacts, Brochure, Panel, EventSponsors, Gallery, StreamLinks
+from users.models import *
 from import_export.admin import ImportExportModelAdmin
 from django.utils.translation import ugettext_lazy as _
 
@@ -59,3 +60,6 @@ class GalleryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     class Meta:
         model = Gallery
         fields = '__all__'
+
+
+

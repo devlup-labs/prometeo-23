@@ -32,8 +32,11 @@ import CompleteProfile from "./pages/completeProfile";
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
 import NewGallery from "./pages/newNewGallery";
+import AccForm from "./pages/accForm";
 import Robowar from "./pages/robowar";
 import DroneRace from "./pages/drone_race";
+import Event_createTeam from "./pages/event_createTeam";
+import Event_joinTeam from "./pages/event_joinTeam";
 
 function App() {
   // const [bigBang, setBigBang] = useState(true);
@@ -53,58 +56,94 @@ function App() {
                                 />
                             }
                         />
+                        <Route
+                            path="/accommodation-registration"
+                            element={<AccForm />}
+                        />
 
-                        {/* <Route path="/robowar" element={<Robowar />} /> */}
+                        {/* <Route path="/robowars" element={<Robowar />} /> */}
                         {/* <Route path="/drone-race" element={<DroneRace />} /> */}
 
-            <Route path="/past-speakers" element={<Speaker />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/past-sponsors" element={<Sponsors />} />
-            <Route path="/events" element={<Events />} />
-            {/* <Route path="/theme" element={<Theme />} /> */}
-            {/* <Route path="/register" element={<Register />} /> */}
-            {/* <Route path="/login" element={<Login />} /> */}
-            <Route path="/event-details" element={<EventDetails />} />
-            <Route path="/team" element={<Team />} />
 
-            <Route path="/campus-ambassador" element={<CA />} />
-            <Route path="/Accommodation" element={<Accommodation />} />
+                        <Route path="/past-speakers" element={<Speaker />} />
+                        <Route path="/gallery" element={<NewGallery />} />
+                        <Route path="/past-sponsors" element={<Sponsors />} />
+                        <Route path="/events" element={<Events />} />
+                        {/* <Route path="/theme" element={<Theme />} /> */}
+                        {/* <Route path="/register" element={<Register />} /> */}
+                        {/* <Route path="/login" element={<Login />} /> */}
+                        <Route
+                            path="/event-details"
+                            element={<EventDetails />}
+                        />
+                        <Route path="/team" element={<Team />} />
 
-            {/* <Route exact path='/pre-register' element={<RestrictedRoute />} > */}
-            {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
-            {/* </Route> */}
+                        <Route path="/campus-ambassador" element={<CA />} />
+                        <Route
+                            path="/accommodation"
+                            element={<Accommodation />}
+                        />
+                        <Route path="/tnc" element={<Tnc />} />
+                        <Route path="/privacy-policy" element={<PP />} />
 
-            <Route exact path="/login" element={<RestrictedRoute />}>
-              <Route exact path="/login" element={<Login />} />
-            </Route>
+                        {/* <Route exact path='/pre-register' element={<RestrictedRoute />} > */}
+                        {/* <Route exact path='/pre-register' element={<PreRegistration />} /> */}
+                        {/* </Route> */}
 
-            <Route exact path="/sign-up" element={<RestrictedRoute />}>
-              <Route path="/sign-up" element={<SignUp />} />
-            </Route>
-
-                        <Route exact path='/dashboard' element={<PrivateRoute />}>
-                            <Route exact path='/dashboard' element={<Dashboard />} />
+                        <Route
+                            exact
+                            path="/login"
+                            element={<RestrictedRoute />}
+                        >
+                            <Route exact path="/login" element={<Login />} />
                         </Route>
 
-                        <Route exact path='/complete-profile' element={<PrivateRoute />}>
-                            <Route exact path='/complete-profile' element={<CompleteProfile />} />
+                        <Route
+                            exact
+                            path="/sign-up"
+                            element={<RestrictedRoute />}
+                        >
+                            <Route path="/sign-up" element={<SignUp />} />
                         </Route>
 
-                        <Route exact path='/complete-profile' element={<PrivateRoute />}>
-                            <Route exact path='/complete-profile' element={<CompleteProfile />} />
+                        <Route
+                            exact
+                            path="/dashboard"
+                            element={<PrivateRoute />}
+                        >
+                            <Route
+                                exact
+                                path="/dashboard"
+                                element={<Dashboard />}
+                            />
                         </Route>
 
-                        <Route exact path='/complete-profile' element={<PrivateRoute />}>
-                            <Route exact path='/complete-profile' element={<CompleteProfile />} />
+                        <Route
+                            exact
+                            path="/complete-profile"
+                            element={<PrivateRoute />}
+                        >
+                            <Route
+                                exact
+                                path="/complete-profile"
+                                element={<CompleteProfile />}
+                            />
+                        </Route>
+                        {/* <Route exact path='/create-team' element={<PrivateRoute />}>
+                            <Route exact path='/create-team' element={<Event_createTeam />} />
                         </Route>
 
-            <Route path="/*" element={<Page_404 />} />
-          </Routes>
-          <ToastContainer theme="dark" />
-        </AuthProvider>
-      </div>
-    </Router>
-  );
+                        <Route exact path='/join-team' element={<PrivateRoute />}>
+                            <Route exact path='/join-team' element={<Event_joinTeam />} />
+                        </Route> */}
+
+                        <Route path="/*" element={<Page_404 />} />
+                    </Routes>
+                    <ToastContainer theme="dark" />
+                </AuthProvider>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
