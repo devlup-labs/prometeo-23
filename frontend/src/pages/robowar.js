@@ -42,7 +42,7 @@ function Entry(props) {
         []
     );
     const ref = useRef();
-    const onScreen = useOnScreen(ref);
+    // const onScreen = useOnScreen(ref);
 
     const [countDone, setCountDone] = useState(false);
     function countUp() {
@@ -67,64 +67,60 @@ function Entry(props) {
             );
     }
 
-    useEffect(() => {
-        const counters = document.querySelectorAll(".counter");
-        const speed = 200;
+    // useEffect(() => {
+    //     const counters = document.querySelectorAll(".counter");
+    //     const speed = 200;
 
-        if (!countDone && onScreen) {
-            $(".js-num").each(countUp);
-            setCountDone(true);
-        }
-    }, [onScreen]);
+    //     if (!countDone && onScreen) {
+    //         $(".js-num").each(countUp);
+    //         setCountDone(true);
+    //     }
+    // }, [onScreen]);
 
     return (
-        <div className="flag">
+        <div className="robowar_flag">
             <div
-                className="flagTop-Container"
+                className="robowar_flagTop-Container"
                 style={{
                     backgroundImage: `url(${props.bg})`,
                 }}
             >
                 <h1 data-title={props.name}>{props.name}</h1>
                 <div class="rw-buttons">
-                  <Link to="/robowars-create-team">
                     <button id="rw-create-button" className="button-48">
-                        <span className="button-text">CREATE TEAM</span>
+                        <Link to="/robowar-create-team" className="button-text">CREATE TEAM</Link>
                     </button>
-                  </Link>
-                  <Link to="/robowars-join-team">
                     <button id="rw-join-button" className="button-48">
-                        <span className="button-text"> TEAM</span>
+                        <Link to="/robowar-join-team" className="button-text">JOIN TEAM</Link>
                     </button>
-                  </Link>
                 </div>
                 {/* <div class="table center">
-          <div class="monitor-wrapper center">
-            <div class="monitor center">
-              <p>Ready for war</p>
-            </div>
-          </div>
-        </div> */}
+                    <div class="monitor-wrapper center">
+                        <div class="monitor center">
+                            <p>Ready for war</p>
+                        </div>
+                    </div>
+                </div> */}
 
                 {/* <img src={props.image} /> */}
             </div>
             <section
-                className="flag-bottom-bg"
+                className="robowar_flag-bottom-bg"
                 style={{
                     backgroundImage:
                         "https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFV2EPcpTU&#x2F;view?",
                 }}
             >
-                <div className="flagAbout">
+                <div className="robowar_flagAbout">
                     <h3 className="title-shadow">ABOUT</h3>
                     <section className="Abouttable">
-                        <div id="flag_prize">
+                        <div id="robowar_flag_prize">
                             <img
                                 src={prizeImg}
                                 alt="icon"
-                                id="flag_prize-icon"
+                                id="robowar_flag_prize-icon"
                             />
-                            <div id="flagPrize-description">
+                            <div id="robowar_flagPrize-description">
                                 <span className="js-num" data-target="12000">
                                     100
                                 </span>
@@ -137,7 +133,7 @@ function Entry(props) {
                             <p className="about-description">
                                 {props.description}
                             </p>
-                            <Link id="flagAbout-button">
+                            <Link id="robowar_flagAbout-button">
                                 Registrations Opening Soon
                             </Link>
                         </div>
@@ -145,61 +141,61 @@ function Entry(props) {
                     {/* <p>{props.description}</p> */}
                 </div>
                 {/* <hr /> */}
-                <div className="flagResources">
+                <div className="robowar_flagResources">
                     <h3 className="title-shadow">RESOURCES</h3>
-                    <div className="flag_Allcards">
+                    <div className="robowar_flag_Allcards">
                         <div
-                            className="flag_card card0"
+                            className="robowar_flag_card card0"
                             style={{
                                 backgroundImage: `url(${props.cardbg1})`,
                                 boxShadow:
                                     "inset 0 0 60px 60px rgba(0,0,0,0.9)",
                             }}
                         >
-                            <div className="flag_card-border">
+                            <div className="robowar_flag_card-border">
                                 <h2>15 Kg</h2>
                             </div>
                         </div>
                         <div
-                            className="flag_card card0"
+                            className="robowar_flag_card card0"
                             style={{
                                 backgroundImage: `url(${props.cardbg2})`,
                             }}
                         >
-                            <div className="flag_card-border">
+                            <div className="robowar_flag_card-border">
                                 <h2>60 Kg</h2>
                             </div>
                         </div>
                     </div>
                 </div>
                 {/* <hr /> */}
-                {/* <div className="flagSponsors">
-          <h3 className="title-shadow">SPONSORS</h3>
-          <img src="https://apiv.prometeo.in/media/sponsors/smasung_sWRoaY5.webp" />
-        </div> */}
-                <div className="flagContactUs">
+                {/* <div className="robowar_flagSponsors">
+                    <h3 className="title-shadow">SPONSORS</h3>
+                    <img src="https://apiv.prometeo.in/media/sponsors/smasung_sWRoaY5.webp" />
+                </div> */}
+                <div className="robowar_flagContactUs">
                     <h3 className="title-shadow">CONTACT US</h3>
                     <div class="canvas">
                         <div id="contact-card" class="contact-card">
                             <div>
-                                <p className="flagContactUs-name">
+                                <p className="robowar_flagContactUs-name">
                                     NAME SURNAME
                                 </p>
-                                <p className="flagContactUs-mail">
+                                <p className="robowar_flagContactUs-mail">
                                     fake.1@iitj.ac.in
                                 </p>
-                                <p className="flagContactUs-phone">
+                                <p className="robowar_flagContactUs-phone">
                                     +91 123456789
                                 </p>
                             </div>
                             <div>
-                                <p className="flagContactUs-name">
+                                <p className="robowar_flagContactUs-name">
                                     NAME SURNAME
                                 </p>
-                                <p className="flagContactUs-mail">
+                                <p className="robowar_flagContactUs-mail">
                                     fake.1@iitj.ac.in
                                 </p>
-                                <p className="flagContactUs-phone">
+                                <p className="robowar_flagContactUs-phone">
                                     +91 123456789
                                 </p>
                             </div>
@@ -214,7 +210,7 @@ function Entry(props) {
 function Robowar() {
     return (
         <FadeIn duration={500}>
-            <div id="flagshipEventsPage">
+            <div id="robowar_flagshipEventsPage">
                 {flagshipEvents_data.map(createEntry)}
             </div>
         </FadeIn>

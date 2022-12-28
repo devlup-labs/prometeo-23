@@ -21,15 +21,15 @@
     }
 }
 
-.flagTop-Container {
-    border: 2px solid white;
+.robowar_flagTop-Container {
+    /* border: 2px solid white; */
     height: 90vh;
-    width: 100vw;
+    width: 100%;
     background-size: cover;
     background-position: top center;
 }
 
-.flagTop-Container h1::before {
+.robowar_flagTop-Container h1::before {
     content: attr(data-title);
     position: absolute;
     height: 50%;
@@ -40,7 +40,7 @@
     left: 0;
 }
 
-.flagTop-Container h1::after {
+.robowar_flagTop-Container h1::after {
     content: attr(data-title);
     position: absolute;
     height: 53%;
@@ -54,7 +54,7 @@
     transition: 0.4s;
 }
 
-.flagTop-Container h1:hover::after {
+.robowar_flagTop-Container h1:hover::after {
     border-bottom: 5px solid transparent;
     top: -10px;
 }
@@ -70,6 +70,11 @@
     transform: translate(-50%, 0);
 }
 
+.rw-buttons a {
+    color: initial;
+    text-decoration: none;
+}
+
 #rw-create-button {
   box-shadow: 0 0 20px 3px black;
 }
@@ -78,15 +83,15 @@
   box-shadow: 0 0 20px 3px black;
 }
 
-/* .flag-bottom-bg{
+/* .robowar_flag-bottom-bg{
   filter: blur(2px);
 } */
 
-.flagAbout h3 {
+.robowar_flagAbout h3 {
     font-size: 2.5em;
 }
 @media (max-width: 768px) {
-    .flagAbout h3 {
+    .robowar_flagAbout h3 {
         font-size: 1.3em;
     }
 }
@@ -114,7 +119,7 @@
     }
 }
 
-.flagTop-Container h1 {
+.robowar_flagTop-Container h1 {
     color: #ff7000;
     position: absolute;
     text-transform: uppercase;
@@ -133,7 +138,7 @@
     /* font-family: 'Anton', sans-serif; */
     font-family: "Black Ops One", cursive;
 }
-.flagTop-Container img {
+.robowar_flagTop-Container img {
     display: block;
     position: absolute;
     width: 25%;
@@ -141,13 +146,13 @@
     left: 25%;
     transform: translate(-50%, -50%);
 }
-.flagAbout,
-.flagReach,
-.flagResources,
-.flagSponsors {
+.robowar_flagAbout,
+.robowar_flagReach,
+.robowar_flagResources,
+.robowar_flagSponsors {
     padding: 5vmin 0;
 }
-.flagAbout h3 {
+.robowar_flagAbout h3 {
     margin-left: 25px;
     /* width: 100%; */
     font-family: Gentona;
@@ -163,20 +168,20 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
 }
-.flagAbout-table {
+.robowar_flagAbout-table {
     flex: 1;
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
 }
-#flag_prize {
+#robowar_flag_prize {
     width: 90%;
     display: flex;
     margin: auto;
     align-items: center;
 }
-.flagAbout-table:first-child {
+.robowar_flagAbout-table:first-child {
     margin-right: 20px;
 }
-#flag_prize-icon {
+#robowar_flag_prize-icon {
     display: inline;
     position: relative;
     margin: auto;
@@ -184,7 +189,7 @@
     width: 25%;
 }
 
-#flagPrize-description {
+#robowar_flagPrize-description {
     /* display: flex; */
     color: blanchedalmond;
     font-family: "Exo 2", sans-serif;
@@ -194,12 +199,12 @@
     padding-left: 10px;
     /* display: inline-block; */
 }
-/* #flagPrize-description span{
+/* #robowar_flagPrize-description span{
   display:inline;
   position:relative;
 } */
 
-.flagAbout p {
+.robowar_flagAbout p {
     margin: 30px auto auto;
 }
 
@@ -229,7 +234,7 @@
     letter-spacing: 0.2em;
     font-weight: 900;
 }
-#flagAbout-button {
+#robowar_flagAbout-button {
     height: 15%;
     width: 20%;
     /* width: 50%; */
@@ -241,7 +246,7 @@
     margin: 10px auto auto;
     position: relative;
     border-radius: 0.2em;
-    border: solid white 1px;
+    /* border: solid white 1px; */
     box-sizing: border-box;
     text-decoration: none;
     font-family: "Exo 2", sans-serif;
@@ -249,13 +254,13 @@
     background: transparent;
     transition: all 0.2s;
 }
-#flagAbout-button:hover {
+#robowar_flagAbout-button:hover {
     /* color: #ffffff; */
     /* background-color: #62d9cf; */
     box-shadow: inset 0 0 0 2px #ffffff;
 }
 
-.flagResources h3 {
+.robowar_flagResources h3 {
     margin-left: 25px;
     /* width: 100%; */
     font-family: Gentona;
@@ -270,7 +275,8 @@
     /* color: #2cc040; */
 }
 
-.flag_Allcards {
+.robowar_flag_Allcards {
+    width: 100%;
     /* height: 100vh; */
     /* width: 100vw; */
     max-height: 800px;
@@ -282,18 +288,18 @@
     align-items: center;
     margin: 20px auto;
 }
-.flag_card-border {
-    height: 290px;
-    width: 290px;
+.robowar_flag_card-border {
+    aspect-ratio: 1 / 1;
+    width: 40%;
     background: transparent;
     border-radius: 10px;
     transition: border 1s;
     position: relative;
 }
-.flag_card-border:hover {
-    border: 1px solid #fff;
+.robowar_flag_card-border:hover {
+    /* border: 1px solid #fff; */
 }
-.flag_card {
+.robowar_flag_card {
     height: 300px;
     width: 300px;
     background: #808080;
@@ -310,7 +316,7 @@
     background-size: 300px;
     /* box-shadow: inset 0px 0px 60px 60px rgba(0,0,0,0.9); */
 }
-.flagResources h2 {
+.robowar_flagResources h2 {
     margin-top: 250px;
     margin-left: 0px;
     align-items: center;
@@ -332,7 +338,7 @@
   border: solid #fce38a 2px;
   border-bottom: none;
 } */
-.flagContactUs {
+.robowar_flagContactUs {
     margin-left: 25px;
     /* width: 100%; */
     font-family: Gentona;
@@ -346,15 +352,16 @@
     /* color: #03a9f4; */
 }
 
-.flagContactUs .canvas {
+.robowar_flagContactUs .canvas {
     /* position: relative; */
     margin-top: 40px;
     margin-bottom: 40px;
 }
 
-.flagContactUs .canvas .contact-card {
-    width: 1000px;
-    height: 150px;
+.robowar_flagContactUs .canvas .contact-card {
+    box-sizing: border-box;
+    width: 100%;
+    height: 20vh;
     /* display: grid;
   grid: 1fr 1fr 1fr / 1fr 1fr; */
     /* display: flex; */
@@ -378,7 +385,7 @@
     grid-template-columns: 1fr 1fr;
 }
 
-.flagContactUs p {
+.robowar_flagContactUs p {
     line-height: 21px;
     font-family: "Alumni Sans", sans-serif;
     text-transform: uppercase;
@@ -392,12 +399,12 @@
     font-size: 1.5rem;
     line-height: 2rem;
 }
-/* .flagContactUs-name{
+/* .robowar_flagContactUs-name{
   position: relative;
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.flagContactUs-mail, .flagContactUs-phone{
+.robowar_flagContactUs-mail, .robowar_flagContactUs-phone{
   position: relative;
   font-size:1rem;
   line-height: 2rem;

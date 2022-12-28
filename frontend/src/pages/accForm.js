@@ -193,15 +193,18 @@ function AccForm() {
                             </ul>
                         </div>
                         <a
-                            href="https://forms.eduqfix.com/prometeo/add"
+                            // href="https://forms.eduqfix.com/prometeo/add"
+                            href=""
                             target="_blank"
                             id="acc-pay-button"
                         >
                                 <button
                                     type="submit"
                                     className="acc-pay-button"
+                                    disabled
                                 >
-                                    Pay Now
+                                    {/* Pay Now */}
+                                    Coming Soon!
                                 </button>
                         </a>
                     </div>
