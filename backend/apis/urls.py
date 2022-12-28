@@ -39,12 +39,15 @@ router.register("team",TeamViewSet)
 
 router.register("coreteam",CoreTeamViewSet)
 
-router.register("robowars",RoboWarsViewSet)
+# router.register("robowars",RoboWarsViewSet)
 
 router.register("accomodationpasses",AccomodationPassesViewSet)
 
 # router.register("campusambassadorlistview",CampusAmbassadorListView)
 
+router.register("createteamrw",CreateTeamViewSetRW)
+
+# router.register("updateteamrw",UpdateTeamViewSetRW)
 
 # router.register("logindashboard", LoginDashboardViewSet)
 
@@ -59,4 +62,6 @@ urlpatterns=[
     path('logindashboard/', views.LoginDashboardViewSet.as_view(), name='logindashboard'),
     path('usercheck/', UserCheckViewSet.as_view(), name='usercheck'),
     path('google/completeprofile/', views.GoogleCompleteProfileViewSet.as_view(), name='googlecompleteprofile'),
+    path('updateteamrw/', views.UpdateTeamViewSetRW.as_view(), name='updateteamrw'),
+    path('checkteamrw/', views.CheckTeamViewSetRW.as_view(), name='checkteamrw'),
 ]

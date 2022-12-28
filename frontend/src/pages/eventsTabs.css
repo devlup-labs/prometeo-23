@@ -28,6 +28,8 @@ body {
 }
 /* taabs menu */
 .taabs {
+  top: 10vh;
+  border-top: 0;
   position: fixed;
   z-index: 9;
   /* top: 100px; */
