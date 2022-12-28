@@ -19,14 +19,14 @@ const navBarLinks = [
   },
   {
     name: "speakers",
-    text: "Past Speakers",
+    text: "Speakers",
     path: "/past-speakers",
     section: "left",
     tabIndex: 3,
   },
   {
     name: "sponsors",
-    text: "Past Sponsors",
+    text: "Sponsors",
     path: "/past-sponsors",
     section: "left",
     tabIndex: 4,

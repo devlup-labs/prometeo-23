@@ -126,7 +126,10 @@ a {
 .event_Card-background {
     background-size: cover;
     background-position: center;
-    border-radius: var(--spacing-l);
+    /* border-radius: var(--spacing-l); */
+    -moz-border-radius: 0px;
+-webkit-border-radius: 3px 3px 0px 0px;
+border-radius: 12px 12px 0px 0px; 
     bottom: 0;
     /* opacity: 0.9; */
     filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(0.2px);
