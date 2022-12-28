@@ -76,258 +76,243 @@ function Details(props) {
         };
     }, []);
     return (
-        <div className="event-details">
-            <div className="event-details__header">
-                <div className="event-details__back-button">
-                    <Link to={`/events?type=${props.eventTerm.type}`}>
-                        <svg
-                            className="fa fa-backBtn"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 448 512"
-                        >
-                            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-                        </svg>
-                    </Link>
-                </div>
-                <div className="event-details__title">
-                    {eventTerm.name}
-                    <div className="event-details__title__underline"></div>
-                </div>
-                {eventTerm.name === "Blockchain Hackathon" && (
-                    <div className="event-details__sponsors">
-                        {/* <div className="event-details__sponsors_text">Sponsored by</div> */}
-                        {/* <div className="devfolio_button"> */}
-                        {/* <Link id="eventRegis-button">Register</Link> */}
-                        {/* <span>Apply with Devfolio</span> */}
-                        <div
-                            className="apply-button"
-                            data-hackathon-slug="prometeo23-blockchain-hackathon"
-                            data-button-theme="dark-inverted"
-                        >
-                            {/* Apply with Devfolio */}
-                        </div>
-                        {/* </div> */}
-                        <div className="event-details__sponsors_images">
-                            <div className="sponsor_metal1">
-                                <div className="sponsor_metal1_name">
-                                    Diamond Sponsors
-                                </div>
-                                <div className="event_sponsors_image1">
-                                    <img
-                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                                        // src="../assets/logo_sponsors/Devfolio_Logo-White.svg"
-                                        src="https://drive.google.com/uc?export=view&id=1dlWFRAQ9btrZxXNO0DnbghJaOrfADMps"
-                                        //   title={sponsor.name}
-                                        alt="Sponsor Image"
-                                        //   key={sponsor.id}
-                                    />
-                                    <img
-                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                                        src="https://drive.google.com/uc?export=view&id=1oNsLi1garvuatbkdnMw2wR7MXOz5DzpV"
-                                        //   title={sponsor.name}
-                                        alt="Sponsor Image"
-                                        //   key={sponsor.id}
-                                    />
-                                </div>
-                            </div>
-                            <div className="sponsor_metal2">
-                                <div className="sponsor_metal2_name">
-                                    Gold Sponsors
-                                </div>
-                                <div className="event_sponsors_image2">
-                                    <img
-                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                                        src="https://drive.google.com/uc?export=view&id=1Ehq2SEFjT8tUY_QqH23yp2WHi-l9Q3XF"
-                                        //   title={sponsor.name}
-                                        alt="Sponsor Image"
-                                        //   key={sponsor.id}
-                                    />
-                                    <img
-                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                                        src="https://drive.google.com/uc?export=view&id=1twz-NvQkg8F4_0RnA6S9fQW8eNYIEw7j"
-                                        //   title={sponsor.name}
-                                        alt="Sponsor Image"
-                                        //   key={sponsor.id}
-                                    />
-                                    <img
-                                        // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                                        src="https://drive.google.com/uc?export=view&id=1Ci9qGZs9QdNCWHp9nmxqBstp0iQ9aqTY"
-                                        //   title={sponsor.name}
-                                        alt="Sponsor Image"
-                                        //   key={sponsor.id}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-                {eventSponsor.length > 0 &&
-                    eventTerm.name !== "Blockchain Hackathon" && (
-                        <div className="event-details__sponsors">
-                            <div className="event-details__sponsors_text">
-                                Sponsored by
-                            </div>
-                            <div className="event-details__sponsors_images">
-                                {eventSponsor.map((sponsor) => {
-                                    return (
-                                        <img
-                                            src={
-                                                sponsor.image
-                                                    ? sponsor.image.replace(
-                                                          "0.0.0.0:8888",
-                                                          "apiv.prometeo.in"
-                                                      )
-                                                    : ""
-                                            }
-                                            title={sponsor.name}
-                                            alt="Sponsor Image"
-                                            key={sponsor.id}
-                                        />
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    )}
-            </div>
-            <div className="event-details__body">
-                <div className="event-details__body__left">
-                    {/* <div className="event-details__body__left__image"> */}
+      <div className="event-details">
+        <div className="event-details__header">
+          <div className="event-details__back-button">
+            <Link to={`/events`}>
+              <svg
+                className="fa fa-backBtn"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+              </svg>
+            </Link>
+          </div>
+          <div className="event-details__title">
+            {eventTerm.name}
+            <div className="event-details__title__underline"></div>
+          </div>
+          {eventTerm.name === "Blockchain Hackathon" && (
+            <div className="event-details__sponsors">
+              {/* <div className="event-details__sponsors_text">Sponsored by</div> */}
+              {/* <div className="devfolio_button"> */}
+              {/* <Link id="eventRegis-button">Register</Link> */}
+              {/* <span>Apply with Devfolio</span> */}
+              <div
+                className="apply-button"
+                data-hackathon-slug="prometeo23-blockchain-hackathon"
+                data-button-theme="dark-inverted"
+              >
+                {/* Apply with Devfolio */}
+              </div>
+              {/* </div> */}
+              <div className="event-details__sponsors_images">
+                <div className="sponsor_metal1">
+                  <div className="sponsor_metal1_name">Diamond Sponsors</div>
+                  <div className="event_sponsors_image1">
                     <img
-                        className="event-details__body__left__image__img"
-                        src={
-                            eventTerm.image
-                                ? eventTerm.image.replace(
-                                      "0.0.0.0:8888",
-                                      "apiv.prometeo.in"
-                                  )
-                                : ""
-                        }
-                        alt="Event Image"
+                      // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                      // src="../assets/logo_sponsors/Devfolio_Logo-White.svg"
+                      src="https://drive.google.com/uc?export=view&id=1dlWFRAQ9btrZxXNO0DnbghJaOrfADMps"
+                      //   title={sponsor.name}
+                      alt="Sponsor Image"
+                      //   key={sponsor.id}
                     />
-                    {/* </div> */}
-                    <div className="event-details__body__left__buttons">
-                        {/* <Link id="eventRegis-button">Register</Link> */}
+                    <img
+                      // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                      src="https://drive.google.com/uc?export=view&id=1oNsLi1garvuatbkdnMw2wR7MXOz5DzpV"
+                      //   title={sponsor.name}
+                      alt="Sponsor Image"
+                      //   key={sponsor.id}
+                    />
+                  </div>
+                </div>
+                <div className="sponsor_metal2">
+                  <div className="sponsor_metal2_name">Gold Sponsors</div>
+                  <div className="event_sponsors_image2">
+                    <img
+                      // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                      src="https://drive.google.com/uc?export=view&id=1Ehq2SEFjT8tUY_QqH23yp2WHi-l9Q3XF"
+                      //   title={sponsor.name}
+                      alt="Sponsor Image"
+                      //   key={sponsor.id}
+                    />
+                    <img
+                      // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                      src="https://drive.google.com/uc?export=view&id=1twz-NvQkg8F4_0RnA6S9fQW8eNYIEw7j"
+                      //   title={sponsor.name}
+                      alt="Sponsor Image"
+                      //   key={sponsor.id}
+                    />
+                    <img
+                      // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
+                      src="https://drive.google.com/uc?export=view&id=1Ci9qGZs9QdNCWHp9nmxqBstp0iQ9aqTY"
+                      //   title={sponsor.name}
+                      alt="Sponsor Image"
+                      //   key={sponsor.id}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {eventSponsor.length > 0 &&
+            eventTerm.name !== "Blockchain Hackathon" && (
+              <div className="event-details__sponsors">
+                <div className="event-details__sponsors_text">Sponsored by</div>
+                <div className="event-details__sponsors_images">
+                  {eventSponsor.map((sponsor) => {
+                    return (
+                      <img
+                        src={
+                          sponsor.image
+                            ? sponsor.image.replace(
+                                "0.0.0.0:8888",
+                                "apiv.prometeo.in"
+                              )
+                            : ""
+                        }
+                        title={sponsor.name}
+                        alt="Sponsor Image"
+                        key={sponsor.id}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+        </div>
+        <div className="event-details__body">
+          <div className="event-details__body__left">
+            {/* <div className="event-details__body__left__image"> */}
+            <img
+              className="event-details__body__left__image__img"
+              src={
+                eventTerm.image
+                  ? eventTerm.image.replace("0.0.0.0:8888", "apiv.prometeo.in")
+                  : ""
+              }
+              alt="Event Image"
+            />
+            {/* </div> */}
+            <div className="event-details__body__left__buttons">
+              {/* <Link id="eventRegis-button">Register</Link> */}
 
-                        {/* {eventTerm.name == "Blockchain Hackathon" ? 
+              {/* {eventTerm.name == "Blockchain Hackathon" ? 
               <a
                 href={eventTerm.external_link || ""}
                 className="event-details-register button-64"
               >
                 <span>REGISTER</span>
               </a>: "" } */}
-                        {eventTerm.external_link && (
-                            <a
-                                href={eventTerm.external_link || ""}
-                                className="event-details-register button-64"
-                            >
-                                <span>REGISTER</span>
-                            </a>
-                        )}
-                        {eventTerm.rulebook && (
-                            <a
-                                href={
-                                    eventTerm.rulebook.replace(
-                                        "0.0.0.0:8888",
-                                        "apiv.prometeo.in"
-                                    ) || ""
-                                }
-                                className="event-details-rulebook button-64"
-                            >
-                                <span>RULEBOOK</span>
-                            </a>
-                        )}
-                    </div>
-                </div>
+              {eventTerm.external_link && (
+                <a
+                  href={eventTerm.external_link || ""}
+                  className="event-details-register button-64"
+                >
+                  <span>REGISTER</span>
+                </a>
+              )}
+              {eventTerm.rulebook && (
+                <a
+                  href={
+                    eventTerm.rulebook.replace(
+                      "0.0.0.0:8888",
+                      "apiv.prometeo.in"
+                    ) || ""
+                  }
+                  className="event-details-rulebook button-64"
+                >
+                  <span>RULEBOOK</span>
+                </a>
+              )}
+            </div>
+          </div>
 
-                <div className="event-details__body__right">
-                    <div className="event-details__body__right__top">
-                        <ul className="tabs">
-                            <li className="">
-                                <a href="#tab1">Event Description</a>
-                            </li>
-                            {/* <li className={tabHeading}>
+          <div className="event-details__body__right">
+            <div className="event-details__body__right__top">
+              <ul className="tabs">
+                <li className="">
+                  <a href="#tab1">Event Description</a>
+                </li>
+                {/* <li className={tabHeading}>
                                 <a href="#tab2">Other Details</a>
                             </li> */}
-                            {/* <li><a href="#tab3">Contact Us</a></li> */}
-                        </ul>
+                {/* <li><a href="#tab3">Contact Us</a></li> */}
+              </ul>
 
-                        <div className="tab-content default-active" id="tab1">
-                            <div className="top-event-mains">
-                                <div className="event-details__body__right__top__on">
-                                    On{" "}
-                                    <span id="event-details-text">
-                                        {eventTerm.date}
-                                    </span>
-                                </div>
-                                <div className="event-details__body__right__top__prize">
-                                    Prize Money{" "}
-                                    <span id="event-details-text">
-                                        {eventTerm.prize}
-                                    </span>
-                                </div>
-                                <div className="event-details__body__right__top__participation-type">
-                                    Participation Type{" "}
-                                    <span id="event-details-text">
-                                        {eventTerm.participation_type}
-                                    </span>
-                                </div>
-                                {eventTerm.max_team_size > 1 && (
-                                    <div className="event-details__body__right__top__teams">
-                                        Team Size{" "}
-                                        <span id="event-details-text">
-                                            {eventTerm.min_team_size}-
-                                            {eventTerm.max_team_size}
-                                        </span>
-                                    </div>
-                                )}
-                                {eventTerm.venue && (
-                                    <div className="event-details__body__right__top__venue">
-                                        Venue{" "}
-                                        <span id="event-details-text">
-                                            {eventTerm.venue}
-                                        </span>
-                                    </div>
-                                )}
-                            </div>
-                            <hr className="event-details__body__right__bottom1__hr" />
-                            <div className="event-details__body__right__bottom">
-                                {eventTerm.description && (
-                                    <>
-                                        <p id="event-content-heading">
-                                            Description
-                                        </p>
-                                        <div className="event-details__body__right__bottom2">
-                                            {eventTerm.description}
-                                        </div>
-                                        <hr className="event-details__body__right__bottom1__hr" />
-                                    </>
-                                )}
-                            </div>
-                        </div>
+              <div className="tab-content default-active" id="tab1">
+                <div className="top-event-mains">
+                  <div className="event-details__body__right__top__on">
+                    On <span id="event-details-text">{eventTerm.date}</span>
+                  </div>
+                  <div className="event-details__body__right__top__prize">
+                    Prize Money{" "}
+                    <span id="event-details-text">{eventTerm.prize}</span>
+                  </div>
+                  <div className="event-details__body__right__top__participation-type">
+                    Participation Type{" "}
+                    <span id="event-details-text">
+                      {eventTerm.participation_type}
+                    </span>
+                  </div>
+                  {eventTerm.max_team_size > 1 && (
+                    <div className="event-details__body__right__top__teams">
+                      Team Size{" "}
+                      {eventTerm.min_team_size === eventTerm.max_team_size ? (
+                        <span id="event-details-text">
+                          {eventTerm.max_team_size}
+                        </span>
+                      ) : (
+                        <span id="event-details-text">
+                          {eventTerm.min_team_size}-{eventTerm.max_team_size}
+                        </span>
+                      )}
                     </div>
-
-                    <div className="tab-content" id="tab2">
-                        {/* <h2>Tab 2 Content</h2> */}
-
-                        <hr className="event-details__body__right__bottom1__hr" />
-                        <div className="event-details__body__right__bottom">
-                            {eventTerm.problem_statement && (
-                                <>
-                                    <p id="event-content-heading">
-                                        Problem Statement
-                                    </p>
-                                    <div
-                                        className="event-details__body__right__bottom1"
-                                        dangerouslySetInnerHTML={{
-                                            __html: eventTerm.problem_statement,
-                                        }}
-                                    ></div>
-                                </>
-                            )}
-                        </div>
+                  )}
+                  {eventTerm.venue && (
+                    <div className="event-details__body__right__top__venue">
+                      Venue{" "}
+                      <span id="event-details-text">{eventTerm.venue}</span>
                     </div>
+                  )}
+                </div>
+                <hr className="event-details__body__right__bottom1__hr" />
+                <div className="event-details__body__right__bottom">
+                  {eventTerm.description && (
+                    <>
+                      <p id="event-content-heading">Description</p>
+                      <div className="event-details__body__right__bottom2">
+                        {eventTerm.description}
+                      </div>
+                      <hr className="event-details__body__right__bottom1__hr" />
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
 
-                    {/* <div className="tab-content" id="tab3">
+            <div className="tab-content" id="tab2">
+              {/* <h2>Tab 2 Content</h2> */}
+
+              <hr className="event-details__body__right__bottom1__hr" />
+              <div className="event-details__body__right__bottom">
+                {eventTerm.problem_statement && (
+                  <>
+                    <p id="event-content-heading">Problem Statement</p>
+                    <div
+                      className="event-details__body__right__bottom1"
+                      dangerouslySetInnerHTML={{
+                        __html: eventTerm.problem_statement,
+                      }}
+                    ></div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* <div className="tab-content" id="tab3">
                        
 
 
@@ -348,10 +333,10 @@ function Details(props) {
 
                      {/* <MakeActiveClass />  */}
 
-                    {/* </div> */}
-                </div>
-            </div>
+            {/* </div> */}
+          </div>
         </div>
+      </div>
     );
 }
 
