@@ -26,7 +26,7 @@ const test = {
 function Dashboard() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({});
-    const [registeredEvents, setRegisteredEvents] = useState(test);
+    const [registeredEvents, setRegisteredEvents] = useState({});
     const { user, logoutUser } = useContext(AuthContext);
     // console.log("User(dashboard):", user)
     const api = useAxios();
