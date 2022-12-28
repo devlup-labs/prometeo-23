@@ -391,7 +391,7 @@ class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
 class AccomodationSerializers(serializers.ModelSerializer):
     class Meta:
         model = Passes
-        fields = ['user.email', 'aadhar_card','address','dob','full_name','pass_type']
+        fields = ['user', 'aadhar_card','address','dob','full_name','pass_type']
         # extra_kwargs = {'user' : {'read_only' : True},}
 
     def create(self, validated_data):
