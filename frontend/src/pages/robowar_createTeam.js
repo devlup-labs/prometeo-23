@@ -89,7 +89,7 @@ export default function Robowar_createTeam() {
                             Create Team
                         </div>
                         <div className="robowar_createTeam-container-right-subtitle">
-                            Robowar
+                            Robowars
                         </div>
                         <form className="robowar_createTeam-form" onSubmit={handleSubmit}>
                             <input
