@@ -36,7 +36,7 @@ export default function Robowar_joinTeam() {
         const postTeam = async (rw_name) => {
             const requestData = { rw_name}
             
-            try {
+            // try {
                 // console.log("Request Data:", requestData)
                 const response = await api.post(
                     `${backendURL}/updateteamrw/`,
@@ -48,9 +48,9 @@ export default function Robowar_joinTeam() {
                 } else {
                     throw(response.statusText)
                 }
-            } catch (err) {
-                console.log(err);
-            }
+            // } catch (err) {
+            //     console.log(err);
+            // }
         }
 
         const myPromise = new Promise((resolve, reject) => {
