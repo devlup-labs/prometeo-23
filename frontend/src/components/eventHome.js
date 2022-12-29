@@ -23,7 +23,7 @@ export default function EventHome() {
                     <div id="eventHome-eventCircles">
                         <Link
                             to={{
-                                pathname: "/events",
+                                pathname: "/competitions",
                                 search: "?type=technical",
                             }}
                             id="eventHome-eventCircle1"
@@ -43,7 +43,7 @@ export default function EventHome() {
                         </Link>
                         <Link
                             to={{
-                                pathname: "/events",
+                                pathname: "/competitions",
                                 search: "?type=entrepreneurial",
                             }}
                             id="eventHome-eventCircle3"
@@ -55,7 +55,7 @@ export default function EventHome() {
                         </Link>
                         <Link
                             to={{
-                                pathname: "/events",
+                                pathname: "/competitions",
                                 search: "?type=informal",
                             }}
                             id="eventHome-eventCircle2"
