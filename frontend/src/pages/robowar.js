@@ -163,28 +163,32 @@ function Entry(props) {
                 <div className="robowar_flagResources">
                     <h3 className="title-shadow">RESOURCES</h3>
                     <div className="robowar_flag_Allcards">
-                        <div
+                        <a
                             className="robowar_flag_card card0"
                             style={{
                                 backgroundImage: `url(${props.cardbg1})`,
                                 boxShadow:
                                     "inset 0 0 60px 60px rgba(0,0,0,0.9)",
                             }}
+                            href="https://drive.google.com/file/d/1z2D1VBvRsNdg0abX2qaB6orKM3xUkxwX/view?usp=share_link"
+                            target="_blank"
                         >
                             <div className="robowar_flag_card-border">
                                 <h2>15 Kg</h2>
                             </div>
-                        </div>
-                        <div
+                        </a>
+                        <a
                             className="robowar_flag_card card0"
                             style={{
                                 backgroundImage: `url(${props.cardbg2})`,
                             }}
+                            href="https://drive.google.com/file/d/1V0LlTMugMCipBshvA2Lbc925PhYGPfdG/view?usp=share_link"
+                            target="_blank"
                         >
                             <div className="robowar_flag_card-border">
                                 <h2>60 Kg</h2>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 {/* <hr /> */}

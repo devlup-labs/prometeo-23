@@ -388,6 +388,17 @@
     margin: 20px auto;
 }
 
+.robowar_flag_Allcards a {
+    text-decoration: none;
+    color: initial;
+    margin-bottom: 2vmin;
+    transition: scale 0.3s ease-out;
+}
+
+.robowar_flag_Allcards a:hover {
+    scale: 1.05;
+}
+
 .robowar_flag_card-border {
     aspect-ratio: 1 / 1;
     width: 40%;
@@ -397,9 +408,9 @@
     position: relative;
 }
 
-.robowar_flag_card-border:hover {
-    /* border: 1px solid #fff; */
-}
+/* .robowar_flag_card-border:hover {
+    border: 1px solid #fff;
+} */
 
 .robowar_flag_card {
     height: 300px;
