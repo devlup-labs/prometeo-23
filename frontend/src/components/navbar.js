@@ -62,17 +62,17 @@ const navBarLinks = [
   // {
   //   name: "flagshipEvents",
   //   text: "Events",
-  //   path: "/robowar",
+  //   // path: "/robowar",
   //   section: "right",
   //   tabIndex: 8,
   // },
-  //   {
-  //     name: "drone_race",
-  //     text: "Drone Race",
-  //     path: "/drone_race",
-  //     section: "right",
-  //     tabIndex: 8,
-  //   },
+    // {
+    //   name: "drone_race",
+    //   text: "Drone Race",
+    //   path: "/drone_race",
+    //   section: "right",
+    //   tabIndex: 8,
+    // },
   {
     name: "gallery",
     text: "Gallery",
@@ -115,8 +115,8 @@ const eventTypes = [
   { name: "Tech Carnival", type: "exhibition" },
 ];
 const flagshipEventTypes = [
-  { name: "RoboWars", type: "robowar", path: "/robowar" },
-  { name: "Drone Race", type: "drone_race", path: "/drone_race" },
+  { name: "RoboWars", type: "robowar", path: "/robowars" },
+  // { name: "Drone Race", type: "drone_race", path: "/drone_race" },
 ];
 
 function Navbar() {
