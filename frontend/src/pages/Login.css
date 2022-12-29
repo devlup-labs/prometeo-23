@@ -177,6 +177,7 @@
 }
 
 #googleOAuth-login {
+    color: #84f4eb;
     display: flex;
     flex-direction: column;
     align-items: center;
