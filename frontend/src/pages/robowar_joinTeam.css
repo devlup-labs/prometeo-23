@@ -34,6 +34,12 @@
     /* border: 1px solid #84f4eb; */
 }
 
+@media screen and (max-width: 768px) {
+    .robowar_joinTeam-container {
+        min-height: 0;
+    }
+}
+
 .robowar_joinTeam-container-left {
     width: 47%;
     /* height: 100%; */

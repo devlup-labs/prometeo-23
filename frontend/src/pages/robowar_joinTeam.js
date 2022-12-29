@@ -66,9 +66,12 @@ export default function Robowar_joinTeam() {
         })
 
         toast.promise(myPromise, {
-            loading: "Creating Team...",
-            success: "Team Created Successfully!",
-            error: "Error Creating Team!",
+            loading: "Joining Team...",
+            success: "Joined Successfully!",
+            // on error show response message
+            error: (err) => {
+                return err;
+            },
         })
     }
 
