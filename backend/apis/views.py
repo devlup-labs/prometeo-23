@@ -444,6 +444,8 @@ class CreateTeamViewSetRW(viewsets.ModelViewSet):
     serializer_class = RoboWarsSerializersCreate
 
     def post(self,request,*args,**kwargs):
+        if(RoboWars.objects.filter(rw_name=request.data['rw_name']).exists()):
+            return Response({'message':'Team name already exists'},status=status.HTTP_400_BAD_REQUEST)
         return self.create(request, *args, **kwargs)
 
 class UpdateTeamViewSetRW(APIView):
@@ -454,6 +456,16 @@ class UpdateTeamViewSetRW(APIView):
         name = request.data['rw_name']
         rw = RoboWars.objects.get(rw_name=name)
         # rw.rw_team_size = request.data['rw_team_size']
+        if(rw.rw_members.count()>=rw.rw_team_size):
+            return Response({'message':'Team size exceeded'},status=status.HTTP_400_BAD_REQUEST)
+        if(rw.rw_members.filter(email=request.user.email).exists()):
+            return Response({'message':'You are already in this team'},status=status.HTTP_400_BAD_REQUEST)
+        
+        all_teams = RoboWars.objects.all()
+        for team in all_teams:
+            if team.rw_members.filter(email=request.user.email).exists():
+                return Response({'message':'You are already in a team'},status=status.HTTP_400_BAD_REQUEST)
+        
         rw.rw_members.add(request.user)
         rw.save()
         return Response({'message':'Team updated'},status=status.HTTP_200_OK)
@@ -464,9 +476,25 @@ class CheckTeamViewSetRW(APIView):
     def get(self,request,*args,**kwargs):
         rw = RoboWars.objects.filter(rw_members=request.user)
         if rw.exists():
-            return Response({'message':'You are already in a Team'},status=status.HTTP_200_OK)
+            # return Response({'message':'You are already in a Team named'},status=status.HTTP_200_OK)
+            rw = rw.first()
+            # serializers = RoboWarsSerializers(rw)
+
+            if rw.rw_leader == request.user:
+                return Response({
+                    'team_leader':True,
+                    'team_name':rw.rw_name,
+                },status=status.HTTP_200_OK)
+            else:
+                return Response({
+                    'team_leader':False,
+                    'team_name':rw.rw_name,
+                },status=status.HTTP_200_OK)
         else:
-            return Response({'message':'You are not in a Team'},status=status.HTTP_200_OK)
+            return Response({
+                'team_leader':False,
+                'team_name':None,
+            },status=status.HTTP_200_OK)
 
 class GoogleCompleteProfileViewSet(APIView):
     queryset = ExtendedUser.objects.all()
@@ -561,3 +589,17 @@ class AccomodationPassesViewSet(viewsets.ModelViewSet):
         # Passes.objects.create(user=request.user, pass_type=request.data.get('pass_type'), aadhar_card=request.data.get('aadhar_card'),dob=request.data['dob'],address=request.data['address'],full_name=request.user.first_name + " " + request.user.last_name)
         # return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Passes Booked Successfully'})
 
+
+
+# class GetMyEventsViewSet(APIView):
+#     queryset = Event.objects.all()
+#     serializer_class = EventSerializers
+#     permission_classes = (IsAuthenticated,)
+
+#     def get(self, request, *args, **kwargs):
+#         event = Event.objects.filter(user=request.user)
+#         if event.exists():
+#             serializers = EventRegistrationSerializers(event, many=True)
+#             return Response(serializers.data)
+#         else:
+#             return Response({'message':'You have not registered for any event'},status=status.HTTP_200_OK)

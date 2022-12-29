@@ -64,4 +64,5 @@ urlpatterns=[
     path('google/completeprofile/', views.GoogleCompleteProfileViewSet.as_view(), name='googlecompleteprofile'),
     path('updateteamrw/', views.UpdateTeamViewSetRW.as_view(), name='updateteamrw'),
     path('checkteamrw/', views.CheckTeamViewSetRW.as_view(), name='checkteamrw'),
+    # path('getmyevents/', views.GetMyEventsViewSet.as_view(), name='getmyevents'),
 ]

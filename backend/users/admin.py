@@ -73,9 +73,9 @@ class preregisterAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_filter = ('college',)
 
 class CampusAmbassadorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('name', 'email', 'college', 'contact', 'city')
-    list_filter = ('college',)
-    search_fields = ['name', 'email', 'college', 'contact', 'city']
+    list_display = ('email','invite_referral','ca_count')
+    # list_filter = ('college',)
+    search_fields = [ 'email',]
 
 class PassesAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('user', 'dob','address','aadhar_card','full_name','pass_type',)

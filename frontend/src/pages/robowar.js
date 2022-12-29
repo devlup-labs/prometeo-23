@@ -9,8 +9,11 @@ import FadeIn from "../components/fadein";
 import useOnScreen from "../components/useOnScreen";
 import { useEffect, useState, useRef } from "react";
 import $ from "jquery";
-
+import AuthContext from "../context/AuthContext";
+import useAxios from "../context/context_useAxios";
+import { useContext } from "react";
 import prizeImg from "../assets/icons/prize.png";
+import { backendURL } from "../backendURL";
 // import { backendURL } from "../backendURL";
 
 function createEntry(term) {
@@ -88,10 +91,17 @@ function Entry(props) {
                 <h1 data-title={props.name}>{props.name}</h1>
                 <div class="rw-buttons">
                     <button id="rw-create-button" className="button-48">
-                        <Link to="/robowar-create-team" className="button-text">CREATE TEAM</Link>
+                        <Link
+                            to="/robowars-create-team"
+                            className="button-text"
+                        >
+                            CREATE TEAM
+                        </Link>
                     </button>
                     <button id="rw-join-button" className="button-48">
-                        <Link to="/robowar-join-team" className="button-text">JOIN TEAM</Link>
+                        <Link to="/robowars-join-team" className="button-text">
+                            JOIN TEAM
+                        </Link>
                     </button>
                 </div>
                 {/* <div class="table center">
@@ -208,6 +218,25 @@ function Entry(props) {
 }
 
 function Robowar() {
+    const { user, logoutUser } = useContext(AuthContext);
+    const api = useAxios();
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await api.get(`${backendURL}/checkteamrw/`);
+
+                if (response.status === 200) {
+                  console.log(response.data);
+                } else {
+                    throw response.statusText;
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchData();
+    }, []);
     return (
         <FadeIn duration={500}>
             <div id="robowar_flagshipEventsPage">
