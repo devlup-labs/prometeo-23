@@ -83,6 +83,11 @@
   box-shadow: 0 0 20px 3px black;
 }
 
+#rw-pay-button {
+  box-shadow: 0 0 20px 3px black;
+  display: none;
+}
+
 /* .robowar_flag-bottom-bg{
   filter: blur(2px);
 } */
@@ -146,6 +151,25 @@
     left: 25%;
     transform: translate(-50%, -50%);
 }
+
+.robowar_flagTop-Container > p {
+  /* border: 2px solid white; */
+  padding: 0 2vmin;
+  color: white;
+  font-family: "Exo 2", sans-serif;
+  text-align: center;
+  bottom: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  background: black;
+  font-size: min(25px, 6vmin);
+}
+
+#rw-copy {
+  cursor: pointer;
+}
+
 .robowar_flagAbout,
 .robowar_flagReach,
 .robowar_flagResources,

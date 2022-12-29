@@ -12,7 +12,7 @@ import rocketImg from "../assets/icons/rocket.png";
 import { Navigate } from "react-router-dom";
 
 const eventImages = {
-    robowars:
+    "Robowars":
         "https://i0.wp.com/roboticsindia.live/wp-content/uploads/2021/03/SAVE_20210324_194657.jpg",
 };
 
@@ -66,24 +66,38 @@ function Dashboard() {
         fetchData();
     }, []);
 
-    // once user data is loaded
     useEffect(() => {
-        // perform get request to check if user is registered in robowars
         async function fetchData() {
             try {
-                const response = await api.post(`${backendURL}/robowars/`, {
-                    user: userData.user_id,
-                });
+                const response = await api.get(`${backendURL}/checkteamrw/`);
 
                 if (response.status === 200) {
-                    const data = response.data;
-                    // console.log("Registered Events:", data);
-                    if (data.length > 0) {
-                        setRegisteredEvents({
-                            ...registeredEvents,
-                            Robowars: data,
-                        });
-                    }
+                //   console.log(response.data);
+                  let data = response.data;
+                  setRegisteredEvents({
+                    ...registeredEvents,
+                    "Robowars": data,
+                    });
+                //   if (data.team_name) {
+                //     // setTeamName(data.team_name);
+                //     // hide buttons
+                //     document.getElementById("rw-create-button").style.display = "none";
+                //     document.getElementById("rw-join-button").style.display = "none";
+                //     if (data.team_leader === true) {
+                //       document.getElementById("rw-pay-button").style.display = "block";
+                //       document.getElementById("rw-info").innerHTML = "Your Team is <strong>" + data.team_name + "</strong>. Payment will be available soon.";
+                //     }
+                //     else {
+                //       document.getElementById("rw-pay-button").style.display = "none";
+                //       document.getElementById("rw-info").innerHTML = "Your Team is <strong>" + data.team_name + "</strong>.";
+                //     }
+                //   }
+                //   else {
+                //     document.getElementById("rw-create-button").style.display = "block";
+                //     document.getElementById("rw-join-button").style.display = "block";
+                //     document.getElementById("rw-pay-button").style.display = "none";
+                //     document.getElementById("rw-info").innerHTML = "You are not in a team yet.";
+                //   }
                 } else {
                     throw response.statusText;
                 }
@@ -91,7 +105,8 @@ function Dashboard() {
                 console.log(err);
             }
         }
-    }, [userData]);
+        fetchData();
+    }, []);
 
     return (
         <div id="dashboard-container">
@@ -210,29 +225,28 @@ function Dashboard() {
                                             />
                                         </div>
                                         <div className="dashboard-registeredEvents-content-event-details">
-                                            {registeredEvents[key]
-                                                .event_name && (
+                                            {/* {registeredEvents[key]
+                                                .event_name && ( */}
                                                 <div className="dashboard-registeredEvents-content-event-title">
                                                     {
-                                                        registeredEvents[key]
-                                                            .event_name
+                                                        key
                                                     }
                                                 </div>
-                                            )}
+                                            {/* )} */}
                                             {registeredEvents[key].date && (
                                                 <div className="dashboard-registeredEvents-content-event-date">
                                                     {registeredEvents[key].date}
                                                 </div>
                                             )}
-                                            {registeredEvents[key].team_id && (
+                                            {(registeredEvents[key].team_name) && (
                                                 <div className="dashboard-registeredEvents-content-event-team-id">
-                                                    Team ID:{" "}
+                                                    Team Name:{" "}
                                                     <strong
                                                         onClick={() => {
                                                             navigator.clipboard.writeText(
                                                                 registeredEvents[
                                                                     key
-                                                                ].team_id
+                                                                ].team_name
                                                             );
                                                             toast.info(
                                                                 "Copied to clipboard",
@@ -246,13 +260,13 @@ function Dashboard() {
                                                         {
                                                             registeredEvents[
                                                                 key
-                                                            ].team_id
+                                                            ].team_name
                                                         }
                                                     </strong>
                                                 </div>
                                             )}
                                             {/* view more button */}
-                                            {key === "robowars" && (
+                                            {key === "Robowars" && (
                                                 <div className="dashboard-registeredEvents-content-event-view-more">
                                                     <Link
                                                         to="/robowars"

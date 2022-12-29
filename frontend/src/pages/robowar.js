@@ -3,6 +3,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import flagshipEvents_data from "./dummy_robowar";
 import "./robowar.css";
 
+import { toast } from "react-toastify";
 // import logo from "../assets/navbar/prometeo_logo_23.png";
 // import Footer from "../components/footer";
 import FadeIn from "../components/fadein";
@@ -89,6 +90,7 @@ function Entry(props) {
                 }}
             >
                 <h1 data-title={props.name}>{props.name}</h1>
+                <p id="rw-info"></p>
                 <div class="rw-buttons">
                     <button id="rw-create-button" className="button-48">
                         <Link
@@ -102,6 +104,13 @@ function Entry(props) {
                         <Link to="/robowars-join-team" className="button-text">
                             JOIN TEAM
                         </Link>
+                    </button>
+                    <button id="rw-pay-button" className="button-48">
+                        {/* <Link to="/robowars-join-team" className="button-text"> */}
+                        <a className="button-text" href="#">
+                            COMING SOON
+                        </a>
+                        {/* </Link> */}
                     </button>
                 </div>
                 {/* <div class="table center">
@@ -220,6 +229,7 @@ function Entry(props) {
 function Robowar() {
     const { user, logoutUser } = useContext(AuthContext);
     const api = useAxios();
+    const [teamName, setTeamName] = useState("");
 
     useEffect(() => {
         async function fetchData() {
@@ -227,7 +237,46 @@ function Robowar() {
                 const response = await api.get(`${backendURL}/checkteamrw/`);
 
                 if (response.status === 200) {
-                  console.log(response.data);
+                    // console.log(response.data);
+                    let data = response.data;
+                    if (data.team_name) {
+                        setTeamName(data.team_name);
+                        // hide buttons
+                        document.getElementById(
+                            "rw-create-button"
+                        ).style.display = "none";
+                        document.getElementById(
+                            "rw-join-button"
+                        ).style.display = "none";
+                        if (data.team_leader === true) {
+                            document.getElementById(
+                                "rw-pay-button"
+                            ).style.display = "block";
+                            document.getElementById("rw-info").innerHTML =
+                                "Your Team is <strong id='rw-copy'>" +
+                                data.team_name +
+                                "</strong>. Payment will be available soon.";
+                        } else {
+                            document.getElementById(
+                                "rw-pay-button"
+                            ).style.display = "none";
+                            document.getElementById("rw-info").innerHTML =
+                                "Your Team is <strong id='rw-copy'>" +
+                                data.team_name +
+                                "</strong>.";
+                        }
+                    } else {
+                        document.getElementById(
+                            "rw-create-button"
+                        ).style.display = "block";
+                        document.getElementById(
+                            "rw-join-button"
+                        ).style.display = "block";
+                        document.getElementById("rw-pay-button").style.display =
+                            "none";
+                        document.getElementById("rw-info").innerHTML =
+                            "You are not in a team yet.";
+                    }
                 } else {
                     throw response.statusText;
                 }
@@ -237,6 +286,19 @@ function Robowar() {
         }
         fetchData();
     }, []);
+
+    useEffect(() => {
+        const ele = document.getElementById("rw-copy");
+        if (ele) {
+            ele.addEventListener("click", function () {
+                navigator.clipboard.writeText(teamName);
+                toast.info("Copied to clipboard", {
+                    position: "bottom-right",
+                });
+            });
+        }
+    }, [teamName]);
+
     return (
         <FadeIn duration={500}>
             <div id="robowar_flagshipEventsPage">

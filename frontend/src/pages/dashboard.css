@@ -380,7 +380,7 @@
     font-weight: 400;
 }
 
-.dashboard-registeredEvents-content-event-team-id {
+.dashboard-registeredEvents-content-event-team-id > strong {
     cursor: pointer;
 }
 

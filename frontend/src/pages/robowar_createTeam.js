@@ -148,8 +148,8 @@ export default function Robowar_createTeam() {
                                 type="number"
                                 name="team_size"
                                 placeholder="Team Size *"
-                                min={1}
-                                max={5}
+                                min={2}
+                                max={20}
                                 step={1}
                                 required
                             />
