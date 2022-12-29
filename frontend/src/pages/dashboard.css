@@ -435,7 +435,7 @@
     }
 
     #dashboard-personalDetails {
-        height: 20vh;
+        min-height: 20vh;
         width: 100%;
     }
 
