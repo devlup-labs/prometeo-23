@@ -63,7 +63,7 @@ function App() {
                             element={<AccForm />}
                         />
 
-                        {/* <Route path="/robowars" element={<Robowar />} /> */}
+                        <Route path="/robowars" element={<Robowar />} />
                         {/* <Route path="/drone-race" element={<DroneRace />} /> */}
 
 

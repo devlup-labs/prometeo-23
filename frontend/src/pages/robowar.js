@@ -132,7 +132,7 @@ function Entry(props) {
             >
                 <div className="robowar_flagAbout">
                     <h3 className="title-shadow">ABOUT</h3>
-                    <section className="Abouttable">
+                    <section className="robowar_Abouttable">
                         <div id="robowar_flag_prize">
                             <img
                                 src={prizeImg}
@@ -148,13 +148,13 @@ function Entry(props) {
                                 <span ref={ref}>Prize Pool</span>
                             </div>
                         </div>
-                        <div>
+                        <div id="robowar_about-text">
                             <p className="about-description">
                                 {props.description}
                             </p>
-                            <Link id="robowar_flagAbout-button">
+                            {/* <Link id="robowar_flagAbout-button">
                                 Registrations Opening Soon
-                            </Link>
+                            </Link> */}
                         </div>
                     </section>
                     {/* <p>{props.description}</p> */}
@@ -198,25 +198,25 @@ function Entry(props) {
                         <div id="contact-card" class="contact-card">
                             <div>
                                 <p className="robowar_flagContactUs-name">
-                                    NAME SURNAME
+                                    Rahul Gopathi
                                 </p>
                                 <p className="robowar_flagContactUs-mail">
-                                    fake.1@iitj.ac.in
+                                    gopathi.1@iitj.ac.in
                                 </p>
-                                <p className="robowar_flagContactUs-phone">
-                                    +91 123456789
-                                </p>
+                                <a href="https://wa.me/918919430577" className="robowar_flagContactUs-phone">
+                                    +91 8919430577
+                                </a>
                             </div>
                             <div>
                                 <p className="robowar_flagContactUs-name">
-                                    NAME SURNAME
+                                    Likhith Ayinala
                                 </p>
                                 <p className="robowar_flagContactUs-mail">
-                                    fake.1@iitj.ac.in
+                                    ayinala.1@iitj.ac.in
                                 </p>
-                                <p className="robowar_flagContactUs-phone">
-                                    +91 123456789
-                                </p>
+                                <a href="https://wa.me/918927857887" className="robowar_flagContactUs-phone">
+                                    +91 8927857887
+                                </a>
                             </div>
                         </div>
                     </div>

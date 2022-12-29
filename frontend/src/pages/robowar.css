@@ -16,6 +16,7 @@
     from {
         left: 600px;
     }
+
     to {
         left: -800px;
     }
@@ -76,17 +77,21 @@
 }
 
 #rw-create-button {
-  box-shadow: 0 0 20px 3px black;
+    box-shadow: 0 0 20px 3px black;
 }
 
 #rw-join-button {
-  box-shadow: 0 0 20px 3px black;
+    box-shadow: 0 0 20px 3px black;
 }
 
 #rw-pay-button {
-  box-shadow: 0 0 20px 3px black;
-  display: none;
+    box-shadow: 0 0 20px 3px black;
+    display: none;
 }
+
+/* #rw-info {
+
+} */
 
 /* .robowar_flag-bottom-bg{
   filter: blur(2px);
@@ -95,11 +100,13 @@
 .robowar_flagAbout h3 {
     font-size: 2.5em;
 }
+
 @media (max-width: 768px) {
     .robowar_flagAbout h3 {
         font-size: 1.3em;
     }
 }
+
 .title-shadow {
     text-transform: uppercase;
     color: transparent;
@@ -110,14 +117,17 @@
     letter-spacing: 0.2em;
     animation: flicker 0.5s ease-in-out infinite alternate;
 }
+
 .title-shadow:hover {
     color: #fff;
 }
+
 @keyframes flicker {
     0% {
         opacity: 0.5;
         text-shadow: 2px 2px 10px #2962ff;
     }
+
     100% {
         opacity: 1;
         text-shadow: 2px 2px 20px #2962ff;
@@ -137,12 +147,32 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 140px;
+    font-size: 20vmin;
     letter-spacing: 0.5rem;
     /* font-family: 'Rubik 80s Fade', cursive; */
     /* font-family: 'Anton', sans-serif; */
     font-family: "Black Ops One", cursive;
 }
+
+@media screen and (max-width: 1080px) {
+    .robowar_flagTop-Container h1 {
+        font-size: 16vmin;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .robowar_flagTop-Container h1 {
+        font-size: 13vmin;
+    }
+}
+
+
+@media screen and (orientation: portrait) {
+    .robowar_flagTop-Container h1 {
+        font-size: 13vmin;
+    }
+}
+
 .robowar_flagTop-Container img {
     display: block;
     position: absolute;
@@ -152,22 +182,31 @@
     transform: translate(-50%, -50%);
 }
 
-.robowar_flagTop-Container > p {
-  /* border: 2px solid white; */
-  padding: 0 2vmin;
-  color: white;
-  font-family: "Exo 2", sans-serif;
-  text-align: center;
-  bottom: 30%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  position: absolute;
-  background: black;
-  font-size: min(25px, 6vmin);
+.robowar_flagTop-Container>p {
+    /* border: 2px solid white; */
+    width: max-content;
+    max-width: 65%;
+    padding: 0 2vmin;
+    color: white;
+    font-family: "Exo 2", sans-serif;
+    text-align: center;
+    bottom: 30%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    font-size: max(24px, 4vmin);
+}
+
+@media screen and (orientation: portrait) {
+    .robowar_flagTop-Container>p {
+        max-width: 70%;
+        font-size: max(18px, 3vmin);
+    }
 }
 
 #rw-copy {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .robowar_flagAbout,
@@ -176,6 +215,7 @@
 .robowar_flagSponsors {
     padding: 5vmin 0;
 }
+
 .robowar_flagAbout h3 {
     margin-left: 25px;
     /* width: 100%; */
@@ -188,29 +228,41 @@
     align-items: flex-end;
     padding-bottom: 5vmin;
 }
-.Abouttable {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+
+.robowar_Abouttable {
+    /* display: grid;
+    grid-template-columns: 1fr 3fr; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
+
 .robowar_flagAbout-table {
-    flex: 1;
+    /* flex: 1; */
     /* border: 2px solid yellow; */
 }
+
 #robowar_flag_prize {
-    width: 90%;
+    width: 30%;
     display: flex;
-    margin: auto;
+    /* margin: auto; */
     align-items: center;
 }
+
+#robowar_about-text {
+    width: 65%;
+}
+
 .robowar_flagAbout-table:first-child {
     margin-right: 20px;
 }
+
 #robowar_flag_prize-icon {
     display: inline;
     position: relative;
     margin: auto;
     /* max-width: 4vw; */
-    width: 25%;
+    height: 12vmin;
 }
 
 #robowar_flagPrize-description {
@@ -223,6 +275,7 @@
     padding-left: 10px;
     /* display: inline-block; */
 }
+
 /* #robowar_flagPrize-description span{
   display:inline;
   position:relative;
@@ -245,19 +298,23 @@
     letter-spacing: 0.2em;
     /* animation: flicker 0.5s ease-in-out infinite alternate; */
 }
+
 .text-shadow:hover {
     color: #fff;
 }
+
 .about-description {
-    background-color: #000;
+    /* background-color: #000; */
     font-family: "Alumni Sans", sans-serif;
-    font-size: 1.5em;
-    text-transform: uppercase;
+    /* font-size: 1.5em; */
+    font-size: max(18px, 3vmin);
+    /* text-transform: uppercase; */
     color: #fff;
     text-align: center;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     font-weight: 900;
 }
+
 #robowar_flagAbout-button {
     height: 15%;
     width: 20%;
@@ -278,10 +335,26 @@
     background: transparent;
     transition: all 0.2s;
 }
+
 #robowar_flagAbout-button:hover {
     /* color: #ffffff; */
     /* background-color: #62d9cf; */
     box-shadow: inset 0 0 0 2px #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+    .robowar_Abouttable {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #robowar_flag_prize {
+        width: 60%;
+    }
+
+    #robowar_about-text {
+        width: 90%;
+    }
 }
 
 .robowar_flagResources h3 {
@@ -308,10 +381,13 @@
     /* min-height: 300px; */
     /* min-width: 1000px; */
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     margin: 20px auto;
 }
+
 .robowar_flag_card-border {
     aspect-ratio: 1 / 1;
     width: 40%;
@@ -320,9 +396,11 @@
     transition: border 1s;
     position: relative;
 }
+
 .robowar_flag_card-border:hover {
     /* border: 1px solid #fff; */
 }
+
 .robowar_flag_card {
     height: 300px;
     width: 300px;
@@ -336,10 +414,12 @@
     align-items: center;
     position: relative;
 }
+
 .card0 {
     background-size: 300px;
     /* box-shadow: inset 0px 0px 60px 60px rgba(0,0,0,0.9); */
 }
+
 .robowar_flagResources h2 {
     margin-top: 250px;
     margin-left: 0px;
@@ -385,7 +465,7 @@
 .robowar_flagContactUs .canvas .contact-card {
     box-sizing: border-box;
     width: 100%;
-    height: 20vh;
+    /* height: 20vh; */
     /* display: grid;
   grid: 1fr 1fr 1fr / 1fr 1fr; */
     /* display: flex; */
@@ -396,20 +476,29 @@
     padding: 30px 20px;
     overflow: hidden;
     box-shadow: 0 0 20px 0 rgba(5, 16, 59, 0.3);
-    background: linear-gradient(
-        40deg,
-        transparent 10%,
-        rgba(5, 16, 59, 0.16) 60%,
-        transparent 100%
-    );
+    background: linear-gradient(40deg,
+            transparent 10%,
+            rgba(5, 16, 59, 0.16) 60%,
+            transparent 100%);
     backdrop-filter: blur(5px);
     border-radius: 10px;
     border: 1.5px solid rgba(255, 255, 255, 0.08);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-.robowar_flagContactUs p {
+.contact-card>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.robowar_flagContactUs p,
+.robowar_flagContactUs a {
     line-height: 21px;
     font-family: "Alumni Sans", sans-serif;
     text-transform: uppercase;
@@ -422,7 +511,9 @@
     position: relative;
     font-size: 1.5rem;
     line-height: 2rem;
+    padding-bottom: 2vmin;
 }
+
 /* .robowar_flagContactUs-name{
   position: relative;
   font-size: 1.5rem;
