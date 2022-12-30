@@ -80,6 +80,9 @@ function AccForm() {
             fetchData()
                 .then((res) => {
                     // console.log(res)
+                    document.getElementById("acc-success").style.display = "flex";
+                    document.getElementsByClassName("acc-container-left")[0].style.display = "none";
+                    document.getElementsByClassName("acc-container-right")[0].style.display = "none";
                     resolve(res);
                 })
                 .catch((err) => {
