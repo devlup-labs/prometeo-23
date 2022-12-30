@@ -111,7 +111,7 @@ function App() {
                         
                         <Route path="/tnc" element={<Tnc />} />
                         <Route path="/privacy-policy" element={<PP />} />
-
+w
                         <Route path="/*" element={<Page_404 />} />
                     </Routes>
 

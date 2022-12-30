@@ -9,8 +9,13 @@ import "./dronerace.css";
 // import Footer from "../components/footer";
 import FadeIn from "../../../components/fadein";
 import useOnScreen from "../../../components/useOnScreen";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import $ from "jquery";
+
+import { backendURL } from "../../../backendURL";
+import AuthContext from "../../../context/AuthContext";
+import useAxios from "../../../context/context_useAxios";
+
 
 import prizeImg from "../../../assets/icons/prize.png";
 // import { backendURL } from "../backendURL";
@@ -79,6 +84,10 @@ function Entry(props) {
 			setCountDone(true);
 		}
 	}, [onScreen]);
+
+	
+
+
 
 	return (
 		<div className="dronerace_flag">
@@ -182,12 +191,47 @@ function Entry(props) {
 	);
 }
 
+
+
 function DroneRace() {
+	
+	const api = useAxios();
+	const { user } = useContext(AuthContext);
+
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const response = await api.post(
+					`${backendURL}/checkdronerace/`,
+					{
+						email: user.email,
+					}
+				);
+
+				if (response.status === 200) {
+					const data = response.data;
+					console.log("Login Dashboard Data:", data);
+
+					if(data.status === "True"){
+
+					}
+				} else {
+					throw response.statusText;
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		fetchData();
+	}, []);
+	
 	return (
 		<FadeIn duration={500}>
 			<div id="dronerace_flagshipEventsPage">{flagshipEvents_data.map(createEntry)}</div>
 		</FadeIn>
 	);
 }
+
+
 
 export default DroneRace;

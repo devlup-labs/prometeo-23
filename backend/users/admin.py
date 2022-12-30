@@ -36,6 +36,7 @@ class UserAdmin(ImportExportModelAdmin, DjangoUserAdmin):
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
         (_('Profile'), {'fields': ('college', 'contact', 'city','isProfileCompleted' )}),
         (_('Ambassador'), {'fields': ('ambassador', 'referred_by','invite_referral' )}),
+        (_('drone race'), {'fields':('drone_wars_name',)}),
     )
     add_fieldsets = (
         (None, {
