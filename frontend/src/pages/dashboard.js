@@ -76,10 +76,18 @@ function Dashboard() {
 					let data = response.data;
 					// console.log("Check Team RW:", data.team_name);
 					if (data.team_name) {
-						setRegisteredEvents({
-							...registeredEvents,
-							"Robowars": data,
-						});
+						// setRegisteredEvents({
+						// 	...registeredEvents,
+						// 	"Robowars": data,
+						// });
+						setRegisteredEvents(
+							registeredEvents => {
+								return {
+									...registeredEvents,
+									"Robowars": data,
+								}
+							}
+						)
 					}
 					//   if (data.team_name) {
 					//     // setTeamName(data.team_name);
@@ -101,6 +109,35 @@ function Dashboard() {
 					//     document.getElementById("rw-pay-button").style.display = "none";
 					//     document.getElementById("rw-info").innerHTML = "You are not in a team yet.";
 					//   }
+				} else {
+					throw response.statusText;
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		fetchData();
+	}, []);
+	
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const response = await api.get(`${backendURL}/getmyevents/`);
+
+				if (response.status === 200) {
+					// console.log(response.data);
+					let data = response.data;
+					data.forEach((event) => {
+						event.image = "https://apiv.prometeo.in" + event.image;
+						setRegisteredEvents(
+							registeredEvents => {
+								return {
+									...registeredEvents,
+									[event.name]: event
+								}
+							}
+						)
+					});
 				} else {
 					throw response.statusText;
 				}
@@ -223,7 +260,7 @@ function Dashboard() {
 									>
 										<div className="dashboard-registeredEvents-content-event-image">
 											<img
-												src={eventImages[key]}
+												src={registeredEvents[key].image ? registeredEvents[key].image : eventImages[key]}
 												alt="Event Image"
 											/>
 										</div>
@@ -269,16 +306,30 @@ function Dashboard() {
 												</div>
 											)}
 											{/* view more button */}
-											{key === "Robowars" && (
-												<div className="dashboard-registeredEvents-content-event-view-more">
-													<Link
-														to="/robowars"
-														className="dashboard-registeredEvents-content-event-view-more-button"
-													>
-														View More
-													</Link>
-												</div>
-											)}
+											{
+												key === "Robowars" && (
+													<div className="dashboard-registeredEvents-content-event-view-more">
+														<Link
+															to="/robowars"
+															className="dashboard-registeredEvents-content-event-view-more-button"
+														>
+															View More
+														</Link>
+													</div>
+												)
+											}
+											{
+												key === "Drone Race" && (
+													<div className="dashboard-registeredEvents-content-event-view-more">
+														<Link
+															to="/dronerace"
+															className="dashboard-registeredEvents-content-event-view-more-button"
+														>
+															View More
+														</Link>
+													</div>
+												)
+											}
 										</div>
 									</div>
 								);
