@@ -243,7 +243,7 @@
 }
 
 #robowar_flag_prize {
-    width: 30%;
+    width: 20%;
     display: flex;
     /* margin: auto; */
     align-items: center;
@@ -427,8 +427,8 @@
 }
 
 .card0 {
-    background-size: 300px;
-    /* box-shadow: inset 0px 0px 60px 60px rgba(0,0,0,0.9); */
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 60px 60px rgba(0,0,0,0.9);
 }
 
 .robowar_flagResources h2 {
