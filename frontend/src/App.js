@@ -90,9 +90,9 @@ function App() {
                         </Route>
 
                         <Route path="/dronerace" element={<DroneRace />} />
-                        <Route exact path='/dronerace-register' element={<PrivateRoute />}>
+                        {/* <Route exact path='/dronerace-register' element={<PrivateRoute />}>
                             <Route exact path='/dronerace-register' element={<Dronerace_Register />} />
-                        </Route>
+                        </Route> */}
                         
                         <Route exact path="/dashboard" element={<PrivateRoute />} >
                             <Route exact path="/dashboard" element={<Dashboard />} />
