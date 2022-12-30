@@ -74,7 +74,7 @@ function Dashboard() {
 				if (response.status === 200) {
 					//   console.log(response.data);
 					let data = response.data;
-					console.log("Check Team RW:", data.team_name);
+					// console.log("Check Team RW:", data.team_name);
 					if (data.team_name) {
 						setRegisteredEvents({
 							...registeredEvents,
