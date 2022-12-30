@@ -19,7 +19,7 @@ import prizeImg from "../assets/icons/prize.png";
 import { backendURL } from "../backendURL";
 // import { backendURL } from "../backendURL";
 
-function createEntry(term) {
+function createEntry(term, user) {
     return (
         <Entry
             key={term.id}
@@ -32,6 +32,7 @@ function createEntry(term) {
             // category={term.category}
             // sponsor={term.sponsor}
             description={term.description}
+            user={user}
         />
     );
 }
@@ -82,35 +83,50 @@ function Entry(props) {
     }, [onScreen]);
 
     return (
-      <div className="robowar_flag">
-        <div
-          className="robowar_flagTop-Container"
-          style={{
-            backgroundImage: `url(${props.bg})`,
-          }}
-        >
-          <h1 data-title={props.name}>{props.name}</h1>
-          <p id="rw-info"></p>
-          <div class="rw-buttons">
-            <button id="rw-create-button" className="button-48">
-              <Link to="/robowars-create-team" className="button-text">
-                CREATE TEAM
-              </Link>
-            </button>
-            <button id="rw-join-button" className="button-48">
-              <Link to="/robowars-join-team" className="button-text">
-                JOIN TEAM
-              </Link>
-            </button>
-            <button id="rw-pay-button" className="button-48">
-              {/* <Link to="/robowars-join-team" className="button-text"> */}
-              <a className="button-text" href="#">
-                COMING SOON
-              </a>
-              {/* </Link> */}
-            </button>
-          </div>
-          {/* <div class="table center">
+        <div className="robowar_flag">
+            <div
+                className="robowar_flagTop-Container"
+                style={{
+                    backgroundImage: `url(${props.bg})`,
+                }}
+            >
+                <h1 data-title={props.name}>{props.name}</h1>
+                <p id="rw-info"></p>
+                <div class="rw-buttons">
+                    <button
+                        id="rw-create-button"
+                        className="button-48"
+                        onClick={() => {
+                            if (props.user === null) {
+                                toast.error("Please login to create a team");
+                            }
+                        }}
+                    >
+                        <Link
+                            to="/robowars-create-team"
+                            className="button-text"
+                        >
+                            CREATE TEAM
+                        </Link>
+                    </button>
+                    <button id="rw-join-button" className="button-48">
+                        <Link to="/robowars-join-team" className="button-text">
+                            JOIN TEAM
+                        </Link>
+                    </button>
+                    <button id="rw-pay-button" className="button-48">
+                        {/* <Link to="/robowars-join-team" className="button-text"> */}
+                        <a
+                            className="button-text"
+                            href="https://forms.eduqfix.com/prometeo/add"
+                            target="_blank"
+                        >
+                            PAY NOW
+                        </a>
+                        {/* </Link> */}
+                    </button>
+                </div>
+                {/* <div class="table center">
                     <div class="monitor-wrapper center">
                         <div class="monitor center">
                             <p>Ready for war</p>
@@ -188,21 +204,40 @@ function Entry(props) {
                     <h3 className="title-shadow">SPONSORS</h3>
                     <img src="https://apiv.prometeo.in/media/sponsors/smasung_sWRoaY5.webp" />
                 </div> */}
-          <div className="robowar_flagContactUs">
-            <h3 className="title-shadow">CONTACT US</h3>
-            <div class="canvas">
-              <div id="contact-card" class="contact-card">
-                <div>
-                  <p className="robowar_flagContactUs-name">Rahul Gopathi</p>
-                  <p className="robowar_flagContactUs-mail">
-                    gopathi.1@iitj.ac.in
-                  </p>
-                  <a
-                    href="https://wa.me/918919430577"
-                    className="robowar_flagContactUs-phone"
-                  >
-                    +91 8919430577
-                  </a>
+                <div className="robowar_flagContactUs">
+                    <h3 className="title-shadow">CONTACT US</h3>
+                    <div class="canvas">
+                        <div id="contact-card" class="contact-card">
+                            <div>
+                                <p className="robowar_flagContactUs-name">
+                                    Rahul Gopathi
+                                </p>
+                                <p className="robowar_flagContactUs-mail">
+                                    gopathi.1@iitj.ac.in
+                                </p>
+                                <a
+                                    href="https://wa.me/918919430577"
+                                    className="robowar_flagContactUs-phone"
+                                >
+                                    +91 8919430577
+                                </a>
+                            </div>
+                            <div>
+                                <p className="robowar_flagContactUs-name">
+                                    Likhith Ayinala
+                                </p>
+                                <p className="robowar_flagContactUs-mail">
+                                    ayinala.1@iitj.ac.in
+                                </p>
+                                <a
+                                    href="https://wa.me/918927857887"
+                                    className="robowar_flagContactUs-phone"
+                                >
+                                    +91 8927857887
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                   <p className="robowar_flagContactUs-name">Likhith Ayinala</p>
@@ -253,7 +288,7 @@ function Robowar() {
                             document.getElementById("rw-info").innerHTML =
                                 "Your Team is <strong id='rw-copy'>" +
                                 data.team_name +
-                                "</strong>. Payment will be available soon.";
+                                "</strong>. Please select the Jumbo Fee option in the payment form. It includes the registration fee for this event.";
                         } else {
                             document.getElementById(
                                 "rw-pay-button"
@@ -282,7 +317,9 @@ function Robowar() {
                 console.log(err);
             }
         }
-        fetchData();
+        if (user) {
+            fetchData();
+        }
     }, []);
 
     useEffect(() => {
@@ -300,7 +337,9 @@ function Robowar() {
     return (
         <FadeIn duration={500}>
             <div id="robowar_flagshipEventsPage">
-                {flagshipEvents_data.map(createEntry)}
+                {flagshipEvents_data.map((item) => {
+                    return createEntry(item, user);
+                })}
             </div>
         </FadeIn>
     );

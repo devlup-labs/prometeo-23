@@ -34,7 +34,8 @@ export default function Accommodation() {
                         className="acc-button-48"
                         onClick={() => {
                             if (user) {
-                                toast.success("Redirecting to form!");
+                                
+                                // toast.success("Redirecting to form!");
                                 navigate("/accommodation-registration");
                             } else {
                                 toast.error("Please login first!");
