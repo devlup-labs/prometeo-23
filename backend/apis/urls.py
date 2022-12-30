@@ -51,7 +51,7 @@ router.register("createteamrw",CreateTeamViewSetRW)
 
 # router.register("logindashboard", LoginDashboardViewSet)
 
-router.register("registerevent",RegisterEventViewSet)
+# router.register("registerevent",RegisterEventViewSet)
 
 urlpatterns=[
     path(r'',include(router.urls)), 
@@ -67,6 +67,6 @@ urlpatterns=[
     path('updateteamrw/', views.UpdateTeamViewSetRW.as_view(), name='updateteamrw'),
     path('checkteamrw/', views.CheckTeamViewSetRW.as_view(), name='checkteamrw'),
     path('getmyevents/', views.GetMyEventsView, name='getmyevents'),
-    path('registerdronerace/', views.RegisterDroneRaceView.as_view(), name='registerdronerace'),
-    path('checkdronerace/', views.CheckDroneRaceView.as_view(), name='checkdronerace'),
+    path('registerevent/', views.RegisterEventView.as_view(), name='registerdronerace'),
+    path('checkevent/', views.CheckEventView.as_view(), name='checkdronerace'),
 ]

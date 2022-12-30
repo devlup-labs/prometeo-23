@@ -202,9 +202,10 @@ function DroneRace() {
 		async function fetchData() {
 			try {
 				const response = await api.post(
-					`${backendURL}/checkdronerace/`,
+					`${backendURL}/checkevent/`,
 					{
 						email: user.email,
+						event_name : "Drone Race",
 					}
 				);
 
