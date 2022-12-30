@@ -113,7 +113,7 @@ function AccForm() {
                 );
                 if (response.status === 200) {
                     let data = response.data;
-                    console.log(data);
+                    // console.log(data);
                     setAccData(data);
                     if (paymentPending(data)) {
                         document.getElementById("acc-pay-button").style.display = "block";
