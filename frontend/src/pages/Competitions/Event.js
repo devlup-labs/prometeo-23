@@ -4,10 +4,10 @@ import event_data from "./event_info";
 import "./event.css";
 import "./eventsTabs.css";
 
-import logo from "../assets/navbar/prometeo_logo_23.png";
-import Footer from "../components/footer";
-import FadeIn from "../components/fadein";
-import { backendURL } from "../backendURL";
+import logo from "../../assets/navbar/prometeo_logo_23.png";
+import Footer from "../../components/footer";
+import FadeIn from "../../components/fadein";
+import { backendURL } from "../../backendURL";
 
 // function logo(url){
 //    return(

@@ -5,12 +5,12 @@ import "./dronerace.css";
 
 // import logo from "../assets/navbar/prometeo_logo_23.png";
 // import Footer from "../components/footer";
-import FadeIn from "../components/fadein";
-import useOnScreen from "../components/useOnScreen";
+import FadeIn from "../../../components/fadein";
+import useOnScreen from "../../../components/useOnScreen";
 import { useEffect, useState, useRef } from "react";
 import $ from "jquery";
 
-import prizeImg from "../assets/icons/prize.png";
+import prizeImg from "../../../assets/icons/prize.png";
 // import { backendURL } from "../backendURL";
 
 function createEntry(term) {

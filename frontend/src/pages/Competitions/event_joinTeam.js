@@ -2,18 +2,96 @@ import { useState, useEffect, useContext } from 'react';
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import './robowar_createTeam.css';
+import './event_joinTeam.css';
 
-import { backendURL } from '../backendURL';
-import AuthContext from "../context/AuthContext";
-import useAxios from "../context/context_useAxios";
-import FadeIn from '../components/fadein';
+import { backendURL } from '../../backendURL';
+import AuthContext from "../../context/AuthContext";
+import useAxios from "../../context/context_useAxios";
+import FadeIn from '../../components/fadein';
 
-export default function Robowar_createTeam() {
+// function MemberField(val, id, handleDelete) {
+//     return (
+//         <div className="joinTeam-member-field" id={`joinTeam-member-${val}`} key={id}>
+//             <div className="joinTeam-member-field__top">
+//                 <div className="joinTeam-member-field__title">Member {id}</div>
+//                 <div className="joinTeam-member-field__remove"
+//                     onClick={() => {
+//                         const memberField = document.getElementById(`joinTeam-member-${val}`);
+//                         memberField.remove();
+//                         handleDelete(val);
+//                     }}
+//                 >
+//                     Remove
+//                 </div>
+//             </div>
+//             <input
+//                 type="text"
+//                 name="member_name"
+//                 id="member_name"
+//                 placeholder="Member Name"
+//             />
+//             <input
+//                 type="email"
+//                 name="member_email"
+//                 id="member_email"
+//                 placeholder="Member Email"
+//             />
+//             <input
+//                 type="text"
+//                 name="member_phone"
+//                 id="member_phone"
+//                 placeholder="Member Phone"
+//             />
+//         </div>
+//     );
+// }
+
+export default function Event_joinTeam() {
     const { user } = useContext(AuthContext);
-    
+    const [eventInfo, setEventInfo] = useState([]);
+    // const [membersCount, setMembersCount] = useState([]);
+    const [urlParams] = useSearchParams();
+
+    const location = useLocation();
     const api = useAxios();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        async function fetchData() {
+            let headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            headers.append("Accept", "application/json");
+            headers.append("Origin", "http://localhost:3000");
+
+            const requestOptions = {
+                method: "GET",
+                headers: headers,
+            };
+
+            const fetchURL = `${backendURL}/events/?id=${urlParams.get("id")}`;
+
+            await fetch(fetchURL, requestOptions)
+                .then((response) => response.json())
+                .then((data) => {
+                    // data = data.filter(
+                    //     (item) => item.id == urlParams.get("id")
+                    // );
+                    setEventInfo(data[0]);
+                    // setMembersCount([...Array.from({length: Math.max(1, data[0].min_team_size - 1)}, (_, index) => index + 1)])
+                    console.log("Data:", data[0]);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+
+        const card = location.state;
+        if (card) {
+            setEventInfo(card);
+        } else {
+            fetchData();
+        }
+    }, []);
     
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
@@ -34,22 +112,21 @@ export default function Robowar_createTeam() {
         const postTeam = async (rw_name, rw_country, bot_name, rw_category, rw_leader, rw_team_size) => {
             const requestData = { rw_name, rw_country, bot_name, rw_category, rw_leader, rw_team_size }
             
-            // try {
+            try {
                 // console.log("Request Data:", requestData)
                 const response = await api.post(
-                    `${backendURL}/createteamrw/`,
+                    `${backendURL}/robowars/`,
                     requestData
                 );
-                if (response.status === 201) {
+                if (response.status === 200) {
                     navigate("/robowars");
                     return response;
                 } else {
                     throw(response.statusText)
                 }
-            // }
-            //  catch (err) {
-            //     console.log(err);
-            // }
+            } catch (err) {
+                console.log(err);
+            }
         }
 
         const myPromise = new Promise((resolve, reject) => {
@@ -77,21 +154,23 @@ export default function Robowar_createTeam() {
 
     return (
         <FadeIn duration={500}>
-            <div className="robowar_createTeam">
-                <div className="robowar_createTeam-container">
-                    <div className="robowar_createTeam-container-left">
+            <div className="joinTeam">
+                <div className="joinTeam-container">
+                    <div className="joinTeam-container-left">
                         <img src={
+                            eventInfo.image ?
+                            eventInfo.image.replace("0.0.0.0:8888", "apiv.prometeo.in") :
                             "https://cdn.dribbble.com/users/2217210/screenshots/11335904/media/db21aab2bd4867c51c4a0382f7c384ae.jpg"
                         } alt="Event Image" />
                     </div>
-                    <div className="robowar_createTeam-container-right">
-                        <div className="robowar_createTeam-container-right-title">
-                            Create Team
+                    <div className="joinTeam-container-right">
+                        <div className="joinTeam-container-right-title">
+                            Join Team
                         </div>
-                        <div className="robowar_createTeam-container-right-subtitle">
-                            Robowars
+                        <div className="joinTeam-container-right-subtitle">
+                            {eventInfo.name}
                         </div>
-                        <form className="robowar_createTeam-form" onSubmit={handleSubmit}>
+                        <form className="joinTeam-form" onSubmit={handleSubmit}>
                             <input
                                 type="text"
                                 name="team_name"
@@ -110,20 +189,20 @@ export default function Robowar_createTeam() {
                                 placeholder="Country *"
                                 required
                             />
-                            <div className="robowar_createTeam-category-dropdown">
+                            <div className="joinTeam-category-dropdown">
                                 <label
                                     htmlFor="category"
-                                    className="robowar_createTeam-category-dropdown-label"
+                                    className="joinTeam-category-dropdown-label"
                                 >
                                     Category
                                 </label>
                                 <select
                                     name="category"
                                     id="category"
-                                    className="robowar_createTeam-category-dropdown-select"
+                                    className="joinTeam-category-dropdown-select"
                                 >
                                     <option
-                                        className="robowar_createTeam-category-option"
+                                        className="joinTeam-category-option"
                                         selected
                                         disabled
                                         hidden
@@ -131,13 +210,13 @@ export default function Robowar_createTeam() {
                                         -- Select --
                                     </option>
                                     <option
-                                        className="robowar_createTeam-category-option"
+                                        className="joinTeam-category-option"
                                         value="15kg"
                                     >
                                         15 Kg
                                     </option>
                                     <option
-                                        className="robowar_createTeam-category-option"
+                                        className="joinTeam-category-option"
                                         value="60kg"
                                     >
                                         60 Kg
@@ -148,24 +227,24 @@ export default function Robowar_createTeam() {
                                 type="number"
                                 name="team_size"
                                 placeholder="Team Size *"
-                                min={2}
-                                max={20}
+                                min={1}
+                                max={5}
                                 step={1}
                                 required
                             />
-                            {/* <div className='robowar_createTeam-members'>
-                                <div className='robowar_createTeam-members-title'>
+                            {/* <div className='joinTeam-members'>
+                                <div className='joinTeam-members-title'>
                                     Members
                                 </div>
                                 {membersCount.map((item, index) => MemberField(item, index+1, deleteMember))}
-                                <div className='robowar_createTeam-members-add' onClick={() => setMembersCount([...membersCount, membersCount[membersCount.length-1] + 1])}>
+                                <div className='joinTeam-members-add' onClick={() => setMembersCount([...membersCount, membersCount[membersCount.length-1] + 1])}>
                                     +
                                 </div>
                             </div> */}
                             <input
                                 type="submit"
                                 value="Submit"
-                                id="robowar_createTeam-form-submit"
+                                id="joinTeam-form-submit"
                             />
                             <br />
                         </form>

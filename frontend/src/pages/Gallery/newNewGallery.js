@@ -1,6 +1,6 @@
 import "./newNewGallery.css";
 import { useState, useEffect } from "react";
-import { backendURL } from "../backendURL";
+import { backendURL } from "../../backendURL";
 
 export default function NewGallery() {
     useEffect(() => {

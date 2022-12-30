@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 
-import { backendURL } from "../backendURL";
+import { backendURL } from "../../backendURL";
 // import useAxios from "../context/context_useAxios";
 
 import sponsor_data from "./sponsor_info";
-import './sponsor_style.css';
-import FadeIn from "../components/fadein";
+import './sponsors.css';
+import FadeIn from "../../components/fadein";
 
 function logo(sponsor) {
 	if (sponsor.sponsor_link) {

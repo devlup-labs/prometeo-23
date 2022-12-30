@@ -6,8 +6,8 @@ import "./accomodation.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import FadeIn from "../components/fadein";
-import AuthContext from "../context/AuthContext";
+import FadeIn from "../../components/fadein";
+import AuthContext from "../../context/AuthContext";
 
 export default function Accommodation() {
     useEffect(() => {
