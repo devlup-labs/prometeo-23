@@ -634,7 +634,7 @@ class RegisterEventView(APIView):
         event_name = request.data['event_name']
         if(usr.events.filter(name=event_name).exists()):
             return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'You have already registered for this event'})
-        event = Event.objects.get(name="drone race")
+        event = Event.objects.get(name=event_name)
         # usr.drone_wars_name = request.data['rw_name']
         usr.events.add(event)
         usr.save()
