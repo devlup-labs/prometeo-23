@@ -46,7 +46,7 @@ function Entry(props) {
         []
     );
     const ref = useRef();
-    // const onScreen = useOnScreen(ref);
+    const onScreen = useOnScreen(ref);
 
     const [countDone, setCountDone] = useState(false);
     function countUp() {
@@ -71,15 +71,15 @@ function Entry(props) {
             );
     }
 
-    // useEffect(() => {
-    //     const counters = document.querySelectorAll(".counter");
-    //     const speed = 200;
+    useEffect(() => {
+        const counters = document.querySelectorAll(".counter");
+        const speed = 200;
 
-    //     if (!countDone && onScreen) {
-    //         $(".js-num").each(countUp);
-    //         setCountDone(true);
-    //     }
-    // }, [onScreen]);
+        if (!countDone && onScreen) {
+            $(".js-num").each(countUp);
+            setCountDone(true);
+        }
+    }, [onScreen]);
 
     return (
         <div className="robowar_flag">
