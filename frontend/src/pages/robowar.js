@@ -6,9 +6,11 @@ import "./robowar.css";
 import { toast } from "react-toastify";
 // import logo from "../assets/navbar/prometeo_logo_23.png";
 // import Footer from "../components/footer";
+import card1 from "../assets/flagshipEvents/robowarCard1.jpg"
+import card2 from "../assets/flagshipEvents/robowarCard2.jpg"
 import FadeIn from "../components/fadein";
 import useOnScreen from "../components/useOnScreen";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useReducer } from "react";
 import $ from "jquery";
 import AuthContext from "../context/AuthContext";
 import useAxios from "../context/context_useAxios";
@@ -26,8 +28,6 @@ function createEntry(term) {
             image={term.image}
             name={term.name}
             sponsors={term.sponsors}
-            cardbg1={term.cardbg1}
-            cardbg2={term.cardbg2}
             // reach={term.reach}
             // category={term.category}
             // sponsor={term.sponsor}
@@ -82,38 +82,35 @@ function Entry(props) {
     }, [onScreen]);
 
     return (
-        <div className="robowar_flag">
-            <div
-                className="robowar_flagTop-Container"
-                style={{
-                    backgroundImage: `url(${props.bg})`,
-                }}
-            >
-                <h1 data-title={props.name}>{props.name}</h1>
-                <p id="rw-info"></p>
-                <div class="rw-buttons">
-                    <button id="rw-create-button" className="button-48">
-                        <Link
-                            to="/robowars-create-team"
-                            className="button-text"
-                        >
-                            CREATE TEAM
-                        </Link>
-                    </button>
-                    <button id="rw-join-button" className="button-48">
-                        <Link to="/robowars-join-team" className="button-text">
-                            JOIN TEAM
-                        </Link>
-                    </button>
-                    <button id="rw-pay-button" className="button-48">
-                        {/* <Link to="/robowars-join-team" className="button-text"> */}
-                        <a className="button-text" href="#">
-                            COMING SOON
-                        </a>
-                        {/* </Link> */}
-                    </button>
-                </div>
-                {/* <div class="table center">
+      <div className="robowar_flag">
+        <div
+          className="robowar_flagTop-Container"
+          style={{
+            backgroundImage: `url(${props.bg})`,
+          }}
+        >
+          <h1 data-title={props.name}>{props.name}</h1>
+          <p id="rw-info"></p>
+          <div class="rw-buttons">
+            <button id="rw-create-button" className="button-48">
+              <Link to="/robowars-create-team" className="button-text">
+                CREATE TEAM
+              </Link>
+            </button>
+            <button id="rw-join-button" className="button-48">
+              <Link to="/robowars-join-team" className="button-text">
+                JOIN TEAM
+              </Link>
+            </button>
+            <button id="rw-pay-button" className="button-48">
+              {/* <Link to="/robowars-join-team" className="button-text"> */}
+              <a className="button-text" href="#">
+                COMING SOON
+              </a>
+              {/* </Link> */}
+            </button>
+          </div>
+          {/* <div class="table center">
                     <div class="monitor-wrapper center">
                         <div class="monitor center">
                             <p>Ready for war</p>
@@ -121,112 +118,109 @@ function Entry(props) {
                     </div>
                 </div> */}
 
-                {/* <img src={props.image} /> */}
-            </div>
-            <section
-                className="robowar_flag-bottom-bg"
-                style={{
-                    backgroundImage:
-                        "https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFV2EPcpTU&#x2F;view?",
-                }}
-            >
-                <div className="robowar_flagAbout">
-                    <h3 className="title-shadow">ABOUT</h3>
-                    <section className="robowar_Abouttable">
-                        <div id="robowar_flag_prize">
-                            <img
-                                src={prizeImg}
-                                alt="icon"
-                                id="robowar_flag_prize-icon"
-                            />
-                            <div id="robowar_flagPrize-description">
-                                <span className="js-num" data-target="12000">
-                                    100
-                                </span>
-                                <span>K+</span>
-                                <br />
-                                <span ref={ref}>Prize Pool</span>
-                            </div>
-                        </div>
-                        <div id="robowar_about-text">
-                            <p className="about-description">
-                                {props.description}
-                            </p>
-                            {/* <Link id="robowar_flagAbout-button">
+          {/* <img src={props.image} /> */}
+        </div>
+        <section
+          className="robowar_flag-bottom-bg"
+          style={{
+            backgroundImage:
+              "https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFV2EPcpTU&#x2F;view?",
+          }}
+        >
+          <div className="robowar_flagAbout">
+            <h3 className="title-shadow">ABOUT</h3>
+            <section className="robowar_Abouttable">
+              <div id="robowar_flag_prize">
+                <img src={prizeImg} alt="icon" id="robowar_flag_prize-icon" />
+                <div id="robowar_flagPrize-description">
+                  <span className="js-num" data-target="12000">
+                    100
+                  </span>
+                  <span>K+</span>
+                  <br />
+                  <span ref={ref}>Prize Pool</span>
+                </div>
+              </div>
+              <div id="robowar_about-text">
+                <p className="about-description">{props.description}</p>
+                {/* <Link id="robowar_flagAbout-button">
                                 Registrations Opening Soon
                             </Link> */}
-                        </div>
-                    </section>
-                    {/* <p>{props.description}</p> */}
+              </div>
+            </section>
+            {/* <p>{props.description}</p> */}
+          </div>
+          {/* <hr /> */}
+          <div className="robowar_flagResources">
+            <h3 className="title-shadow">RESOURCES</h3>
+            <div className="robowar_flag_Allcards">
+              <a
+                className="robowar_flag_card card0"
+                style={{
+                  backgroundImage: `URL(${card1})`,
+                  backgroundSize: "300px 300px",
+                  boxShadow: "inset 0 0 60px 60px rgba(0,0,0,0.9)",
+                }}
+                href="https://drive.google.com/file/d/1z2D1VBvRsNdg0abX2qaB6orKM3xUkxwX/view?usp=share_link"
+                target="_blank"
+              >
+                <div className="robowar_flag_card-border">
+                  <h2>15 Kg</h2>
                 </div>
-                {/* <hr /> */}
-                <div className="robowar_flagResources">
-                    <h3 className="title-shadow">RESOURCES</h3>
-                    <div className="robowar_flag_Allcards">
-                        <a
-                            className="robowar_flag_card card0"
-                            style={{
-                                backgroundImage: `url(${props.cardbg1})`,
-                                boxShadow:
-                                    "inset 0 0 60px 60px rgba(0,0,0,0.9)",
-                            }}
-                            href="https://drive.google.com/file/d/1z2D1VBvRsNdg0abX2qaB6orKM3xUkxwX/view?usp=share_link"
-                            target="_blank"
-                        >
-                            <div className="robowar_flag_card-border">
-                                <h2>15 Kg</h2>
-                            </div>
-                        </a>
-                        <a
-                            className="robowar_flag_card card0"
-                            style={{
-                                backgroundImage: `url(${props.cardbg2})`,
-                            }}
-                            href="https://drive.google.com/file/d/1V0LlTMugMCipBshvA2Lbc925PhYGPfdG/view?usp=share_link"
-                            target="_blank"
-                        >
-                            <div className="robowar_flag_card-border">
-                                <h2>60 Kg</h2>
-                            </div>
-                        </a>
-                    </div>
+              </a>
+              <a
+                className="robowar_flag_card card0"
+                style={{
+                  backgroundImage: `URL(${card2})`,
+                  backgroundSize: "300px 300px",
+                }}
+                href="https://drive.google.com/file/d/1V0LlTMugMCipBshvA2Lbc925PhYGPfdG/view?usp=share_link"
+                target="_blank"
+              >
+                <div className="robowar_flag_card-border">
+                  <h2>60 Kg</h2>
                 </div>
-                {/* <hr /> */}
-                {/* <div className="robowar_flagSponsors">
+              </a>
+            </div>
+          </div>
+          {/* <hr /> */}
+          {/* <div className="robowar_flagSponsors">
                     <h3 className="title-shadow">SPONSORS</h3>
                     <img src="https://apiv.prometeo.in/media/sponsors/smasung_sWRoaY5.webp" />
                 </div> */}
-                <div className="robowar_flagContactUs">
-                    <h3 className="title-shadow">CONTACT US</h3>
-                    <div class="canvas">
-                        <div id="contact-card" class="contact-card">
-                            <div>
-                                <p className="robowar_flagContactUs-name">
-                                    Rahul Gopathi
-                                </p>
-                                <p className="robowar_flagContactUs-mail">
-                                    gopathi.1@iitj.ac.in
-                                </p>
-                                <a href="https://wa.me/918919430577" className="robowar_flagContactUs-phone">
-                                    +91 8919430577
-                                </a>
-                            </div>
-                            <div>
-                                <p className="robowar_flagContactUs-name">
-                                    Likhith Ayinala
-                                </p>
-                                <p className="robowar_flagContactUs-mail">
-                                    ayinala.1@iitj.ac.in
-                                </p>
-                                <a href="https://wa.me/918927857887" className="robowar_flagContactUs-phone">
-                                    +91 8927857887
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+          <div className="robowar_flagContactUs">
+            <h3 className="title-shadow">CONTACT US</h3>
+            <div class="canvas">
+              <div id="contact-card" class="contact-card">
+                <div>
+                  <p className="robowar_flagContactUs-name">Rahul Gopathi</p>
+                  <p className="robowar_flagContactUs-mail">
+                    gopathi.1@iitj.ac.in
+                  </p>
+                  <a
+                    href="https://wa.me/918919430577"
+                    className="robowar_flagContactUs-phone"
+                  >
+                    +91 8919430577
+                  </a>
                 </div>
-            </section>
-        </div>
+                <div>
+                  <p className="robowar_flagContactUs-name">Likhith Ayinala</p>
+                  <p className="robowar_flagContactUs-mail">
+                    ayinala.1@iitj.ac.in
+                  </p>
+                  <a
+                    href="https://wa.me/918927857887"
+                    className="robowar_flagContactUs-phone"
+                  >
+                    +91 8927857887
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     );
 }
 
