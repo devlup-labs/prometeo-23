@@ -226,7 +226,7 @@ function AccForm() {
                                 type="text"
                                 name="aadhar"
                                 placeholder="Aadhar Card Number *"
-                                pattern="[2-9]{1}[0-9]{3} [0-9]{4} [0-9]{4}"
+                                pattern="[2-9]{1}[0-9]{11}"
                                 required
                             />
                             <input
@@ -235,7 +235,14 @@ function AccForm() {
                                 placeholder="Date of Birth *"
                                 required
                                 onFocus={(e) => (e.target.type = "date")}
-                                onBlur={(e) => (e.target.type = "text")}
+                                onBlur={(e) => {
+                                    if (e.target.value === "") {
+                                        e.target.type = "text";
+                                    }
+                                    else {
+                                        e.target.type = "date";
+                                    }
+                                }}
                             />
                             <input
                                 type="text"
