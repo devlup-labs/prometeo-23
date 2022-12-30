@@ -49,7 +49,7 @@ export default function Accommodation() {
             // console.log("Fetching data for user:", user.email)
             fetchData();
         } else {
-            document.getElementById("acc-success").style.display = "none";
+            // document.getElementById("acc-success").style.display = "none";
         }
     }, []);
 
