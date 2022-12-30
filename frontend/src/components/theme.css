@@ -113,6 +113,7 @@
 }
 
 .themeColumn p {
+    text-align: justify;
     font-family: "Josefin Sans", sans-serif;
     font-size: min(1.8vw, 3vmin);
     line-height: 1.3;
