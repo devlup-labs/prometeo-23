@@ -17,7 +17,7 @@ import prizeImg from "../assets/icons/prize.png";
 import { backendURL } from "../backendURL";
 // import { backendURL } from "../backendURL";
 
-function createEntry(term) {
+function createEntry(term, user) {
     return (
         <Entry
             key={term.id}
@@ -32,6 +32,7 @@ function createEntry(term) {
             // category={term.category}
             // sponsor={term.sponsor}
             description={term.description}
+            user={user}
         />
     );
 }
@@ -46,7 +47,7 @@ function Entry(props) {
         []
     );
     const ref = useRef();
-    // const onScreen = useOnScreen(ref);
+    const onScreen = useOnScreen(ref);
 
     const [countDone, setCountDone] = useState(false);
     function countUp() {
@@ -71,15 +72,15 @@ function Entry(props) {
             );
     }
 
-    // useEffect(() => {
-    //     const counters = document.querySelectorAll(".counter");
-    //     const speed = 200;
+    useEffect(() => {
+        const counters = document.querySelectorAll(".counter");
+        const speed = 200;
 
-    //     if (!countDone && onScreen) {
-    //         $(".js-num").each(countUp);
-    //         setCountDone(true);
-    //     }
-    // }, [onScreen]);
+        if (!countDone && onScreen) {
+            $(".js-num").each(countUp);
+            setCountDone(true);
+        }
+    }, [onScreen]);
 
     return (
         <div className="robowar_flag">
@@ -92,7 +93,15 @@ function Entry(props) {
                 <h1 data-title={props.name}>{props.name}</h1>
                 <p id="rw-info"></p>
                 <div class="rw-buttons">
-                    <button id="rw-create-button" className="button-48">
+                    <button
+                        id="rw-create-button"
+                        className="button-48"
+                        onClick={() => {
+                            if (props.user === null) {
+                                toast.error("Please login to create a team");
+                            }
+                        }}
+                    >
                         <Link
                             to="/robowars-create-team"
                             className="button-text"
@@ -107,8 +116,12 @@ function Entry(props) {
                     </button>
                     <button id="rw-pay-button" className="button-48">
                         {/* <Link to="/robowars-join-team" className="button-text"> */}
-                        <a className="button-text" href="#">
-                            COMING SOON
+                        <a
+                            className="button-text"
+                            href="https://forms.eduqfix.com/prometeo/add"
+                            target="_blank"
+                        >
+                            PAY NOW
                         </a>
                         {/* </Link> */}
                     </button>
@@ -207,7 +220,10 @@ function Entry(props) {
                                 <p className="robowar_flagContactUs-mail">
                                     gopathi.1@iitj.ac.in
                                 </p>
-                                <a href="https://wa.me/918919430577" className="robowar_flagContactUs-phone">
+                                <a
+                                    href="https://wa.me/918919430577"
+                                    className="robowar_flagContactUs-phone"
+                                >
                                     +91 8919430577
                                 </a>
                             </div>
@@ -218,7 +234,10 @@ function Entry(props) {
                                 <p className="robowar_flagContactUs-mail">
                                     ayinala.1@iitj.ac.in
                                 </p>
-                                <a href="https://wa.me/918927857887" className="robowar_flagContactUs-phone">
+                                <a
+                                    href="https://wa.me/918927857887"
+                                    className="robowar_flagContactUs-phone"
+                                >
                                     +91 8927857887
                                 </a>
                             </div>
@@ -259,7 +278,7 @@ function Robowar() {
                             document.getElementById("rw-info").innerHTML =
                                 "Your Team is <strong id='rw-copy'>" +
                                 data.team_name +
-                                "</strong>. Payment will be available soon.";
+                                "</strong>. Please select the Jumbo Fee option in the payment form. It includes the registration fee for this event.";
                         } else {
                             document.getElementById(
                                 "rw-pay-button"
@@ -288,7 +307,9 @@ function Robowar() {
                 console.log(err);
             }
         }
-        fetchData();
+        if (user) {
+            fetchData();
+        }
     }, []);
 
     useEffect(() => {
@@ -306,7 +327,9 @@ function Robowar() {
     return (
         <FadeIn duration={500}>
             <div id="robowar_flagshipEventsPage">
-                {flagshipEvents_data.map(createEntry)}
+                {flagshipEvents_data.map((item) => {
+                    return createEntry(item, user);
+                })}
             </div>
         </FadeIn>
     );

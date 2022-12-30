@@ -115,12 +115,12 @@ function AccForm() {
                     let data = response.data;
                     console.log(data);
                     setAccData(data);
-                    // if (paymentPending(data)) {
-                    //     document.getElementById("acc-pay-button").style.display = "block";
-                    // }
-                    // else {
-                    //     document.getElementById("acc-pay-button").style.display = "none";
-                    // }
+                    if (paymentPending(data)) {
+                        document.getElementById("acc-pay-button").style.display = "block";
+                    }
+                    else {
+                        document.getElementById("acc-pay-button").style.display = "none";
+                    }
                     if (data.length > 0) {
                         document.getElementById("acc-success").style.display =
                         "flex";
@@ -193,18 +193,18 @@ function AccForm() {
                             </ul>
                         </div>
                         <a
-                            // href="https://forms.eduqfix.com/prometeo/add"
-                            href=""
+                            href="https://forms.eduqfix.com/prometeo/add"
+                            // href=""
                             target="_blank"
                             id="acc-pay-button"
                         >
                                 <button
                                     type="submit"
                                     className="acc-pay-button"
-                                    disabled
+                                    // disabled
                                 >
-                                    {/* Pay Now */}
-                                    Coming Soon!
+                                    Pay Now
+                                    {/* Coming Soon! */}
                                 </button>
                         </a>
                     </div>
