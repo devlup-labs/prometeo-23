@@ -118,7 +118,7 @@ function AccForm() {
                     if (paymentPending(data)) {
                         document.getElementById("acc-pay-button").style.display = "block";
                     }
-                    else {
+                    else if (data.length>0) {
                         document.getElementById("acc-pay-button").style.display = "none";
                     }
                     if (data.length > 0) {
@@ -226,7 +226,7 @@ function AccForm() {
                                 type="text"
                                 name="aadhar"
                                 placeholder="Aadhar Card Number *"
-                                pattern="[2-9]{1}[0-9]{11}"
+                                pattern="[2-9]{1}[0-9]{3} [0-9]{4} [0-9]{4}"
                                 required
                             />
                             <input
@@ -235,14 +235,7 @@ function AccForm() {
                                 placeholder="Date of Birth *"
                                 required
                                 onFocus={(e) => (e.target.type = "date")}
-                                onBlur={(e) => {
-                                    if (e.target.value === "") {
-                                        e.target.type = "text";
-                                    }
-                                    else {
-                                        e.target.type = "date";
-                                    }
-                                }}
+                                onBlur={(e) => (e.target.type = "text")}
                             />
                             <input
                                 type="text"

@@ -1,5 +1,5 @@
 // import React, { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import flagshipEvents_data from "./dummy_robowar";
 import "./robowar.css";
 
@@ -48,6 +48,7 @@ function Entry(props) {
     );
     const ref = useRef();
     const onScreen = useOnScreen(ref);
+    const navigate = useNavigate();
 
     const [countDone, setCountDone] = useState(false);
     function countUp() {
@@ -99,6 +100,7 @@ function Entry(props) {
                         onClick={() => {
                             if (props.user === null) {
                                 toast.error("Please login to create a team");
+                                navigate("/login");
                             }
                         }}
                     >
@@ -158,7 +160,9 @@ function Entry(props) {
                                 </span>
                                 <span>K+</span>
                                 <br />
-                                <span ref={ref}><small>Prize Pool</small></span>
+                                <span ref={ref}>
+                                    <small>Prize Pool</small>
+                                </span>
                             </div>
                         </div>
                         <div id="robowar_about-text">
@@ -280,7 +284,7 @@ function Robowar() {
                             document.getElementById("rw-info").innerHTML =
                                 "Your Team is <strong id='rw-copy'>" +
                                 data.team_name +
-                                "</strong>. Please select the Jumbo Fee option in the payment form. It includes the registration fee for this event.";
+                                "</strong>.<br> <small id='rw-info-text'>You are eligible for the Jumbo Fee option which includes the registration fee, accommodation fee (50% off during Early Bird Discount) and Cultural Night fee.</small>";
                         } else {
                             document.getElementById(
                                 "rw-pay-button"
