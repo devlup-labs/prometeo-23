@@ -4,13 +4,13 @@ import { toast } from "react-toastify";
 
 import "./accForm.css";
 
-import FadeIn from "../components/fadein";
+import FadeIn from "../../components/fadein";
 
-import signInImg from "../assets/backgrounds/peeking.png";
+import signInImg from "../../assets/backgrounds/peeking.png";
 
-import useAxios from "../context/context_useAxios";
-import { backendURL } from "../backendURL";
-import AuthContext from "../context/AuthContext";
+import useAxios from "../../context/context_useAxios";
+import { backendURL } from "../../backendURL";
+import AuthContext from "../../context/AuthContext";
 
 function AccForm() {
     const navigate = useNavigate();
