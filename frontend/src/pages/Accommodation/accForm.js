@@ -23,7 +23,6 @@ function AccForm() {
     //     console.log(user);
     // }, [user]);
 
-
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
@@ -77,27 +76,30 @@ function AccForm() {
         // if (user === null) {
         //     toast.error("Please login to register as Campus Ambassador!");
         // } else {
-            const myPromise = new Promise((resolve, reject) => {
-                fetchData()
-                    .then((res) => {
-                        // console.log(res)
-                        resolve(res);
-                    })
-                    .catch((err) => {
-                        // console.log(err)
-                        reject(err);
-                    });
-            });
+        const myPromise = new Promise((resolve, reject) => {
+            fetchData()
+                .then((res) => {
+                    // console.log(res)
+                    document.getElementById("acc-success").style.display = "flex";
+                    document.getElementsByClassName("acc-container-left")[0].style.display = "none";
+                    document.getElementsByClassName("acc-container-right")[0].style.display = "none";
+                    resolve(res);
+                })
+                .catch((err) => {
+                    // console.log(err)
+                    reject(err);
+                });
+        });
 
-            toast.promise(myPromise, {
-                pending: "Registering...",
-                success: "Registered successfully!",
-                error: {
-                    render: ({ data }) => {
-                        return "Something went wrong!";
-                    },
+        toast.promise(myPromise, {
+            pending: "Registering...",
+            success: "Registered successfully!",
+            error: {
+                render: ({ data }) => {
+                    return "Something went wrong!";
                 },
-            });
+            },
+        });
         // }
     };
 
@@ -116,21 +118,26 @@ function AccForm() {
                     // console.log(data);
                     setAccData(data);
                     if (paymentPending(data)) {
-                        document.getElementById("acc-pay-button").style.display = "block";
-                    }
-                    else if (data.length>0) {
-                        document.getElementById("acc-pay-button").style.display = "none";
+                        document.getElementById(
+                            "acc-pay-button"
+                        ).style.display = "block";
+                    } else if (data.length > 0) {
+                        document.getElementById(
+                            "acc-pay-button"
+                        ).style.display = "none";
                     }
                     if (data.length > 0) {
                         document.getElementById("acc-success").style.display =
-                        "flex";
+                            "flex";
+                        document.getElementsByClassName("acc-container-left")[0].style.display = "none";
+                        document.getElementsByClassName("acc-container-right")[0].style.display = "none";
                     }
                     // console.log(data);
                     else {
                         document.getElementById("acc-success").style.display =
-                        "none";
+                            "none";
                     }
-                            // console.log(userData
+                    // console.log(userData
                 } else {
                     // console.log(response)
                     // toast.error("Error: " + response.statusText);
@@ -143,8 +150,7 @@ function AccForm() {
         if (user !== null) {
             // console.log("Fetching data for user:", user.email)
             fetchData();
-        }
-        else {
+        } else {
             document.getElementById("acc-success").style.display = "none";
         }
     }, []);
@@ -160,7 +166,7 @@ function AccForm() {
                     return true;
                 }
             }
-            return false; 
+            return false;
         } else {
             return false;
         }
@@ -168,7 +174,7 @@ function AccForm() {
 
     return (
         <FadeIn duration={500}>
-            <div className="acc-form">
+            <div className="acc-form-main">
                 <div className="acc-container">
                     <div id="acc-success" className="acc-success">
                         <div>
@@ -192,20 +198,50 @@ function AccForm() {
                                 </li>
                             </ul>
                         </div>
+                        <table id="acc-table">
+                            <tbody>
+                                <tr>
+                                    <th>Pass Type</th>
+                                    <th>Accommodation Fees</th>
+                                    <th>Cultural Night Fees</th>
+                                    <th>Total</th>
+                                </tr>
+                                <tr>
+                                    <td>Accommodation Pass</td>
+                                    <td>999 INR</td>
+                                    <td>Not Included</td>
+                                    <td>999 INR *</td>
+                                </tr>
+                                <tr>
+                                    <td>Cultural Night Pass</td>
+                                    <td>Not Included</td>
+                                    <td>499 INR</td>
+                                    <td>499 INR *</td>
+                                </tr>
+                                <tr>
+                                    <td>Jumbo Pack</td>
+                                    <td>500 INR</td>
+                                    <td>499 INR</td>
+                                    <td>999 INR *</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        * The prices mentioned are exclusive of GST. Nominal GST
+                        charges will be applied.
                         <a
                             href="https://forms.eduqfix.com/prometeo/add"
                             // href=""
                             target="_blank"
                             id="acc-pay-button"
                         >
-                                <button
-                                    type="submit"
-                                    className="acc-pay-button"
-                                    // disabled
-                                >
-                                    Pay Now
-                                    {/* Coming Soon! */}
-                                </button>
+                            <button
+                                type="submit"
+                                className="acc-pay-button"
+                                // disabled
+                            >
+                                Pay Now
+                                {/* Coming Soon! */}
+                            </button>
                         </a>
                     </div>
                     <div className="acc-container-left">
@@ -238,8 +274,7 @@ function AccForm() {
                                 onBlur={(e) => {
                                     if (e.target.value === "") {
                                         e.target.type = "text";
-                                    }
-                                    else {
+                                    } else {
                                         e.target.type = "date";
                                     }
                                 }}
