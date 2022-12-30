@@ -77,6 +77,13 @@
 	}
 }
 
+.dronerace_flagTop-container {
+	height: 90vh;
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+}
+
 .dronerace_flagTop-DroneContainer h1::before {
 	content: attr(data-title);
 	position: absolute;
@@ -112,6 +119,29 @@
 	/* margin-top: 500px; */
 }
 
+#dronerace_info {
+	margin: 0;
+}
+
+.dronerace_buttons {
+    position: absolute;
+    bottom: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vmin;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.dronerace_buttons a {
+	color: initial;
+	text-decoration: none;
+}
+
+#dronerace_create-button {
+	box-shadow: 0 0 20px 3px black;
+}
 
 .dronerace_flagAbout h3 {
 	font-size: 2.5em;
@@ -163,11 +193,30 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	font-size: 140px;
+    font-size: 20vmin;
 	letter-spacing: 0.5rem;
 	/* font-family: 'Rubik 80s Fade', cursive; */
 	/* font-family: 'Anton', sans-serif; */
 	font-family: 'Black Ops One', cursive;
+}
+
+@media screen and (max-width: 1080px) {
+    .dronerace_flagTop-DroneContainer h1 {
+        font-size: 16vmin;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dronerace_flagTop-DroneContainer h1 {
+        font-size: 13vmin;
+    }
+}
+
+
+@media screen and (orientation: portrait) {
+    .dronerace_flagTop-DroneContainer h1 {
+        font-size: 13vmin;
+    }
 }
 
 .dronerace_flagTop-DroneContainer img {
