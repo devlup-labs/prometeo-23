@@ -64,7 +64,8 @@ function App() {
                         />
 
                         <Route path="/robowars" element={<Robowar />} />
-                        <Route path="/drone-race" element={<DroneRace />} />
+                        {/* <Route path="/drone-race" e
+                        lement={<DroneRace />} /> */}
 
 
                         <Route path="/past-speakers" element={<Speaker />} />
