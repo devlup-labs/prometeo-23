@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
             })
         });
         const data = await response.json();
-        console.log("Normal user login data: ", data)
+        // console.log("Normal user login data: ", data)
 
         if (response.status === 200) {
             setAuthTokens(data);
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
             })
         });
         const data = await response.json();
-        console.log("Google Login response data: ", data)
+        // console.log("Google Login response data: ", data)
 
         if (response.status === 200) {
             const newData = {

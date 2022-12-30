@@ -62,7 +62,7 @@
 
 .rw-buttons {
     position: absolute;
-    bottom: 15%;
+    bottom: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,9 +89,9 @@
     display: none;
 }
 
-/* #rw-info {
-
-} */
+#rw-info {
+    margin: 0;
+} 
 
 /* .robowar_flag-bottom-bg{
   filter: blur(2px);
@@ -190,7 +190,7 @@
     color: white;
     font-family: "Exo 2", sans-serif;
     text-align: center;
-    bottom: 30%;
+    bottom: 20%;
     left: 50%;
     transform: translate(-50%, 0);
     position: absolute;
@@ -207,6 +207,11 @@
 
 #rw-copy {
     cursor: pointer;
+}
+
+#rw-info-text {
+    font-size: 3vmin;
+    line-height: 0.8;
 }
 
 .robowar_flagAbout,
