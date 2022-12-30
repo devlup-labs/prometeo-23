@@ -66,7 +66,7 @@ class ExtendedUser(AbstractUser):
     referral_code = models.CharField(max_length=8, null=True, blank=True, verbose_name='Referral Code')
     ca_count = models.IntegerField(default=0)
     registration_id = models.CharField(max_length=9, unique=True, null=True, blank=True, verbose_name='Registration ID') 
-    drone_wars_name = models.CharField(max_length=100, null=True, blank=True, verbose_name='Drone Wars Name')
+    # drone_wars_name = models.CharField(max_length=100, null=True, blank=True, verbose_name='Drone Wars Name')
     objects = UserManager()
     REQUIRED_FIELDS = []
 
