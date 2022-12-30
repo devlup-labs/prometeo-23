@@ -85,8 +85,8 @@ function Entry(props) {
 	}, [onScreen]);
 
 	
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
+        // e.preventDefault();
 
         const event_name = "Drone Race";
         const email = user.email;
@@ -103,6 +103,7 @@ function Entry(props) {
                 if (response.status === 200) {
                     // navigate("/dashboard");
 					props.setdroneName("registered");
+					// console.log("Register event response:", response)
                     return response;
                 } else {
                     throw(response.statusText)
@@ -162,9 +163,13 @@ function Entry(props) {
                         }}
 						disabled={props.droneName === "registered"}
                     >
-						{
-							props.droneName === "registered" ? "Already Registered!" : "Register"
-						}
+						<div className="button-text">
+							{
+								props.droneName === "registered" ? 
+								"Already Registered!" : 
+								"Register"
+							}
+						</div>
                         {/* <Link
                             to="/dronerace-register"
                             className="button-text"
@@ -250,6 +255,10 @@ function DroneRace() {
 	const api = useAxios();
 	const { user } = useContext(AuthContext);
 
+	const updateDroneName = (newName) => {
+		setdroneName(newName);
+	};
+
 	useEffect(() => {
 		async function fetchData() {
 			try {
@@ -263,8 +272,9 @@ function DroneRace() {
 
 				if (response.status === 200) {
 					const data = response.data;
-					if (data.dronename !== "") {
-						setdroneName(data.dronename);
+					// console.log("Check event response:", data);
+					if (data.status === "True") {
+						setdroneName("registered");
 					}
 				} else {
 					throw response.statusText;
@@ -279,8 +289,9 @@ function DroneRace() {
 	return (
 		<FadeIn duration={500}>
 			<div id="dronerace_flagshipEventsPage">
+				{/* {flagshipEvents_data.map(createEntry)} */}
 				{flagshipEvents_data.map((data) => {
-					createEntry(data, droneName, setdroneName)
+					return createEntry(data, droneName, updateDroneName)
 				})}
 			</div>
 		</FadeIn>
