@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 
-import { backendURL } from "../backendURL";
+import { backendURL } from "../../backendURL";
 import "./speaker.css";
 import speakerDetails from "./speakerDetails";
 
-import spinner from '../assets/loading/loading3.gif';
-import FadeIn from "../components/fadein";
+import spinner from '../../assets/loading/loading3.gif';
+import FadeIn from "../../components/fadein";
 
 function About(props) {
 	return (

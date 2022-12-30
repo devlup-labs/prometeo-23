@@ -4,20 +4,20 @@ import flagshipEvents_data from "./dummy_robowar";
 import "./robowar.css";
 
 import { toast } from "react-toastify";
-// import logo from "../assets/navbar/prometeo_logo_23.png";
-// import Footer from "../components/footer";
-import card1 from "../assets/flagshipEvents/robowarCard1.jpg";
-import card2 from "../assets/flagshipEvents/robowarCard2.jpg";
-import FadeIn from "../components/fadein";
-import useOnScreen from "../components/useOnScreen";
+// import logo from "../../../assets/navbar/prometeo_logo_23.png";
+// import Footer from "../../../components/footer";
+import card1 from "../../../assets/flagshipEvents/robowarCard1.jpg";
+import card2 from "../../../assets/flagshipEvents/robowarCard2.jpg";
+import FadeIn from "../../../components/fadein";
+import useOnScreen from "../../../components/useOnScreen";
 import { useEffect, useState, useRef, useReducer } from "react";
 import $ from "jquery";
-import AuthContext from "../context/AuthContext";
-import useAxios from "../context/context_useAxios";
+import AuthContext from "../../../context/AuthContext";
+import useAxios from "../../../context/context_useAxios";
 import { useContext } from "react";
-import prizeImg from "../assets/icons/prize.png";
-import { backendURL } from "../backendURL";
-// import { backendURL } from "../backendURL";
+import prizeImg from "../../../assets/icons/prize.png";
+import { backendURL } from "../../../backendURL";
+// import { backendURL } from "../../../backendURL";
 
 function createEntry(term, user) {
     return (

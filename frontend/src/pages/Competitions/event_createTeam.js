@@ -2,21 +2,21 @@ import { useState, useEffect, useContext } from 'react';
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import './event_joinTeam.css';
+import './event_createTeam.css';
 
-import { backendURL } from '../backendURL';
-import AuthContext from "../context/AuthContext";
-import useAxios from "../context/context_useAxios";
-import FadeIn from '../components/fadein';
+import { backendURL } from '../../backendURL';
+import AuthContext from "../../context/AuthContext";
+import useAxios from "../../context/context_useAxios";
+import FadeIn from '../../components/fadein';
 
 // function MemberField(val, id, handleDelete) {
 //     return (
-//         <div className="joinTeam-member-field" id={`joinTeam-member-${val}`} key={id}>
-//             <div className="joinTeam-member-field__top">
-//                 <div className="joinTeam-member-field__title">Member {id}</div>
-//                 <div className="joinTeam-member-field__remove"
+//         <div className="createTeam-member-field" id={`createTeam-member-${val}`} key={id}>
+//             <div className="createTeam-member-field__top">
+//                 <div className="createTeam-member-field__title">Member {id}</div>
+//                 <div className="createTeam-member-field__remove"
 //                     onClick={() => {
-//                         const memberField = document.getElementById(`joinTeam-member-${val}`);
+//                         const memberField = document.getElementById(`createTeam-member-${val}`);
 //                         memberField.remove();
 //                         handleDelete(val);
 //                     }}
@@ -46,7 +46,7 @@ import FadeIn from '../components/fadein';
 //     );
 // }
 
-export default function Event_joinTeam() {
+export default function Event_createTeam() {
     const { user } = useContext(AuthContext);
     const [eventInfo, setEventInfo] = useState([]);
     // const [membersCount, setMembersCount] = useState([]);
@@ -154,23 +154,23 @@ export default function Event_joinTeam() {
 
     return (
         <FadeIn duration={500}>
-            <div className="joinTeam">
-                <div className="joinTeam-container">
-                    <div className="joinTeam-container-left">
+            <div className="createTeam">
+                <div className="createTeam-container">
+                    <div className="createTeam-container-left">
                         <img src={
                             eventInfo.image ?
                             eventInfo.image.replace("0.0.0.0:8888", "apiv.prometeo.in") :
                             "https://cdn.dribbble.com/users/2217210/screenshots/11335904/media/db21aab2bd4867c51c4a0382f7c384ae.jpg"
                         } alt="Event Image" />
                     </div>
-                    <div className="joinTeam-container-right">
-                        <div className="joinTeam-container-right-title">
-                            Join Team
+                    <div className="createTeam-container-right">
+                        <div className="createTeam-container-right-title">
+                            Create Team
                         </div>
-                        <div className="joinTeam-container-right-subtitle">
+                        <div className="createTeam-container-right-subtitle">
                             {eventInfo.name}
                         </div>
-                        <form className="joinTeam-form" onSubmit={handleSubmit}>
+                        <form className="createTeam-form" onSubmit={handleSubmit}>
                             <input
                                 type="text"
                                 name="team_name"
@@ -189,20 +189,20 @@ export default function Event_joinTeam() {
                                 placeholder="Country *"
                                 required
                             />
-                            <div className="joinTeam-category-dropdown">
+                            <div className="createTeam-category-dropdown">
                                 <label
                                     htmlFor="category"
-                                    className="joinTeam-category-dropdown-label"
+                                    className="createTeam-category-dropdown-label"
                                 >
                                     Category
                                 </label>
                                 <select
                                     name="category"
                                     id="category"
-                                    className="joinTeam-category-dropdown-select"
+                                    className="createTeam-category-dropdown-select"
                                 >
                                     <option
-                                        className="joinTeam-category-option"
+                                        className="createTeam-category-option"
                                         selected
                                         disabled
                                         hidden
@@ -210,13 +210,13 @@ export default function Event_joinTeam() {
                                         -- Select --
                                     </option>
                                     <option
-                                        className="joinTeam-category-option"
+                                        className="createTeam-category-option"
                                         value="15kg"
                                     >
                                         15 Kg
                                     </option>
                                     <option
-                                        className="joinTeam-category-option"
+                                        className="createTeam-category-option"
                                         value="60kg"
                                     >
                                         60 Kg
@@ -228,23 +228,23 @@ export default function Event_joinTeam() {
                                 name="team_size"
                                 placeholder="Team Size *"
                                 min={1}
-                                max={5}
+                                max={20}
                                 step={1}
                                 required
                             />
-                            {/* <div className='joinTeam-members'>
-                                <div className='joinTeam-members-title'>
+                            {/* <div className='createTeam-members'>
+                                <div className='createTeam-members-title'>
                                     Members
                                 </div>
                                 {membersCount.map((item, index) => MemberField(item, index+1, deleteMember))}
-                                <div className='joinTeam-members-add' onClick={() => setMembersCount([...membersCount, membersCount[membersCount.length-1] + 1])}>
+                                <div className='createTeam-members-add' onClick={() => setMembersCount([...membersCount, membersCount[membersCount.length-1] + 1])}>
                                     +
                                 </div>
                             </div> */}
                             <input
                                 type="submit"
                                 value="Submit"
-                                id="joinTeam-form-submit"
+                                id="createTeam-form-submit"
                             />
                             <br />
                         </form>

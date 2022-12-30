@@ -4,13 +4,13 @@ import { toast } from "react-toastify";
 
 import "./accForm.css";
 
-import FadeIn from "../components/fadein";
+import FadeIn from "../../components/fadein";
 
-import signInImg from "../assets/backgrounds/peeking.png";
+import signInImg from "../../assets/backgrounds/peeking.png";
 
-import useAxios from "../context/context_useAxios";
-import { backendURL } from "../backendURL";
-import AuthContext from "../context/AuthContext";
+import useAxios from "../../context/context_useAxios";
+import { backendURL } from "../../backendURL";
+import AuthContext from "../../context/AuthContext";
 
 function AccForm() {
     const navigate = useNavigate();
@@ -235,7 +235,14 @@ function AccForm() {
                                 placeholder="Date of Birth *"
                                 required
                                 onFocus={(e) => (e.target.type = "date")}
-                                onBlur={(e) => (e.target.type = "text")}
+                                onBlur={(e) => {
+                                    if (e.target.value === "") {
+                                        e.target.type = "text";
+                                    }
+                                    else {
+                                        e.target.type = "date";
+                                    }
+                                }}
                             />
                             <input
                                 type="text"

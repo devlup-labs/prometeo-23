@@ -3,8 +3,8 @@ import { useState, useEffect, Component } from "react";
 import { useLocation, useSearchParams, Link } from "react-router-dom";
 
 import "./EventDetails.css";
-import { backendURL } from "../backendURL";
-import FadeIn from "../components/fadein";
+import { backendURL } from "../../backendURL";
+import FadeIn from "../../components/fadein";
 
 function CreateEntry(props) {
     const eventTerm = props.eventInfo;
