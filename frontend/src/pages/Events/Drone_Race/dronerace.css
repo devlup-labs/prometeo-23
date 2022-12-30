@@ -206,12 +206,11 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 840px) {
     .dronerace_flagTop-DroneContainer h1 {
         font-size: 13vmin;
     }
 }
-
 
 @media screen and (orientation: portrait) {
     .dronerace_flagTop-DroneContainer h1 {

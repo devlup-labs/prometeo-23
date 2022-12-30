@@ -1,4 +1,4 @@
-// import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -9,13 +9,15 @@ import "./dronerace.css";
 // import Footer from "../components/footer";
 import FadeIn from "../../../components/fadein";
 import useOnScreen from "../../../components/useOnScreen";
-import { useEffect, useState, useRef } from "react";
 import $ from "jquery";
 
-import prizeImg from "../../../assets/icons/prize.png";
-// import { backendURL } from "../backendURL";
+import { backendURL } from "../../../backendURL";
+import AuthContext from "../../../context/AuthContext";
+import useAxios from "../../../context/context_useAxios";
 
-function createEntry(term) {
+import prizeImg from "../../../assets/icons/prize.png";
+
+function createEntry(term, droneName, setdroneName) {
 	return (
 		<Entry
 			key={term.id}
@@ -30,19 +32,21 @@ function createEntry(term) {
 			// category={term.category}
 			// sponsor={term.sponsor}
 			description={term.description}
+			droneName={droneName}
+			setdroneName={setdroneName}
 		/>
 	);
 }
 
 function Entry(props) {
-	useEffect(
-		// when the component has rendered then add the event listener to it
-		() => {
-			const navBarEle = document.getElementById("navbar");
-			navBarEle.style.opacity = 1;
-		},
-		[]
-	);
+    const { user } = useContext(AuthContext);
+    const api = useAxios();
+
+	useEffect(() => {
+		const navBarEle = document.getElementById("navbar");
+		navBarEle.style.opacity = 1;
+	}, []);
+
 	const ref = useRef();
 	const onScreen = useOnScreen(ref);
     const navigate = useNavigate();
@@ -80,6 +84,57 @@ function Entry(props) {
 		}
 	}, [onScreen]);
 
+	
+    const handleSubmit = () => {
+        // e.preventDefault();
+
+        const event_name = "Drone Race";
+        const email = user.email;
+
+        const postTeam = async (event_name, email) => {
+            const requestData = { event_name, email }
+            
+            // try {
+                // console.log("Request Data:", requestData)
+                const response = await api.post(
+                    `${backendURL}/registerevent/`,
+                    requestData
+                );
+                if (response.status === 200) {
+                    // navigate("/dashboard");
+					props.setdroneName("registered");
+					// console.log("Register event response:", response)
+                    return response;
+                } else {
+                    throw(response.statusText)
+                }
+            // }
+            //  catch (err) {
+            //     console.log(err);
+            // }
+        }
+
+        const myPromise = new Promise((resolve, reject) => {
+            postTeam(event_name, email)
+            .then((res) => {
+                // console.log(res)
+                resolve(res);
+            })
+            .catch((err) => {
+                // console.log(err)
+                reject(err);
+            });            
+        })
+
+        toast.promise(myPromise, {
+            loading: "Registering for the event...",
+            success: "Registered for the event!",
+            error: "Error registering for the event!",
+        })
+    }
+
+
+
 	return (
 		<div className="dronerace_flag">
 			<div
@@ -102,14 +157,25 @@ function Entry(props) {
                                 toast.error("Please login to register");
                                 navigate("/login");
                             }
+							else {
+								handleSubmit();
+							}
                         }}
+						disabled={props.droneName === "registered"}
                     >
-                        <Link
+						<div className="button-text">
+							{
+								props.droneName === "registered" ? 
+								"Already Registered!" : 
+								"Register"
+							}
+						</div>
+                        {/* <Link
                             to="/dronerace-register"
                             className="button-text"
                         >
                             Register
-                        </Link>
+                        </Link> */}
                     </button>
 				</div>
 				{/* <div class="dronerace_table center">
@@ -182,12 +248,56 @@ function Entry(props) {
 	);
 }
 
+
+
 function DroneRace() {
+	const [droneName, setdroneName] = useState("");
+	const api = useAxios();
+	const { user } = useContext(AuthContext);
+
+	const updateDroneName = (newName) => {
+		setdroneName(newName);
+	};
+
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const response = await api.post(
+					`${backendURL}/checkevent/`,
+					{
+						email: user.email,
+						event_name: "Drone Race",
+					}
+				);
+
+				if (response.status === 200) {
+					const data = response.data;
+					// console.log("Check event response:", data);
+					if (data.status === "True") {
+						setdroneName("registered");
+					}
+				} else {
+					throw response.statusText;
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		fetchData();
+	}, []);
+	
 	return (
 		<FadeIn duration={500}>
-			<div id="dronerace_flagshipEventsPage">{flagshipEvents_data.map(createEntry)}</div>
+			<div id="dronerace_flagshipEventsPage">
+				{/* {flagshipEvents_data.map(createEntry)} */}
+				{flagshipEvents_data.map((data) => {
+					return createEntry(data, droneName, updateDroneName)
+				})}
+			</div>
 		</FadeIn>
 	);
 }
+
+
 
 export default DroneRace;

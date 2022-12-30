@@ -89,8 +89,8 @@ function App() {
                             <Route exact path='/robowars-join-team' element={<Robowar_joinTeam />} />
                         </Route>
 
-                        {/* <Route path="/dronerace" element={<DroneRace />} />
-                        <Route exact path='/dronerace-register' element={<PrivateRoute />}>
+                        <Route path="/dronerace" element={<DroneRace />} />
+                        {/* <Route exact path='/dronerace-register' element={<PrivateRoute />}>
                             <Route exact path='/dronerace-register' element={<Dronerace_Register />} />
                         </Route> */}
                         
@@ -111,7 +111,7 @@ function App() {
                         
                         <Route path="/tnc" element={<Tnc />} />
                         <Route path="/privacy-policy" element={<PP />} />
-
+w
                         <Route path="/*" element={<Page_404 />} />
                     </Routes>
 
