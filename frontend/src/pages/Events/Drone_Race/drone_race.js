@@ -1,5 +1,7 @@
 // import React, { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import flagshipEvents_data from "./dummy_dronerace";
 import "./dronerace.css";
 
@@ -43,6 +45,7 @@ function Entry(props) {
 	);
 	const ref = useRef();
 	const onScreen = useOnScreen(ref);
+    const navigate = useNavigate();
 
 	const [countDone, setCountDone] = useState(false);
 	function countUp() {
@@ -80,8 +83,7 @@ function Entry(props) {
 	return (
 		<div className="dronerace_flag">
 			<div
-				id="dronerace_flagTop-bg"
-				className="dronerace_flagTop-DroneContainer-bg"
+				className="dronerace_flagTop-container"
 				style={{
 					backgroundImage: `url(${props.bg})`,
 				}}
@@ -90,6 +92,26 @@ function Entry(props) {
 			</div>
 			<div className="dronerace_flagTop-DroneContainer">
 				<h1 data-title={props.name}>{props.name}</h1>
+				<p id="dronerace_info"></p>
+				<div className="dronerace_buttons">
+                    <button
+                        id="dronerace_create-button"
+                        className="button-48"
+                        onClick={() => {
+                            if (props.user === null) {
+                                toast.error("Please login to register");
+                                navigate("/login");
+                            }
+                        }}
+                    >
+                        <Link
+                            to="/dronerace-register"
+                            className="button-text"
+                        >
+                            Register
+                        </Link>
+                    </button>
+				</div>
 				{/* <div class="dronerace_table center">
           <div class="dronerace_monitor-wrapper center">
             <div class="dronerace_monitor center">
