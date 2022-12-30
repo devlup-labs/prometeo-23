@@ -603,3 +603,5 @@ class AccomodationPassesViewSet(viewsets.ModelViewSet):
 #             return Response(serializers.data)
 #         else:
 #             return Response({'message':'You have not registered for any event'},status=status.HTTP_200_OK)
+
+

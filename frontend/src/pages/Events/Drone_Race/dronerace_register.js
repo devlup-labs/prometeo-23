@@ -33,7 +33,7 @@ export default function Dronerace_Register() {
             // try {
                 // console.log("Request Data:", requestData)
                 const response = await api.post(
-                    `${backendURL}/createteamrw/`,
+                    `${backendURL}//`,
                     requestData
                 );
                 if (response.status === 201) {
