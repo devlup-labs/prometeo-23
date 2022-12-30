@@ -14,31 +14,31 @@ import PrivateRoute from "./context/PrivateRoute";
 import Navbar from "./components/navbar";
 import HomePage from "./pages/homePage";
 import Page_404 from "./pages/404";
-import Speaker from "./pages/Speaker";
-import Gallery from "./pages/newGallery";
-import Sponsors from "./pages/Sponsors";
-import Events from "./pages/Event.js";
+import Speaker from "./pages/Speakers/speaker";
+import Gallery from "./pages/Gallery/newGallery";
+import Sponsors from "./pages/Sponsors/sponsors";
+import Events from "./pages/Competitions/Event.js";
 import Register from "./pages/Register.js";
 import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
-import EventDetails from "./pages/Event_details";
+import EventDetails from "./pages/Competitions/Event_details";
 import Theme from "./components/Theme";
-import Team from "./pages/newTeam";
+import Team from "./pages/Team/newTeam";
 import CA from "./pages/ca";
-import Accommodation from "./pages/accomodation";
+import Accommodation from "./pages/Accommodation/accomodation";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
 import CompleteProfile from "./pages/completeProfile";
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
-import NewGallery from "./pages/newNewGallery";
-import AccForm from "./pages/accForm";
-import Robowar from "./pages/robowar";
-import DroneRace from "./pages/drone_race";
-import Event_createTeam from "./pages/event_createTeam";
-import Event_joinTeam from "./pages/event_joinTeam";
-import Robowar_createTeam from "./pages/robowar_createTeam";
-import Robowar_joinTeam from "./pages/robowar_joinTeam";
+import NewGallery from "./pages/Gallery/newNewGallery";
+import AccForm from "./pages/Accommodation/accForm";
+import Robowar from "./pages/Events/Robowars/robowar";
+import DroneRace from "./pages/Events/Drone_Race/drone_race";
+import Event_createTeam from "./pages/Competitions/event_createTeam";
+import Event_joinTeam from "./pages/Competitions/event_joinTeam";
+import Robowar_createTeam from "./pages/Events/Robowars/robowar_createTeam";
+import Robowar_joinTeam from "./pages/Events/Robowars/robowar_joinTeam";
 
 function App() {
   // const [bigBang, setBigBang] = useState(true);
@@ -64,7 +64,7 @@ function App() {
                         />
 
                         <Route path="/robowars" element={<Robowar />} />
-                        {/* <Route path="/drone-race" element={<DroneRace />} /> */}
+                        <Route path="/drone-race" element={<DroneRace />} />
 
 
                         <Route path="/past-speakers" element={<Speaker />} />
