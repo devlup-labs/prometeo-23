@@ -242,13 +242,9 @@
     justify-content: space-evenly;
 }
 
-.robowar_flagAbout-table {
-    /* flex: 1; */
-    /* border: 2px solid yellow; */
-}
 
 #robowar_flag_prize {
-    width: 20%;
+	width: 50vmin;
     display: flex;
     /* margin: auto; */
     align-items: center;

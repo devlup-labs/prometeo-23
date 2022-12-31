@@ -403,6 +403,7 @@
     .navbar-mobile-link {
         text-align: center;
         width: 100%;
+        padding: 3px;
     }
 
     #navbar {

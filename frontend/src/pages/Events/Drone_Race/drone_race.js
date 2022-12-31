@@ -79,7 +79,7 @@ function Entry(props) {
 		const speed = 200;
 
 		if (!countDone && onScreen) {
-			$(".js-num").each(countUp);
+			$(".dronerace_js-num").each(countUp);
 			setCountDone(true);
 		}
 	}, [onScreen]);
