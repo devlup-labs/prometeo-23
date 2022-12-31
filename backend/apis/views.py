@@ -49,10 +49,10 @@ class SponsorsViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 class EventViewSet(viewsets.ModelViewSet):
-    queryset = Event.objects.filter(hidden=False)
+    queryset = Event.objects.filter(hidden=False).order_by('rank')
     serializer_class = EventSerializers
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['type','id',]
+    filterset_fields = ['type','id','rank']
 
 
 class GetEventViewSet(viewsets.ModelViewSet):
@@ -591,15 +591,65 @@ class AccomodationPassesViewSet(viewsets.ModelViewSet):
 
 
 
-# class GetMyEventsViewSet(APIView):
-#     queryset = Event.objects.all()
-#     serializer_class = EventSerializers
-#     permission_classes = (IsAuthenticated,)
+class GetMyEventsView(APIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializers
+    permission_classes = (IsAuthenticated,)
 
-#     def get(self, request, *args, **kwargs):
-#         event = Event.objects.filter(user=request.user)
-#         if event.exists():
-#             serializers = EventRegistrationSerializers(event, many=True)
-#             return Response(serializers.data)
-#         else:
-#             return Response({'message':'You have not registered for any event'},status=status.HTTP_200_OK)
+    def get(self, request, *args, **kwargs):
+        all_events = request.user.events.all()
+        if all_events.exists():
+            serializers = EventSerializers(all_events, many=True)
+            return Response(serializers.data)
+        else:
+            return Response({'message':'You have not registered for any event'},status=status.HTTP_200_OK)
+
+
+
+
+class RegisterEventViewSet(viewsets.ModelViewSet):
+    queryset = ExtendedUser.objects.all()
+    serializer_class = RegisterEventSerializers
+    permission_classes = (IsAuthenticated,)
+    filterset_fields = ['user']
+
+    def post(self, request, *args, **kwargs):
+        mail = request.data['email']
+        usr = ExtendedUser.objects.get(email=mail)
+        event_name = request.data['event_name']
+        event = Event.objects.get(event_name=event_name)
+        usr.events.add(event)
+        usr.save()
+        return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Event Registered Successfully'})
+        
+
+class RegisterEventView(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class =  RegisterEventSerializers
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        mail = request.data['email']
+        usr = ExtendedUser.objects.get(email=mail)
+        event_name = request.data['event_name']
+        if(usr.events.filter(name=event_name).exists()):
+            return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'You have already registered for this event'})
+        event = Event.objects.get(name=event_name)
+        # usr.drone_wars_name = request.data['rw_name']
+        usr.events.add(event)
+        usr.save()
+        return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Event Registered Successfully'})
+
+class CheckEventView(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class =  RegisterEventSerializers
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        mail = request.data['email']
+        usr = ExtendedUser.objects.get(email=mail)
+        event_name = request.data['event_name']
+        if(usr.events.filter(name=event_name).exists()):
+            return Response({'status': 'True', 'status code': status.HTTP_200_OK, 'message': 'You have already registered for this event'})
+        else:
+            return Response({'status': 'False', 'status code': status.HTTP_200_OK, 'message': 'You have not registered for this event'})

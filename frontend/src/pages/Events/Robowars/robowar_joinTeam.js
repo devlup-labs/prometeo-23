@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 
 import './robowar_joinTeam.css';
 
-import { backendURL } from '../backendURL';
-import AuthContext from "../context/AuthContext";
-import useAxios from "../context/context_useAxios";
-import FadeIn from '../components/fadein';
+import { backendURL } from '../../../backendURL';
+import AuthContext from "../../../context/AuthContext";
+import useAxios from "../../../context/context_useAxios";
+import FadeIn from '../../../components/fadein';
 
 export default function Robowar_joinTeam() {
     const { user } = useContext(AuthContext);

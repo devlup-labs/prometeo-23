@@ -8,6 +8,8 @@ const flagshipEvents_data = [
       "https://i0.wp.com/roboticsindia.live/wp-content/uploads/2021/03/SAVE_20210324_194657.jpg",
     image:
       "https://www.nicepng.com/png/full/106-1067251_2d-game-character-png-download-2d-robot-png.png",
+    cardbg1: "https://techfest.org/static/resources/robowars/robowars_bots.jpg",
+    cardbg2: "https://techfest.org/static/resources/robowars/robowar60.jpeg",
     sponsors: ["https://apiv.prometeo.in/media/sponsors/smasung_sWRoaY5.webp"],
     rulebook: null,
     problem_statement: "",

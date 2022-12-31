@@ -2,12 +2,14 @@ import { useEffect, useState, useContext } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./accomodation.css";
+import useAxios from "../../context/context_useAxios";
+import { backendURL } from "../../backendURL";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import FadeIn from "../components/fadein";
-import AuthContext from "../context/AuthContext";
+import FadeIn from "../../components/fadein";
+import AuthContext from "../../context/AuthContext";
 
 export default function Accommodation() {
     useEffect(() => {
@@ -19,6 +21,37 @@ export default function Accommodation() {
     const { user, logoutUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
+    const api = useAxios();
+    useEffect(() => {
+        // perform get request to check if user is already registered
+        async function fetchData() {
+            try {
+                // console.log("Fetching data for user:", user.email);
+                const response = await api.get(
+                    `${backendURL}/accomodationpasses/?user=${user.user_id}`
+                );
+                if (response.status === 200) {
+                    let data = response.data;
+                    // console.log(data);
+                    if (data.length > 0) {
+                        document.getElementById("acc-register-button").innerHTML = "<span class='button-text'>PAY NOW!</span>";
+                    }
+                } else {
+                    // console.log(response)
+                    // toast.error("Error: " + response.statusText);
+                }
+            } catch (error) {
+                console.log("Error:", error);
+            }
+        }
+
+        if (user !== null) {
+            // console.log("Fetching data for user:", user.email)
+            fetchData();
+        } else {
+            // document.getElementById("acc-success").style.display = "none";
+        }
+    }, []);
 
     return (
         <FadeIn duration={1000}>
@@ -34,7 +67,8 @@ export default function Accommodation() {
                         className="acc-button-48"
                         onClick={() => {
                             if (user) {
-                                toast.success("Redirecting to form!");
+                                
+                                // toast.success("Redirecting to form!");
                                 navigate("/accommodation-registration");
                             } else {
                                 toast.error("Please login first!");

@@ -4,9 +4,9 @@ import "bootstrap/dist/css/bootstrap.css";
 // 1) first install npm install bootstrap
 // 2) Put any other imports below so that CSS from your components takes precedence over default styles.
 import "./team.css";
-import FadeIn from "../components/fadein";
+import FadeIn from "../../components/fadein";
 import team_data from "./team_info";
-import mail from "../assets/icons/mail.png";
+import mail from "../../assets/icons/mail.png";
 
 function createEntry(team) {
     return (

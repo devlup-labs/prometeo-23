@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 import "./gallery.css";
-import FadeIn from "../components/fadein";
-import galleryData from "./galleryData.js";
+import FadeIn from "../../components/fadein";
+import galleryData from "../galleryData.js";
 
 // var imagePaths = [];
 
