@@ -296,8 +296,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 100%;
+    gap: 2vmin;
     /* height: 100%; */
     padding: 1vmin 1vmin 1vmin 0;
     overflow-y: auto;
@@ -307,8 +308,10 @@
     width: 30%;
     /* height: 40%; */
     max-height: 20vh;
+    /* max-width: 23vw; */
     display: flex;
     flex-direction: row;
+    /* flex-grow: 1; */
     align-items: flex-start;
     justify-content: space-between;
     margin: 1vmin 0;
