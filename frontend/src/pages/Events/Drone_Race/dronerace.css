@@ -218,6 +218,60 @@
     }
 }
 
+.dronerace_flagTop-DroneContainer>p {
+    /* border: 2px solid white; */
+    width: max-content;
+    max-width: 80%;
+    padding: 0 2vmin;
+    color: white;
+    font-family: "Exo 2", sans-serif;
+    text-align: center;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    font-size: max(24px, 4vmin);
+	margin: 0;
+}
+
+@media screen and (max-width: 1200px) {
+	.dronerace_flagTop-DroneContainer>p {
+		max-width: 90%;
+		font-size: min(18px, 3vmin);
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.dronerace_flagTop-DroneContainer>p {
+		font-size: min(22px, 5vmin);
+	}
+}
+
+/* @media screen and (orientation: portrait) {
+    .dronerace_flagTop-DroneContainer>p {
+        max-width: 90%;
+        font-size: max(18px, 3vmin);
+    }
+} */
+
+#dr-info-text {
+    font-size: 3vmin;
+    line-height: 0.8;
+}
+
+@media screen and (max-width: 1200px) {
+	#dr-info-text {
+		font-size: 2.5vmin;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#dr-info-text {
+		font-size: 4vmin;
+	}
+}
+
 .dronerace_flagTop-DroneContainer img {
 	display: block;
 	position: absolute;

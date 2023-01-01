@@ -7,6 +7,7 @@ import "./accForm.css";
 import FadeIn from "../../components/fadein";
 
 import signInImg from "../../assets/backgrounds/peeking.png";
+import accPdf from "../../assets/how_to_pay.pdf";
 
 import useAxios from "../../context/context_useAxios";
 import { backendURL } from "../../backendURL";
@@ -80,9 +81,17 @@ function AccForm() {
             fetchData()
                 .then((res) => {
                     // console.log(res)
-                    document.getElementById("acc-success").style.display = "flex";
-                    document.getElementsByClassName("acc-container-left")[0].style.display = "none";
-                    document.getElementsByClassName("acc-container-right")[0].style.display = "none";
+                    document.getElementById("acc-success").style.display =
+                        "flex";
+                    document.getElementsByClassName(
+                        "acc-container"
+                    )[0].style.justifyContent = "flex-start";
+                    document.getElementsByClassName(
+                        "acc-container-left"
+                    )[0].style.display = "none";
+                    document.getElementsByClassName(
+                        "acc-container-right"
+                    )[0].style.display = "none";
                     resolve(res);
                 })
                 .catch((err) => {
@@ -129,8 +138,15 @@ function AccForm() {
                     if (data.length > 0) {
                         document.getElementById("acc-success").style.display =
                             "flex";
-                        document.getElementsByClassName("acc-container-left")[0].style.display = "none";
-                        document.getElementsByClassName("acc-container-right")[0].style.display = "none";
+                        document.getElementsByClassName(
+                            "acc-container"
+                        )[0].style.justifyContent = "flex-start";
+                        document.getElementsByClassName(
+                            "acc-container-left"
+                        )[0].style.display = "none";
+                        document.getElementsByClassName(
+                            "acc-container-right"
+                        )[0].style.display = "none";
                     }
                     // console.log(data);
                     else {
@@ -242,6 +258,10 @@ function AccForm() {
                                 Pay Now
                                 {/* Coming Soon! */}
                             </button>
+                        </a>
+                        {/* insert link to pdf */}
+                        <a href={accPdf} target="_blank">
+                            How to pay?
                         </a>
                     </div>
                     <div className="acc-container-left">

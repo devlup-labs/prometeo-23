@@ -99,7 +99,7 @@ export default function Robowar_joinTeam() {
                             <input
                                 type="text"
                                 name="rw_name"
-                                placeholder="Enter team ID *"
+                                placeholder="Enter team name *"
                                 required
                             />
                             <input

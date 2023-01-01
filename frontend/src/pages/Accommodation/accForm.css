@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap');
 
 .acc-form-main {
+    position: relative;
 	font-family: 'Josefin Sans', sans-serif;
 	overflow-y: auto;
 	box-sizing: border-box;
@@ -20,9 +21,10 @@
     /* border: 2px solid red; */
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
     .acc-form-main {
         height: fit-content;
+        /* min-height: 0; */
     }
 }
 
@@ -87,7 +89,7 @@
 }
 
 .acc-container {
-    height: fit-content;
+    height: 100%;
     width: 70%;
     box-sizing: border-box;
     display: flex;
@@ -148,6 +150,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (orientation: portrait) {
+    .acc-form {
+        height: fit-content;
+    }
 }
 
 .acc-container-right-title, .acc-form {
@@ -391,7 +399,7 @@
     .acc-container {
         /* position: absolute;
         top: 4%; */
-        /* flex-direction: column; */
+        flex-direction: column;
         /* height: min-content; */
         width: 90%;
     }
