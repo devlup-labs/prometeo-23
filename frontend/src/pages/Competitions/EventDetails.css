@@ -96,10 +96,21 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
     /* gap: 2vmin; */
     align-items: center;
     /* flex-basis: 0; */
     margin-top: 10px;
+}
+.blockchain__sponsors {
+    width: 100%;
+    display: flex;
+    justify-content:space-evenly;
+    /* gap: 2vmin; */
+    align-items: center;
+    /* flex-basis: 0; */
+    margin-top: 10px;
+    align-items: center;
 }
 
 /* #eventRegis-button{
@@ -131,18 +142,12 @@
     flex-direction: column;
     align-items: center;
 }
-.devfolio_button {
-    flex-grow: 0.82;
-    flex-basis: 0;
-    display: flex;
-    justify-content: center;
-}
+
 .apply-button {
     height: 44px;
     width: 312px;
-    display: flex;
 }
-.event-details__sponsors_images {
+/* .event-details__sponsors_images {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -150,15 +155,33 @@
     align-items: center;
     justify-content: end;
     flex-wrap: wrap;
+} */
+.blockchain__sponsors_images {
+    display: flex;
+    flex-direction: column;
+    gap: 2vmin;
+    flex-wrap: wrap;
+    flex-grow: 0.6;
+    flex-basis: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (orientation: portrait) {
-    .event-details__sponsors_images {
+    .blockchain__sponsors_images {
         width: 100%;
     }
 }
 
 .event-details__sponsors_images > img {
+    /* width: 20%; */
+    height: 8vmin;
+    object-fit: contain;
+    margin: 2vmin;
+    background-color: #ffffff79;
+    user-select: none;
+}
+.blockchain__sponsors_images > img {
     /* width: 20%; */
     height: 8vmin;
     object-fit: contain;
@@ -300,6 +323,9 @@
     .event-details__sponsors {
         flex-direction: column-reverse;
     }
+    .blockchain__sponsors {
+        flex-direction: column-reverse;
+    }
     .sponsor_metal1_name,
     .sponsor_metal2_name {
         font-size: min(25px, 4vmin);
@@ -344,6 +370,7 @@
 @media screen and (max-width: 900px) {
     .event-details__body__left__image__img {
         max-width: 80vw;
+    flex-grow: 1;
         max-height: 70vh;
     }
 }

@@ -78,11 +78,11 @@ function Entry(props) {
         const counters = document.querySelectorAll(".counter");
         const speed = 200;
 
-        if (!countDone && onScreen) {
-            $(".js-num").each(countUp);
-            setCountDone(true);
-        }
-    }, [onScreen]);
+		if (!countDone && onScreen) {
+			$(".dronerace_js-num").each(countUp);
+			setCountDone(true);
+		}
+	}, [onScreen]);
 
     const handleSubmit = () => {
         // e.preventDefault();

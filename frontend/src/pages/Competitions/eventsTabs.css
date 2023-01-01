@@ -68,7 +68,7 @@ body {
     height: fit-content;
   }
   .taabcontent{
-    margin-top: 200px;
+    margin-top: 15vh;
   }
 }
 /* @media screen and (max-width: 2000px){
@@ -107,7 +107,7 @@ body {
     height: fit-content;
   }
   .taabcontent{
-    margin-top: 200px;
+    margin-top: 15vh;
   }
 }
 @media screen and (max-width: 730px) {
@@ -116,7 +116,7 @@ body {
     height: fit-content;
   }
   .taabcontent{
-    margin-top: 200px;
+    margin-top: 20vh;
   }
   .taablinks {
     height: 50px;
