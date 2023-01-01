@@ -284,7 +284,7 @@ function Robowar() {
                             document.getElementById("rw-info").innerHTML =
                                 "Your Team is <strong id='rw-copy'>" +
                                 data.team_name +
-                                "</strong>.<br> <small id='rw-info-text'>You are eligible for the Jumbo Fee option which includes the registration fee, accommodation fee (50% off during Early Bird Discount) and Cultural Night fee.</small>";
+                                "</strong>.<br> <small id='rw-info-text'>You are eligible for the Jumbo Pass option which includes the registration fee, accommodation fee (50% off during Early Bird Discount) and Cultural Night fee.</small>";
                         } else {
                             document.getElementById(
                                 "rw-pay-button"
