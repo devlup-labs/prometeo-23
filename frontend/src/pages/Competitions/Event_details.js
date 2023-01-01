@@ -94,8 +94,8 @@ function Details(props) {
             <div className="event-details__title__underline"></div>
           </div>
           {eventTerm.name === "Blockchain Hackathon" && (
-            <div className="event-details__sponsors">
-              {/* <div className="event-details__sponsors_text">Sponsored by</div> */}
+            <div className="blockchain__sponsors">
+              {/* <div className="blockchain__sponsors_text">Sponsored by</div> */}
               {/* <div className="devfolio_button"> */}
               {/* <Link id="eventRegis-button">Register</Link> */}
               {/* <span>Apply with Devfolio</span> */}
@@ -107,7 +107,7 @@ function Details(props) {
                 {/* Apply with Devfolio */}
               </div>
               {/* </div> */}
-              <div className="event-details__sponsors_images">
+              <div className="blockchain__sponsors_images">
                 <div className="sponsor_metal1">
                   <div className="sponsor_metal1_name">Diamond Sponsors</div>
                   <div className="event_sponsors_image1">
