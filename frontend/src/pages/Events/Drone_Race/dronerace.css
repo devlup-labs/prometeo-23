@@ -281,10 +281,8 @@
 	transform: translate(-50%, -50%);
 }
 
-.dronerace_flagAbout,
-.dronerace_flagReach,
-.dronerace_flagResources,
-.dronerace_flagSponsors {
+.dronerace_flagAbout
+{
 	padding: 5vmin 0;
 }
 
@@ -304,18 +302,25 @@
 .dronerace_Abouttable {
 	/* display: grid;
 	grid-template-columns: 1fr 3fr; */
+background: linear-gradient(0deg, transparent 0%, rgba(0,0,0,0.9519353273535976)30%, rgba(0,0,0,0.9239241228718049) 80%, transparent 100%);
+	padding: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
-
-.dronerace_flagAbout-table {
-	/* flex: 1;
-	border: 2px solid yellow; */
+@media (max-width: 768px) {
+.dronerace_Abouttable {
+    flex-direction: column;
+    justify-content: space-evenly;
+	align-items: center;
+}
+.dronerace_flagAbout p {
+	margin: auto;
+}
 }
 
 #dronerace_flag_prize {
-	width: 30%;
+	width: 50vmin;
 	display: flex;
 	/* margin: auto; */
 	align-items: center;
@@ -354,9 +359,7 @@
   position:relative;
 } */
 
-.dronerace_flagAbout p {
-	margin: 30px auto auto;
-}
+
 
 .dronerace_text-shadow {
 	font-family: "Alumni Sans", sans-serif;
@@ -378,7 +381,6 @@
 
 
 .dronerace_about-description {
-    /* background-color: #000; */
     font-family: "Alumni Sans", sans-serif;
     /* font-size: 1.5em; */
     font-size: max(18px, 3vmin);
