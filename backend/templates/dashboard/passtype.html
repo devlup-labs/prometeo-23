@@ -202,10 +202,9 @@
                                         {{ pt.pass_type }}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{% url 'pass_info' %}">1</a>
-                                        <a class="dropdown-item" href="{% url 'pass_info' %}">2</a>
-                                        <a class="dropdown-item" href="{% url 'pass_info' %}">3</a>
-                      
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 1)">1</a>
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 2)">2</a>
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 3)">3</a>
                                     </div>
                                 </div>
                             </td>                            
