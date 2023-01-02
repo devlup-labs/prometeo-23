@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import user_info, change_registration, update_event_state, event_info, downloadfile, event_type_info, events_info, users_info, mass_mail, dashboard, ca_info, ca_dashboard , preregistration_page , passtype_page , change_passtype
+from .views import user_info, change_registration, update_event_state, event_info, downloadfile, event_type_info, events_info, users_info, mass_mail, dashboard, ca_info, ca_dashboard , preregistration_page , passtype_page , change_passtype , get_pass_excel
 from apis.views import CampusAmbassadorListView
 
 
@@ -20,4 +20,5 @@ urlpatterns = [
     path('preregistration/', preregistration_page , name='pre_registration'),
     path('passinfo/', passtype_page, name='pass_info'),
     path('setpasstype/', change_passtype.as_view(), name='pass_type_change'),
+    path('downloadpassexcel/', get_pass_excel, name='download_passes_excel'),
 ]

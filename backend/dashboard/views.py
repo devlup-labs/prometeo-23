@@ -762,3 +762,27 @@ class change_passtype(APIView):
         return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
 
 
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/passtype/')
+def get_pass_excel(request):
+    passtypes = Passes.objects.all()
+    # wbpath = os.path.join(settings.MEDIA_ROOT, os.path.join('passes.xlsx'))
+    workbook = xlsxwriter.Workbook('passes.xlsx')
+    worksheet = workbook.add_worksheet()
+    worksheet.write(0, 0, "Name")
+    worksheet.write(0, 1, "Email")
+    worksheet.write(0, 2, "Pass Type")
+    worksheet.write(0, 3, "Aadhar Number")
+    worksheet.write(0, 4, "Date of Birth")
+    worksheet.write(0, 5,"Address")
+    row = 1
+    for passtype in passtypes:
+        worksheet.write(row, 0, passtype.full_name)
+        worksheet.write(row, 1, passtype.user.email)
+        worksheet.write(row, 2, passtype.pass_type)
+        worksheet.write(row, 3, passtype.aadhar_card)
+        worksheet.write(row, 4, passtype.dob)
+        worksheet.write(row, 5, passtype.address)
+        row = row + 1
+    workbook.close()
+    return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
