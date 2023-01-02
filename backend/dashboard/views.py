@@ -785,4 +785,9 @@ def get_pass_excel(request):
         worksheet.write(row, 5, passtype.address)
         row = row + 1
     workbook.close()
-    return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
+    file_path = os.path.join('passes.xlsx')
+    with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    # return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
