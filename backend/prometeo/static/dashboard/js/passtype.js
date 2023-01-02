@@ -1,7 +1,7 @@
 function setPassType(email, passType) {
-    let data = { email: email, passType: passType, csrfmiddlewaretoken: "csrf_token" };
+    let data = { email: email, passType: passType };
 
-    fetch("/setpasstype", {
+    fetch("/dashboard/setpasstype/", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

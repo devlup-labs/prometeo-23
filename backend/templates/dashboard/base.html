@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="csrf_token" content="{{ csrf_token }}">
 
   <title>{% block title %} {% endblock %}</title>
 
@@ -78,7 +79,9 @@
   </a>
 
   <!-- Custom scripts -->
+  <!-- <script type="text/javascript">     window.CSRF_TOKEN = "{{ csrf_token }}"; </script> -->
   <script src="{% static 'dashboard/js/passtype.js' %}"></script>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'dashboard/vendor/jquery/jquery.min.js' %}"></script>
