@@ -199,12 +199,23 @@
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{ pt.pass_type }}
+                                      {% if pt.pass_type == 1 %}
+                                        Accomodation
+                                        
+                                      {% elif pt.pass_type == 0 %}
+                                        None
+                                      {% elif pt.pass_type == 2 %}
+                                        Pronite
+                                      {% elif pt.pass_type == 3 %}
+                                        Accomodation + Pronite
+                                      {% else %}
+                                        None
+                                      {% endif %}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 1)">Accomodation</a>
-                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 2)">Pronite</a>
-                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 3)">Accomodation + Pronite</a>
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 1)">Accomodation (1)</a>
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 2)">Pronite (2)</a>
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 3)">Accomodation + Pronite (3) </a>
                                     </div>
                                 </div>
                             </td>                            
