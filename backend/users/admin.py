@@ -81,6 +81,7 @@ class CampusAmbassadorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class PassesAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('user', 'dob','address','aadhar_card','full_name','pass_type',)
     list_filter = ('user',)
+    search_fields = ['user',]
 
 # @admin.register(RoboWars)
 class RoboWarsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
