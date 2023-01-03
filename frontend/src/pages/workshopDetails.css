@@ -589,3 +589,19 @@
 .tab_class a{
     height: 100%;
 }
+@media screen and (max-width: 500px){
+    .workshopTabs a{
+        display: flex;
+        justify-content: center;
+    padding: 5px 10px;
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 400px){
+    .workshopTabs a{
+        display: flex;
+            align-items: center;
+    padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+}

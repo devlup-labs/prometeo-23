@@ -66,7 +66,7 @@ function Entry(props) {
         <Link
           id="button2"
           to={{
-            pathname: "/event-details/",
+            pathname: "/workshop-details/",
             search: `?id=${event.id}&name=${event.name}`,
           }}
           state={event}
