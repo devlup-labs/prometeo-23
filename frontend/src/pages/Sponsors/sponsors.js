@@ -47,7 +47,7 @@ function Entry(props) {
 			</div>
 
 			<div className="sponsor-card">
-				{sponsorCategory.sponsors.map(logo)};
+				{sponsorCategory.sponsors.map(logo)}
 			</div>
 		</div>
 	);
