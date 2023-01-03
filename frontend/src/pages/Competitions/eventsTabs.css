@@ -43,10 +43,12 @@ body {
   border: 1.5px solid rgba(255, 255, 255, 0.08);
      display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-column-gap: var(--spacing-l);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content:space-around;
+  /* justify-content:space-evenly; */
+  align-items: center; 
   height: 10vh;
   width: 90%;
   border-radius: 2px 2px 0px 0px;
