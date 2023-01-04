@@ -27,7 +27,7 @@ function Login() {
     // })
     function onGoogleLoginSuccess(res) {
         const userObject = jwt_decode(res.credential);
-        console.log("Success:", userObject);
+        // console.log("Success:", userObject);
 
         const email = userObject.email;
         const given_name = userObject.given_name;
@@ -61,7 +61,7 @@ function Login() {
     }
 
     function onGoogleLoginFailure(res) {
-        console.log("Failure:", res);
+        // console.log("Failure:", res);
     }
 
     const handleSubmit = (e) => {

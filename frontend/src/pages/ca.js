@@ -43,7 +43,7 @@ export default function CA() {
 
                 if (response.status === 200) {
                     const data = response.data;
-                    console.log("Login Dashboard Data:", data);
+                    // console.log("Login Dashboard Data:", data);
                     setUserData({
                         ...data,
                     });
@@ -98,20 +98,20 @@ export default function CA() {
     const handleSubmit = (e) => {
         async function fetchData() {
             try {
-                console.log("Fetching data for user:", user.email);
+                // console.log("Fetching data for user:", user.email);
                 const obj ={
                     email: user.email,
                     // ambassador: user.ambassador,
                     referral : user.referral_code,
                 }
-                console.log(obj);
+                // console.log(obj);
                 const response = await api.post(
                     `${backendURL}/campusambassador/`,
                     obj
                 );
                 if (response.status === 200) {
                     let data = response.data;
-                    console.log(data);
+                    // console.log(data);
                     let invite_code;
                     // toast.success("Registered Successfully!");
                     invite_code = data.invite_referral;

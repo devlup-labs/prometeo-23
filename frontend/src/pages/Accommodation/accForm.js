@@ -8,6 +8,7 @@ import FadeIn from "../../components/fadein";
 
 import signInImg from "../../assets/backgrounds/peeking.png";
 import accPdf from "../../assets/how_to_pay.pdf";
+import qr from "../../assets/form/qr.png";
 
 import useAxios from "../../context/context_useAxios";
 import { backendURL } from "../../backendURL";
@@ -88,10 +89,10 @@ function AccForm() {
                     )[0].style.justifyContent = "flex-start";
                     document.getElementsByClassName(
                         "acc-container-left"
-                    )[0].style.display = "none";
+                    )[0].style.visibility = "hidden";
                     document.getElementsByClassName(
                         "acc-container-right"
-                    )[0].style.display = "none";
+                    )[0].style.visibility = "hidden";
                     resolve(res);
                 })
                 .catch((err) => {
@@ -126,15 +127,6 @@ function AccForm() {
                     let data = response.data;
                     // console.log(data);
                     setAccData(data);
-                    if (paymentPending(data)) {
-                        document.getElementById(
-                            "acc-pay-button"
-                        ).style.display = "block";
-                    } else if (data.length > 0) {
-                        document.getElementById(
-                            "acc-pay-button"
-                        ).style.display = "none";
-                    }
                     if (data.length > 0) {
                         document.getElementById("acc-success").style.display =
                             "flex";
@@ -143,10 +135,22 @@ function AccForm() {
                         )[0].style.justifyContent = "flex-start";
                         document.getElementsByClassName(
                             "acc-container-left"
-                        )[0].style.display = "none";
+                        )[0].style.visibility = "hidden";
                         document.getElementsByClassName(
                             "acc-container-right"
-                        )[0].style.display = "none";
+                        )[0].style.visibility = "hidden";
+
+                        if (paymentPending(data)) {
+                            let x = document.getElementById("acc-pay-options");
+                            // console.log(x);
+                            if (x.style.display === "none") {
+                                x.style.display = "flex";
+                            }
+                        } else if (data.length > 0) {
+                            document.getElementById(
+                                "acc-pay-options"
+                            ).style.display = "none";
+                        }
                     }
                     // console.log(data);
                     else {
@@ -171,6 +175,10 @@ function AccForm() {
         }
     }, []);
 
+    useEffect(() => {
+        document.getElementById("acc-upi").style.display = "none";
+    }, [accData]);
+
     // useEffect(() => {
     //     console.log(accData);
     // }, [accData]);
@@ -188,10 +196,150 @@ function AccForm() {
         }
     }
 
+    function showUPI() {
+        document.getElementById("acc-upi").style.display = "flex";
+        document.getElementById("acc-success").style.display = "none";
+    }
+
+    function hideUPI() {
+        document.getElementById("acc-upi").style.display = "none";
+        document.getElementById("acc-success").style.display = "flex";
+    }
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const onFileChange = (event) => {
+        // Update the state
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const onFileUpload = () => {
+        async function postImage() {
+            try {
+                // console.log("Fetching data for user:", user.email);
+                console.log(selectedFile);
+                const formData = new FormData();
+                formData.append("email", user.email);
+                formData.append("payment_ss", selectedFile);
+                const response = await api.post(
+                    `${backendURL}/uploadss/`,
+                    formData
+                );
+
+                if (response.status === 200) {
+                    const data = response.data;
+                    // console.log(data);
+                    hideUPI();
+                } else {
+                    console.log("Error:", response.statusText);
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        const myPromise = new Promise((resolve, reject) => {
+            postImage()
+                .then((res) => {
+                    console.log(res);
+                    resolve(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    reject(err);
+                });
+        });
+
+        toast.promise(myPromise, {
+            pending: "Uploading...",
+            success: "Uploaded successfully!",
+            error: {
+                render: ({ data }) => {
+                    return "Something went wrong!";
+                },
+            },
+        });
+    };
+
+    // function fileData() {
+    //     if (selectedFile) {
+    //         return (
+    //             <div>
+    //                 <p>File Name: {selectedFile.name}</p>
+
+    //                 {/* <p>File Type: {selectedFile.type}</p> */}
+
+    //                 {/* <p>
+    //                     Last Modified:{" "}
+    //                     {
+    //                         // take only date and time
+    //                         Date(selectedFile.lastModified).split("GMT")[0]
+    //                     }
+    //                 </p> */}
+    //             </div>
+    //         );
+    //     } else {
+    //         return (
+    //             <></>
+    //         );
+    //     }
+    // }
+
     return (
         <FadeIn duration={500}>
             <div className="acc-form-main">
                 <div className="acc-container">
+                    <div id="acc-upi">
+                        <div id="acc-upi-info">
+                            <div className="acc-upi-top">
+                                <img src={qr} alt="qr" id="acc-upi-qr" />
+                                <div>
+                                    Please scan the QR code to pay. Once you
+                                    have paid, please attach the{" "}
+                                    <span style={{ color: "whitesmoke" }}>
+                                        screenshot
+                                    </span>{" "}
+                                    of the payment below.
+                                </div>
+                            </div>
+                            <div className="acc-upi-bottom">
+                                {/* {fileData()} */}
+
+                                <div className="acc-upi-upload">
+                                    <input
+                                        type="file"
+                                        onChange={onFileChange}
+                                        accept="image/*"
+                                        id="acc-payment-ss"
+                                    />
+                                </div>
+                                {/* back button */}
+                                <div className="acc-upi-back">
+                                    <button
+                                        onClick={hideUPI}
+                                        className="acc-pay-button"
+                                    >
+                                        Back
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {selectedFile && (
+                            <div id="acc-payment-preview">
+                                <img
+                                    src={URL.createObjectURL(selectedFile)}
+                                    alt="payment screenshot"
+                                />
+                                <button
+                                    onClick={onFileUpload}
+                                    className="acc-pay-button"
+                                >
+                                    Upload!
+                                </button>
+                            </div>
+                        )}
+                    </div>
                     <div id="acc-success" className="acc-success">
                         <div>
                             Congratulations! You are now eligible for the Early
@@ -211,6 +359,11 @@ function AccForm() {
                                     The Early Bird discount is only for a few
                                     days, so inform your friends to register as
                                     soon as possible!
+                                </li>
+                                <li>
+                                    If you have recently paid for the pass, it
+                                    will be reflected on the website within a
+                                    day.
                                 </li>
                             </ul>
                         </div>
@@ -244,21 +397,30 @@ function AccForm() {
                         </table>
                         * The prices mentioned are exclusive of GST. Nominal GST
                         charges will be applied.
-                        <a
-                            href="https://forms.eduqfix.com/prometeo/add"
-                            // href=""
-                            target="_blank"
-                            id="acc-pay-button"
-                        >
-                            <button
+                        <div id="acc-pay-options">
+                            <a
+                                href="https://forms.eduqfix.com/prometeo/add"
+                                // href=""
+                                target="_blank"
+                            >
+                                <button
+                                    type="submit"
+                                    // disabled
+                                    className="acc-pay-button"
+                                >
+                                    Pay using Credit/Debit Card
+                                    {/* Coming Soon! */}
+                                </button>
+                            </a>
+                            {/* <button
                                 type="submit"
                                 className="acc-pay-button"
-                                // disabled
+                                onClick={showUPI}
                             >
-                                Pay Now
-                                {/* Coming Soon! */}
-                            </button>
-                        </a>
+                                Pay using UPI
+                            </button> */}
+                        </div>
+                        {/* <Link to="/accommodation"> */}
                         {/* insert link to pdf */}
                         <a href={accPdf} target="_blank">
                             How to pay?
