@@ -398,10 +398,15 @@
     font-size: 5vmin !important;
     text-shadow: 0 2px 10px black;
 }
-#event-content-heading h6{
+#event-content-heading a{
+    font-size: 3vmin !important;
+    text-decoration: underline;
     color: white;
     text-shadow: none;
     margin-left: 30vmin;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 .event-details__body__right__bottom1 {
     font-size: 3vmin;
