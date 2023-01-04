@@ -52,7 +52,7 @@ function Entry(props) {
               <h3 className="event_Card-prize">
                 Registration Fee
                 <br />
-                <span className="event_Card-prize-val">
+                <span className="workshop_Card-prize-val">
                   {event.prize.split(" ").slice(1).join(" ")}
                 </span>
               </h3>
