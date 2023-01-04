@@ -428,5 +428,4 @@ class RegisterEventSerializers(serializers.ModelSerializer):
     class Meta:
         model = ExtendedUser
         fields = ['drone_wars_name']
-
     
