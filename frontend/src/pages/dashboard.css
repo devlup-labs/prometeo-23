@@ -172,6 +172,12 @@
     font-weight: 500;
 }
 
+#dashboard-pass-right-content-pass-status-value {
+    color: #6f1530;
+    font-size: max(4vmin, 24px);
+    font-weight: 700;
+}
+
 #dashboard-caDetails {
     box-sizing: border-box;
     width: 100%;
