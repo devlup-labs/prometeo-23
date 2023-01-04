@@ -282,7 +282,14 @@ function Details(props) {
                 <div className="event-details__body__right__bottom">
                   {eventTerm.description && (
                     <>
-                      <p id="event-content-heading">Description</p>
+                      <p id="event-content-heading">
+                        Description
+                        {eventTerm.name === "Game Jam" ? (
+                          <h6>*Themes will be released on 5th of January</h6>
+                        ) : (
+                          ""
+                        )}
+                      </p>
                       <div className="event-details__body__right__bottom2">
                         {eventTerm.description}
                       </div>

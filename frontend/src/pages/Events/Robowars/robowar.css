@@ -93,9 +93,9 @@
     margin: 0;
 } 
 
-/* .robowar_flag-bottom-bg{
-  filter: blur(2px);
-} */
+.robowar_flag-bottom-bg{
+  background: url("https://images.unsplash.com/photo-1634176866089-b633f4aec882?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80") repeat fixed 99.3vw;
+}
 
 .robowar_flagAbout h3 {
     font-size: 2.5em;
@@ -237,6 +237,7 @@
 .robowar_Abouttable {
     /* display: grid;
     grid-template-columns: 1fr 3fr; */
+    background: linear-gradient(0deg, transparent 0%, rgba(0,0,0,0.9519353273535976)30%, rgba(0,0,0,0.9239241228718049) 80%, transparent 100%);
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
