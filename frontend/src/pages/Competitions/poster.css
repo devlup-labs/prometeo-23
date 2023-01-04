@@ -1,4 +1,4 @@
-.poster-title h2 {
+.postcard__text h2 {
     font-size: 36px;
     text-transform: uppercase;
     text-align: center !important;
@@ -7,12 +7,21 @@
     font-size: 7vmin;
     font-weight: 900;
   }
+.postcard__text h3 {
+    text-transform: uppercase;
+    text-align: left !important;
+    color: #84f4eb;
+    font-family: "Share Tech", sans-serif;
+    font-size: 5vmin;
+    font-weight: 500;
+    padding-top: 5px;
+  }
   
-  .poster-title {
+  /* .poster-title {
     position: relative;
     padding: 5vh;
     -webkit-background-clip: text;
-  }
+  } */
 
   /* This pen */
 
@@ -42,7 +51,7 @@
   }
   .postcard h1, .postcard .h1 {
     margin-bottom: 0.5rem;
-    font-weight: 500;
+    font-weight: 900;
     line-height: 1.2;
   }
   .postcard .small {

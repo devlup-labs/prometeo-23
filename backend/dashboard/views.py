@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import user_passes_test
+from django.views.decorators.csrf import csrf_exempt
 from users.models import  ExtendedUser, Team, Submissions, CampusAmbassador
 from events.models import Event
 import xlsxwriter
@@ -11,6 +12,43 @@ from .forms import EmailForm
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.urls import reverse
 from users.models import *
+
+from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
+from apis.models import *
+from rest_framework import viewsets
+from rest_framework.views import APIView
+from rest_framework import generics
+from rest_framework.authentication import TokenAuthentication 
+from rest_framework import status
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
+# from .serializers import *
+from home.models import *
+from events.models import *
+from coordinator.models import *
+from users.models import *
+import requests
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.permissions import AllowAny
+# from .serializers import MyTokenObtainPairSerializer
+from rest_framework.utils import json
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.models import User
+from django.core.mail import get_connection, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.hashers import make_password
+from decouple import config
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+from django.conf import settings
+
 
 sendMailID = settings.FROM_EMAIL_USER
 current_year_dict = {'1': '1st Year', '2': '2nd Year', '3': '3rd Year', '4': '4th Year', '5': '5th Year',
@@ -711,11 +749,45 @@ def passtype_page(request):
     passtypes = Passes.objects.all()
     return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
 
-# @user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/passtypechange/')
-# def change_passtype(request, value):
-    # changed = request.data['pass_type'] = value
-    # user = request.data['user']
-    # print(request.data)
+class change_passtype(APIView):
+    def post(self, request):
+        print(request.data)
+        usere = request.data['email']
+        changed = request.data['passType']
+        myusr = ExtendedUser.objects.filter(email=usere).first()
+        req = Passes.objects.filter(user=myusr).first()
+        req.pass_type = changed
+        req.save()
+        passtypes = Passes.objects.all()
+        return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
 
 
 
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/passtype/')
+def get_pass_excel(request):
+    passtypes = Passes.objects.all()
+    # wbpath = os.path.join(settings.MEDIA_ROOT, os.path.join('passes.xlsx'))
+    workbook = xlsxwriter.Workbook('passes.xlsx')
+    worksheet = workbook.add_worksheet()
+    worksheet.write(0, 0, "Name")
+    worksheet.write(0, 1, "Email")
+    worksheet.write(0, 2, "Pass Type")
+    worksheet.write(0, 3, "Aadhar Number")
+    worksheet.write(0, 4, "Date of Birth")
+    worksheet.write(0, 5,"Address")
+    row = 1
+    for passtype in passtypes:
+        worksheet.write(row, 0, passtype.full_name)
+        worksheet.write(row, 1, passtype.user.email)
+        worksheet.write(row, 2, passtype.pass_type)
+        worksheet.write(row, 3, passtype.aadhar_card)
+        worksheet.write(row, 4, passtype.dob)
+        worksheet.write(row, 5, passtype.address)
+        row = row + 1
+    workbook.close()
+    file_path = os.path.join('passes.xlsx')
+    with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    # return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
