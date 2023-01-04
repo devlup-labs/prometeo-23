@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect, Component } from "react";
 import { useLocation, useSearchParams, Link } from "react-router-dom";
+import { PDFObject } from 'react-pdfobject'
+import { toast } from "react-toastify";
 
 import "./workshopDetails.css";
 import { backendURL } from "../backendURL";
@@ -38,7 +40,7 @@ function Details(props) {
 
   // const checkProblem = props.problem_statement == null ? "tab-content" : "tab-hide"
   const tabHeading = props.problem_statement == null ? null : "tab-hide";
-  
+
   // tabs
   var tabLinks = document.querySelectorAll(".tab_class");
   var tabContent = document.querySelectorAll(".tab-content");
@@ -64,6 +66,60 @@ function Details(props) {
 
     btnTarget.classList.add("active");
   }
+
+  function forceDownload(blob, filename) {
+    var a = document.createElement('a');
+    a.download = filename;
+    a.href = blob;
+    // For Firefox https://stackoverflow.com/a/32226068
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+  
+  // Current blob size limit is around 500MB for browsers
+  async function downloadResource(url, filename) {
+    if (!filename) filename = url.split('\\').pop().split('/').pop();
+    await fetch(url, {
+        headers: new Headers({
+          'Origin': 'http://localhost:3000'
+        }),
+        mode: 'no-cors'
+      })
+      .then(response => response.blob())
+      .then(blob => {
+        let blobUrl = window.URL.createObjectURL(blob);
+        forceDownload(blobUrl, filename);
+      })
+      .catch(e => console.error(e));
+  }
+  
+  // downloadResource('https://giant.gfycat.com/RemoteBlandBlackrussianterrier.webm');
+
+  const handleDownload = (url) => {
+    const myPromise = new Promise((resolve, reject) => {
+      downloadResource(url)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        })
+    })
+
+    toast.promise(myPromise, {
+      pending: "Downloading...",
+      success: "Downloaded successfully!",
+      error: "Error while downloading"
+    })
+
+  }
+
+  // if (PDFObject.supportsPDFs) {
+  //   console.log("Yay, this browser supports inline PDFs.");
+  // } else {
+  //   console.log("Boo, inline PDFs are not supported by this browser");
+  // }
 
   return (
     <div className="event-details">
@@ -93,9 +149,9 @@ function Details(props) {
                     src={
                       sponsor.image
                         ? sponsor.image.replace(
-                            "0.0.0.0:8888",
-                            "apiv.prometeo.in"
-                          )
+                          "0.0.0.0:8888",
+                          "apiv.prometeo.in"
+                        )
                         : ""
                     }
                     title={sponsor.name}
@@ -132,18 +188,30 @@ function Details(props) {
               </a>
             )}
             {eventTerm.rulebook && (
-              <a
-                href={
-                  eventTerm.rulebook.replace(
+              PDFObject.supportsPDFs ? (
+                <a
+                  href={
+                    eventTerm.rulebook.replace(
+                      "0.0.0.0:8888",
+                      "apiv.prometeo.in"
+                    ) || ""
+                  }
+                  target="_blank"
+                  className="event-details-rulebook button-64"
+                >
+                  <span>Content</span>
+                </a>
+              ) : (
+                <div 
+                  className="event-details-rulebook button-64"
+                  onClick={() => handleDownload(eventTerm.rulebook.replace(
                     "0.0.0.0:8888",
                     "apiv.prometeo.in"
-                  ) || ""
-                }
-                target="_blank"
-                className="event-details-rulebook button-64"
-              >
-                <span>Content</span>
-              </a>
+                  ))}
+                >
+                  <span>Content</span>
+                </div>
+              )
             )}
           </div>
         </div>
