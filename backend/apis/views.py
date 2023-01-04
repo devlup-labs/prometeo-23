@@ -372,6 +372,9 @@ class LoginDashboardViewSet(APIView):
         user_email = request.data.get('email')
         if(ExtendedUser.objects.filter(email=user_email)).exists():
             user = ExtendedUser.objects.filter(email=user_email).first()
+            pass_user = Passes.objects.filter(user=user).first()
+            user.pass_type = pass_user.pass_type
+            user.save()
             serializers = LoginDashboardSerializers(user)
             return Response(serializers.data)
 
@@ -653,3 +656,18 @@ class CheckEventView(APIView):
             return Response({'status': 'True', 'status code': status.HTTP_200_OK, 'message': 'You have already registered for this event'})
         else:
             return Response({'status': 'False', 'status code': status.HTTP_200_OK, 'message': 'You have not registered for this event'})
+
+
+
+class UploadSS(APIView):
+    queryset = Passes.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        file = request.data['payment_ss']
+        mail = request.data['email']
+        usr = ExtendedUser.objects.get(email=mail)
+        passusr = Passes.objects.get(user=usr)
+        passusr.payment_ss = file
+        passusr.save()
+        return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Screenshot Uploaded Successfully'})

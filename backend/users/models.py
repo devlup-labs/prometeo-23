@@ -191,5 +191,6 @@ class Passes(models.Model):
     dob = models.DateField(blank=True, null=True)
     full_name = models.CharField(max_length=100, blank=True, null=True)
     pass_type = models.IntegerField(default=0, blank=True, null=True)
+    payment_ss = models.ImageField(upload_to='payment_ss', blank=True, null=True)
     class Meta:
         verbose_name_plural = 'passes'

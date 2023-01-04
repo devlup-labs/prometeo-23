@@ -69,4 +69,5 @@ urlpatterns=[
     path('getmyevents/', views.GetMyEventsView.as_view(), name='getmyevents'),
     path('registerevent/', views.RegisterEventView.as_view(), name='registerdronerace'),
     path('checkevent/', views.CheckEventView.as_view(), name='checkdronerace'),
+    path('uploadss/', views.UploadSS.as_view(), name='uploadss'),
 ]

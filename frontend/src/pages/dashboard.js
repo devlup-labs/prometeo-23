@@ -48,7 +48,7 @@ function Dashboard() {
 
 				if (response.status === 200) {
 					const data = response.data;
-					// console.log("Login Dashboard Data:", data);
+					console.log("Login Dashboard Data:", data);
 					if (data.isProfileCompleted === false) {
 						navigate("/complete-profile");
 					} else {
@@ -238,7 +238,38 @@ function Dashboard() {
 									{"Prometeo  '23"}
 								</div>
 								<div id="dashboard-pass-right-content">
-									{"You have not purchased any pass :("}
+									{
+										userData.pass_type !== undefined ?
+										(
+											userData.pass_type === 0 ?
+											(
+												"You have not purchased any pass :("
+											) : (
+												<div id="dashboard-pass-right-content-pass-status">
+													<div id="dashboard-pass-right-content-pass-status-title">
+														{"Pass type: "}
+													</div>
+													<div id="dashboard-pass-right-content-pass-status-value">
+														{
+															userData.pass_type === 1 ?
+															(
+																"Accommodation"
+															) : (
+																userData.pass_type === 2 ?
+																(
+																	"Pronite"
+																) : (
+																	"Accommodation + Pronite"
+																)
+															)
+														}
+													</div>
+												</div>
+											)
+										)
+										:
+										"Loading pass status..."
+									}
 								</div>
 							</div>
 						</div>
