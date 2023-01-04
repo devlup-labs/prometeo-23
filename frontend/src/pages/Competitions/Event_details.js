@@ -209,6 +209,7 @@ function Details(props) {
               {eventTerm.external_link && (
                 <a
                   href={eventTerm.external_link || ""}
+                  target="_blank"
                   className="event-details-register button-64"
                 >
                   <span>REGISTER</span>
@@ -222,6 +223,7 @@ function Details(props) {
                       "apiv.prometeo.in"
                     ) || ""
                   }
+                  target="_blank"
                   className="event-details-rulebook button-64"
                 >
                   <span>RULEBOOK</span>
