@@ -223,6 +223,7 @@ function Details(props) {
                     ) || ""
                   }
                   className="event-details-rulebook button-64"
+                  target={"_blank"}
                 >
                   <span>RULEBOOK</span>
                 </a>
