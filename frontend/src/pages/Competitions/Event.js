@@ -48,13 +48,13 @@ const tabsName = [
     data_title: "Tech Carnival",
     status: "exhibition",
   },
-  {
-    name: "Workshops",
-    id: "Workshops",
-    data_content: "Workshops",
-    data_title: "Workshops",
-    status: "workshop",
-  },
+  // {
+  //   name: "Workshops",
+  //   id: "Workshops",
+  //   data_content: "Workshops",
+  //   data_title: "Workshops",
+  //   status: "workshop",
+  // },
   {
     name: "Informals",
     id: "Informals_events",

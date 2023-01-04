@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect, Component } from "react";
 import { useLocation, useSearchParams, Link } from "react-router-dom";
-import { PDFObject } from "react-pdfobject";
+import { PDFObject } from 'react-pdfobject'
 import { toast } from "react-toastify";
 
-import "./EventDetails.css";
-import { backendURL } from "../../backendURL";
-import FadeIn from "../../components/fadein";
+import "./workshopDetails.css";
+import { backendURL } from "../backendURL";
+import FadeIn from "../components/fadein";
+
 
 function CreateEntry(props) {
   const eventTerm = props.eventInfo;
@@ -17,34 +18,6 @@ function CreateEntry(props) {
       key={eventTerm.id}
       eventTerm={eventTerm}
       eventSponsor={eventSponsor}
-    // name={eventTerm.name}
-    // img={eventTerm.image.replace(
-    //     "0.0.0.0:8888",
-    //     "apiv.prometeo.in"
-    // )}
-    // desc={eventTerm.description}
-    // team_size={eventTerm.max_team_size}
-    // prize={eventTerm.prize}
-    // date={eventTerm.date}
-    // rulebook={eventTerm.rulebook}
-    // sponsor_name={eventSponsor.map((sponsor) => {
-    //     if (sponsor.name) return sponsor.name;
-    //     else return "#";
-    // })}
-    // sponsor_image={
-    //     // for each sponsor, we need to get the image from the backend
-    //     // and then display it here
-    //     eventSponsor.map((sponsor) => {
-    //         return sponsor.image.replace(
-    //             "0.0.0.0:8888",
-    //             "apiv.prometeo.in"
-    //         );
-    //     })
-    // }
-    // sponsor_website={eventSponsor.map((sponsor) => {
-    //     if (sponsor.website) return sponsor.website;
-    //     else return "#";
-    // })}
     />
   );
 }
@@ -67,16 +40,32 @@ function Details(props) {
 
   // const checkProblem = props.problem_statement == null ? "tab-content" : "tab-hide"
   const tabHeading = props.problem_statement == null ? null : "tab-hide";
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://apply.devfolio.co/v2/sdk.js";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+
+  // tabs
+  var tabLinks = document.querySelectorAll(".tab_class");
+  var tabContent = document.querySelectorAll(".tab-content");
+
+  tabLinks.forEach(function (el) {
+    el.addEventListener("click", openTabs);
+  });
+
+  function openTabs(el) {
+    var btnTarget = el.currentTarget;
+    // var country = btnTarget.dataset.country;
+
+    tabContent.forEach(function (el) {
+      el.classList.remove("active");
+      el.classList.remove("default-active");
+    });
+
+    tabLinks.forEach(function (el) {
+      el.classList.remove("active");
+    });
+
+    // document.querySelector("#" + country).classList.add("active");
+
+    btnTarget.classList.add("active");
+  }
 
   function forceDownload(blob, filename) {
     var a = document.createElement('a');
@@ -87,16 +76,16 @@ function Details(props) {
     a.click();
     a.remove();
   }
-
+  
   // Current blob size limit is around 500MB for browsers
   async function downloadResource(url, filename) {
     if (!filename) filename = url.split('\\').pop().split('/').pop();
     await fetch(url, {
-      headers: new Headers({
-        'Origin': 'http://localhost:3000'
-      }),
-      mode: 'no-cors'
-    })
+        headers: new Headers({
+          'Origin': 'http://localhost:3000'
+        }),
+        mode: 'no-cors'
+      })
       .then(response => response.blob())
       .then(blob => {
         let blobUrl = window.URL.createObjectURL(blob);
@@ -104,7 +93,7 @@ function Details(props) {
       })
       .catch(e => console.error(e));
   }
-
+  
   // downloadResource('https://giant.gfycat.com/RemoteBlandBlackrussianterrier.webm');
 
   const handleDownload = (url) => {
@@ -130,13 +119,13 @@ function Details(props) {
   //   console.log("Yay, this browser supports inline PDFs.");
   // } else {
   //   console.log("Boo, inline PDFs are not supported by this browser");
-  // } 
+  // }
 
   return (
     <div className="event-details">
       <div className="event-details__header">
         <div className="event-details__back-button">
-          <Link to={`/competitions`}>
+          <Link to={`/workshop`}>
             <svg
               className="fa fa-backBtn"
               xmlns="http://www.w3.org/2000/svg"
@@ -150,95 +139,30 @@ function Details(props) {
           {eventTerm.name}
           <div className="event-details__title__underline"></div>
         </div>
-        {eventTerm.name === "Blockchain Hackathon" && (
-          <div className="blockchain__sponsors">
-            {/* <div className="blockchain__sponsors_text">Sponsored by</div> */}
-            {/* <div className="devfolio_button"> */}
-            {/* <Link id="eventRegis-button">Register</Link> */}
-            {/* <span>Apply with Devfolio</span> */}
-            <div
-              className="apply-button"
-              data-hackathon-slug="prometeo23-blockchain-hackathon"
-              data-button-theme="dark-inverted"
-            >
-              {/* Apply with Devfolio */}
-            </div>
-            {/* </div> */}
-            <div className="blockchain__sponsors_images">
-              <div className="sponsor_metal1">
-                <div className="sponsor_metal1_name">Diamond Sponsors</div>
-                <div className="event_sponsors_image1">
+        {eventSponsor.length > 0 && (
+          <div className="event-details__sponsors">
+            <div className="event-details__sponsors_text">Sponsored by</div>
+            <div className="event-details__sponsors_images">
+              {eventSponsor.map((sponsor) => {
+                return (
                   <img
-                    // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                    // src="../assets/logo_sponsors/Devfolio_Logo-White.svg"
-                    src="https://drive.google.com/uc?export=view&id=1dlWFRAQ9btrZxXNO0DnbghJaOrfADMps"
-                    //   title={sponsor.name}
+                    src={
+                      sponsor.image
+                        ? sponsor.image.replace(
+                          "0.0.0.0:8888",
+                          "apiv.prometeo.in"
+                        )
+                        : ""
+                    }
+                    title={sponsor.name}
                     alt="Sponsor Image"
-                  //   key={sponsor.id}
+                    key={sponsor.id}
                   />
-                  <img
-                    // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                    src="https://drive.google.com/uc?export=view&id=1oNsLi1garvuatbkdnMw2wR7MXOz5DzpV"
-                    //   title={sponsor.name}
-                    alt="Sponsor Image"
-                  //   key={sponsor.id}
-                  />
-                </div>
-              </div>
-              <div className="sponsor_metal2">
-                <div className="sponsor_metal2_name">Gold Sponsors</div>
-                <div className="event_sponsors_image2">
-                  <img
-                    // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                    src="https://drive.google.com/uc?export=view&id=1Ehq2SEFjT8tUY_QqH23yp2WHi-l9Q3XF"
-                    //   title={sponsor.name}
-                    alt="Sponsor Image"
-                  //   key={sponsor.id}
-                  />
-                  <img
-                    // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                    src="https://drive.google.com/uc?export=view&id=1twz-NvQkg8F4_0RnA6S9fQW8eNYIEw7j"
-                    //   title={sponsor.name}
-                    alt="Sponsor Image"
-                  //   key={sponsor.id}
-                  />
-                  <img
-                    // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
-                    src="https://drive.google.com/uc?export=view&id=1Ci9qGZs9QdNCWHp9nmxqBstp0iQ9aqTY"
-                    //   title={sponsor.name}
-                    alt="Sponsor Image"
-                  //   key={sponsor.id}
-                  />
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         )}
-        {eventSponsor.length > 0 &&
-          eventTerm.name !== "Blockchain Hackathon" && (
-            <div className="event-details__sponsors">
-              <div className="event-details__sponsors_text">Sponsored by</div>
-              <div className="event-details__sponsors_images">
-                {eventSponsor.map((sponsor) => {
-                  return (
-                    <img
-                      src={
-                        sponsor.image
-                          ? sponsor.image.replace(
-                            "0.0.0.0:8888",
-                            "apiv.prometeo.in"
-                          )
-                          : ""
-                      }
-                      title={sponsor.name}
-                      alt="Sponsor Image"
-                      key={sponsor.id}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          )}
       </div>
       <div className="event-details__body">
         <div className="event-details__body__left">
@@ -254,15 +178,6 @@ function Details(props) {
           />
           {/* </div> */}
           <div className="event-details__body__left__buttons">
-            {/* <Link id="eventRegis-button">Register</Link> */}
-
-            {/* {eventTerm.name == "Blockchain Hackathon" ? 
-              <a
-                href={eventTerm.external_link || ""}
-                className="event-details-register button-64"
-              >
-                <span>REGISTER</span>
-              </a>: "" } */}
             {eventTerm.external_link && (
               <a
                 href={eventTerm.external_link || ""}
@@ -283,19 +198,18 @@ function Details(props) {
                   }
                   target="_blank"
                   className="event-details-rulebook button-64"
-                  target={"_blank"}
                 >
-                  <span>RULEBOOK</span>
+                  <span>Content</span>
                 </a>
               ) : (
-                <div
+                <div 
                   className="event-details-rulebook button-64"
                   onClick={() => handleDownload(eventTerm.rulebook.replace(
                     "0.0.0.0:8888",
                     "apiv.prometeo.in"
                   ))}
                 >
-                  <span>RULEBOOK</span>
+                  <span>Content</span>
                 </div>
               )
             )}
@@ -303,10 +217,16 @@ function Details(props) {
         </div>
 
         <div className="event-details__body__right">
-          <div className="event-details__body__right__top">
-            <ul className="tabs">
-              <li className="">
+          <div className="workshop-details__body__right__top">
+            <ul className="workshopTabs">
+              <li className="tab_class active">
                 <a href="#tab1">Event Description</a>
+              </li>
+              <li className="tab_class">
+                <a href="#tab2">Discounts</a>
+              </li>
+              <li className="tab_class">
+                <a href="#tab3">Rules</a>
               </li>
               {/* <li className={tabHeading}>
                                 <a href="#tab2">Other Details</a>
@@ -314,39 +234,24 @@ function Details(props) {
               {/* <li><a href="#tab3">Contact Us</a></li> */}
             </ul>
 
-            <div className="tab-content default-active" id="tab1">
+            <div className="tab-content active active default-active" id="tab1">
               <div className="top-event-mains">
                 <div className="event-details__body__right__top__on">
                   On <span id="event-details-text">{eventTerm.date}</span>
                 </div>
                 <div className="event-details__body__right__top__prize">
-                  Prize Money{" "}
+                  Registration Fee
                   <span id="event-details-text">{eventTerm.prize}</span>
                 </div>
                 <div className="event-details__body__right__top__participation-type">
-                  Participation Type{" "}
+                  Participation Type
                   <span id="event-details-text">
                     {eventTerm.participation_type}
                   </span>
                 </div>
-                {eventTerm.max_team_size > 1 && (
-                  <div className="event-details__body__right__top__teams">
-                    Team Size{" "}
-                    {eventTerm.min_team_size === eventTerm.max_team_size ? (
-                      <span id="event-details-text">
-                        {eventTerm.max_team_size}
-                      </span>
-                    ) : (
-                      <span id="event-details-text">
-                        {eventTerm.min_team_size}-{eventTerm.max_team_size}
-                      </span>
-                    )}
-                  </div>
-                )}
                 {eventTerm.venue && (
                   <div className="event-details__body__right__top__venue">
-                    Venue{" "}
-                    <span id="event-details-text">{eventTerm.venue}</span>
+                    Venue <span id="event-details-text">{eventTerm.venue}</span>
                   </div>
                 )}
               </div>
@@ -354,14 +259,7 @@ function Details(props) {
               <div className="event-details__body__right__bottom">
                 {eventTerm.description && (
                   <>
-                    <p id="event-content-heading">
-                      Description
-                      {eventTerm.name === "Game Jam" ? (
-                        <h6>*Themes will be released on 5th of January</h6>
-                      ) : (
-                        ""
-                      )}
-                    </p>
+                    <p id="event-content-heading">Description</p>
                     <div className="event-details__body__right__bottom2">
                       {eventTerm.description}
                     </div>
@@ -370,27 +268,73 @@ function Details(props) {
                 )}
               </div>
             </div>
-          </div>
 
-          <div className="tab-content" id="tab2">
-            {/* <h2>Tab 2 Content</h2> */}
+            <div className="tab-content" id="tab2">
+              {/* <h2>Tab 2 Content</h2> */}
 
-            <hr className="event-details__body__right__bottom1__hr" />
-            <div className="event-details__body__right__bottom">
-              {eventTerm.problem_statement && (
-                <>
-                  <p id="event-content-heading">Problem Statement</p>
-                  <div
-                    className="event-details__body__right__bottom1"
-                    dangerouslySetInnerHTML={{
-                      __html: eventTerm.problem_statement,
-                    }}
-                  ></div>
-                </>
-              )}
+              <hr className="event-details__body__right__bottom1__hr" />
+              <div className="event-details__body__right__bottom">
+                <p id="event-content-heading">Discounts</p>
+                <div className="event-details__body__right__bottom2">
+                  <h2>Single registration offer:</h2>
+                  <p>
+                    Register and Pay fee before 15th January, 2023 to get free pass of Pronite.
+                  </p>
+                  <h2>Group Discounts:</h2>
+                  <p>
+                    Register as a group to avail the following discounts:
+                    <br /> 2 members Rs. 100 off
+                    <br /> 3 members Rs. 200 off
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="tab-content" id="tab3">
+              {/* <h2>Tab 2 Content</h2> */}
+
+              <hr className="event-details__body__right__bottom1__hr" />
+              <div className="event-details__body__right__bottom">
+                <p id="event-content-heading">Rules</p>
+                <div className="event-details__body__right__bottom2">
+                  <ul>
+                    <li>
+                      <b>Eligibility:</b>
+                      <p>
+                        Participants will have to register individually for each
+                        workshop.
+                      </p>
+                    </li>
+                    <li>
+                      <b>Payment Instructions:</b>
+                      <p>
+                        While paying the fees, login with the same credentials
+                        with which you had registered on the Website. Please
+                        enter the data correctly for us to process your payment
+                        information properly.
+                      </p>
+                    </li>
+                    <li>
+                      <b>Prerequisites:</b>
+                      <p>
+                        A laptop/PC with Microsoft Windows (7 or later & Minimum
+                        4GB RAM), configuration Internet Connectivity (Typically
+                        to be able to do video call / conferencing), Notepad &
+                        Pen..
+                      </p>
+                    </li>
+                    <br />
+                    <p>
+                      No Refunds will be entertained <br />
+                      **Limited number of seats
+                      <br />
+                      ** If the Workshop gets canceled, all the participants
+                      will be given a full refund, irrespective of the Deadline.
+                    </p>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-
           {/* <div className="tab-content" id="tab3">
                        
 
@@ -419,7 +363,7 @@ function Details(props) {
   );
 }
 
-function EventDetails() {
+function WorkshopDetails() {
   const [eventSponsor, setEventSponsor] = useState([]);
   const [eventInfo, setEventInfo] = useState([]);
   const [urlParams] = useSearchParams();
@@ -454,9 +398,7 @@ function EventDetails() {
       await fetch(fetchURL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          data = data.filter(
-            (item) => item.id == urlParams.get("id")
-          );
+          data = data.filter((item) => item.id == urlParams.get("id"));
           setEventInfo(data[0]);
           // console.log("Data:", data[0]);
         })
@@ -498,9 +440,7 @@ function EventDetails() {
       await fetch(fetchURL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          data = data.filter(
-            (item) => item.event == urlParams.get("id")
-          );
+          data = data.filter((item) => item.event == urlParams.get("id"));
           setEventSponsor([...data]);
           // console.log("Data:", data);
         })
@@ -520,13 +460,10 @@ function EventDetails() {
   return (
     <FadeIn duration={500}>
       <div id="EventDetailsPage" className="contentDiv">
-        <CreateEntry
-          eventInfo={eventInfo}
-          eventSponsor={eventSponsor}
-        />
+        <CreateEntry eventInfo={eventInfo} eventSponsor={eventSponsor} />
       </div>
     </FadeIn>
   );
 }
 
-export default EventDetails;
+export default WorkshopDetails;

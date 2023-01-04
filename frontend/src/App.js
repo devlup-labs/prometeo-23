@@ -18,6 +18,7 @@ import Speaker from "./pages/Speakers/speaker";
 import Gallery from "./pages/Gallery/newGallery";
 import NewGallery from "./pages/Gallery/newNewGallery";
 import Sponsors from "./pages/Sponsors/sponsors";
+import Workshop from "./pages/workshop";
 import Theme from "./components/Theme";
 import Team from "./pages/Team/newTeam";
 import CA from "./pages/ca";
@@ -26,6 +27,7 @@ import AccForm from "./pages/Accommodation/accForm";
 
 import Events from "./pages/Competitions/Event.js";
 import EventDetails from "./pages/Competitions/Event_details";
+import WorkshopDetails from "./pages/workshop_details";
 import Event_createTeam from "./pages/Competitions/event_createTeam";
 import Event_joinTeam from "./pages/Competitions/event_joinTeam";
 
@@ -72,8 +74,10 @@ function App() {
                         <Route path="/accommodation" element={<Accommodation />} />
                         <Route path="/accommodation-registration" element={<AccForm />} />
 
+                        <Route path="/workshop" element={<Workshop />} />
                         <Route path="/competitions" element={<Events />} />
                         <Route path="/event-details" element={<EventDetails />} />
+                        <Route path="/workshop-details" element={<WorkshopDetails />} />
                         {/* <Route exact path='/create-team' element={<PrivateRoute />}>
                             <Route exact path='/create-team' element={<Event_createTeam />} />
                         </Route>

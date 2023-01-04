@@ -3,7 +3,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Exo+2&family=Josefin+Sans&family=Teko:wght@300&display=swap");
 
-#eventsPage {
+#workshopPage {
     /* overflow-y: auto; */
     box-sizing: border-box;
     /* padding: 0 1vw; */
@@ -18,22 +18,28 @@
     /* background-image: url('../assets/homePage/background_pattern_t3.png');
 	background-repeat: repeat;
 	background-size: 20%; */
-    min-height: 90vh;
-    display: grid;
+    /* min-height: 90vh; */
+    /* display: grid; */
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
 }
 
-#eventsPage .section-header {
+#workshopPage .section-header {
     /* "EVENTS" */
     color: #84f4eb;
     font-family: "Share Tech", sans-serif;
     /* font-family: "Exo 2", sans-serif; */
     /* margin-left: auto; */
-    margin-right: auto;
-    font-size: 7vmin;
+    /* margin-right: auto; */
+    margin: auto;
+    font-size: 10vmin;
     font-weight: 900;
-    top: 2vmin;
+    top: 5vmin;
     /* margin-bottom: 0; */
-    padding-left: 4vw;
+    /* padding-left: 4vw; */
 }
 
 :root {
@@ -69,26 +75,28 @@ a {
     text-decoration: none;
 }
 
-.event_Hero-section {
+.workshop_Hero-section {
   /* align-items: flex-start; */
   /* background-image: linear-gradient(15deg, #0f4667 0%, #2a6973 150%); */
   display: flex;
   /* width: 100%; */
   justify-content: center;
   margin-top: 10vh;
-  padding: var(--spacing-xl) var(--spacing-s);
+  justify-content: center;
+  align-items: center;
 }
 
-.event_Card-grid {
+.workshop-Card-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: var(--spacing-xl);
-    grid-row-gap: var(--spacing-xl);
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: var(--spacing-xxl);
+    /* grid-row-gap: var(--spacing-xl); */
     /* max-width: var(--width-container); */
     max-width: 100%;
-    width: 100%;
+    width: 90%;
     font-weight: 800;
     opacity: 100%;
+    /* text-align: center; */
     /* text-shadow: 1px 1px 2px rgb(16, 28, 39); */
 }
 
@@ -103,7 +111,7 @@ a {
   font-size: 6vmin;
 }
 
-.event_Card {
+.workshop_card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -116,13 +124,15 @@ a {
     /* border-radius: 1em; */
 }
 
-.event_Card:before {
+.workshop_card:before {
     content: "";
     display: block;
     /* padding-bottom: 150%; */
     width: 100%;
 }
-
+.workshop_taabcontent{
+    margin-top: 0;
+}
 .event_Card-background {
     background-size: cover;
     background-position: center;
@@ -173,7 +183,7 @@ border-radius: 12px 12px 0px 0px;
   top: 30%;
   left: -20%;
 } */
-.event_Card:hover .event_Card-background {
+.workshop_card:hover .event_Card-background {
     transform: scale(1) translateZ(0);
     /* top: -10px; */
     bottom: 10px;
@@ -188,8 +198,8 @@ border-radius: 12px 12px 0px 0px;
   All the non-hovered divs before the hovered one are selected using the first selector
   and all the non-hovered divs after the hovered one are selected using the second selector
 */
-.event_Card:not(:hover):has(~ .event_Card:hover) .event_Card-background,
-.event_Card:hover ~ .event_Card:not(:hover) .event_Card-background {
+.workshop_card:not(:hover):has(~ .workshop_card:hover) .event_Card-background,
+.workshop_card:hover ~ .workshop_card:not(:hover) .event_Card-background {
     /* filter: brightness(1.2) saturate(0) contrast(1.2) blur(15px); */
     filter: brightness(0.5) saturate(1.2) contrast(1.2) blur(15px);
 }
@@ -217,8 +227,8 @@ border-radius: 12px 12px 0px 0px;
     font-size: 1.5rem;
     font-weight: 500;
 }
-.event_Card-prize-val {
-    font-size: 2rem;
+.workshop_Card-prize-val {
+    font-size: 1.5rem;
     font-weight: 900;
 }
 
@@ -306,7 +316,7 @@ border-radius: 12px 12px 0px 0px;
 }
 
 @media (max-width: 600px) {
-    .event_Card {
+    .workshop_card {
         height: 45vmin;
         min-height: 240px;
         width: 65vmin;
@@ -315,7 +325,7 @@ border-radius: 12px 12px 0px 0px;
 
         border: 1px solid #ffffff;
     }
-    .event_Card-grid {
+    .workshop-Card-grid {
         grid-template-columns: repeat(1, 1fr);
         grid-row-gap: var(--spacing-xxl);
     }
@@ -324,7 +334,7 @@ border-radius: 12px 12px 0px 0px;
     top: 0;
     bottom: 0;
   } */
-    .event_Card:hover .event_Card-background {
+    .workshop_card:hover .event_Card-background {
         transform: none;
         transition: none;
         background-position: center;
@@ -336,8 +346,8 @@ border-radius: 12px 12px 0px 0px;
     .event_Card-prize {
         font-size: 1rem;
     }
-    .event_Card-prize-val {
-        font-size: 1.5rem;
+    .workshop_Card-prize-val {
+        font-size: 1rem;
     }
     .event_Card-fee-val {
         font-size: 1rem;
@@ -348,7 +358,7 @@ border-radius: 12px 12px 0px 0px;
     .event_Card-date {
         font-size: 1rem;
     }
-    .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
+    .workshop-Card-grid:hover .workshop_card:not(:hover) .event_Card-background {
         filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(1px);
     }
     #buttons {
@@ -357,16 +367,16 @@ border-radius: 12px 12px 0px 0px;
     }
 }
 @media (600px < width <= 950px) {
-    .event_Card-grid {
+    .workshop-Card-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .event_Card:hover .event_Card-background {
+    .workshop_card:hover .event_Card-background {
         transform: none;
         transition: none;
         background-position: center;
         /* filter: none; */
     }
-    .event_Card-grid:hover .event_Card:not(:hover) .event_Card-background {
+    .workshop-Card-grid:hover .workshop_card:not(:hover) .event_Card-background {
         /* filter: none; */
         filter: brightness(0.5) saturate(1.2) contrast(0.85) blur(1px);
     }
@@ -380,14 +390,14 @@ border-radius: 12px 12px 0px 0px;
   } */
 }
 @media (950px < width <= 1150px) {
-    .event_Card-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .workshop-Card-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     .event_Card-prize {
         font-size: 1.2rem;
     }
-    .event_Card-prize-val {
-        font-size: 1.7rem;
+    .workshop_Card-prize-val {
+        font-size: 1.2rem;
     }
     .event_Card-fee-val {
         font-size: 1.2rem;
@@ -400,10 +410,10 @@ border-radius: 12px 12px 0px 0px;
     }
 }
 @media (1150px < width <=1205px) {
-    .event_Card-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .workshop-Card-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .event_Card {
+    .workshop_card {
         margin: auto;
         width: 90%;
     }

@@ -139,12 +139,7 @@ function Entry(props) {
                 {/* <img src={props.image} /> */}
             </div>
             <section
-                className="robowar_flag-bottom-bg"
-                style={{
-                    backgroundImage:
-                        "https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFV2EPcpTU&#x2F;view?",
-                }}
-            >
+                className="robowar_flag-bottom-bg">
                 <div className="robowar_flagAbout">
                     <h3 className="title-shadow">ABOUT</h3>
                     <section className="robowar_Abouttable">
