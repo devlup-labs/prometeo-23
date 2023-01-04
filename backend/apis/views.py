@@ -372,6 +372,9 @@ class LoginDashboardViewSet(APIView):
         user_email = request.data.get('email')
         if(ExtendedUser.objects.filter(email=user_email)).exists():
             user = ExtendedUser.objects.filter(email=user_email).first()
+            pass_user = Passes.objects.filter(user=user).first()
+            user.pass_type = pass_user.pass_type
+            user.save()
             serializers = LoginDashboardSerializers(user)
             return Response(serializers.data)
 
@@ -668,4 +671,3 @@ class UploadSS(APIView):
         passusr.payment_ss = file
         passusr.save()
         return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Screenshot Uploaded Successfully'})
-
