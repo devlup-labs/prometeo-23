@@ -34,7 +34,12 @@ export default function Accommodation() {
                     let data = response.data;
                     // console.log(data);
                     if (data.length > 0) {
-                        document.getElementById("acc-register-button").innerHTML = "<span class='button-text'>PAY NOW!</span>";
+                        document.getElementById(
+                            "acc-register-button"
+                        ).innerHTML =
+                            "<span class='button-text'>PAY NOW!</span>";
+                        if (document.getElementById("acc_info") !== null)
+                            document.getElementById("acc_info").style.display = "block";
                     }
                 } else {
                     // console.log(response)
@@ -67,7 +72,6 @@ export default function Accommodation() {
                         className="acc-button-48"
                         onClick={() => {
                             if (user) {
-                                
                                 // toast.success("Redirecting to form!");
                                 navigate("/accommodation-registration");
                             } else {
@@ -78,6 +82,9 @@ export default function Accommodation() {
                     >
                         <span className="button-text">REGISTER NOW!</span>
                     </button>
+                    <p id="acc_info">
+                        If you have recently paid for the pass, it will be reflected on the website within a day.
+                    </p>
                     {/* </Link> */}
                 </div>
                 <div className="acc-content">
@@ -191,10 +198,11 @@ export default function Accommodation() {
                                     participants.
                                 </li>
                                 <li>
-                                    Institute will provide the <strong>pickup and drop
-                                    facility</strong> to the participants between
-                                    bus/railway stations and campus during the
-                                    dates which will be announced soon.
+                                    Institute will provide the{" "}
+                                    <strong>pickup and drop facility</strong> to
+                                    the participants between bus/railway
+                                    stations and campus during the dates which
+                                    will be announced soon.
                                 </li>
                             </ol>
                         </span>

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap');
 
+* {
+    /* background-color:rgba(35, 82, 126, 0.2) */
+}
+
 .acc-form-main {
     position: relative;
 	font-family: 'Josefin Sans', sans-serif;
@@ -27,9 +31,135 @@
     }
 }
 
+#acc-upi {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #101c27;
+    z-index: 1;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(35, 82, 126, 0.5);
+    /* border: 2px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vmin;
+    padding: 4vmin;
+    font-size: 2.5vmin;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #5bb9df;
+    z-index: 99;
+    /* display: none; */
+}
+
+@media screen and (max-width: 800px) {
+    #acc-upi {
+        /* top: 10vh; */
+        height: fit-content;
+        flex-direction: column-reverse;
+        gap: 8vmin;
+    }
+}
+
+#acc-upi-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2vmin;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    flex-grow: 1;
+    font-size: min(22px, 5vmin);
+}
+
+@media screen and (max-width: 800px) {
+    #acc-upi-info {
+        width: 100%;
+        height: fit-content;
+    }
+}
+
+.acc-upi-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vmin;
+    flex-grow: 1;
+}
+
+#acc-upi-qr {
+    height: 100%;
+    max-height: 40vh;
+}
+
+@media screen and (max-width: 768px) {
+    #acc-upi-qr {
+        max-height: 25vh;
+    }
+}
+
+.acc-upi-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    max-height: 70%;
+    align-items: center;
+    gap: 2vmin;
+}
+
+.acc-upi-upload {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2vmin;
+}
+
+#acc-payment-ss {
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .acc-upi-top {
+        flex-direction: column;
+    }
+}
+
+#acc-payment-preview {
+    height: 100%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vmin;
+    justify-content: space-evenly;
+}
+
+@media screen and (max-width: 800px) {
+    #acc-payment-preview {
+        max-width: 100%;
+        height: fit-content;
+    }
+}
+
+#acc-payment-preview img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    max-height: 90%;
+}
+
+/* #acc-payment-preview > button {
+    margin: auto;
+} */
+
 #acc-success {
     position: absolute;
-    height: fit-content;
+    height: 100%;
     width: 100%;
     color: #5bb9df;
     font-family: 'Josefin Sans', sans-serif;
@@ -43,12 +173,13 @@
     background-color: #101c27;
     z-index: 2;
     border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(35, 82, 126, 0.5);
     /* border: 2px solid white; */
 
     /* overflow-x: scroll; */
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     #acc-success {
         /* top: 10vh; */
         height: fit-content;
@@ -65,6 +196,19 @@
     border: 1px solid #dddddd;
 }
 
+#acc-pay-options {
+    display: flex;
+    justify-content: center;
+    gap: 2vmin;
+}
+
+@media screen and (max-width: 800px) {
+    #acc-pay-options {
+        flex-direction: column;
+        gap: 1vmin;
+    }
+}
+
 .acc-pay-button {
     color: #101c27;
     background-color: #5be2d7;
@@ -73,9 +217,9 @@
     transition: filter 0.2s ease-out;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .acc-pay-button {
-        font-size: min(25px, 6vmin);
+        font-size: min(22px, 5vmin);
     }
 
     #acc-table {
@@ -97,9 +241,9 @@
     /* align-items: center; */
     /* padding: 5vh 3vw; */
     position: relative;
-    box-shadow: 0 0 10px 0 rgba(35, 82, 126, 0.5);
     border-radius: 20px;
     /* border: 1px solid #84f4eb; */
+    /* border: 2px solid red; */
 }
 
 .acc-container-left {
@@ -394,7 +538,7 @@
     }
 }
 
-@media (orientation: portrait) {
+@media (max-width: 800px) {
     .acc-container {
         /* position: absolute;
         top: 4%; */

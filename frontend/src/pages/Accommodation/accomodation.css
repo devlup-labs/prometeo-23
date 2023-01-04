@@ -111,6 +111,12 @@
     }
 }
 
+#acc_info {
+    font-size: max(20px, 3.5vmin);
+    /* visibility: hidden; */
+    display: none;
+}
+
 .acc-content {
     position: relative;
     width: 100%;

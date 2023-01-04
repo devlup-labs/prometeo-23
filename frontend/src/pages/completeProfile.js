@@ -85,7 +85,7 @@ function CompleteProfile() {
         const accomodation = e.target.acc.checked;
         // const  accomodation = e.target.acc.value === "on";
 
-        console.log(city, college, contact, gender, referral_code, email, ambassador, accomodation)
+        // console.log(city, college, contact, gender, referral_code, email, ambassador, accomodation)
         const myPromise = new Promise((resolve, reject) => {
             completeProfileGoogleUser(
                 // first_name,
