@@ -174,14 +174,14 @@ function Details(props) {
                     src="https://drive.google.com/uc?export=view&id=1dlWFRAQ9btrZxXNO0DnbghJaOrfADMps"
                     //   title={sponsor.name}
                     alt="Sponsor Image"
-                  //   key={sponsor.id}
+                    //   key={sponsor.id}
                   />
                   <img
                     // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
                     src="https://drive.google.com/uc?export=view&id=1oNsLi1garvuatbkdnMw2wR7MXOz5DzpV"
                     //   title={sponsor.name}
                     alt="Sponsor Image"
-                  //   key={sponsor.id}
+                    //   key={sponsor.id}
                   />
                 </div>
               </div>
@@ -193,21 +193,21 @@ function Details(props) {
                     src="https://drive.google.com/uc?export=view&id=1Ehq2SEFjT8tUY_QqH23yp2WHi-l9Q3XF"
                     //   title={sponsor.name}
                     alt="Sponsor Image"
-                  //   key={sponsor.id}
+                    //   key={sponsor.id}
                   />
                   <img
                     // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
                     src="https://drive.google.com/uc?export=view&id=1twz-NvQkg8F4_0RnA6S9fQW8eNYIEw7j"
                     //   title={sponsor.name}
                     alt="Sponsor Image"
-                  //   key={sponsor.id}
+                    //   key={sponsor.id}
                   />
                   <img
                     // src="../assets/logo_sponsors/Devfolio_Logo-Colored.png"
                     src="https://drive.google.com/uc?export=view&id=1Ci9qGZs9QdNCWHp9nmxqBstp0iQ9aqTY"
                     //   title={sponsor.name}
                     alt="Sponsor Image"
-                  //   key={sponsor.id}
+                    //   key={sponsor.id}
                   />
                 </div>
               </div>
@@ -225,9 +225,9 @@ function Details(props) {
                       src={
                         sponsor.image
                           ? sponsor.image.replace(
-                            "0.0.0.0:8888",
-                            "apiv.prometeo.in"
-                          )
+                              "0.0.0.0:8888",
+                              "apiv.prometeo.in"
+                            )
                           : ""
                       }
                       title={sponsor.name}
@@ -272,8 +272,8 @@ function Details(props) {
                 <span>REGISTER</span>
               </a>
             )}
-            {eventTerm.rulebook && (
-              PDFObject.supportsPDFs ? (
+            {eventTerm.rulebook &&
+              (PDFObject.supportsPDFs ? (
                 <a
                   href={
                     eventTerm.rulebook.replace(
@@ -289,15 +289,18 @@ function Details(props) {
               ) : (
                 <div
                   className="event-details-rulebook button-64"
-                  onClick={() => handleDownload(eventTerm.rulebook.replace(
-                    "0.0.0.0:8888",
-                    "apiv.prometeo.in"
-                  ))}
+                  onClick={() =>
+                    handleDownload(
+                      eventTerm.rulebook.replace(
+                        "0.0.0.0:8888",
+                        "apiv.prometeo.in"
+                      )
+                    )
+                  }
                 >
                   <span>RULEBOOK</span>
                 </div>
-              )
-            )}
+              ))}
           </div>
         </div>
 
@@ -344,8 +347,7 @@ function Details(props) {
                 )}
                 {eventTerm.venue && (
                   <div className="event-details__body__right__top__venue">
-                    Venue{" "}
-                    <span id="event-details-text">{eventTerm.venue}</span>
+                    Venue <span id="event-details-text">{eventTerm.venue}</span>
                   </div>
                 )}
               </div>
@@ -356,7 +358,9 @@ function Details(props) {
                     <p id="event-content-heading">
                       Description
                       {eventTerm.name === "Game Jam" ? (
-                        <h6>*Themes will be released on 5th of January</h6>
+                        <a href="https://rb.gy/xcxyiq">
+                          Themes are released please click here!
+                        </a>
                       ) : (
                         ""
                       )}
