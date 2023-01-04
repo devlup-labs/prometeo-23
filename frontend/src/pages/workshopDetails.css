@@ -308,16 +308,19 @@
     }
 }
 
-.event-details__body__right__top {
+.workshop-details__body__right__top {
     font-size: 3vmin !important;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+.workshop-details__body__right__top ul{
+    margin-bottom: 0;
+}
 
 @media screen and (max-width: 900px) {
-    .event-details__body__right__top {
+    .workshop-details__body__right__top {
         font-size: 4vmin !important;
     }
     .event-details__sponsors {
@@ -332,12 +335,12 @@
     }
 }
 
-.event-details__body__right__top * {
+.workshop-details__body__right__top * {
     /* display: flex;
 	align-items: center; */
     color: blanchedalmond;
     font-weight: 600;
-    margin-left: 2vmin;
+    /* margin-left: 2vmin; */
     /* border: 2px solid white; */
 }
 
@@ -389,20 +392,14 @@
     color: #c6eaed !important;
 }
 
-#event-content-heading{
-    display: flex;
-    flex-direction: row;
+#event-content-heading {
     color: white;
     font-family: Gentona;
     font-weight: 300;
     font-size: 5vmin !important;
     text-shadow: 0 2px 10px black;
 }
-#event-content-heading h6{
-    color: white;
-    text-shadow: none;
-    margin-left: 30vmin;
-}
+
 .event-details__body__right__bottom1 {
     font-size: 3vmin;
 }
@@ -510,11 +507,11 @@
 
 /* FOR TABS */
 
-.tabs {
+.workshopTabs {
     /* Reset default styles for the unordered list */
     position: relative;
     list-style: none;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     padding: 0;
     overflow: hidden;
     width: 100%;
@@ -522,18 +519,18 @@
     justify-content: center;
 }
 
-.tabs > li {
+/* .workshopTabs > li {
     text-decoration: underline;
-}
+} */
 #tab2 {
     padding: 3%;
 }
-.tabs li {
+.workshopTabs li {
     /* Float the list items horizontally */
     float: left;
 }
 
-.tabs a {
+.workshopTabs a {
     /* Style the tab links */
     display: block;
     padding: 15px 20px;
@@ -550,8 +547,8 @@
     transition: 0.2s;
 }
 
-.tabs a:hover,
-.tabs a.active {
+.workshopTabs a:hover,
+.workshopTabs a.active {
     /* Change the background color of the tab links when hovered or active */
     background-color: #4f35cf64;
 }
@@ -578,4 +575,33 @@
 }
 .tab-hide {
     display: none;
+}
+.tab_class{
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr); */
+    /* grid-column-gap: var(--spacing-xl);
+    grid-row-gap: var(--spacing-xl); */
+    width: 100%;
+    border: solid white;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+}
+.tab_class a{
+    height: 100%;
+}
+@media screen and (max-width: 500px){
+    .workshopTabs a{
+        display: flex;
+        justify-content: center;
+    padding: 5px 10px;
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 400px){
+    .workshopTabs a{
+        display: flex;
+            align-items: center;
+    padding: 5px 10px;
+        font-size: 0.8rem;
+    }
 }
