@@ -208,15 +208,13 @@ function Details(props) {
                 <div className="event-details__body__right__bottom2">
                   <h2>Single registration offer:</h2>
                   <p>
-                    Register and Pay before 8th January, 2023 to get free pass
-                    and Rs. 50 off
+                    Register and Pay fee before 15th January, 2023 to get free pass of Pronite.
                   </p>
                   <h2>Group Discounts:</h2>
                   <p>
                     Register as a group to avail the following discounts:
-                    <br /> 2 members Rs. 150 off
-                    <br /> 3 members Rs. 300 off
-                    <br /> 4 members Rs. 500 off
+                    <br /> 2 members Rs. 100 off
+                    <br /> 3 members Rs. 200 off
                   </p>
                 </div>
               </div>
