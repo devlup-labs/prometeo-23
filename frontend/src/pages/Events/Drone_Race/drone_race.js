@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 import flagshipEvents_data from "./dummy_dronerace";
 import "./dronerace.css";
+import dronebg from "../../../assets/events/banners_faidroneworld2018-1-1200x550.png";
 
 // import logo from "../assets/navbar/prometeo_logo_23.png";
 // import Footer from "../components/footer";
@@ -137,7 +138,7 @@ function Entry(props) {
             <div
                 className="dronerace_flagTop-container"
                 style={{
-                    backgroundImage: `url(${props.bg})`,
+                    backgroundImage: `url(${dronebg})`,
                 }}
             >
                 {/* <img src={props.image} /> */}
