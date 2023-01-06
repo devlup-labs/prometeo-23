@@ -517,6 +517,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 /* .workshopTabs > li {
@@ -533,22 +534,20 @@
 .workshopTabs a {
     /* Style the tab links */
     display: block;
-    padding: 5px 20px;
+    padding: 10px 20px;
     margin: auto;
-    background-color: transparent;
-    color: #ba94d1;
+    background-color: cadetblue;
+    color: white;
     text-decoration: dashed;
     font-size: 1.4rem;
     font-weight: 700;
-    border-radius: 10px;
     border-color: #c3ccde;
     border-style: groove;
     position: relative;
     transition: 0.2s;
 }
 
-.workshopTabs a:hover,
-.workshopTabs a.active {
+.workshopTabs a:hover{
     /* Change the background color of the tab links when hovered or active */
     background-color: #4f35cf64;
 }
@@ -582,12 +581,17 @@
     /* grid-column-gap: var(--spacing-xl);
     grid-row-gap: var(--spacing-xl); */
     width: 100%;
-    border: solid white;
-    border-radius: 10px 10px 0 0;
+    border: solid #9772fb 1px;
+    box-shadow: 0 0 50px #4f35cf64;
+    /* border-radius: 10px 10px 0 0; */
     text-align: center;
 }
 .tab_class a{
     height: 100%;
+}
+.workshopTabs .active a{
+    background-color: #4f35cf64;
+    border: none;
 }
 @media screen and (max-width: 500px){
     .workshopTabs a{
