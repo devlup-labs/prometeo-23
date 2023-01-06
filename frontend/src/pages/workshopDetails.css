@@ -517,7 +517,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
 }
 
 /* .workshopTabs > li {
@@ -534,7 +534,7 @@
 .workshopTabs a {
     /* Style the tab links */
     display: block;
-    padding: 10px 20px;
+    padding: 5px 20px;
     margin: auto;
     background-color: cadetblue;
     color: white;
@@ -547,7 +547,7 @@
     transition: 0.2s;
 }
 
-.workshopTabs a:hover{
+.workshopTabs a:hover,.workshopTabs .active a{
     /* Change the background color of the tab links when hovered or active */
     background-color: #4f35cf64;
 }
@@ -593,10 +593,7 @@
     justify-content: center;
     align-items: center;
 }
-.workshopTabs .active a{
-    background-color: #4f35cf64;
-    border: none;
-}
+
 @media screen and (max-width: 500px){
     .workshopTabs a{
         display: flex;
