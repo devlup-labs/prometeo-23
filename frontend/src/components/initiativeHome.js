@@ -10,7 +10,7 @@ export default function InitiativeHome() {
         <div id="initiativeHome-container">
             <div id="initiativeHome">
                 <div id="initiativeHome-title">
-                    <div id="initiativeHome-subheading">SOCIAL INITIATIVE</div>
+                    <div id="initiativeHome-subheading">RADICAL SOCIAL INITIATIVE</div>
                     <div id="initiativeHome-heading">UMANG</div>
                 </div>
                 <div id="initiativeHome-bottom-section">
