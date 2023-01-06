@@ -519,6 +519,17 @@ class GoogleCompleteProfileViewSet(APIView):
             user.accomodation = request.data.get('accomodation')
             is_ca = request.data.get('ambassador')
             rc = request.data.get('referral_code')
+
+            id_registration= 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+            def id_check(c):
+                if(ExtendedUser.objects.filter(registration_id=c)).exists():
+                    c = 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+                    id_check(c)
+                return c
+            id = id_check(id_registration)
+            user.registration_id =id
+
+
             if(rc != None and rc != "" and is_ca == False):
                 if(ExtendedUser.objects.filter(invite_referral=rc)).exists():
                     user.referral_code = rc
@@ -564,6 +575,23 @@ class GoogleCompleteProfileViewSet(APIView):
                     message.mixed_subtype = 'related'
                     message.send()
             
+
+            with get_connection(
+                    username=settings.EMAIL_HOST_USER,
+                    password=settings.EMAIL_HOST_PASSWORD
+                ) as connection:
+                    sendMailID = settings.FROM_EMAIL_USER
+                    subject = "Registration"
+                    isRegistration=True
+                    msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo '23 - the Technical Fest of IIT Jodhpur ."
+                    # message = "You have successfully registered."
+                    html_content = render_to_string("Register_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'registration_id':user.registration_id, 'isRegistration': isRegistration})
+                    text_content = strip_tags(html_content)
+                    message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=sendMailID, to=[user.email], connection=connection)
+                    message.attach_alternative(html_content, "text/html")
+                    message.mixed_subtype = 'related'
+                    message.send()
+
             user.isProfileCompleted = True
             user.save()
             print(user.isProfileCompleted)
