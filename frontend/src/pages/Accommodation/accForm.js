@@ -412,13 +412,13 @@ function AccForm() {
                                     {/* Coming Soon! */}
                                 </button>
                             </a>
-                            {/* <button
+                            <button
                                 type="submit"
                                 className="acc-pay-button"
                                 onClick={showUPI}
                             >
                                 Pay using UPI
-                            </button> */}
+                            </button>
                         </div>
                         {/* <Link to="/accommodation"> */}
                         {/* insert link to pdf */}

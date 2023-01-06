@@ -89,45 +89,55 @@
 
 #dashboard-pass {
     box-sizing: border-box;
-    width: 55%;
-    height: 30vh;
-    background-color: rgb(233, 187, 36);
-    padding: 5px;
+    width: 40%;
+    height: fit-content;
+    /* background-color: rgb(233, 187, 36); */
+    /* padding: 5px; */
+    position: relative;
+    overflow: hidden;
+    /* background-image: url("../assets/ticket1.png"); */
+    /* background-size: contain; */
+    /* background-position: 0% 0%; */
+    /* transition: background-position 1s ease-in-out; */
+    box-shadow: 0 5px 20px rgb(51, 51, 51);
 }
 
 #dashboard-pass-container {
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 0 8px rgb(233, 187, 36);
-    border: 2px solid black;
-    border-style: dashed;
-    padding: 2% 4%;
+    /* box-shadow: 0 0 8px rgb(233, 187, 36); */
+    /* border: 2px solid rgb(255, 255, 255); */
+    /* border-style: dashed; */
+    padding-bottom: 33.33%;
+    position: relative;
 }
 
 #dashboard-pass-left {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
     box-sizing: border-box;
-    max-width: 40%;
+    max-width: 30%;
     height: 100%;
     display: flex;
+    color: whitesmoke;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border-right: 2px solid black;
+    border-right: 2px solid rgb(255, 255, 255);
     padding-right: 10px;
 }
 
 #dashboard-pass-left-title {
     height: 30%;
     width: 100%;
-    color: black;
     text-align: center;
-    font-size: max(4vmin, 24px);
+    font-size: min(6vmin, 30px);
     font-weight: 700;
+    font-family: "Gentona", sans-serif;
 }
 
 #dashboard-pass-left-image {
@@ -143,22 +153,33 @@
 }
 
 #dashboard-pass-right {
+    position: absolute;
+    top: 0; bottom: 0; left: 30%; right: 0;
     box-sizing: border-box;
-    width: 55%;
+    width: 70%;
     height: 100%;
-    flex-grow: 0.8;
+    /* flex-grow: 0.8; */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: flex-start;
+    color: white;
 }
 
+/* #dashboard-pass-right * {
+    border: 2px solid black;
+} */
+
 #dashboard-pass-right-title {
-    height: 30%;
-    width: 100%;
-    color: black;
-    font-size: max(3.5vmin, 21px);
-    font-weight: 700;
+    position: absolute;
+    height: 50%;
+    object-fit: contain;
+    max-width: 50%;
+    /* border: 2px solid red; */
+    top: 0;
+    right: 0;
+    /* background: #161e25; */
+    border-bottom-left-radius: 20px;
 }
 
 #dashboard-pass-right-content {
@@ -167,15 +188,26 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: black;
     font-size: max(2.5vmin, 15px);
+    font-family: "Josefin Sans", sans-serif;
     font-weight: 500;
 }
 
 #dashboard-pass-right-content-pass-status-value {
-    color: #6f1530;
     font-size: max(4vmin, 24px);
     font-weight: 700;
+    transition: color 10s ease-in-out;
+}
+
+.gradient {
+    position: relative;
+    min-height: 200px;
+    background-image: linear-gradient(
+        to right,
+        hsl(211, 100%, 50%),
+        hsl(179, 100%, 30%)
+    );
+    z-index: 1;
 }
 
 #dashboard-caDetails {
@@ -451,7 +483,7 @@
     }
 
     #dashboard-pass {
-        height: 20vh;
+        /* height: 20vh; */
         width: 100%;
         margin-top: 2vh;
     }

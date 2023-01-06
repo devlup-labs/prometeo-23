@@ -1,0 +1,8 @@
+
+#download-ticket-button {
+    color: #101c27;
+    background-color: #5be2d7;
+    padding: 1vmin 2vmin 0.7vmin 2vmin;
+    border-radius: 1.5vmin;
+    transition: filter 0.2s ease-out;
+}
