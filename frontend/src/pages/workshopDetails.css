@@ -585,9 +585,13 @@
     box-shadow: 0 0 50px #4f35cf64;
     /* border-radius: 10px 10px 0 0; */
     text-align: center;
+    justify-content: center;
 }
 .tab_class a{
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .workshopTabs .active a{
     background-color: #4f35cf64;
