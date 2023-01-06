@@ -137,17 +137,17 @@ function App() {
                                 element={<Dronerace_Register />}
                             />
                         </Route>
-                        <Route
+                        {/* <Route
                             exact
                             path="/dashboard"
                             element={<PrivateRoute />}
-                        >
+                        > */}
                             <Route
                                 exact
                                 path="/dashboard"
                                 element={<Dashboard />}
                             />
-                        </Route>
+                        {/* </Route> */}
                         <Route
                             exact
                             path="/login"

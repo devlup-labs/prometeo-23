@@ -11,6 +11,7 @@ import useAxios from "../context/context_useAxios";
 import rocketImg from "../assets/icons/rocket.png";
 import PrometeoLogo from "../assets/homePage/prometeo-updated.png";
 import { Navigate } from "react-router-dom";
+import domtoimage from "dom-to-image";
 
 import ticket1 from "../assets/ticket1.png";
 import ticket2 from "../assets/ticket2.png";
@@ -150,45 +151,62 @@ function Dashboard() {
         fetchData();
     }, []);
 
+    function load(src) {
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            image.addEventListener("load", resolve);
+            image.addEventListener("error", reject);
+            image.src = src;
+        });
+    }
+
+    const [ticketLoaded, setTicketLoaded] = useState(false);
+
     useEffect(() => {
-        if (userData) {
-            // console.log(userData);
-            if (userData.pass_type === 1) {
-                document.getElementById("dashboard-pass-container").style.background =
-                    "url(" + ticket2 + ")";
-                document.getElementById("dashboard-pass-container").style.backgroundSize = "contain";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.color = "#ffbb00";
-            }
-            else if (userData.pass_type === 2) {
-                document.getElementById("dashboard-pass-container").style.backgroundImage =
-                    "url(" + ticket3 + ")";
-                document.getElementById("dashboard-pass-container").style.backgroundSize = "contain";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.color = "#000000";
-            }
-            else if (userData.pass_type === 3) {
-                document.getElementById("dashboard-pass-container").style.backgroundImage =
-                    "url(" + ticket4 + ")";
-                document.getElementById("dashboard-pass-container").style.backgroundSize = "contain";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.color = "#ffbb00";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.textShadow = "0 0 8px rgb(0, 0, 0);";
-            }
-            else {
-                document.getElementById("dashboard-pass-container").style.backgroundImage =
-                    "url(" + ticket1 + ")";
-                document.getElementById("dashboard-pass-container").style.backgroundSize = "contain";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.color = "#ffbb00";
-            }
+        // if (userData) {
+        // console.log(userData);
+        // if (userData.pass_type === 0) {
+        load(ticket1).then(() => {
+            document.getElementById(
+                "dashboard-pass-container"
+            ).style.background = "url(" + ticket1 + ")";
+            document.getElementById(
+                "dashboard-pass-container"
+            ).style.backgroundSize = "contain";
+            setTicketLoaded(true);
+        });
+        if (userData.pass_type === 1) {
+            load(ticket2).then(() => {
+                document.getElementById(
+                    "dashboard-pass-container"
+                ).style.background = "url(" + ticket2 + ")";
+                document.getElementById(
+                    "dashboard-pass-container"
+                ).style.backgroundSize = "contain";
+                setTicketLoaded(true);
+            });
+        } else if (userData.pass_type === 2) {
+            load(ticket3).then(() => {
+                document.getElementById(
+                    "dashboard-pass-container"
+                ).style.background = "url(" + ticket3 + ")";
+                document.getElementById(
+                    "dashboard-pass-container"
+                ).style.backgroundSize = "contain";
+                setTicketLoaded(true);
+            });
+        } else if (userData.pass_type === 3) {
+            load(ticket4).then(() => {
+                document.getElementById(
+                    "dashboard-pass-container"
+                ).style.background = "url(" + ticket4 + ")";
+                document.getElementById(
+                    "dashboard-pass-container"
+                ).style.backgroundSize = "contain";
+                setTicketLoaded(true);
+            });
         }
+        // }
     }, [userData]);
 
     const [accPass, setAccPass] = useState(false);
@@ -224,6 +242,30 @@ function Dashboard() {
         }
     }, []);
 
+    function downloadTicket() {
+        if (!ticketLoaded) return;
+        // domtoimage
+        //     .toJpeg(document.getElementById("dashboard-pass-container"), { quality: 1 })
+        //     .then(function (dataUrl) {
+        //         var link = document.createElement("a");
+        //         link.download = userData.registration_id + "_ticket.jpeg";
+        //         link.href = dataUrl;
+        //         link.click();
+        //     });
+        domtoimage
+            .toBlob(document.getElementById("dashboard-pass-container"))
+            .then(function (blob) {
+                var link = document.createElement("a");
+                link.download = userData.registration_id + "_ticket.png";
+                link.href = URL.createObjectURL(blob);
+                link.click();
+            });
+    }
+
+    const [download, setDownload] = useState(false);
+
+    useEffect(() => {}, [download]);
+
     return (
         <div id="dashboard-container">
             <div id="dashboard">
@@ -242,25 +284,25 @@ function Dashboard() {
                             <div className="dashboard-personalDetails-content-title">
                                 Name:{" "}
                                 <span className="dashboard-personalDetails-content-value">
-                                    {user.username.replace("_", " ")}
+                                    {/* {user.username.replace("_", " ")} */}
                                 </span>
                             </div>
                             <div className="dashboard-personalDetails-content-title">
                                 Email:{" "}
                                 <span className="dashboard-personalDetails-content-value">
-                                    {user.email}
+                                    {/* {user.email} */}
                                 </span>
                             </div>
-                            {userData.contact && (
+                            {/* {userData.contact && ( */}
                                 <div className="dashboard-personalDetails-content-title">
                                     Phone:{" "}
                                     <span className="dashboard-personalDetails-content-value">
-                                        {userData.contact}
+                                        {/* {userData.contact} */}
                                     </span>
                                 </div>
-                            )}
+                            {/* )} */}
                         </div>
-                        {userData.ambassador && (
+                        {/* {userData.ambassador && ( */}
                             <div id="dashboard-caDetails">
                                 <div id="dashboard-caDetails-title">
                                     Campus Ambassdor Status
@@ -269,7 +311,7 @@ function Dashboard() {
                                     <div className="dashboard-caDetails-content-title">
                                         Invite code:{" "}
                                         <span className="dashboard-caDetails-content-value">
-                                            {userData.invite_referral}
+                                            {/* {userData.invite_referral} */}
                                         </span>
                                         <svg
                                             className="fa fa-copy"
@@ -277,7 +319,7 @@ function Dashboard() {
                                             viewBox="0 0 512 512"
                                             onClick={() => {
                                                 navigator.clipboard.writeText(
-                                                    userData.invite_referral
+                                                    // userData.invite_referral
                                                 );
                                                 toast.info(
                                                     "Copied to clipboard",
@@ -299,10 +341,13 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        {/* )} */}
                     </div>
                     <div id="dashboard-pass">
-                        <div id="dashboard-pass-container"></div>
+                        <div
+                            id="dashboard-pass-container"
+                            onClick={downloadTicket}
+                        ></div>
                     </div>
                 </div>
                 <div id="dashboard-registeredEvents">
@@ -403,6 +448,16 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
+
+            {/* <div id="dashboard-download-ticket">
+                <div id="ticket"></div>
+                <button
+                    id="download-ticket-button"
+                    onClick={() => downloadTicket()}
+                >
+                    Download
+                </button>
+            </div> */}
         </div>
     );
 }
