@@ -283,7 +283,7 @@ function EventDetails() {
                         (item) => item.id == urlParams.get("id")
                     );
                     setEventInfo(data[0]);
-                    console.log("Fetched Data:", data[0]);
+                    // console.log("Fetched Data:", data[0]);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -296,7 +296,7 @@ function EventDetails() {
         if (card) {
             //   console.log("pewpewpew");
             setEventInfo(card);
-            console.log("Cached data: ", card)
+            // console.log("Cached data: ", card)
         } else {
             // console.log("pewpewpew2");
             fetchData();
