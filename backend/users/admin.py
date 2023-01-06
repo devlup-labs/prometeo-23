@@ -34,8 +34,9 @@ class UserAdmin(ImportExportModelAdmin, DjangoUserAdmin):
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
-        (_('Profile'), {'fields': ('college', 'contact', 'city', )}),
+        (_('Profile'), {'fields': ('college', 'contact', 'city','isProfileCompleted' )}),
         (_('Ambassador'), {'fields': ('ambassador', 'referred_by','invite_referral' )}),
+        # (_('drone race'), {'fields':('drone_wars_name',)}),
     )
     add_fieldsets = (
         (None, {
@@ -73,19 +74,33 @@ class preregisterAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_filter = ('college',)
 
 class CampusAmbassadorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('name', 'email', 'college', 'contact', 'city')
-    list_filter = ('college',)
-    search_fields = ['name', 'email', 'college', 'contact', 'city']
+    list_display = ('email','invite_referral','ca_count')
+    # list_filter = ('college',)
+    search_fields = [ 'email',]
 
 class PassesAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('user', 'dob','address','aadhar_card','full_name','pass_type',)
     list_filter = ('user',)
+    search_fields = ['user',]
+
+# @admin.register(RoboWars)
+class RoboWarsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ['rw_name','bot_name','rw_category','rw_leader','get_members']
+    list_filter = ('rw_category', )
+    search_fields = ['rw_name', ]
+
+    def get_members(self, obj):
+        return "\n".join([p.email for p in obj.rw_members.all()])
+    # class Meta:
+    #     model = RoboWars
+    #     fields = '__all__'
 
 
-
-
+# admin.site.unregister(RoboWars)
+admin.site.register(RoboWars, RoboWarsAdmin)
 admin.site.register(Team, TeamAdmin)
 admin.site.register(Submissions, SubmissionsAdmin)
 admin.site.register(PreRegistration,preregisterAdmin)
-admin.site.register(CampusAmbassador)
-admin.site.register(Passes)
+admin.site.register(CampusAmbassador, CampusAmbassadorAdmin)
+admin.site.register(Passes, PassesAdmin)
+# admin.site.register(RoboWars)

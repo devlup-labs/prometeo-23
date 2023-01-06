@@ -46,7 +46,7 @@ function PreRegistration() {
 
         fetch(`${backendURL}/preregistration/`, requestOptions)
             .then(response => {
-                console.log(response.status)
+                // console.log(response.status)
                 if (response.status === 201) {
                     toast.success("Registered Successfully!");
                     const formTitleEle = document.getElementsByClassName("preRegistration-container-right-title")[0];
@@ -74,7 +74,7 @@ function PreRegistration() {
                 return response.json();
             })
             .then(data => {
-                console.log("Data: ", data);
+                // console.log("Data: ", data);
             })
             .catch(error => {
                 console.log("Error: ", error);

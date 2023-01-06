@@ -66,6 +66,7 @@ class ExtendedUser(AbstractUser):
     referral_code = models.CharField(max_length=8, null=True, blank=True, verbose_name='Referral Code')
     ca_count = models.IntegerField(default=0)
     registration_id = models.CharField(max_length=9, unique=True, null=True, blank=True, verbose_name='Registration ID') 
+    # drone_wars_name = models.CharField(max_length=100, null=True, blank=True, verbose_name='Drone Wars Name')
     objects = UserManager()
     REQUIRED_FIELDS = []
 
@@ -165,9 +166,8 @@ class CampusAmbassador(models.Model):
 
 
 class RoboWars(models.Model):
-    rw_id = models.CharField(max_length=9, primary_key=True, verbose_name='Robowars_Team ID')
     rw_name = models.CharField(max_length=50, verbose_name="Robowars Team Name", unique=True)
-    rw_leader = models.ForeignKey(ExtendedUser, blank=True, related_name="Robowars_team_leader", on_delete=models.CASCADE)
+    rw_leader = models.OneToOneField(ExtendedUser, related_name="Robowars_team_leader", on_delete=models.CASCADE,unique=True)
     rw_team_size = models.IntegerField(default=1)
     rw_country = models.CharField(max_length=50, verbose_name="Country")
     bot_name = models.CharField(max_length=50, verbose_name="Bot Name")
@@ -177,7 +177,10 @@ class RoboWars(models.Model):
     rw_isEligible = models.BooleanField(default=False, verbose_name="Is Team Eligible or Not")
 
     def __str__(self):
-        return self.name
+        return self.rw_name
+
+    class Meta:
+        verbose_name_plural = 'RoboWars'
 
 
 
@@ -188,5 +191,6 @@ class Passes(models.Model):
     dob = models.DateField(blank=True, null=True)
     full_name = models.CharField(max_length=100, blank=True, null=True)
     pass_type = models.IntegerField(default=0, blank=True, null=True)
+    payment_ss = models.ImageField(upload_to='payment_ss', blank=True, null=True)
     class Meta:
         verbose_name_plural = 'passes'

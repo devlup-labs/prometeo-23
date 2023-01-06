@@ -150,6 +150,7 @@
 <h1>Pass Info</h1>
 <hr>
 <br>
+<span> <i class="fas fa-download"></i> <a href="{% url 'download_passes_excel' %}"> Download passes list</a></span>
 <div class="card mb-3">
     <div class="card-header">
       <i class="fas fa-table"></i>
@@ -193,8 +194,33 @@
                             <td>{{ pt.address }}</td>
                             <td>{{ pt.dob }}</td>
                             <td>{{ pt.aadhar_card }}</td>
-                            <td>{{ pt.pass_type }}</td>
-                        </tr>
+
+                            <!-- dropdown form to select pass-->
+
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {% if pt.pass_type == 1 %}
+                                        Accomodation
+                                        
+                                      {% elif pt.pass_type == 0 %}
+                                        None
+                                      {% elif pt.pass_type == 2 %}
+                                        Pronite
+                                      {% elif pt.pass_type == 3 %}
+                                        Accomodation + Pronite
+                                      {% else %}
+                                        None
+                                      {% endif %}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 1)">Accomodation (1)</a>
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 2)">Pronite (2)</a>
+                                        <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 3)">Accomodation + Pronite (3) </a>
+                                    </div>
+                                </div>
+                            </td>                            
+                            </tr>
                         {% endif %}
                     {% endfor %}
                 </tbody>
@@ -202,5 +228,27 @@
         </div>
     </div>
 </div>
+
+<script type = "text/javascript">
+  function setPassType(email, passType) {
+    let data = { email: email, passType: passType };
+
+    fetch("/dashboard/setpasstype/", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(res => {
+        console.log("Request complete! response:", res);
+        // window.location.reload();
+    }).then(data => {
+        // console.log("Request complete! data:", data);
+        window.location.reload();
+    })
+    .catch(err => {
+        console.log("Request failed", err);
+    });
+}
+</script>
 
 {% endblock %}

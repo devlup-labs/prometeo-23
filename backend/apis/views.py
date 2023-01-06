@@ -49,10 +49,22 @@ class SponsorsViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 class EventViewSet(viewsets.ModelViewSet):
-    queryset = Event.objects.all()
+    queryset = Event.objects.filter(hidden=False).order_by('rank')
     serializer_class = EventSerializers
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['type','id']
+    filterset_fields = ['type','id','rank']
+
+
+class GetEventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.filter(hidden=False)
+    serializer_class = EventSerializers
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id','type']
+
+    def get(self):
+        queryset = Event.objects.filter(hidden=False)
+        serializer = EventSerializers(queryset, many=True)
+        return Response(serializer.data)   
 
 class BrochureViewSet(viewsets.ModelViewSet):
     queryset = Brochure.objects.all()
@@ -336,10 +348,10 @@ class CoreTeamViewSet(viewsets.ModelViewSet):
     serializer_class = CoreTeamSerializers
 
 
-class CampusAmbassadorListView(APIView):
+class CampusAmbassadorListView(viewsets.ModelViewSet):
     queryset = ExtendedUser.objects.all()
     serializer_class = CAViewSerializers
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     def get(self, request, *args, **kwargs):
         # if(request.user.is_authenticated==False):
         #     return Response({'message':'User not authenticated'},status=status.HTTP_401_UNAUTHORIZED)
@@ -360,6 +372,9 @@ class LoginDashboardViewSet(APIView):
         user_email = request.data.get('email')
         if(ExtendedUser.objects.filter(email=user_email)).exists():
             user = ExtendedUser.objects.filter(email=user_email).first()
+            pass_user = Passes.objects.filter(user=user).first()
+            user.pass_type = pass_user.pass_type
+            user.save()
             serializers = LoginDashboardSerializers(user)
             return Response(serializers.data)
 
@@ -390,49 +405,99 @@ class UserCheckViewSet(APIView):
 
 
 
+# class RoboWarsViewSet(viewsets.ModelViewSet):
+#     queryset = RoboWars.objects.all()
+#     serializer_class = RoboWarsSerializers
 
-# from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-# from dj_rest_auth.registration.views import SocialLoginView
-# from allauth.socialaccount.providers.oauth2.client import OAuth2Client
-# from django.conf import settings
-# from django.views.decorators.csrf import csrf_exempt
-
-# class GoogleLogin(SocialLoginView):
-#     authentication_classes = [] # disable authentication
-#     adapter_class = GoogleOAuth2Adapter
-#     callback_url = "http://localhost:3000"
-#     client_class = OAuth2Client
-
-#     @csrf_exempt
-#     def google_token(request):
-
-#         if "code" not in request.body.decode():
-#             from rest_framework_simplejwt.settings import api_settings as jwt_settings
-#             from rest_framework_simplejwt.views import TokenRefreshView
-            
-#             class RefreshNuxtAuth(TokenRefreshView):
-#                 # By default, Nuxt auth accept and expect postfix "_token"
-#                 # while simple_jwt library doesnt accept nor expect that postfix
-#                 def post(self, request, *args, **kwargs):
-#                     request.data._mutable = True
-#                     request.data["refresh"] = request.data.get("refresh_token")
-#                     request.data._mutable = False
-#                     response = super().post(request, *args, **kwargs)
-#                     response.data['refresh_token'] = response.data['refresh']
-#                     response.data['access_token'] = response.data['access']
-#                     return response
-
-#             return RefreshNuxtAuth.as_view()(request)
-
+#     def post(self,request,*args,**kwargs):
+#         if request.data['rw_id']!=None:
+#             rw_id = request.data['rw_id']
+#             rw = RoboWars.objects.get(id=rw_id)
+#             x = len(rw.team_members.all())
+#             if x+1>rw.team_size:
+#                 return Response({'message':'Team size exceeded'},status=status.HTTP_400_BAD_REQUEST)
+#             else:
+#                 rw.team_members.add(request.user)
+#                 rw.save()
+#                 return Response({'message':'Team member added'},status=status.HTTP_200_OK)
 #         else:
-#             return GoogleLogin.as_view()(request)
+#             rw = RoboWars.objects.create(rw_team_size=request.data['team_size'],rw_leader=request.user,team_members=request.user,rw_name=request.data['team_name'],bot_name = request.data['bot_name'],rw_country=request.data['country'],rw_category=request.data['category'])
+            
+#             # make unique id
+            
+#             code= 'RW' + str(uuid.uuid4().int)[:4]
+            
+#             teams = RoboWars.objects.all() 
+            
+#             def referral_check(c):
+#                 for u in teams:
+#                     if c == u.rw_id:
+#                         c = 'RW' + str(uuid.uuid4().int)[:4]
+#                         referral_check(c)
+#                 return c
+
+#             rw.rw_id = referral_check(code)
+
+#             rw.save()
+#             return Response({'message':'Team created'},status=status.HTTP_200_OK)
 
 
-
-class RoboWarsViewSet(viewsets.ModelViewSet):
+class CreateTeamViewSetRW(viewsets.ModelViewSet):
     queryset = RoboWars.objects.all()
-    serializer_class = RoboWarsSerializers
+    serializer_class = RoboWarsSerializersCreate
 
+    def post(self,request,*args,**kwargs):
+        if(RoboWars.objects.filter(rw_name=request.data['rw_name']).exists()):
+            return Response({'message':'Team name already exists'},status=status.HTTP_400_BAD_REQUEST)
+        return self.create(request, *args, **kwargs)
+
+class UpdateTeamViewSetRW(APIView):
+    queryset = RoboWars.objects.all()
+    serializer_class = RoboWarsSerializersUpdate
+
+    def post(self,request,*args,**kwargs):
+        name = request.data['rw_name']
+        rw = RoboWars.objects.get(rw_name=name)
+        # rw.rw_team_size = request.data['rw_team_size']
+        if(rw.rw_members.count()>=rw.rw_team_size):
+            return Response({'message':'Team size exceeded'},status=status.HTTP_400_BAD_REQUEST)
+        if(rw.rw_members.filter(email=request.user.email).exists()):
+            return Response({'message':'You are already in this team'},status=status.HTTP_400_BAD_REQUEST)
+        
+        all_teams = RoboWars.objects.all()
+        for team in all_teams:
+            if team.rw_members.filter(email=request.user.email).exists():
+                return Response({'message':'You are already in a team'},status=status.HTTP_400_BAD_REQUEST)
+        
+        rw.rw_members.add(request.user)
+        rw.save()
+        return Response({'message':'Team updated'},status=status.HTTP_200_OK)
+
+class CheckTeamViewSetRW(APIView):
+    queryset = RoboWars.objects.all()
+    # serializer_class = RoboWarsSerializers
+    def get(self,request,*args,**kwargs):
+        rw = RoboWars.objects.filter(rw_members=request.user)
+        if rw.exists():
+            # return Response({'message':'You are already in a Team named'},status=status.HTTP_200_OK)
+            rw = rw.first()
+            # serializers = RoboWarsSerializers(rw)
+
+            if rw.rw_leader == request.user:
+                return Response({
+                    'team_leader':True,
+                    'team_name':rw.rw_name,
+                },status=status.HTTP_200_OK)
+            else:
+                return Response({
+                    'team_leader':False,
+                    'team_name':rw.rw_name,
+                },status=status.HTTP_200_OK)
+        else:
+            return Response({
+                'team_leader':False,
+                'team_name':None,
+            },status=status.HTTP_200_OK)
 
 class GoogleCompleteProfileViewSet(APIView):
     queryset = ExtendedUser.objects.all()
@@ -501,7 +566,17 @@ class GoogleCompleteProfileViewSet(APIView):
             
             user.isProfileCompleted = True
             user.save()
-            return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})
+            print(user.isProfileCompleted)
+            token = MyTokenObtainPairSerializer.get_token(user)
+            response = {}
+            response['email'] = user.email
+            response['first_name'] = user.first_name
+            response['last_name'] = user.last_name
+            response['isProfileCompleted'] = user.isProfileCompleted
+            response['access_token'] = str(token.access_token)
+            response['refresh_token'] = str(token)
+            return Response(response)
+            # return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Profile Updated Successfully'})    
         else:
             return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'User does not exist'})
 
@@ -510,3 +585,89 @@ class AccomodationPassesViewSet(viewsets.ModelViewSet):
     queryset = Passes.objects.all()
     serializer_class = AccomodationSerializers  
     permission_classes = (IsAuthenticated,)
+    filterset_fields = ['user']
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+        # Passes.objects.create(user=request.user, pass_type=request.data.get('pass_type'), aadhar_card=request.data.get('aadhar_card'),dob=request.data['dob'],address=request.data['address'],full_name=request.user.first_name + " " + request.user.last_name)
+        # return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Passes Booked Successfully'})
+
+
+
+class GetMyEventsView(APIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializers
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        all_events = request.user.events.all()
+        if all_events.exists():
+            serializers = EventSerializers(all_events, many=True)
+            return Response(serializers.data)
+        else:
+            return Response({'message':'You have not registered for any event'},status=status.HTTP_200_OK)
+
+
+
+
+class RegisterEventViewSet(viewsets.ModelViewSet):
+    queryset = ExtendedUser.objects.all()
+    serializer_class = RegisterEventSerializers
+    permission_classes = (IsAuthenticated,)
+    filterset_fields = ['user']
+
+    def post(self, request, *args, **kwargs):
+        mail = request.data['email']
+        usr = ExtendedUser.objects.get(email=mail)
+        event_name = request.data['event_name']
+        event = Event.objects.get(event_name=event_name)
+        usr.events.add(event)
+        usr.save()
+        return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Event Registered Successfully'})
+        
+
+class RegisterEventView(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class =  RegisterEventSerializers
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        mail = request.data['email']
+        usr = ExtendedUser.objects.get(email=mail)
+        event_name = request.data['event_name']
+        if(usr.events.filter(name=event_name).exists()):
+            return Response({'success': 'False', 'status code': status.HTTP_400_BAD_REQUEST, 'message': 'You have already registered for this event'})
+        event = Event.objects.get(name=event_name)
+        # usr.drone_wars_name = request.data['rw_name']
+        usr.events.add(event)
+        usr.save()
+        return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Event Registered Successfully'})
+
+class CheckEventView(APIView):
+    queryset = ExtendedUser.objects.all()
+    serializer_class =  RegisterEventSerializers
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        mail = request.data['email']
+        usr = ExtendedUser.objects.get(email=mail)
+        event_name = request.data['event_name']
+        if(usr.events.filter(name=event_name).exists()):
+            return Response({'status': 'True', 'status code': status.HTTP_200_OK, 'message': 'You have already registered for this event'})
+        else:
+            return Response({'status': 'False', 'status code': status.HTTP_200_OK, 'message': 'You have not registered for this event'})
+
+
+
+class UploadSS(APIView):
+    queryset = Passes.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        file = request.data['payment_ss']
+        mail = request.data['email']
+        usr = ExtendedUser.objects.get(email=mail)
+        passusr = Passes.objects.get(user=usr)
+        passusr.payment_ss = file
+        passusr.save()
+        return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Screenshot Uploaded Successfully'})

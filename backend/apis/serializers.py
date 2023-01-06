@@ -38,6 +38,7 @@ class EventSerializers(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+    
 
 class BrochureSerializers(serializers.ModelSerializer):
     class Meta:
@@ -349,11 +350,33 @@ class UserCheckSerializers(serializers.ModelSerializer):
         fields = ['email']
 
 
-class RoboWarsSerializers(serializers.ModelSerializer):
+class RoboWarsSerializersCreate(serializers.ModelSerializer):
     class Meta:
         model = RoboWars
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ['rw_name','bot_name','rw_country','rw_team_size','rw_category']
+        
+    def create(self, validated_data):
+        print('hello')
+        leader = self.context['request'].user
+        rw = RoboWars.objects.create(rw_leader=leader, **validated_data)
+        rw.rw_members.add(leader)
+        print('samkit')
+        rw.save()
+        return rw
 
+class RoboWarsSerializersUpdate(serializers.ModelSerializer):
+    class Meta:
+        model = RoboWars
+        fields = ['rw_name',]
+        # fields = ['rw_name','bot_name','rw_country','rw_team_size','rw_category']
+
+    def create(self,validated_data):
+        team = RoboWars.objects.filter(rw_name=validated_data['rw_name']).first()
+        print(team.rw_name)
+        team.members.add(self.context['request'].user)
+        team.save()
+        return team
 
 class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
     class Meta:
@@ -385,4 +408,24 @@ class GoogleCompleteProfileSerializers(serializers.ModelSerializer):
 class AccomodationSerializers(serializers.ModelSerializer):
     class Meta:
         model = Passes
-        fields = '__all__'
+        fields = ['user', 'aadhar_card','address','dob','full_name','pass_type']
+        # extra_kwargs = {'user' : {'read_only' : True},}
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+        # pass_type = validated_data['pass_type']
+        address = validated_data['address']
+        aadhar_card = validated_data['aadhar_card']
+        dob = validated_data['dob']
+        full_name = validated_data['full_name']
+
+        pass_obj = Passes.objects.create(user=user, address=address, aadhar_card=aadhar_card, dob=dob, full_name=full_name)
+        return pass_obj
+
+
+
+class RegisterEventSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = ExtendedUser
+        fields = ['drone_wars_name']
+    

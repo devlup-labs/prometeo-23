@@ -17,7 +17,7 @@ from rest_framework_simplejwt.views import (
 router = routers.DefaultRouter()
 router.register("sponsors",SponsorsViewSet)
 
-router.register("events",EventViewSet)
+router.register("events",EventViewSet,basename="events")
 
 router.register("brochure",BrochureViewSet)
 
@@ -39,12 +39,19 @@ router.register("team",TeamViewSet)
 
 router.register("coreteam",CoreTeamViewSet)
 
-router.register("robowars",RoboWarsViewSet)
+# router.register("robowars",RoboWarsViewSet)
 
 router.register("accomodationpasses",AccomodationPassesViewSet)
 
+# router.register("campusambassadorlistview",CampusAmbassadorListView)
+
+router.register("createteamrw",CreateTeamViewSetRW)
+
+# router.register("updateteamrw",UpdateTeamViewSetRW)
 
 # router.register("logindashboard", LoginDashboardViewSet)
+
+# router.register("registerevent",RegisterEventViewSet)
 
 urlpatterns=[
     path(r'',include(router.urls)), 
@@ -57,4 +64,10 @@ urlpatterns=[
     path('logindashboard/', views.LoginDashboardViewSet.as_view(), name='logindashboard'),
     path('usercheck/', UserCheckViewSet.as_view(), name='usercheck'),
     path('google/completeprofile/', views.GoogleCompleteProfileViewSet.as_view(), name='googlecompleteprofile'),
+    path('updateteamrw/', views.UpdateTeamViewSetRW.as_view(), name='updateteamrw'),
+    path('checkteamrw/', views.CheckTeamViewSetRW.as_view(), name='checkteamrw'),
+    path('getmyevents/', views.GetMyEventsView.as_view(), name='getmyevents'),
+    path('registerevent/', views.RegisterEventView.as_view(), name='registerdronerace'),
+    path('checkevent/', views.CheckEventView.as_view(), name='checkdronerace'),
+    path('uploadss/', views.UploadSS.as_view(), name='uploadss'),
 ]

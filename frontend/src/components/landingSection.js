@@ -5,7 +5,7 @@ import "./landingSection.css";
 import "../pages/clock.css";
 import clock from "../pages/clock.js";
 
-import PrometeoLogo from "../assets/homePage/prometeo.png";
+import PrometeoLogo from "../assets/homePage/prometeo-updated.png";
 import reg_rock from "../assets/homePage/reg_rock.png";
 
 export default function LandingSection() {
