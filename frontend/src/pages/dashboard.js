@@ -11,6 +11,7 @@ import useAxios from "../context/context_useAxios";
 import rocketImg from "../assets/icons/rocket.png";
 import PrometeoLogo from "../assets/homePage/prometeo-updated.png";
 import { Navigate } from "react-router-dom";
+import domtoimage from "dom-to-image";
 
 import ticket1 from "../assets/ticket1.png";
 import ticket2 from "../assets/ticket2.png";
@@ -37,6 +38,8 @@ function Dashboard() {
     // console.log("User(dashboard):", user)
     const api = useAxios();
 
+	var tickets = [ticket1, ticket2, ticket3, ticket4]
+
     useEffect(() => {
         const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
@@ -54,7 +57,7 @@ function Dashboard() {
 
                 if (response.status === 200) {
                     const data = response.data;
-                    // console.log("Login Dashboard Data:", data);
+                    console.log("Login Dashboard Data:", data);
                     if (data.isProfileCompleted === false) {
                         navigate("/complete-profile");
                     } else {
@@ -150,46 +153,63 @@ function Dashboard() {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        if (userData) {
-            // console.log(userData);
-            if (userData.pass_type === 1) {
-                document.getElementById("dashboard-pass-container").style.background =
-                    "url(" + ticket2 + ")";
-                document.getElementById("dashboard-pass-container").style.backgroundSize = "contain";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.color = "#ffbb00";
-            }
-            else if (userData.pass_type === 2) {
-                document.getElementById("dashboard-pass-container").style.backgroundImage =
-                    "url(" + ticket3 + ")";
-                document.getElementById("dashboard-pass-container").style.backgroundSize = "contain";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.color = "#000000";
-            }
-            else if (userData.pass_type === 3) {
-                document.getElementById("dashboard-pass-container").style.backgroundImage =
-                    "url(" + ticket4 + ")";
-                document.getElementById("dashboard-pass-container").style.backgroundSize = "contain";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.color = "#ffbb00";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.textShadow = "0 0 8px rgb(0, 0, 0);";
-            }
-            else {
-                document.getElementById("dashboard-pass-container").style.backgroundImage =
-                    "url(" + ticket1 + ")";
-                document.getElementById("dashboard-pass-container").style.backgroundSize = "contain";
-                // document.getElementById(
-                //     "dashboard-pass-container-right-content-pass-status-value"
-                // ).style.color = "#ffbb00";
-            }
-        }
-    }, [userData]);
+    function load(src) {
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            image.addEventListener("load", resolve);
+            image.addEventListener("error", reject);
+            image.src = src;
+        });
+    }
+
+    const [ticketLoaded, setTicketLoaded] = useState(false);
+
+    // useEffect(() => {
+    //     // if (userData) {
+    //     // console.log(userData);
+    //     // if (userData.pass_type === 0) {
+    //     load(ticket1).then(() => {
+    //         document.getElementById(
+    //             "dashboard-pass-container"
+    //         ).style.background = "url(" + ticket1 + ")";
+    //         document.getElementById(
+    //             "dashboard-pass-container"
+    //         ).style.backgroundSize = "contain";
+    //         setTicketLoaded(true);
+    //     });
+    //     if (userData.pass_type === 1) {
+    //         load(ticket2).then(() => {
+    //             document.getElementById(
+    //                 "dashboard-pass-container"
+    //             ).style.background = "url(" + ticket2 + ")";
+    //             document.getElementById(
+    //                 "dashboard-pass-container"
+    //             ).style.backgroundSize = "contain";
+    //             setTicketLoaded(true);
+    //         });
+    //     } else if (userData.pass_type === 2) {
+    //         load(ticket3).then(() => {
+    //             document.getElementById(
+    //                 "dashboard-pass-container"
+    //             ).style.background = "url(" + ticket3 + ")";
+    //             document.getElementById(
+    //                 "dashboard-pass-container"
+    //             ).style.backgroundSize = "contain";
+    //             setTicketLoaded(true);
+    //         });
+    //     } else if (userData.pass_type === 3) {
+    //         load(ticket4).then(() => {
+    //             document.getElementById(
+    //                 "dashboard-pass-container"
+    //             ).style.background = "url(" + ticket4 + ")";
+    //             document.getElementById(
+    //                 "dashboard-pass-container"
+    //             ).style.backgroundSize = "contain";
+    //             setTicketLoaded(true);
+    //         });
+    //     }
+    //     // }
+    // }, [userData]);
 
     const [accPass, setAccPass] = useState(false);
 
@@ -223,6 +243,56 @@ function Dashboard() {
             // document.getElementById("acc-success").style.display = "none";
         }
     }, []);
+
+    async function downloadTicket(ticket_num) {
+        // if (!ticketLoaded) return;
+        // domtoimage
+        //     .toJpeg(document.getElementById("dashboard-pass-container"), { quality: 1 })
+        //     .then(function (dataUrl) {
+        //         var link = document.createElement("a");
+        //         link.download = userData.registration_id + "_ticket.jpeg";
+        //         link.href = dataUrl;
+        //         link.click();
+        //     });
+		await load(tickets[ticket_num])
+			.then(() => {
+				domtoimage
+					.toBlob(document.getElementById("dashboard-download-ticket"))
+					.then(function (blob) {
+						var link = document.createElement("a");
+						link.download = userData.registration_id + "_ticket.png";
+						link.href = URL.createObjectURL(blob);
+						link.click();
+					});
+			})
+			.catch((err) => {
+				console.log(err);
+				throw(err)
+			})
+    }
+
+	const handleDownload = (ticket_num) => {
+		const myPromise = new Promise((resolve, reject) => {
+		  downloadTicket(ticket_num)
+			.then((res) => {
+			  resolve(res);
+			})
+			.catch((err) => {
+			  reject(err);
+			})
+		})
+	
+		toast.promise(myPromise, {
+		  pending: "Starting download...",
+		  success: "Download started!",
+		  error: "Error downloading ticket"
+		})
+	
+	  }
+
+    const [download, setDownload] = useState(false);
+
+    useEffect(() => {}, [download]);
 
     return (
         <div id="dashboard-container">
@@ -302,7 +372,40 @@ function Dashboard() {
                         )}
                     </div>
                     <div id="dashboard-pass">
-                        <div id="dashboard-pass-container"></div>
+                        <div
+                            id="dashboard-pass-container"
+                            onClick={() => handleDownload(userData.pass_type)}
+							style={{
+								backgroundImage: `url(${userData ? tickets[userData.pass_type] : ticket1})`,
+							}}
+                        >
+							{
+								userData && userData.pass_type !== 0 && (
+									<div className="dashboard-pass-registrationID">
+										Registration ID: {userData.registration_id}
+									</div>
+								)
+							}
+						</div>
+						
+						<div id="dashboard-download-ticket-wrapper">
+							<div 
+								id="dashboard-download-ticket"
+								style={{
+									backgroundImage: `url(${userData ? tickets[userData.pass_type] : ticket1})`,
+								}}
+							>
+								{
+									userData && userData.pass_type !== 0 && (
+										<div className="dashboard-pass-registrationID" style={{
+											fontSize: "calc(0.0125 * 1200px * 100 / 45)",
+										}}>
+											Registration ID: {userData.registration_id}
+										</div>
+									)
+								}
+							</div>
+						</div>
                     </div>
                 </div>
                 <div id="dashboard-registeredEvents">
@@ -313,7 +416,7 @@ function Dashboard() {
                         {Object.keys(registeredEvents).length > 0 ? (
                             // console.log(registeredEvents),
                             Object.keys(registeredEvents).map((key, index) => {
-                                // console.log(registeredEvents[key], key)
+                                console.log(registeredEvents[key], key)
                                 return (
                                     <div
                                         className="dashboard-registeredEvents-content-event"
@@ -323,49 +426,41 @@ function Dashboard() {
                                             <img
                                                 src={
                                                     registeredEvents[key].image
-                                                        ? registeredEvents[key]
-                                                              .image
+                                                        ? registeredEvents[key].image
                                                         : eventImages[key]
                                                 }
                                                 alt="Event Image"
                                             />
                                         </div>
                                         <div className="dashboard-registeredEvents-content-event-details">
-                                            {/* {registeredEvents[key]
-                                                .event_name && ( */}
-                                            <div className="dashboard-registeredEvents-content-event-title">
-                                                {key}
-                                            </div>
-                                            {/* )} */}
+                                            {key && (
+												<div className="dashboard-registeredEvents-content-event-title">
+													{key}
+												</div>
+                                            )}
                                             {registeredEvents[key].date && (
                                                 <div className="dashboard-registeredEvents-content-event-date">
                                                     {registeredEvents[key].date}
                                                 </div>
                                             )}
-                                            {registeredEvents[key]
-                                                .team_name && (
+                                            {registeredEvents[key].team_name && (
                                                 <div className="dashboard-registeredEvents-content-event-team-id">
                                                     Team Name:{" "}
                                                     <strong
                                                         onClick={() => {
                                                             navigator.clipboard.writeText(
-                                                                registeredEvents[
-                                                                    key
-                                                                ].team_name
+                                                                registeredEvents[key].team_name
                                                             );
                                                             toast.info(
                                                                 "Copied to clipboard",
                                                                 {
-                                                                    position:
-                                                                        "bottom-right",
+                                                                    position: "bottom-right",
                                                                 }
                                                             );
                                                         }}
                                                     >
                                                         {
-                                                            registeredEvents[
-                                                                key
-                                                            ].team_name
+                                                            registeredEvents[key].team_name
                                                         }
                                                     </strong>
                                                 </div>
