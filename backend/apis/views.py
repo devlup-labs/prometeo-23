@@ -372,8 +372,9 @@ class LoginDashboardViewSet(APIView):
         user_email = request.data.get('email')
         if(ExtendedUser.objects.filter(email=user_email)).exists():
             user = ExtendedUser.objects.filter(email=user_email).first()
-            pass_user = Passes.objects.filter(user=user).first()
-            user.pass_type = pass_user.pass_type
+            if(Passes.objects.filter(user=user).exists()):
+                pass_user = Passes.objects.filter(user=user).first()
+                user.pass_type = pass_user.pass_type
             user.save()
             serializers = LoginDashboardSerializers(user)
             return Response(serializers.data)
