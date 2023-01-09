@@ -1,7 +1,7 @@
 .moonshot__text h2 {
   /* text-transform: uppercase; */
   text-align: left !important;
-  /* color: #202aed; */
+  color: #011f4e;
   font-family: "Share Tech", sans-serif;
   font-size: 4vmin;
   font-weight: 900;
@@ -101,7 +101,7 @@
 }
 .moonshot .moonshot__title {
   font-size: 1.75rem;
-	/* color: #041030; */
+	color: #000000;
 }
 .moonshot .moonshot__img {
   height: 300px;
@@ -132,19 +132,19 @@
   text-align: justify;
   height: 100%;
   font-size: large;
-  color: black;
+  color: #0e0e0e;
   font-weight: 900;
 }
 /* .moonshot__projectCriteria{
     background: linear-gradient(0deg, transparent 0%, rgba(117, 228, 238, 0.952)30%, rgba(117, 228, 238, 0.924) 80%, transparent 100%);
   } */
 .moonshot__projectCriteria li {
-  color: black;
+  color: #0e0e0e;
   font-weight: 900;
   font-size: medium;
 }
 .moonshot__projectKeyPoints li {
-  color: black;
+  color: #0e0e0e;
   font-weight: 900;
 }
 .moonshot .moonshot__tagbox {
