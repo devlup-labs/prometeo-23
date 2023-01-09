@@ -92,8 +92,8 @@ export default function HomePage() {
                 <CA_Homepage />
                 <Theme />
                 <EventHome />
-                <div id="filler-3"></div>
-                <InitiativeHome />
+                {/* <div id="filler-3"></div>
+                <InitiativeHome /> */}
                 <div id="filler-4"></div>
                 <Infinity />
                 {/* footer with props */}
