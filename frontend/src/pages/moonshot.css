@@ -78,6 +78,7 @@
   background-position: top center;
   background-repeat: no-repeat;
   filter: blur(2px);
+  opacity: 0.5;
 }
 
 .moonshot.light {
@@ -382,6 +383,28 @@
 .moonshot__text p {
   font-size: large;
 }
+.moonshot_buttons {
+    position: relative;
+    margin-bottom: 1%;
+    /* bottom: 1%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 2vmin; */
+    width: fit-content;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.moonshot_buttons a {
+	color: initial;
+	text-decoration: none;
+    margin-top: 5px;
+  width: 100%;
+  height: 100%;
+  padding: 1vmin 5vmin;
+  background-color: #84f4eb;
+}
+
 @media screen and (min-width: 1024px) {
   .moonshot__text {
     padding: 2rem 3.5rem;

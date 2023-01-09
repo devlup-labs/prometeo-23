@@ -114,11 +114,15 @@ function PosterPresentation() {
                 </li>
               </ul>
             </div>
-            {/* <div className="contact_poster">
-              <h5>For any queries, please contact</h5>
-              <h5>Name: +91 123456789</h5>
-              <h5>Name: +91 123456789</h5>
-            </div> */}
+            <div className="moonshot_buttons">
+              <a
+                href="https://unstop.com/competition/moonshot-prometeo23-indian-institute-of-technology-iit-jodhpur-585246"
+                id=""
+                className="moonshot-button"
+              >
+                <div className="button-text">Register!</div>
+              </a>
+            </div>
           </article>
         </div>
       </section>
