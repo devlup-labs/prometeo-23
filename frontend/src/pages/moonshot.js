@@ -30,7 +30,7 @@ function PosterPresentation() {
           <article class="moonshot blue" data-aos="fade-up">
             <div class="moonshot__text">
               <h1 class="moonshot__title blue">
-                It is another flagship event of Prometeo 23.
+                It is one of the flagship event of Prometeo 23.
               </h1>
               <div class="moonshot__bar"></div>
               <div class="moonshot__preview-txt">
