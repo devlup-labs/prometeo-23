@@ -20,6 +20,7 @@ import NewGallery from "./pages/Gallery/newNewGallery";
 import Sponsors from "./pages/Sponsors/sponsors";
 import Workshop from "./pages/workshop";
 import Moonshot from "./pages/moonshot";
+import PanelDiscussion from "./pages/panel";
 import Theme from "./components/Theme";
 import Team from "./pages/Team/newTeam";
 import CA from "./pages/ca";
@@ -79,6 +80,7 @@ function App() {
                         />
                         <Route path="/workshop" element={<Workshop />} />
                         <Route path="/moonshot" element={<Moonshot />} />
+                        <Route path="/panel-discussion" element={<PanelDiscussion />} />
                         <Route path="/competitions" element={<Events />} />
                         <Route
                             path="/event-details"
