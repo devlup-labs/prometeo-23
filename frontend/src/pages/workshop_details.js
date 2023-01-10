@@ -149,9 +149,9 @@ function Details(props) {
                     src={
                       sponsor.image
                         ? sponsor.image.replace(
-                          "0.0.0.0:8888",
-                          "apiv.prometeo.in"
-                        )
+                            "0.0.0.0:8888",
+                            "apiv.prometeo.in"
+                          )
                         : ""
                     }
                     title={sponsor.name}
@@ -187,8 +187,8 @@ function Details(props) {
                 <span>REGISTER</span>
               </a>
             )}
-            {eventTerm.rulebook && (
-              PDFObject.supportsPDFs ? (
+            {eventTerm.rulebook &&
+              (PDFObject.supportsPDFs ? (
                 <a
                   href={
                     eventTerm.rulebook.replace(
@@ -202,17 +202,20 @@ function Details(props) {
                   <span>Content</span>
                 </a>
               ) : (
-                <div 
+                <div
                   className="event-details-rulebook button-64"
-                  onClick={() => handleDownload(eventTerm.rulebook.replace(
-                    "0.0.0.0:8888",
-                    "apiv.prometeo.in"
-                  ))}
+                  onClick={() =>
+                    handleDownload(
+                      eventTerm.rulebook.replace(
+                        "0.0.0.0:8888",
+                        "apiv.prometeo.in"
+                      )
+                    )
+                  }
                 >
                   <span>Content</span>
                 </div>
-              )
-            )}
+              ))}
           </div>
         </div>
 
@@ -227,6 +230,9 @@ function Details(props) {
               </li>
               <li className="tab_class">
                 <a href="#tab3">Rules</a>
+              </li>
+              <li className="tab_class">
+                <a href="#tab4">Contact Us</a>
               </li>
               {/* <li className={tabHeading}>
                                 <a href="#tab2">Other Details</a>
@@ -278,7 +284,8 @@ function Details(props) {
                 <div className="event-details__body__right__bottom2">
                   <h2>Single registration offer:</h2>
                   <p>
-                    Register and Pay fee before 15th January, 2023 to get free pass of Pronite.
+                    Register and Pay fee before 15th January, 2023 to get free
+                    pass of Pronite.
                   </p>
                   <h2>Group Discounts:</h2>
                   <p>
@@ -286,6 +293,7 @@ function Details(props) {
                     <br /> 2 members Rs. 100 off
                     <br /> 3 members Rs. 200 off
                   </p>
+                  <p>*to avail the Discounts please contact us</p>
                 </div>
               </div>
             </div>
@@ -330,6 +338,25 @@ function Details(props) {
                       ** If the Workshop gets canceled, all the participants
                       will be given a full refund, irrespective of the Deadline.
                     </p>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="tab-content workshop-contact" id="tab4">
+              {/* <h2>Tab 2 Content</h2> */}
+
+              <hr className="event-details__body__right__bottom1__hr" />
+              <div className="event-details__body__right__bottom">
+                <p id="event-content-heading">Contact</p>
+                <div className="event-details__body__right__bottom2">
+                  <ul>
+                    <li>
+                      <b>Likhith Ayinala: +91 82978 57887</b>
+                    </li>
+                    <li>
+                      <b>Adarsh Palaskar: +91 93736 32633</b>
+                    </li>
+                    <br />
                   </ul>
                 </div>
               </div>

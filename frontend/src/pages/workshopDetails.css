@@ -517,6 +517,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    border-radius: 15px 15px 0px 0px;
+    border: solid white 1px;
     /* padding-bottom: 10px; */
 }
 
@@ -534,12 +536,12 @@
 .workshopTabs a {
     /* Style the tab links */
     display: block;
-    padding: 5px 20px;
+    padding: 0px 20px;
     margin: auto;
     background-color: cadetblue;
     color: white;
     text-decoration: dashed;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 700;
     border-color: #c3ccde;
     border-style: groove;
@@ -549,7 +551,7 @@
 
 .workshopTabs a:hover,.workshopTabs .active a{
     /* Change the background color of the tab links when hovered or active */
-    background-color: #4f35cf64;
+    background-color: #236d6b;
 }
 
 .tab-content {
@@ -581,7 +583,7 @@
     /* grid-column-gap: var(--spacing-xl);
     grid-row-gap: var(--spacing-xl); */
     width: 100%;
-    border: solid #9772fb 1px;
+    border: solid white 0.1px;
     box-shadow: 0 0 50px #4f35cf64;
     /* border-radius: 10px 10px 0 0; */
     text-align: center;
@@ -593,7 +595,10 @@
     justify-content: center;
     align-items: center;
 }
-
+.workshop-contact{
+    width: 100%;
+    /* padding-right:50vmin; */
+}
 @media screen and (max-width: 500px){
     .workshopTabs a{
         display: flex;
