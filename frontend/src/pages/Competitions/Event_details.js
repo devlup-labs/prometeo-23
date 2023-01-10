@@ -305,8 +305,8 @@ function Details(props) {
                   onClick={() =>
                     handleDownload(
                       eventTerm.rulebook.replace(
-                        "0.0.0.0:8888",
-                        "apiv.prometeo.in"
+                        "http://0.0.0.0:8888",
+                        "https://apiv.prometeo.in"
                       )
                     )
                   }
