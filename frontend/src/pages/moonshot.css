@@ -5,6 +5,7 @@
   font-family: "Share Tech", sans-serif;
   font-size: max(24px,4vmin);
   font-weight: 900;
+  padding-top: 5px;
 }
 .moonshot__text h3 {
   text-transform: uppercase;
@@ -50,7 +51,7 @@
             transparent 10%,
             rgba(5, 16, 59, 0.16) 60%,
             transparent 100%); */
-            background: linear-gradient(0deg, transparent 0%, rgba(247, 247, 247, 0.4) 10%, rgba(247, 247,247,0.4) 90%, transparent 100%);
+            background: linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.5) 10%, rgba(255, 255,255,0.5) 90%, transparent 100%);
   border-radius: 10px;
   /* margin: 0 0 2rem 0; */
   overflow: hidden;
@@ -102,7 +103,7 @@
 }
 .moonshot .moonshot__title {
   font-size: max(24px,4vmin);
-	color: #000000;
+	color: #29d9f6;
 }
 .moonshot .moonshot__img {
   height: 300px;

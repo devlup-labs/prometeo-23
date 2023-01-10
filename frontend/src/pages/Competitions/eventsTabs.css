@@ -69,9 +69,9 @@ body {
     height: 20vh;
     height: fit-content;
   }
-  .taabcontent{
+  /* .taabcontent{
     margin-top: 15vh;
-  }
+  } */
 }
 /* @media screen and (max-width: 2000px){
   .taabs{
@@ -131,7 +131,7 @@ body {
     height: fit-content;
   }
   .taabcontent{
-    margin-top: 200px;
+    margin-top: 100px;
   }
 }
 @media screen and (max-width: 450px){
@@ -140,7 +140,7 @@ body {
     height: fit-content;
   }
   .taabcontent{
-    margin-top: 250px;
+    margin-top: 150px;
   }
 }
 @media screen and (max-width: 410px){
@@ -149,7 +149,7 @@ body {
     height: fit-content;
   }
   .taabcontent{
-    margin-top: 300px;
+    margin-top: 200px;
   }
 }
 @media  screen and (max-width: 355px) {
