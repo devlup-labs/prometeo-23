@@ -126,11 +126,11 @@ function Details(props) {
 
   }
 
-  if (PDFObject.supportsPDFs) {
-    console.log("Yay, this browser supports inline PDFs.");
-  } else {
-    console.log("Boo, inline PDFs are not supported by this browser");
-  } 
+  // if (PDFObject.supportsPDFs) {
+  //   console.log("Yay, this browser supports inline PDFs.");
+  // } else {
+  //   console.log("Boo, inline PDFs are not supported by this browser");
+  // } 
 
   return (
     <div className="event-details">
@@ -484,7 +484,7 @@ function EventDetails() {
     }
 
     const card = location.state;
-    console.log("Card:", card);
+    // console.log("Card:", card);
 
     if (card) {
       //   console.log("pewpewpew");
