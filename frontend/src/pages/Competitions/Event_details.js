@@ -126,11 +126,11 @@ function Details(props) {
 
   }
 
-  // if (PDFObject.supportsPDFs) {
-  //   console.log("Yay, this browser supports inline PDFs.");
-  // } else {
-  //   console.log("Boo, inline PDFs are not supported by this browser");
-  // } 
+  if (PDFObject.supportsPDFs) {
+    console.log("Yay, this browser supports inline PDFs.");
+  } else {
+    console.log("Boo, inline PDFs are not supported by this browser");
+  } 
 
   return (
     <div className="event-details">
@@ -286,7 +286,7 @@ function Details(props) {
               //     <span>RULEBOOK</span>
               //   </Link>
               // )
-              (!PDFObject.supportsPDFs ? (
+              (PDFObject.supportsPDFs ? (
                 <a
                   href={
                     eventTerm.rulebook.replace(
@@ -295,6 +295,7 @@ function Details(props) {
                     ) || ""
                   }
                   target="_blank"
+                  rel="noreferrer"
                   className="event-details-rulebook button-64"
                 >
                   <span>RULEBOOK</span>
