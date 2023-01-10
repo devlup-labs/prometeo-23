@@ -69,13 +69,13 @@ const tabsName = [
     data_title: "Poster Presentation",
     status: "poster_presentation",
   },
-  {
-    name: "Panel Discussion",
-    id: "Panel_Discussion",
-    data_content: "Panel_Discussion",
-    data_title: "Panel Discussion",
-    status: "panel_discussion",
-  },
+  // {
+  //   name: "Panel Discussion",
+  //   id: "Panel_Discussion",
+  //   data_content: "Panel_Discussion",
+  //   data_title: "Panel Discussion",
+  //   status: "panel_discussion",
+  // },
 ];
 function createEntry(eventTerm) {
   if (eventTerm.name !== "Tedx" && eventTerm.type !== "talk") {
