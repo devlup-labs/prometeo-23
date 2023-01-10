@@ -212,11 +212,6 @@
     }
 }
 
-@media screen and (orientation: portrait) {
-    .dronerace_flagTop-DroneContainer h1 {
-        font-size: 13vmin;
-    }
-}
 
 .dronerace_flagTop-DroneContainer>p {
     /* border: 2px solid white; */
@@ -248,12 +243,12 @@
 	}
 }
 
-/* @media screen and (orientation: portrait) {
+@media screen and (orientation: portrait) {
     .dronerace_flagTop-DroneContainer>p {
         max-width: 90%;
         font-size: max(18px, 3vmin);
     }
-} */
+}
 
 #dr-info-text {
     font-size: 3vmin;
@@ -303,20 +298,10 @@
 	/* display: grid;
 	grid-template-columns: 1fr 3fr; */
 background: linear-gradient(0deg, transparent 0%, rgba(0,0,0,0.9519353273535976)30%, rgba(0,0,0,0.9239241228718049) 80%, transparent 100%);
-	padding: 50px;
+	/* padding: 50px; */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-}
-@media (max-width: 768px) {
-.dronerace_Abouttable {
-    flex-direction: column;
-    justify-content: space-evenly;
-	align-items: center;
-}
-.dronerace_flagAbout p {
-	margin: auto;
-}
 }
 
 #dronerace_flag_prize {
@@ -342,7 +327,20 @@ background: linear-gradient(0deg, transparent 0%, rgba(0,0,0,0.9519353273535976)
     height: 12vmin;
 	/* width: 25%; */
 }
+@media (max-width: 768px) {
+.dronerace_Abouttable {
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+	align-items: center;
+}
+	#dronerace_flag_prize {
+        width: 60%;
+    }
 
+    #dronerace_about-text {
+        width: 90%;
+    }
+}
 #dronerace_flagPrize-description {
 	/* display: flex; */
 	color: blanchedalmond;
