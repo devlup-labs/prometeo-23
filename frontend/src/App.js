@@ -27,6 +27,7 @@ import AccForm from "./pages/Accommodation/accForm";
 
 import Events from "./pages/Competitions/Event.js";
 import EventDetails from "./pages/Competitions/Event_details";
+import Competitions_Rulebook from "./pages/Competitions/competitionsRulebook";
 import WorkshopDetails from "./pages/workshop_details";
 import Event_createTeam from "./pages/Competitions/event_createTeam";
 import Event_joinTeam from "./pages/Competitions/event_joinTeam";
@@ -82,6 +83,7 @@ function App() {
                             path="/event-details"
                             element={<EventDetails />}
                         />
+                        {/* <Route path="/competition-rulebook" element={<Competitions_Rulebook />} /> */}
                         <Route
                             path="/workshop-details"
                             element={<WorkshopDetails />}
