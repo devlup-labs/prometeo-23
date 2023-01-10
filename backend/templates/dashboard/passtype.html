@@ -151,6 +151,28 @@
 <hr>
 <br>
 <span> <i class="fas fa-download"></i> <a href="{% url 'download_passes_excel' %}"> Download passes list</a></span>
+
+<form action="{% url 'passtype_update' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h4>Import Excel file (.xlsx)</h4>           
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="col-md-8 col-sm-12 col-xs-12 form-group">      
+            </div>
+              <input type="file" name="myfile" class="form-control">
+              <button type="submit" class="btn btn-success" >Upload </button> 
+          </div>
+        </div>
+      </div>
+  </div>
+</form>
+
 <div class="card mb-3">
     <div class="card-header">
       <i class="fas fa-table"></i>
@@ -225,6 +247,11 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <div class="passtype-conflict" style="color: red;">
+            {% for c in conflict %}
+            Conflict in {{c}} <br>
+            {% endfor%}
+          </div>
         </div>
     </div>
 </div>

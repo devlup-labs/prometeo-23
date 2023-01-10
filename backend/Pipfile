@@ -28,6 +28,7 @@ pysocks = "*"
 razorpay = "*"
 sendgrid = "*"
 dj-rest-auth = "*"
+pandas = "*"
 
 [dev-packages]
 
