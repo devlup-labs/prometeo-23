@@ -11,6 +11,7 @@ urlpatterns = [
     path('accounts/',include('allauth.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('admin/', admin.site.urls),
+    path('payment/', include('paytm.urls')),
     # path('events/', include('events.urls')),
     # path('coordinator/', include('coordinator.urls')),
     # path('accounts/', include('allauth.urls')),

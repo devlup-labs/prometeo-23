@@ -29,6 +29,8 @@ razorpay = "*"
 sendgrid = "*"
 dj-rest-auth = "*"
 pandas = "*"
+pycryptodome = "*"
+paytm-pg = "*"
 
 [dev-packages]
 

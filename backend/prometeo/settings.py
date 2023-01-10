@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     # Auth & social auth
     "dj_rest_auth",
     "dj_rest_auth.registration",
+    "paytm",
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
