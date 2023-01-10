@@ -286,20 +286,20 @@ function Details(props) {
               //     <span>RULEBOOK</span>
               //   </Link>
               // )
-              // (!PDFObject.supportsPDFs ? (
-              //   <a
-              //     href={
-              //       eventTerm.rulebook.replace(
-              //         "0.0.0.0:8888",
-              //         "apiv.prometeo.in"
-              //       ) || ""
-              //     }
-              //     target="_blank"
-              //     className="event-details-rulebook button-64"
-              //   >
-              //     <span>RULEBOOK</span>
-              //   </a>
-              // ) : (
+              (!PDFObject.supportsPDFs ? (
+                <a
+                  href={
+                    eventTerm.rulebook.replace(
+                      "http://0.0.0.0:8888",
+                      "https://apiv.prometeo.in"
+                    ) || ""
+                  }
+                  target="_blank"
+                  className="event-details-rulebook button-64"
+                >
+                  <span>RULEBOOK</span>
+                </a>
+              ) : (
                 <div
                   className="event-details-rulebook button-64"
                   onClick={() =>
@@ -313,7 +313,7 @@ function Details(props) {
                 >
                   <span>RULEBOOK</span>
                 </div>
-              // ))
+              ))
             }
           </div>
         </div>
