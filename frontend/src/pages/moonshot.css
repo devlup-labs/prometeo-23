@@ -3,7 +3,7 @@
   text-align: left !important;
   color: #011f4e;
   font-family: "Share Tech", sans-serif;
-  font-size: 4vmin;
+  font-size: max(24px,4vmin);
   font-weight: 900;
 }
 .moonshot__text h3 {
@@ -11,7 +11,7 @@
   text-align: left !important;
   color: #84f4eb;
   font-family: "Share Tech", sans-serif;
-  font-size: 5vmin;
+  font-size: max(30px,5vmin);
   font-weight: 500;
   padding-top: 5px;
 }
@@ -31,7 +31,7 @@
   text-align: center !important;
   /* color: #84f4eb; */
   font-family: "Share Tech", sans-serif;
-  font-size: 7vmin;
+  font-size: max(42px,7vmin);
   font-weight: 900;
   /* color: white; */
 }
@@ -131,7 +131,7 @@
   text-overflow: ellipsis;
   text-align: justify;
   height: 100%;
-  font-size: large;
+  font-size: max(17px,2.7vmin);
   color: #0e0e0e;
   font-weight: 900;
 }
@@ -141,13 +141,13 @@
 .moonshot__projectCriteria li {
   color: #0e0e0e;
   font-weight: 900;
-  font-size: medium;
+  font-size: max(14px,2.5vmin);
 }
 .moonshot__projectKeyPoints li {
   color: #0e0e0e;
   font-weight: 900;
 }
-.moonshot .moonshot__tagbox {
+/* .moonshot .moonshot__tagbox {
   display: flex;
   flex-flow: row wrap;
   font-size: 14px;
@@ -167,7 +167,7 @@
 }
 .moonshot .moonshot__tagbox .tag__item:hover {
   background: rgba(83, 83, 83, 0.8);
-}
+} */
 .moonshot:before {
   content: "";
   position: absolute;
@@ -381,7 +381,7 @@
   background: rgba(83, 83, 83, 0.8) !important;
 }
 .moonshot__text p {
-  font-size: large;
+  font-size: max(17px,2.7vmin);
 }
 .moonshot_buttons {
     position: relative;
