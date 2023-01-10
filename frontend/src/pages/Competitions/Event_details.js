@@ -273,20 +273,33 @@ function Details(props) {
               </a>
             )}
             {eventTerm.rulebook &&
-              (PDFObject.supportsPDFs ? (
-                <a
-                  href={
-                    eventTerm.rulebook.replace(
-                      "0.0.0.0:8888",
-                      "apiv.prometeo.in"
-                    ) || ""
-                  }
-                  target="_blank"
-                  className="event-details-rulebook button-64"
-                >
-                  <span>RULEBOOK</span>
-                </a>
-              ) : (
+              // (
+              //   <Link
+              //     to={{
+              //       pathname: "/competition-rulebook",
+              //       search: `?id=${eventTerm.id}&name=${eventTerm.name}`,
+              //       state: {eventTerm}
+              //     }}
+              //     // target="_blank"
+              //     className="event-details-rulebook button-64"
+              //   >
+              //     <span>RULEBOOK</span>
+              //   </Link>
+              // )
+              // (!PDFObject.supportsPDFs ? (
+              //   <a
+              //     href={
+              //       eventTerm.rulebook.replace(
+              //         "0.0.0.0:8888",
+              //         "apiv.prometeo.in"
+              //       ) || ""
+              //     }
+              //     target="_blank"
+              //     className="event-details-rulebook button-64"
+              //   >
+              //     <span>RULEBOOK</span>
+              //   </a>
+              // ) : (
                 <div
                   className="event-details-rulebook button-64"
                   onClick={() =>
@@ -300,7 +313,8 @@ function Details(props) {
                 >
                   <span>RULEBOOK</span>
                 </div>
-              ))}
+              // ))
+            }
           </div>
         </div>
 
@@ -469,7 +483,7 @@ function EventDetails() {
     }
 
     const card = location.state;
-    // console.log("Card:", card);
+    console.log("Card:", card);
 
     if (card) {
       //   console.log("pewpewpew");
