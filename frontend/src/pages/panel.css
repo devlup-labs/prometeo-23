@@ -50,7 +50,7 @@
             transparent 10%,
             rgba(5, 16, 59, 0.16) 60%,
             transparent 100%); */
-            background: linear-gradient(90deg, transparent 0%, rgba(53, 129, 137, 0.4) 10%, rgba(53, 129, 137,0.4) 90%, transparent 100%);
+            background: linear-gradient(90deg, rgba(53, 129, 137, 0.1) 0%, rgba(53, 129, 137, 0.4) 20%, rgba(53, 129, 137,0.4) 80%, rgba(53, 129, 137, 0.1) 100%);
     /* background: rgba(53, 129, 137, 0.4); */
   border-radius: 10px;
   /* margin: 0 0 2rem 0; */
