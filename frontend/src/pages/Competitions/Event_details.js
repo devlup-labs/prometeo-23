@@ -273,15 +273,29 @@ function Details(props) {
               </a>
             )}
             {eventTerm.rulebook &&
+              // (
+              //   <Link
+              //     to={{
+              //       pathname: "/competition-rulebook",
+              //       search: `?id=${eventTerm.id}&name=${eventTerm.name}`,
+              //       state: {eventTerm}
+              //     }}
+              //     // target="_blank"
+              //     className="event-details-rulebook button-64"
+              //   >
+              //     <span>RULEBOOK</span>
+              //   </Link>
+              // )
               (PDFObject.supportsPDFs ? (
                 <a
                   href={
                     eventTerm.rulebook.replace(
-                      "0.0.0.0:8888",
-                      "apiv.prometeo.in"
+                      "http://0.0.0.0:8888",
+                      "https://apiv.prometeo.in"
                     ) || ""
                   }
                   target="_blank"
+                  rel="noreferrer"
                   className="event-details-rulebook button-64"
                 >
                   <span>RULEBOOK</span>
@@ -292,15 +306,16 @@ function Details(props) {
                   onClick={() =>
                     handleDownload(
                       eventTerm.rulebook.replace(
-                        "0.0.0.0:8888",
-                        "apiv.prometeo.in"
+                        "http://0.0.0.0:8888",
+                        "https://apiv.prometeo.in"
                       )
                     )
                   }
                 >
                   <span>RULEBOOK</span>
                 </div>
-              ))}
+              ))
+            }
           </div>
         </div>
 

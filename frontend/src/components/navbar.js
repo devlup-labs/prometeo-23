@@ -131,6 +131,8 @@ const eventTypes = [
 const flagshipEventTypes = [
   { name: "RoboWars", type: "robowar", path: "/robowars" },
   { name: "Drone Race", type: "drone_race", path: "/dronerace" },
+  { name: "Moonshot", type: "moonshot", path: "/moonshot" },
+  { name: "Panel Discussion", type: "panel_discussion", path: "/panel-discussion" },
 ];
 
 function Navbar() {

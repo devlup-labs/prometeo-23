@@ -69,13 +69,13 @@ const tabsName = [
     data_title: "Poster Presentation",
     status: "poster_presentation",
   },
-  {
-    name: "Panel Discussion",
-    id: "Panel_Discussion",
-    data_content: "Panel_Discussion",
-    data_title: "Panel Discussion",
-    status: "panel_discussion",
-  },
+  // {
+  //   name: "Panel Discussion",
+  //   id: "Panel_Discussion",
+  //   data_content: "Panel_Discussion",
+  //   data_title: "Panel Discussion",
+  //   status: "panel_discussion",
+  // },
 ];
 function createEntry(eventTerm) {
   if (eventTerm.name !== "Tedx" && eventTerm.type !== "talk") {
@@ -252,15 +252,15 @@ function Events() {
         </h2> */}
 
         <section id="wrapper">
-          <div class="taabs_content">
+          <div className="taabs_content">
             {/* <!-- taab links --> */}
-            <div class="taabs">
+            <div className="taabs">
               {tabsName.map((item, index) => {
                 if (item.status === status)
                   return (
                     <button
                       id={item.id}
-                      class="taablinks active_taab"
+                      className="taablinks active_taab"
                       data-country={item.data_content}
                       onClick={() => setStatusFilter(item.status)}
                     >
@@ -271,7 +271,7 @@ function Events() {
                   return (
                     <button
                       id={item.id}
-                      class="taablinks"
+                      className="taablinks"
                       data-country={item.data_content}
                       onClick={() => setStatusFilter(item.status)}
                     >
@@ -282,8 +282,8 @@ function Events() {
             </div>
 
             {/* <!-- taab content --> */}
-            <div class="wrapper_taabcontent">
-              <div class="taabcontent active_taab">
+            <div className="wrapper_taabcontent">
+              <div className="taabcontent active_taab">
                 <section className="event_Hero-section">
                   {eventData.length > 0 ? (
                     eventData.filter((e) => e.type === status).length > 0 ? (
@@ -294,20 +294,20 @@ function Events() {
                         {/* {console.log(e)} */}
                       </div>
                     ) : status === "poster_presentation" ? (
-                      <section class="dark">
-                        <div class="container">
-                          <div class="poster-title"></div>
-                          <article class="postcard blue" data-aos="fade-up">
-                            <div class="postcard__text">
+                      <section className="dark">
+                        <div className="container">
+                          <div className="poster-title"></div>
+                          <article className="postcard blue" data-aos="fade-up">
+                            <div className="postcard__text">
                               <h2>Poster Presentation</h2>
-                              <h1 class="postcard__title blue">
+                              <h1 className="postcard__title blue">
                                 Prize 80,000 INR
                               </h1>
-                              {/* <div class="postcard__subtitle">
+                              {/* <div className="postcard__subtitle">
                 <time>Prize 80,000 INR</time>
               </div> */}
-                              <div class="postcard__bar"></div>
-                              <div class="postcard__preview-txt">
+                              <div className="postcard__bar"></div>
+                              <div className="postcard__preview-txt">
                                 Poster Presentation in itself is an art that
                                 communicates days of hard work into a very short
                                 span of 2 minutes and a visual poster. It is
@@ -320,7 +320,7 @@ function Events() {
                                 researchers.
                               </div>
                               <h3>Themes</h3>
-                              <ul class="">
+                              <ul className="">
                                 <li>AI </li>
                                 <li>Quantum </li>
                                 <li>Computing </li>

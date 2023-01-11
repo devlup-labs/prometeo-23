@@ -19,6 +19,8 @@ import Gallery from "./pages/Gallery/newGallery";
 import NewGallery from "./pages/Gallery/newNewGallery";
 import Sponsors from "./pages/Sponsors/sponsors";
 import Workshop from "./pages/workshop";
+import Moonshot from "./pages/moonshot";
+import PanelDiscussion from "./pages/panel";
 import Theme from "./components/Theme";
 import Team from "./pages/Team/newTeam";
 import CA from "./pages/ca";
@@ -27,6 +29,7 @@ import AccForm from "./pages/Accommodation/accForm";
 
 import Events from "./pages/Competitions/Event.js";
 import EventDetails from "./pages/Competitions/Event_details";
+import Competitions_Rulebook from "./pages/Competitions/competitionsRulebook";
 import WorkshopDetails from "./pages/workshop_details";
 import Event_createTeam from "./pages/Competitions/event_createTeam";
 import Event_joinTeam from "./pages/Competitions/event_joinTeam";
@@ -77,11 +80,14 @@ function App() {
                             element={<Accommodation />}
                         />
                         <Route path="/workshop" element={<Workshop />} />
+                        <Route path="/moonshot" element={<Moonshot />} />
+                        <Route path="/panel-discussion" element={<PanelDiscussion />} />
                         <Route path="/competitions" element={<Events />} />
                         <Route
                             path="/event-details"
                             element={<EventDetails />}
                         />
+                        {/* <Route path="/competition-rulebook" element={<Competitions_Rulebook />} /> */}
                         <Route
                             path="/workshop-details"
                             element={<WorkshopDetails />}
