@@ -164,7 +164,7 @@ function Entry(props) {
                         id="dronerace_create-button"
                         className="button-48"
                         onClick={() => {
-                            console.log(props.droneName);
+                            // console.log(props.droneName);
                             if (user === null) {
                                 toast.error("Please login to register");
                                 navigate("/login");

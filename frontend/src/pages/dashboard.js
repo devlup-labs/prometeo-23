@@ -80,7 +80,7 @@ function Dashboard() {
 
                 if (response.status === 200) {
                     const data = response.data;
-                    console.log("Login Dashboard Data:", data);
+                    // console.log("Login Dashboard Data:", data);
                     if (data.isProfileCompleted === false) {
                         navigate("/complete-profile");
                     } else {

@@ -18,7 +18,7 @@ function BuyPass() {
     () => {
       const navBarEle = document.getElementById("navbar");
       navBarEle.style.opacity = 1;
-      console.log(searchParams.get("msg"));
+      // console.log(searchParams.get("msg"));
     },
     []
   );
@@ -29,14 +29,15 @@ function BuyPass() {
     let valArr = Object.values(res);
 
     // when we start the payment verification we will hide our Product form
-    document.querySelectorAll(".App")[0].style.display = "none";
+    document.getElementById("buyPass").style.display = "none";
 
     // Lets create a form by DOM manipulation
     // display messages as soon as payment starts
-    let heading1 = document.createElement("h1");
-    heading1.innerText = "Redirecting you to the paytm....";
-    let heading2 = document.createElement("h1");
-    heading2.innerText = "Please do not refresh your page....";
+    document.getElementById("buyPass-redirect-text").style.display = "flex";
+    // let heading1 = document.createElement("h1");
+    // heading1.innerText = "Redirecting you to the paytm....";
+    // let heading2 = document.createElement("h1");
+    // heading2.innerText = "Please do not refresh your page....";
 
     //create a form that will send necessary details to the paytm
     let frm = document.createElement("form");
@@ -59,8 +60,8 @@ function BuyPass() {
     });
 
     // append all the above tags into the body tag
-    document.body.appendChild(heading1);
-    document.body.appendChild(heading2);
+    // document.body.appendChild(heading1);
+    // document.body.appendChild(heading2);
     document.body.appendChild(frm);
     // finally submit that form
     frm.submit();
@@ -73,17 +74,17 @@ function BuyPass() {
     setStatus(name);
   };
 
-  console.log(status);
+  // console.log(status);
 
   const startPayment = async (e) => {
     e.preventDefault();
     const passType = e.target.type;
     // const passType = status;
-    console.log("passtype", passType);
+    // console.log("passtype", passType);
     // send data to the backend
     // bodyData.append("amount", amount);
     // bodyData.append("email", email);
-    console.log("hello");
+    // console.log("hello");
 
     // const data = {
     //   payment_type: passType,
@@ -122,6 +123,12 @@ function BuyPass() {
   return (
     <FadeIn duration={500}>
       <div id="buyPass-container">
+        <div id="buyPass-redirect-text">
+          <h1>Redirecting you to PayTm gateway...</h1>
+          <h2>
+            Please do not refresh the page or close the tab!
+          </h2>
+        </div>
         <div id="buyPass">
           <div id="buyPass-top">
             <div id="buyPass-title">
@@ -138,20 +145,20 @@ function BuyPass() {
           </div>
 
           <section>
-            <div class="container-fluid">
-              <div class="container">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="card text-center">
-                      <div class="title">
+            <div className="container-fluid">
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm-4">
+                    <div className="card text-center">
+                      <div className="title">
                         <h2>ACCOMMODATION</h2>
                       </div>
-                      <div class="price">
+                      <div className="price">
                         <h4>
-                          <sup>₹</sup>999 INR
+                          <small>₹</small>999
                         </h4>
                       </div>
-                      <div class="pass-benefites">
+                      <div className="pass-benefites">
                         <ul>
                           <li>Accommodation for 3 days</li>
                           <li>Food facilities</li>
@@ -166,21 +173,21 @@ function BuyPass() {
                       </a>
                     </div>
                   </div>
-                  <div class="col-sm-4">
-                    <div class="card text-center jumbo">
-                      <div class="jumbo-title">
+                  <div className="col-sm-4">
+                    <div className="card text-center jumbo">
+                      <div className="jumbo-title">
                         <h2>JUMBO PACK</h2>
                       </div>
-                      <div class="price">
+                      <div className="price">
                         <h4>
-                          <sup>₹</sup>999 INR
+                          <small>₹</small>999
                         </h4>
                       </div>
-                      <div class="pass-benefites">
+                      <div className="pass-benefites">
                         <ul>
                           <li>Accommodation for 3 days</li>
                           <li>Food facilities</li>
-                          <li>Culture Night on 22nd January</li>
+                          <li>Culture Night on 22<sup>nd</sup> January</li>
                         </ul>
                       </div>
                       <a type="Jumbo Pack" href="/accommodation-registration">
@@ -188,19 +195,19 @@ function BuyPass() {
                       </a>
                     </div>
                   </div>
-                  <div class="col-sm-4">
-                    <div class="card text-center">
-                      <div class="title">
+                  <div className="col-sm-4">
+                    <div className="card text-center">
+                      <div className="title">
                         <h2>CULTURE NIGHT</h2>
                       </div>
-                      <div class="price">
+                      <div className="price">
                         <h4>
-                          <sup>₹</sup>499 INR
+                          <small>₹</small>499
                         </h4>
                       </div>
-                      <div class="pass-benefites">
+                      <div className="pass-benefites">
                         <ul>
-                          <li>Culture Night on 22nd January</li>
+                          <li>Culture Night on 22<sup>nd</sup> January</li>
                         </ul>
                       </div>
                       <a type="Cultural Night" href="" onClick={startPayment}>
