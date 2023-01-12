@@ -16,6 +16,7 @@ from events.models import *
 from coordinator.models import *
 from users.models import *
 from paytm.models import *
+from . import utility
 import requests
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -37,16 +38,6 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from django.conf import settings
 
-import base64
-import string
-import random
-import hashlib
-
-from Crypto.Cipher import AES
-
-
-IV = "@@@@&&&&####$$$$"
-BLOCK_SIZE = 16
 
 
 User = ExtendedUser
@@ -735,47 +726,8 @@ class PaymentViewSet(APIView):
             amount=1088
         
         amount =1
-
         
-        __pad__ = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(s) % BLOCK_SIZE)
-        __unpad__ = lambda s: s[0:-ord(s[-1])]
-
-        def __id_generator__(size=6, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
-            return ''.join(random.choice(chars) for _ in range(size))
-
-
-        def __get_param_string__(params):
-            params_string = []
-            for key in sorted(params.keys()):
-                value = params[key]
-                params_string.append('' if value == 'null' else str(value))
-            return '|'.join(params_string)
-
-        def __encode__(to_encode, iv, key):
-            # Pad
-            to_encode = __pad__(to_encode)
-            # Encrypt
-            c = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv.encode('utf-8'))
-            to_encode = c.encrypt(to_encode.encode('utf-8'))
-            # Encode
-            to_encode = base64.b64encode(to_encode)
-            return to_encode.decode("UTF-8")
-
-
-        def generate_checksum(param_dict, merchant_key, salt=None):
-            params_string = __get_param_string__(param_dict)
-            salt = salt if salt else __id_generator__(4)
-            final_string = '%s|%s' % (params_string, salt)
-
-            hasher = hashlib.sha256(final_string.encode())
-            hash_string = hasher.hexdigest()
-
-            hash_string += salt
-
-            return __encode__(hash_string, IV, merchant_key)
-
-        
-        order_id = User.registration_id + __id_generator__()
+        order_id = User.registration_id + utility.__id_generator__()
         payment.order_id = order_id
         payment.save()
         param_dict = {
@@ -789,7 +741,7 @@ class PaymentViewSet(APIView):
         'CALLBACK_URL': settings.PAYTM_CALLBACK_URL,
         'MERC_UNQ_REF': settings.PAYTM_MERC_UNQ_REF,
         }
-        param_dict['CHECKSUMHASH'] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
+        param_dict['CHECKSUMHASH'] = utility.generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
 
         serializers = PaymentSerializers(payment)
             
@@ -805,8 +757,6 @@ class PaymentCallBack(APIView):
         print(request.data)
         response_keys = request.data.keys()
         order_id = request.data['ORDERID']
-        # reg_id = request.data['ORDERID'][:6]
-        # user = ExtendedUser.objects.filter(registration_id = reg_id).first()
         payment = Payment.objects.filter(order_id = order_id).first()
         payment.amount = float(request.data['TXNAMOUNT'])
         payment.order_id = request.data['ORDERID']
@@ -822,20 +772,23 @@ class PaymentCallBack(APIView):
             
             payment.isPaid = True
             payment.payment_status = "Success"
-            passtype = Passes.objects.filter(user=payment.user).first()
-            passtype.pass_type = passtype_dict[payment.payment_type]
-            passtype.save()
-            
+            if Passes.objects.filter(user=payment.user).exists():
+                passtype = Passes.objects.filter(user=payment.user).first()
+                passtype.pass_type = passtype_dict[payment.payment_type]
+                passtype.save()
+            elif payment.payment_type=="Cultural Night":
+                passtype = Passes.objects.create(user=payment.user, pass_type=passtype_dict[payment.payment_type])
+                passtype.save()
+
         elif request.data['STATUS'] =='TXN_FAILURE':
             payment.payment_status = "Failed"
         elif request.data['STATUS'] =='PENDING':
             payment.payment_status = "Aborted"
 
-        msg = payment.response_msg 
+        msg = payment.response_msg
+        code = payment.response_code 
         payment.save()
-        response=json.dumps(request.data.dict())
-        resp = json.loads(response)
-        # response = response.replace("\\\", "\\/")
-        request.session["message"] = resp
-        return redirect("http://localhost:3000/pay?msg="+msg)
+        # response=json.dumps(request.data.dict())
+        # resp = json.loads(response)
+        return redirect("http://localhost:3000/pay?msg="+msg+"&code="+code)
         
