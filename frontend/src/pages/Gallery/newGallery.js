@@ -30,7 +30,7 @@ export default function Gallery() {
     const [numOfImages, setNumOfImages] = useState(0);
 
     useEffect(() => {
-        console.log(galleryData.length, numOfImages);
+        // console.log(galleryData.length, numOfImages);
         let percentage = parseInt((100 * galleryData.length) / numOfImages ? (100 * galleryData.length) / numOfImages : 0);
         let loaderText = document.getElementById("gallery-loader-text");
         loaderText.innerHTML = `${percentage}%`;
@@ -85,7 +85,7 @@ export default function Gallery() {
                             id: data[i].id,
                         });
                     }
-                    console.log(data);
+                    // console.log(data);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -95,11 +95,11 @@ export default function Gallery() {
         // wait for fetch to finish
         fetchData().then(() => {
 
-            console.log("our data is", imageLinks[0]);
+            // console.log("our data is", imageLinks[0]);
 
             setNumOfImages(imageLinks.length);
 
-            console.log("num of images", numOfImages);
+            // console.log("num of images", numOfImages);
 
             for (let i = 0; i < imageLinks.length; i++) {
                 // if (imageLinks[i].id === 1) continue;
@@ -119,7 +119,7 @@ export default function Gallery() {
                         src: img.src,
                         image: img,
                     };
-                    console.log("image loaded");
+                    // console.log("image loaded");
                     setGalleryData((prev) => [...prev, obj]);
                     let track = document.getElementById("gallery-image-track");
                     track.appendChild(img);
@@ -228,12 +228,12 @@ export default function Gallery() {
 
         if (stop) {
             // remove all event listeners
-            console.log("removing event listeners")
+            // console.log("removing event listeners")
             container.onmousedown = null;
             container.onmouseup = null;
             container.onmousemove = null;
         } else {
-            console.log("adding event listeners")
+            // console.log("adding event listeners")
             container.onmousedown = (e) => {
                 // console.log("mousedown")
                 container.style.cursor = "grabbing";

@@ -217,7 +217,7 @@ function AccForm() {
         async function postImage() {
             try {
                 // console.log("Fetching data for user:", user.email);
-                console.log(selectedFile);
+                // console.log(selectedFile);
                 const formData = new FormData();
                 formData.append("email", user.email);
                 formData.append("payment_ss", selectedFile);
@@ -241,7 +241,7 @@ function AccForm() {
         const myPromise = new Promise((resolve, reject) => {
             postImage()
                 .then((res) => {
-                    console.log(res);
+                    // console.log(res);
                     resolve(res);
                 })
                 .catch((err) => {
