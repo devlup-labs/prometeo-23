@@ -72,5 +72,6 @@ urlpatterns=[
     path('checkevent/', views.CheckEventView.as_view(), name='checkdronerace'),
     path('uploadss/', views.UploadSS.as_view(), name='uploadss'),
     path('pay/',views.PaymentViewSet.as_view(),name='Pay'),
-    path('paymentcallback/',views.PaymentCallBack.as_view(), name='PaymentCallBack')
+    path('paymentcallback/',views.PaymentCallBack.as_view(), name='PaymentCallBack'),
+    path('customorder/',views.CustomOrderView.as_view(), name='CustomOrder'),
 ]

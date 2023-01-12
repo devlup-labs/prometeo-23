@@ -35,3 +35,10 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.user.email
+
+class CustomOrder(models.Model):
+    amount = models.FloatField(default=0)
+    order_id = models.CharField(max_length=250,null=True,blank=True)
+    payment_from = models.CharField(max_length=250, null=True)
+    payment_reason = models.CharField(max_length=500, null=True)
+    link = models.CharField(max_length=500, null=True,blank=True)

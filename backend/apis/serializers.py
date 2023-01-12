@@ -435,3 +435,11 @@ class PaymentSerializers(serializers.ModelSerializer):
         model = Payment
         fields = '__all__'
 
+class CustomOrderSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = CustomOrder
+        fields = '__all__'
+        extra_kwargs = {'amount' : {'read_only' : True},
+                        'payment_from' : {'read_only' : True},
+                        'payment_reason' : {'read_only' : True},
+                        'link' : {'read_only' : True}}
