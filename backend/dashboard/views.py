@@ -815,10 +815,10 @@ def passtype_update(request):
             if "Jumbo Fee" in list_typeofpayment[i]:
                 # list_passtype[i]=3
                 list_passtype.append(3)
-            elif "Event Fee" in list_typeofpayment[i]:
+            elif "Cultural Night Pass" in list_typeofpayment[i]:
                 # list_passtype[i]=2
                 list_passtype.append(2)
-            elif "Accommodation Fee" in list_typeofpayment[i]:
+            elif "Accommodation Pass" in list_typeofpayment[i]:
                 # list_passtype[i]=1
                 list_passtype.append(1)
 
