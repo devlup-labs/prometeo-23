@@ -28,7 +28,6 @@ pysocks = "*"
 razorpay = "*"
 sendgrid = "*"
 dj-rest-auth = "*"
-pandas = "*"
 pycryptodome = "*"
 paytm-pg = "*"
 

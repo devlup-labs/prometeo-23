@@ -5,7 +5,6 @@ from users.models import  ExtendedUser, Team, Submissions, CampusAmbassador
 from events.models import Event
 import xlsxwriter
 import os
-import pandas as pd
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.contrib import messages
@@ -792,49 +791,3 @@ def get_pass_excel(request):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     # return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
-
-@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/passtype/')
-def passtype_update(request):
-    passtypes = Passes.objects.all()
-    if request.method=='POST':
-        file = request.FILES['myfile']
-        excel_data = pd.read_excel(file)
-        data = pd.DataFrame(excel_data, columns=['Full Name (same as Aadhaar card)','Type of payment'])
-        data_fullName = pd.DataFrame(excel_data, columns=['Full Name (same as Aadhaar card)'])
-        
-        # print(len(data_fullName))
-        list_fullName=[]
-        list_typeofpayment=[]
-        list_passtype=[]
-        for ind in data.index:
-            list_fullName.append(data['Full Name (same as Aadhaar card)'][ind])
-            list_typeofpayment.append(data['Type of payment'][ind])
-        print(list_fullName)
-        print(list_typeofpayment)
-        for i in range(0,len(list_typeofpayment)):
-            if "Jumbo Fee" in list_typeofpayment[i]:
-                # list_passtype[i]=3
-                list_passtype.append(3)
-            elif "Cultural Night Pass" in list_typeofpayment[i]:
-                # list_passtype[i]=2
-                list_passtype.append(2)
-            elif "Accommodation Pass" in list_typeofpayment[i]:
-                # list_passtype[i]=1
-                list_passtype.append(1)
-
-        print(list_passtype)
-        conflict=[]
-        for i in range(0,len(list_fullName)):
-            if Passes.objects.filter(full_name=list_fullName[i]).exists():
-                pass_update = Passes.objects.filter(full_name=list_fullName[i]).first()
-                if pass_update.pass_type==0:
-                    pass_update.pass_type = list_passtype[i]
-                    pass_update.save()
-                elif pass_update.pass_type !=0 and pass_update.pass_type != list_passtype[i]:
-                    conflict.append(list_fullName[i])
-                print(pass_update.pass_type)
-                print(conflict)
-
-    return render(request, 'dashboard/passtype.html', {'passtypes': passtypes,'conflict': conflict})
-
-
