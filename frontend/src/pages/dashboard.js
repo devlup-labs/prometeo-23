@@ -404,6 +404,16 @@ function Dashboard() {
                             </div>
                         )}
                     </div>
+                    {
+                        userData && userData.pass_type !== 0 && 
+                        (
+                            <div id="dashboard-pass-mobile-download">
+                                <div id="dashboard-pass-mobile-download-btn" onClick={() => handleDownload(userData.pass_type)}>
+                                    <img id="dashboard-pass-mobile-download-icon" src={downIcon} />Download Pass
+                                </div>
+                            </div>
+                        )
+                    }
                     <div id="dashboard-pass">
                         {
                             (userData && userData.pass_type !== 0) ? (
