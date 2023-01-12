@@ -33,7 +33,7 @@ function Competitions_Rulebook() {
                         "0.0.0.0:8888",
                         "apiv.prometeo.in"
                     ));
-                    console.log("Data:", data[0]);
+                    // console.log("Data:", data[0]);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
