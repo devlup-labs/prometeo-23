@@ -444,12 +444,25 @@ section {
   position: relative;
   z-index: 2;
 }
-
+.pass-benefites ul{
+  /* margin: auto; */
+  list-style: none;
+}
 .pass-benefites ul li {
+  text-align: left;
   margin: 0 0 5px;
   padding: 0;
   color: black;
   font-size: 16px;
+}
+.pass-benefites ul li:before {
+  /* content: '✓'; */
+  content: '';  /* placeholder for the SVG */
+  position: absolute;
+  left: 0;  /* place the SVG at the start of the padding */
+  width: 1em;
+  height: 1em;
+  background: url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='utf-8'?><svg width='18' height='18' viewBox='0 0 1792 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z'/></svg>") no-repeat;
 }
 .row{
   justify-content: center;
@@ -457,6 +470,10 @@ section {
 .row .col-sm-4{
   padding: 0px;
   width: 30%;
+}
+.row p{
+  text-align: end;
+  padding-top: 10px;
 }
 .card a {
   position: relative;
