@@ -151,9 +151,7 @@ function BuyPass() {
       <div id="buyPass-container">
         <div id="buyPass-redirect-text">
           <h1>Redirecting you to Paytm gateway...</h1>
-          <h2>
-            Please do not refresh the page or close the tab!
-          </h2>
+          <h2>Please do not refresh the page or close the tab!</h2>
         </div>
         <div id="buyPass">
           <div id="buyPass-top">
@@ -193,7 +191,7 @@ function BuyPass() {
                       <a
                         type="Accommodation"
                         value="Accommodation"
-                        href="/accommodation-registration"
+                        onClick={startPayment}
                       >
                         Buy Now
                       </a>
@@ -213,10 +211,12 @@ function BuyPass() {
                         <ul>
                           <li>Accommodation for 3 days</li>
                           <li>Food facilities</li>
-                          <li>Culture Night on 22<sup>nd</sup> January</li>
+                          <li>
+                            Culture Night on 22<sup>nd</sup> January
+                          </li>
                         </ul>
                       </div>
-                      <a type="Jumbo Pack" href="/accommodation-registration">
+                      <a type="Jumbo Pack" onClick={startPayment}>
                         Buy Now
                       </a>
                     </div>
@@ -233,7 +233,9 @@ function BuyPass() {
                       </div>
                       <div className="pass-benefites">
                         <ul>
-                          <li>Culture Night on 22<sup>nd</sup> January</li>
+                          <li>
+                            Culture Night on 22<sup>nd</sup> January
+                          </li>
                         </ul>
                       </div>
                       <a type="Cultural Night" href="" onClick={startPayment}>
