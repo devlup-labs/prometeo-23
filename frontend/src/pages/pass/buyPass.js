@@ -160,7 +160,7 @@ function BuyPass() {
                       <a
                         type="Accommodation"
                         value="Accommodation"
-                        onClick={startPayment}
+                        href="/accommodation-registration"
                       >
                         Buy Now
                       </a>
@@ -183,7 +183,7 @@ function BuyPass() {
                           <li>Culture Night on 22nd January</li>
                         </ul>
                       </div>
-                      <a type="Jumbo Pack" onClick={startPayment}>
+                      <a type="Jumbo Pack" href="/accommodation-registration">
                         Buy Now
                       </a>
                     </div>
@@ -200,14 +200,18 @@ function BuyPass() {
                       </div>
                       <div class="pass-benefites">
                         <ul>
-                          <li>Cultur Night on 22nd January</li>
+                          <li>Culture Night on 22nd January</li>
                         </ul>
                       </div>
-                      <a type="Cultural Night" onClick={startPayment}>
+                      <a type="Cultural Night" href="" onClick={startPayment}>
                         Buy Now
                       </a>
                     </div>
                   </div>
+                  <p>
+                    * The prices mentioned are exclusive of GST. Nominal GST
+                    charges will be applied.
+                  </p>
                 </div>
               </div>
             </div>
