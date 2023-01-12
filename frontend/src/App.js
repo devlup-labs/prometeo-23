@@ -40,6 +40,7 @@ import Robowar_joinTeam from "./pages/Events/Robowars/robowar_joinTeam";
 import DroneRace from "./pages/Events/Drone_Race/drone_race";
 import Dronerace_Register from "./pages/Events/Drone_Race/dronerace_register";
 
+import BuyPass from "./pages/pass/buyPass";
 import Register from "./pages/Register.js";
 import PreRegistration from "./pages/preRegistration";
 import Login from "./pages/Login.js";
@@ -143,6 +144,12 @@ function App() {
                                 element={<Dronerace_Register />}
                             />
                         </Route>
+
+                        <Route 
+                            exact
+                            path="/buy-pass"
+                            element={<BuyPass />}
+                        />
                         <Route
                             exact
                             path="/dashboard"
