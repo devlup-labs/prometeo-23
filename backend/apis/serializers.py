@@ -9,6 +9,7 @@ from home.models import *
 from events.models import *
 from coordinator.models import *
 from users.models import *
+from paytm.models import *
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 import requests
 from rest_framework.permissions import IsAuthenticated
@@ -429,3 +430,8 @@ class RegisterEventSerializers(serializers.ModelSerializer):
         model = ExtendedUser
         fields = ['drone_wars_name']
     
+class PaymentSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = '__all__'
+

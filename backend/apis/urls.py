@@ -5,7 +5,8 @@ from rest_framework import routers
 # from users.views import SignUpViewSet
 from django.contrib import admin
 from django.urls import path, include
-from .views import ExtendedUserViewSet, MyObtainTokenPairView
+from .views import *
+# from .views import ExtendedUserViewSet, MyObtainTokenPairView
 from rest_framework.routers import DefaultRouter
 from django.conf import settings
 from django.conf.urls.static import static
@@ -70,4 +71,6 @@ urlpatterns=[
     path('registerevent/', views.RegisterEventView.as_view(), name='registerdronerace'),
     path('checkevent/', views.CheckEventView.as_view(), name='checkdronerace'),
     path('uploadss/', views.UploadSS.as_view(), name='uploadss'),
+    path('pay/',views.PaymentViewSet.as_view(),name='Pay'),
+    path('paymentcallback/',views.PaymentCallBack.as_view(), name='PaymentCallBack')
 ]
