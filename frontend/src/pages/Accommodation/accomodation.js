@@ -32,14 +32,24 @@ export default function Accommodation() {
                 );
                 if (response.status === 200) {
                     let data = response.data;
-                    // console.log(data);
-                    if (data.length > 0) {
+                    console.log(data);
+                    if (data.length > 0 && data[0].pass_type === 0) {
                         document.getElementById(
                             "acc-register-button"
                         ).innerHTML =
                             "<span class='button-text'>PAY NOW!</span>";
                         if (document.getElementById("acc_info") !== null)
                             document.getElementById("acc_info").style.display = "block";
+                    }
+                    else if (data.length > 0 && data[0].pass_type !== 0) {
+                        document.getElementById(
+                            "acc-register-button"
+                        ).innerHTML =
+                            "<span class='button-text'>Already Purchased!</span>";
+                        document.getElementById("acc-register-button").onclick = function () {
+                            window.location.href = "/dashboard";
+                        };
+                        document.getElementById("acc_info").style.display = "none";
                     }
                 } else {
                     // console.log(response)

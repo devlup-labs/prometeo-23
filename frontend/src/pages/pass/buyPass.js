@@ -1,6 +1,7 @@
 import "./buyPass.css";
 import { useState, useEffect, useContext } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import FadeIn from "../../components/fadein";
 import { backendURL } from "../../backendURL";
@@ -11,6 +12,7 @@ function BuyPass() {
   let [searchParams, SetSearchParams] = useSearchParams();
   const { user } = useContext(AuthContext);
   const api = useAxios();
+  const navigate = useNavigate();
   const [status, setStatus] = useState("nothing");
 
   useEffect(
@@ -74,6 +76,17 @@ function BuyPass() {
     setStatus(name);
   };
 
+  const checkAccommodationStatus = async () => {
+    const response = await api.get(`${backendURL}/accomodationpasses/?user=${user.user_id}`);
+    if (response.status === 200) {
+      console.log("Accommodation Status:", response.data);
+      if (response.data.length > 0) {
+        return "Registered"
+      }
+    }
+    return "Not Registered"
+  }
+
   // console.log(status);
 
   const startPayment = async (e) => {
@@ -108,15 +121,28 @@ function BuyPass() {
     //     handleSuccess(response.data.param_dict);
     //   }
     // });
+    let accommodationStatus = "null";
+    if (passType === "Accommodation" || passType === "Jumbo Pack") {
+      accommodationStatus = await checkAccommodationStatus();
+    }
+    else {
+      accommodationStatus = "Not required";
+    }
 
-    const response = await api.post(`${backendURL}/pay/`, {
-      payment_type: passType,
-      user: user.user_id,
-      payment_status: "Initiated",
-    });
+    console.log("accommodationStatus:", accommodationStatus)
+    if (accommodationStatus === "Registered" || accommodationStatus === "Not required") {
+      const response = await api.post(`${backendURL}/pay/`, {
+        payment_type: passType,
+        user: user.user_id,
+        payment_status: "Initiated",
+      });
 
-    if (response.status === 200) {
-      handleSuccess(response.data.param_dict);
+      if (response.status === 200) {
+        handleSuccess(response.data.param_dict);
+      }
+    } else {
+      toast.info("Please register for accommodation first!");
+      navigate("/accommodation-registration");
     }
   };
 
@@ -124,7 +150,7 @@ function BuyPass() {
     <FadeIn duration={500}>
       <div id="buyPass-container">
         <div id="buyPass-redirect-text">
-          <h1>Redirecting you to PayTm gateway...</h1>
+          <h1>Redirecting you to Paytm gateway...</h1>
           <h2>
             Please do not refresh the page or close the tab!
           </h2>
