@@ -52,8 +52,9 @@ function AccForm() {
                 );
                 if (response.status === 201) {
                     let data = response.data;
-                    document.getElementById("acc-success").style.display =
-                        "flex";
+                    navigate("/buy-pass");
+                    // document.getElementById("acc-success").style.display =
+                    //     "flex";
                     // console.log(data);
                     // let invite_code;
                     // // toast.success("Registered Successfully!");

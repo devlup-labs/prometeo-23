@@ -121,13 +121,16 @@ function BuyPass() {
     //     handleSuccess(response.data.param_dict);
     //   }
     // });
-    let accommodationStatus = null;
+    let accommodationStatus = "null";
     if (passType === "Accommodation" || passType === "Jumbo Pack") {
       accommodationStatus = await checkAccommodationStatus();
     }
+    else {
+      accommodationStatus = "Not required";
+    }
 
     console.log("accommodationStatus:", accommodationStatus)
-    if (accommodationStatus === "Registered") {
+    if (accommodationStatus === "Registered" || accommodationStatus === "Not required") {
       const response = await api.post(`${backendURL}/pay/`, {
         payment_type: passType,
         user: user.user_id,
@@ -139,7 +142,7 @@ function BuyPass() {
       }
     } else {
       toast.info("Please register for accommodation first!");
-      navigate("/accommodation");
+      navigate("/accommodation-registration");
     }
   };
 

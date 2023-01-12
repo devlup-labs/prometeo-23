@@ -74,7 +74,7 @@ function Dashboard() {
             toast.success("Pass purchased successfully.");
         }
         else if (urlParams.get("code")) {
-            toast.info(urlParams.get("msg"));
+            toast.error(urlParams.get("msg"));
         }
     }, []);
 
