@@ -1,3 +1,8 @@
+@font-face{
+    src: url(../fonts/Neone-Regular.ttf.woff) format("woff");
+    font-family: myfont;
+    font-weight: bold;
+}
 #dashboard-container {
     box-sizing: border-box;
     width: 100%;
@@ -139,7 +144,36 @@
     align-items: center;
 
 }
-
+#ticketType-container{
+    /* background-color: cyan; */
+        position: absolute;
+    top: 52%;
+    background-size: contain ;
+    box-sizing: border-box;
+    height: 50%;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    /* left: calc((57 / 1771) * 100%); */
+    left: calc((650 / 1771) * 100%);
+    width: calc((264 / 1771) * 100%);
+    padding: 0 calc((57 / 1771) * 100% * 0.1);
+    transform: translate(-50%, -50%);
+    font-family: myfont;
+    font-weight: 900;
+    /* color:#c37eff; */
+    color:#fff;
+}
+#ticketType-container h4{
+    /* font-size: calc(0.025 * 0.67 * 92vw) !important; */
+    text-align: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+#ticketType-container p{
+    margin-bottom: 0;
+}
 #dashboard-pass-right-side{
     box-sizing: border-box;
     width: 75%;

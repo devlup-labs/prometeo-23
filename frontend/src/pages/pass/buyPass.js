@@ -155,7 +155,7 @@ function BuyPass() {
                       </div>
                       <div className="price">
                         <h4>
-                          <small>₹</small>999
+                          <small>₹</small>999*
                         </h4>
                       </div>
                       <div className="pass-benefites">
@@ -180,7 +180,7 @@ function BuyPass() {
                       </div>
                       <div className="price">
                         <h4>
-                          <small>₹</small>999
+                          <small>₹</small>999*
                         </h4>
                       </div>
                       <div className="pass-benefites">
@@ -202,7 +202,7 @@ function BuyPass() {
                       </div>
                       <div className="price">
                         <h4>
-                          <small>₹</small>499
+                          <small>₹</small>499*
                         </h4>
                       </div>
                       <div className="pass-benefites">
