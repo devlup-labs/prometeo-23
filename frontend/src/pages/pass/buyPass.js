@@ -147,7 +147,7 @@ function BuyPass() {
     <FadeIn duration={500}>
       <div id="buyPass-container">
         <div id="buyPass-redirect-text">
-          <h1>Redirecting you to PayTm gateway...</h1>
+          <h1>Redirecting you to Paytm gateway...</h1>
           <h2>
             Please do not refresh the page or close the tab!
           </h2>
