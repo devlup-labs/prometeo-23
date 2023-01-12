@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     # Auth & social auth
     "dj_rest_auth",
     "dj_rest_auth.registration",
+    "paytm",
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -347,5 +348,12 @@ SOCIALACCOUNT_PROVIDERS = {
 # RAZORPAY_KEY_SECRET = YOUR_KEY_SECRET
 
 
+PAYTM_MID = config('PAYTM_MID',cast=str)
+PAYTM_MERCHANT_KEY = config('PAYTM_MERCHANT_KEY',cast=str)
+PAYTM_WEBSITE = config('PAYTM_WEBSITE',cast=str)
+PAYTM_CHANNEL_ID = config('PAYTM_CHANNEL_ID',cast=str)
+PAYTM_INDUSTRY_TYPE_ID = config('PAYTM_INDUSTRY_TYPE_ID',cast=str)
+PAYTM_CALLBACK_URL = config('PAYTM_CALLBACK_URL',cast=str)
+PAYTM_MERC_UNQ_REF = config('PAYTM_MERC_UNQ_REF',cast=str)
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'

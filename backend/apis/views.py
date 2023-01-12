@@ -15,6 +15,8 @@ from home.models import *
 from events.models import *
 from coordinator.models import *
 from users.models import *
+from paytm.models import *
+from . import utility
 import requests
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -26,6 +28,7 @@ from django.contrib.auth.models import User
 from django.core.mail import get_connection, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.conf import settings
 
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
@@ -34,6 +37,8 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from django.conf import settings
+
+
 
 User = ExtendedUser
 
@@ -700,3 +705,90 @@ class UploadSS(APIView):
         passusr.payment_ss = file
         passusr.save()
         return Response({'success': 'True', 'status code': status.HTTP_200_OK, 'message': 'Screenshot Uploaded Successfully'})
+
+class PaymentViewSet(APIView):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializers
+
+    def post(self, request, *args, **kwargs):
+        user_id = request.data['user']
+        payment_status = request.data['payment_status']
+        payment_type = request.data['payment_type']
+        User = ExtendedUser.objects.filter(id = user_id).first()
+        payment = Payment.objects.create(user_id=user_id,payment_status=payment_status, payment_type=payment_type)
+        payment.save()
+        amount =1
+        if payment.payment_type=="Accomodation":
+            amount=1179    
+        elif payment.payment_type=="Cultural Night":
+            amount=499
+        elif payment.payment_type=="Jumbo Pack":
+            amount=1088
+        
+        amount =1
+        
+        order_id = User.registration_id + utility.__id_generator__()
+        payment.order_id = order_id
+        payment.save()
+        param_dict = {
+        'MID': settings.PAYTM_MID,
+        'ORDER_ID': str(order_id),
+        'TXN_AMOUNT': str(amount),
+        'CUST_ID': User.registration_id,
+        'INDUSTRY_TYPE_ID': settings.PAYTM_INDUSTRY_TYPE_ID,
+        'WEBSITE': settings.PAYTM_WEBSITE,
+        'CHANNEL_ID': settings.PAYTM_CHANNEL_ID,
+        'CALLBACK_URL': settings.PAYTM_CALLBACK_URL,
+        'MERC_UNQ_REF': settings.PAYTM_MERC_UNQ_REF,
+        }
+        param_dict['CHECKSUMHASH'] = utility.generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
+
+        serializers = PaymentSerializers(payment)
+            
+        return Response({'payment':serializers.data, 'param_dict': param_dict})
+
+passtype_dict = {"Accommodation":1, "Cultural Night":2, "Jumbo Pack":3}
+
+class PaymentCallBack(APIView):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializers
+
+    def post(self,request, *args, **kwargs):
+        print(request.data)
+        response_keys = request.data.keys()
+        order_id = request.data['ORDERID']
+        payment = Payment.objects.filter(order_id = order_id).first()
+        payment.amount = float(request.data['TXNAMOUNT'])
+        payment.order_id = request.data['ORDERID']
+        payment.checksumhash = request.data['CHECKSUMHASH']
+        payment.bank_txn_id = request.data['BANKTXNID']
+        payment.payment_mode = request.data['PAYMENTMODE'] if 'PAYMENTMODE' in response_keys else ''
+        payment.response_code = request.data['RESPCODE']
+        payment.response_msg = request.data['RESPMSG']
+        payment.txn_date = request.data['TXNDATE'] if 'TXNDATE' in response_keys else ''
+        payment.txn_id = request.data['TXNID']
+
+        if request.data['STATUS'] =='TXN_SUCCESS':
+            
+            payment.isPaid = True
+            payment.payment_status = "Success"
+            if Passes.objects.filter(user=payment.user).exists():
+                passtype = Passes.objects.filter(user=payment.user).first()
+                passtype.pass_type = passtype_dict[payment.payment_type]
+                passtype.save()
+            elif payment.payment_type=="Cultural Night":
+                passtype = Passes.objects.create(user=payment.user, pass_type=passtype_dict[payment.payment_type])
+                passtype.save()
+
+        elif request.data['STATUS'] =='TXN_FAILURE':
+            payment.payment_status = "Failed"
+        elif request.data['STATUS'] =='PENDING':
+            payment.payment_status = "Aborted"
+
+        msg = payment.response_msg
+        code = payment.response_code 
+        payment.save()
+        # response=json.dumps(request.data.dict())
+        # resp = json.loads(response)
+        return redirect("http://localhost:3000/pay?msg="+msg+"&code="+code)
+        
