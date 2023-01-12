@@ -128,6 +128,7 @@ function AccForm() {
                     // console.log(data);
                     setAccData(data);
                     if (data.length > 0) {
+                        navigate("/buy-pass", { replace: true });
                         document.getElementById("acc-success").style.display =
                             "flex";
                         document.getElementsByClassName(
@@ -398,20 +399,18 @@ function AccForm() {
                         * The prices mentioned are exclusive of GST. Nominal GST
                         charges will be applied.
                         <div id="acc-pay-options">
-                            <a
-                                href="https://forms.eduqfix.com/prometeo/add"
-                                // href=""
-                                target="_blank"
+                            <Link
+                                to="/buy-pass"
                             >
                                 <button
                                     type="submit"
                                     // disabled
                                     className="acc-pay-button"
                                 >
-                                    Pay using Credit/Debit Card
+                                    Buy pass now!!
                                     {/* Coming Soon! */}
                                 </button>
-                            </a>
+                            </Link>
                             {/* <button
                                 type="submit"
                                 className="acc-pay-button"

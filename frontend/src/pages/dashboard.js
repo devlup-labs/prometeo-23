@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import "./dashboard.css";
@@ -34,6 +34,7 @@ const test = {
 };
 
 function Dashboard() {
+    const [urlParams] = useSearchParams();
     const navigate = useNavigate();
     const [userData, setUserData] = useState({});
     const [registeredEvents, setRegisteredEvents] = useState({});
@@ -67,6 +68,15 @@ function Dashboard() {
         const navBarEle = document.getElementById("navbar");
         navBarEle.style.opacity = 1;
     });
+
+    useEffect(() => {
+        if (urlParams.get("code") == 1) {
+            toast.success("Pass purchased successfully.");
+        }
+        else if (urlParams.get("code")) {
+            toast.info(urlParams.get("msg"));
+        }
+    }, []);
 
     useEffect(() => {
         async function fetchData() {
