@@ -167,13 +167,16 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
                 CA.save()
         #REGISTRATION ID
         id_registration= 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
-        def id_check(c):
-            if(ExtendedUser.objects.filter(registration_id=c)).exists():
-                c = 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
-                id_check(c)
-            return c
-        id = id_check(id_registration)
-        user.registration_id =id
+        while ExtendedUser.objects.filter(registration_id=id_registration).exists():
+            id_registration= 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+        # def id_check(c):
+        #     if(ExtendedUser.objects.filter(registration_id=c)).exists():
+        #         c = 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+        #         id_check(c)
+        #     return c
+        # id = id_check(id_registration)
+        user.registration_id =id_registration
+        user.save()
         #CA INVITE REFERRAL
         print(validated_data['ambassador'])
         print(22)
@@ -186,14 +189,17 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
             )
             # ca.save()
             code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
-            def referral_check(c):
-                if(CampusAmbassador.objects.filter(invite_referral=c)).exists():
-                    c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
-                    referral_check(c)
-                return c
-            invite_referral = referral_check(code)
-            ca.invite_referral = invite_referral
-            user.invite_referral = invite_referral
+            while CampusAmbassador.objects.filter(invite_referral=code).exists():
+                code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]    
+            # def referral_check(c):
+            #     if(CampusAmbassador.objects.filter(invite_referral=c)).exists():
+            #         c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+            #         referral_check(c)
+            #     return c
+            # invite_referral = referral_check(code)
+            ca.invite_referral = code
+            user.invite_referral = code
+            user.save()
             ca.save()
             with get_connection(
                     username=settings.EMAIL_HOST_USER,
@@ -226,24 +232,6 @@ class ExtendedUserSerializers(serializers.ModelSerializer):
                     message.attach_alternative(html_content, "text/html")
                     message.mixed_subtype = 'related'
                     message.send()
-        # msg = f"Congratulatios, {user.first_name} you have successfully registered in Prometeo '23 - the Technical Fest of IIT Jodhpur ."
-        # # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
-        # SENDGRID_API_KEY = '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'
-        # message = Mail(
-        #     from_email='no-reply@prometeo.in',
-        #     to_emails=user.email,
-        #     # reply_to='prometeo@iitj.ac.in',
-        #     subject='Registration',
-        #     html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg}))
-        # try:
-        #     sg = SendGridAPIClient(SENDGRID_API_KEY)
-            
-        #     response = sg.send(message)
-        #     print(response.status_code)
-        #     print(response.body)
-        #     print(response.headers)
-        # except Exception as e:
-        #     print(e)
         user.isProfileCompleted = True
         user.save()
         return user
