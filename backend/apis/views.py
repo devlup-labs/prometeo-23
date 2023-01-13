@@ -709,6 +709,7 @@ class UploadSS(APIView):
 class PaymentViewSet(APIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializers
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         user_id = request.data['user']
@@ -752,6 +753,7 @@ passtype_dict = {"Accommodation":1, "Cultural Night":2, "Jumbo Pack":3}
 class PaymentCallBack(APIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializers
+    permission_classes = (IsAuthenticated,)
 
     def post(self,request, *args, **kwargs):
         print(request.data)
@@ -795,6 +797,7 @@ class PaymentCallBack(APIView):
 class CustomOrderView(APIView):
     queryset = CustomOrder.objects.all()
     serializer_class = CustomOrderSerializers
+    permission_classes = (IsAuthenticated,)
     
 
     def get(self,request, *args, **kwargs):
