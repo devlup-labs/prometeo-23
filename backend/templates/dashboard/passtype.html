@@ -167,6 +167,7 @@
                     <th>DOB</th>
                     <th>Aadhar No.</th>
                     <th>Pass Type</th>
+                    <th>CA Referral Code</th>
                     </tr>
                 </thead>
                 <!-- <tfoot>
@@ -219,7 +220,8 @@
                                         <a class="dropdown-item" onclick="setPassType('{{pt.user.email}}', 3)">Accomodation + Pronite (3) </a>
                                     </div>
                                 </div>
-                            </td>                            
+                            </td> 
+                            <td>{{ pt.user.referral_code }}</td>                           
                             </tr>
                         {% endif %}
                     {% endfor %}

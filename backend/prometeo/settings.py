@@ -356,4 +356,6 @@ PAYTM_INDUSTRY_TYPE_ID = config('PAYTM_INDUSTRY_TYPE_ID',cast=str)
 PAYTM_CALLBACK_URL = config('PAYTM_CALLBACK_URL',cast=str)
 PAYTM_MERC_UNQ_REF = config('PAYTM_MERC_UNQ_REF',cast=str)
 
+FRONTEND_URL = config('FRONTEND_URL',cast=str)
+
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
