@@ -1,5 +1,8 @@
 from django.db import models
 from users.models import ExtendedUser
+from apis import utility
+from django.conf import settings
+import uuid
 
 PAYMENT_STATUS = (
     ('Success', 'Success'),
@@ -35,3 +38,28 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.user.email
+
+def orderId ():
+    id = utility.__id_generator__()  + str(uuid.uuid4().int)[:6]
+    while CustomOrder.objects.filter(order_id=id).exists():
+        id = utility.__id_generator__()  + str(uuid.uuid4().int)[:6]
+        
+    return id
+
+def Link():
+    link = settings.FRONTEND_URL+"/payment?id="
+    return link
+
+class CustomOrder(models.Model):
+    amount = models.FloatField(default=0)
+    order_id = models.CharField(max_length=250,null=True,default=orderId)
+    payment_from = models.CharField(max_length=250, null=True)
+    payment_reason = models.CharField(max_length=500, null=True)
+    link = models.CharField(max_length=500, null=True,default=Link())
+
+    def save(self, *args, **kwargs):
+        self.link += self.order_id
+
+        super(CustomOrder, self).save(*args, **kwargs)
+        # return self.link
+                
