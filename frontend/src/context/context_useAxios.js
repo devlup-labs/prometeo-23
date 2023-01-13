@@ -26,6 +26,8 @@ const useAxios = () => {
             refresh: authTokens.refresh
         });
 
+        console.log("Refresh response: ", response)
+
         if (response.data.code === "token_not_valid") {
             toast.info("Your session has expired. Please login again.")
             logoutUser();
