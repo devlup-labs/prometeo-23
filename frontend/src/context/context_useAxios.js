@@ -5,9 +5,10 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 import { backendURL } from "../backendURL";
+import { toast } from "react-toastify";
 
 const useAxios = () => {
-    const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
+    const { authTokens, setUser, setAuthTokens, logoutUser } = useContext(AuthContext);
 
     const axiosInstance = axios.create({
         backendURL,
@@ -20,9 +21,16 @@ const useAxios = () => {
 
         if (!isExpired) return req;
 
+        // console.log("Refreshing token")
         const response = await axios.post(`${backendURL}/auth/token/refresh/`, {
             refresh: authTokens.refresh
         });
+
+        if (response.data.code === "token_not_valid") {
+            toast.info("Your session has expired. Please login again.")
+            logoutUser();
+            return req;
+        }
 
         localStorage.setItem("authTokens", JSON.stringify(response.data));
 
