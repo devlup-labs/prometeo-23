@@ -22,24 +22,24 @@ const useAxios = () => {
         if (!isExpired) return req;
 
         // console.log("Refreshing token")
-        const response = await axios.post(`${backendURL}/auth/token/refresh/`, {
-            refresh: authTokens.refresh
-        });
+        try {
+            const response = await axios.post(`${backendURL}/auth/token/refresh/`, {
+                refresh: authTokens.refresh
+            });
 
-        console.log("Refresh response: ", response)
+            localStorage.setItem("authTokens", JSON.stringify(response.data));
 
-        if (response.data.code === "token_not_valid") {
-            toast.info("Your session has expired. Please login again.")
-            logoutUser();
-            return req;
+            setAuthTokens(response.data);
+            setUser(jwt_decode(response.data.access));
+
+            req.headers.Authorization = `Bearer ${response.data.access}`;
+        } catch (error) {
+            console.log("Error refreshing token: ", error)
+            if (error.response.status === 401) {
+                toast.error("Session expired. Please login again.");
+                logoutUser();
+            }
         }
-
-        localStorage.setItem("authTokens", JSON.stringify(response.data));
-
-        setAuthTokens(response.data);
-        setUser(jwt_decode(response.data.access));
-
-        req.headers.Authorization = `Bearer ${response.data.access}`;
         return req;
     });
 
