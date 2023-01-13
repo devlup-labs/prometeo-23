@@ -753,7 +753,7 @@ passtype_dict = {"Accommodation":1, "Cultural Night":2, "Jumbo Pack":3}
 class PaymentCallBack(APIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializers
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def post(self,request, *args, **kwargs):
         print(request.data)
