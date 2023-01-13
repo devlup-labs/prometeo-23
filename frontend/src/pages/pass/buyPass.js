@@ -151,9 +151,7 @@ function BuyPass() {
       <div id="buyPass-container">
         <div id="buyPass-redirect-text">
           <h1>Redirecting you to Paytm gateway...</h1>
-          <h2>
-            Please do not refresh the page or close the tab!
-          </h2>
+          <h2>Please do not refresh the page or close the tab!</h2>
         </div>
         <div id="buyPass">
           <div id="buyPass-top">
@@ -181,7 +179,7 @@ function BuyPass() {
                       </div>
                       <div className="price">
                         <h4>
-                          <small>₹</small>999
+                          <small>₹</small>999*
                         </h4>
                       </div>
                       <div className="pass-benefites">
@@ -206,14 +204,16 @@ function BuyPass() {
                       </div>
                       <div className="price">
                         <h4>
-                          <small>₹</small>999
+                          <small>₹</small>999*
                         </h4>
                       </div>
                       <div className="pass-benefites">
                         <ul>
                           <li>Accommodation for 3 days</li>
                           <li>Food facilities</li>
-                          <li>Culture Night on 22<sup>nd</sup> January</li>
+                          <li>
+                            Culture Night on 22<sup>nd</sup> January
+                          </li>
                         </ul>
                       </div>
                       <a type="Jumbo Pack" onClick={startPayment}>
@@ -228,19 +228,25 @@ function BuyPass() {
                       </div>
                       <div className="price">
                         <h4>
-                          <small>₹</small>499
+                          <small>₹</small>499*
                         </h4>
                       </div>
                       <div className="pass-benefites">
                         <ul>
-                          <li>Culture Night on 22<sup>nd</sup> January</li>
+                          <li>
+                            Culture Night on 22<sup>nd</sup> January
+                          </li>
                         </ul>
                       </div>
-                      <a type="Cultural Night" onClick={startPayment}>
+                      <a type="Cultural Night" href="" onClick={startPayment}>
                         Buy Now
                       </a>
                     </div>
                   </div>
+                  <p>
+                    * The prices mentioned are exclusive of GST. Nominal GST
+                    charges will be applied.
+                  </p>
                 </div>
               </div>
             </div>

@@ -328,82 +328,76 @@ function Dashboard() {
     useEffect(() => { }, [download]);
 
     return (
-        <div id="dashboard-container">
-            <div id="dashboard">
-                <div id="dashboard-top">
-                    <div id="dashboard-top-left">Dashboard</div>
-                    <div id="dashboard-top-right" onClick={logoutUser}>
-                        Logout
-                    </div>
+      <div id="dashboard-container">
+        <div id="dashboard">
+          <div id="dashboard-top">
+            <div id="dashboard-top-left">Dashboard</div>
+            <div id="dashboard-top-right" onClick={logoutUser}>
+              Logout
+            </div>
+          </div>
+          <div id="dashboard-pass-and-details">
+            <div id="dashboard-personalDetails">
+              <div id="dashboard-personalDetails-title">Personal Details</div>
+              <div id="dashboard-personalDetails-content">
+                <div className="dashboard-personalDetails-content-title">
+                  Name:{" "}
+                  <span className="dashboard-personalDetails-content-value">
+                    {user.username.replace("_", " ")}
+                  </span>
                 </div>
-                <div id="dashboard-pass-and-details">
-                    <div id="dashboard-personalDetails">
-                        <div id="dashboard-personalDetails-title">
-                            Personal Details
-                        </div>
-                        <div id="dashboard-personalDetails-content">
-                            <div className="dashboard-personalDetails-content-title">
-                                Name:{" "}
-                                <span className="dashboard-personalDetails-content-value">
-                                    {user.username.replace("_", " ")}
-                                </span>
-                            </div>
-                            <div className="dashboard-personalDetails-content-title">
-                                Email:{" "}
-                                <span className="dashboard-personalDetails-content-value">
-                                    {user.email}
-                                </span>
-                            </div>
-                            {userData.contact && (
-                                <div className="dashboard-personalDetails-content-title">
-                                    Phone:{" "}
-                                    <span className="dashboard-personalDetails-content-value">
-                                        {userData.contact}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-                        {userData.ambassador && (
-                            <div id="dashboard-caDetails">
-                                <div id="dashboard-caDetails-title">
-                                    Campus Ambassdor Status
-                                </div>
-                                <div id="dashboard-caDetails-content">
-                                    <div className="dashboard-caDetails-content-title">
-                                        Invite code:{" "}
-                                        <span className="dashboard-caDetails-content-value">
-                                            {userData.invite_referral}
-                                        </span>
-                                        <svg
-                                            className="fa fa-copy"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 512 512"
-                                            onClick={() => {
-                                                navigator.clipboard.writeText(
-                                                    userData.invite_referral
-                                                );
-                                                toast.info(
-                                                    "Copied to clipboard",
-                                                    {
-                                                        position:
-                                                            "bottom-right",
-                                                    }
-                                                );
-                                            }}
-                                        >
-                                            <path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z" />
-                                        </svg>
-                                    </div>
-                                    <div className="dashboard-caDetails-content-title">
-                                        Registrations:{" "}
-                                        <span className="dashboard-caDetails-content-value">
-                                            {userData.ca_count}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                <div className="dashboard-personalDetails-content-title">
+                  Email:{" "}
+                  <span className="dashboard-personalDetails-content-value">
+                    {user.email}
+                  </span>
+                </div>
+                {userData.contact && (
+                  <div className="dashboard-personalDetails-content-title">
+                    Phone:{" "}
+                    <span className="dashboard-personalDetails-content-value">
+                      {userData.contact}
+                    </span>
+                  </div>
+                )}
+              </div>
+              {userData.ambassador && (
+                <div id="dashboard-caDetails">
+                  <div id="dashboard-caDetails-title">
+                    Campus Ambassdor Status
+                  </div>
+                  <div id="dashboard-caDetails-content">
+                    <div className="dashboard-caDetails-content-title">
+                      Invite code:{" "}
+                      <span className="dashboard-caDetails-content-value">
+                        {userData.invite_referral}
+                      </span>
+                      <svg
+                        className="fa fa-copy"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            userData.invite_referral
+                          );
+                          toast.info("Copied to clipboard", {
+                            position: "bottom-right",
+                          });
+                        }}
+                      >
+                        <path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z" />
+                      </svg>
                     </div>
+                    <div className="dashboard-caDetails-content-title">
+                      Registrations:{" "}
+                      <span className="dashboard-caDetails-content-value">
+                        {userData.ca_count}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
                     {
                         userData && userData.pass_type !== 0 && 
                         (
@@ -414,24 +408,34 @@ function Dashboard() {
                             </div>
                         )
                     }
-                    <div id="dashboard-pass">
-                        {
-                            (userData && userData.pass_type !== 0) ? (
-                                <img id="dashboard-pass-download-btn" src={downIcon} alt="Download Button" onClick={() => handleDownload(userData.pass_type)} />
-                            ) : (
-                                <div id="dashboard-pass-noPassPurchased">
-                                    <div>
-                                        You have not purchased any pass.{" "}<Link to="/buy-pass">Buy Now!</Link>
-                                    </div>
-                                </div>
-                            )
-                        }
-                        <img id="dashboard-pass-image" src={passBg} alt="ticket" style={{
-                            filter: `sepia(${(userData && userData.pass_type) ? 0 : 0.9}) blur(${(userData && userData.pass_type) ? 0 : 2}px)`
-                        }}>
-                        </img>
-                        {/* without container */}
-                        {/* {
+            <div id="dashboard-pass">
+              {userData && userData.pass_type !== 0 ? (
+                <img
+                  id="dashboard-pass-download-btn"
+                  src={downIcon}
+                  alt="Download Button"
+                  onClick={() => handleDownload(userData.pass_type)}
+                />
+              ) : (
+                <div id="dashboard-pass-noPassPurchased">
+                  <div>
+                    You have not purchased any pass.{" "}
+                    <Link to="/buy-pass">Buy Now!</Link>
+                  </div>
+                </div>
+              )}
+              <img
+                id="dashboard-pass-image"
+                src={passBg}
+                alt="ticket"
+                style={{
+                  filter: `sepia(${
+                    userData && userData.pass_type ? 0 : 0.9
+                  }) blur(${userData && userData.pass_type ? 0 : 2}px)`,
+                }}
+              ></img>
+              {/* without container */}
+              {/* {
 								userData && userData.pass_type !== 0 && (
 									<div className="dashboard-pass-registrationID">
 										Registration ID: {userData.registration_id}
@@ -439,8 +443,7 @@ function Dashboard() {
 								)
 						} */}
 
-
-                        {/* <div
+              {/* <div
                             id="dashboard-pass-container"
                             onClick={() => handleDownload(userData.pass_type)}
 							style={{
@@ -455,65 +458,115 @@ function Dashboard() {
 								)
 							}
 						</div> */}
-                        <div className="dashboard-pass-left-side" style={{
-                            filter: `sepia(${(userData && userData.pass_type) ? 0 : 0.9}) blur(${(userData && userData.pass_type) ? 0 : 2}px)`
-                        }}>
-                            {/* <img id="dashboard-logo-img" src={PrometeoLogo} alt="Logo"></img> */}
-                            {
-                                userData && userData.pass_type !== 0 && (
-                                    <div className="dashboard-pass-registrationID">
-                                        <div className="registration-text">Registration ID: </div>{userData.registration_id}
-                                    </div>
-                                )
-                            }
-                            {/* {
+              <div
+                className="dashboard-pass-left-side"
+                style={{
+                  filter: `sepia(${
+                    userData && userData.pass_type ? 0 : 0.9
+                  }) blur(${userData && userData.pass_type ? 0 : 2}px)`,
+                }}
+              >
+                {/* <img id="dashboard-logo-img" src={PrometeoLogo} alt="Logo"></img> */}
+                {userData && userData.pass_type !== 0 && (
+                  <div className="dashboard-pass-registrationID">
+                    <div className="registration-text">Registration ID: </div>
+                    {userData.registration_id}
+                  </div>
+                )}
+                {/* {
                                 user.username[0] === 'P' ? user.username = "Test " + user.username : null
                             } */}
-                            <div className="pass-details">
-                                <div className="middle-text" style={{
-                                    fontSize: window.innerWidth > 800 ? `calc((11 / ${maxNameLen}) * 0.022 * 0.67 * 92vw)` : `calc((11 / ${maxNameLen}) * 0.022 * 92vw)`
-                                }}>{user.username.replace("_", " ")}</div>
-                                <div className="middle-text-mail" style={{
-                                    fontSize: window.innerWidth > 800 ? `calc((10 / ${emailLength}) * 0.02 * 0.67 * 92vw)` : `calc((10 / ${emailLength}) * 0.02 * 92vw)`
-                                }}>{user.email.replace('@', ' @')}</div>
-                            </div>
-                        </div>
-                        {/* <div id="dashboard-pass-left-side"></div> */}
-                        {/* linear-gradient(90deg, rgb(175 197 8 / 70%) 0%, rgb(200 128 14 / 70%) 65%, rgb(204 59 12 / 70%) 100%) center center / cover no-repeat,  */}
-                        {/* <div id="dashboard-pass-right-side" style={{
-                            background: "rgb(226,31,181)",
-                            background: `linear-gradient(90deg, rgba(175 197 8 / 70%) 0%, rgba(200 128 14 / 70%) 65%, rgba(204 59 12 / 70%) 100%), url(https://i.pinimg.com/564x/cb/e4/2c/cbe42c0f273e6cd3acfd1de180ba5224.jpg)`,
-                            background: `linear-gradient(90deg, rgba(118,133,0,0.7) 0%, rgba(121,78,9,0.7) 65%, rgba(129,37,7,0.7) 100%), url(https://i.pinimg.com/564x/cb/e4/2c/cbe42c0f273e6cd3acfd1de180ba5224.jpg)`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            backgroundRepeat: "no-repeat",
-                            }}>
-                            <h3 id="prometeo-date">20th-23rd Jan 2023</h3>
-                            <div id="pass-middle-details">
-                                {
-                                    userData && userData.pass_type !== 0 && (
-                                        <h4 className="middle-text">{user.username.replace("_", " ")}</h4>
-                                    )
-                                }
-                                {
-                                    userData && userData.pass_type !== 0 && (
-                                        <h4 className="middle-text">{user.email}</h4>
-                                    )
-                                }
-                                
-                                
-                            </div> */}
-                        {/* <div id="pass-bottom-right">
+                <div className="pass-details">
+                  <div
+                    className="middle-text"
+                    style={{
+                      fontSize:
+                        window.innerWidth > 800
+                          ? `calc((11 / ${maxNameLen}) * 0.022 * 0.67 * 92vw)`
+                          : `calc((11 / ${maxNameLen}) * 0.022 * 92vw)`,
+                    }}
+                  >
+                    {user.username.replace("_", " ")}
+                  </div>
+                  <div
+                    className="middle-text-mail"
+                    style={{
+                      fontSize:
+                        window.innerWidth > 800
+                          ? `calc((10 / ${emailLength}) * 0.02 * 0.67 * 92vw)`
+                          : `calc((10 / ${emailLength}) * 0.02 * 92vw)`,
+                    }}
+                  >
+                    {user.email.replace("@", " @")}
+                  </div>
+                </div>
+              </div>
+              {/* <div id="dashboard-pass-left-side"></div> */}
+              {/* linear-gradient(90deg, rgb(175 197 8 / 70%) 0%, rgb(200 128 14 / 70%) 65%, rgb(204 59 12 / 70%) 100%) center center / cover no-repeat,  */}
+              <div
+                id="dashboard-pass-right-side"
+                style={
+                  {
+                    // background: "rgb(226,31,181)",
+                    // background: `linear-gradient(90deg, rgba(175 197 8 / 70%) 0%, rgba(200 128 14 / 70%) 65%, rgba(204 59 12 / 70%) 100%), url(https://i.pinimg.com/564x/cb/e4/2c/cbe42c0f273e6cd3acfd1de180ba5224.jpg)`,
+                    // background: `linear-gradient(90deg, rgba(118,133,0,0.7) 0%, rgba(121,78,9,0.7) 65%, rgba(129,37,7,0.7) 100%), url(https://i.pinimg.com/564x/cb/e4/2c/cbe42c0f273e6cd3acfd1de180ba5224.jpg)`,
+                    // backgroundSize: "cover",
+                    // backgroundPosition: "center",
+                    // backgroundRepeat: "no-repeat",
+                  }
+                }
+              >
+                <div id="ticketType-container">
+                  {/* {userData && userData.pass_type !== 0 && (
+                    <h4 className="middle-text">
+                      {user.username.replace("_", " ")}
+                    </h4>
+                  )}
+                  {userData && userData.pass_type !== 0 && (
+                    <h4 className="middle-text">{user.email}</h4>
+                  )} */}
+                  <h4
+                    style={{
+                      // fontSize: `calc(0.025 * 0.67 * 92vw)`,
+                      fontSize:
+                        userData.pass_type === 3
+                          ? `calc(0.022 * ${
+                              window.innerWidth > 800 ? 0.67 : 1
+                            } * 92vw)`
+                          : userData.pass_type === 2
+                          ? `calc(0.035 * ${
+                              window.innerWidth > 800 ? 0.67 : 1
+                            } * 92vw)`
+                          : `calc(0.022 * ${
+                              window.innerWidth > 800 ? 0.67 : 1
+                            } * 92vw)`,
+                    }}
+                  >
+                    {userData.pass_type === 3 ? (
+                      <p>
+                        Accommodation + <br />
+                        Cultural Night
+                      </p>
+                    ) : userData.pass_type === 2 ? (
+                      <p>Cultural Night</p>
+                    ) : userData.pass_type === 1 ? (
+                      <p>Accommodation</p>
+                    ) : (
+                      ""
+                    )}
+                  </h4>
+                </div>
+              </div>
+              {/* <div id="pass-bottom-right">
                             <div id="location-container">
                                 <h3 id="prometeo-location"><img id="dashboard-map" src={Gmap} alt="map"/> IIT Jodhpur</h3>
                             </div>
                             <h6 id="prometeo-valid">VALID TILL 23rd Jan 11:59 PM</h6>
                             </div> */}
 
-                        {/* </div> */}
+              {/* </div> */}
 
-
-                        {/* <div id="dashboard-download-ticket-wrapper">
+              {/* <div id="dashboard-download-ticket-wrapper">
 							<div 
 								id="dashboard-download-ticket"
 								style={{
@@ -531,129 +584,192 @@ function Dashboard() {
 								}
 							</div>
 						</div> */}
-                    </div>
-                </div>
-                <div id="dashboard-download-ticket-wrapper">
-                    <div 
-                        id="dashboard-download-ticket"
-                        style={{
-                            backgroundImage: `url(${passBg})`,
-                        }}
-                    >
-                        <div className="dashboard-pass-left-side">
-                            {
-                                userData && userData.pass_type !== 0 && (
-                                    <div className="dashboard-pass-registrationID" style={{
-                                        fontSize: "calc(0.025 * 1771px)",
-                                    }}>
-                                        <div className="registration-text" style={{
-                                            fontSize: "calc(0.014 * 1771px)"
-                                        }}>Registration ID: </div>{userData.registration_id}
-                                    </div>
-                                )
-                            }
-                            <div className="pass-details">
-                                <div className="middle-text" style={{
-                                    fontSize: `calc((11 / ${maxNameLen}) * 0.022 * 1771px)`,
-                                }}>{user.username.replace("_", " ")}</div>
-                                <div className="middle-text-mail" style={{
-                                    fontSize: `calc((10 / ${emailLength}) * 0.02 * 1771px)`,
-                                }}>{user.email.replace('@', ' @')}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="dashboard-registeredEvents">
-                    <div id="dashboard-registeredEvents-title">
-                        Registered Events
-                    </div>
-                    <div id="dashboard-registeredEvents-content">
-                        {Object.keys(registeredEvents).length > 0 ? (
-                            // console.log(registeredEvents),
-                            Object.keys(registeredEvents).map((key, index) => {
-                                console.log(registeredEvents[key], key)
-                                return (
-                                    <div
-                                        className="dashboard-registeredEvents-content-event"
-                                        key={index}
-                                    >
-                                        <div className="dashboard-registeredEvents-content-event-image">
-                                            <img
-                                                src={
-                                                    registeredEvents[key].image
-                                                        ? registeredEvents[key].image
-                                                        : eventImages[key]
-                                                }
-                                                alt="Event Image"
-                                            />
-                                        </div>
-                                        <div className="dashboard-registeredEvents-content-event-details">
-                                            {key && (
-                                                <div className="dashboard-registeredEvents-content-event-title">
-                                                    {key}
-                                                </div>
-                                            )}
-                                            {registeredEvents[key].date && (
-                                                <div className="dashboard-registeredEvents-content-event-date">
-                                                    {registeredEvents[key].date}
-                                                </div>
-                                            )}
-                                            {registeredEvents[key].team_name && (
-                                                <div className="dashboard-registeredEvents-content-event-team-id">
-                                                    Team Name:{" "}
-                                                    <strong
-                                                        onClick={() => {
-                                                            navigator.clipboard.writeText(
-                                                                registeredEvents[key].team_name
-                                                            );
-                                                            toast.info(
-                                                                "Copied to clipboard",
-                                                                {
-                                                                    position: "bottom-right",
-                                                                }
-                                                            );
-                                                        }}
-                                                    >
-                                                        {
-                                                            registeredEvents[key].team_name
-                                                        }
-                                                    </strong>
-                                                </div>
-                                            )}
-                                            {/* view more button */}
-                                            {key === "Robowars" && (
-                                                <div className="dashboard-registeredEvents-content-event-view-more">
-                                                    <Link
-                                                        to="/robowars"
-                                                        className="dashboard-registeredEvents-content-event-view-more-button"
-                                                    >
-                                                        View More
-                                                    </Link>
-                                                </div>
-                                            )}
-                                            {key === "Drone Race" && (
-                                                <div className="dashboard-registeredEvents-content-event-view-more">
-                                                    <Link
-                                                        to="/dronerace"
-                                                        className="dashboard-registeredEvents-content-event-view-more-button"
-                                                    >
-                                                        View More
-                                                    </Link>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                );
-                            })
-                        ) : (
-                            <div id="dashboard-registeredEvents-noEvent">
-                                Please check your UnStop account!
-                            </div>
-                        )}
-                    </div>
-                </div>
             </div>
+          </div>
+          <div id="dashboard-download-ticket-wrapper">
+            <div
+              id="dashboard-download-ticket"
+              style={{
+                backgroundImage: `url(${passBg})`,
+              }}
+            >
+              <div className="dashboard-pass-left-side">
+                {console.log(userData)}
+                {userData && userData.pass_type !== 0 && (
+                  <div
+                    className="dashboard-pass-registrationID"
+                    style={{
+                      fontSize: "calc(0.025 * 1771px)",
+                    }}
+                  >
+                    <div
+                      className="registration-text"
+                      style={{
+                        fontSize: "calc(0.014 * 1771px)",
+                      }}
+                    >
+                      Registration ID:{" "}
+                    </div>
+                    {userData.registration_id}
+                  </div>
+                )}
+                <div className="pass-details">
+                  <div
+                    className="middle-text"
+                    style={{
+                      fontSize: `calc((11 / ${maxNameLen}) * 0.022 * 1771px)`,
+                    }}
+                  >
+                    {user.username.replace("_", " ")}
+                  </div>
+                  <div
+                    className="middle-text-mail"
+                    style={{
+                      fontSize: `calc((10 / ${emailLength}) * 0.02 * 1771px)`,
+                    }}
+                  >
+                    {user.email.replace("@", " @")}
+                  </div>
+                </div>
+              </div>
+              <div
+                id="dashboard-pass-right-side"
+                style={
+                  {
+                    // background: "rgb(226,31,181)",
+                    // background: `linear-gradient(90deg, rgba(175 197 8 / 70%) 0%, rgba(200 128 14 / 70%) 65%, rgba(204 59 12 / 70%) 100%), url(https://i.pinimg.com/564x/cb/e4/2c/cbe42c0f273e6cd3acfd1de180ba5224.jpg)`,
+                    // background: `linear-gradient(90deg, rgba(118,133,0,0.7) 0%, rgba(121,78,9,0.7) 65%, rgba(129,37,7,0.7) 100%), url(https://i.pinimg.com/564x/cb/e4/2c/cbe42c0f273e6cd3acfd1de180ba5224.jpg)`,
+                    // backgroundSize: "cover",
+                    // backgroundPosition: "center",
+                    // backgroundRepeat: "no-repeat",
+                  }
+                }
+              >
+                <div id="ticketType-container">
+                  {/* {userData && userData.pass_type !== 0 && (
+                    <h4 className="middle-text">
+                      {user.username.replace("_", " ")}
+                    </h4>
+                  )}
+                  {userData && userData.pass_type !== 0 && (
+                    <h4 className="middle-text">{user.email}</h4>
+                  )} */}
+                  <h4
+                    style={{
+                      // fontSize: `calc(0.025 * 0.67 * 92vw)`,
+                      fontSize:
+                        userData.pass_type === 3
+                          ? `calc(0.022 * 0.67 * 1771px)`
+                          : userData.pass_type === 2
+                          ? `calc(0.035 * 0.67 * 1771px)`
+                          : `calc(0.022 * 0.67 * 1771px)`,
+                    }}
+                  >
+                    {userData.pass_type === 3 ? (
+                      <p>
+                        Accommodation + <br />
+                        Cultural Night
+                      </p>
+                    ) : userData.pass_type === 2 ? (
+                      <p>
+                        Cultural Night
+                      </p>
+                    ) : userData.pass_type === 1 ? (
+                      <p>
+                        Accommodation
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="dashboard-registeredEvents">
+            <div id="dashboard-registeredEvents-title">Registered Events</div>
+            <div id="dashboard-registeredEvents-content">
+              {Object.keys(registeredEvents).length > 0 ? (
+                // console.log(registeredEvents),
+                Object.keys(registeredEvents).map((key, index) => {
+                  console.log(registeredEvents[key], key);
+                  return (
+                    <div
+                      className="dashboard-registeredEvents-content-event"
+                      key={index}
+                    >
+                      <div className="dashboard-registeredEvents-content-event-image">
+                        <img
+                          src={
+                            registeredEvents[key].image
+                              ? registeredEvents[key].image
+                              : eventImages[key]
+                          }
+                          alt="Event Image"
+                        />
+                      </div>
+                      <div className="dashboard-registeredEvents-content-event-details">
+                        {key && (
+                          <div className="dashboard-registeredEvents-content-event-title">
+                            {key}
+                          </div>
+                        )}
+                        {registeredEvents[key].date && (
+                          <div className="dashboard-registeredEvents-content-event-date">
+                            {registeredEvents[key].date}
+                          </div>
+                        )}
+                        {registeredEvents[key].team_name && (
+                          <div className="dashboard-registeredEvents-content-event-team-id">
+                            Team Name:{" "}
+                            <strong
+                              onClick={() => {
+                                navigator.clipboard.writeText(
+                                  registeredEvents[key].team_name
+                                );
+                                toast.info("Copied to clipboard", {
+                                  position: "bottom-right",
+                                });
+                              }}
+                            >
+                              {registeredEvents[key].team_name}
+                            </strong>
+                          </div>
+                        )}
+                        {/* view more button */}
+                        {key === "Robowars" && (
+                          <div className="dashboard-registeredEvents-content-event-view-more">
+                            <Link
+                              to="/robowars"
+                              className="dashboard-registeredEvents-content-event-view-more-button"
+                            >
+                              View More
+                            </Link>
+                          </div>
+                        )}
+                        {key === "Drone Race" && (
+                          <div className="dashboard-registeredEvents-content-event-view-more">
+                            <Link
+                              to="/dronerace"
+                              className="dashboard-registeredEvents-content-event-view-more-button"
+                            >
+                              View More
+                            </Link>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div id="dashboard-registeredEvents-noEvent">
+                  Please check your UnStop account!
+                </div>
+              )}
+            </div>
+          </div>
         </div>
+      </div>
     );
 }
 
