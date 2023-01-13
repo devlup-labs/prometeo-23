@@ -98,11 +98,17 @@ function Dashboard() {
                             ...data,
                         });
                     }
-                } else {
+                }
+                else if (response.status === 401 && response.data.code === "token_not_valid") {
+                    toast.info("Session expired. Please login again.")
+                    logoutUser();
+                    navigate("/login");
+                }
+                else {
                     throw response.statusText;
                 }
             } catch (err) {
-                console.log(err);
+                console.log("Error:", err);
             }
         }
         fetchData();
@@ -594,7 +600,7 @@ function Dashboard() {
               }}
             >
               <div className="dashboard-pass-left-side">
-                {console.log(userData)}
+                {/* {console.log(userData)} */}
                 {userData && userData.pass_type !== 0 && (
                   <div
                     className="dashboard-pass-registrationID"
