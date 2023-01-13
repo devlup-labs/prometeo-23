@@ -244,16 +244,19 @@ class CampusAmbassadorView(APIView):
                 ca_count=0,
             )
             code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
-            user = CampusAmbassador.objects.all()
-            def referral_check(c):
-                for u in user:
-                    if c == u.invite_referral:
-                        c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
-                        referral_check(c)
-                return c
+            while CampusAmbassador.objects.filter(invite_referral=code).exists():
+                code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]    
+            # user = CampusAmbassador.objects.all()
+            # def referral_check(c):
+            #     for u in user:
+            #         if c == u.invite_referral:
+            #             c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+            #             referral_check(c)
+            #     return c
 
-            ca.invite_referral = referral_check(code)
+            # ca.invite_referral = referral_check(code)
             # ca.invite_referral='CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+            ca.invite_referral = code
             ca.save()
             serializers= CampusAmbassadorSerializers(ca)
             user=ExtendedUser.objects.filter(email=user_email).first()
@@ -277,27 +280,7 @@ class CampusAmbassadorView(APIView):
                 message.attach_alternative(html_content, "text/html")
                 message.mixed_subtype = 'related'
                 message.send()
-            # msg = f"Congratulations, {user.first_name} you have Successfully Registered as Campus Ambassador in Prometeo '23 - the Techical Fest of IIT Jodhpur ."
-            # isCA=True
-            # # SENDGRID_API_KEY = config('SENDGRID_API_KEY')
-            # SENDGRID_API_KEY = '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'
-            # message = Mail(
-            #     from_email='no-reply@prometeo.in',
-            #     to_emails=user.email,
-            #     # reply_to='prometeo@iitj.ac.in',
-            #     subject='Registration as Campus Ambassador',
-            #     html_content=render_to_string("eventRegister_confirmation.html", {'first_name': user.first_name,   'msg': msg, 'isCA': isCA, 'invite_referral': ca.invite_referral}))
-            # try:
-            #     sg = SendGridAPIClient(SENDGRID_API_KEY)
-                
-            #     response = sg.send(message)
-            #     print(response.status_code)
-            #     print(response.body)
-            #     print(response.headers)
-            # except Exception as e:
-            #     print(e)
-            
-
+        
             return Response(serializers.data)
         else:
             response = {
@@ -527,13 +510,18 @@ class GoogleCompleteProfileViewSet(APIView):
             rc = request.data.get('referral_code')
 
             id_registration= 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
-            def id_check(c):
-                if(ExtendedUser.objects.filter(registration_id=c)).exists():
-                    c = 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
-                    id_check(c)
-                return c
-            id = id_check(id_registration)
-            user.registration_id =id
+            while ExtendedUser.objects.filter(registration_id=id_registration).exists():
+                id_registration= 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+
+            user.registration_id =id_registration
+            user.save()
+            # def id_check(c):
+            #     if(ExtendedUser.objects.filter(registration_id=c)).exists():
+            #         c = 'PRO' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+            #         id_check(c)
+            #     return c
+            # id = id_check(id_registration)
+            # user.registration_id =id
 
 
             if(rc != None and rc != "" and is_ca == False):
@@ -727,7 +715,12 @@ class PaymentViewSet(APIView):
             amount=1088
         
         # amount =1
-        
+        if User.registration_id == "" or User.registration_id == None:
+            id = 'PRO' + str(uuid.uuid4().int)[:4] +str(User.id)[:2]
+            while ExtendedUser.objects.filter(registration_id=id).exists():
+                id = 'PRO' + str(uuid.uuid4().int)[:4] +str(User.id)[:2]
+            User.registration_id = id
+
         order_id = User.registration_id + utility.__id_generator__()
         payment.order_id = order_id
         payment.save()
