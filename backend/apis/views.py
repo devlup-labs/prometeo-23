@@ -790,7 +790,7 @@ class PaymentCallBack(APIView):
         payment.save()
         # response=json.dumps(request.data.dict())
         # resp = json.loads(response)
-        return redirect("http://localhost:3000/dashboard?msg="+msg+"&code="+code)
+        return redirect(settings.FRONTEND_URL+"/dashboard?msg="+msg+"&code="+code)
         
 class CustomOrderView(APIView):
     queryset = CustomOrder.objects.all()
@@ -799,12 +799,12 @@ class CustomOrderView(APIView):
 
     def get(self,request, *args, **kwargs):
         custom_all = CustomOrder.objects.all()
-        for custom in custom_all:
-            if custom.order_id=="" or custom.order_id==None:
-                order_id = utility.__id_generator__()  + str(uuid.uuid4().int)[:6] 
-                custom.order_id = order_id
-                custom.link = "http://localhost:3000/payment?id="+order_id
-                custom.save()
+        # for custom in custom_all:
+        #     if custom.order_id=="" or custom.order_id==None:
+        #         order_id = utility.__id_generator__()  + str(uuid.uuid4().int)[:6] 
+        #         custom.order_id = order_id
+        #         custom.link = settings.FRONTEND_URL+"/payment?id="+order_id
+        #         custom.save()
         
         queryset = CustomOrder.objects.all()
         serializer = CustomOrderSerializers(queryset, many=True)
@@ -813,7 +813,20 @@ class CustomOrderView(APIView):
     def post(self,request, *args, **kwargs):
         order_id = request.data['order_id']
         custom = CustomOrder.objects.filter(order_id=order_id).first()
+        amount = custom.amount
 
-        serializers = CustomOrderSerializers(custom)
-        return Response(serializers.data)
+        param_dict = {
+        'MID': settings.PAYTM_MID,
+        'ORDER_ID': order_id,
+        'TXN_AMOUNT': str(amount),
+        'CUST_ID': order_id,
+        'INDUSTRY_TYPE_ID': settings.PAYTM_INDUSTRY_TYPE_ID,
+        'WEBSITE': settings.PAYTM_WEBSITE,
+        'CHANNEL_ID': settings.PAYTM_CHANNEL_ID,
+        'CALLBACK_URL': settings.PAYTM_CALLBACK_URL,
+        'MERC_UNQ_REF': settings.PAYTM_MERC_UNQ_REF,
+        }
+        param_dict['CHECKSUMHASH'] = utility.generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
+    
+        return Response({'param_dict': param_dict})
         

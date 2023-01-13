@@ -775,6 +775,9 @@ def get_pass_excel(request):
     worksheet.write(0, 3, "Aadhar Number")
     worksheet.write(0, 4, "Date of Birth")
     worksheet.write(0, 5,"Address")
+    worksheet.write(0, 6,"CA Referral Code")
+
+    
     row = 1
     for passtype in passtypes:
         worksheet.write(row, 0, passtype.full_name)
@@ -783,6 +786,7 @@ def get_pass_excel(request):
         worksheet.write(row, 3, passtype.aadhar_card)
         worksheet.write(row, 4, passtype.dob)
         worksheet.write(row, 5, passtype.address)
+        worksheet.write(row, 6, passtype.user.referral_code)
         row = row + 1
     workbook.close()
     file_path = os.path.join('passes.xlsx')
