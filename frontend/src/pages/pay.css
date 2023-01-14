@@ -1,10 +1,265 @@
+.payment {
+	font-family: 'Josefin Sans', sans-serif;
+	overflow-y: auto;
+	box-sizing: border-box;
+	padding: 4vh 1vw;
+	width: 100%;
+	height: 90vh;
+	background: rgb(16, 28, 39);
+	background: radial-gradient(circle, rgba(16, 28, 39, 1) 10%, rgba(0, 0, 0, 1) 90%);
+    /* background-image: url('../assets/homePage/background_pattern_t4.png'); */
+	/* background-repeat: repeat; */
+	/* background-size: 20%; */
+	min-height: 90vh;
+	display: flex;
+    /* flex-direction: column;
+    align-items: center; */
+    justify-content: center;
+}
+
+.payment-container {
+    height: max-content;
+    min-height: 80%;
+    width: 70%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+    /* padding: 5vh 3vw; */
+    box-shadow: 0 0 10px 0 rgba(35, 82, 126, 0.5);
+    border-radius: 20px;
+    /* border: 1px solid #84f4eb; */
+}
+
+#payment-redirect-text {
+	display: none;
+	color: white;
+	width: 100%;
+	height: 90vh;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: left;
+}
+
+.payment-container-left {
+    width: 47%;
+    /* height: 100%; */
+    background-size: contain;
+    border-radius: 20px 0 0 20px;
+    /* border: 1px solid whitesmoke; */
+    /* border-right: none; */
+    overflow: hidden;
+}
+
+.payment-container-left img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.payment-container-right {
+    /* position: relative; */
+    /* height: 100%; */
+    width: 53%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2vh 4vw;
+    background-color: #101c27;
+    border-radius: 0 20px 20px 0;
+    overflow: hidden;
+}
+
+.payment-container-right-title {
+	color: #84f4eb;
+	font-family: 'Share Tech', sans-serif;
+    font-size: 4vmin;
+    padding-bottom: 3vh;
+}
+
+.payment-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-container-right-title, .payment-form {
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
 .pay-amount-label {
     text-align: center;
+    height: 100%;
+    width: 100%;
+    color: #63ccf5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: max(18px,3vmin);
+}
+
+.pay-amount-label-value {
+    font-size: max(18px,3vmin);
+    color: #feec82;
+}
+
+.payment-form input {
+    width: 100%;
+}
+
+.payment-state-dropdown {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.payment-state-dropdown-label {
     height: 100%;
     width: 40%;
     color: #63ccf5;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: max(18px,3vmin);
+}
+
+.payment-state-dropdown-select {
+    width: 60%;
+}
+
+.payment-collegeYear-dropdown {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.payment-collegeYear-dropdown-label {
+    height: 100%;
+    width: 40%;
+    color: #63ccf5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.payment-collegeYear-dropdown-select {
+    width: 60%;
+}
+
+.payment-form input, .payment-state-dropdown-select, .payment-collegeYear-dropdown-select {
+    box-sizing: border-box;
+    height: 5vh;
+    margin: 8px 0;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.8vmin;
+    font-family: 'Josefin Sans', sans-serif;
+    color: black;
+    background-color: rgb(151, 189, 185);
+}
+
+.payment-form input:focus, .payment-state-dropdown-select:focus, .payment-collegeYear-dropdown-select:focus {
+    outline: 3px solid #84f4eb;
+}
+
+.payment-form input::placeholder, .payment-state-dropdown-select::placeholder, .payment-collegeYear-dropdown-select::placeholder {
+    color: #3c3b3b;
+}
+
+#payment-form-submit {
+    width: 40%;
+    height: 5vh;
+    margin: 15px 0 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 2vmin;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #63ccf5;
+    color: #101c27;
+}
+
+#payment-form-submit:hover {
+    background-color: #63ccf5e4;
+    cursor: pointer;
+}
+
+.payment-form-success {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+	color: #84f4eb;
+	font-family: 'Share Tech', sans-serif;
+    font-size: 3vmin;
+    padding: 1vh 2vw;
+}
+
+.payment-form-success-gif {
+    margin-bottom: 1vmin;
+}
+
+@media (max-width: 1000px) {
+    .payment-container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 700px) {
+    .payment-container {
+        width: 100%;
+    }
+}
+
+@media (orientation: portrait) {
+    .payment-container {
+        flex-direction: column;
+        height: min-content;
+        width: 100%;
+    }
+
+    .payment-container-left {
+        width: 100%;
+        height: 20vh;
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .payment-container-right {
+        width: 100%;
+        height: fit-content;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .payment-container-right-title {
+        font-size: max(26px, 4vmin);
+    }
+
+    .payment-form input, .payment-state-dropdown-select, .payment-collegeYear-dropdown-select {
+        font-size: max(12px, 1.8vmin);
+    }
+
+    #payment-form-submit {
+        font-size: max(13px, 2vmin);
+    }
 }
