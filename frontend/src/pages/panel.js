@@ -59,7 +59,7 @@ function PanelDiscussion() {
         .then((response) => response.json())
         .then((data) => {
           setPanelData([...data]);
-          console.log(data);
+          // console.log(data);
         })
         .catch((error) => {
           console.error("Error:", error);

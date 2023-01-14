@@ -222,6 +222,7 @@ function CompleteProfile() {
                                 type="text"
                                 name="college"
                                 placeholder="College *"
+                                maxLength={60}
                                 required
                             />
                             <input

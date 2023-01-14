@@ -1,3 +1,8 @@
+@font-face{
+    src: url(../fonts/Neone-Regular.ttf.woff) format("woff");
+    font-family: myfont;
+    font-weight: bold;
+}
 #dashboard-container {
     box-sizing: border-box;
     width: 100%;
@@ -94,6 +99,10 @@
     width: 4%;
     filter: drop-shadow(0 0 0.5rem purple);
     z-index: 1;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    padding: 1px 2px;
     /* transform: translate(-50%, -50%); */
 }
 
@@ -106,6 +115,14 @@
 #dashboard-pass-image{
     aspect-ratio: 1772 / 591;
     width:100%;
+}
+
+#dashboard-pass-mobile-download {
+    display: none;
+}
+
+#dashboard-pass-mobile-download-btn:hover {
+    cursor: pointer;
 }
 
 #dashboard-pass {
@@ -139,7 +156,36 @@
     align-items: center;
 
 }
-
+#ticketType-container{
+    /* background-color: cyan; */
+        position: absolute;
+    top: 52%;
+    background-size: contain ;
+    box-sizing: border-box;
+    height: 50%;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    /* left: calc((57 / 1771) * 100%); */
+    left: calc((650 / 1771) * 100%);
+    width: calc((264 / 1771) * 100%);
+    padding: 0 calc((57 / 1771) * 100% * 0.1);
+    transform: translate(-50%, -50%);
+    font-family: myfont;
+    font-weight: 900;
+    /* color:#c37eff; */
+    color:#fff;
+}
+#ticketType-container h4{
+    /* font-size: calc(0.025 * 0.67 * 92vw) !important; */
+    text-align: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+#ticketType-container p{
+    margin-bottom: 0;
+}
 #dashboard-pass-right-side{
     box-sizing: border-box;
     width: 75%;
@@ -214,7 +260,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: max(2vmin, 12px);
+    font-size: max(2.5vmin, 15px);
     font-weight: 700;
     color: black;
     z-index: 1;
@@ -671,6 +717,31 @@
         max-height: none;
     }
 
+    #dashboard-pass-noPassPurchased {
+        width: 90%;
+    }
+    #dashboard-pass-download-btn {
+        display: none;
+    }
+    #dashboard-pass-mobile-download {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 2vh;
+    }
+    #dashboard-pass-mobile-download-btn {
+        color: black;
+        font-size: max(2vmin, 13px);
+        font-weight: 600;
+        background-color: #15eac5;
+        border-radius: 4px;
+        padding: 4px 8px;
+    }
+    #dashboard-pass-mobile-download-icon {
+        height: max(2vmin, 13px);
+        padding-right: 4px;
+    }
     .dashboard-pass-registrationID {
         font-size: calc(0.025 * 92vw);
     }

@@ -191,6 +191,7 @@ function App() {
                         <Route path="/privacy-policy" element={<PP />} />
                         w
                         <Route path="/payment" element={<Pay />} />
+                        
                         <Route path="/*" element={<Page_404 />} />
                     </Routes>
 

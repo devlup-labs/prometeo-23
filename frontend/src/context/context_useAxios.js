@@ -5,9 +5,10 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 import { backendURL } from "../backendURL";
+import { toast } from "react-toastify";
 
 const useAxios = () => {
-    const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
+    const { authTokens, setUser, setAuthTokens, logoutUser } = useContext(AuthContext);
 
     const axiosInstance = axios.create({
         backendURL,
@@ -20,16 +21,25 @@ const useAxios = () => {
 
         if (!isExpired) return req;
 
-        const response = await axios.post(`${backendURL}/auth/token/refresh/`, {
-            refresh: authTokens.refresh
-        });
+        // console.log("Refreshing token")
+        try {
+            const response = await axios.post(`${backendURL}/auth/token/refresh/`, {
+                refresh: authTokens.refresh
+            });
 
-        localStorage.setItem("authTokens", JSON.stringify(response.data));
+            localStorage.setItem("authTokens", JSON.stringify(response.data));
 
-        setAuthTokens(response.data);
-        setUser(jwt_decode(response.data.access));
+            setAuthTokens(response.data);
+            setUser(jwt_decode(response.data.access));
 
-        req.headers.Authorization = `Bearer ${response.data.access}`;
+            req.headers.Authorization = `Bearer ${response.data.access}`;
+        } catch (error) {
+            console.log("Error refreshing token: ", error)
+            if (error.response.status === 401) {
+                toast.error("Session expired. Please login again.");
+                logoutUser();
+            }
+        }
         return req;
     });
 
