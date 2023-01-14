@@ -752,40 +752,44 @@ class PaymentCallBack(APIView):
         print(request.data)
         response_keys = request.data.keys()
         order_id = request.data['ORDERID']
-        payment = Payment.objects.filter(order_id = order_id).first()
-        payment.amount = float(request.data['TXNAMOUNT'])
-        payment.order_id = request.data['ORDERID']
-        payment.checksumhash = request.data['CHECKSUMHASH']
-        payment.bank_txn_id = request.data['BANKTXNID']
-        payment.payment_mode = request.data['PAYMENTMODE'] if 'PAYMENTMODE' in response_keys else ''
-        payment.response_code = request.data['RESPCODE']
-        payment.response_msg = request.data['RESPMSG']
-        payment.txn_date = request.data['TXNDATE'] if 'TXNDATE' in response_keys else ''
-        payment.txn_id = request.data['TXNID']
+        if Payment.objects.filter(order_id=order_id).exists():
+            payment = Payment.objects.filter(order_id = order_id).first()
+            payment.amount = float(request.data['TXNAMOUNT'])
+            payment.order_id = request.data['ORDERID']
+            payment.checksumhash = request.data['CHECKSUMHASH']
+            payment.bank_txn_id = request.data['BANKTXNID']
+            payment.payment_mode = request.data['PAYMENTMODE'] if 'PAYMENTMODE' in response_keys else ''
+            payment.response_code = request.data['RESPCODE']
+            payment.response_msg = request.data['RESPMSG']
+            payment.txn_date = request.data['TXNDATE'] if 'TXNDATE' in response_keys else ''
+            payment.txn_id = request.data['TXNID']
 
-        if request.data['STATUS'] =='TXN_SUCCESS':
-            
-            payment.isPaid = True
-            payment.payment_status = "Success"
-            if Passes.objects.filter(user=payment.user).exists():
-                passtype = Passes.objects.filter(user=payment.user).first()
-                passtype.pass_type = passtype_dict[payment.payment_type]
-                passtype.save()
-            elif payment.payment_type=="Cultural Night":
-                passtype = Passes.objects.create(user=payment.user, pass_type=passtype_dict[payment.payment_type])
-                passtype.save()
+            if request.data['STATUS'] =='TXN_SUCCESS':
+                
+                payment.isPaid = True
+                payment.payment_status = "Success"
+                if Passes.objects.filter(user=payment.user).exists():
+                    passtype = Passes.objects.filter(user=payment.user).first()
+                    passtype.pass_type = passtype_dict[payment.payment_type]
+                    passtype.save()
+                elif payment.payment_type=="Cultural Night":
+                    passtype = Passes.objects.create(user=payment.user, pass_type=passtype_dict[payment.payment_type])
+                    passtype.save()
 
-        elif request.data['STATUS'] =='TXN_FAILURE':
-            payment.payment_status = "Failed"
-        elif request.data['STATUS'] =='PENDING':
-            payment.payment_status = "Aborted"
+            elif request.data['STATUS'] =='TXN_FAILURE':
+                payment.payment_status = "Failed"
+            elif request.data['STATUS'] =='PENDING':
+                payment.payment_status = "Aborted"
 
-        msg = payment.response_msg
-        code = payment.response_code 
-        payment.save()
-        # response=json.dumps(request.data.dict())
-        # resp = json.loads(response)
-        return redirect(settings.FRONTEND_URL+"/dashboard?msg="+msg+"&code="+code)
+            msg = payment.response_msg
+            code = payment.response_code 
+            payment.save()
+            return redirect(settings.FRONTEND_URL+"/dashboard?msg="+msg+"&code="+code)
+        
+        elif CustomOrder.objects.filter(order_id=order_id).exists():
+            msg = request.data['RESPMSG']
+            code = request.data['RESPCODE']
+            return redirect(settings.FRONTEND_URL+"/dashboard?msg="+msg+"&code="+code)
         
 class CustomOrderView(APIView):
     queryset = CustomOrder.objects.all()
@@ -815,7 +819,7 @@ class CustomOrderView(APIView):
         'MID': settings.PAYTM_MID,
         'ORDER_ID': order_id,
         'TXN_AMOUNT': str(amount),
-        'CUST_ID': order_id,
+        'CUST_ID': custom.id,
         'INDUSTRY_TYPE_ID': settings.PAYTM_INDUSTRY_TYPE_ID,
         'WEBSITE': settings.PAYTM_WEBSITE,
         'CHANNEL_ID': settings.PAYTM_CHANNEL_ID,
@@ -823,6 +827,9 @@ class CustomOrderView(APIView):
         'MERC_UNQ_REF': settings.PAYTM_MERC_UNQ_REF,
         }
         param_dict['CHECKSUMHASH'] = utility.generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
-    
-        return Response({'param_dict': param_dict})
+
+        serializers = CustomOrderSerializers(custom)
+
+
+        return Response({'custom_order':serializers.data, 'param_dict': param_dict})
         

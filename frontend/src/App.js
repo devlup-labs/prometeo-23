@@ -47,6 +47,7 @@ import Login from "./pages/Login.js";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
 import CompleteProfile from "./pages/completeProfile";
+import Pay from "./pages/pay";
 
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
@@ -189,6 +190,7 @@ function App() {
                         <Route path="/tnc" element={<Tnc />} />
                         <Route path="/privacy-policy" element={<PP />} />
                         w
+                        <Route path="/payment" element={<Pay />} />
                         <Route path="/*" element={<Page_404 />} />
                     </Routes>
 
