@@ -145,6 +145,13 @@ function App() {
                                 element={<Dronerace_Register />}
                             />
                         </Route>
+                        <Route
+                            exact
+                            path="/payment"
+                            element={<PrivateRoute />}
+                        >
+                            <Route path="/payment" element={<Pay />} />
+                        </Route>
 
                         <Route 
                             exact
@@ -187,10 +194,9 @@ function App() {
                                 element={<CompleteProfile />}
                             />
                         </Route>
+                        
                         <Route path="/tnc" element={<Tnc />} />
                         <Route path="/privacy-policy" element={<PP />} />
-                        w
-                        <Route path="/payment" element={<Pay />} />
                         
                         <Route path="/*" element={<Page_404 />} />
                     </Routes>
