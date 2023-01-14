@@ -1,0 +1,10 @@
+.pay-amount-label {
+    text-align: center;
+    height: 100%;
+    width: 40%;
+    color: #63ccf5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: max(18px,3vmin);
+}
