@@ -47,3 +47,26 @@ def generate_checksum(param_dict, merchant_key, salt=None):
     hash_string += salt
 
     return __encode__(hash_string, IV, merchant_key)
+
+def __decode__(to_decode, iv, key):
+    # Decode
+    to_decode = base64.b64decode(to_decode)
+    # Decrypt
+    c = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv.encode('utf-8'))
+    to_decode = c.decrypt(to_decode)
+    if type(to_decode) == bytes:
+        # convert bytes array to str.
+        to_decode = to_decode.decode()
+    # remove pad
+    return __unpad__(to_decode)
+
+def verify_checksum(param_dict, merchant_key, checksum):
+    # Remove checksum
+    if 'CHECKSUMHASH' in param_dict:
+        param_dict.pop('CHECKSUMHASH')
+
+    # Get salt
+    paytm_hash = __decode__(checksum, IV, merchant_key)
+    salt = paytm_hash[-4:]
+    calculated_checksum = generate_checksum(param_dict, merchant_key, salt=salt)
+    return calculated_checksum == checksum

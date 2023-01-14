@@ -750,45 +750,60 @@ class PaymentCallBack(APIView):
 
     def post(self,request, *args, **kwargs):
         print(request.data)
-        response_keys = request.data.keys()
-        order_id = request.data['ORDERID']
-        if Payment.objects.filter(order_id=order_id).exists():
-            payment = Payment.objects.filter(order_id = order_id).first()
-            payment.amount = float(request.data['TXNAMOUNT'])
-            payment.order_id = request.data['ORDERID']
-            payment.checksumhash = request.data['CHECKSUMHASH']
-            payment.bank_txn_id = request.data['BANKTXNID']
-            payment.payment_mode = request.data['PAYMENTMODE'] if 'PAYMENTMODE' in response_keys else ''
-            payment.response_code = request.data['RESPCODE']
-            payment.response_msg = request.data['RESPMSG']
-            payment.txn_date = request.data['TXNDATE'] if 'TXNDATE' in response_keys else ''
-            payment.txn_id = request.data['TXNID']
+        checksum = ""
+        form = request.POST
+        response_dict = {}
+        for i in form.keys():
+            response_dict[i] = form[i]
+            if i == 'CHECKSUMHASH':
+                checksum = form[i]
+        verify = utility.verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum)
 
-            if request.data['STATUS'] =='TXN_SUCCESS':
-                
-                payment.isPaid = True
-                payment.payment_status = "Success"
-                if Passes.objects.filter(user=payment.user).exists():
-                    passtype = Passes.objects.filter(user=payment.user).first()
-                    passtype.pass_type = passtype_dict[payment.payment_type]
-                    passtype.save()
-                elif payment.payment_type=="Cultural Night":
-                    passtype = Passes.objects.create(user=payment.user, pass_type=passtype_dict[payment.payment_type])
-                    passtype.save()
+        if verify:
+            response_keys = request.data.keys()
+            order_id = request.data['ORDERID']
+            if Payment.objects.filter(order_id=order_id).exists():
+                payment = Payment.objects.filter(order_id = order_id).first()
+                payment.amount = float(request.data['TXNAMOUNT'])
+                payment.order_id = request.data['ORDERID']
+                payment.checksumhash = request.data['CHECKSUMHASH']
+                payment.bank_txn_id = request.data['BANKTXNID']
+                payment.payment_mode = request.data['PAYMENTMODE'] if 'PAYMENTMODE' in response_keys else ''
+                payment.response_code = request.data['RESPCODE']
+                payment.response_msg = request.data['RESPMSG']
+                payment.txn_date = request.data['TXNDATE'] if 'TXNDATE' in response_keys else ''
+                payment.txn_id = request.data['TXNID']
 
-            elif request.data['STATUS'] =='TXN_FAILURE':
-                payment.payment_status = "Failed"
-            elif request.data['STATUS'] =='PENDING':
-                payment.payment_status = "Aborted"
+                if request.data['STATUS'] =='TXN_SUCCESS':
+                    
+                    payment.isPaid = True
+                    payment.payment_status = "Success"
+                    if Passes.objects.filter(user=payment.user).exists():
+                        passtype = Passes.objects.filter(user=payment.user).first()
+                        passtype.pass_type = passtype_dict[payment.payment_type]
+                        passtype.save()
+                    elif payment.payment_type=="Cultural Night":
+                        passtype = Passes.objects.create(user=payment.user, pass_type=passtype_dict[payment.payment_type])
+                        passtype.save()
 
-            msg = payment.response_msg
-            code = payment.response_code 
-            payment.save()
-            return redirect(settings.FRONTEND_URL+"/dashboard?msg="+msg+"&code="+code)
-        
-        elif CustomOrder.objects.filter(order_id=order_id).exists():
-            msg = request.data['RESPMSG']
-            code = request.data['RESPCODE']
+                elif request.data['STATUS'] =='TXN_FAILURE':
+                    payment.payment_status = "Failed"
+                elif request.data['STATUS'] =='PENDING':
+                    payment.payment_status = "Aborted"
+
+                msg = payment.response_msg
+                code = payment.response_code 
+                payment.save()
+                return redirect(settings.FRONTEND_URL+"/dashboard?msg="+msg+"&code="+code)
+            
+            elif CustomOrder.objects.filter(order_id=order_id).exists():
+                msg = request.data['RESPMSG']
+                code = request.data['RESPCODE']
+                return redirect(settings.FRONTEND_URL+"/dashboard?msg="+msg+"&code="+code)
+
+        else :
+            msg = 'Payment not verified'
+            code = 229
             return redirect(settings.FRONTEND_URL+"/dashboard?msg="+msg+"&code="+code)
         
 class CustomOrderView(APIView):
