@@ -29,6 +29,7 @@ from home.models import *
 from events.models import *
 from coordinator.models import *
 from users.models import *
+from paytm.models import Payment
 import requests
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -795,3 +796,57 @@ def get_pass_excel(request):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     # return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/passpayment/')
+def pass_payment(request):
+    payment = Payment.objects.all()
+    wbname = 'User_List'
+    wbname2 = 'Campus_Ambassador_List'
+    return render(request, 'dashboard/pass_payment.html', {'payment': payment, 'wbname':wbname, 'wbname2': wbname2})
+
+@user_passes_test(lambda u: u.is_staff, login_url='/admin/login/?next=/dashboard/passpayment/')
+def download_pass_payment(request):
+    payment = Payment.objects.all()
+    # wbpath = os.path.join(settings.MEDIA_ROOT, os.path.join('passes.xlsx'))
+    workbook = xlsxwriter.Workbook('payment.xlsx')
+    worksheet = workbook.add_worksheet()
+    worksheet.write(0, 0, "Email")
+    worksheet.write(0, 1, "Amount")
+    worksheet.write(0, 2, "Payment Status")
+    worksheet.write(0, 3, "Pass Type")
+    worksheet.write(0, 4, "Order ID")
+    worksheet.write(0, 5, "Paid")
+    worksheet.write(0, 6, "Bank Transaction ID")
+    worksheet.write(0, 7, "Payment Mode")
+    worksheet.write(0, 8, "Response Code")
+    worksheet.write(0, 9, "Response Message")
+    worksheet.write(0, 10, "Transaction Date")
+    worksheet.write(0, 11, "Transaction ID")
+    # worksheet.write(0, 12, "Last Pay Now Clicked")
+    # worksheet.write(0, 6,"CA Referral Code")
+
+    
+    row = 1
+    for pay in payment:
+        worksheet.write(row, 0, pay.user.email)
+        worksheet.write(row, 1, pay.amount)
+        worksheet.write(row, 2, pay.payment_status)
+        worksheet.write(row, 3, pay.payment_type)
+        worksheet.write(row, 4, pay.order_id)
+        worksheet.write(row, 5, pay.isPaid)
+        worksheet.write(row, 6, pay.bank_txn_id)
+        worksheet.write(row, 7, pay.payment_mode)
+        worksheet.write(row, 8, pay.response_code)
+        worksheet.write(row, 9, pay.response_msg)
+        worksheet.write(row, 10, pay.txn_date)
+        worksheet.write(row, 11, pay.txn_id)
+        # worksheet.write(row, 12, pay.last_pay_now_clicked)
+        # worksheet.write(row, 6, passtype.user.referral_code)
+        row = row + 1
+    workbook.close()
+    file_path = os.path.join('payment.xlsx')
+    with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+
