@@ -109,6 +109,10 @@ function Dashboard() {
                 }
             } catch (err) {
                 console.log("Error:", err);
+                if (err.response.status === 401) {
+                    toast.error("Session expired. Please login again.");
+                    logoutUser();
+                }
             }
         }
         fetchData();

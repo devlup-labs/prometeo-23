@@ -145,13 +145,13 @@ function App() {
                                 element={<Dronerace_Register />}
                             />
                         </Route>
-                        <Route
+                        {/* <Route
                             exact
                             path="/payment"
                             element={<PrivateRoute />}
                         >
                             <Route path="/payment" element={<Pay />} />
-                        </Route>
+                        </Route> */}
 
                         <Route 
                             exact
