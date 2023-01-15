@@ -532,10 +532,15 @@ section {
 }
 
 .row p{
-  text-align: end;
+  text-align: center;
   padding-top: 10px;
   margin-bottom: 0;
 }
+
+.pass-unavailability-info {
+	color: #6eecff;
+}
+
 .card a {
 	position: relative;
 	z-index: 2;
@@ -577,7 +582,7 @@ a[type="Jumbo Pack"], a[type="Accommodation"] {
 }
 
 a[type="Jumbo Pack"]:hover, a[type="Accommodation"]:hover {
-	cursor: default;
+	cursor: not-allowed;
 }
 
 @media (max-width:500px) {
