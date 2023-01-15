@@ -101,7 +101,7 @@ function App() {
                             <Route exact path='/join-team' element={<Event_joinTeam />} />
                         </Route> */}
                         <Route path="/robowars" element={<Robowar />} />
-                        <Route
+                        {/* <Route
                             exact
                             path="/accommodation-registration"
                             element={<PrivateRoute />}
@@ -110,7 +110,7 @@ function App() {
                                 path="/accommodation-registration"
                                 element={<AccForm />}
                             />
-                        </Route>
+                        </Route> */}
                         <Route
                             exact
                             path="/robowars-create-team"

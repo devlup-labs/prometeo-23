@@ -191,9 +191,8 @@ function BuyPass() {
                       <a
                         type="Accommodation"
                         value="Accommodation"
-                        onClick={startPayment}
                       >
-                        Buy Now
+                        Sold Out!
                       </a>
                     </div>
                   </div>
@@ -216,8 +215,8 @@ function BuyPass() {
                           </li>
                         </ul>
                       </div>
-                      <a type="Jumbo Pack" onClick={startPayment}>
-                        Buy Now
+                      <a type="Jumbo Pack">
+                        Sold Out!
                       </a>
                     </div>
                   </div>
