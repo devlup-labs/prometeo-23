@@ -708,11 +708,11 @@ class PaymentViewSet(APIView):
         payment.save()
         amount =1
         if payment.payment_type=="Accommodation":
-            amount=1179    
+            amount=1770    
         elif payment.payment_type=="Cultural Night":
             amount=499
         elif payment.payment_type=="Jumbo Pack":
-            amount=1088
+            amount=1679
         
         # amount =1
         if User.registration_id == "" or User.registration_id == None:
