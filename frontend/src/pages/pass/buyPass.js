@@ -192,7 +192,7 @@ function BuyPass() {
                         type="Accommodation"
                         value="Accommodation"
                       >
-                        Sold Out!
+                        Buy Now
                       </a>
                     </div>
                   </div>
@@ -216,7 +216,7 @@ function BuyPass() {
                         </ul>
                       </div>
                       <a type="Jumbo Pack">
-                        Sold Out!
+                        Buy Now
                       </a>
                     </div>
                   </div>
@@ -243,6 +243,8 @@ function BuyPass() {
                     </div>
                   </div>
                   <p>
+                    <span className="pass-unavailability-info">Due to heavy traffic, the accommodation services will be resumed in 1 day.</span>
+                    <br />
                     * The prices mentioned are exclusive of GST. Nominal GST
                     charges will be applied.
                   </p>
