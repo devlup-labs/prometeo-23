@@ -134,63 +134,70 @@ function Entry(props) {
     };
 
     return (
-        <div className="dronerace_flag">
-            <div
-                className="dronerace_flagTop-container"
-                style={{
-                    backgroundImage: `url(${dronebg})`,
-                }}
+      <div className="dronerace_flag">
+        <div
+          className="dronerace_flagTop-container"
+          style={{
+            backgroundImage: `url(${dronebg})`,
+          }}
+        >
+          {/* <img src={props.image} /> */}
+        </div>
+        <div className="dronerace_flagTop-DroneContainer">
+          <h1 data-title={props.name}>{props.name}</h1>
+          <p id="dronerace_info">
+            {props.droneName === "registered" && (
+              <>
+                Congratulations! You have successfully registered for the event.
+                <br></br>
+                <small id="dr-info-text">
+                  You are eligible for the Jumbo Pass option which includes the
+                  registration fee, accommodation fee (50% off during Early Bird
+                  Discount) and Cultural Night fee.
+                </small>
+              </>
+            )}
+          </p>
+          <div className="dronerace_buttons">
+            <button
+              id="dronerace_create-button"
+              className="button-48"
+              onClick={() => {
+                // console.log(props.droneName);
+                if (user === null) {
+                  toast.error("Please login to register");
+                  navigate("/login");
+                } else if (props.droneName !== "registered") {
+                  handleSubmit();
+                  // window.open(
+                  // "https://forms.eduqfix.com/prometeo/add",
+                  // "_blank"
+                  // );
+                }
+              }}
+              disabled={props.droneName === "registered"}
             >
-                {/* <img src={props.image} /> */}
-            </div>
-            <div className="dronerace_flagTop-DroneContainer">
-                <h1 data-title={props.name}>{props.name}</h1>
-                <p id="dronerace_info">
-                    {props.droneName === "registered" && (
-                        <>
-                            Congratulations! You have successfully registered
-                            for the event.<br></br>
-                            <small id="dr-info-text">
-                                You are eligible for the Jumbo Pass option which
-                                includes the registration fee, accommodation fee
-                                (50% off during Early Bird Discount) and
-                                Cultural Night fee.
-                            </small>
-                        </>
-                    )}
-                </p>
-                <div className="dronerace_buttons">
-                    <button
-                        id="dronerace_create-button"
-                        className="button-48"
-                        onClick={() => {
-                            // console.log(props.droneName);
-                            if (user === null) {
-                                toast.error("Please login to register");
-                                navigate("/login");
-                            } else if (props.droneName !== "registered") {
-                                handleSubmit();
-                                // window.open(
-                                // "https://forms.eduqfix.com/prometeo/add",
-                                // "_blank"
-                                // );
-                            }
-                        }}
-                        disabled={props.droneName === "registered"}
-                    >
-                        {props.droneName === "registered" ? (
-                            <a
-                                href="https://forms.eduqfix.com/prometeo/add"
-                                target="_blank"
-                            >
-                                <div className="button-text">Pay Now!</div>
-                            </a>
-                        ) : (
-                            <div className="button-text">Register!</div>
-                        )}
-                    </button>
-                </div>
-                {/* <div class="dronerace_table center">
+              {props.droneName === "registered" ? (
+                <a
+                  href="https://forms.eduqfix.com/prometeo/add"
+                  target="_blank"
+                >
+                  <div className="button-text">Pay Now!</div>
+                </a>
+              ) : (
+                <div className="button-text">Register!</div>
+              )}
+            </button>
+            <button id="dronerace_create-button" className="button-48">
+              <a
+                href="https://drive.google.com/file/d/1Th7IhE6if4--meXf__0WDzMMSa0urzCg/view?usp=sharing"
+                target="_blank"
+              >
+                <div className="button-text">Rulebook</div>
+              </a>
+            </button>
+          </div>
+          {/* <div class="dronerace_table center">
           <div class="dronerace_monitor-wrapper center">
             <div class="dronerace_monitor center">
               <p>Ready for war</p>
@@ -198,83 +205,71 @@ function Entry(props) {
           </div>
         </div> */}
 
-                {/* <img src={props.image} /> */}
-            </div>
-            <section className="dronerace_flag-bottom-bg">
-                <div className="dronerace_flagAbout">
-                    <h3 className="dronerace_title-shadow">ABOUT</h3>
-                    <section className="dronerace_Abouttable">
-                        <div id="dronerace_flag_prize">
-                            <img
-                                src={prizeImg}
-                                alt="icon"
-                                id="dronerace_flag_prize-icon"
-                            />
-                            <div id="dronerace_flagPrize-description">
-                                <span
-                                    className="dronerace_js-num"
-                                    data-target="12000"
-                                >
-                                    60
-                                </span>
-                                <span>K+</span>
-                                <br />
-                                <span ref={ref}>Prize Pool</span>
-                            </div>
-                        </div>
-                        <div id="dronerace_about-text">
-                            <p className="dronerace_about-description">
-                                {props.description}
-                            </p>
-                            {/* <Link id="dronerace_flagAbout-button">Registrations Opening Soon</Link> */}
-                        </div>
-                    </section>
-                    {/* <p>{props.description}</p> */}
+          {/* <img src={props.image} /> */}
+        </div>
+        <section className="dronerace_flag-bottom-bg">
+          <div className="dronerace_flagAbout">
+            <h3 className="dronerace_title-shadow">ABOUT</h3>
+            <section className="dronerace_Abouttable">
+              <div id="dronerace_flag_prize">
+                <img src={prizeImg} alt="icon" id="dronerace_flag_prize-icon" />
+                <div id="dronerace_flagPrize-description">
+                  <span className="dronerace_js-num" data-target="12000">
+                    60
+                  </span>
+                  <span>K+</span>
+                  <br />
+                  <span ref={ref}>Prize Pool</span>
                 </div>
-                {/* <div className="dronerace_flagSponsors">
+              </div>
+              <div id="dronerace_about-text">
+                <p className="dronerace_about-description">
+                  {props.description}
+                </p>
+                {/* <Link id="dronerace_flagAbout-button">Registrations Opening Soon</Link> */}
+              </div>
+            </section>
+            {/* <p>{props.description}</p> */}
+          </div>
+          {/* <div className="dronerace_flagSponsors">
 					<h3 className="dronerace_title-shadow">SPONSORS</h3>
 					<img src="https://apiv.prometeo.in/media/sponsors/smasung_sWRoaY5.webp" />
 				</div> */}
-                <div className="dronerace_flagContactUs">
-                    <h3 className="dronerace_title-shadow">CONTACT US</h3>
-                    <div class="dronerace_canvas">
-                        <div
-                            id="dronerace_contact-card"
-                            class="dronerace_contact-card"
-                        >
-                            <div>
-                                <p className="dronerace_flagContactUs-name">
-                                    Rahul Gopathi
-                                </p>
-                                <p className="dronerace_flagContactUs-mail">
-                                    gopathi.1@iitj.ac.in
-                                </p>
-                                <a
-                                    href="https://wa.me/918919430577"
-                                    className="dronerace_flagContactUs-phone"
-                                >
-                                    +91 8919430577
-                                </a>
-                            </div>
-                            <div>
-                                <p className="dronerace_flagContactUs-name">
-                                    Likhith Ayinala
-                                </p>
-                                <p className="dronerace_flagContactUs-mail">
-                                    ayinala.1@iitj.ac.in
-                                </p>
-                                <a
-                                    href="https://wa.me/918927857887"
-                                    className="dronerace_flagContactUs-phone"
-                                >
-                                    +91 8927857887
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+          <div className="dronerace_flagContactUs">
+            <h3 className="dronerace_title-shadow">CONTACT US</h3>
+            <div class="dronerace_canvas">
+              <div id="dronerace_contact-card" class="dronerace_contact-card">
+                <div>
+                  <p className="dronerace_flagContactUs-name">Rahul Gopathi</p>
+                  <p className="dronerace_flagContactUs-mail">
+                    gopathi.1@iitj.ac.in
+                  </p>
+                  <a
+                    href="https://wa.me/918919430577"
+                    className="dronerace_flagContactUs-phone"
+                  >
+                    +91 8919430577
+                  </a>
                 </div>
-            </section>
-        </div>
+                <div>
+                  <p className="dronerace_flagContactUs-name">
+                    Likhith Ayinala
+                  </p>
+                  <p className="dronerace_flagContactUs-mail">
+                    ayinala.1@iitj.ac.in
+                  </p>
+                  <a
+                    href="https://wa.me/918927857887"
+                    className="dronerace_flagContactUs-phone"
+                  >
+                    +91 8927857887
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     );
 }
 
