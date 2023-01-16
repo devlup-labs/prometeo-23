@@ -36,7 +36,7 @@ export default function Robowar_joinTeam() {
         const postTeam = async (rw_name) => {
             const requestData = { rw_name}
             
-            // try {
+            try {
                 // console.log("Request Data:", requestData)
                 const response = await api.post(
                     `${backendURL}/updateteamrw/`,
@@ -46,11 +46,12 @@ export default function Robowar_joinTeam() {
                     navigate("/robowars");
                     return response;
                 } else {
+                    // console.log("Response:", response)
                     throw(response.statusText)
                 }
-            // } catch (err) {
-            //     console.log(err);
-            // }
+            } catch (err) {
+                throw(err.response)
+            }
         }
 
         const myPromise = new Promise((resolve, reject) => {
@@ -60,7 +61,7 @@ export default function Robowar_joinTeam() {
                 resolve(res);
             })
             .catch((err) => {
-                // console.log(err)
+                console.log("Reject error:", err)
                 reject(err);
             });            
         })
@@ -69,8 +70,13 @@ export default function Robowar_joinTeam() {
             loading: "Joining Team...",
             success: "Joined Successfully!",
             // on error show response message
-            error: (err) => {
-                return err;
+            error: {
+                render({data}) {
+                    if (data.data && data.data.message && data.data.message === "Team does not exist") {
+                        return "Team does not exist";
+                    }
+                    return "Something went wrong!";
+                }
             },
         })
     }
@@ -100,6 +106,7 @@ export default function Robowar_joinTeam() {
                                 type="text"
                                 name="rw_name"
                                 placeholder="Enter team name *"
+                                maxLength={50}
                                 required
                             />
                             <input
