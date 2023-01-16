@@ -438,6 +438,7 @@ function AccForm() {
                                 type="text"
                                 name="full_name"
                                 placeholder="Full Name (as on Aadhar Card) *"
+                                maxLength={100}
                                 required
                             />
                             <input
@@ -445,6 +446,7 @@ function AccForm() {
                                 name="aadhar"
                                 placeholder="Aadhar Card Number (without spaces)*"
                                 pattern="[2-9]{1}[0-9]{11}"
+                                maxLength={12}
                                 required
                             />
                             <input

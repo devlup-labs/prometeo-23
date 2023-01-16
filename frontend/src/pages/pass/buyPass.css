@@ -532,10 +532,15 @@ section {
 }
 
 .row p{
-  text-align: end;
+  text-align: center;
   padding-top: 10px;
   margin-bottom: 0;
 }
+
+.pass-unavailability-info {
+	color: #6eecff;
+}
+
 .card a {
 	position: relative;
 	z-index: 2;
@@ -569,7 +574,15 @@ section {
 }
 
 .jumbo a:hover {
-	cursor: pointer;
+	/* cursor: pointer; */
+}
+
+a[type="Jumbo Pack"], a[type="Accommodation"], a[type="Cultural Night"] {
+	background: #282c2d !important;
+}
+
+a[type="Jumbo Pack"]:hover, a[type="Accommodation"]:hover, a[type="Cultural Night"]:hover {
+	cursor: not-allowed;
 }
 
 @media (max-width:500px) {
@@ -578,23 +591,90 @@ section {
 	}
 }
 
-@media (max-width:800px) {
-	.row {
-		display: flex;
-		flex-direction: row;
+@media (max-width:990px) {
+	.row .col-sm-4 {
+		margin: 0 auto;
+		width: auto;
 	}
 
+	.row {
+		flex-direction: row-reverse;
+	}
+	
 	.row :nth-child(1) {
-		order: 2;
+		order: 4;
 	}
 
 	.row :nth-child(2) {
+		order: 2;
+	}
+
+	.row :nth-child(3) {
+		order: 2;
+	}
+
+	.row :nth-child(4) {
+		order: 4;
+	}
+	
+	.card :nth-child(1) {
 		order: 1;
+	}
+
+	.card :nth-child(2) {
+		order: 2;
+	}
+
+	.card :nth-child(3) {
+		order: 3;
+	}
+
+	.card :nth-child(4) {
+		order: 4;
+	}
+}
+
+@media (max-width:800px) {
+	.row {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	
+	.row p {
+		order: -1;
+	}
+	
+	.row :nth-child(1) {
+		order: 1;
+	}
+
+	.row :nth-child(2) {
+		order: 2;
 	}
 
 	.row :nth-child(3) {
 		order: 3;
 	}
+
+	.row :nth-child(4) {
+		order: -1;
+	}
+
+	/* .row :nth-child(1) {
+		order: 3;
+	}
+
+	.row :nth-child(2) {
+		order: 2;
+	}
+
+	.row :nth-child(3) {
+		order: 1;
+	}
+
+	.row :nth-child(4) {
+		order: 4;
+	} */
 
 	.card {
 		display: flex;
@@ -615,12 +695,5 @@ section {
 
 	.card :nth-child(4) {
 		order: 4;
-	}
-}
-
-@media (max-width:990px) {
-	.row .col-sm-4 {
-		margin: 0 auto;
-		width: auto;
 	}
 }

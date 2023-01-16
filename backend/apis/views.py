@@ -238,7 +238,7 @@ class CampusAmbassadorView(APIView):
             return Response(serializer.data)
 
         elif user.referral_code==None or user.referral_code=="":
-            print(1)
+            # print(1)
             ca = CampusAmbassador.objects.create(
                 email = user_email,
                 ca_count=0,
@@ -446,6 +446,8 @@ class UpdateTeamViewSetRW(APIView):
 
     def post(self,request,*args,**kwargs):
         name = request.data['rw_name']
+        if(RoboWars.objects.filter(rw_name=name).exists()==False):
+            return Response({'message':'Team does not exist'},status=status.HTTP_400_BAD_REQUEST)
         rw = RoboWars.objects.get(rw_name=name)
         # rw.rw_team_size = request.data['rw_team_size']
         if(rw.rw_members.count()>=rw.rw_team_size):
@@ -536,7 +538,7 @@ class GoogleCompleteProfileViewSet(APIView):
                     myca2 = ExtendedUser.objects.filter(invite_referral=rc).first()
                     myca2.ca_count += 1
 
-            if(is_ca == True and rc == None):
+            if(is_ca == True and (rc == None or rc == "" or rc=='none')):
                 user.ambassador = True
                 ca= CampusAmbassador.objects.create(user=user)
                 code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]

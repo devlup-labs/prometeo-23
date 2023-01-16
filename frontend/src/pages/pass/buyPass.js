@@ -179,7 +179,7 @@ function BuyPass() {
                       </div>
                       <div className="price">
                         <h4>
-                          <small>₹</small>1500*
+                          <small>₹</small>1499*
                         </h4>
                       </div>
                       <div className="pass-benefites">
@@ -191,7 +191,6 @@ function BuyPass() {
                       <a
                         type="Accommodation"
                         value="Accommodation"
-                        onClick={startPayment}
                       >
                         Buy Now
                       </a>
@@ -204,7 +203,7 @@ function BuyPass() {
                       </div>
                       <div className="price">
                         <h4>
-                          <small>₹</small>1500*
+                          <small>₹</small>1499*
                         </h4>
                       </div>
                       <div className="pass-benefites">
@@ -216,7 +215,7 @@ function BuyPass() {
                           </li>
                         </ul>
                       </div>
-                      <a type="Jumbo Pack" onClick={startPayment}>
+                      <a type="Jumbo Pack">
                         Buy Now
                       </a>
                     </div>
@@ -238,12 +237,17 @@ function BuyPass() {
                           </li>
                         </ul>
                       </div>
-                      <a type="Cultural Night" href="" onClick={startPayment}>
+                      {/* <a type="Cultural Night" href="" onClick={startPayment}> */}
+                      <a type="Cultural Night">
                         Buy Now
                       </a>
                     </div>
                   </div>
                   <p>
+                    <span className="pass-unavailability-info">
+                      Due to heavy traffic, the pass services are on hold. We are working on it and will be back soon.
+                    </span>
+                    <br />
                     * The prices mentioned are exclusive of GST. Nominal GST
                     charges will be applied.
                   </p>
