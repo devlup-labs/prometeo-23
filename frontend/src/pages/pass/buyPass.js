@@ -237,7 +237,8 @@ function BuyPass() {
                           </li>
                         </ul>
                       </div>
-                      <a type="Cultural Night" href="" onClick={startPayment}>
+                      {/* <a type="Cultural Night" href="" onClick={startPayment}> */}
+                      <a type="Cultural Night">
                         Buy Now
                       </a>
                     </div>

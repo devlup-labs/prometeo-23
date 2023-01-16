@@ -577,11 +577,11 @@ section {
 	/* cursor: pointer; */
 }
 
-a[type="Jumbo Pack"], a[type="Accommodation"] {
+a[type="Jumbo Pack"], a[type="Accommodation"], a[type="Cultural Night"] {
 	background: #282c2d !important;
 }
 
-a[type="Jumbo Pack"]:hover, a[type="Accommodation"]:hover {
+a[type="Jumbo Pack"]:hover, a[type="Accommodation"]:hover, a[type="Cultural Night"]:hover {
 	cursor: not-allowed;
 }
 
