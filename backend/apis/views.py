@@ -540,17 +540,20 @@ class GoogleCompleteProfileViewSet(APIView):
 
             if(is_ca == True and (rc == None or rc == "" or rc=='none')):
                 user.ambassador = True
-                ca= CampusAmbassador.objects.create(user=user)
+                ca= CampusAmbassador.objects.create(email=user_email)
                 code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
                 user = CampusAmbassador.objects.all()
-                def referral_check(c):
-                    for u in user:
-                        if c == u.invite_referral:
-                            c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
-                            referral_check(c)
-                    return c
+                # def referral_check(c):
+                #     for u in user:
+                #         if c == u.invite_referral:
+                #             c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
+                #             referral_check(c)
+                #     return c
+                id_registration= 'CA' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+                while ExtendedUser.objects.filter(registration_id=id_registration).exists():
+                    id_registration= 'CA' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
 
-                ca.invite_referral = referral_check(code)
+                ca.invite_referral = id_registration
                 # ca.invite_referral='CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
                 ca.save()
                 user.invite_referral = ca.invite_referral
