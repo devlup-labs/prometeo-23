@@ -200,7 +200,7 @@ export default function Footer(props) {
                                 </svg>
                             </a>
                             <a
-                                href="https://www.youtube.com/channel/UCZ5Z5YQZ7Z8Z5Z5Z5Z5Z5Z5"
+                                href="https://www.youtube.com/@prometeoiitj"
                                 target="_blank"
                             >
                                 <svg
