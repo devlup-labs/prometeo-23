@@ -47,6 +47,7 @@ import Login from "./pages/Login.js";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
 import CompleteProfile from "./pages/completeProfile";
+import Pay from "./pages/pay";
 
 import Tnc from "./pages/tnc";
 import PP from "./pages/privacy_policy";
@@ -100,7 +101,7 @@ function App() {
                             <Route exact path='/join-team' element={<Event_joinTeam />} />
                         </Route> */}
                         <Route path="/robowars" element={<Robowar />} />
-                        <Route
+                        {/* <Route
                             exact
                             path="/accommodation-registration"
                             element={<PrivateRoute />}
@@ -109,7 +110,7 @@ function App() {
                                 path="/accommodation-registration"
                                 element={<AccForm />}
                             />
-                        </Route>
+                        </Route> */}
                         <Route
                             exact
                             path="/robowars-create-team"
@@ -144,6 +145,13 @@ function App() {
                                 element={<Dronerace_Register />}
                             />
                         </Route>
+                        {/* <Route
+                            exact
+                            path="/payment"
+                            element={<PrivateRoute />}
+                        >
+                            <Route path="/payment" element={<Pay />} />
+                        </Route> */}
 
                         <Route 
                             exact
@@ -186,6 +194,7 @@ function App() {
                                 element={<CompleteProfile />}
                             />
                         </Route>
+                        
                         <Route path="/tnc" element={<Tnc />} />
                         <Route path="/privacy-policy" element={<PP />} />
                         

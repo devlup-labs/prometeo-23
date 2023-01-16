@@ -569,6 +569,11 @@
     text-shadow: 0 0px 2px #000000;
 }
 
+.acc-button-48:disabled, .acc-button-48[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 @keyframes bounce {
     0% {
         transform: translateY(0);

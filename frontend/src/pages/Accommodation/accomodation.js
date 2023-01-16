@@ -34,12 +34,13 @@ export default function Accommodation() {
                     let data = response.data;
                     console.log(data);
                     if (data.length > 0 && data[0].pass_type === 0) {
-                        document.getElementById(
-                            "acc-register-button"
-                        ).innerHTML =
-                            "<span class='button-text'>PAY NOW!</span>";
-                        if (document.getElementById("acc_info") !== null)
-                            document.getElementById("acc_info").style.display = "block";
+                        // document.getElementById(
+                        //     "acc-register-button"
+                        // ).innerHTML =
+                        //     "<span class='button-text'>PAY NOW!</span>";
+                        document.getElementById("acc-register-button").disabled = true;
+                        // if (document.getElementById("acc_info") !== null)
+                        //     document.getElementById("acc_info").style.display = "block";
                     }
                     else if (data.length > 0 && data[0].pass_type !== 0) {
                         document.getElementById(
@@ -51,9 +52,13 @@ export default function Accommodation() {
                         };
                         document.getElementById("acc_info").style.display = "none";
                     }
+                    else {
+                        document.getElementById("acc-register-button").disabled = true;
+                    }
                 } else {
                     // console.log(response)
                     // toast.error("Error: " + response.statusText);
+                    document.getElementById("acc-register-button").disabled = true;
                 }
             } catch (error) {
                 console.log("Error:", error);
@@ -80,17 +85,18 @@ export default function Accommodation() {
                     <button
                         id="acc-register-button"
                         className="acc-button-48"
-                        onClick={() => {
-                            if (user) {
-                                // toast.success("Redirecting to form!");
-                                navigate("/accommodation-registration");
-                            } else {
-                                toast.error("Please login first!");
-                                navigate("/login");
-                            }
-                        }}
+                        // onClick={() => {
+                        //     if (user) {
+                        //         // toast.success("Redirecting to form!");
+                        //         navigate("/accommodation-registration");
+                        //     } else {
+                        //         toast.error("Please login first!");
+                        //         navigate("/login");
+                        //     }
+                        // }}
+                        // disabled={true}
                     >
-                        <span className="button-text">REGISTER NOW!</span>
+                        <span className="button-text">REGISTRATIONS CLOSED</span>
                     </button>
                     <p id="acc_info">
                         If you have recently paid for the pass, it will be reflected on the website within a day.
