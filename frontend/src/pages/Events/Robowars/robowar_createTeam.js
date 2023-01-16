@@ -96,18 +96,21 @@ export default function Robowar_createTeam() {
                                 type="text"
                                 name="team_name"
                                 placeholder="Team Name *"
+                                maxLength={50}
                                 required
                             />
                             <input
                                 type="text"
                                 name="bot_name"
                                 placeholder="Bot Name *"
+                                maxLength={50}
                                 required
                             />
                             <input
                                 type="text"
                                 name="country"
                                 placeholder="Country *"
+                                maxLength={50}
                                 required
                             />
                             <div className="robowar_createTeam-category-dropdown">

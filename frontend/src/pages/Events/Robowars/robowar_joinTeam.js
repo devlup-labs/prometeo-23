@@ -100,6 +100,7 @@ export default function Robowar_joinTeam() {
                                 type="text"
                                 name="rw_name"
                                 placeholder="Enter team name *"
+                                maxLength={50}
                                 required
                             />
                             <input

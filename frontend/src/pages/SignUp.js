@@ -156,12 +156,14 @@ function SignUp() {
                                     type="text"
                                     name="first_name"
                                     placeholder="First Name *"
+                                    maxLength={100}
                                     required
                                 />
                                 <input
                                     type="text"
                                     name="last_name"
                                     placeholder="Last Name *"
+                                    maxLength={100}
                                     required
                                 />
                             </div>
@@ -169,6 +171,7 @@ function SignUp() {
                                 type="text"
                                 name="city"
                                 placeholder="City *"
+                                maxLength={40}
                                 required
                             />
                             <input
@@ -266,6 +269,7 @@ function SignUp() {
                             <input
                                 type="text"
                                 name="referral_code"
+                                maxLength={8}
                                 placeholder="Referral Code (If any)"
                             />
                             <input
