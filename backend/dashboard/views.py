@@ -757,7 +757,7 @@ class change_passtype(APIView):
         changed = request.data['passType']
         myusr = ExtendedUser.objects.filter(email=usere).first()
         req = Passes.objects.filter(user=myusr).first()
-        req.pass_type = changed
+        # req.pass_type = changed
         req.save()
         passtypes = Passes.objects.all()
         return render(request, 'dashboard/passtype.html', {'passtypes': passtypes})
