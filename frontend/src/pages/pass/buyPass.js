@@ -237,13 +237,16 @@ function BuyPass() {
                           </li>
                         </ul>
                       </div>
-                      <a type="Cultural Night" href="" onClick={startPayment}>
+                      {/* <a type="Cultural Night" href="" onClick={startPayment}> */}
+                      <a type="Cultural Night">
                         Buy Now
                       </a>
                     </div>
                   </div>
                   <p>
-                    <span className="pass-unavailability-info">Due to heavy traffic, the accommodation services will be resumed in 1 day.</span>
+                    <span className="pass-unavailability-info">
+                      Due to heavy traffic, the pass services are on hold. We are working on it and will be back soon.
+                    </span>
                     <br />
                     * The prices mentioned are exclusive of GST. Nominal GST
                     charges will be applied.
