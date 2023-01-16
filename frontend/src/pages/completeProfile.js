@@ -216,6 +216,7 @@ function CompleteProfile() {
                                 type="text"
                                 name="city"
                                 placeholder="City *"
+                                maxLength={40}
                                 required
                             />
                             <input
@@ -314,6 +315,7 @@ function CompleteProfile() {
                                 type="text"
                                 name="referral_code"
                                 placeholder="Referral Code (If any)"
+                                maxLength={8}
                             />
                             {/* <input
                                 type="email"
