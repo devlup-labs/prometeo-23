@@ -557,7 +557,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: stretch;
     /* justify-content: space-between; */
     width: 100%;
     gap: 2vmin;
@@ -605,7 +605,7 @@
 
 .dashboard-registeredEvents-content-event-image img {
     width: 100%;
-    /* height: 100%; */
+    height: 100%;
     object-fit: cover;
     border-radius: 4px;
 }
