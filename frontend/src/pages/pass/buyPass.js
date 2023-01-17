@@ -160,7 +160,7 @@ function BuyPass() {
             </div>
             <div id="buyPass-details">
               <span>
-                These packs will enable you to get accommodation and culture
+                These packs will enable you to get accommodation and cultural
                 night pass respectively. Entry in all the fest events is
                 completely free, you can attend any event throughout the fest
                 with a valid registration ID.
@@ -211,7 +211,7 @@ function BuyPass() {
                           <li>Accommodation for 3 days</li>
                           <li>Food facilities</li>
                           <li>
-                            Culture Night on 22<sup>nd</sup> January
+                            Cultural Night on 22<sup>nd</sup> January
                           </li>
                         </ul>
                       </div>
@@ -223,7 +223,7 @@ function BuyPass() {
                   <div className="col-sm-4">
                     <div className="card text-center">
                       <div className="title">
-                        <h2>CULTURE NIGHT</h2>
+                        <h2>CULTURAL NIGHT</h2>
                       </div>
                       <div className="price">
                         <h4>
@@ -233,19 +233,19 @@ function BuyPass() {
                       <div className="pass-benefites">
                         <ul>
                           <li>
-                            Culture Night on 22<sup>nd</sup> January
+                            Cultural Night on 22<sup>nd</sup> January
                           </li>
                         </ul>
                       </div>
                       {/* <a type="Cultural Night" href="" onClick={startPayment}> */}
-                      <a type="Cultural Night">
+                      <a type="Cultural Night" href="https://forms.eduqfix.com/prometeo/add">
                         Buy Now
                       </a>
                     </div>
                   </div>
                   <p>
                     <span className="pass-unavailability-info">
-                      Due to heavy traffic, the pass services are on hold. We are working on it and will be back soon.
+                      Due to heavy traffic, the accommodation services are on hold. We are working on it and will be back soon.
                     </span>
                     <br />
                     * The prices mentioned are exclusive of GST. Nominal GST

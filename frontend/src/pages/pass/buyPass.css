@@ -578,12 +578,17 @@ section {
 }
 
 a[type="Jumbo Pack"], a[type="Accommodation"], a[type="Cultural Night"] {
+	color: inherit;
 	background: #282c2d !important;
 }
 
-a[type="Jumbo Pack"]:hover, a[type="Accommodation"]:hover, a[type="Cultural Night"]:hover {
+a[type="Jumbo Pack"]:hover, a[type="Accommodation"]:hover {
 	cursor: not-allowed;
 }
+
+/* a[type="Jumbo Pack"]:hover, a[type="Accommodation"]:hover, a[type="Cultural Night"]:hover {
+	cursor: not-allowed;
+} */
 
 @media (max-width:500px) {
 	#buyPass-details {
