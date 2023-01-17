@@ -1,5 +1,6 @@
 import React from "react";
-import { useState, useEffect, Component } from "react";
+import { useState, useEffect, Component, useContext } from "react";
+import useAxios from "../../context/context_useAxios";
 import { useLocation, useSearchParams, Link } from "react-router-dom";
 import { PDFObject } from "react-pdfobject";
 import { toast } from "react-toastify";
@@ -7,6 +8,7 @@ import { toast } from "react-toastify";
 import "./EventDetails.css";
 import { backendURL } from "../../backendURL";
 import FadeIn from "../../components/fadein";
+import AuthContext from "../../context/AuthContext";
 
 function CreateEntry(props) {
   const eventTerm = props.eventInfo;
@@ -17,34 +19,34 @@ function CreateEntry(props) {
       key={eventTerm.id}
       eventTerm={eventTerm}
       eventSponsor={eventSponsor}
-    // name={eventTerm.name}
-    // img={eventTerm.image.replace(
-    //     "0.0.0.0:8888",
-    //     "apiv.prometeo.in"
-    // )}
-    // desc={eventTerm.description}
-    // team_size={eventTerm.max_team_size}
-    // prize={eventTerm.prize}
-    // date={eventTerm.date}
-    // rulebook={eventTerm.rulebook}
-    // sponsor_name={eventSponsor.map((sponsor) => {
-    //     if (sponsor.name) return sponsor.name;
-    //     else return "#";
-    // })}
-    // sponsor_image={
-    //     // for each sponsor, we need to get the image from the backend
-    //     // and then display it here
-    //     eventSponsor.map((sponsor) => {
-    //         return sponsor.image.replace(
-    //             "0.0.0.0:8888",
-    //             "apiv.prometeo.in"
-    //         );
-    //     })
-    // }
-    // sponsor_website={eventSponsor.map((sponsor) => {
-    //     if (sponsor.website) return sponsor.website;
-    //     else return "#";
-    // })}
+      // name={eventTerm.name}
+      // img={eventTerm.image.replace(
+      //     "0.0.0.0:8888",
+      //     "apiv.prometeo.in"
+      // )}
+      // desc={eventTerm.description}
+      // team_size={eventTerm.max_team_size}
+      // prize={eventTerm.prize}
+      // date={eventTerm.date}
+      // rulebook={eventTerm.rulebook}
+      // sponsor_name={eventSponsor.map((sponsor) => {
+      //     if (sponsor.name) return sponsor.name;
+      //     else return "#";
+      // })}
+      // sponsor_image={
+      //     // for each sponsor, we need to get the image from the backend
+      //     // and then display it here
+      //     eventSponsor.map((sponsor) => {
+      //         return sponsor.image.replace(
+      //             "0.0.0.0:8888",
+      //             "apiv.prometeo.in"
+      //         );
+      //     })
+      // }
+      // sponsor_website={eventSponsor.map((sponsor) => {
+      //     if (sponsor.website) return sponsor.website;
+      //     else return "#";
+      // })}
     />
   );
 }
@@ -79,7 +81,7 @@ function Details(props) {
   }, []);
 
   function forceDownload(blob, filename) {
-    var a = document.createElement('a');
+    var a = document.createElement("a");
     a.download = filename;
     a.href = blob;
     // For Firefox https://stackoverflow.com/a/32226068
@@ -90,19 +92,19 @@ function Details(props) {
 
   // Current blob size limit is around 500MB for browsers
   async function downloadResource(url, filename) {
-    if (!filename) filename = url.split('\\').pop().split('/').pop();
+    if (!filename) filename = url.split("\\").pop().split("/").pop();
     await fetch(url, {
       headers: new Headers({
-        'Origin': 'http://localhost:3000'
+        Origin: "http://localhost:3000",
       }),
-      mode: 'no-cors'
+      mode: "no-cors",
     })
-      .then(response => response.blob())
-      .then(blob => {
+      .then((response) => response.blob())
+      .then((blob) => {
         let blobUrl = window.URL.createObjectURL(blob);
         forceDownload(blobUrl, filename);
       })
-      .catch(e => console.error(e));
+      .catch((e) => console.error(e));
   }
 
   // downloadResource('https://giant.gfycat.com/RemoteBlandBlackrussianterrier.webm');
@@ -115,23 +117,80 @@ function Details(props) {
         })
         .catch((err) => {
           reject(err);
-        })
-    })
+        });
+    });
 
     toast.promise(myPromise, {
       pending: "Downloading...",
       success: "Downloaded successfully!",
-      error: "Error while downloading"
-    })
-
-  }
+      error: "Error while downloading",
+    });
+  };
 
   // if (PDFObject.supportsPDFs) {
   //   console.log("Yay, this browser supports inline PDFs.");
   // } else {
   //   console.log("Boo, inline PDFs are not supported by this browser");
-  // } 
+  // }
+  const [searchParams, SetSearchParams] = useSearchParams();
+  const { user, logoutUser } = useContext(AuthContext);
+  console.log(user);
+  const api = useAxios();
+  const handleSubmit = (e) => {
+    console.log(e);
+    async function fetchData() {
+      // console.log(searchParams.get("name"));
+      const event_name = searchParams.get("name");
+      const event_number = searchParams.get("id");
 
+      try {
+        // console.log("Fetching data for user:", user.email);
+        console.log(user);
+        const obj = {
+          email: user.email,
+          // ambassador: user.ambassador,
+          // referral: user.referral_code,
+          event_name: event_name,
+        };
+        // console.log(obj);
+        const response = await api.post(`${backendURL}/registerevent/`, obj);
+        if (response.status === 200) {
+          let data = response.data;
+          toast.info(data.message);
+        } else {
+          toast.error("Error: " + response.statusText);
+        }
+      } catch (error) {
+        console.log("Error:", error);
+      }
+    }
+
+    if (user === null) {
+      toast.error("Please login to register!");
+    } else {
+      const myPromise = new Promise((resolve, reject) => {
+        fetchData()
+          .then((res) => {
+            // console.log(res)
+            resolve(res);
+          })
+          .catch((err) => {
+            // console.log(err)
+            reject(err);
+          });
+      });
+
+      // toast.promise(myPromise, {
+      //   pending: "Registering...",
+      //   success: "Registered successfully!",
+      //   error: {
+      //     render: ({ data }) => {
+      //       return "Something went wrong!";
+      //     },
+      //   },
+      // });
+    }
+  };
   return (
     <div className="event-details">
       <div className="event-details__header">
@@ -263,14 +322,30 @@ function Details(props) {
               >
                 <span>REGISTER</span>
               </a>: "" } */}
-            {eventTerm.external_link && (
+            {/* {console.log(eventTerm.name)} */}
+
+            {eventTerm.name === "Speed Cubing" ||
+            eventTerm.name === "Bridge making competition" ? (
               <a
-                href={eventTerm.external_link || ""}
-                target="_blank"
+                id="ca-register-button"
                 className="event-details-register button-64"
+                // value={eventTerm.name}
+                onClick={handleSubmit}
               >
-                <span>REGISTER</span>
+                <span className="">
+                  {false ? "Already Registered" : "REGISTER!"}
+                </span>
               </a>
+            ) : (
+              eventTerm.external_link && (
+                <a
+                  href={eventTerm.external_link || ""}
+                  target="_blank"
+                  className="event-details-register button-64"
+                >
+                  <span>REGISTER</span>
+                </a>
+              )
             )}
             {eventTerm.rulebook &&
               // (
@@ -314,8 +389,7 @@ function Details(props) {
                 >
                   <span>RULEBOOK</span>
                 </div>
-              ))
-            }
+              ))}
           </div>
         </div>
 
@@ -472,9 +546,7 @@ function EventDetails() {
       await fetch(fetchURL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          data = data.filter(
-            (item) => item.id == urlParams.get("id")
-          );
+          data = data.filter((item) => item.id == urlParams.get("id"));
           setEventInfo(data[0]);
           // console.log("Data:", data[0]);
         })
@@ -516,9 +588,7 @@ function EventDetails() {
       await fetch(fetchURL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          data = data.filter(
-            (item) => item.event == urlParams.get("id")
-          );
+          data = data.filter((item) => item.event == urlParams.get("id"));
           setEventSponsor([...data]);
           // console.log("Data:", data);
         })
@@ -538,10 +608,7 @@ function EventDetails() {
   return (
     <FadeIn duration={500}>
       <div id="EventDetailsPage" className="contentDiv">
-        <CreateEntry
-          eventInfo={eventInfo}
-          eventSponsor={eventSponsor}
-        />
+        <CreateEntry eventInfo={eventInfo} eventSponsor={eventSponsor} />
       </div>
     </FadeIn>
   );
