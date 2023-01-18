@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from events.models import Event
+from events.models import *
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .manager import UserManager
@@ -118,7 +118,7 @@ class ExtendedUser(AbstractUser):
 
 
 class Team(models.Model):
-    id = models.CharField(max_length=9, primary_key=True, verbose_name='Team ID')
+    # id = models.CharField(max_length=9, primary_key=True, verbose_name='Team ID')
     name = models.CharField(max_length=50, verbose_name="Team Name", unique=True)
     leader = models.ForeignKey(ExtendedUser, blank=True, related_name="teams_created", on_delete=models.CASCADE)
     members = models.ManyToManyField(ExtendedUser, related_name="teams")

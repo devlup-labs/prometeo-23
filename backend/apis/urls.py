@@ -36,7 +36,7 @@ router.register("signup",ExtendedUserViewSet)
 
 # router.register("campusambassador",CampusAmbassadorViewSet)
 
-router.register("team",TeamViewSet)
+router.register("team",TeamEventViewSet)
 
 router.register("coreteam",CoreTeamViewSet)
 
@@ -53,6 +53,8 @@ router.register("createteamrw",CreateTeamViewSetRW)
 # router.register("logindashboard", LoginDashboardViewSet)
 
 # router.register("registerevent",RegisterEventViewSet)
+
+# router.register("teamevent",TeamEventViewSet)
 
 urlpatterns=[
     path(r'',include(router.urls)), 

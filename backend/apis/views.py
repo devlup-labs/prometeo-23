@@ -853,3 +853,49 @@ class CustomOrderView(APIView):
 
         return Response({'custom_order':serializers.data, 'param_dict': param_dict})
         
+
+
+class TeamEventViewSet(viewsets.ModelViewSet):
+    queryset = Team.objects.all()
+    serializer_class = TeamEventSerializers
+    permission_classes = (IsAuthenticated,)
+
+    # def get_queryset(self):
+    #     queryset = TeamEvents.objects.all()
+    #     user = self.request.user
+    #     if user.is_superuser:
+    #         queryset = TeamEvents.objects.all()
+    #     else:
+    #         queryset = TeamEvents.objects.filter(user=user)
+    #     return queryset
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+
+        if Team.objects.filter(event = request.data['event_name']).exists():
+
+            if(request.data['join'] == True):
+                team = Team.objects.filter(team_name=request.data['team_name']).first()
+                #check if user already a member
+                if team.members.filter(email=request.data['email']).exists():
+                    return Response({'message': 'You are already a member of this team'})
+                if(team.members.count() < team.event.max_members):
+                    team.members.add(user)
+                    team.save()
+                else:
+                    return Response({'message': 'Team is full'})
+                return Response({'message': 'Team joined successfully'})
+            else:
+
+                if Team.objects.filter(team_name=request.data['team_name']).exists():
+                    return Response({'message': 'Team name already exists'})
+                team = Team.objects.create(team_name=request.data['team_name'], 
+                event=Event.objects.filter(name = request.data['event_name']).first(), 
+                team_leader=user)
+                team.members.add(user)
+                team.save()
+                return Response({'message': 'Team created successfully'})
+
+        else:
+            return Response({'message': 'Event does not exist'})
+        

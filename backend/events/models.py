@@ -1,7 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 from prometeo.settings import AUTH_USER_MODEL
-
+# from users.models import ExtendedUser
 
 
 EVENT_CHOICES = (
@@ -129,3 +129,5 @@ class StreamLinks(models.Model):
 
     class Meta:
         verbose_name_plural = 'Stream Links'
+
+
