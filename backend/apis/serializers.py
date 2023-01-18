@@ -90,8 +90,7 @@ class TeamSerializers(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = '__all__'
-        extra_kwargs = {'id' : {'read_only' : True},
-                        'isEligible' : {'read_only' : True}}
+        extra_kwargs = {'isEligible' : {'read_only' : True}}
 
     def create(self, validated_data):
         user = self.context['request'].user
@@ -431,3 +430,9 @@ class CustomOrderSerializers(serializers.ModelSerializer):
                         'payment_from' : {'read_only' : True},
                         'payment_reason' : {'read_only' : True},
                         'link' : {'read_only' : True}}
+
+
+class TeamEventSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = '__all__'
