@@ -14,7 +14,7 @@ import { Navigate } from "react-router-dom";
 import domtoimage from "dom-to-image";
 import PrometeoLogo from "../assets/homePage/prometeo-updated2.png";
 import Gmap from "../assets/homePage/maps.png";
-import passBg from "../assets/homePage/pass_bg2.jpg";
+import passBg from "../assets/homePage/pass_bg_final.jpg";
 import downIcon from "../assets/homePage/download_icon.png";
 import ticket1 from "../assets/ticket1.png";
 import ticket2 from "../assets/ticket2.png";
@@ -669,10 +669,10 @@ function Dashboard() {
                       // fontSize: `calc(0.025 * 0.67 * 92vw)`,
                       fontSize:
                         userData.pass_type === 3
-                          ? `calc(0.022 * 0.67 * 1771px)`
+                          ? `calc(0.022 * 1771px)`
                           : userData.pass_type === 2
-                          ? `calc(0.035 * 0.67 * 1771px)`
-                          : `calc(0.022 * 0.67 * 1771px)`,
+                          ? `calc(0.035 * 1771px)`
+                          : `calc(0.022 * 1771px)`,
                     }}
                   >
                     {userData.pass_type === 3 ? (
