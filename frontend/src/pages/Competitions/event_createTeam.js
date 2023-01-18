@@ -49,6 +49,7 @@ import FadeIn from '../../components/fadein';
 export default function Event_createTeam() {
     const { user } = useContext(AuthContext);
     const [eventInfo, setEventInfo] = useState([]);
+    // console.log(eventInfo);
     // const [membersCount, setMembersCount] = useState([]);
     const [urlParams] = useSearchParams();
 
@@ -78,7 +79,7 @@ export default function Event_createTeam() {
                     // );
                     setEventInfo(data[0]);
                     // setMembersCount([...Array.from({length: Math.max(1, data[0].min_team_size - 1)}, (_, index) => index + 1)])
-                    // console.log("Data:", data[0]);
+                    console.log("Data:", data[0]);
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -153,86 +154,52 @@ export default function Event_createTeam() {
     // }
 
     return (
-        <FadeIn duration={500}>
-            <div className="createTeam">
-                <div className="createTeam-container">
-                    <div className="createTeam-container-left">
-                        <img src={
-                            eventInfo.image ?
-                            eventInfo.image.replace("0.0.0.0:8888", "apiv.prometeo.in") :
-                            "https://cdn.dribbble.com/users/2217210/screenshots/11335904/media/db21aab2bd4867c51c4a0382f7c384ae.jpg"
-                        } alt="Event Image" />
-                    </div>
-                    <div className="createTeam-container-right">
-                        <div className="createTeam-container-right-title">
-                            Create Team
-                        </div>
-                        <div className="createTeam-container-right-subtitle">
-                            {eventInfo.name}
-                        </div>
-                        <form className="createTeam-form" onSubmit={handleSubmit}>
-                            <input
-                                type="text"
-                                name="team_name"
-                                placeholder="Team Name *"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="bot_name"
-                                placeholder="Bot Name *"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="country"
-                                placeholder="Country *"
-                                required
-                            />
-                            <div className="createTeam-category-dropdown">
-                                <label
-                                    htmlFor="category"
-                                    className="createTeam-category-dropdown-label"
-                                >
-                                    Category
-                                </label>
-                                <select
-                                    name="category"
-                                    id="category"
-                                    className="createTeam-category-dropdown-select"
-                                >
-                                    <option
-                                        className="createTeam-category-option"
-                                        selected
-                                        disabled
-                                        hidden
-                                    >
-                                        -- Select --
-                                    </option>
-                                    <option
-                                        className="createTeam-category-option"
-                                        value="15kg"
-                                    >
-                                        15 Kg
-                                    </option>
-                                    <option
-                                        className="createTeam-category-option"
-                                        value="60kg"
-                                    >
-                                        60 Kg
-                                    </option>
-                                </select>
-                            </div>
-                            <input
-                                type="number"
-                                name="team_size"
-                                placeholder="Team Size *"
-                                min={1}
-                                max={20}
-                                step={1}
-                                required
-                            />
-                            {/* <div className='createTeam-members'>
+      <FadeIn duration={500}>
+        <div className="createTeam">
+          <div className="createTeam-container">
+            <div className="createTeam-container-left">
+              <img
+                src={
+                  eventInfo.image
+                    ? eventInfo.image.replace(
+                        "0.0.0.0:8888",
+                        "apiv.prometeo.in"
+                      )
+                    : "https://cdn.dribbble.com/users/2217210/screenshots/11335904/media/db21aab2bd4867c51c4a0382f7c384ae.jpg"
+                }
+                alt="Event Image"
+              />
+            </div>
+            <div className="createTeam-container-right">
+              <div className="createTeam-container-right-title">
+                Create Team
+              </div>
+              <div className="createTeam-container-right-subtitle">
+                {eventInfo.name}
+              </div>
+              <form className="createTeam-form" onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="team_name"
+                  placeholder="Team Name *"
+                  required
+                />
+                <input
+                  type="text"
+                  name="country"
+                  placeholder="Country *"
+                  required
+                />
+                <input
+                  type="number"
+                  name="team_size"
+                  placeholder="Team Size *"
+                  min={1}
+                  max={20}
+                  step={1}
+                  required
+                />
+                {/* <div className='createTeam-members'>
                                 <div className='createTeam-members-title'>
                                     Members
                                 </div>
@@ -241,16 +208,16 @@ export default function Event_createTeam() {
                                     +
                                 </div>
                             </div> */}
-                            <input
-                                type="submit"
-                                value="Submit"
-                                id="createTeam-form-submit"
-                            />
-                            <br />
-                        </form>
-                    </div>
-                </div>
+                <input
+                  type="submit"
+                  value="Submit"
+                  id="createTeam-form-submit"
+                />
+                <br />
+              </form>
             </div>
-        </FadeIn>
-    )
+          </div>
+        </div>
+      </FadeIn>
+    );
 }

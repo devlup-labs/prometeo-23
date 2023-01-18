@@ -584,3 +584,8 @@
 .tab-hide {
     display: none;
 }
+.bridge-button-text{
+    color: #fff;
+    padding: 1vmin 3vmin;
+    font-size: 3vmin;
+}
