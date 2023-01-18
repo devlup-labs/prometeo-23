@@ -215,7 +215,7 @@ class CampusAmbassadorView(APIView):
     queryset = CampusAmbassador.objects.all()
     serializer_class = CampusAmbassadorSerializers
     permission_classes = (IsAuthenticated,)
-    print(1)
+    # print(1)
     def get(self, request):
         ca = CampusAmbassador.objects.all()
         serializer = CampusAmbassadorSerializers(ca, many=True)
@@ -542,16 +542,16 @@ class GoogleCompleteProfileViewSet(APIView):
                 user.ambassador = True
                 ca= CampusAmbassador.objects.create(email=user_email)
                 code= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
-                user = CampusAmbassador.objects.all()
+                user_ca = CampusAmbassador.objects.all()
                 # def referral_check(c):
                 #     for u in user:
                 #         if c == u.invite_referral:
                 #             c = 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
                 #             referral_check(c)
                 #     return c
-                id_registration= 'CA' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+                id_registration= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
                 while ExtendedUser.objects.filter(registration_id=id_registration).exists():
-                    id_registration= 'CA' + str(uuid.uuid4().int)[:4] +str(user.id)[:2]
+                    id_registration= 'CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
 
                 ca.invite_referral = id_registration
                 # ca.invite_referral='CA' + str(uuid.uuid4().int)[:4] +str(ca.id)[:2]
