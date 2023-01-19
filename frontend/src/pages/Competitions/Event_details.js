@@ -334,19 +334,10 @@ function Details(props) {
             {/* {console.log(eventTerm.name)} */}
 
             {eventTerm.name === "Speed Cubing" ||
+            eventTerm.name === "Open Mic" ||
+            eventTerm.name === "E sports tournament" ||
             eventTerm.name === "Bridge making competition" ? (
-              eventTerm.name === "Speed Cubing" ? (
-                <a
-                  id="ca-register-button"
-                  className="event-details-register button-64"
-                  // value={eventTerm.name}
-                  onClick={handleSubmit}
-                >
-                  <span className="">
-                    {false ? "Already Registered" : "REGISTER!"}
-                  </span>
-                </a>
-              ) : (
+              eventTerm.name === "Bridge making competition" ? (
                 <>
                   <button
                     id="rw-create-button"
@@ -383,6 +374,17 @@ function Details(props) {
                     </Link>
                   </button>
                 </>
+              ) : (
+                <a
+                  id="ca-register-button"
+                  className="event-details-register button-64"
+                  // value={eventTerm.name}
+                  onClick={handleSubmit}
+                >
+                  <span className="">
+                    {false ? "Already Registered" : "REGISTER!"}
+                  </span>
+                </a>
               )
             ) : (
               eventTerm.external_link && (
