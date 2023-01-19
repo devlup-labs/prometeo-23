@@ -153,104 +153,47 @@ export default function Event_joinTeam() {
     // }
 
     return (
-        <FadeIn duration={500}>
-            <div className="joinTeam">
-                <div className="joinTeam-container">
-                    <div className="joinTeam-container-left">
-                        <img src={
-                            eventInfo.image ?
-                            eventInfo.image.replace("0.0.0.0:8888", "apiv.prometeo.in") :
-                            "https://cdn.dribbble.com/users/2217210/screenshots/11335904/media/db21aab2bd4867c51c4a0382f7c384ae.jpg"
-                        } alt="Event Image" />
-                    </div>
-                    <div className="joinTeam-container-right">
-                        <div className="joinTeam-container-right-title">
-                            Join Team
-                        </div>
-                        <div className="joinTeam-container-right-subtitle">
-                            {eventInfo.name}
-                        </div>
-                        <form className="joinTeam-form" onSubmit={handleSubmit}>
-                            <input
-                                type="text"
-                                name="team_name"
-                                placeholder="Team Name *"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="bot_name"
-                                placeholder="Bot Name *"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="country"
-                                placeholder="Country *"
-                                required
-                            />
-                            <div className="joinTeam-category-dropdown">
-                                <label
-                                    htmlFor="category"
-                                    className="joinTeam-category-dropdown-label"
-                                >
-                                    Category
-                                </label>
-                                <select
-                                    name="category"
-                                    id="category"
-                                    className="joinTeam-category-dropdown-select"
-                                >
-                                    <option
-                                        className="joinTeam-category-option"
-                                        selected
-                                        disabled
-                                        hidden
-                                    >
-                                        -- Select --
-                                    </option>
-                                    <option
-                                        className="joinTeam-category-option"
-                                        value="15kg"
-                                    >
-                                        15 Kg
-                                    </option>
-                                    <option
-                                        className="joinTeam-category-option"
-                                        value="60kg"
-                                    >
-                                        60 Kg
-                                    </option>
-                                </select>
-                            </div>
-                            <input
-                                type="number"
-                                name="team_size"
-                                placeholder="Team Size *"
-                                min={1}
-                                max={5}
-                                step={1}
-                                required
-                            />
-                            {/* <div className='joinTeam-members'>
-                                <div className='joinTeam-members-title'>
-                                    Members
-                                </div>
-                                {membersCount.map((item, index) => MemberField(item, index+1, deleteMember))}
-                                <div className='joinTeam-members-add' onClick={() => setMembersCount([...membersCount, membersCount[membersCount.length-1] + 1])}>
-                                    +
-                                </div>
-                            </div> */}
-                            <input
-                                type="submit"
-                                value="Submit"
-                                id="joinTeam-form-submit"
-                            />
-                            <br />
-                        </form>
-                    </div>
-                </div>
+      <FadeIn duration={500}>
+        <div className="robowar_joinTeam">
+          <div className="robowar_joinTeam-container">
+            <div className="robowar_joinTeam-container-left">
+              <img
+                src={
+                  eventInfo.image
+                    ? eventInfo.image.replace(
+                        "0.0.0.0:8888",
+                        "apiv.prometeo.in"
+                      )
+                    : "https://cdn.dribbble.com/users/2217210/screenshots/11335904/media/db21aab2bd4867c51c4a0382f7c384ae.jpg"
+                }
+                alt="Event Image"
+              />
             </div>
-        </FadeIn>
-    )
+            <div className="robowar_joinTeam-container-right">
+              <div className="robowar_joinTeam-container-right-title">
+                Join Team
+              </div>
+              <div className="robowar_joinTeam-container-right-subtitle">
+                {eventInfo.name}
+              </div>
+              <form className="robowar_joinTeam-form" onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="rw_name"
+                  placeholder="Enter team name *"
+                  maxLength={50}
+                  required
+                />
+                <input
+                  type="submit"
+                  value="Submit"
+                  id="robowar_joinTeam-form-submit"
+                />
+                <br />
+              </form>
+            </div>
+          </div>
+        </div>
+      </FadeIn>
+    );
 }

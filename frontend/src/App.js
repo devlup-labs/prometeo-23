@@ -58,50 +58,41 @@ function App() {
     // const [bigBang, setBigBang] = useState(true);
 
     return (
-        <Router>
-            <div className="App">
-                <AuthProvider>
-                    <Navbar />
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <HomePage
-                                // bb={bigBang}
-                                // bbFunc={setBigBang}
-                                />
-                            }
-                        />
-                        <Route path="/past-speakers" element={<Speaker />} />
-                        <Route path="/gallery" element={<NewGallery />} />
-                        <Route path="/past-sponsors" element={<Sponsors />} />
-                        <Route path="/team" element={<Team />} />
-                        <Route path="/campus-ambassador" element={<CA />} />
-                        <Route
-                            path="/accommodation"
-                            element={<Accommodation />}
-                        />
-                        <Route path="/workshop" element={<Workshop />} />
-                        <Route path="/moonshot" element={<Moonshot />} />
-                        <Route path="/panel-discussion" element={<PanelDiscussion />} />
-                        <Route path="/competitions" element={<Events />} />
-                        <Route
-                            path="/event-details"
-                            element={<EventDetails />}
-                        />
-                        {/* <Route path="/competition-rulebook" element={<Competitions_Rulebook />} /> */}
-                        <Route
-                            path="/workshop-details"
-                            element={<WorkshopDetails />}
-                        />
-                        {/* <Route exact path='/create-team' element={<PrivateRoute />}>
+      <Router>
+        <div className="App">
+          <AuthProvider>
+            <Navbar />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <HomePage
+                  // bb={bigBang}
+                  // bbFunc={setBigBang}
+                  />
+                }
+              />
+              <Route path="/past-speakers" element={<Speaker />} />
+              <Route path="/gallery" element={<NewGallery />} />
+              <Route path="/past-sponsors" element={<Sponsors />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/campus-ambassador" element={<CA />} />
+              <Route path="/accommodation" element={<Accommodation />} />
+              <Route path="/workshop" element={<Workshop />} />
+              <Route path="/moonshot" element={<Moonshot />} />
+              <Route path="/panel-discussion" element={<PanelDiscussion />} />
+              <Route path="/competitions" element={<Events />} />
+              <Route path="/event-details" element={<EventDetails />} />
+              {/* <Route path="/competition-rulebook" element={<Competitions_Rulebook />} /> */}
+              <Route path="/workshop-details" element={<WorkshopDetails />} />
+              {/* <Route exact path='/create-team' element={<PrivateRoute />}>
                             <Route exact path='/create-team' element={<Event_createTeam />} />
                         </Route>
                         <Route exact path='/join-team' element={<PrivateRoute />}>
                             <Route exact path='/join-team' element={<Event_joinTeam />} />
                         </Route> */}
-                        <Route path="/robowars" element={<Robowar />} />
-                        {/* <Route
+              <Route path="/robowars" element={<Robowar />} />
+              {/* <Route
                             exact
                             path="/accommodation-registration"
                             element={<PrivateRoute />}
@@ -111,41 +102,51 @@ function App() {
                                 element={<AccForm />}
                             />
                         </Route> */}
-                        <Route
-                            exact
-                            path="/robowars-create-team"
-                            element={<PrivateRoute />}
-                        >
-                            <Route
-                                exact
-                                path="/robowars-create-team"
-                                element={<Robowar_createTeam />}
-                            />
-                        </Route>
-                        <Route
-                            exact
-                            path="/robowars-join-team"
-                            element={<PrivateRoute />}
-                        >
-                            <Route
-                                exact
-                                path="/robowars-join-team"
-                                element={<Robowar_joinTeam />}
-                            />
-                        </Route>
-                        <Route path="/dronerace" element={<DroneRace />} />
-                        <Route
-                            exact
-                            path="/dronerace-payment"
-                            element={<PrivateRoute />}
-                        >
-                            <Route
-                                exact
-                                path="/dronerace-payment"
-                                element={<Dronerace_Register />}
-                            />
-                        </Route>
-                        {/* <Route
+              <Route
+                exact
+                path="/robowars-create-team"
+                element={<PrivateRoute />}
+              >
+                <Route
+                  exact
+                  path="/robowars-create-team"
+                  element={<Robowar_createTeam />}
+                />
+              </Route>
+              <Route
+                exact
+                path="/robowars-join-team"
+                element={<PrivateRoute />}
+              >
+                <Route
+                  exact
+                  path="/robowars-join-team"
+                  element={<Robowar_joinTeam />}
+                />
+              </Route>
+              <Route exact path="/event_createTeam" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/event_createTeam"
+                  element={<Event_createTeam />}
+                />
+              </Route>
+              <Route exact path="/event_joinTeam" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/event_joinTeam"
+                  element={<Event_joinTeam />}
+                />
+              </Route>
+              <Route path="/dronerace" element={<DroneRace />} />
+              <Route exact path="/dronerace-payment" element={<PrivateRoute />}>
+                <Route
+                  exact
+                  path="/dronerace-payment"
+                  element={<Dronerace_Register />}
+                />
+              </Route>
+              {/* <Route
                             exact
                             path="/payment"
                             element={<PrivateRoute />}
