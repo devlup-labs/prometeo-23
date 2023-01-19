@@ -160,7 +160,7 @@ function Sponsors() {
 		<FadeIn duration={500}>
 			<div id="sponsors_body">
 				<h1 className="sponsor_h1">
-					<span className="sponsor_h1_span">PAST SPONSORS</span>
+					<span className="sponsor_h1_span">SPONSORS</span>
 				</h1>
 				<div>{sponsorsData.map(createEntry)}</div>
 			</div>
