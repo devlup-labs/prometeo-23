@@ -702,7 +702,7 @@ function Dashboard() {
               {Object.keys(registeredEvents).length > 0 ? (
                 // console.log(registeredEvents),
                 Object.keys(registeredEvents).map((key, index) => {
-                  console.log(registeredEvents[key], key);
+                  {/* console.log(registeredEvents[key], key); */}
                   return (
                     <div
                       className="dashboard-registeredEvents-content-event"

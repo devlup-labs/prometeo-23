@@ -135,13 +135,13 @@ function Details(props) {
   const [searchParams, SetSearchParams] = useSearchParams();
   const { user, logoutUser } = useContext(AuthContext);
   const [eventData, setEventData] = useState([]);
-  console.log(user);
+  // console.log(user);
   const api = useAxios();
 
   const event_name = searchParams.get("name");
   const event_number = searchParams.get("id");
   const handleSubmit = (e) => {
-    console.log(e);
+    // console.log(e);
     async function fetchData() {
       // console.log(searchParams.get("name"));
       // const event_name = searchParams.get("name");
@@ -149,7 +149,7 @@ function Details(props) {
 
       try {
         // console.log("Fetching data for user:", user.email);
-        console.log(user);
+        // console.log(user);
         const obj = {
           email: user.email,
           // ambassador: user.ambassador,
@@ -160,8 +160,8 @@ function Details(props) {
         const response = await api.post(`${backendURL}/registerevent/`, obj);
         if (response.status === 200) {
           let data = response.data;
-          console.log(data);
-          setEventData([...data]);
+          // console.log(data);
+          // setEventData([...data]);
           return data;
         } else {
           throw "Error: " + response.statusText;
