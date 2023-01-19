@@ -55,19 +55,28 @@ function Entry(props) {
 
 const mapDesignationToType = {
 	1: "Title Sponsor",
-	2: "Associate Sponsor",
-	3: "Online Media Partner",
-	4: "Consultancy Partner",
-	5: "Technical Events Partner",
-	6: "VC Partner",
-	7: "Workshops Partner",
-	8: "Services Partner",
-	9: "Entertainment Partner",
-	10: "Gifting Partner",
-	11: "Digital Media Partner",
-	12: "Printing Partner",
-	13: "Media Partner",
-	14: "Merchandise Partner",
+	16: "Co-Title Sponsor",
+	17: "Associate Sponsor",
+	18: "Powered By",
+	19: "Learning Partner",
+	20: "Logo Partner",
+	21: "Accelerated By Partner",
+	22: "E-Sports Partner",
+	23: "Radio Partner",
+	24: "Consultancy Partner",
+	25: "Technical Events Partner",
+	26: "VC Partner",
+	27: "Workshops Partner",
+	28: "Services Partner",
+	29: "Entertainment Partner",
+	30: "Gifting Partner",
+	31: "Digital Media Partner",
+	32: "Printing Partner",
+	33: "Media Partner",
+	34: "Merchandise Partner",
+	35: "Coupon Partner",
+	36: "Online Media Partner",
+	37: "Education Partner",
 }
 
 function Sponsors() {
@@ -97,6 +106,7 @@ function Sponsors() {
 			await fetch(`${backendURL}/sponsors/`, requestOptions)
 				.then((response) => response.json())
 				.then((data) => {
+					console.log(data)
 					let newData = {}
 					data.forEach((sponsor) => {
 						newData[sponsor.designation] = newData[sponsor.designation] || {}
