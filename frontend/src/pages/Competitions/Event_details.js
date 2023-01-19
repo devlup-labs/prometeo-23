@@ -135,13 +135,13 @@ function Details(props) {
   const [searchParams, SetSearchParams] = useSearchParams();
   const { user, logoutUser } = useContext(AuthContext);
   const [eventData, setEventData] = useState([]);
-  console.log(user);
+  // console.log(user);
   const api = useAxios();
 
   const event_name = searchParams.get("name");
   const event_number = searchParams.get("id");
   const handleSubmit = (e) => {
-    console.log(e);
+    // console.log(e);
     async function fetchData() {
       // console.log(searchParams.get("name"));
       // const event_name = searchParams.get("name");
@@ -149,7 +149,7 @@ function Details(props) {
 
       try {
         // console.log("Fetching data for user:", user.email);
-        console.log(user);
+        // console.log(user);
         const obj = {
           email: user.email,
           // ambassador: user.ambassador,
@@ -160,8 +160,8 @@ function Details(props) {
         const response = await api.post(`${backendURL}/registerevent/`, obj);
         if (response.status === 200) {
           let data = response.data;
-          console.log(data);
-          setEventData([...data]);
+          // console.log(data);
+          // setEventData([...data]);
           return data;
         } else {
           throw "Error: " + response.statusText;
@@ -192,6 +192,7 @@ function Details(props) {
         success: "Registered successfully!",
         error: {
           render: ({ data }) => {
+            console.log(data)
             return "Something went wrong!";
           },
         },
@@ -337,7 +338,7 @@ function Details(props) {
             eventTerm.name === "Open Mic" ||
             eventTerm.name === "E sports tournament" ||
             eventTerm.name === "Bridge making competition" ? (
-              eventTerm.name === "Bridge making competition" ? (
+              /* eventTerm.name === "Bridge making competition" ? (
                 <>
                   <button
                     id="rw-create-button"
@@ -345,7 +346,7 @@ function Details(props) {
                     onClick={() => {
                       if (props.user === null) {
                         toast.error("Please login to create a team");
-                        // navigate("/login");
+                        navigate("/login");
                       }
                     }}
                   >
@@ -374,19 +375,19 @@ function Details(props) {
                     </Link>
                   </button>
                 </>
-              ) : (
-                <a
-                  id="ca-register-button"
-                  className="event-details-register button-64"
-                  // value={eventTerm.name}
-                  onClick={handleSubmit}
-                >
-                  <span className="">
-                    {false ? "Already Registered" : "REGISTER!"}
-                  </span>
-                </a>
-              )
+              ) : ( */
+              <a
+                id="ca-register-button"
+                className="event-details-register button-64"
+                // value={eventTerm.name}
+                onClick={handleSubmit}
+              >
+                <span className="">
+                  {false ? "Already Registered" : "REGISTER!"}
+                </span>
+              </a>
             ) : (
+              /* ) */
               eventTerm.external_link && (
                 <a
                   href={eventTerm.external_link || ""}
@@ -497,7 +498,7 @@ function Details(props) {
                     <p id="event-content-heading">
                       Description
                       {eventTerm.name === "Game Jam" ? (
-                        <a href="https://rb.gy/xcxyiq">
+                        <a href="https://drive.google.com/file/d/1rVrrv9Whyri37ZmYtcWgPfx6MtzKJaNI/view?usp=sharing">
                           Themes are released please click here!
                         </a>
                       ) : (
