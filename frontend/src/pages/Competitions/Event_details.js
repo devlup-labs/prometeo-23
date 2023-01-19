@@ -192,7 +192,7 @@ function Details(props) {
         success: "Registered successfully!",
         error: {
           render: ({ data }) => {
-            console.log(data)
+            // console.log(data)
             return "Something went wrong!";
           },
         },

@@ -79,7 +79,7 @@ export default function Event_createTeam() {
                     // );
                     setEventInfo(data[0]);
                     // setMembersCount([...Array.from({length: Math.max(1, data[0].min_team_size - 1)}, (_, index) => index + 1)])
-                    console.log("Data:", data[0]);
+                    // console.log("Data:", data[0]);
                 })
                 .catch((error) => {
                     console.error("Error:", error);

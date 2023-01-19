@@ -97,7 +97,7 @@ function Pay() {
                 if (response.status === 200) {
                     const data = response.data.custom_order;
                     const key = response.data.param_dict;
-                    console.log(data);
+                    // console.log(data);
                     setPaymentData({
                         ...data,
                     });
