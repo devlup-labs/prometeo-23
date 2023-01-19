@@ -79,7 +79,7 @@ function BuyPass() {
   const checkAccommodationStatus = async () => {
     const response = await api.get(`${backendURL}/accomodationpasses/?user=${user.user_id}`);
     if (response.status === 200) {
-      console.log("Accommodation Status:", response.data);
+      // console.log("Accommodation Status:", response.data);
       if (response.data.length > 0) {
         return "Registered"
       }

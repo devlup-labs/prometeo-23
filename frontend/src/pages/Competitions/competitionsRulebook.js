@@ -41,7 +41,7 @@ function Competitions_Rulebook() {
         }
 
         const card = location.state;
-        console.log("Card:", card);
+        // console.log("Card:", card);
 
         if (card) {
             //   console.log("pewpewpew");

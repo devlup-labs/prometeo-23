@@ -32,7 +32,7 @@ export default function Accommodation() {
                 );
                 if (response.status === 200) {
                     let data = response.data;
-                    console.log(data);
+                    // console.log(data);
                     if (data.length > 0 && data[0].pass_type === 0) {
                         // document.getElementById(
                         //     "acc-register-button"

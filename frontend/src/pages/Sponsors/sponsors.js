@@ -106,7 +106,7 @@ function Sponsors() {
 			await fetch(`${backendURL}/sponsors/`, requestOptions)
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data)
+					// console.log(data)
 					let newData = {}
 					data.forEach((sponsor) => {
 						newData[sponsor.designation] = newData[sponsor.designation] || {}
