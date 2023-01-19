@@ -9,8 +9,8 @@ import PrometeoLogo from "../assets/homePage/prometeo-updated.png";
 import reg_rock from "../assets/homePage/reg_rock.png";
 
 export default function LandingSection() {
-    useEffect(() => {
-        clock();
+    // useEffect(() => {
+    //     clock();
         // hi
         // const script = document.createElement("script");
 
@@ -24,7 +24,7 @@ export default function LandingSection() {
         // return () => {
         // document.body.removeChild(script);
         // };
-    }, []);
+    // }, []);
     return (
         <div className="landing-container" id="main-container">
             <div id="landing">
@@ -34,9 +34,9 @@ export default function LandingSection() {
                     </div>
                     <div id="landing-text">
                         <div id="landing-countdown-title">
-                            THE JOURNEY TO INFINITY BEGINS IN
+                            THE JOURNEY TO INFINITY BEGINS NOW!
                         </div>
-                        <div id="landing-countdown"></div>
+                        {/* <div id="landing-countdown"></div> */}
                     </div>
                 </div>
                 <div id="landing-right-section">
