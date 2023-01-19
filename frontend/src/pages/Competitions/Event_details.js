@@ -337,7 +337,7 @@ function Details(props) {
             {eventTerm.name === "Speed Cubing" ||
             eventTerm.name === "Open Mic" ||
             eventTerm.name === "E sports tournament" ||
-            eventTerm.name === "Bridge making competition" ? 
+            eventTerm.name === "Bridge making competition" ? (
               /* eventTerm.name === "Bridge making competition" ? (
                 <>
                   <button
@@ -376,18 +376,18 @@ function Details(props) {
                   </button>
                 </>
               ) : ( */
-                (<a
-                  id="ca-register-button"
-                  className="event-details-register button-64"
-                  // value={eventTerm.name}
-                  onClick={handleSubmit}
-                >
-                  <span className="">
-                    {false ? "Already Registered" : "REGISTER!"}
-                  </span>
-                </a>
-              /* ) */
+              <a
+                id="ca-register-button"
+                className="event-details-register button-64"
+                // value={eventTerm.name}
+                onClick={handleSubmit}
+              >
+                <span className="">
+                  {false ? "Already Registered" : "REGISTER!"}
+                </span>
+              </a>
             ) : (
+              /* ) */
               eventTerm.external_link && (
                 <a
                   href={eventTerm.external_link || ""}
@@ -498,7 +498,7 @@ function Details(props) {
                     <p id="event-content-heading">
                       Description
                       {eventTerm.name === "Game Jam" ? (
-                        <a href="https://rb.gy/xcxyiq">
+                        <a href="https://drive.google.com/file/d/1rVrrv9Whyri37ZmYtcWgPfx6MtzKJaNI/view?usp=sharing">
                           Themes are released please click here!
                         </a>
                       ) : (
