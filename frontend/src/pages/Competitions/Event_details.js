@@ -192,6 +192,7 @@ function Details(props) {
         success: "Registered successfully!",
         error: {
           render: ({ data }) => {
+            console.log(data)
             return "Something went wrong!";
           },
         },
@@ -336,8 +337,8 @@ function Details(props) {
             {eventTerm.name === "Speed Cubing" ||
             eventTerm.name === "Open Mic" ||
             eventTerm.name === "E sports tournament" ||
-            eventTerm.name === "Bridge making competition" ? (
-              eventTerm.name === "Bridge making competition" ? (
+            eventTerm.name === "Bridge making competition" ? 
+              /* eventTerm.name === "Bridge making competition" ? (
                 <>
                   <button
                     id="rw-create-button"
@@ -345,7 +346,7 @@ function Details(props) {
                     onClick={() => {
                       if (props.user === null) {
                         toast.error("Please login to create a team");
-                        // navigate("/login");
+                        navigate("/login");
                       }
                     }}
                   >
@@ -374,8 +375,8 @@ function Details(props) {
                     </Link>
                   </button>
                 </>
-              ) : (
-                <a
+              ) : ( */
+                (<a
                   id="ca-register-button"
                   className="event-details-register button-64"
                   // value={eventTerm.name}
@@ -385,7 +386,7 @@ function Details(props) {
                     {false ? "Already Registered" : "REGISTER!"}
                   </span>
                 </a>
-              )
+              /* ) */
             ) : (
               eventTerm.external_link && (
                 <a
