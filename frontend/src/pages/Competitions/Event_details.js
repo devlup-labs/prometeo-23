@@ -337,6 +337,7 @@ function Details(props) {
             {eventTerm.name === "Speed Cubing" ||
             eventTerm.name === "Open Mic" ||
             eventTerm.name === "E sports tournament" ||
+            eventTerm.name === "Dance Jam" ||
             eventTerm.name === "Bridge making competition" ? (
               /* eventTerm.name === "Bridge making competition" ? (
                 <>
