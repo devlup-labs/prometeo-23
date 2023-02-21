@@ -279,7 +279,7 @@ const team_data = [
       {
         id: 0,
         image:
-          "https://media-exp1.licdn.com/dms/image/C4D03AQFmmlGQ5EyGBg/profile-displayphoto-shrink_800_800/0/1639395734793?e=1675900800&v=beta&t=jgLKE30oiPsRo1FnYjsQeocABUEmaqWN0bB51YxQGgE",
+          "https://i.postimg.cc/h41wCrt6/Linkedin-PFP-Square.jpg",
         name: "Yash Bhargava",
         por: "Front End Head",
         mail: "bhargava.3@iitj.ac.in",
